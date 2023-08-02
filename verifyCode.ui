@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>verifyCode</class>
+ <widget class="QWidget" name="verifyCode">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>640</width>
+    <height>250</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="WCommonEdit" name="verifyCodeEdit" native="true">
+   <property name="geometry">
+    <rect>
+     <x>48</x>
+     <y>0</y>
+     <width>369</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="WVerificationCode" name="verifyCodePic" native="true">
+   <property name="geometry">
+    <rect>
+     <x>433</x>
+     <y>0</y>
+     <width>159</width>
+     <height>56</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="WCommonEdit" name="phoneNumEdit" native="true">
+   <property name="geometry">
+    <rect>
+     <x>48</x>
+     <y>80</y>
+     <width>384</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="WButton" name="sendCodeBtn" native="true">
+   <property name="geometry">
+    <rect>
+     <x>456</x>
+     <y>80</y>
+     <width>136</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QLabel" name="timeLabel">
+   <property name="geometry">
+    <rect>
+     <x>48</x>
+     <y>152</y>
+     <width>261</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Estimated time of code in 43 seconds</string>
+   </property>
+   <property name="scaledContents">
+    <bool>false</bool>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="resendLabel">
+   <property name="geometry">
+    <rect>
+     <x>510</x>
+     <y>150</y>
+     <width>91</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Resend Code</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="WCommonEdit" name="phoneVerifyCode" native="true">
+   <property name="geometry">
+    <rect>
+     <x>48</x>
+     <y>193</y>
+     <width>544</width>
+     <height>56</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>WCommonEdit</class>
+   <extends>QWidget</extends>
+   <header location="global">wcommonedit.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WButton</class>
+   <extends>QWidget</extends>
+   <header location="global">wbutton.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WVerificationCode</class>
+   <extends>QWidget</extends>
+   <header location="global">wverificationcode.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

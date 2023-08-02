@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>qml;cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>qrc;rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Translation Files">
+      <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
+      <Extensions>ts</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="AiSound.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+    <QtUic Include="loginMainFrame.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtMoc Include="WLoginFrame.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <ClCompile Include="WLoginFrame.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WCommonWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WLoginSwitch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WLogin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WCommonEdit.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WCheckBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WButton.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WVerificationCode.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WUserNameLogin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WLoginOpt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WMobileLogin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WClickedLabel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WRegister.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AiSound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WTip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Translate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WComboBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WDropDownList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WTranslationSelect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WSubtitle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WScrollBar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WTransaltionMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VoiceCompositor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Audio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="Login.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="userNameLogin.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="loginOpt.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="mobileLogin.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="signUp.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="verifyPhone.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="frame.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="verifyCode.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="translateSelect.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="TranslateMain.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="WCommonWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WLoginSwitch.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WLogin.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WCommonEdit.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WCheckBox.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WButton.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WVerificationCode.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WUserNameLogin.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WLoginOpt.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WMobileLogin.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WClickedLabel.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WRegister.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="AiSound.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WTip.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Translate.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WDropDownList.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WTranslationSelect.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WComboBox.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WSubtitle.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WScrollBar.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WTransaltionMain.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="Audio.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="VoiceCompositor.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="VoiceType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

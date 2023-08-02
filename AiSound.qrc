@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/QtTest">
+        <file>icon/down.png</file>
+        <file>icon/language.png</file>
+        <file>icon/user_active.png</file>
+        <file>icon/user_passive.png</file>
+        <file>icon/lock.png</file>
+        <file>icon/image.png</file>
+        <file>icon/refresh.png</file>
+        <file>icon/speaker.png</file>
+        <file>icon/closeBtn.png</file>
+        <file>icon/minBtn.png</file>
+        <file>icon/facebook.png</file>
+        <file>icon/google.png</file>
+        <file>icon/wechat.png</file>
+        <file>icon/triangle_down.png</file>
+        <file>icon/triangle_up.png</file>
+        <file>icon/exchange.png</file>
+        <file>icon/lock_white.png</file>
+        <file>icon/close_btn_white.png</file>
+        <file>icon/min_btn_white.png</file>
+        <file>icon/exchange_big.png</file>
+    </qresource>
+</RCC>
