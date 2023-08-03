@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
     AiSound::GetInstance().Initialize();
     AiSound::GetInstance().ShowLoginFrame();
 
-    //AiSound::GetInstance().PasswordLogin("test", "qwert12345", 
+    //AiSound::GetInstance().PasswordLogin("test2", "qwert123456", 
     //    [](int code, const QString& msg, const QString& token)
     //    {
     //        AiSound::GetInstance().CompositorTest(token);
@@ -25,8 +25,5 @@ int main(int argc, char *argv[])
             return;
         });*/
 
-
-    //WLoginFrame w;
-    //w.show();
     return a.exec();
 }

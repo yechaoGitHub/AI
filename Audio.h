@@ -34,9 +34,12 @@ Q_SIGNALS:
     void audioInput(QByteArray data);
     void audioOutput(QByteArray data);
     
-
 protected:
     void timerEvent(QTimerEvent* event) override;
+
+private:
+    uint64_t AvgVolume(const QByteArray& data);
+
 
     int                                     _inTimer = 0;
     QAudioInput*                            _audioInput;

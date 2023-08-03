@@ -6,6 +6,7 @@ WTranslationSelect::WTranslationSelect(QWidget* parent) :
     QWidget{ parent }
 {
     ui.setupUi(this);
+    ui.label->setStyleSheet("color:#FFFFFF");
     ui.minBtn->setIcon(QIcon{":/QtTest/icon/min_btn_white.png"});
     ui.closeBtn->setIcon(QIcon{ ":/QtTest/icon/close_btn_white.png" });
     ui.startBtn->SetText("Start");
@@ -75,6 +76,12 @@ void WTranslationSelect::paintEvent(QPaintEvent* event)
 void WTranslationSelect::StartClicked()
 {
     auto& ins = AiSound::GetInstance();
+
+    auto srcSel = ui.comboSrc->SelectItem();
+    auto srcLanguage = _vecSrc[srcSel].language;
+
+    auto destSel = ui.comboDest->SelectItem();
+    auto destLanguage = _vecDest[destSel].language;
 
     ins.TranslateConnect();
 

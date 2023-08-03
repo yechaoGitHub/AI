@@ -18,9 +18,7 @@ public:
     ~WComboBox();
 
     void AddItem(const QString& text, void* data);
-
-Q_SIGNALS:
-    void hideLatter();
+    int SelectItem();
 
 protected:
     enum class Status { FOLD, EXPLAND };
@@ -33,6 +31,7 @@ private:
     void ItemClicked(int row, const QString& text);
     void DropDownHiden();
 
+    int                                     _selectItem = -1;
     WDropDownList*                          _dropDownList;
     Status                                  _status;
 

@@ -34,6 +34,11 @@ void WComboBox::AddItem(const QString& text, void* data)
     _dropDownList->resize(width(), 44 * 3);
 }
 
+int WComboBox::SelectItem()
+{
+    return 0;
+}
+
 void WComboBox::paintEvent(QPaintEvent* event)
 {
     auto rt = this->rect();
@@ -101,6 +106,7 @@ void WComboBox::mouseReleaseEvent(QMouseEvent* event)
 
 void WComboBox::ItemClicked(int row, const QString& text)
 {
+    _selectItem = row;
     _text = text;
     _dropDownList->hide();
 }

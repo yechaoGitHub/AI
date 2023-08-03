@@ -120,6 +120,7 @@ private:
     VoiceCompositor         _voiceCompositor;
 
 #pragma region ´°¿Ú
+
     WLoginFrame*            _wLoginFrame;
     WTranslationSelect*     _wTranslationSelect;
     WTransaltionMain*       _wTranslationMain;

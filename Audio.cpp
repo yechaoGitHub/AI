@@ -1,4 +1,5 @@
 #include "Audio.h"
+#include <thread>
 #include <QTimerEvent>
 #include <chrono>
 
@@ -23,8 +24,6 @@ Audio::Audio() :
     QAudioDeviceInfo outInfo = QAudioDeviceInfo::defaultOutputDevice();
     _audioOutput = new QAudioOutput{ outInfo, auidoFormat, this };
     _audioOutput->setBufferSize(1280);
-
-    _inBufferData.resize(1500);
 }
 
 Audio::~Audio()
@@ -90,7 +89,24 @@ void Audio::EndPlayAsync()
 
 void Audio::WriteOutputData(const QByteArray& data)
 {
-    _ioOutput->write(data);
+    int per_size = _audioOutput->periodSize();
+    int writePos = 0;
+
+    while (writePos < data.size())
+    {
+        auto free =_audioOutput->bytesFree();
+        if (free > 0)
+        {
+            auto remain = data.size() - writePos;
+            auto writeSize = std::min(free, remain);
+            _ioOutput->write(data.data() + writePos, writeSize);
+            writePos += writeSize;
+        }
+        else 
+        {
+            std::this_thread::yield();
+        }
+    }
 }
 
 void Audio::timerEvent(QTimerEvent* event)
@@ -117,7 +133,7 @@ void Audio::timerEvent(QTimerEvent* event)
         auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(cur - _inlastTick);
         if (interval.count() > 40)
         {
-            if (_inLen == 1280)
+            if (_inLen == 1280 && AvgVolume(_inBufferData) > 1000)
             {
                 emit audioInput(std::move(_inBufferData));
 
@@ -127,4 +143,17 @@ void Audio::timerEvent(QTimerEvent* event)
             }
         }
     }
+}
+
+uint64_t Audio::AvgVolume(const QByteArray& data)
+{
+    uint64_t total{};
+    auto count = data.size() / 2;
+    auto sample = reinterpret_cast<const uint16_t*>(data.data());
+    for (auto i = 0; i < count; i ++)
+    {
+        total += sample[i];
+    }
+
+    return total / count;
 }

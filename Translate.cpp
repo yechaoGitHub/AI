@@ -15,10 +15,10 @@
 Translate::Translate()
 {
     _translateSocket.setParent(this);
-    connect(&_translateSocket, &QWebSocket::connected, this, &Translate::TranslateConnected);
-    connect(&_translateSocket, &QWebSocket::disconnected, this, &Translate::TranslateDisconnected);
-    connect(&_translateSocket, static_cast<void(QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), this, &Translate::TranslateError);
-    connect(&_translateSocket, &QWebSocket::textMessageReceived, this, &Translate::TranslateTextMessageReceived);
+    QObject::connect(&_translateSocket, &QWebSocket::connected, this, &Translate::WebsocketConnected);
+    QObject::connect(&_translateSocket, &QWebSocket::disconnected, this, &Translate::WebsocketDisconnected);
+    QObject::connect(&_translateSocket, static_cast<void(QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), this, &Translate::WebsocketError);
+    QObject::connect(&_translateSocket, &QWebSocket::textMessageReceived, this, &Translate::TranslateTextMessageReceived);
     _audio.setParent(this);
 }
 
@@ -28,23 +28,23 @@ Translate::~Translate()
 
 void Translate::Initialize()
 {
-    connect(this, &Translate::translateConnect, this, &Translate::TranslateConnectInternal);
-    connect(this, &Translate::translateDisconnect, this, &Translate::TranslateDisconnectInternal);
+    QObject::connect(this, &Translate::connect, this, &Translate::ConnectInternal);
+    QObject::connect(this, &Translate::disconnect, this, &Translate::DisconnectInternal);
     _audio.Initialize();
-    connect(&_audio, &Audio::audioInput, this, &Translate::AudioInput);
+    QObject::connect(&_audio, &Audio::audioInput, this, &Translate::AudioInput);
 }
 
-void Translate::TranslateConnect(const QString& token)
+void Translate::Connect(const QString& token)
 {
-    emit translateConnect(token);
+    emit connect(token);
 }
 
-void Translate::TranslateDisconnect()
+void Translate::Disconnect()
 {
-    emit translateDisconnect();
+    emit disconnect();
 }
 
-void Translate::TranslateConnectInternal(const QString& token)
+void Translate::ConnectInternal(const QString& token)
 {
     QUrl url{ "ws://47.106.253.9:9501/service/v1/st" };
     QUrlQuery quurl;
@@ -55,7 +55,7 @@ void Translate::TranslateConnectInternal(const QString& token)
     _translateSocket.open(url);
 }
 
-void Translate::TranslateDisconnectInternal()
+void Translate::DisconnectInternal()
 {
     killTimer(_heartBeatTimer);
     _heartBeatTimer = 0;
@@ -85,7 +85,7 @@ bool Translate::Connected()
     return _connected;
 }
 
-void Translate::TranslateConnected()
+void Translate::WebsocketConnected()
 {
     SendHearBeat();
     SendParam();
@@ -97,13 +97,13 @@ void Translate::TranslateConnected()
     _heartBeatTimer = startTimer(5000);
 }
 
-void Translate::TranslateDisconnected()
+void Translate::WebsocketDisconnected()
 {
     _connected = false;
     emit disconnected();
 }
 
-void Translate::TranslateError(QAbstractSocket::SocketError error)
+void Translate::WebsocketError(QAbstractSocket::SocketError error)
 {
 }
 

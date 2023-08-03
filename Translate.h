@@ -19,20 +19,21 @@ public:
 
     void Initialize();
 
-    void TranslateConnect(const QString& token);
-    void TranslateDisconnect();
+    void Connect(const QString& token);
+    void Disconnect();
     bool Connected();
 
 Q_SIGNALS:
+    void connect(const QString& token);
+    void disconnect();
+
     void connected();
     void disconnected();
     void translationReceived(const QString& src, const QString& dst, int type);
-    void translateConnect(const QString& token);
-    void translateDisconnect();
 
 private:
-    void TranslateConnectInternal(const QString& token);
-    void TranslateDisconnectInternal();
+    void ConnectInternal(const QString& token);
+    void DisconnectInternal();
 
     void StartListen();
     void SendParam();
@@ -41,9 +42,9 @@ private:
 
     void AudioInput(QByteArray data);
 
-    void TranslateConnected();
-    void TranslateDisconnected();
-    void TranslateError(QAbstractSocket::SocketError error);
+    void WebsocketConnected();
+    void WebsocketDisconnected();
+    void WebsocketError(QAbstractSocket::SocketError error);
     void TranslateTextMessageReceived(const QString& message);
     void timerEvent(QTimerEvent* ev) override;
 

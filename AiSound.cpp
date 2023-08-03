@@ -184,13 +184,14 @@ void AiSound::ShowTranslationWindow()
 
 void AiSound::ShowTranslationMainWindow()
 {
+    _wTranslationSelect->hide();
     _wTranslationMain->show();
 }
 
 void AiSound::TranslateConnect()
 {
     _translateThread.start();
-    _translate.TranslateConnect(_token);
+    _translate.Connect(_token);
 }
 
 void AiSound::ShowTip( const QString& msg)
@@ -342,7 +343,7 @@ void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
 
 void AiSound::AudioTest(const QString& token)
 {
-    _translate.TranslateConnect(token);
+    _translate.Connect(token);
 }
 
 void AiSound::CompositorTest(const QString& token)
