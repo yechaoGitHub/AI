@@ -1,5 +1,6 @@
 #include "WCommonWidget.h"
 #include <QPainter>
+#include <QPainterPath>
 
 WCommonWidget::WCommonWidget(QWidget *parent)
     : QWidget(parent),

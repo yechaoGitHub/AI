@@ -32,7 +32,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>5.12.12_msvc2017_64</QtInstall>
+    <QtInstall>5.15.2_msvc2019_64</QtInstall>
     <QtModules>core;network;gui;multimedia;widgets;websockets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -94,6 +94,8 @@
   <ItemGroup>
     <ClCompile Include="AiSound.cpp" />
     <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="base\HttpClient.cpp" />
+    <ClCompile Include="model\FrameLessWidget.cpp" />
     <ClCompile Include="Translate.cpp" />
     <ClCompile Include="VoiceCompositor.cpp" />
     <ClCompile Include="WClickedLabel.cpp" />
@@ -193,6 +195,9 @@
     <QtMoc Include="WTransaltionMain.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="model\FrameLessWidget.h" />
+    <ClInclude Include="base\HttpClient.h" />
+    <ClInclude Include="base\httplib.h" />
     <ClInclude Include="VoiceType.h" />
     <QtMoc Include="Audio.h" />
     <QtMoc Include="VoiceCompositor.h" />

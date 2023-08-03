@@ -21,6 +21,12 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="Source Files\base">
+      <UniqueIdentifier>{f32e3642-cecf-4c57-810c-d322567207ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\model">
+      <UniqueIdentifier>{71048aac-333c-4f91-bd7b-53c7d3cf1dbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="AiSound.qrc">
@@ -108,6 +114,12 @@
     </ClCompile>
     <ClCompile Include="Audio.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="model\FrameLessWidget.cpp">
+      <Filter>Source Files\model</Filter>
+    </ClCompile>
+    <ClCompile Include="base\HttpClient.cpp">
+      <Filter>Source Files\base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,10 +224,19 @@
     <QtMoc Include="VoiceCompositor.h">
       <Filter>Header Files</Filter>
     </QtMoc>
+    <QtMoc Include="model\FrameLessWidget.h">
+      <Filter>Source Files\model</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="VoiceType.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="base\HttpClient.h">
+      <Filter>Source Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\httplib.h">
+      <Filter>Source Files\base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

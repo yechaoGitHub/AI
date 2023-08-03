@@ -1,6 +1,7 @@
 #include "WButton.h"
 #include <QPainter>
 #include <QLinearGradient>
+#include <QPainterPath>
 
 WButton::WButton(QWidget* parent) :
     QWidget{ parent }

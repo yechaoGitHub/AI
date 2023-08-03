@@ -2,6 +2,7 @@
 #include <qevent.h>
 #include <QLinearGradient>
 #include <QPainter>
+#include <QPainterPath>
 
 WLoginSwitch::WLoginSwitch(QWidget* parent) :
     QWidget{ parent },
