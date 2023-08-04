@@ -39,6 +39,7 @@ void AiSound::Initialize()
     _translate.Initialize();
 
     _voiceCompositor.Initialize();
+    _chatBot.Initialize();
 }
 
 AiSound& AiSound::GetInstance()
@@ -349,6 +350,11 @@ void AiSound::AudioTest(const QString& token)
 void AiSound::CompositorTest(const QString& token)
 {
     _voiceCompositor.Connect(token);
+}
+
+void AiSound::ChatBotTest(const QString& token)
+{
+    _chatBot.Connect(token);
 }
 
 void AiSound::FillTranslationFillList()

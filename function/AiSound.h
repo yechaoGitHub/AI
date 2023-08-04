@@ -9,10 +9,9 @@
 #include <list>
 
 #include "VoiceCompositor.h"
+#include "ChatBot.h"
 
 #include "WLoginFrame.h"
-//#include "WTranslationSelect.h"
-//#include "WTransaltionMain.h"
 #include "Translate.h"
 #include "WTip.h"
 
@@ -75,11 +74,13 @@ public:
     void ShowTip(const QString& msg);
     Translate& Translation();
     const QString& Token();
-
 #pragma endregion
+
+#pragma region ²âÊÔ
     void AudioTest(const QString& token);
     void CompositorTest(const QString& token);
-
+    void ChatBotTest(const QString& token);
+#pragma endregion
 private:
     AiSound();
     void HttpCallbackDispatch(QNetworkReply* reply);
@@ -118,9 +119,8 @@ private:
     QThread                 _translateThread;
     Translate               _translate;
     VoiceCompositor         _voiceCompositor;
-
+    ChatBot                 _chatBot;
 #pragma region ´°¿Ú
-
     WLoginFrame*            _wLoginFrame;
     WTranslationSelect*     _wTranslationSelect;
     WTransaltionMain*       _wTranslationMain;

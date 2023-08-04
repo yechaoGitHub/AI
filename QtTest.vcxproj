@@ -99,6 +99,7 @@
     <ClCompile Include="chat\WRobotChatMainUI.cpp" />
     <ClCompile Include="function\AiSound.cpp" />
     <ClCompile Include="function\Audio.cpp" />
+    <ClCompile Include="function\ChatBot.cpp" />
     <ClCompile Include="function\Translate.cpp" />
     <ClCompile Include="function\VoiceCompositor.cpp" />
     <ClCompile Include="model\FrameLessWidget.cpp" />
@@ -122,7 +123,8 @@
     <ClCompile Include="widget\WTranslationSelect.cpp" />
     <ClCompile Include="widget\WUserNameLogin.cpp" />
     <ClCompile Include="widget\WVerificationCode.cpp" />
-    <ClCompile Include="Speech\WSpeechGenerationUi.cpp" />    <QtRcc Include="AiSound.qrc" />
+    <ClCompile Include="Speech\WSpeechGenerationUi.cpp" />
+    <QtRcc Include="AiSound.qrc" />
     <QtUic Include="chat\WChatDesc.ui" />
     <QtUic Include="chat\WRobotChat.ui" />
     <QtUic Include="chat\WRobotChatMainUI.ui" />
@@ -141,6 +143,7 @@
     <QtUic Include="Speech\WSpeechGenerationUi.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="function\ChatBot.h" />
     <ClInclude Include="function\VoiceType.h" />
     <QtMoc Include="function\VoiceCompositor.h" />
     <QtMoc Include="function\Translate.h" />
@@ -173,7 +176,8 @@
     <QtMoc Include="chat\WChatItem.h" />
     <QtMoc Include="chat\WRobotChat.h" />
     <QtMoc Include="chat\WRobotChatMainUI.h" />
-    <QtMoc Include="Speech\WSpeechGenerationUi.h" />  </ItemGroup>
+    <QtMoc Include="Speech\WSpeechGenerationUi.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />
