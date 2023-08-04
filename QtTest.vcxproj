@@ -32,7 +32,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>5.15.2_msvc2019_64</QtInstall>
+    <QtInstall>5.12.12_msvc2017_64</QtInstall>
     <QtModules>core;network;gui;multimedia;widgets;websockets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -62,7 +62,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile />
     <ClCompile>
-      <AdditionalIncludeDirectories>.\;$(Qt_INCLUDEPATH_)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\widget;.\ui;.\function;.\;$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
@@ -92,118 +92,80 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AiSound.cpp" />
-    <ClCompile Include="Audio.cpp" />
     <ClCompile Include="base\HttpClient.cpp" />
     <ClCompile Include="chat\WChatDesc.cpp" />
     <ClCompile Include="chat\WChatItem.cpp" />
     <ClCompile Include="chat\WRobotChat.cpp" />
     <ClCompile Include="chat\WRobotChatMainUI.cpp" />
+    <ClCompile Include="function\AiSound.cpp" />
+    <ClCompile Include="function\Audio.cpp" />
+    <ClCompile Include="function\Translate.cpp" />
+    <ClCompile Include="function\VoiceCompositor.cpp" />
     <ClCompile Include="model\FrameLessWidget.cpp" />
-    <ClCompile Include="Speech\WSpeechGenerationUi.cpp" />
-    <ClCompile Include="Translate.cpp" />
-    <ClCompile Include="VoiceCompositor.cpp" />
-    <ClCompile Include="WClickedLabel.cpp" />
-    <ClCompile Include="WComboBox.cpp" />
-    <ClCompile Include="WDropDownList.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="WMobileLogin.cpp" />
-    <ClCompile Include="WButton.cpp" />
-    <ClCompile Include="WCheckBox.cpp" />
-    <ClCompile Include="WCommonEdit.cpp" />
-    <ClCompile Include="WLogin.cpp" />
-    <ClCompile Include="WLoginOpt.cpp" />
-    <ClCompile Include="WLoginSwitch.cpp" />
-    <ClCompile Include="WRegister.cpp" />
-    <ClCompile Include="WScrollBar.cpp" />
-    <ClCompile Include="WSubtitle.cpp" />
-    <ClCompile Include="WTip.cpp" />
-    <ClCompile Include="WTransaltionMain.cpp" />
-    <ClCompile Include="WTranslationSelect.cpp" />
-    <ClCompile Include="WUserNameLogin.cpp" />
-    <ClCompile Include="WVerificationCode.cpp" />
-    <QtRcc Include="AiSound.qrc" />
+    <ClCompile Include="widget\WButton.cpp" />
+    <ClCompile Include="widget\WCheckBox.cpp" />
+    <ClCompile Include="widget\WClickedLabel.cpp" />
+    <ClCompile Include="widget\WComboBox.cpp" />
+    <ClCompile Include="widget\WCommonEdit.cpp" />
+    <ClCompile Include="widget\WCommonWidget.cpp" />
+    <ClCompile Include="widget\WDropDownList.cpp" />
+    <ClCompile Include="widget\WLogin.cpp" />
+    <ClCompile Include="widget\WLoginFrame.cpp" />
+    <ClCompile Include="widget\WLoginOpt.cpp" />
+    <ClCompile Include="widget\WLoginSwitch.cpp" />
+    <ClCompile Include="widget\WMobileLogin.cpp" />
+    <ClCompile Include="widget\WRegister.cpp" />
+    <ClCompile Include="widget\WScrollBar.cpp" />
+    <ClCompile Include="widget\WSubtitle.cpp" />
+    <ClCompile Include="widget\WTip.cpp" />
+    <ClCompile Include="widget\WTransaltionMain.cpp" />
+    <ClCompile Include="widget\WTranslationSelect.cpp" />
+    <ClCompile Include="widget\WUserNameLogin.cpp" />
+    <ClCompile Include="widget\WVerificationCode.cpp" />
+    <ClCompile Include="Speech\WSpeechGenerationUi.cpp" />    <QtRcc Include="AiSound.qrc" />
     <QtUic Include="chat\WChatDesc.ui" />
     <QtUic Include="chat\WRobotChat.ui" />
     <QtUic Include="chat\WRobotChatMainUI.ui" />
-    <QtUic Include="frame.ui" />
-    <QtUic Include="loginOpt.ui" />
-    <QtUic Include="mobileLogin.ui" />
-    <QtUic Include="loginMainFrame.ui" />
-    <QtMoc Include="WLoginFrame.h" />
-    <ClCompile Include="WCommonWidget.cpp" />
-    <ClCompile Include="WLoginFrame.cpp" />
     <ClCompile Include="main.cpp" />
-    <QtUic Include="login.ui" />
-    <QtUic Include="signUp.ui" />
+    <QtUic Include="ui\frame.ui" />
+    <QtUic Include="ui\login.ui" />
+    <QtUic Include="ui\loginMainFrame.ui" />
+    <QtUic Include="ui\loginOpt.ui" />
+    <QtUic Include="ui\mobileLogin.ui" />
+    <QtUic Include="ui\signUp.ui" />
+    <QtUic Include="ui\TranslateMain.ui" />
+    <QtUic Include="ui\translateSelect.ui" />
+    <QtUic Include="ui\userNameLogin.ui" />
+    <QtUic Include="ui\verifyCode.ui" />
+    <QtUic Include="ui\verifyPhone.ui" />
     <QtUic Include="Speech\WSpeechGenerationUi.ui" />
-    <QtUic Include="TranslateMain.ui" />
-    <QtUic Include="translateSelect.ui" />
-    <QtUic Include="userNameLogin.ui" />
-    <QtUic Include="verifyCode.ui" />
-    <QtUic Include="verifyPhone.ui" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="WCommonWidget.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WLoginSwitch.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WLogin.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WCommonEdit.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WCheckBox.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WButton.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WVerificationCode.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WUserNameLogin.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WLoginOpt.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WMobileLogin.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WClickedLabel.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WRegister.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="AiSound.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WTip.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="Translate.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WComboBox.h" />
-    <QtMoc Include="WTranslationSelect.h" />
-    <QtMoc Include="WDropDownList.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WSubtitle.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WScrollBar.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="WTransaltionMain.h" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="function\VoiceType.h" />
+    <QtMoc Include="function\VoiceCompositor.h" />
+    <QtMoc Include="function\Translate.h" />
+    <QtMoc Include="function\Audio.h" />
+    <QtMoc Include="function\AiSound.h" />
+    <QtMoc Include="widget\WVerificationCode.h" />
+    <QtMoc Include="widget\WUserNameLogin.h" />
+    <QtMoc Include="widget\WTranslationSelect.h" />
+    <QtMoc Include="widget\WTransaltionMain.h" />
+    <QtMoc Include="widget\WTip.h" />
+    <QtMoc Include="widget\WSubtitle.h" />
+    <QtMoc Include="widget\WScrollBar.h" />
+    <QtMoc Include="widget\WRegister.h" />
+    <QtMoc Include="widget\WMobileLogin.h" />
+    <QtMoc Include="widget\WLoginSwitch.h" />
+    <QtMoc Include="widget\WLoginOpt.h" />
+    <QtMoc Include="widget\WLoginFrame.h" />
+    <QtMoc Include="widget\WLogin.h" />
+    <QtMoc Include="widget\WDropDownList.h" />
+    <QtMoc Include="widget\WCommonWidget.h" />
+    <QtMoc Include="widget\WCommonEdit.h" />
+    <QtMoc Include="widget\WComboBox.h" />
+    <QtMoc Include="widget\WClickedLabel.h" />
+    <QtMoc Include="widget\WCheckBox.h" />
+    <QtMoc Include="widget\WButton.h" />
     <QtMoc Include="model\FrameLessWidget.h" />
     <ClInclude Include="base\HttpClient.h" />
     <ClInclude Include="base\httplib.h" />
@@ -211,11 +173,7 @@
     <QtMoc Include="chat\WChatItem.h" />
     <QtMoc Include="chat\WRobotChat.h" />
     <QtMoc Include="chat\WRobotChatMainUI.h" />
-    <QtMoc Include="Speech\WSpeechGenerationUi.h" />
-    <ClInclude Include="VoiceType.h" />
-    <QtMoc Include="Audio.h" />
-    <QtMoc Include="VoiceCompositor.h" />
-  </ItemGroup>
+    <QtMoc Include="Speech\WSpeechGenerationUi.h" />  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />
