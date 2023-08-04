@@ -95,6 +95,10 @@
     <ClCompile Include="AiSound.cpp" />
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="base\HttpClient.cpp" />
+    <ClCompile Include="chat\WChatDesc.cpp" />
+    <ClCompile Include="chat\WChatItem.cpp" />
+    <ClCompile Include="chat\WRobotChat.cpp" />
+    <ClCompile Include="chat\WRobotChatMainUI.cpp" />
     <ClCompile Include="model\FrameLessWidget.cpp" />
     <ClCompile Include="Translate.cpp" />
     <ClCompile Include="VoiceCompositor.cpp" />
@@ -119,6 +123,9 @@
     <ClCompile Include="WUserNameLogin.cpp" />
     <ClCompile Include="WVerificationCode.cpp" />
     <QtRcc Include="AiSound.qrc" />
+    <QtUic Include="chat\WChatDesc.ui" />
+    <QtUic Include="chat\WRobotChat.ui" />
+    <QtUic Include="chat\WRobotChatMainUI.ui" />
     <QtUic Include="frame.ui" />
     <QtUic Include="loginOpt.ui" />
     <QtUic Include="mobileLogin.ui" />
@@ -198,6 +205,10 @@
     <QtMoc Include="model\FrameLessWidget.h" />
     <ClInclude Include="base\HttpClient.h" />
     <ClInclude Include="base\httplib.h" />
+    <QtMoc Include="chat\WChatDesc.h" />
+    <QtMoc Include="chat\WChatItem.h" />
+    <QtMoc Include="chat\WRobotChat.h" />
+    <QtMoc Include="chat\WRobotChatMainUI.h" />
     <ClInclude Include="VoiceType.h" />
     <QtMoc Include="Audio.h" />
     <QtMoc Include="VoiceCompositor.h" />

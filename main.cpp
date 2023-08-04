@@ -1,12 +1,16 @@
 #include "WLoginFrame.h"
 #include <QtWidgets/QApplication>
 #include "AiSound.h"
+#include "chat/WRobotChatMainUI.h"
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    AiSound::GetInstance().Initialize();
-    AiSound::GetInstance().ShowLoginFrame();
+    RobotChatMainUI robot;
+    robot.show();
+
+    //AiSound::GetInstance().Initialize();
+    //AiSound::GetInstance().ShowLoginFrame();
 
     //AiSound::GetInstance().PasswordLogin("test2", "qwert123456", 
     //    [](int code, const QString& msg, const QString& token)

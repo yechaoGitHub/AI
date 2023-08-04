@@ -27,6 +27,9 @@
     <Filter Include="Source Files\model">
       <UniqueIdentifier>{71048aac-333c-4f91-bd7b-53c7d3cf1dbd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\chat">
+      <UniqueIdentifier>{3d1ef630-c967-4d8c-942d-5478a057cdd2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="AiSound.qrc">
@@ -121,6 +124,18 @@
     <ClCompile Include="base\HttpClient.cpp">
       <Filter>Source Files\base</Filter>
     </ClCompile>
+    <ClCompile Include="chat\WChatDesc.cpp">
+      <Filter>Source Files\chat</Filter>
+    </ClCompile>
+    <ClCompile Include="chat\WChatItem.cpp">
+      <Filter>Source Files\chat</Filter>
+    </ClCompile>
+    <ClCompile Include="chat\WRobotChat.cpp">
+      <Filter>Source Files\chat</Filter>
+    </ClCompile>
+    <ClCompile Include="chat\WRobotChatMainUI.cpp">
+      <Filter>Source Files\chat</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="Login.ui">
@@ -151,6 +166,15 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="TranslateMain.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="chat\WChatDesc.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="chat\WRobotChat.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="chat\WRobotChatMainUI.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -226,6 +250,18 @@
     </QtMoc>
     <QtMoc Include="model\FrameLessWidget.h">
       <Filter>Source Files\model</Filter>
+    </QtMoc>
+    <QtMoc Include="chat\WChatDesc.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="chat\WChatItem.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="chat\WRobotChat.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="chat\WRobotChatMainUI.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

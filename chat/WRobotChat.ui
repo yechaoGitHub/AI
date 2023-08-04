@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WRobotChatClass</class>
+ <widget class="QWidget" name="WRobotChatClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>WRobotChat</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+	font: 12px &quot;微软雅黑&quot;;
+}
+
+QTextEdit#textEdit{
+	border-radius:12px;
+	border:none;
+	background-color: rgb(255, 255, 255);
+}
+
+QFrame#frame{
+	border:none;
+	background-color: rgba(0, 0, 0,204);
+}
+
+QPushButton#pb_send{
+	background-image: url(:/QtTest/icon/chat/send.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	border:none
+}
+QPushButton#pb_voice{
+	background-image: url(:/QtTest/icon/chat/voice.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	border:none
+}
+
+QListWidget{
+	background-color: rgba(0, 0, 0,204);
+    color:rgb(51,51,51); 		 	 	    
+    border: none;
+    outline:0px;
+}
+QListWidget::Item{background-color: transparent;
+	border:none
+}
+QListWidget::Item:hover{
+	background-color: transparent;
+    border:none
+ }
+QListWidget::item:selected{
+	background-color: transparent;
+	color:black; 
+    border: none;
+}
+QListWidget::item:selected:!active{
+    border: none; 
+    background-color: transparent; 
+    color:rgb(51,51,51); 
+} 
+
+QScrollBar:vertical
+{
+    width:6px;
+    background:transparent;
+    margin:0px,0px,0px,0px;
+	border-radius:none;
+}
+QScrollBar::handle:vertical
+{
+    width:6px;
+    background:rgba(0,0,0,25%);
+    border-radius:4px;
+	min-height: 30;
+}
+QScrollBar::handle:vertical:hover
+{
+    width:6px;
+    background:rgba(0,0,0,50%);   
+    border-radius:4px;
+	min-height: 30;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::add-line:horizontal {
+      background: transparent;
+      height: 0px;
+      width: 0px;
+}
+QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
+      background: transparent;
+       height: 0px;
+      width: 0px;
+    }</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QListWidget" name="listWidget"/>
+   </item>
+   <item>
+    <widget class="QFrame" name="frame">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>60</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>6</number>
+      </property>
+      <property name="rightMargin">
+       <number>6</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="pb_voice">
+        <property name="minimumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>40</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QTextEdit" name="textEdit">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_send">
+        <property name="minimumSize">
+         <size>
+          <width>36</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>36</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="../AiSound.qrc"/>
+ </resources>
+ <connections/>
+</ui>
