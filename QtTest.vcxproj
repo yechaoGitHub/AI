@@ -100,6 +100,7 @@
     <ClCompile Include="chat\WRobotChat.cpp" />
     <ClCompile Include="chat\WRobotChatMainUI.cpp" />
     <ClCompile Include="model\FrameLessWidget.cpp" />
+    <ClCompile Include="Speech\WSpeechGenerationUi.cpp" />
     <ClCompile Include="Translate.cpp" />
     <ClCompile Include="VoiceCompositor.cpp" />
     <ClCompile Include="WClickedLabel.cpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="main.cpp" />
     <QtUic Include="login.ui" />
     <QtUic Include="signUp.ui" />
+    <QtUic Include="Speech\WSpeechGenerationUi.ui" />
     <QtUic Include="TranslateMain.ui" />
     <QtUic Include="translateSelect.ui" />
     <QtUic Include="userNameLogin.ui" />
@@ -209,6 +211,7 @@
     <QtMoc Include="chat\WChatItem.h" />
     <QtMoc Include="chat\WRobotChat.h" />
     <QtMoc Include="chat\WRobotChatMainUI.h" />
+    <QtMoc Include="Speech\WSpeechGenerationUi.h" />
     <ClInclude Include="VoiceType.h" />
     <QtMoc Include="Audio.h" />
     <QtMoc Include="VoiceCompositor.h" />
