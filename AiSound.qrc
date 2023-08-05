@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="/QtTest">
+    <file>icon/icon.png</file>
+    <file>icon/login/robot_bk.png</file>
+    <file>icon/login/bk.png</file>
     <file>icon/Setting/account.png</file>
     <file>icon/Setting/help.png</file>
     <file>icon/Setting/line.png</file>

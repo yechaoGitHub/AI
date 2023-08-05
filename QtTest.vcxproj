@@ -103,6 +103,9 @@
     <ClCompile Include="widget\chat\WChatItem.cpp" />
     <ClCompile Include="widget\chat\WRobotChat.cpp" />
     <ClCompile Include="widget\chat\WRobotChatMainUI.cpp" />
+    <ClCompile Include="widget\login\UserLogin.cpp" />
+    <ClCompile Include="widget\login\WLoginMainUi.cpp" />
+    <ClCompile Include="widget\login\WLoginUI.cpp" />
     <ClCompile Include="widget\model\WNavbarButton.cpp" />
     <ClCompile Include="widget\Setting\WAccountPage.cpp" />
     <ClCompile Include="widget\Setting\WSettingMainUi.cpp" />
@@ -146,11 +149,17 @@
     <QtUic Include="widget\chat\WChatDesc.ui" />
     <QtUic Include="widget\chat\WRobotChat.ui" />
     <QtUic Include="widget\chat\WRobotChatMainUI.ui" />
+    <QtUic Include="widget\login\UserLogin.ui" />
+    <QtUic Include="widget\login\WLoginMainUi.ui" />
+    <QtUic Include="widget\login\WLoginUI.ui" />
     <QtUic Include="widget\Setting\WAccountPage.ui" />
     <QtUic Include="widget\Setting\WSettingMainUi.ui" />
     <QtUic Include="widget\Setting\WSettingSelectWidget.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="widget\login\UserLogin.h" />
+    <QtMoc Include="widget\login\WLoginUI.h" />
+    <QtMoc Include="widget\login\WLoginMainUi.h" />
     <QtMoc Include="widget\Setting\WAccountPage.h" />
     <QtMoc Include="widget\model\WNavbarButton.h" />
     <QtMoc Include="widget\Setting\WSettingSelectWidget.h" />

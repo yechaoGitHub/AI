@@ -30,14 +30,20 @@ void WLoginSwitch::paintEvent(QPaintEvent* event)
     brush.setColor(QColor{ 228, 239, 255 });
     brush.setStyle(Qt::BrushStyle::SolidPattern);
     QPainterPath path;
+    path.setFillRule(Qt::WindingFill);
+    
     if (_title == ETitle::userName)
     {
         path.addRoundedRect(rtUser, 8, 8);
+        QRect temp_rect(rtUser.left(), rtUser.top()+8, rtUser.width(), rtUser.height());
+        path.addRect(temp_rect);
         painter.fillPath(path, brush);
     }
     else 
     {
         path.addRoundedRect(rtMobile, 8, 8);
+        QRect temp_rect(rtMobile.left(), rtMobile.top() + 8, rtMobile.width(), rtMobile.height());
+        path.addRect(temp_rect);
         painter.fillPath(path, brush);
     }
 

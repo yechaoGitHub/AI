@@ -16,22 +16,12 @@
 #include "WTransaltionMain.h"
 
 WLoginFrame::WLoginFrame(QWidget *parent)
-    : QMainWindow(parent)
+    : QWidget(parent)
 {
-    this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
-    
     ui.setupUi(this);
-    this->setStyleSheet("background-color:rgba(255,255,255,1)");
-
-    ui.closeBtn->setIconSize(QSize{ 32, 32 });
-    ui.closeBtn->setIcon(QIcon{ ":QtTest/icon/closeBtn.png" });
-    ui.closeBtn->setCursor(Qt::PointingHandCursor);
-    ui.minBtn->setIconSize(QSize{ 32, 32 });
-    ui.minBtn->setIcon(QIcon{ ":QtTest/icon/minBtn.png" });
-    ui.minBtn->setCursor(Qt::PointingHandCursor);
 
     _login = new WLogin(this);
-    _login->move(0, 64);
+    _login->move(0, 24);
 
     _signUp = new WRegister(this);
     _signUp->hide();
@@ -143,7 +133,7 @@ void WLoginFrame::RegisterClicked()
 {
     _login->hide();
 
-    _signUp->move(0, 64);
+    _signUp->move(0, 24);
     _signUp->show();
 }
 
@@ -234,23 +224,6 @@ void WLoginFrame::TextMessageReceived(const QString& message)
 WLoginFrame::~WLoginFrame()
 {
 
-}
-
-void WLoginFrame::mousePressEvent(QMouseEvent * event)
-{
-    if (event->button() == Qt::LeftButton)
-    {
-        _clickPos.setX(event->pos().x());
-        _clickPos.setY(event->pos().y());
-    }
-}
-
-void WLoginFrame::mouseMoveEvent(QMouseEvent* event)
-{
-    if (event->buttons() == Qt::LeftButton)
-    {
-        this->move(this->pos() + event->pos() - this->_clickPos);
-    }
 }
 
 void WLoginFrame::receiveGaodePostReply(QNetworkReply* reply)

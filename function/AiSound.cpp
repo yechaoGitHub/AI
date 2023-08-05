@@ -29,7 +29,7 @@ AiSound::~AiSound()
 
 void AiSound::Initialize()
 {
-    _wLoginFrame = new WLoginFrame{};
+    _wLoginFrame = new WLoginUI{};
     _wTranslationSelect = new WTranslationSelect{};
     _wTranslationMain = new WTransaltionMain{};
     _wTip = new WTip{};

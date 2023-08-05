@@ -12,6 +12,7 @@
 #include "ChatBot.h"
 
 #include "WLoginFrame.h"
+#include "widget/login/WLoginUI.h"
 #include "Translate.h"
 #include "WTip.h"
 
@@ -121,7 +122,7 @@ private:
     VoiceCompositor         _voiceCompositor;
     ChatBot                 _chatBot;
 #pragma region ´°¿Ú
-    WLoginFrame*            _wLoginFrame;
+    WLoginUI*               _wLoginFrame;
     WTranslationSelect*     _wTranslationSelect;
     WTransaltionMain*       _wTranslationMain;
     WTip*                   _wTip;

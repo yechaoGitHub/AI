@@ -17,6 +17,11 @@ WCommonEdit::WCommonEdit(QWidget* parent) :
     textEdit->setFont(this->font());
 }
 
+void WCommonEdit::SetPwd()
+{
+    textEdit->setEchoMode(QLineEdit::Password);
+}
+
 WCommonEdit::~WCommonEdit()
 {
 

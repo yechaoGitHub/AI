@@ -13,8 +13,8 @@ WLogin::WLogin(QWidget* parent) :
     loginOpt = new WLoginOpt{ this };
     mobileLogin->hide();
 
-    userNameLogin->move(0, 336);
-    loginOpt->move(0, 532);
+    userNameLogin->move(0, 296);
+    loginOpt->move(0, 520);
 
     registerLabel = loginOpt->registerLabel;
     loginBtn = loginOpt->loginBtn;
@@ -42,15 +42,15 @@ void WLogin::TitleChanged(WLoginSwitch::ETitle title)
     if (title == WLoginSwitch::ETitle::userName) 
     {
         mobileLogin->hide();
-        userNameLogin->move(0, 336);
-        loginOpt->move(0, 532);
+        userNameLogin->move(0, 296);
+        loginOpt->move(0, 520);
         userNameLogin->show();
     }
     else 
     {
         userNameLogin->hide();
-        mobileLogin->move(0, 336);
-        loginOpt->move(0, 661);
+        mobileLogin->move(0, 296);
+        loginOpt->move(0, 621);
         mobileLogin->show();
     }
 }

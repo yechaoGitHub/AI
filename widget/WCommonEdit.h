@@ -12,6 +12,7 @@ public:
     ~WCommonEdit();
     
     void SetImage(const QString& path);
+    void SetPwd();
 
     QLineEdit* textEdit;
 

@@ -8,17 +8,13 @@
 #include <QWebSocket>
 #include <QNetworkAccessManager>
 
-class WLoginFrame : public QMainWindow
+class WLoginFrame : public QWidget
 {
     Q_OBJECT
 
 public:
     WLoginFrame(QWidget *parent = nullptr);
     ~WLoginFrame();
-
-protected:
-    void mousePressEvent(QMouseEvent* event) override;
-    void mouseMoveEvent(QMouseEvent* event) override;
 
 private:
     void RegisterClicked();
