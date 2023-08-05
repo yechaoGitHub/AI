@@ -1,5 +1,22 @@
 <RCC>
   <qresource prefix="/QtTest">
+    <file>icon/Setting/account.png</file>
+    <file>icon/Setting/help.png</file>
+    <file>icon/Setting/line.png</file>
+    <file>icon/Setting/right.png</file>
+    <file>icon/Setting/team.png</file>
+    <file>icon/Setting/tools.png</file>
+    <file>icon/Setting/Vector.png</file>
+    <file>icon/Setting/account.png</file>
+    <file>icon/Setting/help.png</file>
+    <file>icon/Setting/line.png</file>
+    <file>icon/Setting/right.png</file>
+    <file>icon/Setting/team.png</file>
+    <file>icon/Setting/tools.png</file>
+    <file>icon/Setting/Vector.png</file>
+    <file>icon/Setting/close.png</file>
+    <file>icon/Setting/min.png</file>
+    <file>icon/Setting/robot.png</file>
     <file>icon/Speech/down.png</file>
     <file>icon/Speech/gender.png</file>
     <file>icon/Speech/Language.png</file>

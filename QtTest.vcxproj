@@ -103,6 +103,10 @@
     <ClCompile Include="widget\chat\WChatItem.cpp" />
     <ClCompile Include="widget\chat\WRobotChat.cpp" />
     <ClCompile Include="widget\chat\WRobotChatMainUI.cpp" />
+    <ClCompile Include="widget\model\WNavbarButton.cpp" />
+    <ClCompile Include="widget\Setting\WAccountPage.cpp" />
+    <ClCompile Include="widget\Setting\WSettingMainUi.cpp" />
+    <ClCompile Include="widget\Setting\WSettingSelectWidget.cpp" />
     <ClCompile Include="widget\Speech\ComboxItem.cpp" />
     <ClCompile Include="widget\Speech\WSpeechGenerationUi.cpp" />
     <ClCompile Include="widget\WButton.cpp" />
@@ -142,8 +146,15 @@
     <QtUic Include="widget\chat\WChatDesc.ui" />
     <QtUic Include="widget\chat\WRobotChat.ui" />
     <QtUic Include="widget\chat\WRobotChatMainUI.ui" />
+    <QtUic Include="widget\Setting\WAccountPage.ui" />
+    <QtUic Include="widget\Setting\WSettingMainUi.ui" />
+    <QtUic Include="widget\Setting\WSettingSelectWidget.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="widget\Setting\WAccountPage.h" />
+    <QtMoc Include="widget\model\WNavbarButton.h" />
+    <QtMoc Include="widget\Setting\WSettingSelectWidget.h" />
+    <QtMoc Include="widget\Setting\WSettingMainUi.h" />
     <QtMoc Include="function\ChatBot.h" />
     <ClInclude Include="function\VoiceType.h" />
     <QtMoc Include="widget\chat\WRobotChatMainUI.h" />
@@ -180,7 +191,6 @@
     <ClInclude Include="base\HttpClient.h" />
     <ClInclude Include="base\httplib.h" />
   </ItemGroup>
-    
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />

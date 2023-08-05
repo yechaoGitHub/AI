@@ -1,74 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>RobotChatMainUIClass</class>
- <widget class="QWidget" name="RobotChatMainUIClass">
+ <class>WSettingMainUiClass</class>
+ <widget class="QWidget" name="WSettingMainUiClass">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
-    <height>521</height>
+    <width>852</width>
+    <height>830</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>600</width>
-    <height>521</height>
+    <width>852</width>
+    <height>830</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>600</width>
-    <height>521</height>
+    <width>852</width>
+    <height>830</height>
    </size>
   </property>
   <property name="windowTitle">
-   <string>RobotChatMainUI</string>
+   <string>WSettingMainUi</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget{
 	font: 12px &quot;微软雅黑&quot;;
 }
 
-QLabel#lb_title{
-	font: 20px &quot;微软雅黑&quot;;
-	
-	color: rgb(255, 255, 255);
+QFrame#frame_title{
+	border:1px;
+	border-bottom:1px solid #000000
 }
 
-QFrame#frame{
-	border:1px;
-	border-bottom:1px solid #ffffff
+QLabel#label{
+	font: 20px &quot;微软雅黑&quot;;
+}
+
+QPushButton#pb_robot,#pb_min,#pb_close{
+	border:none;
+	background-position: center;
+    background-repeat: no-repeat;
+}
+
+QPushButton#pb_robot{
+	background-image: url(:/QtTest/icon/Setting/robot.png);
 }
 
 QPushButton#pb_min{
-	border:none;
-	background-image: url(:/QtTest/icon/chat/min.png);
-	background-position: center;
-    background-repeat: no-repeat;
+	background-image: url(:/QtTest/icon/Setting/min.png);
 }
 
 QPushButton#pb_close{
-	border:none;
-	background-image: url(:/QtTest/icon/chat/close.png);
-	background-position: center;
-    background-repeat: no-repeat;
-
-}</string>
+	background-image: url(:/QtTest/icon/Setting/close.png);
+}
+</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>16</number>
+   </property>
+   <property name="rightMargin">
+    <number>16</number>
+   </property>
    <item>
-    <widget class="QFrame" name="frame">
+    <widget class="QFrame" name="frame_title">
      <property name="minimumSize">
       <size>
-       <width>580</width>
-       <height>60</height>
+       <width>0</width>
+       <height>90</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>580</width>
-       <height>60</height>
+       <width>16777215</width>
+       <height>90</height>
       </size>
      </property>
      <property name="frameShape">
@@ -78,16 +86,47 @@ QPushButton#pb_close{
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
       <item>
-       <widget class="QLabel" name="lb_title">
+       <widget class="QPushButton" name="pb_robot">
         <property name="minimumSize">
          <size>
-          <width>230</width>
+          <width>52</width>
+          <height>52</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>52</width>
+          <height>52</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="minimumSize">
+         <size>
+          <width>87</width>
           <height>20</height>
          </size>
         </property>
         <property name="text">
-         <string>Conversation Suggestion</string>
+         <string>Settings</string>
         </property>
        </widget>
       </item>
@@ -98,7 +137,7 @@ QPushButton#pb_close{
         </property>
         <property name="sizeHint" stdset="0">
          <size>
-          <width>251</width>
+          <width>590</width>
           <height>20</height>
          </size>
         </property>
@@ -108,14 +147,14 @@ QPushButton#pb_close{
        <widget class="QPushButton" name="pb_min">
         <property name="minimumSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>32</width>
+          <height>32</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>32</width>
+          <height>32</height>
          </size>
         </property>
         <property name="text">
@@ -127,14 +166,14 @@ QPushButton#pb_close{
        <widget class="QPushButton" name="pb_close">
         <property name="minimumSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>32</width>
+          <height>32</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>24</width>
-          <height>24</height>
+          <width>32</width>
+          <height>32</height>
          </size>
         </property>
         <property name="text">
@@ -147,11 +186,8 @@ QPushButton#pb_close{
    </item>
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
-     <property name="styleSheet">
-      <string notr="true"/>
-     </property>
-     <widget class="WRobotChat" name="chat_widget"/>
-     <widget class="WChatDesc" name="chat_desc_wgt"/>
+     <widget class="WSettingSelectWidget" name="select_widget"/>
+     <widget class="QWidget" name="page_2"/>
     </widget>
    </item>
   </layout>
@@ -159,15 +195,9 @@ QPushButton#pb_close{
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>WRobotChat</class>
+   <class>WSettingSelectWidget</class>
    <extends>QWidget</extends>
-   <header>WRobotChat.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>WChatDesc</class>
-   <extends>QWidget</extends>
-   <header>WChatDesc.h</header>
+   <header>WSettingSelectWidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
