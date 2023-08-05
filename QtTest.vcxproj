@@ -32,7 +32,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>5.12.12_msvc2017_64</QtInstall>
+    <QtInstall>5.15.2_msvc2019_64</QtInstall>
     <QtModules>core;network;gui;multimedia;widgets;websockets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -93,16 +93,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="base\HttpClient.cpp" />
-    <ClCompile Include="chat\WChatDesc.cpp" />
-    <ClCompile Include="chat\WChatItem.cpp" />
-    <ClCompile Include="chat\WRobotChat.cpp" />
-    <ClCompile Include="chat\WRobotChatMainUI.cpp" />
     <ClCompile Include="function\AiSound.cpp" />
     <ClCompile Include="function\Audio.cpp" />
     <ClCompile Include="function\ChatBot.cpp" />
     <ClCompile Include="function\Translate.cpp" />
     <ClCompile Include="function\VoiceCompositor.cpp" />
     <ClCompile Include="model\FrameLessWidget.cpp" />
+    <ClCompile Include="widget\chat\WChatDesc.cpp" />
+    <ClCompile Include="widget\chat\WChatItem.cpp" />
+    <ClCompile Include="widget\chat\WRobotChat.cpp" />
+    <ClCompile Include="widget\chat\WRobotChatMainUI.cpp" />
+    <ClCompile Include="widget\Speech\ComboxItem.cpp" />
+    <ClCompile Include="widget\Speech\WSpeechGenerationUi.cpp" />
     <ClCompile Include="widget\WButton.cpp" />
     <ClCompile Include="widget\WCheckBox.cpp" />
     <ClCompile Include="widget\WClickedLabel.cpp" />
@@ -123,11 +125,7 @@
     <ClCompile Include="widget\WTranslationSelect.cpp" />
     <ClCompile Include="widget\WUserNameLogin.cpp" />
     <ClCompile Include="widget\WVerificationCode.cpp" />
-    <ClCompile Include="Speech\WSpeechGenerationUi.cpp" />
     <QtRcc Include="AiSound.qrc" />
-    <QtUic Include="chat\WChatDesc.ui" />
-    <QtUic Include="chat\WRobotChat.ui" />
-    <QtUic Include="chat\WRobotChatMainUI.ui" />
     <ClCompile Include="main.cpp" />
     <QtUic Include="ui\frame.ui" />
     <QtUic Include="ui\login.ui" />
@@ -140,11 +138,20 @@
     <QtUic Include="ui\userNameLogin.ui" />
     <QtUic Include="ui\verifyCode.ui" />
     <QtUic Include="ui\verifyPhone.ui" />
-    <QtUic Include="Speech\WSpeechGenerationUi.ui" />
+    <QtUic Include="ui\WSpeechGenerationUi.ui" />
+    <QtUic Include="widget\chat\WChatDesc.ui" />
+    <QtUic Include="widget\chat\WRobotChat.ui" />
+    <QtUic Include="widget\chat\WRobotChatMainUI.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="function\ChatBot.h" />
     <ClInclude Include="function\VoiceType.h" />
+    <QtMoc Include="widget\chat\WRobotChatMainUI.h" />
+    <QtMoc Include="widget\chat\WRobotChat.h" />
+    <QtMoc Include="widget\chat\WChatItem.h" />
+    <QtMoc Include="widget\chat\WChatDesc.h" />
+    <QtMoc Include="widget\Speech\ComboxItem.h" />
+    <QtMoc Include="widget\Speech\WSpeechGenerationUi.h" />
     <QtMoc Include="function\VoiceCompositor.h" />
     <QtMoc Include="function\Translate.h" />
     <QtMoc Include="function\Audio.h" />
@@ -172,12 +179,8 @@
     <QtMoc Include="model\FrameLessWidget.h" />
     <ClInclude Include="base\HttpClient.h" />
     <ClInclude Include="base\httplib.h" />
-    <QtMoc Include="chat\WChatDesc.h" />
-    <QtMoc Include="chat\WChatItem.h" />
-    <QtMoc Include="chat\WRobotChat.h" />
-    <QtMoc Include="chat\WRobotChatMainUI.h" />
-    <QtMoc Include="Speech\WSpeechGenerationUi.h" />
   </ItemGroup>
+    
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />

@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="/QtTest">
+    <file>icon/Speech/down.png</file>
+    <file>icon/Speech/gender.png</file>
+    <file>icon/Speech/Language.png</file>
+    <file>icon/Speech/Vector.png</file>
     <file>icon/Speech/copy.png</file>
     <file>icon/Speech/export.png</file>
     <file>icon/Speech/export.png</file>
