@@ -78,7 +78,7 @@ public:
 
 #pragma region ¹¦ÄÜ
     void ShowTip(const QString& msg);
-    Translate& Translation();
+    Translation& GetTranslation();
     const QString& Token();
 #pragma endregion
 
@@ -128,7 +128,7 @@ private:
 
     QNetworkAccessManager   _networkAccess;
     QThread                 _translateThread;
-    Translate               _translate;
+    Translation             _translation;
     VoiceCompositor         _voiceCompositor;
     ChatBot                 _chatBot;
 #pragma region ´°¿Ú
