@@ -235,6 +235,11 @@ Translation& AiSound::GetTranslation()
     return _translation;
 }
 
+ChatBot& AiSound::GetChatBot()
+{
+    return _chatBot;
+}
+
 const QString& AiSound::Token()
 {
     return _token;

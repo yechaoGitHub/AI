@@ -30,19 +30,18 @@ Audio::~Audio()
 {
 }
 
-void Audio::StartReadMic()
+void Audio::StartMic()
 {
     _ioInput = _audioInput->start();
     _inTimer = startTimer(10, Qt::PreciseTimer);
 }
 
-void Audio::StartReadSpeaker()
+void Audio::StartSpeaker()
 {
     _ioOutput = _audioOutput->start();
-    _outTimer = startTimer(10, Qt::PreciseTimer);
 }
 
-void Audio::EndReadMic()
+void Audio::EndMic()
 {
     killTimer(_inTimer);
 
@@ -52,7 +51,7 @@ void Audio::EndReadMic()
     _ioInput = nullptr;
 }
 
-void Audio::EndReadSpeaker()
+void Audio::EndSpeaker()
 {
     _audioOutput->stop();
     _ioOutput->close();
@@ -88,10 +87,6 @@ void Audio::timerEvent(QTimerEvent* event)
     if (id == _inTimer) 
     {
         ReadAudioData(_ioInput, _inLen, _inBufferData, _inlastTick, &Audio::audioInput);
-    }
-    else if(id == _outTimer)
-    {
-        ReadAudioData(_ioOutput, _outLen, _outBufferData, _outlastTick, &Audio::audioOutput);
     }
 }
 

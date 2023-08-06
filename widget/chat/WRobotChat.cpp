@@ -1,13 +1,18 @@
 #include "WRobotChat.h"
+#include "AiSound.h"
 #include <QDateTime>
 #include <qdebug.h>
 
 
+
 WRobotChat::WRobotChat(QWidget *parent)
-	: QWidget(parent)
+    : QWidget(parent)
 {
-	ui.setupUi(this);
+    ui.setupUi(this);
     ui.listWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    auto& bot = AiSound::GetInstance().GetChatBot();
+    connect(&bot, &ChatBot::receiveText, this, &WRobotChat::ReceiveBotText);
 }
 
 WRobotChat::~WRobotChat()
@@ -47,12 +52,23 @@ void WRobotChat::on_pb_send_clicked()
         // 此处添加发送请求，异步的话还要处理一下
         bool isSending = true; // 发送中
 
-        if (isSending) {
+        chatMessageTime(time);
+
+        WChatItem* messageW = new WChatItem(ui.listWidget->parentWidget());
+        QListWidgetItem* item = new QListWidgetItem(ui.listWidget);
+        chatMessage(messageW, item, msg, time, WChatItem::User_Self);
+        messageW->setTextSuccess();
+
+        auto& bot = AiSound::GetInstance().GetChatBot();
+        bot.sendMessage(msg);
+
+        /*if (isSending) {
             chatMessageTime(time);
 
             WChatItem* messageW = new WChatItem(ui.listWidget->parentWidget());
             QListWidgetItem* item = new QListWidgetItem(ui.listWidget);
             chatMessage(messageW, item, msg, time, WChatItem::User_Self);
+            messageW->setTextSuccess();
         }
         else {
             bool isOver = true;
@@ -71,7 +87,7 @@ void WRobotChat::on_pb_send_clicked()
                 chatMessage(messageW, item, msg, time, WChatItem::User_Self);
                 messageW->setTextSuccess();
             }
-        }
+        }*/
     }
 
     ui.listWidget->setCurrentRow(ui.listWidget->count() - 1);
@@ -86,7 +102,7 @@ void WRobotChat::chatMessageTime(QString curMsgTime)
         int lastTime = messageW->time().toInt();
         int curTime = curMsgTime.toInt();
         qDebug() << "curTime lastTime:" << curTime - lastTime;
-        isShowTime = ((curTime - lastTime) > 60); 
+        isShowTime = ((curTime - lastTime) > 60);
     }
     else {
         isShowTime = true;
@@ -101,6 +117,11 @@ void WRobotChat::chatMessageTime(QString curMsgTime)
         messageTime->setText(curMsgTime, curMsgTime, size, WChatItem::User_Time);
         ui.listWidget->setItemWidget(itemTime, messageTime);
     }
+}
+
+void WRobotChat::ReceiveBotText(const QString& text)
+{
+    addRobotChatItem(text);
 }
 
 void WRobotChat::chatMessage(WChatItem* messageW, QListWidgetItem* item, QString text, QString time, WChatItem::User_Type type)

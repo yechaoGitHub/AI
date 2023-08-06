@@ -15,9 +15,10 @@ ChatBot::ChatBot()
     QObject::connect(&_webSocket, &QWebSocket::disconnected, this, &ChatBot::WebsocketDisconnected);
     QObject::connect(&_webSocket, static_cast<void(QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), this, &ChatBot::WebsocketError);
     QObject::connect(&_webSocket, &QWebSocket::textMessageReceived, this, &ChatBot::TranslateTextMessageReceived);
+    this->moveToThread(&_workThread);
 }
 
-ChatBot::~ChatBot() 
+ChatBot::~ChatBot()
 {
 
 }
@@ -31,6 +32,7 @@ void ChatBot::Initialize()
 
 void ChatBot::Connect(const QString& token)
 {
+    _workThread.start();
     emit connect(token);
 }
 
@@ -54,7 +56,6 @@ void ChatBot::timerEvent(QTimerEvent* event)
     if (event->timerId() == _heartBeatTimer)
     {
         SendHearBeat();
-        SendMessage("请问1+1等于几？");
     }
 }
 
@@ -117,6 +118,7 @@ void ChatBot::WebsocketDisconnected()
 {
     _connected = false;
     emit disconnected();
+    _workThread.quit();
 }
 
 void ChatBot::WebsocketError(QAbstractSocket::SocketError error)
@@ -140,7 +142,7 @@ void ChatBot::TranslateTextMessageReceived(const QString& message)
 
             if (type == "FIN")
             {
-                qDebug() << _receiveText;
+                emit receiveText(std::move(_receiveText));
                 _receiveText.clear();
             }
             else if (type == "MID")

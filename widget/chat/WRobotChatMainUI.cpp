@@ -1,4 +1,5 @@
 #include "WRobotChatMainUI.h"
+#include "AiSound.h"
 #include <QPainter>
 
 
@@ -10,10 +11,10 @@ RobotChatMainUI::RobotChatMainUI(QWidget *parent)
 	setAttribute(Qt::WA_TranslucentBackground);
 
 	ui.stackedWidget->setCurrentWidget(ui.chat_desc_wgt);
-	connect(ui.chat_desc_wgt, &WChatDesc::sig_startClick, this, [this] {
-		ui.stackedWidget->setCurrentWidget(ui.chat_widget);
-		ui.lb_title->setText("Chat");
-		});
+	connect(ui.chat_desc_wgt, &WChatDesc::sig_startClick, this, &RobotChatMainUI::StartBtnClicked);
+
+    auto& bot = AiSound::GetInstance().GetChatBot();
+    connect(&bot, &ChatBot::connected, this, &RobotChatMainUI::ChatBotConnected);
 }
 
 RobotChatMainUI::~RobotChatMainUI()
@@ -27,6 +28,20 @@ void RobotChatMainUI::on_pb_min_clicked()
 void RobotChatMainUI::on_pb_close_clicked()
 {
 	this->close();
+}
+
+void RobotChatMainUI::StartBtnClicked()
+{
+    auto& token = AiSound::GetInstance().Token();
+    auto& bot = AiSound::GetInstance().GetChatBot();
+  
+    bot.Connect(token);
+}
+
+void RobotChatMainUI::ChatBotConnected()
+{
+    ui.stackedWidget->setCurrentWidget(ui.chat_widget);
+    ui.lb_title->setText("Chat");
 }
 
 void RobotChatMainUI::paintEvent(QPaintEvent* event)

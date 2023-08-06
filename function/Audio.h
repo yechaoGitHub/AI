@@ -11,10 +11,11 @@ public:
     Audio();
     ~Audio();
 
-    void StartReadMic();
-    void StartReadSpeaker();
-    void EndReadMic();
-    void EndReadSpeaker();
+    void StartMic();
+    void EndMic();
+
+    void StartSpeaker();
+    void EndSpeaker();
 
     void WriteOutputData(const QByteArray& data);
 
@@ -43,10 +44,6 @@ private:
 
 #pragma region ÑïÉùÆ÷
     QIODevice*                              _ioOutput;
-    int                                     _outTimer = 0;
-    QByteArray                              _outBufferData;
-    int                                     _outLen = 0;
-    std::chrono::steady_clock::time_point   _outlastTick;
 #pragma endregion
 
 };

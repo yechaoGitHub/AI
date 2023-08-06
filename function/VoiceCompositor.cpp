@@ -52,7 +52,7 @@ void VoiceCompositor::SendHearBeat()
 
 void VoiceCompositor::AudioStart()
 {
-    _audio.StartReadMic();
+    _audio.StartMic();
     //_audio.StartPlay();
 }
 

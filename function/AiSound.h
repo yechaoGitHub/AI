@@ -1,12 +1,4 @@
 #pragma once
-#include <QString>
-#include <QObject>
-#include <QNetworkAccessManager>
-#include <QAudioInput>
-#include <QWebsocket>
-#include <QThread>
-#include <functional>
-#include <list>
 
 #include "VoiceCompositor.h"
 #include "ChatBot.h"
@@ -20,6 +12,16 @@
 #include "widget/chat/WRobotChatMainUI.h"
 #include "widget/Speech/WSpeechGenerationUi.h"
 #include "widget/Setting/WSettingMainUi.h"
+
+#include <QString>
+#include <QObject>
+#include <QNetworkAccessManager>
+#include <QAudioInput>
+#include <QWebsocket>
+#include <QThread>
+#include <functional>
+#include <list>
+
 
 class WTranslationSelect;
 class WTransaltionMain;
@@ -72,18 +74,14 @@ public:
     void ShowTranslationMainWindow();
 #pragma endregion
 
-#pragma region ∑≠“Î
-    void TranslateConnect();
-#pragma endregion
-
 #pragma region π¶ƒ‹
     void ShowTip(const QString& msg);
     Translation& GetTranslation();
+    ChatBot& GetChatBot();
     const QString& Token();
 #pragma endregion
 
 #pragma region ≤‚ ‘
-    void AudioTest(const QString& token);
     void CompositorTest(const QString& token);
     void ChatBotTest(const QString& token);
 #pragma endregion

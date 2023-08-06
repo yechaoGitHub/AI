@@ -37,7 +37,7 @@ private:
     void SendHearBeat();
     void SendFinish();
 
-    void AudioOutput(QByteArray data);
+    void AudioInput(QByteArray data);
 
     void WebsocketConnected();
     void WebsocketDisconnected();

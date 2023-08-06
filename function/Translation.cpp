@@ -20,7 +20,6 @@ Translation::Translation()
     QObject::connect(&_webSocket, &QWebSocket::disconnected, this, &Translation::WebsocketDisconnected);
     QObject::connect(&_webSocket, static_cast<void(QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), this, &Translation::WebsocketError);
     QObject::connect(&_webSocket, &QWebSocket::textMessageReceived, this, &Translation::TranslateTextMessageReceived);
-
     this->moveToThread(&_workThread);
 }
 
@@ -32,7 +31,7 @@ void Translation::Initialize()
 {
     QObject::connect(this, &Translation::connect, this, &Translation::ConnectInternal);
     QObject::connect(this, &Translation::disconnect, this, &Translation::DisconnectInternal);
-    QObject::connect(&_audio, &Audio::audioOutput, this, &Translation::AudioOutput);
+    QObject::connect(&_audio, &Audio::audioInput, this, &Translation::AudioInput);
 }
 
 void Translation::Connect(const QString& token, const QString& srcLan, const QString& destLan)
@@ -65,14 +64,14 @@ void Translation::DisconnectInternal()
     killTimer(_heartBeatTimer);
     _heartBeatTimer = 0;
 
-    _audio.EndReadMic();
+    _audio.EndMic();
     SendFinish();
     _webSocket.close();
 }
 
 void Translation::StartListen()
 {
-    _audio.StartReadMic();
+    _audio.StartMic();
 }
 
 void Translation::SendParam()
@@ -114,8 +113,8 @@ void Translation::WebsocketConnected()
 void Translation::WebsocketDisconnected()
 {
     _connected = false;
-    _workThread.quit();
     emit disconnected();
+    _workThread.quit();
 }
 
 void Translation::WebsocketError(QAbstractSocket::SocketError error)
@@ -128,10 +127,10 @@ void Translation::TranslateTextMessageReceived(const QString& message)
     auto document = QJsonDocument::fromJson(message.toUtf8(), &err_rpt);
 
     int code = document["code"].toInt();
-    if (code == 0) 
+    if (code == 0)
     {
         auto status = document["data"]["status"].toString();
-        if (status == "TRAN") 
+        if (status == "TRAN")
         {
             auto obj = document["data"]["result"].toObject();
             auto dst = obj["dst"].toString();
@@ -139,11 +138,11 @@ void Translation::TranslateTextMessageReceived(const QString& message)
             auto type = obj["type"].toString();
 
             TranslationType iType{};
-            if (type == "FIN") 
+            if (type == "FIN")
             {
                 iType = FIN;
             }
-            else if (type == "MID") 
+            else if (type == "MID")
             {
                 iType = MID;
             }
@@ -158,7 +157,7 @@ void Translation::SendFinish()
     _webSocket.sendTextMessage("{\"type\": \"FINISH\"");
 }
 
-void Translation::AudioOutput(QByteArray data)
+void Translation::AudioInput(QByteArray data)
 {
     auto hex = data.toBase64();
 

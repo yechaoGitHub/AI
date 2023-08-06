@@ -25,5 +25,6 @@ private:
 	void chatMessage(WChatItem* messageW, QListWidgetItem* item, QString text, QString time, WChatItem::User_Type type);
 	void chatMessageTime(QString curMsgTime);
 private:
+    void ReceiveBotText(const QString& text);
 	Ui::WRobotChatClass ui;
 };

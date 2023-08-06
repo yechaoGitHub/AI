@@ -1,6 +1,7 @@
 #pragma once
 #include <QObject>
 #include <QWebSocket>
+#include <QThread>
 
 class ChatBot : public QObject
 {
@@ -18,6 +19,7 @@ public:
 Q_SIGNALS:
     void connect(const QString& token);
     void disconnect();
+    void receiveText(QString text);
 
     void connected();
     void disconnected();
@@ -41,6 +43,7 @@ private:
     void TranslateTextMessageReceived(const QString& message);
 
     QWebSocket              _webSocket;
+    QThread                 _workThread;
     bool                    _connected = false;
     int                     _heartBeatTimer = 0;
     QString                 _receiveText;

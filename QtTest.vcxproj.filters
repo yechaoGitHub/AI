@@ -48,6 +48,9 @@
     <Filter Include="widget\model">
       <UniqueIdentifier>{71048aac-333c-4f91-bd7b-53c7d3cf1dbd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="widget\Tanslation">
+      <UniqueIdentifier>{79d20e47-5335-49aa-aaaf-1b989890bdf2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="AiSound.qrc">
@@ -112,12 +115,6 @@
     <ClCompile Include="widget\WTip.cpp">
       <Filter>widget</Filter>
     </ClCompile>
-    <ClCompile Include="widget\WTransaltionMain.cpp">
-      <Filter>widget</Filter>
-    </ClCompile>
-    <ClCompile Include="widget\WTranslationSelect.cpp">
-      <Filter>widget</Filter>
-    </ClCompile>
     <ClCompile Include="widget\WUserNameLogin.cpp">
       <Filter>widget</Filter>
     </ClCompile>
@@ -151,9 +148,6 @@
     <ClCompile Include="widget\chat\WRobotChatMainUI.cpp">
       <Filter>widget\chat</Filter>
     </ClCompile>
-    <ClCompile Include="function\ChatBot.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="widget\Setting\WSettingMainUi.cpp">
       <Filter>widget\Setting</Filter>
     </ClCompile>
@@ -182,6 +176,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="function\Translation.cpp">
+      <Filter>function</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\WTransaltionMain.cpp">
+      <Filter>widget\Tanslation</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\WTranslationSelect.cpp">
+      <Filter>widget\Tanslation</Filter>
+    </ClCompile>
+    <ClCompile Include="function\ChatBot.cpp">
       <Filter>function</Filter>
     </ClCompile>
   </ItemGroup>
@@ -308,12 +311,6 @@
     <QtMoc Include="widget\WTip.h">
       <Filter>widget</Filter>
     </QtMoc>
-    <QtMoc Include="widget\WTransaltionMain.h">
-      <Filter>widget</Filter>
-    </QtMoc>
-    <QtMoc Include="widget\WTranslationSelect.h">
-      <Filter>widget</Filter>
-    </QtMoc>
     <QtMoc Include="widget\WUserNameLogin.h">
       <Filter>widget</Filter>
     </QtMoc>
@@ -368,9 +365,6 @@
     <QtMoc Include="widget\Setting\WSettingMainUi.h">
       <Filter>Header Files</Filter>
     </QtMoc>
-    <QtMoc Include="function\ChatBot.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="WRobotNavigation.h">
       <Filter>Source Files</Filter>
     </QtMoc>
@@ -379,6 +373,15 @@
     </QtMoc>
     <QtMoc Include="function\Translation.h">
       <Filter>function</Filter>
+    </QtMoc>
+    <QtMoc Include="function\ChatBot.h">
+      <Filter>function</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WTransaltionMain.h">
+      <Filter>widget\Tanslation</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WTranslationSelect.h">
+      <Filter>widget\Tanslation</Filter>
     </QtMoc>
     <QtMoc Include="function\ChatBot.h">
       <Filter>function</Filter>
