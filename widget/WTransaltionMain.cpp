@@ -32,6 +32,12 @@ WTransaltionMain::~WTransaltionMain()
 {
 }
 
+void WTransaltionMain::SetLanguage(const TranslationLanguage& srcLan, const TranslationLanguage& destLan)
+{
+    _srcLan = srcLan;
+    _destLan = destLan;
+}
+
 void WTransaltionMain::mousePressEvent(QMouseEvent* event)
 {
     if (event->button() == Qt::LeftButton)
@@ -62,7 +68,24 @@ void WTransaltionMain::paintEvent(QPaintEvent* event)
     painter.fillRect(this->rect(), QColor{0, 0, 0, 204});
 }
 
+void WTransaltionMain::showEvent(QShowEvent* event)
+{
+    auto& ins = AiSound::GetInstance();
+    auto& token = ins.Token();
+    ins.GetTranslation().Connect(token, _srcLan.language, _destLan.language);
+}
+
 void WTransaltionMain::TranslationReceived(const QString& src, const QString& dst, int type)
 {
-    ui.subtitleWidget->Subtitle()->AddSubtitle(src, dst);
+    static int lastType{ FIN };
+    if (lastType == FIN)
+    {
+        ui.subtitleWidget->Subtitle()->AddSubtitle(src, dst);
+    }
+    else
+    {
+        ui.subtitleWidget->Subtitle()->UpdateSubtitle(src, dst);
+    }
+
+    lastType = type;
 }

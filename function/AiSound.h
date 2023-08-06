@@ -1,5 +1,6 @@
 #pragma once
 
+#include "VoiceType.h"
 #include "VoiceCompositor.h"
 #include "ChatBot.h"
 
@@ -22,16 +23,8 @@
 #include <functional>
 #include <list>
 
-
 class WTranslationSelect;
 class WTransaltionMain;
-
-struct TranslationLanguage 
-{
-    QString name;
-    QString nameEn;
-    QString language;
-};
 
 using PasswordLoginCallbackType = void(int code, const QString& msg, const QString& token);
 using PasswordLoginCallback = std::function<PasswordLoginCallbackType>;
@@ -45,12 +38,14 @@ using RegisterCallback = std::function<RegisterCallbackType>;
 using SendVerifyCodeCallbackType = void(int code, const QString& msg);
 using SendVerifyCodeCallback = std::function<SendVerifyCodeCallbackType>;
 
-using GetTranslationSourceListCallbackType = void(int code, const QString& msg, const std::vector<TranslationLanguage>& languageList);
+using GetTranslationSourceListCallbackType = void(int code, const QString& msg, std::vector<TranslationLanguage> languageList);
 using GetTranslationSourceListCallback = std::function<GetTranslationSourceListCallbackType>;
 
-using GetTranslationDestListCallbackType = void(int code, const QString& msg, const std::vector<TranslationLanguage>& languageList);
+using GetTranslationDestListCallbackType = void(int code, const QString& msg, std::vector<TranslationLanguage> languageList);
 using GetTranslationDestListCallback = std::function<GetTranslationDestListCallbackType>;
 
+using GetVoiceSpeakerCallbackType = void(int code, const QString& msg, std::vector<VoiceData> vecVoiceData);
+using GetVoiceSpeakerCallback = std::function<GetVoiceSpeakerCallbackType>;
 
 class AiSound : public QObject
 {
@@ -58,9 +53,12 @@ class AiSound : public QObject
 
 public:
     static AiSound& GetInstance();
+    AiSound(const AiSound&) = delete;
+    AiSound& operator=(const AiSound&) = delete;
     ~AiSound();
 
     void Initialize();
+    void Uninitialize();
 
 #pragma region http调用
     void PasswordLogin(const QString& userName, const QString& password, PasswordLoginCallback callback);
@@ -69,20 +67,29 @@ public:
     void SendVerifyCode(const QString& dCode, const QString& mobileNumber, const QString& verifyCode, const QString& uuid, SendVerifyCodeCallback callback);
     void GetTranslationSrourceList(GetTranslationSourceListCallback callback);
     void GetTranslationDestList(GetTranslationDestListCallback callback);
+    void GetVoiceSpeaker(GetVoiceSpeakerCallback callback);
+#pragma endregion
+
+#pragma region 窗口
     void ShowLoginFrame();
     void ShowTranslationWindow();
-    void ShowTranslationMainWindow();
+    void ShowTranslationMainWindow(const TranslationLanguage& srcLan, const TranslationLanguage& destLan);
+    void ShowVoiceCompositorMainWindow(const TranslationLanguage& srcLan, const TranslationLanguage& destLan);
 #pragma endregion
 
 #pragma region 功能
     void ShowTip(const QString& msg);
     Translation& GetTranslation();
+    VoiceCompositor& GetVoiceCompositor();
     ChatBot& GetChatBot();
     const QString& Token();
+    const std::vector<TranslationLanguage>& GetTranslationSrourceListData();
+    const std::vector<TranslationLanguage>& GetTranslationDestListData();
+    const std::vector<VoiceData>& GetVoiceData();
 #pragma endregion
 
 #pragma region 测试
-    void CompositorTest(const QString& token);
+    //void CompositorTest(const QString& token);
     void ChatBotTest(const QString& token);
 #pragma endregion
 
@@ -105,7 +112,8 @@ private:
         httpRegister = 3,
         httpSendVerifyCode = 4,
         httpGetTranslationSource = 5,
-        httpGetTranslationDest = 6
+        httpGetTranslationDest = 6,
+        httpGetVoiceSpeakerCallback = 7
     };
 
     struct HttpCallbackPacketRaw : QObjectUserData
@@ -119,26 +127,36 @@ private:
         std::function<T> callback;
     };
 
-    static AiSound          INSTANCE;
+    static AiSound                      INSTANCE;
 
-    std::list<QString>      _ltMsg;
-    QString                 _token;
+    std::list<QString>                  _ltMsg;
+    QString                             _token;
 
-    QNetworkAccessManager   _networkAccess;
-    QThread                 _translateThread;
-    Translation             _translation;
-    VoiceCompositor         _voiceCompositor;
-    ChatBot                 _chatBot;
+    QThread                             _netThread;
+    QNetworkAccessManager               _networkAccess;
+
+#pragma region 功能
+    Translation                         _translation;
+    VoiceCompositor                     _voiceCompositor;
+    ChatBot                             _chatBot;
+#pragma endregion
+
+#pragma region 数据
+    std::vector<TranslationLanguage>    _srcTranslationLanguage;
+    std::vector<TranslationLanguage>    _destTranslationLanguage;
+    std::vector<VoiceData>              _voiceData;
+#pragma endregion
+
 #pragma region 窗口
-    WLoginUI*               _wLoginFrame;
-    WTranslationSelect*     _wTranslationSelect;
-    WTransaltionMain*       _wTranslationMain;
-    WTip*                   _wTip;
+    WLoginUI*                           _wLoginFrame;
+    WTranslationSelect*                 _wTranslationSelect;
+    WTransaltionMain*                   _wTranslationMain;
+    WTip*                               _wTip;
 
-    WRobotNavigation*       _robotNaviga = nullptr;
-    RobotChatMainUI*        _robot_chat = nullptr;
-    WSpeechGenerationUi*    _speech_ui = nullptr;
-    WSettingMainUi*         _set_main = nullptr;
+    WRobotNavigation*                   _robotNaviga = nullptr;
+    RobotChatMainUI*                    _robot_chat = nullptr;
+    WSpeechGenerationUi*                _speech_ui = nullptr;
+    WSettingMainUi*                     _set_main = nullptr;
 #pragma endregion
 };
 

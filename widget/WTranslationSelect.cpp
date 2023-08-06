@@ -1,7 +1,6 @@
 #include "WTranslationSelect.h"
 #include <QMouseEvent>
 
-
 WTranslationSelect::WTranslationSelect(QWidget* parent) :
     QWidget{ parent }
 {
@@ -17,13 +16,16 @@ WTranslationSelect::WTranslationSelect(QWidget* parent) :
     ui.imgLabel->setPixmap(QPixmap{":/QtTest/icon/exchange_big.png"});
 
     auto& ins = AiSound::GetInstance();
-
     connect(ui.startBtn, &WButton::clicked, this, &WTranslationSelect::StartClicked);
-    connect(&ins.GetTranslation(), &Translation::connected, this, &WTranslationSelect::TranslationConnected);
 }
 
 WTranslationSelect::~WTranslationSelect()
 {
+}
+
+void WTranslationSelect::SetFunctionType(FunctionType type)
+{
+    _type = _type;
 }
 
 void WTranslationSelect::SetSrcLanguage(const std::vector<TranslationLanguage>& vecSrc)
@@ -76,22 +78,38 @@ void WTranslationSelect::paintEvent(QPaintEvent* event)
     painter.fillRect(this->rect(), QColor{ 0, 0, 0, 204 });
 }
 
-void WTranslationSelect::StartClicked()
+void WTranslationSelect::showEvent(QShowEvent* event)
 {
     auto& ins = AiSound::GetInstance();
+    SetSrcLanguage(ins.GetTranslationSrourceListData());
+    SetDestLanguage(ins.GetTranslationDestListData());
+}
 
+void WTranslationSelect::StartClicked()
+{
     auto srcSel = ui.comboSrc->SelectItem();
     auto destSel = ui.comboDest->SelectItem();
     if (srcSel != -1 && destSel != -1)
     {
-        auto srcLanguage = _vecSrc[srcSel].language;
-        auto destLanguage = _vecDest[destSel].language;
-        ins.GetTranslation().Connect(ins.Token(), srcLanguage, destLanguage);
+        return;
+    }
+
+    _selSrvLan = _vecSrc[srcSel];
+    _selDestLan = _vecDest[destSel];
+    auto& ins = AiSound::GetInstance();
+    switch (_type)
+    {
+        case FunctionType::Translation:
+            ins.ShowTranslationMainWindow(_selSrvLan, _selDestLan);
+        break;
+
+        case FunctionType::VoiceCompositor:
+
+        break;
+
+        case FunctionType::ChatBot:
+        break;
+
     }
 }
 
-void WTranslationSelect::TranslationConnected()
-{
-    auto& ins = AiSound::GetInstance();
-    ins.ShowTranslationMainWindow();
-}

@@ -35,6 +35,7 @@ void AiSound::Initialize()
     _wTranslationMain = new WTransaltionMain{};
     _robotNaviga = new WRobotNavigation(nullptr);
     connect(_robotNaviga,&WRobotNavigation::sig_robot_clicked,this, &AiSound::slot_robot_nv_clicked);
+
     _robot_chat = new RobotChatMainUI();
     _speech_ui = new WSpeechGenerationUi();
     _set_main = new WSettingMainUi();
@@ -42,11 +43,17 @@ void AiSound::Initialize()
     _wTip = new WTip{};
     connect(_wTip, &WTip::tipEnd, this, &AiSound::NextMessage);
 
-    _translation.moveToThread(&_translateThread);
     _translation.Initialize();
-
     _voiceCompositor.Initialize();
     _chatBot.Initialize();
+
+    _netThread.start();
+    _networkAccess.moveToThread(&_netThread);
+}
+
+void AiSound::Uninitialize()
+{
+    _netThread.quit();
 }
 
 AiSound& AiSound::GetInstance()
@@ -60,14 +67,14 @@ void AiSound::PasswordLogin(const QString& userName, const QString& password, Pa
     request.setUrl(QUrl{ "http://47.106.253.9:9101/user/loginByPwd" });
     request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
 
-    QJsonObject dataobj;          
+    QJsonObject dataobj;
 
    dataobj.insert("password", password);
    dataobj.insert("username", userName);
 
    QJsonDocument document;
    document.setObject(dataobj);
-   QByteArray byte_array = document.toJson(QJsonDocument::Compact); 
+   QByteArray byte_array = document.toJson(QJsonDocument::Compact);
 
     auto packet = new HttpCallbackPacket<PasswordLoginCallbackType>();
     packet->type = httpPasswordLogin;
@@ -180,6 +187,21 @@ void AiSound::GetTranslationDestList(GetTranslationDestListCallback callback)
     reply->setUserData(Qt::UserRole, packet);
 }
 
+void AiSound::GetVoiceSpeaker(GetVoiceSpeakerCallback callback)
+{
+    QNetworkRequest request;
+    request.setUrl(QUrl{ "http://47.106.253.9:9101/config/getSpeakers" });
+    request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
+    request.setRawHeader("access_token", _token.toUtf8());
+
+    auto packet = new HttpCallbackPacket<GetVoiceSpeakerCallbackType>();
+    packet->type = httpGetVoiceSpeakerCallback;
+    packet->callback = callback;
+
+    auto reply = _networkAccess.post(request, QByteArray{});
+    reply->setUserData(Qt::UserRole, packet);
+}
+
 void AiSound::ShowLoginFrame()
 {
     _wLoginFrame->show();
@@ -201,30 +223,40 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
         _robot_chat->show();
     }
     else if (type == Navig_Type::Voice) {
+        _wTranslationSelect->SetFunctionType(FunctionType::Translation);
         _wTranslationSelect->show();
     }
     else if (type == Navig_Type::Speech) {
-        _speech_ui->show();
+        //_wTranslationSelect->
+        _wTranslationSelect->SetFunctionType(FunctionType::VoiceCompositor);
+        _wTranslationSelect->show();
+        //_speech_ui->show();
     }
     else if (type == Navig_Type::System_Set) {
         _set_main->show();
     }
 }
 
-void AiSound::ShowTranslationMainWindow()
+void AiSound::ShowTranslationMainWindow(const TranslationLanguage& srcLan, const TranslationLanguage& destLan)
 {
-    _wTranslationSelect->hide();
+    _wTranslationMain->SetLanguage(srcLan, destLan);
     _wTranslationMain->show();
+}
+
+void AiSound::ShowVoiceCompositorMainWindow(const TranslationLanguage& srcLan, const TranslationLanguage& destLan)
+{
+    _speech_ui->SetLanguage(srcLan, destLan);
+    _speech_ui->show();
 }
 
 void AiSound::ShowTip( const QString& msg)
 {
-    if (_wTip->isHidden()) 
+    if (_wTip->isHidden())
     {
         _wTip->SetMessage(msg);
         _wTip->show();
     }
-    else 
+    else
     {
         _ltMsg.push_back(msg);
     }
@@ -233,6 +265,11 @@ void AiSound::ShowTip( const QString& msg)
 Translation& AiSound::GetTranslation()
 {
     return _translation;
+}
+
+VoiceCompositor& AiSound::GetVoiceCompositor()
+{
+    return _voiceCompositor;
 }
 
 ChatBot& AiSound::GetChatBot()
@@ -245,16 +282,31 @@ const QString& AiSound::Token()
     return _token;
 }
 
+const std::vector<TranslationLanguage>& AiSound::GetTranslationSrourceListData()
+{
+    return _srcTranslationLanguage;
+}
+
+const std::vector<TranslationLanguage>& AiSound::GetTranslationDestListData()
+{
+    return _destTranslationLanguage;
+}
+
+const std::vector<VoiceData>& AiSound::GetVoiceData()
+{
+    return _voiceData;
+}
+
 void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
 {
     HttpCallbackPacketRaw* packetRaw = dynamic_cast<HttpCallbackPacketRaw*>(reply->userData(Qt::UserRole));
     if (!packetRaw)
     {
-        do 
+        do
         {
             std::this_thread::yield();
             packetRaw = dynamic_cast<HttpCallbackPacketRaw*>(reply->userData(Qt::UserRole));
-        } 
+        }
         while (!packetRaw);
     }
 
@@ -323,10 +375,10 @@ void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
             auto data = document["data"].toArray();
 
             std::vector<TranslationLanguage> vecLan;
-            for (const auto& it : data) 
+            for (const auto& it : data)
             {
                 TranslationLanguage lan;
-                auto obj = it.toObject();  
+                auto obj = it.toObject();
                 lan.language = obj["languaue"].toString();
                 lan.name = obj["name"].toString();
                 lan.nameEn = obj["nameEn"].toString();
@@ -334,7 +386,7 @@ void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
             }
 
             auto packet = dynamic_cast<HttpCallbackPacket<GetTranslationSourceListCallbackType>*>(packetRaw);
-            packet->callback(code, msg, vecLan);
+            packet->callback(code, msg, std::move(vecLan));
         }
         break;
 
@@ -358,7 +410,33 @@ void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
             }
 
             auto packet = dynamic_cast<HttpCallbackPacket<GetTranslationDestListCallbackType>*>(packetRaw);
-            packet->callback(code, msg, vecLan);
+            packet->callback(code, msg, std::move(vecLan));
+        }
+        break;
+
+        case httpGetVoiceSpeakerCallback:
+        {
+            QJsonParseError err_rpt;
+            auto document = QJsonDocument::fromJson(data, &err_rpt);
+            int code = document["code"].toInt();
+            QString msg = document["msg"].toString();
+
+            std::vector<VoiceData> vecVoiceData;
+            auto data = document["data"].toArray();
+            for (const auto& it : data)
+            {
+                VoiceData data;
+                auto obj = it.toObject();
+                data.id = obj["id"].toInt();
+                data.voiceCode = obj["voiceCode"].toString();
+                data.name = obj["name"].toString();
+                data.language = obj["language"].toInt();
+                data.gender = obj["gender"].toInt();
+                vecVoiceData.push_back(data);
+            }
+
+            auto packet = dynamic_cast<HttpCallbackPacket<GetVoiceSpeakerCallbackType>*>(packetRaw);
+            packet->callback(code, msg, std::move(vecVoiceData));
         }
         break;
 
@@ -369,15 +447,10 @@ void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
     delete packetRaw;
 }
 
-//void AiSound::AudioTest(const QString& token)
+//void AiSound::CompositorTest(const QString& token)
 //{
-//    _translation.Connect(token);
+//    _voiceCompositor.Connect(token);
 //}
-
-void AiSound::CompositorTest(const QString& token)
-{
-    _voiceCompositor.Connect(token);
-}
 
 void AiSound::ChatBotTest(const QString& token)
 {
@@ -386,34 +459,34 @@ void AiSound::ChatBotTest(const QString& token)
 
 void AiSound::FillTranslationFillList()
 {
-    GetTranslationSrourceList([this](int code, const QString& msg, const std::vector<TranslationLanguage>& languageList)
-        {
-            if (code == 200) 
-            {
-                _wTranslationSelect->SetSrcLanguage(languageList);
-            }
-            else 
-            {
-                ShowTip(msg);
-            }
-        });
-
-    GetTranslationDestList([this](int code, const QString& msg, const std::vector<TranslationLanguage>& languageList)
+    GetTranslationSrourceList([this](int code, const QString& msg, std::vector<TranslationLanguage> languageList)
         {
             if (code == 200)
             {
-                _wTranslationSelect->SetDestLanguage(languageList);
+                _srcTranslationLanguage = std::move(languageList);
             }
-            else
+        });
+
+    GetTranslationDestList([this](int code, const QString& msg, std::vector<TranslationLanguage> languageList)
+        {
+            if (code == 200)
             {
-                ShowTip(msg);
+                _destTranslationLanguage = std::move(languageList);
+            }
+        });
+
+    GetVoiceSpeaker([this](int code, const QString& msg, std::vector<VoiceData> vecVoiceData)
+        {
+            if (code == 200)
+            {
+                _voiceData = std::move(vecVoiceData);
             }
         });
 }
 
 void AiSound::UserLoginCallbackInternal(int code, const QString& msg, const QString& token)
 {
-    if (code == 200) 
+    if (code == 200)
     {
         _token = token;
         FillTranslationFillList();

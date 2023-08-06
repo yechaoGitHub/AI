@@ -18,23 +18,26 @@ int main(int argc, char *argv[])
     AiSound::GetInstance().Initialize();
     AiSound::GetInstance().ShowLoginFrame();
 
-    /*AiSound::GetInstance().PasswordLogin("test2", "qwert123456", 
+    auto r = a.exec();
+    AiSound::GetInstance().Uninitialize();
+
+    /*AiSound::GetInstance().PasswordLogin("test2", "qwert123456",
         [](int code, const QString& msg, const QString& token)
         {
             AiSound::GetInstance().ChatBotTest(token);
 
         });*/
 
-    //AiSound::GetInstance().PasswordLogin("hhj", "qwert12345", [](int code, const QString& msg, const QString& token) 
+    //AiSound::GetInstance().PasswordLogin("hhj", "qwert12345", [](int code, const QString& msg, const QString& token)
     //    {
     //        AiSound::GetInstance().AudioTest(token);
     //    });
 
   /*  AiSound::GetInstance().GetTranslationSrourceList(
-        [](int code, const QString& msg, const QString& language, const QString& name, const QString& nameEn) 
+        [](int code, const QString& msg, const QString& language, const QString& name, const QString& nameEn)
         {
             return;
         });*/
 
-    return a.exec();
+    return r;
 }

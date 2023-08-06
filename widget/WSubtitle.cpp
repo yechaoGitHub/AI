@@ -30,11 +30,11 @@ void WSubtitle::AddSubtitle(const QString& src, const QString& dest)
     auto f = this->font();
     QFontMetrics fm{ f };
 
-    if (_subtitle.empty()) 
+    if (_subtitle.empty())
     {
         _subtitle.push_back(NewTranslationText(src, dest, 0));
     }
-    else 
+    else
     {
         auto& b = _subtitle.back();
         _subtitle.push_back(NewTranslationText(src, dest, b.rect.bottom()));
@@ -43,20 +43,29 @@ void WSubtitle::AddSubtitle(const QString& src, const QString& dest)
     emit subtitleAdd();
 }
 
+void WSubtitle::UpdateSubtitle(const QString& src, const QString& dest)
+{
+    auto& b = _subtitle.back();
+    b.src.text = src;
+    b.dest.text = dest;
+
+    repaint();
+}
+
 QSize WSubtitle::sizeHint() const
 {
-    if (_subtitle.empty()) 
+    if (_subtitle.empty())
     {
         return QSize{ 1078, 176 };
     }
-    else 
+    else
     {
         auto& b = _subtitle.back();
-        if (b.rect.bottom() > 176) 
+        if (b.rect.bottom() > 176)
         {
             return QSize{ 1078, b.rect.bottom() };
         }
-        else 
+        else
         {
             return QSize{ 1078, 176 };
         }
@@ -135,11 +144,11 @@ QSize WSubtitle::CalculateTextSize(QFontMetrics& fm, const QString& text, int w)
     auto textW = fm.width(text);
     auto textH = fm.lineSpacing();
 
-    if (textW < w) 
+    if (textW < w)
     {
         return { textW, textH };
     }
-    else 
+    else
     {
         int l = std::ceil((double)textW / (double)w);
 
@@ -210,7 +219,7 @@ WSubtitleAutoScroll::WSubtitleAutoScroll(QWidget* parent) :
     connect(_subtitle, &WSubtitle::subtitleAdd, this, &WSubtitleAutoScroll::SubtitleAdded);
 }
 
-WSubtitleAutoScroll::~WSubtitleAutoScroll() 
+WSubtitleAutoScroll::~WSubtitleAutoScroll()
 {
 
 }
@@ -230,11 +239,11 @@ void WSubtitleAutoScroll::timerEvent(QTimerEvent* event)
     auto p = _scrollArea->verticalScrollBar()->sliderPosition();
     auto max = _scrollArea->verticalScrollBar()->maximum();
 
-    if (p != max) 
+    if (p != max)
     {
         _scrollArea->verticalScrollBar()->setSliderPosition(p + 1);
     }
-    else 
+    else
     {
         killTimer(event->timerId());
     }

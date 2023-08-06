@@ -3,6 +3,7 @@
 #include "VoiceType.h"
 
 #include <QWebsocket>
+#include <QThread>
 
 class VoiceCompositor : public QObject
 {
@@ -12,22 +13,21 @@ public:
     ~VoiceCompositor();
 
     void Initialize();
-    void Connect(const QString& token);
+    void Connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender);
     void Disconnect();
-
 
 Q_SIGNALS:
     void connected();
     void disconnected();
 
     void translationReceived(const QString& src, const QString& dst, int type);
-    void connect(const QString& token);
+    void connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender);
     void disconnect();
 
     void receiveAudio(const QByteArray& data);
 
 private:
-    void ConnectInternal(const QString& token);
+    void ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender);
     void DisconnectInternal();
 
     void SendParam();
@@ -45,6 +45,12 @@ private:
 
     Audio                   _audio;
     QWebSocket              _webSocket;
+    QThread                 _workThread;
+    QString                 _srcLan;
+    QString                 _destLan;
+    QString                 _speaker;
+    bool                    _autoSender = false;
+
     QString                 _buffer;
     bool                    _connected = false;
     int                     _heartBeatTimer = 0;

@@ -13,6 +13,7 @@ public:
 
     void SetTranslate(const QString& srcLanguage, const QString& destLanguage);
     void AddSubtitle(const QString& src, const QString& dest);
+    void UpdateSubtitle(const QString& src, const QString& dest);
 
     QSize sizeHint() const override;
 
@@ -25,7 +26,7 @@ protected:
     void resizeEvent(QResizeEvent* event);
 
 private:
-    struct TextLayout 
+    struct TextLayout
     {
         QString text;
         QRect   rect;

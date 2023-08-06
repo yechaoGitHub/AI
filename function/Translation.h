@@ -47,9 +47,9 @@ private:
 
     Audio                   _audio;
     QWebSocket              _webSocket;
+    QThread                 _workThread;
     QString                 _srcLan;
     QString                 _destLan;
-    QThread                 _workThread;
     bool                    _connected = false;
     int                     _heartBeatTimer = 0;
 };
