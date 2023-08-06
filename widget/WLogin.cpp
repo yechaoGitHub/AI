@@ -18,17 +18,19 @@ WLogin::WLogin(QWidget* parent) :
     loginBtn = loginOpt->loginBtn;
 
     connect(ui.loginSwitch, &WLoginSwitch::TitleChanged, this, &WLogin::TitleChanged);
-
-    /*QString username; QString pwd;
-    connect(loginBtn, &WButton::clicked, this, [&] {
-        if()
-        userNameLogin->GetLoginInfo(username,pwd);
-        });*/
 }
 
 WLogin::~WLogin()
 {
 
+}
+
+bool  WLogin::remberPwd()
+{
+    if (_cur_login_title == WLoginSwitch::ETitle::userName) {
+        return userNameLogin->isRember();
+    }
+    return false;
 }
 
 QString WLogin::UserName()

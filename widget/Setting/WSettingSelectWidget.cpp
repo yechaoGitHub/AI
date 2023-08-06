@@ -19,6 +19,7 @@ WSettingSelectWidget::~WSettingSelectWidget()
 void WSettingSelectWidget::on_pb_account_clicked()
 {
 	changeSelectBtn(WNavbarButton::Bar_Account);
+	ui.stackedWidget->setCurrentWidget(ui.account_widget);
 }
 
 void WSettingSelectWidget::on_pb_help_clicked()
@@ -34,6 +35,7 @@ void WSettingSelectWidget::on_pb_team_clicked()
 void WSettingSelectWidget::on_pb_tools_clicked()
 {
 	changeSelectBtn(WNavbarButton::Bar_Tools);
+	ui.stackedWidget->setCurrentWidget(ui.gerenal_page);
 }
 
 void WSettingSelectWidget::changeSelectBtn(WNavbarButton::BarType type)

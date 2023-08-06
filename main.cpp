@@ -3,14 +3,17 @@
 #include "AiSound.h"
 #include "login/WLoginUI.h"
 #include "WRobotNavigation.h"
+#include "base/GlobalSetting.h"
 
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon(":QtTest/icon/icon.png"));
-   /* WRobotNavigation robot;
-    robot.show();*/
+
+    if (!SETTING.init(QString(SETTING.getRootLocalPath() + "/system.ini"))) {
+        return -1;
+    }
 
     AiSound::GetInstance().Initialize();
     AiSound::GetInstance().ShowLoginFrame();

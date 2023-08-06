@@ -4,11 +4,11 @@
 
 
 WSettingMainUi::WSettingMainUi(QWidget *parent)
-	: FrameLessWidget(parent)
+    : FrameLessWidget(parent)
 {
-	ui.setupUi(this);
-	setAttribute(Qt::WA_TranslucentBackground);
-	this->setWidgetType(true, DragType::Drag_Null, false);
+    ui.setupUi(this);
+    setAttribute(Qt::WA_TranslucentBackground);
+    this->setWidgetType(true, DragType::Drag_Null, false);
 
     connect(ui.pb_min, &QPushButton::clicked, this, [this] {
         this->showMinimized();
@@ -17,7 +17,7 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
         this->close();
         });
 
-    this->setFixedSize(664, 490);
+    //this->setFixedSize(664, 490);
 }
 
 WSettingMainUi::~WSettingMainUi()

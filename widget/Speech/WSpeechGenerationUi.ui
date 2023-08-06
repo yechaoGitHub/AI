@@ -576,7 +576,7 @@ QTextEdit{
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>
-  <include location="../AiSound.qrc"/>
+  <include location="../../AiSound.qrc"/>
  </resources>
  <connections/>
 </ui>

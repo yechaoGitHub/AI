@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>WGerenalPageClass</class>
+ <widget class="QWidget" name="WGerenalPageClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>647</width>
+    <height>603</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>WGerenalPage</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+	font: 14px &quot;微软雅黑&quot;;
+}
+QFrame#frame_language,#frame_key1,#frame_key2{
+	border-radius:8px;
+	border:1px solid #000000;
+}
+
+QLabel#label_4,#label_6{
+	color: #848484;
+}
+
+QPushButton{
+	border-radius:8px;
+	border:1px solid #000000;
+}
+
+QPushButton#pb_tip{
+	border:none;
+	background-position: center;
+    background-repeat: no-repeat;
+}
+
+QPushButton#pb_lsend{
+	border:none;
+	background-position: center;
+    background-repeat: no-repeat;
+	background-image: url(:/QtTest/icon/Setting/send.png);
+}
+
+QPushButton#pb_tip{
+	background-image: url(:/QtTest/icon/Speech/Language.png);
+}
+
+QTextEdit{
+	background-color: transparent;
+	border:1px solid #000000;
+	border-radius:8px;
+}
+
+QComboBox{
+	border:none;
+	background-color: rgba(255, 255, 255,0);
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+}
+
+QComboBox::down-arrow {
+	image: url(:/QtTest/icon/Speech/down.png);
+}
+
+QComboBox QAbstractItemView::item { 
+	min-height: 30px;
+}</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>8</number>
+   </property>
+   <property name="leftMargin">
+    <number>12</number>
+   </property>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>21</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>21</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Language Settings</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QFrame" name="frame_language">
+     <property name="minimumSize">
+      <size>
+       <width>610</width>
+       <height>56</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>610</width>
+       <height>56</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="QPushButton" name="pb_tip">
+        <property name="minimumSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QComboBox" name="comboBox">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>21</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>21</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Shortcut Keys</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>16</number>
+     </property>
+     <item>
+      <widget class="QFrame" name="frame_key1">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QLabel" name="label_4">
+          <property name="text">
+           <string>Start voice translation</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>ctrl+alt+t</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="frame_key2">
+       <property name="minimumSize">
+        <size>
+         <width>300</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>300</width>
+         <height>80</height>
+        </size>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Start speech generation</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>ctrl+g</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>21</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>21</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Question feedback</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="textEdit">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>610</width>
+       <height>163</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>610</width>
+       <height>163</height>
+      </size>
+     </property>
+     <property name="placeholderText">
+      <string>Write to feedback here</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pb_lsend">
+     <property name="minimumSize">
+      <size>
+       <width>128</width>
+       <height>52</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>128</width>
+       <height>52</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>124</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="../../AiSound.qrc"/>
+ </resources>
+ <connections/>
+</ui>

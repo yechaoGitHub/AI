@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="WCommonEdit" name="userNameEdit" native="true">
    <property name="geometry">
     <rect>
@@ -60,8 +63,8 @@
   <widget class="WCheckBox" name="keepLoggedCheckBox" native="true">
    <property name="geometry">
     <rect>
-     <x>48</x>
-     <y>152</y>
+     <x>290</x>
+     <y>150</y>
      <width>190</width>
      <height>20</height>
     </rect>
@@ -105,6 +108,28 @@
     <string>Forgot Password?</string>
    </property>
   </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>145</y>
+     <width>191</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox::indicator {width: 20px; height: 20px;}
+
+QCheckBox::indicator:unchecked {background-image: url(:/QtTest/icon/check_sel.png);}
+
+
+QCheckBox::indicator:checked {background-image: url(:/QtTest/icon/chebox_select.png);}
+</string>
+   </property>
+   <property name="text">
+    <string>Keep me logged in</string>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>
@@ -120,6 +145,8 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../AiSound.qrc"/>
+ </resources>
  <connections/>
 </ui>

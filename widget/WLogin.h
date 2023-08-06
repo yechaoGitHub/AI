@@ -16,6 +16,7 @@ public:
 
     QString UserName();
     QString Password();
+    bool    remberPwd();
 
     WClickedLabel*  registerLabel;
     WButton*        loginBtn;

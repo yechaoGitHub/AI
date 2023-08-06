@@ -194,8 +194,8 @@
   <widget class="WCheckBox" name="loggedCheckBox" native="true">
    <property name="geometry">
     <rect>
-     <x>48</x>
-     <y>265</y>
+     <x>310</x>
+     <y>260</y>
      <width>180</width>
      <height>20</height>
     </rect>
@@ -211,6 +211,27 @@
      <family>微软雅黑</family>
      <pointsize>10</pointsize>
     </font>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>258</y>
+     <width>181</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QCheckBox::indicator {width: 20px; height: 20px;}
+
+QCheckBox::indicator:unchecked {background-image: url(:/QtTest/icon/check_sel.png);}
+
+
+QCheckBox::indicator:checked {background-image: url(:/QtTest/icon/chebox_select.png);}</string>
+   </property>
+   <property name="text">
+    <string>Keep me logged in</string>
    </property>
   </widget>
  </widget>

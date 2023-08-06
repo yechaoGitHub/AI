@@ -14,6 +14,8 @@
 #include "WComboBox.h"
 #include "WTranslationSelect.h"
 #include "WTransaltionMain.h"
+#include "base/GlobalSetting.h"
+
 
 WLoginFrame::WLoginFrame(QWidget *parent)
     : QWidget(parent)
@@ -162,7 +164,11 @@ void WLoginFrame::LoginBtnClicked()
 
     auto userName = _login->UserName();
     auto password = _login->Password();
-
+    if (_login->remberPwd()) {
+        SETTING.setPWD(password);
+        SETTING.setUserName(userName);
+    }
+    SETTING.setRememberPWD(_login->remberPwd());
     auto callback = [](int code, const QString& msg, const QString& token)->void
     {
         auto& ins = AiSound::GetInstance();
@@ -170,6 +176,7 @@ void WLoginFrame::LoginBtnClicked()
         if (code == 200) 
         {
             ins.ShowTranslationWindow();
+            
         }
         else 
         {

@@ -128,7 +128,7 @@ QFrame#frame_left{
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <widget class="WAccountPage" name="account_widget"/>
-     <widget class="QWidget" name="page_2"/>
+     <widget class="WGerenalPage" name="gerenal_page"/>
     </widget>
    </item>
   </layout>
@@ -144,6 +144,12 @@ QFrame#frame_left{
    <class>WAccountPage</class>
    <extends>QWidget</extends>
    <header>WAccountPage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WGerenalPage</class>
+   <extends>QWidget</extends>
+   <header>WGerenalPage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

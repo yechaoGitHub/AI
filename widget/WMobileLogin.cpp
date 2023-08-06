@@ -19,9 +19,12 @@ WMobileLogin::WMobileLogin(QWidget* parent) :
     ui.verificationCodeEdit->textEdit->setPlaceholderText("Enter the code send on your mobile");
 
     ui.loggedCheckBox->SetText("Keep me logged in");
+    ui.loggedCheckBox->hide();
     connect(ui.getCodeBtn, &WButton::clicked, this, &WMobileLogin::GetCodeCallback);
 
     loggedCheckBox = ui.loggedCheckBox;
+
+    
 }
 
 WMobileLogin::~WMobileLogin()

@@ -1,4 +1,6 @@
 #include "WuserNameLogin.h"
+#include "base/GlobalSetting.h"
+
 
 WUserNameLogin::WUserNameLogin(QWidget* parent) :
     QWidget{ parent },
@@ -12,12 +14,25 @@ WUserNameLogin::WUserNameLogin(QWidget* parent) :
     ui.passWordEdit->SetImage(":QtTest/icon/lock.png");
     
     ui.keepLoggedCheckBox->SetText("Keep me logged in");
+    ui.keepLoggedCheckBox->setVisible(false);
     ui.forgetLabel->setStyleSheet("color:qlineargradient(spread:pad, x1:0, y1:0, x2:111, y2:20, stop:0 #0066FF, stop:1 #BD00FF)");
     ui.forgetLabel->setCursor(Qt::PointingHandCursor);
 
     userNameEdit = ui.userNameEdit->textEdit;
     passwordEdit = ui.passWordEdit->textEdit;
     ui.passWordEdit->SetPwd();
+
+    bool ret = SETTING.getRememberPWD();
+    if (ret) {
+        userNameEdit->setText(SETTING.getUserName());
+        passwordEdit->setText(SETTING.getPWD());
+    }
+    ui.checkBox->setChecked(ret);
+}
+
+bool  WUserNameLogin::isRember()
+{
+    return ui.checkBox->checkState() == Qt::CheckState::Checked;
 }
 
 WUserNameLogin::~WUserNameLogin()

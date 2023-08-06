@@ -46,7 +46,8 @@ QPushButton#pb_robot,#pb_min,#pb_close{
 }
 
 QPushButton#pb_robot{
-	background-image: url(:/QtTest/icon/Setting/robot.png);
+	
+	background-image: url(:/QtTest/icon/icon.png);
 }
 
 QPushButton#pb_min{
@@ -187,7 +188,7 @@ QPushButton#pb_close{
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <widget class="WSettingSelectWidget" name="select_widget"/>
-     <widget class="QWidget" name="page_2"/>
+     <widget class="WGerenalPage" name="gerenal_page"/>
     </widget>
    </item>
   </layout>
@@ -198,6 +199,12 @@ QPushButton#pb_close{
    <class>WSettingSelectWidget</class>
    <extends>QWidget</extends>
    <header>WSettingSelectWidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WGerenalPage</class>
+   <extends>QWidget</extends>
+   <header>WGerenalPage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

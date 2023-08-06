@@ -32,7 +32,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>5.12.12_msvc2017_64</QtInstall>
+    <QtInstall>5.15.2_msvc2019_64</QtInstall>
     <QtModules>core;network;gui;multimedia;widgets;websockets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -92,6 +92,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="base\GlobalSetting.cpp" />
     <ClCompile Include="base\HttpClient.cpp" />
     <ClCompile Include="function\AiSound.cpp" />
     <ClCompile Include="function\Audio.cpp" />
@@ -108,6 +109,7 @@
     <ClCompile Include="widget\login\WLoginUI.cpp" />
     <ClCompile Include="widget\model\WNavbarButton.cpp" />
     <ClCompile Include="widget\Setting\WAccountPage.cpp" />
+    <ClCompile Include="widget\Setting\WGerenalPage.cpp" />
     <ClCompile Include="widget\Setting\WSettingMainUi.cpp" />
     <ClCompile Include="widget\Setting\WSettingSelectWidget.cpp" />
     <ClCompile Include="widget\Speech\ComboxItem.cpp" />
@@ -155,12 +157,14 @@
     <QtUic Include="widget\login\WLoginMainUi.ui" />
     <QtUic Include="widget\login\WLoginUI.ui" />
     <QtUic Include="widget\Setting\WAccountPage.ui" />
+    <QtUic Include="widget\Setting\WGerenalPage.ui" />
     <QtUic Include="widget\Setting\WSettingMainUi.ui" />
     <QtUic Include="widget\Setting\WSettingSelectWidget.ui" />
     <QtUic Include="WRobotNavigation.ui" />
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="widget\Setting\WGerenalPage.h" />
     <QtMoc Include="WRobotSettingMenu.h" />
     <QtMoc Include="WRobotNavigation.h" />
     <QtMoc Include="widget\login\UserLogin.h" />
@@ -171,6 +175,7 @@
     <QtMoc Include="widget\Setting\WSettingSelectWidget.h" />
     <QtMoc Include="widget\Setting\WSettingMainUi.h" />
     <QtMoc Include="function\ChatBot.h" />
+    <ClInclude Include="base\GlobalSetting.h" />
     <ClInclude Include="function\VoiceType.h" />
     <QtMoc Include="widget\chat\WRobotChatMainUI.h" />
     <QtMoc Include="widget\chat\WRobotChat.h" />

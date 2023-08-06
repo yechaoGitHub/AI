@@ -12,6 +12,8 @@ public:
     QLineEdit* userNameEdit;
     QLineEdit* passwordEdit;
 
+    bool    isRember();
+
 private:
     Ui::userNameLogin ui;
 };
