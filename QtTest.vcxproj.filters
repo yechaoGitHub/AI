@@ -36,11 +36,17 @@
     <Filter Include="widget\chat">
       <UniqueIdentifier>{3d1ef630-c967-4d8c-942d-5478a057cdd2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="widget\model">
-      <UniqueIdentifier>{71048aac-333c-4f91-bd7b-53c7d3cf1dbd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="widget\Speech">
       <UniqueIdentifier>{28c1580d-d3b9-44d2-a0da-d995df5a3b31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="widget\Setting">
+      <UniqueIdentifier>{9bff6c5f-5528-418d-bcd9-7f67a9c08805}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="widget\login">
+      <UniqueIdentifier>{aaf6f584-e602-473c-b96f-8eb2865b5bdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="widget\model">
+      <UniqueIdentifier>{71048aac-333c-4f91-bd7b-53c7d3cf1dbd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +154,30 @@
     <ClCompile Include="widget\chat\WRobotChatMainUI.cpp">
       <Filter>widget\chat</Filter>
     </ClCompile>
+    <ClCompile Include="function\ChatBot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\WSettingMainUi.cpp">
+      <Filter>widget\Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\model\WNavbarButton.cpp">
+      <Filter>widget\model</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\login\WLoginUI.cpp">
+      <Filter>widget\login</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\login\WLoginMainUi.cpp">
+      <Filter>widget\login</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\WAccountPage.cpp">
+      <Filter>widget\Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\WSettingSelectWidget.cpp">
+      <Filter>widget\Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\login\UserLogin.cpp">
+      <Filter>widget\login</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -194,6 +224,24 @@
     </QtUic>
     <QtUic Include="widget\chat\WRobotChatMainUI.ui">
       <Filter>ui</Filter>
+    </QtUic>
+    <QtUic Include="widget\login\UserLogin.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="widget\login\WLoginMainUi.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="widget\login\WLoginUI.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\WAccountPage.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\WSettingMainUi.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\WSettingSelectWidget.ui">
+      <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +337,30 @@
     </QtMoc>
     <QtMoc Include="widget\chat\WRobotChatMainUI.h">
       <Filter>widget\chat</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\login\UserLogin.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\login\WLoginUI.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\login\WLoginMainUi.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\WAccountPage.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\model\WNavbarButton.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\WSettingSelectWidget.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\WSettingMainUi.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="function\ChatBot.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
