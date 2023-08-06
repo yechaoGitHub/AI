@@ -26,6 +26,11 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget *parent)
 WSpeechGenerationUi::~WSpeechGenerationUi()
 {}
 
+void WSpeechGenerationUi::on_pb_close_clicked()
+{
+	close();
+}
+
 void WSpeechGenerationUi::paintEvent(QPaintEvent* event)
 {
 	QPainter p(this);

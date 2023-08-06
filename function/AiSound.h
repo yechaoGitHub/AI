@@ -15,6 +15,10 @@
 #include "widget/login/WLoginUI.h"
 #include "Translate.h"
 #include "WTip.h"
+#include "WRobotNavigation.h"
+#include "widget/chat/WRobotChatMainUI.h"
+#include "widget/Speech/WSpeechGenerationUi.h"
+#include "widget/Setting/WSettingMainUi.h"
 
 class WTranslationSelect;
 class WTransaltionMain;
@@ -82,6 +86,11 @@ public:
     void CompositorTest(const QString& token);
     void ChatBotTest(const QString& token);
 #pragma endregion
+
+private slots:
+    void slot_robot_nv_clicked(Navig_Type type);
+
+
 private:
     AiSound();
     void HttpCallbackDispatch(QNetworkReply* reply);
@@ -126,6 +135,11 @@ private:
     WTranslationSelect*     _wTranslationSelect;
     WTransaltionMain*       _wTranslationMain;
     WTip*                   _wTip;
+
+    WRobotNavigation*       _robotNaviga = nullptr;
+    RobotChatMainUI*        _robot_chat = nullptr;
+    WSpeechGenerationUi*    _speech_ui = nullptr;
+    WSettingMainUi*         _set_main = nullptr;
 #pragma endregion
 };
 

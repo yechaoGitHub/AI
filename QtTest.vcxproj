@@ -132,6 +132,8 @@
     <ClCompile Include="widget\WTranslationSelect.cpp" />
     <ClCompile Include="widget\WUserNameLogin.cpp" />
     <ClCompile Include="widget\WVerificationCode.cpp" />
+    <ClCompile Include="WRobotNavigation.cpp" />
+    <ClCompile Include="WRobotSettingMenu.cpp" />
     <QtRcc Include="AiSound.qrc" />
     <ClCompile Include="main.cpp" />
     <QtUic Include="ui\frame.ui" />
@@ -155,8 +157,12 @@
     <QtUic Include="widget\Setting\WAccountPage.ui" />
     <QtUic Include="widget\Setting\WSettingMainUi.ui" />
     <QtUic Include="widget\Setting\WSettingSelectWidget.ui" />
+    <QtUic Include="WRobotNavigation.ui" />
+    <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="WRobotSettingMenu.h" />
+    <QtMoc Include="WRobotNavigation.h" />
     <QtMoc Include="widget\login\UserLogin.h" />
     <QtMoc Include="widget\login\WLoginUI.h" />
     <QtMoc Include="widget\login\WLoginMainUi.h" />

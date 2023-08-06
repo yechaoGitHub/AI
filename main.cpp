@@ -2,25 +2,25 @@
 #include <QtWidgets/QApplication>
 #include "AiSound.h"
 #include "login/WLoginUI.h"
-#include "widget/WLoginFrame.h"
+#include "WRobotNavigation.h"
 
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon(":QtTest/icon/icon.png"));
-    /*WLoginUI robot;
+   /* WRobotNavigation robot;
     robot.show();*/
 
     AiSound::GetInstance().Initialize();
     AiSound::GetInstance().ShowLoginFrame();
 
-    AiSound::GetInstance().PasswordLogin("test2", "qwert123456", 
+    /*AiSound::GetInstance().PasswordLogin("test2", "qwert123456", 
         [](int code, const QString& msg, const QString& token)
         {
             AiSound::GetInstance().ChatBotTest(token);
 
-        });
+        });*/
 
     //AiSound::GetInstance().PasswordLogin("hhj", "qwert12345", [](int code, const QString& msg, const QString& token) 
     //    {

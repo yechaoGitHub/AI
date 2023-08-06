@@ -11,15 +11,19 @@ WLogin::WLogin(QWidget* parent) :
     userNameLogin = new WUserNameLogin{ this };
     mobileLogin = new WMobileLogin{ this };
     loginOpt = new WLoginOpt{ this };
-    mobileLogin->hide();
 
-    userNameLogin->move(0, 296);
-    loginOpt->move(0, 520);
+    TitleChanged(WLoginSwitch::ETitle::userName);
 
     registerLabel = loginOpt->registerLabel;
     loginBtn = loginOpt->loginBtn;
 
     connect(ui.loginSwitch, &WLoginSwitch::TitleChanged, this, &WLogin::TitleChanged);
+
+    /*QString username; QString pwd;
+    connect(loginBtn, &WButton::clicked, this, [&] {
+        if()
+        userNameLogin->GetLoginInfo(username,pwd);
+        });*/
 }
 
 WLogin::~WLogin()
@@ -39,6 +43,7 @@ QString WLogin::Password()
 
 void WLogin::TitleChanged(WLoginSwitch::ETitle title)
 {
+    _cur_login_title = title;
     if (title == WLoginSwitch::ETitle::userName) 
     {
         mobileLogin->hide();

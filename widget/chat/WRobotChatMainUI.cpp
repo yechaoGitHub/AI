@@ -26,7 +26,7 @@ void RobotChatMainUI::on_pb_min_clicked()
 
 void RobotChatMainUI::on_pb_close_clicked()
 {
-	this->showMinimized();
+	this->close();
 }
 
 void RobotChatMainUI::paintEvent(QPaintEvent* event)

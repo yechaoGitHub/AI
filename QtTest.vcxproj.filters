@@ -178,6 +178,12 @@
     <ClCompile Include="widget\login\UserLogin.cpp">
       <Filter>widget\login</Filter>
     </ClCompile>
+    <ClCompile Include="WRobotNavigation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WRobotSettingMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -241,6 +247,12 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="widget\Setting\WSettingSelectWidget.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="WRobotNavigation.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="WRobotSettingMenu.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
@@ -361,6 +373,12 @@
     </QtMoc>
     <QtMoc Include="function\ChatBot.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WRobotNavigation.h">
+      <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="WRobotSettingMenu.h">
+      <Filter>Source Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

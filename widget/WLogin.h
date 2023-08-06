@@ -27,5 +27,7 @@ private:
     WUserNameLogin* userNameLogin;
     WMobileLogin*   mobileLogin;
     WLoginOpt*      loginOpt;
+
+    WLoginSwitch::ETitle  _cur_login_title;
 };
 

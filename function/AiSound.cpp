@@ -11,6 +11,7 @@
 #include <QNetworkReply>
 #include <QUrlQuery>
 #include <QAudioInput>
+#include <QDesktopWidget>
 
 #include <Windows.h>
 #include <thread>
@@ -32,6 +33,12 @@ void AiSound::Initialize()
     _wLoginFrame = new WLoginUI{};
     _wTranslationSelect = new WTranslationSelect{};
     _wTranslationMain = new WTransaltionMain{};
+    _robotNaviga = new WRobotNavigation(nullptr);
+    connect(_robotNaviga,&WRobotNavigation::sig_robot_clicked,this, &AiSound::slot_robot_nv_clicked);
+    _robot_chat = new RobotChatMainUI();
+    _speech_ui = new WSpeechGenerationUi();
+    _set_main = new WSettingMainUi();
+
     _wTip = new WTip{};
     connect(_wTip, &WTip::tipEnd, this, &AiSound::NextMessage);
 
@@ -180,7 +187,28 @@ void AiSound::ShowLoginFrame()
 
 void AiSound::ShowTranslationWindow()
 {
-    _wTranslationSelect->show();
+    //_wTranslationSelect->show();
+    _wLoginFrame->close();
+    QDesktopWidget* deskWgt = QApplication::desktop();
+    QRect availableRect = deskWgt->availableGeometry();
+    _robotNaviga->move(availableRect.width()- _robotNaviga->width(), availableRect.height() - _robotNaviga->height());
+    _robotNaviga->show();
+}
+
+void AiSound::slot_robot_nv_clicked(Navig_Type type)
+{
+    if (type == Navig_Type::Chat) {
+        _robot_chat->show();
+    }
+    else if (type == Navig_Type::Voice) {
+        _wTranslationSelect->show();
+    }
+    else if (type == Navig_Type::Speech) {
+        _speech_ui->show();
+    }
+    else if (type == Navig_Type::System_Set) {
+        _set_main->show();
+    }
 }
 
 void AiSound::ShowTranslationMainWindow()

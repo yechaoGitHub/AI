@@ -30,6 +30,10 @@
 	font: 12px &quot;微软雅黑&quot;;
 }
 
+QFrame#frame_2,#frame_3{
+	border:none;
+}
+
 QLabel#lb_left{
 	border:none;
 	color: rgb(255, 255, 255);
@@ -210,6 +214,21 @@ QFrame#frame_left{
          <enum>QFrame::Raised</enum>
         </property>
         <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
