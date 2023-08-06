@@ -12,8 +12,9 @@
 #include "ChatBot.h"
 
 #include "WLoginFrame.h"
+#include "Translation.h"
 #include "widget/login/WLoginUI.h"
-#include "Translate.h"
+
 #include "WTip.h"
 #include "WRobotNavigation.h"
 #include "widget/chat/WRobotChatMainUI.h"

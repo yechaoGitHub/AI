@@ -30,26 +30,19 @@ Audio::~Audio()
 {
 }
 
-void Audio::Initialize()
-{
-    connect(this, &Audio::startListen, this, &Audio::StartListen);
-    connect(this, &Audio::startPlay, this, &Audio::StartPlay);
-    connect(this, &Audio::endListen, this, &Audio::EndListen);
-    connect(this, &Audio::endPlay, this, &Audio::EndPlay);
-}
-
-void Audio::StartListen()
+void Audio::StartReadMic()
 {
     _ioInput = _audioInput->start();
     _inTimer = startTimer(10, Qt::PreciseTimer);
 }
 
-void Audio::StartPlay()
+void Audio::StartReadSpeaker()
 {
     _ioOutput = _audioOutput->start();
+    _outTimer = startTimer(10, Qt::PreciseTimer);
 }
 
-void Audio::EndListen()
+void Audio::EndReadMic()
 {
     killTimer(_inTimer);
 
@@ -59,32 +52,12 @@ void Audio::EndListen()
     _ioInput = nullptr;
 }
 
-void Audio::EndPlay()
+void Audio::EndReadSpeaker()
 {
     _audioOutput->stop();
     _ioOutput->close();
     delete _ioOutput;
     _ioOutput = nullptr;
-}
-
-void Audio::StartListenAsync()
-{
-    emit startListen();
-}
-
-void Audio::StartPlayAsync()
-{
-    emit startPlay();
-}
-
-void Audio::EndListenAsync()
-{
-    emit endListen();
-}
-
-void Audio::EndPlayAsync()
-{
-    emit endListen();
 }
 
 void Audio::WriteOutputData(const QByteArray& data)
@@ -114,33 +87,42 @@ void Audio::timerEvent(QTimerEvent* event)
     auto id = event->timerId();
     if (id == _inTimer) 
     {
-        if (_inLen < 1280)
+        ReadAudioData(_ioInput, _inLen, _inBufferData, _inlastTick, &Audio::audioInput);
+    }
+    else if(id == _outTimer)
+    {
+        ReadAudioData(_ioOutput, _outLen, _outBufferData, _outlastTick, &Audio::audioOutput);
+    }
+}
+
+void Audio::ReadAudioData(QIODevice* dev, int& readLen, QByteArray& bufferData, std::chrono::steady_clock::time_point& timePoint, void(Audio::*sginal)(QByteArray))
+{
+    if (readLen < 1280)
+    {
+        auto data = dev->read(1280 - readLen);
+        if (data.size() == 1280)
         {
-            auto data = _ioInput->read(1280 - _inLen);
-            if (data.size() == 1280)
-            {
-                _inBufferData = std::move(data);
-                _inLen = 1280;
-            }
-            else
-            {
-                _inBufferData.push_back(data);
-                _inLen += data.size();
-            }
+            bufferData = std::move(data);
+            readLen = 1280;
         }
-
-        auto cur = std::chrono::steady_clock::now();
-        auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(cur - _inlastTick);
-        if (interval.count() > 40)
+        else
         {
-            if (_inLen == 1280 && AvgVolume(_inBufferData) > 1000)
-            {
-                emit audioInput(std::move(_inBufferData));
+            bufferData.push_back(data);
+            readLen += data.size();
+        }
+    }
 
-                _inBufferData.resize(1280);
-                _inLen = 0;
-                _inlastTick = cur;
-            }
+    auto cur = std::chrono::steady_clock::now();
+    auto interval = std::chrono::duration_cast<std::chrono::milliseconds>(cur - timePoint);
+    if (interval.count() > 40)
+    {
+        if (readLen == 1280)
+        {
+            emit (this->*sginal)(std::move(bufferData));
+
+            bufferData.resize(1280);
+            readLen = 0;
+            timePoint = cur;
         }
     }
 }

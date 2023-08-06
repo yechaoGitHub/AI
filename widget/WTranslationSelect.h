@@ -21,6 +21,7 @@ protected:
 
 private:
     void StartClicked();
+    void TranslationConnected();
 
     Ui::Translation                     ui;
     std::vector<TranslationLanguage>    _vecSrc;

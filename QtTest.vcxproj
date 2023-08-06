@@ -32,7 +32,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>5.15.2_msvc2019_64</QtInstall>
+    <QtInstall>5.12.12_msvc2017_64</QtInstall>
     <QtModules>core;network;gui;multimedia;widgets;websockets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -96,7 +96,7 @@
     <ClCompile Include="function\AiSound.cpp" />
     <ClCompile Include="function\Audio.cpp" />
     <ClCompile Include="function\ChatBot.cpp" />
-    <ClCompile Include="function\Translate.cpp" />
+    <ClCompile Include="function\Translation.cpp" />
     <ClCompile Include="function\VoiceCompositor.cpp" />
     <ClCompile Include="model\FrameLessWidget.cpp" />
     <ClCompile Include="widget\chat\WChatDesc.cpp" />
@@ -179,7 +179,7 @@
     <QtMoc Include="widget\Speech\ComboxItem.h" />
     <QtMoc Include="widget\Speech\WSpeechGenerationUi.h" />
     <QtMoc Include="function\VoiceCompositor.h" />
-    <QtMoc Include="function\Translate.h" />
+    <QtMoc Include="function\Translation.h" />
     <QtMoc Include="function\Audio.h" />
     <QtMoc Include="function\AiSound.h" />
     <QtMoc Include="widget\WVerificationCode.h" />

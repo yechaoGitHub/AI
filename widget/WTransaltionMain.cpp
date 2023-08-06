@@ -24,8 +24,8 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
 
     ui.subtitleWidget->Subtitle()->SetTranslate("CHS", "EN");
 
-    auto& translation = AiSound::GetInstance().Translation();
-    connect(&translation, &Translate::translationReceived, this, &WTransaltionMain::TranslationReceived);
+    auto& translation = AiSound::GetInstance().GetTranslation();
+    connect(&translation, &Translation::translationReceived, this, &WTransaltionMain::TranslationReceived);
 }
 
 WTransaltionMain::~WTransaltionMain()

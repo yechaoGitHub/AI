@@ -1,29 +1,27 @@
 #pragma once
 
+#include "Audio.h"
+#include "VoiceType.h"
 #include <QObject>
 #include <QAudioInput>
 #include <QAudioOutput>
 #include <QWebsocket>
-#include "Audio.h"
-#include "VoiceType.h"
+#include <QThread>
 
-
-#define AUDIO_OUTPUT 0
-
-class Translate : public QObject
+class Translation : public QObject
 {
     Q_OBJECT
 public:
-    Translate();
-    ~Translate();
+    Translation();
+    ~Translation();
 
     void Initialize();
-    void Connect(const QString& token);
+    void Connect(const QString& token, const QString& srcLan, const QString& destLan);
     void Disconnect();
     bool Connected();
 
 Q_SIGNALS:
-    void connect(const QString& token);
+    void connect(const QString& token, const QString& srcLan, const QString& destLan);
     void disconnect();
 
     void connected();
@@ -31,7 +29,7 @@ Q_SIGNALS:
     void translationReceived(const QString& src, const QString& dst, int type);
 
 private:
-    void ConnectInternal(const QString& token);
+    void ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan);
     void DisconnectInternal();
 
     void StartListen();
@@ -39,7 +37,7 @@ private:
     void SendHearBeat();
     void SendFinish();
 
-    void AudioInput(QByteArray data);
+    void AudioOutput(QByteArray data);
 
     void WebsocketConnected();
     void WebsocketDisconnected();
@@ -49,12 +47,10 @@ private:
 
     Audio                   _audio;
     QWebSocket              _webSocket;
+    QString                 _srcLan;
+    QString                 _destLan;
+    QThread                 _workThread;
     bool                    _connected = false;
     int                     _heartBeatTimer = 0;
-
-#if AUDIO_OUTPUT
-    QAudioOutput*           _audioOutput = nullptr;
-    QIODevice*              _out = nullptr;
-#endif
 };
 

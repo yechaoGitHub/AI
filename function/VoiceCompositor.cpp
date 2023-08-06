@@ -27,7 +27,6 @@ void VoiceCompositor::Initialize()
 {
     QObject::connect(this, &VoiceCompositor::connect, this, &VoiceCompositor::ConnectInternal);
     QObject::connect(this, &VoiceCompositor::disconnect, this, &VoiceCompositor::DisconnectInternal);
-    _audio.Initialize();
     QObject::connect(&_audio, &Audio::audioInput, this, &VoiceCompositor::AudioInput);
 }
 
@@ -53,8 +52,8 @@ void VoiceCompositor::SendHearBeat()
 
 void VoiceCompositor::AudioStart()
 {
-    _audio.StartListen();
-    _audio.StartPlay();
+    _audio.StartReadMic();
+    //_audio.StartPlay();
 }
 
 void VoiceCompositor::SendFinish()
@@ -94,7 +93,7 @@ void VoiceCompositor::DisconnectInternal()
     killTimer(_heartBeatTimer);
     _heartBeatTimer = 0;
 
-    _audio.EndListen();
+    //_audio.EndListen();
     SendFinish();
     _webSocket.close();
 }

@@ -11,26 +11,14 @@ public:
     Audio();
     ~Audio();
 
-    void Initialize();
-
-    void StartListen();
-    void StartPlay();
-    void EndListen();
-    void EndPlay();
-
-    void StartListenAsync();
-    void StartPlayAsync();
-    void EndListenAsync();
-    void EndPlayAsync();
+    void StartReadMic();
+    void StartReadSpeaker();
+    void EndReadMic();
+    void EndReadSpeaker();
 
     void WriteOutputData(const QByteArray& data);
 
 Q_SIGNALS:
-    void startListen();
-    void startPlay();
-    void endListen();
-    void endPlay();
-
     void audioInput(QByteArray data);
     void audioOutput(QByteArray data);
     
@@ -38,16 +26,28 @@ protected:
     void timerEvent(QTimerEvent* event) override;
 
 private:
+    void ReadAudioData(QIODevice* dev, int& readLen, QByteArray& bufferData, std::chrono::steady_clock::time_point& timePoint, void(Audio::*sginal)(QByteArray));
+
     uint64_t AvgVolume(const QByteArray& data);
 
+    QAudioInput*                            _audioInput = nullptr;
+    QAudioOutput*                           _audioOutput = nullptr;
 
-    int                                     _inTimer = 0;
-    QAudioInput*                            _audioInput;
-    QAudioOutput*                           _audioOutput;
+#pragma region Âó¿Ë·ç
     QIODevice*                              _ioInput;
-    QIODevice*                              _ioOutput;
+    int                                     _inTimer = 0;
     QByteArray                              _inBufferData;
-    int                                     _inLen;
+    int                                     _inLen = 0;
     std::chrono::steady_clock::time_point   _inlastTick;
+#pragma endregion
+
+#pragma region ÑïÉùÆ÷
+    QIODevice*                              _ioOutput;
+    int                                     _outTimer = 0;
+    QByteArray                              _outBufferData;
+    int                                     _outLen = 0;
+    std::chrono::steady_clock::time_point   _outlastTick;
+#pragma endregion
+
 };
 

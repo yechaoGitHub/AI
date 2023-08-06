@@ -130,9 +130,6 @@
     <ClCompile Include="function\Audio.cpp">
       <Filter>function</Filter>
     </ClCompile>
-    <ClCompile Include="function\Translate.cpp">
-      <Filter>function</Filter>
-    </ClCompile>
     <ClCompile Include="function\VoiceCompositor.cpp">
       <Filter>function</Filter>
     </ClCompile>
@@ -183,6 +180,9 @@
     </ClCompile>
     <ClCompile Include="WRobotSettingMenu.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="function\Translation.cpp">
+      <Filter>function</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -326,9 +326,6 @@
     <QtMoc Include="function\Audio.h">
       <Filter>function</Filter>
     </QtMoc>
-    <QtMoc Include="function\Translate.h">
-      <Filter>function</Filter>
-    </QtMoc>
     <QtMoc Include="function\VoiceCompositor.h">
       <Filter>function</Filter>
     </QtMoc>
@@ -379,6 +376,12 @@
     </QtMoc>
     <QtMoc Include="WRobotSettingMenu.h">
       <Filter>Source Files</Filter>
+    </QtMoc>
+    <QtMoc Include="function\Translation.h">
+      <Filter>function</Filter>
+    </QtMoc>
+    <QtMoc Include="function\ChatBot.h">
+      <Filter>function</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

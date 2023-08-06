@@ -5,6 +5,10 @@
 WTranslationSelect::WTranslationSelect(QWidget* parent) :
     QWidget{ parent }
 {
+    this->setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    this->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    this->setAttribute(Qt::WA_TranslucentBackground, true);
+
     ui.setupUi(this);
     ui.label->setStyleSheet("color:#FFFFFF");
     ui.minBtn->setIcon(QIcon{":/QtTest/icon/min_btn_white.png"});
@@ -12,11 +16,10 @@ WTranslationSelect::WTranslationSelect(QWidget* parent) :
     ui.startBtn->SetText("Start");
     ui.imgLabel->setPixmap(QPixmap{":/QtTest/icon/exchange_big.png"});
 
-    connect(ui.startBtn, &WButton::clicked, this, &WTranslationSelect::StartClicked);
+    auto& ins = AiSound::GetInstance();
 
-    this->setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
-    this->setAttribute(Qt::WA_TransparentForMouseEvents, true);
-    this->setAttribute(Qt::WA_TranslucentBackground, true);
+    connect(ui.startBtn, &WButton::clicked, this, &WTranslationSelect::StartClicked);
+    connect(&ins.GetTranslation(), &Translation::connected, this, &WTranslationSelect::TranslationConnected);
 }
 
 WTranslationSelect::~WTranslationSelect()
@@ -78,12 +81,17 @@ void WTranslationSelect::StartClicked()
     auto& ins = AiSound::GetInstance();
 
     auto srcSel = ui.comboSrc->SelectItem();
-    auto srcLanguage = _vecSrc[srcSel].language;
-
     auto destSel = ui.comboDest->SelectItem();
-    auto destLanguage = _vecDest[destSel].language;
+    if (srcSel != -1 && destSel != -1)
+    {
+        auto srcLanguage = _vecSrc[srcSel].language;
+        auto destLanguage = _vecDest[destSel].language;
+        ins.GetTranslation().Connect(ins.Token(), srcLanguage, destLanguage);
+    }
+}
 
-    ins.TranslateConnect();
-
+void WTranslationSelect::TranslationConnected()
+{
+    auto& ins = AiSound::GetInstance();
     ins.ShowTranslationMainWindow();
 }

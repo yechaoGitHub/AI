@@ -36,7 +36,7 @@ void WComboBox::AddItem(const QString& text, void* data)
 
 int WComboBox::SelectItem()
 {
-    return 0;
+    return _selectItem;
 }
 
 void WComboBox::paintEvent(QPaintEvent* event)

@@ -42,8 +42,8 @@ void AiSound::Initialize()
     _wTip = new WTip{};
     connect(_wTip, &WTip::tipEnd, this, &AiSound::NextMessage);
 
-    _translate.moveToThread(&_translateThread);
-    _translate.Initialize();
+    _translation.moveToThread(&_translateThread);
+    _translation.Initialize();
 
     _voiceCompositor.Initialize();
     _chatBot.Initialize();
@@ -217,12 +217,6 @@ void AiSound::ShowTranslationMainWindow()
     _wTranslationMain->show();
 }
 
-void AiSound::TranslateConnect()
-{
-    _translateThread.start();
-    _translate.Connect(_token);
-}
-
 void AiSound::ShowTip( const QString& msg)
 {
     if (_wTip->isHidden()) 
@@ -236,9 +230,9 @@ void AiSound::ShowTip( const QString& msg)
     }
 }
 
-Translate& AiSound::Translation()
+Translation& AiSound::GetTranslation()
 {
-    return _translate;
+    return _translation;
 }
 
 const QString& AiSound::Token()
@@ -370,10 +364,10 @@ void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
     delete packetRaw;
 }
 
-void AiSound::AudioTest(const QString& token)
-{
-    _translate.Connect(token);
-}
+//void AiSound::AudioTest(const QString& token)
+//{
+//    _translation.Connect(token);
+//}
 
 void AiSound::CompositorTest(const QString& token)
 {
