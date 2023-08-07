@@ -69,8 +69,8 @@ void WSpeechGenerationUi::StartClicked()
 
     auto& ins = AiSound::GetInstance();
     auto& token = AiSound::GetInstance().Token();
-    auto& name = ins.GetVoiceData()[index].name;
-    AiSound::GetInstance().GetVoiceCompositor().Connect(token, _srcLan.language, _destLan.language, name, false);
+    auto& name = ins.GetVoiceData()[index].voiceCode;
+    AiSound::GetInstance().GetVoiceCompositor().Connect(token, _srcLan.language, _destLan.language, name, true);
 }
 
 void WSpeechGenerationUi::TranslationReceived(const QString& src, const QString& dst, int type)

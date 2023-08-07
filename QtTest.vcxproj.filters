@@ -124,7 +124,7 @@
     <ClCompile Include="function\AiSound.cpp">
       <Filter>function</Filter>
     </ClCompile>
-    <ClCompile Include="function\Audio.cpp">
+    <ClCompile Include="function\AudioInput.cpp">
       <Filter>function</Filter>
     </ClCompile>
     <ClCompile Include="function\VoiceCompositor.cpp">
@@ -192,6 +192,9 @@
     </ClCompile>
     <ClCompile Include="widget\Setting\WGerenalPage.cpp">
       <Filter>widget\Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="function\AudioOutput.cpp">
+      <Filter>function</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -329,7 +332,7 @@
     <QtMoc Include="function\AiSound.h">
       <Filter>function</Filter>
     </QtMoc>
-    <QtMoc Include="function\Audio.h">
+    <QtMoc Include="function\AudioInput.h">
       <Filter>function</Filter>
     </QtMoc>
     <QtMoc Include="function\VoiceCompositor.h">
@@ -397,6 +400,9 @@
     </QtMoc>
     <QtMoc Include="widget\Setting\WGerenalPage.h">
       <Filter>widget\Setting</Filter>
+    </QtMoc>
+    <QtMoc Include="function\AudioOutput.h">
+      <Filter>function</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

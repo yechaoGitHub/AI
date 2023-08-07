@@ -11,7 +11,7 @@
 
 VoiceCompositor::VoiceCompositor()
 {
-    _audio.setParent(this);
+    //_audioInput.setParent(this);
     _webSocket.setParent(this);
     QObject::connect(&_webSocket, &QWebSocket::connected, this, &VoiceCompositor::SocketConnected);
     QObject::connect(&_webSocket, &QWebSocket::disconnected, this, &VoiceCompositor::SocketDisconnected);
@@ -26,9 +26,12 @@ VoiceCompositor::~VoiceCompositor()
 
 void VoiceCompositor::Initialize()
 {
+    _audioInput.Initialize();
+    _audioOutput.Initialize();
+
     QObject::connect(this, &VoiceCompositor::connect, this, &VoiceCompositor::ConnectInternal);
     QObject::connect(this, &VoiceCompositor::disconnect, this, &VoiceCompositor::DisconnectInternal);
-    QObject::connect(&_audio, &Audio::audioInput, this, &VoiceCompositor::AudioInput);
+    QObject::connect(&_audioInput, &AudioInput::audioInput, this, &VoiceCompositor::ReceiveAudioInput);
 }
 
 void VoiceCompositor::Connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender)
@@ -62,10 +65,18 @@ void VoiceCompositor::SendHearBeat()
     _webSocket.sendTextMessage("{\"type\": \"HEARTBEAT\",}");
 }
 
-void VoiceCompositor::AudioStart()
+void VoiceCompositor::AudioStart(bool enable)
 {
-    _audio.StartMic();
-    _audio.StartSpeaker();
+    if (enable)
+    {
+        _audioInput.StartMic();
+        _audioOutput.StartSpeaker();
+    }
+    else
+    {
+        _audioInput.EndMic();
+        _audioOutput.EndSpeaker();
+    }
 }
 
 void VoiceCompositor::SendFinish()
@@ -73,7 +84,7 @@ void VoiceCompositor::SendFinish()
     _webSocket.sendTextMessage("{\"type\": \"FINISH\"");
 }
 
-void VoiceCompositor::AudioInput(QByteArray data)
+void VoiceCompositor::ReceiveAudioInput(QByteArray data)
 {
     auto hex = data.toBase64();
 
@@ -108,7 +119,6 @@ void VoiceCompositor::DisconnectInternal()
 {
     killTimer(_heartBeatTimer);
     _heartBeatTimer = 0;
-
     SendFinish();
     _webSocket.close();
 }
@@ -117,7 +127,7 @@ void VoiceCompositor::SocketConnected()
 {
     SendHearBeat();
     SendParam();
-    AudioStart();
+    AudioStart(true);
 
     _heartBeatTimer = startTimer(5000);
     _connected = true;
@@ -130,6 +140,7 @@ void VoiceCompositor::SocketError(QAbstractSocket::SocketError)
 
 void VoiceCompositor::SocketDisconnected()
 {
+    AudioStart(false);
     _connected = false;
     emit disconnected();
     _workThread.quit();
@@ -179,7 +190,7 @@ void VoiceCompositor::SocketTextMessageReceived(const QString& message)
                 _buffer.append(audio);
                 auto audioData = QByteArray::fromBase64(_buffer.toLocal8Bit());
 
-                _audio.WriteOutputData(audioData);
+                _audioOutput.WriteOutputData(audioData);
                 _buffer.clear();
             }
         }

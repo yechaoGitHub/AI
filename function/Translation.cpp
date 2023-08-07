@@ -14,7 +14,6 @@
 
 Translation::Translation()
 {
-    _audio.setParent(this);
     _webSocket.setParent(this);
     QObject::connect(&_webSocket, &QWebSocket::connected, this, &Translation::WebsocketConnected);
     QObject::connect(&_webSocket, &QWebSocket::disconnected, this, &Translation::WebsocketDisconnected);
@@ -29,9 +28,10 @@ Translation::~Translation()
 
 void Translation::Initialize()
 {
+    _audio.Initialize();
     QObject::connect(this, &Translation::connect, this, &Translation::ConnectInternal);
     QObject::connect(this, &Translation::disconnect, this, &Translation::DisconnectInternal);
-    QObject::connect(&_audio, &Audio::audioInput, this, &Translation::AudioInput);
+    QObject::connect(&_audio, &AudioInput::audioInput, this, &Translation::ReceiveAudioInput);
 }
 
 void Translation::Connect(const QString& token, const QString& srcLan, const QString& destLan)
@@ -157,7 +157,7 @@ void Translation::SendFinish()
     _webSocket.sendTextMessage("{\"type\": \"FINISH\"");
 }
 
-void Translation::AudioInput(QByteArray data)
+void Translation::ReceiveAudioInput(QByteArray data)
 {
     auto hex = data.toBase64();
 

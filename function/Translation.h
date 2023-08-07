@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Audio.h"
+#include "AudioInput.h"
 #include "VoiceType.h"
 #include <QObject>
 #include <QAudioInput>
@@ -37,7 +37,7 @@ private:
     void SendHearBeat();
     void SendFinish();
 
-    void AudioInput(QByteArray data);
+    void ReceiveAudioInput(QByteArray data);
 
     void WebsocketConnected();
     void WebsocketDisconnected();
@@ -45,7 +45,7 @@ private:
     void TranslateTextMessageReceived(const QString& message);
     void timerEvent(QTimerEvent* ev) override;
 
-    Audio                   _audio;
+    AudioInput              _audio;
     QWebSocket              _webSocket;
     QThread                 _workThread;
     QString                 _srcLan;

@@ -32,7 +32,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>5.15.2_msvc2019_64</QtInstall>
+    <QtInstall>5.12.12_msvc2017_64</QtInstall>
     <QtModules>core;network;gui;multimedia;widgets;websockets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -95,7 +95,8 @@
     <ClCompile Include="base\GlobalSetting.cpp" />
     <ClCompile Include="base\HttpClient.cpp" />
     <ClCompile Include="function\AiSound.cpp" />
-    <ClCompile Include="function\Audio.cpp" />
+    <ClCompile Include="function\AudioInput.cpp" />
+    <ClCompile Include="function\AudioOutput.cpp" />
     <ClCompile Include="function\ChatBot.cpp" />
     <ClCompile Include="function\Translation.cpp" />
     <ClCompile Include="function\VoiceCompositor.cpp" />
@@ -182,6 +183,7 @@
     <QtMoc Include="widget\Setting\WSettingMainUi.h" />
     <QtMoc Include="function\ChatBot.h" />
     <ClInclude Include="base\GlobalSetting.h" />
+    <QtMoc Include="function\AudioOutput.h" />
     <ClInclude Include="function\VoiceType.h" />
     <QtMoc Include="widget\chat\WRobotChatMainUI.h" />
     <QtMoc Include="widget\chat\WRobotChat.h" />
@@ -191,7 +193,7 @@
     <QtMoc Include="widget\Speech\WSpeechGenerationUi.h" />
     <QtMoc Include="function\VoiceCompositor.h" />
     <QtMoc Include="function\Translation.h" />
-    <QtMoc Include="function\Audio.h" />
+    <QtMoc Include="function\AudioInput.h" />
     <QtMoc Include="function\AiSound.h" />
     <QtMoc Include="widget\WVerificationCode.h" />
     <QtMoc Include="widget\WUserNameLogin.h" />

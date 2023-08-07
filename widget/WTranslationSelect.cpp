@@ -25,7 +25,7 @@ WTranslationSelect::~WTranslationSelect()
 
 void WTranslationSelect::SetFunctionType(FunctionType type)
 {
-    _type = _type;
+    _type = type;
 }
 
 void WTranslationSelect::SetSrcLanguage(const std::vector<TranslationLanguage>& vecSrc)
@@ -89,7 +89,7 @@ void WTranslationSelect::StartClicked()
 {
     auto srcSel = ui.comboSrc->SelectItem();
     auto destSel = ui.comboDest->SelectItem();
-    if (srcSel != -1 && destSel != -1)
+    if (srcSel == -1 || destSel == -1)
     {
         return;
     }
@@ -104,7 +104,7 @@ void WTranslationSelect::StartClicked()
         break;
 
         case FunctionType::VoiceCompositor:
-
+            ins.ShowVoiceCompositorMainWindow(_selSrvLan, _selDestLan);
         break;
 
         case FunctionType::ChatBot:

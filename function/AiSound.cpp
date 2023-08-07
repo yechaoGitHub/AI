@@ -47,13 +47,13 @@ void AiSound::Initialize()
     _voiceCompositor.Initialize();
     _chatBot.Initialize();
 
-    _netThread.start();
-    _networkAccess.moveToThread(&_netThread);
+    //_netThread.start();
+    //_networkAccess.moveToThread(&_netThread);
 }
 
 void AiSound::Uninitialize()
 {
-    _netThread.quit();
+    //_netThread.quit();
 }
 
 AiSound& AiSound::GetInstance()
