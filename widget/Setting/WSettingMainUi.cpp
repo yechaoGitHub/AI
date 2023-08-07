@@ -17,7 +17,15 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
         this->close();
         });
 
-    //this->setFixedSize(664, 490);
+    connect(ui.select_widget, &WSettingSelectWidget::sig_page_change, this, [this](bool max) {
+        if (max) {
+            this->setFixedSize(852, 830);
+        }
+        else {
+            this->setFixedSize(664, 490);
+        }
+        });
+    this->setFixedSize(664, 490);
 }
 
 WSettingMainUi::~WSettingMainUi()

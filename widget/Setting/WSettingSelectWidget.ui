@@ -128,7 +128,9 @@ QFrame#frame_left{
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <widget class="WAccountPage" name="account_widget"/>
+     <widget class="WInvitePage" name="invite_page"/>
      <widget class="WGerenalPage" name="gerenal_page"/>
+     <widget class="WRobotPage" name="robot_page"/>
     </widget>
    </item>
   </layout>
@@ -150,6 +152,18 @@ QFrame#frame_left{
    <class>WGerenalPage</class>
    <extends>QWidget</extends>
    <header>WGerenalPage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WInvitePage</class>
+   <extends>QWidget</extends>
+   <header>WInvitePage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WRobotPage</class>
+   <extends>QWidget</extends>
+   <header>WRobotPage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

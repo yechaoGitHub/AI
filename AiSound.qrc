@@ -1,5 +1,16 @@
 <RCC>
   <qresource prefix="/QtTest">
+    <file>icon/Setting/robot_icon.png</file>
+    <file>icon/Setting/off.png</file>
+    <file>icon/Setting/sound_icon.png</file>
+    <file>icon/Setting/open.png</file>
+    <file>icon/Setting/set.png</file>
+    <file>icon/Setting/frame_bg.png</file>
+    <file>icon/Setting/next.png</file>
+    <file>icon/Setting/pre.png</file>
+    <file>icon/Setting/invite.png</file>
+    <file>icon/Setting/peo.png</file>
+    <file>icon/Setting/search.png</file>
     <file>icon/Setting/send.png</file>
     <file>icon/chebox_select.png</file>
     <file>icon/check_sel.png</file>
