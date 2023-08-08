@@ -21,7 +21,7 @@ AiSound AiSound::INSTANCE;
 
 AiSound::AiSound()
 {
-    connect(&_networkAccess, &QNetworkAccessManager::finished, this, &AiSound::HttpCallbackDispatch);
+
 }
 
 AiSound::~AiSound()
@@ -30,6 +30,8 @@ AiSound::~AiSound()
 
 void AiSound::Initialize()
 {
+    connect(&_networkAccess, &QNetworkAccessManager::finished, this, &AiSound::HttpCallbackDispatch);
+
     _wLoginFrame = new WLoginUI{};
     _wTranslationSelect = new WTranslationSelect{};
     _wTranslationMain = new WTransaltionMain{};
@@ -46,14 +48,15 @@ void AiSound::Initialize()
     _translation.Initialize();
     _voiceCompositor.Initialize();
     _chatBot.Initialize();
-
-    //_netThread.start();
-    //_networkAccess.moveToThread(&_netThread);
 }
 
 void AiSound::Uninitialize()
 {
-    //_netThread.quit();
+    //_networkAccess.
+
+    _translation.Uninitialize();
+    _voiceCompositor.Uninitialize();
+    _chatBot.Uninitialize();
 }
 
 AiSound& AiSound::GetInstance()
@@ -64,7 +67,7 @@ AiSound& AiSound::GetInstance()
 void AiSound::PasswordLogin(const QString& userName, const QString& password, PasswordLoginCallback callback)
 {
     QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/user/loginByPwd" });
+    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/user/loginByPwd" });
     request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
 
     QJsonObject dataobj;
@@ -87,7 +90,7 @@ void AiSound::PasswordLogin(const QString& userName, const QString& password, Pa
 void AiSound::GetVerifyCode(GetVerifyCodeCallback callback)
 {
     QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/common/getImgVerifyCode" });
+    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/common/getImgVerifyCode" });
     request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
 
     QJsonObject dataobj;
@@ -108,7 +111,7 @@ void AiSound::GetVerifyCode(GetVerifyCodeCallback callback)
 void AiSound::Register(const QString& userName, const QString& password, const QString& dialingCode, const QString& phoneNumber, const QString& verifyCode, RegisterCallback callback)
 {
     QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/user/register"});
+    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/user/register"});
     request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
 
     QJsonObject dataobj;
@@ -135,7 +138,7 @@ void AiSound::Register(const QString& userName, const QString& password, const Q
 void AiSound::SendVerifyCode(const QString& dCode, const QString& mobileNumber, const QString& verifyCode, const QString& uuid, SendVerifyCodeCallback callback)
 {
     QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/user/sendSmsVerifyCode" });
+    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/user/sendSmsVerifyCode" });
     request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
 
     QJsonObject dataobj;
@@ -160,7 +163,7 @@ void AiSound::SendVerifyCode(const QString& dCode, const QString& mobileNumber, 
 void AiSound::GetTranslationSrourceList(GetTranslationSourceListCallback callback)
 {
     QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/config/getSourceLanguaueList" });
+    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/config/getSourceLanguaueList" });
     request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
     request.setRawHeader("access_token", _token.toUtf8());
 
@@ -175,7 +178,7 @@ void AiSound::GetTranslationSrourceList(GetTranslationSourceListCallback callbac
 void AiSound::GetTranslationDestList(GetTranslationDestListCallback callback)
 {
     QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/config/getTargetLanguaueList" });
+    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/config/getTargetLanguaueList" });
     request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
     request.setRawHeader("access_token", _token.toUtf8());
 
@@ -190,7 +193,7 @@ void AiSound::GetTranslationDestList(GetTranslationDestListCallback callback)
 void AiSound::GetVoiceSpeaker(GetVoiceSpeakerCallback callback)
 {
     QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/config/getSpeakers" });
+    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/config/getSpeakers" });
     request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
     request.setRawHeader("access_token", _token.toUtf8());
 
@@ -309,6 +312,7 @@ void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
         }
         while (!packetRaw);
     }
+    reply->setUserData(Qt::UserRole, nullptr);
 
     auto data = reply->readAll();
 
@@ -330,15 +334,15 @@ void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
 
         case httpGetVerifyCode:
         {
-            QJsonParseError err_rpt;
-            auto document = QJsonDocument::fromJson(data, &err_rpt);
-            int code = document["code"].toInt();
-            QString msg = document["msg"].toString();
-            QString img = document["data"]["img"].toString();
-            QString uuid = document["data"]["uuid"].toString();
+            //QJsonParseError err_rpt;
+            //auto document = QJsonDocument::fromJson(data, &err_rpt);
+            //int code = document["code"].toInt();
+            //QString msg = document["msg"].toString();
+            //QString img = document["data"]["img"].toString();
+            //QString uuid = document["data"]["uuid"].toString();
 
-            auto packet = dynamic_cast<HttpCallbackPacket<GetVerifyCodeCallbackType>*>(packetRaw);
-            packet->callback(code, msg, img, uuid);
+            //auto packet = dynamic_cast<HttpCallbackPacket<GetVerifyCodeCallbackType>*>(packetRaw);
+            //packet->callback(code, msg, img, uuid);
         }
         break;
 
@@ -443,7 +447,7 @@ void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
         default:
         break;
     }
-
+    reply->deleteLater();
     delete packetRaw;
 }
 

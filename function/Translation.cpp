@@ -24,6 +24,7 @@ Translation::Translation()
 
 Translation::~Translation()
 {
+    Uninitialize();
 }
 
 void Translation::Initialize()
@@ -32,6 +33,19 @@ void Translation::Initialize()
     QObject::connect(this, &Translation::connect, this, &Translation::ConnectInternal);
     QObject::connect(this, &Translation::disconnect, this, &Translation::DisconnectInternal);
     QObject::connect(&_audio, &AudioInput::audioInput, this, &Translation::ReceiveAudioInput);
+}
+
+void Translation::Uninitialize()
+{
+    if (_workThread.isRunning())
+    {
+        Disconnect();
+    }
+
+    while (_workThread.isRunning())
+    {
+        std::this_thread::yield();
+    }
 }
 
 void Translation::Connect(const QString& token, const QString& srcLan, const QString& destLan)

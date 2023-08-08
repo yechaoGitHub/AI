@@ -16,6 +16,7 @@ public:
     ~Translation();
 
     void Initialize();
+    void Uninitialize();
     void Connect(const QString& token, const QString& srcLan, const QString& destLan);
     void Disconnect();
     bool Connected();

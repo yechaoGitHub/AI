@@ -9,6 +9,7 @@ AudioInput::AudioInput()
 
 AudioInput::~AudioInput()
 {
+    Uninitialize();
 }
 
 void AudioInput::Initialize()
@@ -33,6 +34,19 @@ void AudioInput::Initialize()
 #endif
 }
 
+void AudioInput::Uninitialize()
+{
+    if (_workThread.isRunning())
+    {
+        EndMic();
+    }
+
+    while (_workThread.isRunning())
+    {
+        std::this_thread::yield();
+    }
+}
+
 void AudioInput::StartMic()
 {
     _workThread.start();
@@ -41,7 +55,6 @@ void AudioInput::StartMic()
 
 void AudioInput::EndMic()
 {
-    _workThread.quit();
     emit end_mic();
 }
 
@@ -72,6 +85,8 @@ void AudioInput::EndMicInternal()
     _ioInput->close();
     delete _ioInput;
     _ioInput = nullptr;
+
+    _workThread.quit();
 
 #ifdef MONITOR_MIC
     _audioOutput.EndSpeaker();

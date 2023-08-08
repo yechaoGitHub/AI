@@ -14,6 +14,7 @@ public:
     ~VoiceCompositor();
 
     void Initialize();
+    void Uninitialize();
     void Connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender);
     void Disconnect();
 

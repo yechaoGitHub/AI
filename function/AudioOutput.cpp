@@ -7,6 +7,7 @@ AudioOutput::AudioOutput()
 
 AudioOutput::~AudioOutput()
 {
+    Uninitialize();
 }
 
 void AudioOutput::Initialize()
@@ -27,6 +28,19 @@ void AudioOutput::Initialize()
     connect(this, &AudioOutput::end_speaker, this, &AudioOutput::EndSpeakerInternal);
     connect(this, &AudioOutput::write_output_data, this, &AudioOutput::WriteOutputDataInternal);
     this->moveToThread(&_workThread);
+}
+
+void AudioOutput::Uninitialize()
+{
+    if (_workThread.isRunning())
+    {
+        EndSpeaker();
+    }
+
+    while (_workThread.isRunning())
+    {
+        std::this_thread::yield();
+    }
 }
 
 void AudioOutput::StartSpeaker()

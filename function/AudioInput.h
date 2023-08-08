@@ -18,6 +18,7 @@ public:
     ~AudioInput();
 
     void Initialize();
+    void Uninitialize();
 
     void StartMic();
     void EndMic();

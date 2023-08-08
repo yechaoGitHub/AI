@@ -13,6 +13,7 @@ public:
     ~AudioOutput();
 
     void Initialize();
+    void Uninitialize();
 
     void StartSpeaker();
     void EndSpeaker();

@@ -22,6 +22,7 @@ VoiceCompositor::VoiceCompositor()
 
 VoiceCompositor::~VoiceCompositor()
 {
+    Uninitialize();
 }
 
 void VoiceCompositor::Initialize()
@@ -32,6 +33,19 @@ void VoiceCompositor::Initialize()
     QObject::connect(this, &VoiceCompositor::connect, this, &VoiceCompositor::ConnectInternal);
     QObject::connect(this, &VoiceCompositor::disconnect, this, &VoiceCompositor::DisconnectInternal);
     QObject::connect(&_audioInput, &AudioInput::audioInput, this, &VoiceCompositor::ReceiveAudioInput);
+}
+
+void VoiceCompositor::Uninitialize()
+{
+    if (_workThread.isRunning())
+    {
+        Disconnect();
+    }
+
+    while (_workThread.isRunning())
+    {
+        std::this_thread::yield();
+    }
 }
 
 void VoiceCompositor::Connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender)

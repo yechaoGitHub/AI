@@ -20,7 +20,7 @@ ChatBot::ChatBot()
 
 ChatBot::~ChatBot()
 {
-
+    Uninitialize();
 }
 
 void ChatBot::Initialize()
@@ -28,6 +28,19 @@ void ChatBot::Initialize()
     QObject::connect(this, &ChatBot::connect, this, &ChatBot::ConnectInternal);
     QObject::connect(this, &ChatBot::disconnect, this, &ChatBot::DisconnectInternal);
     QObject::connect(this, &ChatBot::sendMessage, this, &ChatBot::SendMessageInternal);
+}
+
+void ChatBot::Uninitialize()
+{
+    if (_workThread.isRunning())
+    {
+        Disconnect();
+    }
+
+    while (_workThread.isRunning())
+    {
+        std::this_thread::yield();
+    }
 }
 
 void ChatBot::Connect(const QString& token)

@@ -116,7 +116,7 @@ private:
         httpGetVoiceSpeakerCallback = 7
     };
 
-    struct HttpCallbackPacketRaw : QObjectUserData
+    struct HttpCallbackPacketRaw : public QObjectUserData
     {
         HttpCallEnum type;
     };

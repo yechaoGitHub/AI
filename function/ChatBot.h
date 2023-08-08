@@ -11,6 +11,7 @@ public:
     ~ChatBot();
 
     void Initialize();
+    void Uninitialize();
     void Connect(const QString& token);
     void Disconnect();
     bool Connected();
