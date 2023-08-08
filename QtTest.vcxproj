@@ -32,7 +32,7 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>5.12.12_msvc2017_64</QtInstall>
+    <QtInstall>5.15.2_msvc2019_64</QtInstall>
     <QtModules>core;network;gui;multimedia;widgets;websockets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
@@ -109,6 +109,8 @@
     <ClCompile Include="widget\login\WLoginMainUi.cpp" />
     <ClCompile Include="widget\login\WLoginUI.cpp" />
     <ClCompile Include="widget\model\WNavbarButton.cpp" />
+    <ClCompile Include="widget\Setting\ChatBot\WChatBotMainUI.cpp" />
+    <ClCompile Include="widget\Setting\ChatBot\WLibarary.cpp" />
     <ClCompile Include="widget\Setting\WAccountPage.cpp" />
     <ClCompile Include="widget\Setting\WGerenalPage.cpp" />
     <ClCompile Include="widget\Setting\WInvitePage.cpp" />
@@ -159,6 +161,8 @@
     <QtUic Include="widget\login\UserLogin.ui" />
     <QtUic Include="widget\login\WLoginMainUi.ui" />
     <QtUic Include="widget\login\WLoginUI.ui" />
+    <QtUic Include="widget\Setting\ChatBot\WChatBotMainUI.ui" />
+    <QtUic Include="widget\Setting\ChatBot\WLibarary.ui" />
     <QtUic Include="widget\Setting\WAccountPage.ui" />
     <QtUic Include="widget\Setting\WGerenalPage.ui" />
     <QtUic Include="widget\Setting\WInvitePage.ui" />
@@ -169,6 +173,8 @@
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="widget\Setting\ChatBot\WChatBotMainUI.h" />
+    <QtMoc Include="widget\Setting\ChatBot\WLibarary.h" />
     <QtMoc Include="widget\Setting\WRobotPage.h" />
     <QtMoc Include="widget\Setting\WInvitePage.h" />
     <QtMoc Include="widget\Setting\WGerenalPage.h" />

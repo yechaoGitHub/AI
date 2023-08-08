@@ -14,7 +14,9 @@ public:
 		Bar_Account = 0,
 		Bar_Help,
 		Bar_Team,
-		Bar_Tools
+		Bar_Tools,
+		Bar_Lib,
+		Bar_History
 	};
 
 	void initBar(const QString& text, BarType bar_type);
@@ -23,7 +25,7 @@ protected:
 	void paintEvent(QPaintEvent*) override;
 
 private:
-	
+
 
 private:
 	bool	_is_select = false;

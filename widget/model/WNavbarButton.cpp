@@ -27,6 +27,12 @@ void WNavbarButton::initBar(const QString& text, BarType bar_type)
 	else if (bar_type == BarType::Bar_Tools) {
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/tools.png");
 	}
+	else if (bar_type == BarType::Bar_Lib) {
+		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/chatbot/lib_icon.png");
+	}
+	else if (bar_type == BarType::Bar_History) {
+		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/chatbot/history_icon.png");
+	}
 	m_strText = text;
 
 	QFontMetrics fm(this->font());
@@ -43,7 +49,7 @@ void WNavbarButton::setSelect(bool select)
 void WNavbarButton::paintEvent(QPaintEvent*)
 {
 	auto btn_rect = rect();
-	
+
 	QPainter p(this);
 	auto icon_size = m_iconPixmap.size();
 	p.drawPixmap(QRect(0, (btn_rect.height()- icon_size.height())/2, icon_size.width(), icon_size.height()), m_iconPixmap);
@@ -62,5 +68,5 @@ void WNavbarButton::paintEvent(QPaintEvent*)
 		p.setBrush(QBrush(QColor(0, 0, 0)));
 	}
 	p.drawText(QRectF(icon_size.width()+6, (btn_rect.height() - _height) / 2, _width, _height), m_strText);
-	
+
 }

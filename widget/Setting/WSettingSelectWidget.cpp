@@ -11,6 +11,9 @@ WSettingSelectWidget::WSettingSelectWidget(QWidget *parent)
 	ui.pb_team->initBar("Team", WNavbarButton::Bar_Team);
 	ui.pb_tools->initBar("General Settings", WNavbarButton::Bar_Tools);
 
+	connect(ui.robot_page, &WRobotPage::sig_robot_clicked, this, [=](int is_robot) {
+		emit sig_robot_clicked(is_robot);
+		});
 }
 
 WSettingSelectWidget::~WSettingSelectWidget()

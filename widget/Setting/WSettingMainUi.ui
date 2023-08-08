@@ -189,6 +189,7 @@ QPushButton#pb_close{
     <widget class="QStackedWidget" name="stackedWidget">
      <widget class="WSettingSelectWidget" name="select_widget"/>
      <widget class="WGerenalPage" name="gerenal_page"/>
+     <widget class="WChatBotMainUI" name="chatbot_page"/>
     </widget>
    </item>
   </layout>
@@ -196,15 +197,21 @@ QPushButton#pb_close{
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
+   <class>WGerenalPage</class>
+   <extends>QWidget</extends>
+   <header>WGerenalPage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>WSettingSelectWidget</class>
    <extends>QWidget</extends>
    <header>WSettingSelectWidget.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>WGerenalPage</class>
+   <class>WChatBotMainUI</class>
    <extends>QWidget</extends>
-   <header>WGerenalPage.h</header>
+   <header>./Chatbot/WChatBotMainUI.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

@@ -26,6 +26,11 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
         }
         });
     this->setFixedSize(664, 490);
+
+    connect(ui.select_widget, &WSettingSelectWidget::sig_robot_clicked, this, [this](bool clicked) {
+        this->setFixedSize(939, 830);
+        ui.stackedWidget->setCurrentWidget(ui.chatbot_page);
+    });
 }
 
 WSettingMainUi::~WSettingMainUi()

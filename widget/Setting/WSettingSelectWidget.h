@@ -3,11 +3,13 @@
 #include <QWidget>
 #include "ui_WSettingSelectWidget.h"
 
+
 class WSettingSelectWidget : public QWidget
 {
 	Q_OBJECT
 signals:
 	void sig_page_change(bool max);
+	void sig_robot_clicked(bool click);
 public:
 	WSettingSelectWidget(QWidget *parent = nullptr);
 	~WSettingSelectWidget();

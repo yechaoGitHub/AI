@@ -1,5 +1,10 @@
 <RCC>
   <qresource prefix="/QtTest">
+    <file>icon/Setting/chatbot/chatbot_title.png</file>
+    <file>icon/Setting/chatbot/frame_lib_icon.png</file>
+    <file>icon/Setting/chatbot/history_icon.png</file>
+    <file>icon/Setting/chatbot/left.png</file>
+    <file>icon/Setting/chatbot/lib_icon.png</file>
     <file>icon/Setting/robot_icon.png</file>
     <file>icon/Setting/off.png</file>
     <file>icon/Setting/sound_icon.png</file>

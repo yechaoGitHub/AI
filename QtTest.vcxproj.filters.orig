@@ -196,9 +196,10 @@
     <ClCompile Include="widget\Setting\WGerenalPage.cpp">
       <Filter>widget\Setting</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="function\AudioOutput.cpp">
       <Filter>function</Filter>
-    </ClCompile>
+=======
     <ClCompile Include="widget\Setting\ChatBot\WChatBotMainUI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -210,6 +211,7 @@
     </ClCompile>
     <ClCompile Include="widget\Setting\WRobotPage.cpp">
       <Filter>Source Files</Filter>
+>>>>>>> ae1d112 (chatbot-lib界面)
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -428,7 +430,11 @@
     <QtMoc Include="widget\Setting\WGerenalPage.h">
       <Filter>widget\Setting</Filter>
     </QtMoc>
-   <QtMoc Include="widget\Setting\ChatBot\WChatBotMainUI.h">
+<<<<<<< HEAD
+    <QtMoc Include="function\AudioOutput.h">
+      <Filter>function</Filter>
+=======
+    <QtMoc Include="widget\Setting\ChatBot\WChatBotMainUI.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="widget\Setting\ChatBot\WLibarary.h">
@@ -439,9 +445,7 @@
     </QtMoc>
     <QtMoc Include="widget\Setting\WInvitePage.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="function\AudioOutput.h">
-      <Filter>function</Filter>
+>>>>>>> ae1d112 (chatbot-lib界面)
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

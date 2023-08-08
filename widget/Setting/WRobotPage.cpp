@@ -31,7 +31,6 @@ void WRobotPage::on_pb_robot_lock_clicked()
 
 	ui.pb_robot_lock->setProperty("open", _robot_open);
 	ui.pb_robot_lock->style()->polish(ui.pb_robot_lock);
-
 }
 
 void WRobotPage::on_pb_sound_lock_clicked()
@@ -43,4 +42,14 @@ void WRobotPage::on_pb_sound_lock_clicked()
 
 	ui.pb_sound_lock->setProperty("open", _sound_open);
 	ui.pb_sound_lock->style()->polish(ui.pb_sound_lock);
+}
+
+void WRobotPage::on_pb_robot_setting_clicked()
+{
+	emit sig_robot_clicked(true);
+}
+
+void WRobotPage::on_pb_sound_set_clicked()
+{
+	emit sig_robot_clicked(false);
 }
