@@ -20,6 +20,7 @@ public:
     void Connect(const QString& token, const QString& srcLan, const QString& destLan);
     void Disconnect();
     bool Connected();
+    bool IsRunning();
 
 Q_SIGNALS:
     void connect(const QString& token, const QString& srcLan, const QString& destLan);

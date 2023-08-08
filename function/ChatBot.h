@@ -16,6 +16,7 @@ public:
     void Disconnect();
     bool Connected();
     void SendMessage(const QString& msg);
+    bool IsRunning();
 
 Q_SIGNALS:
     void connect(const QString& token);

@@ -222,18 +222,30 @@ void AiSound::ShowTranslationWindow()
 
 void AiSound::slot_robot_nv_clicked(Navig_Type type)
 {
+    if (AiFunctionRunning())
+    {
+        return;
+    }
+
     if (type == Navig_Type::Chat) {
-        _robot_chat->show();
+        if (_robot_chat->isHidden())
+        {
+            _robot_chat->show();
+        }
     }
     else if (type == Navig_Type::Voice) {
-        _wTranslationSelect->SetFunctionType(FunctionType::Translation);
-        _wTranslationSelect->show();
+        if (_wTranslationSelect->isHidden())
+        {
+            _wTranslationSelect->SetFunctionType(FunctionType::Translation);
+            _wTranslationSelect->show();
+        }
     }
     else if (type == Navig_Type::Speech) {
-        //_wTranslationSelect->
-        _wTranslationSelect->SetFunctionType(FunctionType::VoiceCompositor);
-        _wTranslationSelect->show();
-        //_speech_ui->show();
+        if (_wTranslationSelect->isHidden())
+        {
+            _wTranslationSelect->SetFunctionType(FunctionType::VoiceCompositor);
+            _wTranslationSelect->show();
+        }
     }
     else if (type == Navig_Type::System_Set) {
         _set_main->show();
@@ -506,4 +518,9 @@ void AiSound::NextMessage()
         _wTip->SetMessage(msg);
         _wTip->show();
     }
+}
+
+bool AiSound::AiFunctionRunning()
+{
+    return _translation.IsRunning() | _voiceCompositor.IsRunning() | _chatBot.IsRunning();
 }

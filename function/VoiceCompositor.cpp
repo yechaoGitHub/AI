@@ -11,13 +11,6 @@
 
 VoiceCompositor::VoiceCompositor()
 {
-    //_audioInput.setParent(this);
-    _webSocket.setParent(this);
-    QObject::connect(&_webSocket, &QWebSocket::connected, this, &VoiceCompositor::SocketConnected);
-    QObject::connect(&_webSocket, &QWebSocket::disconnected, this, &VoiceCompositor::SocketDisconnected);
-    QObject::connect(&_webSocket, static_cast<void(QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), this, &VoiceCompositor::SocketError);
-    QObject::connect(&_webSocket, &QWebSocket::textMessageReceived, this, &VoiceCompositor::SocketTextMessageReceived);
-    this->moveToThread(&_workThread);
 }
 
 VoiceCompositor::~VoiceCompositor()
@@ -27,11 +20,19 @@ VoiceCompositor::~VoiceCompositor()
 
 void VoiceCompositor::Initialize()
 {
+    _webSocket.setParent(this);
+    QObject::connect(&_webSocket, &QWebSocket::connected, this, &VoiceCompositor::SocketConnected);
+    QObject::connect(&_webSocket, &QWebSocket::disconnected, this, &VoiceCompositor::SocketDisconnected);
+    QObject::connect(&_webSocket, static_cast<void(QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), this, &VoiceCompositor::SocketError);
+    QObject::connect(&_webSocket, &QWebSocket::textMessageReceived, this, &VoiceCompositor::SocketTextMessageReceived);
+    this->moveToThread(&_workThread);
+
     _audioInput.Initialize();
     _audioOutput.Initialize();
 
     QObject::connect(this, &VoiceCompositor::connect, this, &VoiceCompositor::ConnectInternal);
     QObject::connect(this, &VoiceCompositor::disconnect, this, &VoiceCompositor::DisconnectInternal);
+    QObject::connect(this, &VoiceCompositor::sendMessage, this, &VoiceCompositor::SendMessageInternal);
     QObject::connect(&_audioInput, &AudioInput::audioInput, this, &VoiceCompositor::ReceiveAudioInput);
 }
 
@@ -54,9 +55,20 @@ void VoiceCompositor::Connect(const QString& token, const QString& srcLan, const
     emit connect(token, srcLan, destLan, speaker, autoSender);
 }
 
+void VoiceCompositor::SendMessage(const QString& msg)
+{
+    emit sendMessage(msg);
+}
+
 void VoiceCompositor::Disconnect()
 {
     emit disconnect();
+    _workThread.wait();
+}
+
+bool VoiceCompositor::IsRunning()
+{
+    return _workThread.isRunning();
 }
 
 void VoiceCompositor::SendParam()
@@ -135,6 +147,24 @@ void VoiceCompositor::DisconnectInternal()
     _heartBeatTimer = 0;
     SendFinish();
     _webSocket.close();
+}
+
+void VoiceCompositor::SendMessageInternal(const QString& msg)
+{
+    if (!_connected)
+    {
+        return;
+    }
+
+    QJsonObject dataobj;
+    dataobj.insert("type", "RESULT");
+    dataobj.insert("isSend", true);
+    dataobj.insert("message", msg);
+
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray byteArray = document.toJson(QJsonDocument::Compact);
+    _webSocket.sendTextMessage(byteArray);
 }
 
 void VoiceCompositor::SocketConnected()

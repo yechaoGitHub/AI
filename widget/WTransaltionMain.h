@@ -21,6 +21,7 @@ protected:
     void showEvent(QShowEvent* event) override;
 
 private:
+    void CloseClicked();
     void TranslationReceived(const QString& src, const QString& dst, int type);
 
     TranslationLanguage     _srcLan;

@@ -22,10 +22,13 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
 
     this->resize(1078, 252);
 
+    connect(ui.closeBtn, &QPushButton::clicked, this, &WTransaltionMain::CloseClicked);
+
     ui.subtitleWidget->Subtitle()->SetTranslate("CHS", "EN");
 
     auto& translation = AiSound::GetInstance().GetTranslation();
     connect(&translation, &Translation::translationReceived, this, &WTransaltionMain::TranslationReceived);
+
 }
 
 WTransaltionMain::~WTransaltionMain()
@@ -73,6 +76,13 @@ void WTransaltionMain::showEvent(QShowEvent* event)
     auto& ins = AiSound::GetInstance();
     auto& token = ins.Token();
     ins.GetTranslation().Connect(token, _srcLan.language, _destLan.language);
+}
+
+void WTransaltionMain::CloseClicked()
+{
+    auto& translation = AiSound::GetInstance().GetTranslation();
+    translation.Disconnect();
+    close();
 }
 
 void WTransaltionMain::TranslationReceived(const QString& src, const QString& dst, int type)

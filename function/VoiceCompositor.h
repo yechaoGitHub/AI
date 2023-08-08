@@ -16,21 +16,26 @@ public:
     void Initialize();
     void Uninitialize();
     void Connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender);
+    void SendMessage(const QString& msg);
     void Disconnect();
+    bool IsRunning();
 
 Q_SIGNALS:
     void connected();
     void disconnected();
-
     void translationReceived(const QString& src, const QString& dst, int type);
+
+private:
+Q_SIGNALS:
     void connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender);
     void disconnect();
-
     void receiveAudio(const QByteArray& data);
+    void sendMessage(const QString& msg);
 
 private:
     void ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender);
     void DisconnectInternal();
+    void SendMessageInternal(const QString& msg);
 
     void SendParam();
     void SendHearBeat();

@@ -24,7 +24,9 @@ private slots:
     void on_pb_close_clicked();
 
 private:
+    void CloseClicked();
     void StartClicked();
+    void SendClicked();
     void TranslationReceived(const QString& src, const QString& dst, int type);
 
     TranslationLanguage             _srcLan;

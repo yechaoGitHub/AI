@@ -52,6 +52,7 @@ void ChatBot::Connect(const QString& token)
 void ChatBot::Disconnect()
 {
     emit disconnect();
+    _workThread.wait();
 }
 
 bool ChatBot::Connected()
@@ -62,6 +63,11 @@ bool ChatBot::Connected()
 void ChatBot::SendMessage(const QString& msg)
 {
     emit sendMessage(msg);
+}
+
+bool ChatBot::IsRunning()
+{
+    return _workThread.isRunning();
 }
 
 void ChatBot::timerEvent(QTimerEvent* event)

@@ -18,7 +18,7 @@ void AudioOutput::Initialize()
     auidoFormat.setSampleSize(16);
     auidoFormat.setCodec("audio/pcm");
     auidoFormat.setByteOrder(QAudioFormat::LittleEndian);
-    auidoFormat.setSampleType(QAudioFormat::UnSignedInt);
+    auidoFormat.setSampleType(QAudioFormat::SignedInt);
 
     QAudioDeviceInfo outInfo = QAudioDeviceInfo::defaultOutputDevice();
     _audioOutput = new QAudioOutput{ outInfo, auidoFormat, this };
@@ -52,6 +52,7 @@ void AudioOutput::StartSpeaker()
 void AudioOutput::EndSpeaker()
 {
     emit end_speaker();
+    _workThread.wait();
 }
 
 void AudioOutput::WriteOutputData(QByteArray data)

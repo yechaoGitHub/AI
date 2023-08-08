@@ -24,6 +24,8 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget *parent)
     auto& voiceCompositor = ins.GetVoiceCompositor();
 
     connect(ui.pb_start, &QPushButton::clicked, this, &WSpeechGenerationUi::StartClicked);
+    connect(ui.pb_close, &QPushButton::clicked, this, &WSpeechGenerationUi::CloseClicked);
+    connect(ui.pb_send, &QPushButton::clicked, this, &WSpeechGenerationUi::SendClicked);
     connect(&voiceCompositor, &VoiceCompositor::translationReceived, this, &WSpeechGenerationUi::TranslationReceived);
 }
 
@@ -59,6 +61,11 @@ void WSpeechGenerationUi::showEvent(QShowEvent* event)
     }
 }
 
+void WSpeechGenerationUi::CloseClicked()
+{
+    AiSound::GetInstance().GetVoiceCompositor().Disconnect();
+}
+
 void WSpeechGenerationUi::StartClicked()
 {
     auto index = ui.comboBox_vector->currentIndex();
@@ -70,7 +77,15 @@ void WSpeechGenerationUi::StartClicked()
     auto& ins = AiSound::GetInstance();
     auto& token = AiSound::GetInstance().Token();
     auto& name = ins.GetVoiceData()[index].voiceCode;
-    AiSound::GetInstance().GetVoiceCompositor().Connect(token, _srcLan.language, _destLan.language, name, true);
+    auto isAutoSend = ui.checkBox->isChecked();
+
+    AiSound::GetInstance().GetVoiceCompositor().Connect(token, _srcLan.language, _destLan.language, name, isAutoSend);
+}
+
+void WSpeechGenerationUi::SendClicked()
+{
+    auto&& text = ui.textEdit->toPlainText();
+    AiSound::GetInstance().GetVoiceCompositor().SendMessage(text);
 }
 
 void WSpeechGenerationUi::TranslationReceived(const QString& src, const QString& dst, int type)

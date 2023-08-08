@@ -23,6 +23,7 @@ protected:
 
 private:
     void StartClicked();
+    void CloseClicked();
     Ui::Translation                     ui;
 
     FunctionType                        _type;

@@ -17,6 +17,7 @@ WTranslationSelect::WTranslationSelect(QWidget* parent) :
 
     auto& ins = AiSound::GetInstance();
     connect(ui.startBtn, &WButton::clicked, this, &WTranslationSelect::StartClicked);
+    connect(ui.closeBtn, &QPushButton::clicked, this, &WTranslationSelect::CloseClicked);
 }
 
 WTranslationSelect::~WTranslationSelect()
@@ -101,15 +102,22 @@ void WTranslationSelect::StartClicked()
     {
         case FunctionType::Translation:
             ins.ShowTranslationMainWindow(_selSrvLan, _selDestLan);
+            this->close();
         break;
 
         case FunctionType::VoiceCompositor:
             ins.ShowVoiceCompositorMainWindow(_selSrvLan, _selDestLan);
+            this->close();
         break;
 
         case FunctionType::ChatBot:
         break;
 
     }
+}
+
+void WTranslationSelect::CloseClicked()
+{
+    this->close();
 }
 

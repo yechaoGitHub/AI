@@ -57,6 +57,7 @@ void Translation::Connect(const QString& token, const QString& srcLan, const QSt
 void Translation::Disconnect()
 {
     emit disconnect();
+    _workThread.wait();
 }
 
 void Translation::ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan)
@@ -112,6 +113,11 @@ bool Translation::Connected()
     return _connected;
 }
 
+bool Translation::IsRunning()
+{
+    return _workThread.isRunning();
+}
+
 void Translation::WebsocketConnected()
 {
     SendHearBeat();
@@ -146,6 +152,8 @@ void Translation::TranslateTextMessageReceived(const QString& message)
         auto status = document["data"]["status"].toString();
         if (status == "TRAN")
         {
+            qDebug() << message << "\n";
+
             auto obj = document["data"]["result"].toObject();
             auto dst = obj["dst"].toString();
             auto src = obj["src"].toString();

@@ -46,10 +46,9 @@ void WSubtitle::AddSubtitle(const QString& src, const QString& dest)
 void WSubtitle::UpdateSubtitle(const QString& src, const QString& dest)
 {
     auto& b = _subtitle.back();
-    b.src.text = src;
-    b.dest.text = dest;
-
+    b = NewTranslationText(src, dest, b.rect.y());
     repaint();
+    emit subtitleAdd();
 }
 
 QSize WSubtitle::sizeHint() const
@@ -126,13 +125,13 @@ void WSubtitle::CalculateTranslationRect()
         subtitle.src.rect.setSize(textSize);
 
         text = _destLanguage + ":" + subtitle.dest.text;
-        curPos += gap + textSize.width();
+        curPos += gap + textSize.height();
         textSize = CalculateTextSize(fm, text, w);
         subtitle.dest.rect.setX(marginX);
         subtitle.dest.rect.setY(curPos);
         subtitle.dest.rect.setSize(textSize);
 
-        curPos += gap + textSize.width();
+        curPos += gap + textSize.height();
 
         subtitle.rect.setWidth(w);
         subtitle.rect.setHeight(curPos - subtitle.rect.y());

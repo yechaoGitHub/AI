@@ -104,6 +104,8 @@ private:
     void FillTranslationFillList();
     void UserLoginCallbackInternal(int code, const QString& msg, const QString& token);
     void NextMessage();
+    bool AiFunctionRunning();
+
 
     enum HttpCallEnum
     {

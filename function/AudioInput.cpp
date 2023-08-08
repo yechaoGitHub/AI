@@ -49,6 +49,11 @@ void AudioInput::Uninitialize()
 
 void AudioInput::StartMic()
 {
+    if (_workThread.isRunning())
+    {
+        return;
+    }
+
     _workThread.start();
     emit start_mic();
 }
@@ -56,6 +61,7 @@ void AudioInput::StartMic()
 void AudioInput::EndMic()
 {
     emit end_mic();
+    _workThread.wait();
 }
 
 void AudioInput::timerEvent(QTimerEvent* event)
