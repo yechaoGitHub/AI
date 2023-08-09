@@ -81,17 +81,6 @@ QPushButton#pb_copy{
 	background-image: url(:/QtTest/icon/Speech/copy.png);
 }
 
-QCheckBox{
-	font: 20px &quot;微软雅黑&quot;;
-	color: rgb(255, 255, 255);
-}
-
-QCheckBox::indicator {width: 25px; height: 25px;}
-
-QCheckBox::indicator:unchecked {background-image: url(:/QtTest/icon/Speech/chebox_sel.png);}
-
-QCheckBox::indicator:checked {background-image: url(:/QtTest/icon/Speech/chebox_sel.png);}
-
 QTextEdit{
 	background-color: transparent;
 	border:none
@@ -262,6 +251,13 @@ QTextEdit{
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item>
        <widget class="QTextEdit" name="textEdit">
+        <property name="html">
+         <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'微软雅黑'; font-size:12px; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        </property>
         <property name="placeholderText">
          <string>Generated text will appear here</string>
         </property>
@@ -514,8 +510,28 @@ QTextEdit{
          <height>40</height>
         </size>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QCheckBox{
+	font: 20px &quot;微软雅黑&quot;;
+	color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator {width: 25px; height: 25px;}
+
+QCheckBox::indicator:unchecked {image: url(:/QtTest/icon/Speech/chebox_sel.png);}
+
+
+QCheckBox::indicator:checked {image: url(:/QtTest/icon/Speech/checkbox_selet.png);}
+
+
+
+</string>
+       </property>
        <property name="text">
         <string>Auto Send</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
        </property>
       </widget>
      </item>

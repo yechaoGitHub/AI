@@ -199,17 +199,20 @@
     <ClCompile Include="function\AudioOutput.cpp">
       <Filter>function</Filter>
     </ClCompile>
-    <ClCompile Include="widget\Setting\ChatBot\WChatBotMainUI.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="widget\Setting\ChatBot\WLibarary.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="widget\Setting\WInvitePage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="widget\Setting\WRobotPage.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\ChatBot\WLibarary.cpp">
+      <Filter>widget\Setting\ChatBot</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\ChatBot\WChatBotMainUI.cpp">
+      <Filter>widget\Setting\ChatBot</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\ChatBot\WHistoryPage.cpp">
+      <Filter>widget\Setting\ChatBot</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -296,6 +299,9 @@
     </QtUic>
     <QtUic Include="widget\Setting\WRobotPage.ui">
       <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\ChatBot\WHistoryPage.ui">
+      <Filter>widget\Setting\ChatBot</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -428,7 +434,7 @@
     <QtMoc Include="widget\Setting\WGerenalPage.h">
       <Filter>widget\Setting</Filter>
     </QtMoc>
-   <QtMoc Include="widget\Setting\ChatBot\WChatBotMainUI.h">
+    <QtMoc Include="widget\Setting\ChatBot\WChatBotMainUI.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="widget\Setting\ChatBot\WLibarary.h">
@@ -442,6 +448,9 @@
     </QtMoc>
     <QtMoc Include="function\AudioOutput.h">
       <Filter>function</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\ChatBot\WHistoryPage.h">
+      <Filter>widget\Setting\ChatBot</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

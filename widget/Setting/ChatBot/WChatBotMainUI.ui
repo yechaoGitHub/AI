@@ -262,7 +262,7 @@ QPushButton#pb_open[open=false]{
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
        <widget class="WLibarary" name="lib_page"/>
-       <widget class="QWidget" name="page_2"/>
+       <widget class="WHistoryPage" name="history_page"/>
       </widget>
      </item>
     </layout>
@@ -280,6 +280,12 @@ QPushButton#pb_open[open=false]{
    <class>WLibarary</class>
    <extends>QWidget</extends>
    <header>WLibarary.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WHistoryPage</class>
+   <extends>QWidget</extends>
+   <header>WHistoryPage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

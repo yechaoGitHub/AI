@@ -68,6 +68,7 @@ void WSpeechGenerationUi::CloseClicked()
 
 void WSpeechGenerationUi::StartClicked()
 {
+    auto it = ui.checkBox->checkState();
     auto index = ui.comboBox_vector->currentIndex();
     if (index == -1)
     {

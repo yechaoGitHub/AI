@@ -1,5 +1,9 @@
 <RCC>
   <qresource prefix="/QtTest">
+    <file>icon/Setting/chatbot/search.png</file>
+    <file>icon/Speech/checked.png</file>
+    <file>icon/Speech/uncheck.png</file>
+    <file>icon/Speech/checkbox_selet.png</file>
     <file>icon/Setting/chatbot/chatbot_title.png</file>
     <file>icon/Setting/chatbot/frame_lib_icon.png</file>
     <file>icon/Setting/chatbot/history_icon.png</file>
@@ -18,7 +22,6 @@
     <file>icon/Setting/search.png</file>
     <file>icon/Setting/send.png</file>
     <file>icon/chebox_select.png</file>
-    <file>icon/check_sel.png</file>
     <file>icon/robot.png</file>
     <file>icon/icon.png</file>
     <file>icon/login/robot_bk.png</file>

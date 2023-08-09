@@ -110,6 +110,7 @@
     <ClCompile Include="widget\login\WLoginUI.cpp" />
     <ClCompile Include="widget\model\WNavbarButton.cpp" />
     <ClCompile Include="widget\Setting\ChatBot\WChatBotMainUI.cpp" />
+    <ClCompile Include="widget\Setting\ChatBot\WHistoryPage.cpp" />
     <ClCompile Include="widget\Setting\ChatBot\WLibarary.cpp" />
     <ClCompile Include="widget\Setting\WAccountPage.cpp" />
     <ClCompile Include="widget\Setting\WGerenalPage.cpp" />
@@ -162,6 +163,7 @@
     <QtUic Include="widget\login\WLoginMainUi.ui" />
     <QtUic Include="widget\login\WLoginUI.ui" />
     <QtUic Include="widget\Setting\ChatBot\WChatBotMainUI.ui" />
+    <QtUic Include="widget\Setting\ChatBot\WHistoryPage.ui" />
     <QtUic Include="widget\Setting\ChatBot\WLibarary.ui" />
     <QtUic Include="widget\Setting\WAccountPage.ui" />
     <QtUic Include="widget\Setting\WGerenalPage.ui" />
@@ -173,6 +175,7 @@
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="widget\Setting\ChatBot\WHistoryPage.h" />
     <QtMoc Include="widget\Setting\ChatBot\WChatBotMainUI.h" />
     <QtMoc Include="widget\Setting\ChatBot\WLibarary.h" />
     <QtMoc Include="widget\Setting\WRobotPage.h" />

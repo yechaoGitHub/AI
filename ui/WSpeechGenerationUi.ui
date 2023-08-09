@@ -98,11 +98,12 @@ QCheckBox{
 	color: rgb(255, 255, 255);
 }
 
-QCheckBox::indicator {width: 25px; height: 25px;}
+QCheckBox::indicator {width: 30px; height: 30px;}
 
-QCheckBox::indicator:unchecked {background-image: url(:/QtTest/icon/Speech/chebox_sel.png);}
+QCheckBox::indicator:unchecked {image: url(:/QtTest/icon/Speech/chebox_sel.png);}
 
-QCheckBox::indicator:checked {background-image: url(:/QtTest/icon/Speech/chebox_sel.png);}
+QCheckBox::indicator:checked {image: url(:/QtTest/icon/Speech/checkbox_selet.png);}
+
 
 QTextEdit{
 	background-color: transparent;
