@@ -4,8 +4,6 @@
 #include <QObject>
 #include <QThread>
 
-//#define MONITOR_MIC
-
 #ifdef MONITOR_MIC
 #include <AudioOutput.h>
 #endif

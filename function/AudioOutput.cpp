@@ -37,9 +37,11 @@ void AudioOutput::Uninitialize()
         EndSpeaker();
     }
 
-    while (_workThread.isRunning())
+    if (_audioOutput)
     {
-        std::this_thread::yield();
+        delete _audioOutput;
+        _audioOutput = nullptr;
+        _ioOutput = nullptr;
     }
 }
 
@@ -52,7 +54,10 @@ void AudioOutput::StartSpeaker()
 void AudioOutput::EndSpeaker()
 {
     emit end_speaker();
-    _workThread.wait();
+    if (!_workThread.wait(1000))
+    {
+        _workThread.quit();
+    }
 }
 
 void AudioOutput::WriteOutputData(QByteArray data)
@@ -95,8 +100,8 @@ void AudioOutput::EndSpeakerInternal()
 {
     killTimer(_timer);
     _audioOutput->stop();
-    _ioOutput->close();
-    delete _ioOutput;
+    //_ioOutput->close();
+    //delete _ioOutput;
     _ioOutput = nullptr;
     _workThread.quit();
 }

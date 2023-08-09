@@ -11,15 +11,8 @@
 #include <chrono>
 #include <Windows.h>
 
-
 Translation::Translation()
 {
-    _webSocket.setParent(this);
-    QObject::connect(&_webSocket, &QWebSocket::connected, this, &Translation::WebsocketConnected);
-    QObject::connect(&_webSocket, &QWebSocket::disconnected, this, &Translation::WebsocketDisconnected);
-    QObject::connect(&_webSocket, static_cast<void(QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), this, &Translation::WebsocketError);
-    QObject::connect(&_webSocket, &QWebSocket::textMessageReceived, this, &Translation::TranslateTextMessageReceived);
-    this->moveToThread(&_workThread);
 }
 
 Translation::~Translation()
@@ -29,6 +22,13 @@ Translation::~Translation()
 
 void Translation::Initialize()
 {
+    _webSocket.setParent(this);
+    QObject::connect(&_webSocket, &QWebSocket::connected, this, &Translation::WebsocketConnected);
+    QObject::connect(&_webSocket, &QWebSocket::disconnected, this, &Translation::WebsocketDisconnected);
+    QObject::connect(&_webSocket, static_cast<void(QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), this, &Translation::WebsocketError);
+    QObject::connect(&_webSocket, &QWebSocket::textMessageReceived, this, &Translation::TranslateTextMessageReceived);
+    this->moveToThread(&_workThread);
+
     _audio.Initialize();
     QObject::connect(this, &Translation::connect, this, &Translation::ConnectInternal);
     QObject::connect(this, &Translation::disconnect, this, &Translation::DisconnectInternal);
@@ -42,10 +42,7 @@ void Translation::Uninitialize()
         Disconnect();
     }
 
-    while (_workThread.isRunning())
-    {
-        std::this_thread::yield();
-    }
+    _audio.Uninitialize();
 }
 
 void Translation::Connect(const QString& token, const QString& srcLan, const QString& destLan)
@@ -57,7 +54,10 @@ void Translation::Connect(const QString& token, const QString& srcLan, const QSt
 void Translation::Disconnect()
 {
     emit disconnect();
-    _workThread.wait();
+    if (!_workThread.wait(1000))
+    {
+        _workThread.quit();
+    }
 }
 
 void Translation::ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan)
@@ -105,7 +105,13 @@ void Translation::SendParam()
 
 void Translation::SendHearBeat()
 {
-    _webSocket.sendTextMessage("{\"type\": \"HEARTBEAT\",}");
+    QJsonObject dataobj;
+    dataobj.insert("type", "HEARTBEAT");
+
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray byteArray = document.toJson(QJsonDocument::Compact);
+    _webSocket.sendTextMessage(byteArray);
 }
 
 bool Translation::Connected()
@@ -124,10 +130,8 @@ void Translation::WebsocketConnected()
     SendParam();
     StartListen();
     _connected = true;
-
-    emit connected();
-
     _heartBeatTimer = startTimer(5000);
+    emit connected();
 }
 
 void Translation::WebsocketDisconnected()
@@ -176,7 +180,13 @@ void Translation::TranslateTextMessageReceived(const QString& message)
 
 void Translation::SendFinish()
 {
-    _webSocket.sendTextMessage("{\"type\": \"FINISH\"");
+    QJsonObject dataobj;
+    dataobj.insert("type", "FINISH");
+
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray byteArray = document.toJson(QJsonDocument::Compact);
+    _webSocket.sendTextMessage(byteArray);
 }
 
 void Translation::ReceiveAudioInput(QByteArray data)

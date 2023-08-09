@@ -10,12 +10,6 @@
 
 ChatBot::ChatBot()
 {
-    _webSocket.setParent(this);
-    QObject::connect(&_webSocket, &QWebSocket::connected, this, &ChatBot::WebsocketConnected);
-    QObject::connect(&_webSocket, &QWebSocket::disconnected, this, &ChatBot::WebsocketDisconnected);
-    QObject::connect(&_webSocket, static_cast<void(QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), this, &ChatBot::WebsocketError);
-    QObject::connect(&_webSocket, &QWebSocket::textMessageReceived, this, &ChatBot::TranslateTextMessageReceived);
-    this->moveToThread(&_workThread);
 }
 
 ChatBot::~ChatBot()
@@ -25,6 +19,13 @@ ChatBot::~ChatBot()
 
 void ChatBot::Initialize()
 {
+    _webSocket.setParent(this);
+    QObject::connect(&_webSocket, &QWebSocket::connected, this, &ChatBot::WebsocketConnected);
+    QObject::connect(&_webSocket, &QWebSocket::disconnected, this, &ChatBot::WebsocketDisconnected);
+    QObject::connect(&_webSocket, static_cast<void(QWebSocket::*)(QAbstractSocket::SocketError)>(&QWebSocket::error), this, &ChatBot::WebsocketError);
+    QObject::connect(&_webSocket, &QWebSocket::textMessageReceived, this, &ChatBot::TranslateTextMessageReceived);
+    this->moveToThread(&_workThread);
+
     QObject::connect(this, &ChatBot::connect, this, &ChatBot::ConnectInternal);
     QObject::connect(this, &ChatBot::disconnect, this, &ChatBot::DisconnectInternal);
     QObject::connect(this, &ChatBot::sendMessage, this, &ChatBot::SendMessageInternal);
@@ -35,11 +36,6 @@ void ChatBot::Uninitialize()
     if (_workThread.isRunning())
     {
         Disconnect();
-    }
-
-    while (_workThread.isRunning())
-    {
-        std::this_thread::yield();
     }
 }
 
@@ -52,7 +48,10 @@ void ChatBot::Connect(const QString& token)
 void ChatBot::Disconnect()
 {
     emit disconnect();
-    _workThread.wait();
+    if (!_workThread.wait(1000))
+    {
+        _workThread.quit();
+    }
 }
 
 bool ChatBot::Connected()
@@ -91,8 +90,10 @@ void ChatBot::ConnectInternal(const QString& token)
 
 void ChatBot::DisconnectInternal()
 {
-    _connected = false;
-    emit disconnected();
+    killTimer(_heartBeatTimer);
+    _heartBeatTimer = 0;
+    SendFinish();
+    _webSocket.close();
 }
 
 void ChatBot::SendMessageInternal(const QString& msg)
@@ -110,17 +111,38 @@ void ChatBot::SendMessageInternal(const QString& msg)
 
 void ChatBot::SendParam()
 {
-    _webSocket.sendTextMessage("{\"type\": \"START\", }");
+    QJsonObject msgObj;
+    msgObj.insert("type", "START");
+
+    QJsonDocument document;
+    document.setObject(msgObj);
+    QByteArray byteArray = document.toJson(QJsonDocument::Compact);
+
+    _webSocket.sendTextMessage(byteArray);
 }
 
 void ChatBot::SendHearBeat()
 {
-    _webSocket.sendTextMessage("{\"type\": \"HEARTBEAT\",}");
+    QJsonObject msgObj;
+    msgObj.insert("type", "HEARTBEAT");
+
+    QJsonDocument document;
+    document.setObject(msgObj);
+    QByteArray byteArray = document.toJson(QJsonDocument::Compact);
+
+    _webSocket.sendTextMessage(byteArray);
 }
 
 void ChatBot::SendFinish()
 {
-    _webSocket.sendTextMessage("{\"type\": \"FINISH\"");
+    QJsonObject msgObj;
+    msgObj.insert("type", "FINISH");
+
+    QJsonDocument document;
+    document.setObject(msgObj);
+    QByteArray byteArray = document.toJson(QJsonDocument::Compact);
+
+    _webSocket.sendTextMessage(byteArray);
 }
 
 void ChatBot::WebsocketConnected()

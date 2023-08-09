@@ -43,10 +43,8 @@ void VoiceCompositor::Uninitialize()
         Disconnect();
     }
 
-    while (_workThread.isRunning())
-    {
-        std::this_thread::yield();
-    }
+    _audioInput.Uninitialize();
+    _audioOutput.Uninitialize();
 }
 
 void VoiceCompositor::Connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender)
@@ -63,7 +61,10 @@ void VoiceCompositor::SendMessage(const QString& msg)
 void VoiceCompositor::Disconnect()
 {
     emit disconnect();
-    _workThread.wait();
+    if (!_workThread.wait(1000))
+    {
+        _workThread.quit();
+    }
 }
 
 bool VoiceCompositor::IsRunning()
@@ -88,7 +89,13 @@ void VoiceCompositor::SendParam()
 
 void VoiceCompositor::SendHearBeat()
 {
-    _webSocket.sendTextMessage("{\"type\": \"HEARTBEAT\",}");
+    QJsonObject dataobj;
+    dataobj.insert("type", "HEARTBEAT");
+
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray byteArray = document.toJson(QJsonDocument::Compact);
+    _webSocket.sendTextMessage(byteArray);
 }
 
 void VoiceCompositor::AudioStart(bool enable)
@@ -107,7 +114,13 @@ void VoiceCompositor::AudioStart(bool enable)
 
 void VoiceCompositor::SendFinish()
 {
-    _webSocket.sendTextMessage("{\"type\": \"FINISH\"");
+    QJsonObject dataobj;
+    dataobj.insert("type", "FINISH");
+
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray byteArray = document.toJson(QJsonDocument::Compact);
+    _webSocket.sendTextMessage(byteArray);
 }
 
 void VoiceCompositor::ReceiveAudioInput(QByteArray data)
@@ -225,16 +238,12 @@ void VoiceCompositor::SocketTextMessageReceived(const QString& message)
             auto obj = document["data"]["result"].toObject();
             auto type = obj["type"].toString();
             auto audio = obj["audio"].toString();
-            if (type == "MID")
-            {
-                _buffer.append(audio);
-            }
-            else if (type == "FIN")
-            {
-                _buffer.append(audio);
-                auto audioData = QByteArray::fromBase64(_buffer.toLocal8Bit());
 
-                _audioOutput.WriteOutputData(audioData);
+            auto audioData = QByteArray::fromBase64(audio.toLocal8Bit());
+            _buffer.append(std::move(audioData));
+            if (type == "FIN")
+            {
+                _audioOutput.WriteOutputData(std::move(_buffer));
                 _buffer.clear();
             }
         }

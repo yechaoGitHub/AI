@@ -59,7 +59,7 @@ private:
     QString                 _speaker;
     bool                    _autoSender = false;
 
-    QString                 _buffer;
+    QByteArray              _buffer;
     bool                    _connected = false;
     int                     _heartBeatTimer = 0;
 };

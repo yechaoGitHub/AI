@@ -60,7 +60,7 @@ void WRobotChat::on_pb_send_clicked()
         messageW->setTextSuccess();
 
         auto& bot = AiSound::GetInstance().GetChatBot();
-        bot.sendMessage(msg);
+        bot.SendMessage(msg);
 
         /*if (isSending) {
             chatMessageTime(time);
@@ -136,4 +136,22 @@ void WRobotChat::chatMessage(WChatItem* messageW, QListWidgetItem* item, QString
 void WRobotChat::resizeEvent(QResizeEvent* event)
 {
     Q_UNUSED(event);
+}
+
+void WRobotChat::showEvent(QShowEvent* event)
+{
+    auto& token = AiSound::GetInstance().Token();
+    auto& bot = AiSound::GetInstance().GetChatBot();
+    bot.Connect(token);
+}
+
+void WRobotChat::hideEvent(QHideEvent* event)
+{
+    auto& bot = AiSound::GetInstance().GetChatBot();
+    bot.Disconnect();
+}
+
+void WRobotChat::closeEvent(QCloseEvent* event)
+{
+
 }
