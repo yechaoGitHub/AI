@@ -30,7 +30,7 @@
 	font: 12px &quot;微软雅黑&quot;;
 }
 
-QFrame#frame_2,#frame_3{
+QFrame#frame_2,#frame_3,#frame_left,#frame{
 	border:none;
 }
 
@@ -54,6 +54,7 @@ QPushButton#pb_close{
 }
 
 QLabel#lb_robot{
+	border:none;
 	background-image: url(:/QtTest/icon/login/robot_bk.png);
 }
 

@@ -6,7 +6,8 @@
 class WChatBotMainUI : public QWidget
 {
 	Q_OBJECT
-
+signals:
+	void sig_chatBotBack();
 public:
 	WChatBotMainUI(QWidget *parent = nullptr);
 	~WChatBotMainUI();
@@ -17,6 +18,8 @@ private:
 private slots:
 	void on_pb_lib_clicked();
 	void on_pb_history_clicked();
+
+	void slot_back();
 
 private:
 	Ui::WChatBotMainUIClass ui;

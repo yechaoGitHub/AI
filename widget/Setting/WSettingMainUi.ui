@@ -190,6 +190,7 @@ QPushButton#pb_close{
      <widget class="WSettingSelectWidget" name="select_widget"/>
      <widget class="WGerenalPage" name="gerenal_page"/>
      <widget class="WChatBotMainUI" name="chatbot_page"/>
+     <widget class="WSoundBotMainUi" name="soundbot_page"/>
     </widget>
    </item>
   </layout>
@@ -212,6 +213,12 @@ QPushButton#pb_close{
    <class>WChatBotMainUI</class>
    <extends>QWidget</extends>
    <header>./Chatbot/WChatBotMainUI.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WSoundBotMainUi</class>
+   <extends>QWidget</extends>
+   <header>./SoundBot/WSoundBotMainUi.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

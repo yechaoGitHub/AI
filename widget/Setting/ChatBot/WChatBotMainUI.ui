@@ -24,11 +24,13 @@ QPushButton{
 	background-position: center;
     background-repeat: no-repeat;
 }
-QPushButton#pb_left{
-	background-image: url(:/QtTest/icon/Setting/chatbot/chatbot_title.png);
-}
+
 QPushButton#pb_left_icon{
 	background-image: url(:/QtTest/icon/Setting/chatbot/left.png);
+}
+
+QPushButton#pb_left{
+	font: 18px &quot;微软雅黑&quot;;
 }
 
 QPushButton#pb_open[open=true]{
@@ -110,7 +112,7 @@ QPushButton#pb_open[open=false]{
          </size>
         </property>
         <property name="text">
-         <string/>
+         <string>ChatBot</string>
         </property>
        </widget>
       </item>
@@ -292,5 +294,41 @@ QPushButton#pb_open[open=false]{
  <resources>
   <include location="../../../AiSound.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pb_left</sender>
+   <signal>clicked()</signal>
+   <receiver>WChatBotMainUIClass</receiver>
+   <slot>slot_back()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>84</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>168</x>
+     <y>1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pb_left_icon</sender>
+   <signal>clicked()</signal>
+   <receiver>WChatBotMainUIClass</receiver>
+   <slot>slot_back()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>17</x>
+     <y>23</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>27</x>
+     <y>7</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>slot_back()</slot>
+ </slots>
 </ui>

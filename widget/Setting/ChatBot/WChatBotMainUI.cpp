@@ -23,6 +23,11 @@ void WChatBotMainUI::on_pb_lib_clicked()
 	ui.stackedWidget->setCurrentWidget(ui.lib_page);
 }
 
+void WChatBotMainUI::slot_back()
+{
+	emit sig_chatBotBack();
+}
+
 void WChatBotMainUI::on_pb_history_clicked()
 {
 	changeSelectBtn(WNavbarButton::BarType::Bar_History);

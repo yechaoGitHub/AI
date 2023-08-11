@@ -29,8 +29,19 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
 
     connect(ui.select_widget, &WSettingSelectWidget::sig_robot_clicked, this, [this](bool clicked) {
         this->setFixedSize(939, 830);
-        ui.stackedWidget->setCurrentWidget(ui.chatbot_page);
+        if (clicked) {
+            ui.stackedWidget->setCurrentWidget(ui.chatbot_page);
+        }
+        else {
+            ui.stackedWidget->setCurrentWidget(ui.soundbot_page);
+        }
+
     });
+
+    connect(ui.chatbot_page, &WChatBotMainUI::sig_chatBotBack, this, [this] {
+        this->setFixedSize(664, 490);
+        ui.stackedWidget->setCurrentWidget(ui.select_widget);
+        });
 }
 
 WSettingMainUi::~WSettingMainUi()
