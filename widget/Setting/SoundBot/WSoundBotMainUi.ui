@@ -296,8 +296,12 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
      </item>
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
-       <widget class="QWidget" name="page"/>
-       <widget class="QWidget" name="page_2"/>
+       <widget class="WSoundSourcePage" name="source_page"/>
+       <widget class="WTranslationPage" name="trans_page"/>
+       <widget class="WVoiceLibPage" name="voice_lib_page"/>
+       <widget class="WMyVoicePage" name="myVoice_page"/>
+       <widget class="WSpeechSysPage" name="speechSys_page"/>
+       <widget class="WHistoryDiaPage" name="history_dia_page"/>
       </widget>
      </item>
     </layout>
@@ -310,6 +314,42 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
    <class>WNavbarButton</class>
    <extends>QPushButton</extends>
    <header>model/WNavbarButton.h</header>
+  </customwidget>
+  <customwidget>
+   <class>WSoundSourcePage</class>
+   <extends>QWidget</extends>
+   <header>WSoundSourcePage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WTranslationPage</class>
+   <extends>QWidget</extends>
+   <header>WTranslationPage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WVoiceLibPage</class>
+   <extends>QWidget</extends>
+   <header>WVoiceLibPage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WMyVoicePage</class>
+   <extends>QWidget</extends>
+   <header>WMyVoicePage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WSpeechSysPage</class>
+   <extends>QWidget</extends>
+   <header>WSpeechSysPage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WHistoryDiaPage</class>
+   <extends>QWidget</extends>
+   <header>WHistoryDiaPage.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>

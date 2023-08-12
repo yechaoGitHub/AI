@@ -220,6 +220,30 @@
     <ClCompile Include="widget\Setting\WInvitePage.cpp">
       <Filter>widget\Setting</Filter>
     </ClCompile>
+    <ClCompile Include="widget\Setting\SoundBot\WSoundSourcePage.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\SoundBot\WTranslationPage.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\SoundBot\WVoiceLibPage.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\SoundBot\WVoicelibWidget.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\SoundBot\WMyVoicePage.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\SoundBot\WSpeechSysPage.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\SoundBot\WHistoryDiaPage.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\SoundBot\WMyVoiceModel.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -311,6 +335,30 @@
     </QtUic>
     <QtUic Include="widget\Setting\SoundBot\WSoundBotMainUi.ui">
       <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\SoundBot\WSoundSourcePage.ui">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\SoundBot\WTranslationPage.ui">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\SoundBot\WVoiceLibPage.ui">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\SoundBot\WVoicelibWidget.ui">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\SoundBot\WMyVoicePage.ui">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\SoundBot\WSpeechSysPage.ui">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\SoundBot\WHistoryDiaPage.ui">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\SoundBot\WMyVoiceModel.ui">
+      <Filter>widget\Setting\SoundBot</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -463,6 +511,30 @@
     </QtMoc>
     <QtMoc Include="widget\Setting\SoundBot\WSoundBotMainUi.h">
       <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\SoundBot\WSoundSourcePage.h">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\SoundBot\WTranslationPage.h">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\SoundBot\WVoiceLibPage.h">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\SoundBot\WVoicelibWidget.h">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\SoundBot\WMyVoicePage.h">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\SoundBot\WSpeechSysPage.h">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\SoundBot\WHistoryDiaPage.h">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\SoundBot\WMyVoiceModel.h">
+      <Filter>widget\Setting\SoundBot</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

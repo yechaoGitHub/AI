@@ -1,5 +1,19 @@
 <RCC>
   <qresource prefix="/QtTest">
+    <file>icon/Setting/soundbot/add.png</file>
+    <file>icon/Setting/soundbot/btn_1.png</file>
+    <file>icon/Setting/soundbot/btn_2.png</file>
+    <file>icon/Setting/soundbot/peo.png</file>
+    <file>icon/Setting/soundbot/little.png</file>
+    <file>icon/Setting/soundbot/man.png</file>
+    <file>icon/Setting/soundbot/waman.png</file>
+    <file>icon/Setting/soundbot/down.png</file>
+    <file>icon/Setting/soundbot/sel.png</file>
+    <file>icon/Setting/soundbot/unsel.png</file>
+    <file>icon/Setting/soundbot/mic.png</file>
+    <file>icon/Setting/soundbot/mic_btn.png</file>
+    <file>icon/Setting/soundbot/speak.png</file>
+    <file>icon/Setting/soundbot/speak_btn.png</file>
     <file>icon/Setting/soundbot/historical.png</file>
     <file>icon/Setting/soundbot/my_voice.png</file>
     <file>icon/Setting/soundbot/source_icon.png</file>

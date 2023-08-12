@@ -32,7 +32,7 @@ QLineEdit{
 }
 
 QFrame#frame_1,#frame_2{
-	border:1px solid #000000;
+	border:1px solid #c9c9c9;
 	border-radius:8px;
 	background-color: rgb(255, 255, 255);
 }

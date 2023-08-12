@@ -24,31 +24,37 @@ void WSoundBotMainUi::slot_sound_back()
 void WSoundBotMainUi::on_pb_sound_page1_clicked()
 {
 	changeSelectBtn(WNavbarButton::BarType::Sound_Page1);
+	ui.stackedWidget->setCurrentIndex(0);
 }
 
 void WSoundBotMainUi::on_pb_sound_page2_clicked()
 {
 	changeSelectBtn(WNavbarButton::BarType::Sound_Page2);
+	ui.stackedWidget->setCurrentIndex(1);
 }
 
 void WSoundBotMainUi::on_pb_sound_page3_clicked()
 {
 	changeSelectBtn(WNavbarButton::BarType::Sound_Page3);
+	ui.stackedWidget->setCurrentIndex(2);
 }
 
 void WSoundBotMainUi::on_pb_sound_page4_clicked()
 {
 	changeSelectBtn(WNavbarButton::BarType::Sound_Page4);
+	ui.stackedWidget->setCurrentIndex(3);
 }
 
 void WSoundBotMainUi::on_pb_sound_page5_clicked()
 {
 	changeSelectBtn(WNavbarButton::BarType::Sound_Page5);
+	ui.stackedWidget->setCurrentIndex(4);
 }
 
 void WSoundBotMainUi::on_pb_sound_page6_clicked()
 {
 	changeSelectBtn(WNavbarButton::BarType::Sound_Page6);
+	ui.stackedWidget->setCurrentIndex(5);
 }
 
 void WSoundBotMainUi::changeSelectBtn(WNavbarButton::BarType type)
