@@ -54,6 +54,9 @@
     <Filter Include="widget\Setting\ChatBot">
       <UniqueIdentifier>{f5aa1919-5524-495e-b8f8-e28eec8c58d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="widget\Setting\SoundBot">
+      <UniqueIdentifier>{dcf21d1c-3a69-4eea-b759-1ebdd77da362}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="AiSound.qrc">
@@ -199,12 +202,6 @@
     <ClCompile Include="function\AudioOutput.cpp">
       <Filter>function</Filter>
     </ClCompile>
-    <ClCompile Include="widget\Setting\WInvitePage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="widget\Setting\WRobotPage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="widget\Setting\ChatBot\WLibarary.cpp">
       <Filter>widget\Setting\ChatBot</Filter>
     </ClCompile>
@@ -213,6 +210,15 @@
     </ClCompile>
     <ClCompile Include="widget\Setting\ChatBot\WHistoryPage.cpp">
       <Filter>widget\Setting\ChatBot</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\SoundBot\WSoundBotMainUi.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\WRobotPage.cpp">
+      <Filter>widget\Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\WInvitePage.cpp">
+      <Filter>widget\Setting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -302,6 +308,9 @@
     </QtUic>
     <QtUic Include="widget\Setting\ChatBot\WHistoryPage.ui">
       <Filter>widget\Setting\ChatBot</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\SoundBot\WSoundBotMainUi.ui">
+      <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -451,6 +460,9 @@
     </QtMoc>
     <QtMoc Include="widget\Setting\ChatBot\WHistoryPage.h">
       <Filter>widget\Setting\ChatBot</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\SoundBot\WSoundBotMainUi.h">
+      <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

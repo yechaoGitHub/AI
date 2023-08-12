@@ -16,7 +16,13 @@ public:
 		Bar_Team,
 		Bar_Tools,
 		Bar_Lib,
-		Bar_History
+		Bar_History,
+		Sound_Page1,
+		Sound_Page2,
+		Sound_Page3,
+		Sound_Page4,
+		Sound_Page5,
+		Sound_Page6
 	};
 
 	void initBar(const QString& text, BarType bar_type);

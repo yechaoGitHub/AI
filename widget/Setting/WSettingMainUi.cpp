@@ -42,6 +42,10 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
         this->setFixedSize(664, 490);
         ui.stackedWidget->setCurrentWidget(ui.select_widget);
         });
+    connect(ui.soundbot_page, &WSoundBotMainUi::sig_soundBack, this, [this] {
+        this->setFixedSize(664, 490);
+        ui.stackedWidget->setCurrentWidget(ui.select_widget);
+        });
 }
 
 WSettingMainUi::~WSettingMainUi()

@@ -15,24 +15,48 @@ WNavbarButton::~WNavbarButton()
 
 void WNavbarButton::initBar(const QString& text, BarType bar_type)
 {
-	if (bar_type == BarType::Bar_Account) {
+	switch (bar_type)
+	{
+	case WNavbarButton::Bar_Account:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/account.png");
-	}
-	else if (bar_type == BarType::Bar_Help) {
+		break;
+	case WNavbarButton::Bar_Help:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/help.png");
-	}
-	else if (bar_type == BarType::Bar_Team) {
+		break;
+	case WNavbarButton::Bar_Team:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/team.png");
-	}
-	else if (bar_type == BarType::Bar_Tools) {
+		break;
+	case WNavbarButton::Bar_Tools:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/tools.png");
-	}
-	else if (bar_type == BarType::Bar_Lib) {
+		break;
+	case WNavbarButton::Bar_Lib:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/chatbot/lib_icon.png");
-	}
-	else if (bar_type == BarType::Bar_History) {
+		break;
+	case WNavbarButton::Bar_History:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/chatbot/history_icon.png");
+		break;
+	case WNavbarButton::Sound_Page1:
+		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/soundbot/source_icon.png");
+		break;
+	case WNavbarButton::Sound_Page2:
+		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/soundbot/transl_icon.png");
+		break;
+	case WNavbarButton::Sound_Page3:
+		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/soundbot/voice_icon.png");
+		break;
+	case WNavbarButton::Sound_Page4:
+		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/soundbot/my_voice.png");
+		break;
+	case WNavbarButton::Sound_Page5:
+		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/soundbot/speech_icon.png");
+		break;
+	case WNavbarButton::Sound_Page6:
+		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/soundbot/historical.png");
+		break;
+	default:
+		break;
 	}
+
 	m_strText = text;
 
 	QFontMetrics fm(this->font());
