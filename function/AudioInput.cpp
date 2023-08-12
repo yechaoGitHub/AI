@@ -35,6 +35,27 @@ void AudioInput::Initialize()
 #endif
 }
 
+void AudioInput::Initialize(const QAudioDeviceInfo& info)
+{
+    QAudioFormat auidoFormat;
+    auidoFormat.setSampleRate(16000);
+    auidoFormat.setChannelCount(1);
+    auidoFormat.setSampleSize(16);
+    auidoFormat.setCodec("audio/pcm");
+    auidoFormat.setByteOrder(QAudioFormat::LittleEndian);
+    auidoFormat.setSampleType(QAudioFormat::UnSignedInt);
+
+    _audioInput = new QAudioInput(info, auidoFormat, this);
+    _audioInput->setBufferSize(1280);
+
+    connect(this, &AudioInput::start_mic, this, &AudioInput::StartMicInternal);
+    connect(this, &AudioInput::end_mic, this, &AudioInput::EndMicInternal);
+    this->moveToThread(&_workThread);
+#ifdef MONITOR_MIC
+    _audioOutput.Initialize();
+#endif
+}
+
 void AudioInput::Uninitialize()
 {
     if (_workThread.isRunning())

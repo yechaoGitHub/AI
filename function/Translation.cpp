@@ -29,10 +29,12 @@ void Translation::Initialize()
     QObject::connect(&_webSocket, &QWebSocket::textMessageReceived, this, &Translation::TranslateTextMessageReceived);
     this->moveToThread(&_workThread);
 
-    _audio.Initialize();
+    _audioInput.Initialize();
+    _audioOutput.Initialize();
     QObject::connect(this, &Translation::connect, this, &Translation::ConnectInternal);
     QObject::connect(this, &Translation::disconnect, this, &Translation::DisconnectInternal);
-    QObject::connect(&_audio, &AudioInput::audioInput, this, &Translation::ReceiveAudioInput);
+    QObject::connect(&_audioInput, &AudioInput::audioInput, this, &Translation::ReceiveAudioInput);
+    QObject::connect(&_audioMonitor, &AudioInput::audioInput, this, &Translation::ReceiveMonitorAudioInput);
 }
 
 void Translation::Uninitialize()
@@ -42,13 +44,13 @@ void Translation::Uninitialize()
         Disconnect();
     }
 
-    _audio.Uninitialize();
+    _audioInput.Uninitialize();
 }
 
-void Translation::Connect(const QString& token, const QString& srcLan, const QString& destLan)
+void Translation::Connect(const QString& token, const QString& srcLan, const QString& destLan, TransType type, const QString& speaker, bool enableConvGuide, SystemLanguage language)
 {
     _workThread.start();
-    emit connect(token, srcLan, destLan);
+    emit connect(token, srcLan, destLan, type, speaker, enableConvGuide, language);
 }
 
 void Translation::Disconnect()
@@ -60,7 +62,7 @@ void Translation::Disconnect()
     }
 }
 
-void Translation::ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan)
+void Translation::ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, TransType type, const QString& speaker, bool enableConvGuide, SystemLanguage language)
 {
     QUrl url{ "ws://47.106.253.9:9501/service/v1/st" };
     QUrlQuery quurl;
@@ -69,6 +71,10 @@ void Translation::ConnectInternal(const QString& token, const QString& srcLan, c
 
     _srcLan = srcLan;
     _destLan = destLan;
+    _transType = type;
+    _speaker = speaker;
+    _isConvGuide = enableConvGuide;
+    _language = language;
 
     auto str = url.toString();
     _webSocket.open(url);
@@ -79,14 +85,36 @@ void Translation::DisconnectInternal()
     killTimer(_heartBeatTimer);
     _heartBeatTimer = 0;
 
-    _audio.EndMic();
+    _audioInput.EndMic();
     SendFinish();
     _webSocket.close();
 }
 
 void Translation::StartListen()
 {
-    _audio.StartMic();
+    _audioInput.StartMic();
+}
+
+void Translation::EnableAudio(bool enable)
+{
+    if (enable)
+    {
+        _audioInput.StartMic();
+        if (_isConvGuide)
+        {
+            _audioMonitor.StartMic();
+            _audioOutput.StartSpeaker();
+        }
+    }
+    else
+    {
+        _audioInput.EndMic();
+        if (_isConvGuide)
+        {
+            _audioMonitor.EndMic();
+            _audioOutput.EndSpeaker();
+        }
+    }
 }
 
 void Translation::SendParam()
@@ -95,7 +123,30 @@ void Translation::SendParam()
     dataobj.insert("type", "START");
     dataobj.insert("from", _srcLan);
     dataobj.insert("to", _destLan);
-    dataobj.insert("transType", "1");
+    switch (_transType)
+    {
+        case Translation::TRANSTYPE_NORMAL:
+            dataobj.insert("transType", "2");
+        break;
+
+        case Translation::TRANSTYPE_HIGH_PRECISION:
+            dataobj.insert("transType", "1");
+        break;
+    }
+
+    dataobj.insert("ttsSpeaker", _speaker);
+    dataobj.insert("isConvGuide", _isConvGuide ? 1 : 0);
+
+    switch (_language)
+    {
+        case Translation::SYSTEM_LANGUAGE_CHS:
+            dataobj.insert("systemLanguaue", "zh-cn");
+        break;
+
+        case Translation::SYSTEM_LANGUAGE_EN:
+            dataobj.insert("systemLanguaue", "en_us");
+        break;
+    }
 
     QJsonDocument document;
     document.setObject(dataobj);
@@ -156,8 +207,6 @@ void Translation::TranslateTextMessageReceived(const QString& message)
         auto status = document["data"]["status"].toString();
         if (status == "TRAN")
         {
-            qDebug() << message << "\n";
-
             auto obj = document["data"]["result"].toObject();
             auto dst = obj["dst"].toString();
             auto src = obj["src"].toString();
@@ -174,6 +223,25 @@ void Translation::TranslateTextMessageReceived(const QString& message)
             }
 
             emit translationReceived(src, dst, iType);
+        }
+
+        if (status == "CG")
+        {
+            auto obj = document["data"]["result"].toObject();
+            auto type = obj["type"].toString();
+            auto message = obj["message"].toString();
+
+            TranslationType iType{};
+            if (type == "FIN")
+            {
+                iType = FIN;
+            }
+            else if (type == "MID")
+            {
+                iType = MID;
+            }
+
+            emit conversationGuideReceived(message, iType);
         }
     }
 }
@@ -197,6 +265,22 @@ void Translation::ReceiveAudioInput(QByteArray data)
 
     QJsonObject dataobj;
     dataobj.insert("audio", data64);
+    dataobj.insert("type", "RESULT");
+
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray byteArray = document.toJson(QJsonDocument::Compact);
+    _webSocket.sendTextMessage(byteArray);
+}
+
+void Translation::ReceiveMonitorAudioInput(QByteArray data)
+{
+    auto hex = data.toBase64();
+
+    QString data64{ hex };
+
+    QJsonObject dataobj;
+    dataobj.insert("selfAudio", data64);
     dataobj.insert("type", "RESULT");
 
     QJsonDocument document;

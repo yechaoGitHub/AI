@@ -86,6 +86,9 @@ public:
     const std::vector<TranslationLanguage>& GetTranslationSrourceListData();
     const std::vector<TranslationLanguage>& GetTranslationDestListData();
     const std::vector<VoiceData>& GetVoiceData();
+    std::vector<QAudioDeviceInfo> GetInputDeviceList();
+    std::vector<QAudioDeviceInfo> GetOutputDeviceList();
+
 #pragma endregion
 
 #pragma region ≤‚ ‘

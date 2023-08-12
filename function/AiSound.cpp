@@ -312,6 +312,18 @@ const std::vector<VoiceData>& AiSound::GetVoiceData()
     return _voiceData;
 }
 
+std::vector<QAudioDeviceInfo> AiSound::GetInputDeviceList()
+{
+    auto list = QAudioDeviceInfo::availableDevices(QAudio::AudioInput);
+    return list.toVector().toStdVector();
+}
+
+std::vector<QAudioDeviceInfo> AiSound::GetOutputDeviceList()
+{
+    auto list = QAudioDeviceInfo::availableDevices(QAudio::AudioOutput);
+    return list.toVector().toStdVector();
+}
+
 void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
 {
     HttpCallbackPacketRaw* packetRaw = dynamic_cast<HttpCallbackPacketRaw*>(reply->userData(Qt::UserRole));

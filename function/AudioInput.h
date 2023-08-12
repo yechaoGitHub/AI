@@ -16,6 +16,7 @@ public:
     ~AudioInput();
 
     void Initialize();
+    void Initialize(const QAudioDeviceInfo& info);
     void Uninitialize();
 
     void StartMic();

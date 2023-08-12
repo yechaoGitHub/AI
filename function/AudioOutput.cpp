@@ -30,6 +30,25 @@ void AudioOutput::Initialize()
     this->moveToThread(&_workThread);
 }
 
+void AudioOutput::Initialize(const QAudioDeviceInfo& info)
+{
+    QAudioFormat auidoFormat;
+    auidoFormat.setSampleRate(16000);
+    auidoFormat.setChannelCount(1);
+    auidoFormat.setSampleSize(16);
+    auidoFormat.setCodec("audio/pcm");
+    auidoFormat.setByteOrder(QAudioFormat::LittleEndian);
+    auidoFormat.setSampleType(QAudioFormat::SignedInt);
+
+    _audioOutput = new QAudioOutput{ info, auidoFormat, this };
+    _audioOutput->setBufferSize(1280);
+
+    connect(this, &AudioOutput::start_speaker, this, &AudioOutput::StartSpeakerInternal);
+    connect(this, &AudioOutput::end_speaker, this, &AudioOutput::EndSpeakerInternal);
+    connect(this, &AudioOutput::write_output_data, this, &AudioOutput::WriteOutputDataInternal);
+    this->moveToThread(&_workThread);
+}
+
 void AudioOutput::Uninitialize()
 {
     if (_workThread.isRunning())
