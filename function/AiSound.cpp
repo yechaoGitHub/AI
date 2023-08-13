@@ -13,6 +13,8 @@
 #include <QUrlQuery>
 #include <QAudioInput>
 #include <QDesktopWidget>
+#include <QApplication>
+#include <QTranslator>
 
 #include <Windows.h>
 #include <thread>
@@ -20,7 +22,8 @@
 
 AiSound AiSound::INSTANCE;
 
-AiSound::AiSound()
+AiSound::AiSound() :
+    _sysLanguage{ LanguageType::EN }
 {
 
 }
@@ -323,6 +326,35 @@ std::vector<QAudioDeviceInfo> AiSound::GetOutputDeviceList()
 {
     auto list = QAudioDeviceInfo::availableDevices(QAudio::AudioOutput);
     return list.toVector().toStdVector();
+}
+
+void AiSound::SwitchLanguage(LanguageType type)
+{
+    if (type == _sysLanguage)
+    {
+        return;
+    }
+
+    _sysLanguage = type;
+
+    auto app = static_cast<QApplication*>(QCoreApplication::instance());
+    QTranslator translator;
+    switch (type)
+    {
+        case LanguageType::EN:
+            translator.load("en.qm");
+        break;
+
+        case LanguageType::CHS:
+            translator.load("zh_CN.qm");
+        break;
+    }
+    app->installTranslator(&translator);
+}
+
+LanguageType AiSound::GetSystemLanguage()
+{
+    return _sysLanguage;
 }
 
 void AiSound::HttpCallbackDispatch(QNetworkReply* reply)

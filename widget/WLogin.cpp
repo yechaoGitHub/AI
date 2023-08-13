@@ -1,4 +1,5 @@
 #include "WLogin.h"
+#include "AiSound.h"
 
 WLogin::WLogin(QWidget* parent) :
     QWidget{ parent },
@@ -7,6 +8,10 @@ WLogin::WLogin(QWidget* parent) :
     loginOpt{ nullptr }
 {
     ui.setupUi(this);
+    ui.lbLanguage->setPixmap(QPixmap{":/QtTest/icon/Speech/Language.png"});
+    ui.btLanguageText->setText("English");
+
+    connect(ui.btLanguageText, &QPushButton::clicked, this, &WLogin::LanguageClicked);
 
     userNameLogin = new WUserNameLogin{ this };
     mobileLogin = new WMobileLogin{ this };
@@ -43,22 +48,48 @@ QString WLogin::Password()
     return userNameLogin->passwordEdit->text();
 }
 
+void WLogin::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+
+    }
+
+    QWidget::changeEvent(event);
+}
+
 void WLogin::TitleChanged(WLoginSwitch::ETitle title)
 {
     _cur_login_title = title;
-    if (title == WLoginSwitch::ETitle::userName) 
+    if (title == WLoginSwitch::ETitle::userName)
     {
         mobileLogin->hide();
         userNameLogin->move(0, 296);
         loginOpt->move(0, 520);
         userNameLogin->show();
     }
-    else 
+    else
     {
         userNameLogin->hide();
         mobileLogin->move(0, 296);
         loginOpt->move(0, 621);
         mobileLogin->show();
+    }
+}
+
+void WLogin::LanguageClicked()
+{
+    auto& ins = AiSound::GetInstance();
+
+    switch (ins.GetSystemLanguage())
+    {
+        case LanguageType::EN:
+            ins.SwitchLanguage(LanguageType::CHS);
+        break;
+
+        case LanguageType::CHS:
+            ins.SwitchLanguage(LanguageType::EN);
+        break;
     }
 }
 

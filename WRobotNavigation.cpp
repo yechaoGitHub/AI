@@ -3,11 +3,11 @@
 
 
 WRobotNavigation::WRobotNavigation(QWidget *parent)
-	: FrameLessWidget(parent)
+    : FrameLessWidget(parent)
 {
-	ui.setupUi(this);
-	this->setWidgetType(true, DragType::Drag_Null, false);
-	setAttribute(Qt::WA_TranslucentBackground);
+    ui.setupUi(this);
+    this->setWidgetType(true, DragType::Drag_Null, false);
+    setAttribute(Qt::WA_TranslucentBackground);
     this->installEventFilter(this);
 
     _setting_menu = new WRobotSettingMenu(this);
@@ -81,7 +81,7 @@ bool WRobotNavigation::eventFilter(QObject* obj, QEvent* e)
                 }
             }
         }
-        
+
     }
     return false;
 }

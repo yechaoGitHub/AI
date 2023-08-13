@@ -55,7 +55,6 @@ QLabel#lb_2{
     <font>
      <family>微软雅黑</family>
      <pointsize>-1</pointsize>
-     <weight>50</weight>
      <italic>false</italic>
      <bold>false</bold>
      <stylestrategy>PreferAntialias</stylestrategy>
@@ -91,7 +90,6 @@ QLabel#lb_2{
     <font>
      <family>微软雅黑</family>
      <pointsize>-1</pointsize>
-     <weight>50</weight>
      <italic>false</italic>
      <bold>false</bold>
     </font>
@@ -116,7 +114,6 @@ QLabel#lb_2{
     <font>
      <family>微软雅黑</family>
      <pointsize>-1</pointsize>
-     <weight>50</weight>
      <italic>false</italic>
      <bold>false</bold>
      <stylestrategy>PreferAntialias</stylestrategy>
@@ -127,6 +124,49 @@ QLabel#lb_2{
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="lbLanguage">
+   <property name="geometry">
+    <rect>
+     <x>520</x>
+     <y>885</y>
+     <width>16</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btLanguageText">
+   <property name="geometry">
+    <rect>
+     <x>536</x>
+     <y>880</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>-1</pointsize>
+     <italic>false</italic>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="flat">
+    <bool>true</bool>
    </property>
   </widget>
  </widget>

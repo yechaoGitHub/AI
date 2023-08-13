@@ -5,6 +5,8 @@ enum TranslationType { MID, FIN };
 
 enum class FunctionType { Translation, VoiceCompositor, ChatBot };
 
+enum class LanguageType { EN, CHS };
+
 struct TranslationLanguage
 {
     QString name;

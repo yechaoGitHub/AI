@@ -1,4 +1,5 @@
 #include "SettingInterfaceBussiness.h"
+#include "AiSound.h"
 #include "base/HttpClient.h"
 #include "base/GlobalSetting.h"
 

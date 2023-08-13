@@ -88,6 +88,8 @@ public:
     const std::vector<VoiceData>& GetVoiceData();
     std::vector<QAudioDeviceInfo> GetInputDeviceList();
     std::vector<QAudioDeviceInfo> GetOutputDeviceList();
+    void SwitchLanguage(LanguageType type);
+    LanguageType GetSystemLanguage();
 
 #pragma endregion
 
@@ -133,6 +135,7 @@ private:
     };
 
     static AiSound                      INSTANCE;
+    LanguageType                        _sysLanguage;
 
     std::list<QString>                  _ltMsg;
     QString                             _token;

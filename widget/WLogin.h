@@ -21,8 +21,13 @@ public:
     WClickedLabel*  registerLabel;
     WButton*        loginBtn;
 
+protected:
+    void changeEvent(QEvent* event) override;
+
 private:
     void TitleChanged(WLoginSwitch::ETitle title);
+
+    void LanguageClicked();
 
     Ui::Login       ui;
     WUserNameLogin* userNameLogin;

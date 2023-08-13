@@ -44,7 +44,7 @@ WLoginFrame::WLoginFrame(QWidget *parent)
 
     //ui.centralWidget->setStyleSheet("color:rgba(255,255,255,1)");
     //ui.centralWidget->setAutoFillBackground(true);
-    
+
     //QFile f1;
     //f1.setFileName("./main.css");
     //f1.open(QIODevice::ReadOnly);
@@ -109,8 +109,8 @@ WLoginFrame::WLoginFrame(QWidget *parent)
 
     //_client->open(request);
     //_client->sendTextMessage("{\"password\":\"qwert12345\", \"username\":\"cxm_test\" }");
-    
-    //QJsonObject dataobj;          
+
+    //QJsonObject dataobj;
 
     //dataobj.insert("password", "qwert12345");
     //dataobj.insert("username", "cxm_test");
@@ -173,12 +173,12 @@ void WLoginFrame::LoginBtnClicked()
     {
         auto& ins = AiSound::GetInstance();
 
-        if (code == 200) 
+        if (code == 200)
         {
             ins.ShowTranslationWindow();
-            
+
         }
-        else 
+        else
         {
             ins.ShowTip(msg);
         }

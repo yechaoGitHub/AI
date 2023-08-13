@@ -263,6 +263,20 @@
     <ClInclude Include="base\HttpClient.h" />
     <ClInclude Include="base\httplib.h" />
   </ItemGroup>
+  <ItemGroup>
+    <QtTranslation Include="ts\zh_CN.ts">
+      <BuildAction Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">lupdate_lrelease</BuildAction>
+      <QmOutputDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)</QmOutputDir>
+    </QtTranslation>
+    <QtTranslation Include="ts\en.ts">
+      <BuildAction Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">lupdate_lrelease</BuildAction>
+      <QmOutputDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)</QmOutputDir>
+    </QtTranslation>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="en.qm" />
+    <None Include="zh_CN.qm" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />

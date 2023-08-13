@@ -563,4 +563,20 @@
       <Filter>function\Bussiness</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <QtTranslation Include="ts\zh_CN.ts">
+      <Filter>Translation Files</Filter>
+    </QtTranslation>
+    <QtTranslation Include="ts\en.ts">
+      <Filter>Translation Files</Filter>
+    </QtTranslation>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="en.qm">
+      <Filter>Translation Files</Filter>
+    </None>
+    <None Include="zh_CN.qm">
+      <Filter>Translation Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
