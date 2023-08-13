@@ -57,6 +57,9 @@
     <Filter Include="widget\Setting\SoundBot">
       <UniqueIdentifier>{dcf21d1c-3a69-4eea-b759-1ebdd77da362}</UniqueIdentifier>
     </Filter>
+    <Filter Include="function\Bussiness">
+      <UniqueIdentifier>{a6085f38-79f9-4e5a-974a-53d5225df5b4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="AiSound.qrc">
@@ -243,6 +246,9 @@
     </ClCompile>
     <ClCompile Include="widget\Setting\SoundBot\WMyVoiceModel.cpp">
       <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
+    <ClCompile Include="function\Bussiness\SettingInterfaceBussiness.cpp">
+      <Filter>function\Bussiness</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -536,6 +542,9 @@
     <QtMoc Include="widget\Setting\SoundBot\WMyVoiceModel.h">
       <Filter>widget\Setting\SoundBot</Filter>
     </QtMoc>
+    <QtMoc Include="function\Bussiness\SettingInterfaceBussiness.h">
+      <Filter>function\Bussiness</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\HttpClient.h">
@@ -549,6 +558,9 @@
     </ClInclude>
     <ClInclude Include="base\GlobalSetting.h">
       <Filter>Source Files\base</Filter>
+    </ClInclude>
+    <ClInclude Include="function\Bussiness\Define.h">
+      <Filter>function\Bussiness</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

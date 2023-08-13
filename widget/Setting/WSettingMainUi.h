@@ -13,6 +13,8 @@ public:
 	WSettingMainUi(QWidget *parent = nullptr);
 	~WSettingMainUi();
 
+	void Show();
+
 protected:
 	void paintEvent(QPaintEvent*) override;
 

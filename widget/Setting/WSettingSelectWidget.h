@@ -2,6 +2,7 @@
 
 #include <QWidget>
 #include "ui_WSettingSelectWidget.h"
+#include "function/Bussiness/Define.h"
 
 
 class WSettingSelectWidget : public QWidget
@@ -14,11 +15,15 @@ public:
 	WSettingSelectWidget(QWidget *parent = nullptr);
 	~WSettingSelectWidget();
 
+	void initData();
+
 private slots:
 	void on_pb_account_clicked();
 	void on_pb_help_clicked();
 	void on_pb_team_clicked();
 	void on_pb_tools_clicked();
+
+	void slot_getUserInfoReplay(bool, int, const QString& msg, const stru_UserInfo& user_info);
 private:
 	void changeSelectBtn(WNavbarButton::BarType type);
 

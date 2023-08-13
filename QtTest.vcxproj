@@ -102,6 +102,7 @@
     <ClCompile Include="function\AiSound.cpp" />
     <ClCompile Include="function\AudioInput.cpp" />
     <ClCompile Include="function\AudioOutput.cpp" />
+    <ClCompile Include="function\Bussiness\SettingInterfaceBussiness.cpp" />
     <ClCompile Include="function\ChatBot.cpp" />
     <ClCompile Include="function\Translation.cpp" />
     <ClCompile Include="function\VoiceCompositor.cpp" />
@@ -225,6 +226,8 @@
     <QtMoc Include="function\ChatBot.h" />
     <ClInclude Include="base\GlobalSetting.h" />
     <QtMoc Include="function\AudioOutput.h" />
+    <QtMoc Include="function\Bussiness\SettingInterfaceBussiness.h" />
+    <ClInclude Include="function\Bussiness\Define.h" />
     <ClInclude Include="function\VoiceType.h" />
     <QtMoc Include="widget\chat\WRobotChatMainUI.h" />
     <QtMoc Include="widget\chat\WRobotChat.h" />

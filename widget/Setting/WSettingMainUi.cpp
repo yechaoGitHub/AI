@@ -36,7 +36,6 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
             this->setFixedSize(852, 830);
             ui.stackedWidget->setCurrentWidget(ui.soundbot_page);
         }
-
     });
 
     connect(ui.chatbot_page, &WChatBotMainUI::sig_chatBotBack, this, [this] {
@@ -51,6 +50,12 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
 
 WSettingMainUi::~WSettingMainUi()
 {}
+
+void WSettingMainUi::Show()
+{
+    show();
+    ui.select_widget->initData();
+}
 
 void WSettingMainUi::paintEvent(QPaintEvent*)
 {

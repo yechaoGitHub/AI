@@ -2,6 +2,7 @@
 
 #include "WTranslationSelect.h"
 #include "WTransaltionMain.h"
+#include "base/GlobalSetting.h"
 
 #include <QJsonDocument>
 #include <QJsonParseError>
@@ -248,7 +249,7 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
         }
     }
     else if (type == Navig_Type::System_Set) {
-        _set_main->show();
+        _set_main->Show();
     }
 }
 
@@ -517,6 +518,7 @@ void AiSound::UserLoginCallbackInternal(int code, const QString& msg, const QStr
     if (code == 200)
     {
         _token = token;
+        SETTING.setToken(token);
         FillTranslationFillList();
     }
 }

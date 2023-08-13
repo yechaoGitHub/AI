@@ -1,4 +1,6 @@
 #include "WSettingSelectWidget.h"
+#include "function/Bussiness/SettingInterfaceBussiness.h"
+
 
 WSettingSelectWidget::WSettingSelectWidget(QWidget *parent)
 	: QWidget(parent)
@@ -14,10 +16,23 @@ WSettingSelectWidget::WSettingSelectWidget(QWidget *parent)
 	connect(ui.robot_page, &WRobotPage::sig_robot_clicked, this, [=](int is_robot) {
 		emit sig_robot_clicked(is_robot);
 		});
+	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_getUserInfoReplay,this, &WSettingSelectWidget::slot_getUserInfoReplay);
 }
 
 WSettingSelectWidget::~WSettingSelectWidget()
 {}
+
+void WSettingSelectWidget::initData()
+{
+	SettingInterfaceBussiness::getInstance()->getUserInfoReq();
+}
+
+void WSettingSelectWidget::slot_getUserInfoReplay(bool success, int code, const QString& msg, const stru_UserInfo& user_info)
+{
+	if (success && code == netCode::Success) {
+
+	}
+}
 
 void WSettingSelectWidget::on_pb_account_clicked()
 {

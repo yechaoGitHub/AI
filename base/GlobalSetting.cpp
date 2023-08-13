@@ -9,7 +9,7 @@ GlobalSetting SETTING;
 
 GlobalSetting::GlobalSetting()
 {
-    
+
 }
 
 GlobalSetting::~GlobalSetting()
@@ -25,7 +25,7 @@ bool GlobalSetting::init(const QString& path)
     if (m_pSettings)
         return false;
     m_pSettings = new QSettings(path, QSettings::IniFormat);
-    if (m_pSettings) 
+    if (m_pSettings)
         return true;
     return false;
 }
@@ -33,6 +33,23 @@ bool GlobalSetting::init(const QString& path)
 QString GlobalSetting::getRootLocalPath()
 {
     return QStandardPaths::standardLocations(QStandardPaths::AppConfigLocation).first();
+}
+
+QString GlobalSetting::getHostAddress()
+{
+    if (!m_pSettings)
+        return QString();
+    return m_pSettings->value("Login/hostAddress", "http://47.106.253.9:9101").toString();
+}
+
+void GlobalSetting::setToken(const QString& token)
+{
+    m_strToken = token;
+}
+
+QString GlobalSetting::getToken()
+{
+    return m_strToken;
 }
 
 QString GlobalSetting::getUserName()
