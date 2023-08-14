@@ -19,6 +19,7 @@
 #include <Windows.h>
 #include <thread>
 
+#include "base/HttpClient.h"
 
 AiSound AiSound::INSTANCE;
 
@@ -34,7 +35,10 @@ AiSound::~AiSound()
 
 void AiSound::Initialize()
 {
-    connect(&_networkAccess, &QNetworkAccessManager::finished, this, &AiSound::HttpCallbackDispatch);
+    _httpAsync.Initialize();
+    connect(&_httpAsync, &HttpAsync::httpRespond, this, &AiSound::HttpCallbackDispatch);
+
+    //connect(&_networkAccess, &QNetworkAccessManager::finished, this, &AiSound::HttpCallbackDispatch);
 
     _wLoginFrame = new WLoginUI{};
     _wTranslationSelect = new WTranslationSelect{};
@@ -70,143 +74,116 @@ AiSound& AiSound::GetInstance()
 
 void AiSound::PasswordLogin(const QString& userName, const QString& password, PasswordLoginCallback callback)
 {
-    QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/user/loginByPwd" });
-    request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
-
-    QJsonObject dataobj;
-
-   dataobj.insert("password", password);
-   dataobj.insert("username", userName);
-
-   QJsonDocument document;
-   document.setObject(dataobj);
-   QByteArray byte_array = document.toJson(QJsonDocument::Compact);
+    QJsonObject dataObj;
+    dataObj.insert("password", password);
+    dataObj.insert("username", userName);
 
     auto packet = new HttpCallbackPacket<PasswordLoginCallbackType>();
     packet->type = httpPasswordLogin;
     packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
 
-    auto reply = _networkAccess.post(request, byte_array);
-    reply->setUserData(Qt::UserRole, packet);
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/user/loginByPwd", dataObj, headers, userParam);
 }
 
 void AiSound::GetVerifyCode(GetVerifyCodeCallback callback)
 {
-    QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/common/getImgVerifyCode" });
-    request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
-
-    QJsonObject dataobj;
-    dataobj.insert("moduleType", "login");
-
-    QJsonDocument document;
-    document.setObject(dataobj);
-    QByteArray byte_array = document.toJson(QJsonDocument::Compact);
-
     auto packet = new HttpCallbackPacket<GetVerifyCodeCallbackType>();
     packet->type = httpGetVerifyCode;
     packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
 
-    auto reply = _networkAccess.post(request, byte_array);
-    reply->setUserData(Qt::UserRole, packet);
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/common/getImgVerifyCode", {}, headers, userParam);
 }
 
 void AiSound::Register(const QString& userName, const QString& password, const QString& dialingCode, const QString& phoneNumber, const QString& verifyCode, RegisterCallback callback)
 {
-    QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/user/register"});
-    request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
-
-    QJsonObject dataobj;
-    dataobj.insert("moduleType", "register");
-    dataobj.insert("username", userName);
-    dataobj.insert("password", password);
-    dataobj.insert("rePassword", password);
-    dataobj.insert("dialingCode", dialingCode);
-    dataobj.insert("mobileNumber", phoneNumber);
-    dataobj.insert("verifyCode", verifyCode);
-
-    QJsonDocument document;
-    document.setObject(dataobj);
-    QByteArray byte_array = document.toJson(QJsonDocument::Compact);
+    QJsonObject dataObj;
+    dataObj.insert("moduleType", "register");
+    dataObj.insert("username", userName);
+    dataObj.insert("password", password);
+    dataObj.insert("rePassword", password);
+    dataObj.insert("dialingCode", dialingCode);
+    dataObj.insert("mobileNumber", phoneNumber);
+    dataObj.insert("verifyCode", verifyCode);
 
     auto packet = new HttpCallbackPacket<RegisterCallbackType>();
     packet->type = httpRegister;
     packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
 
-    auto reply = _networkAccess.post(request, byte_array);
-    reply->setUserData(Qt::UserRole, packet);
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/user/register", dataObj, headers, userParam);
 }
 
 void AiSound::SendVerifyCode(const QString& dCode, const QString& mobileNumber, const QString& verifyCode, const QString& uuid, SendVerifyCodeCallback callback)
 {
-    QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/user/sendSmsVerifyCode" });
-    request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
-
-    QJsonObject dataobj;
-    dataobj.insert("moduleType", "login");
-    dataobj.insert("mobileNumber", mobileNumber);
-    dataobj.insert("dialingCode", dCode);
-    dataobj.insert("imgVerifyCode", verifyCode);
-    dataobj.insert("uuid", uuid);
-
-    QJsonDocument document;
-    document.setObject(dataobj);
-    QByteArray byte_array = document.toJson(QJsonDocument::Compact);
+    QJsonObject dataObj;
+    dataObj.insert("moduleType", "login");
+    dataObj.insert("mobileNumber", mobileNumber);
+    dataObj.insert("dialingCode", dCode);
+    dataObj.insert("imgVerifyCode", verifyCode);
+    dataObj.insert("uuid", uuid);
 
     auto packet = new HttpCallbackPacket<SendVerifyCodeCallbackType>();
     packet->type = httpSendVerifyCode;
     packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
 
-    auto reply = _networkAccess.post(request, byte_array);
-    reply->setUserData(Qt::UserRole, packet);
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/user/sendSmsVerifyCode", dataObj, headers, userParam);
 }
 
 void AiSound::GetTranslationSrourceList(GetTranslationSourceListCallback callback)
 {
-    QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/config/getSourceLanguaueList" });
-    request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
-    request.setRawHeader("access_token", _token.toUtf8());
-
     auto packet = new HttpCallbackPacket<GetTranslationSourceListCallbackType>();
     packet->type = httpGetTranslationSource;
     packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
 
-    auto reply = _networkAccess.post(request, QByteArray{});
-    reply->setUserData(Qt::UserRole, packet);
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("access_token", _token.toUtf8());
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/config/getSourceLanguaueList", {}, headers, userParam);
 }
 
 void AiSound::GetTranslationDestList(GetTranslationDestListCallback callback)
 {
-    QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/config/getTargetLanguaueList" });
-    request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
-    request.setRawHeader("access_token", _token.toUtf8());
-
     auto packet = new HttpCallbackPacket<GetTranslationSourceListCallbackType>();
     packet->type = httpGetTranslationDest;
     packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
 
-    auto reply = _networkAccess.post(request, QByteArray{});
-    reply->setUserData(Qt::UserRole, packet);
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("access_token", _token.toUtf8());
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/config/getTargetLanguaueList", {}, headers, userParam);
 }
 
 void AiSound::GetVoiceSpeaker(GetVoiceSpeakerCallback callback)
 {
-    QNetworkRequest request;
-    request.setUrl(QUrl{ "http://47.106.253.9:9101/api/config/getSpeakers" });
-    request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
-    request.setRawHeader("access_token", _token.toUtf8());
-
     auto packet = new HttpCallbackPacket<GetVoiceSpeakerCallbackType>();
     packet->type = httpGetVoiceSpeakerCallback;
     packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
 
-    auto reply = _networkAccess.post(request, QByteArray{});
-    reply->setUserData(Qt::UserRole, packet);
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("access_token", _token.toUtf8());
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/config/getSpeakers", {}, headers, userParam);
 }
 
 void AiSound::ShowLoginFrame()
@@ -357,21 +334,11 @@ LanguageType AiSound::GetSystemLanguage()
     return _sysLanguage;
 }
 
-void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
+void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const QString& content, QVariant userParam)
 {
-    HttpCallbackPacketRaw* packetRaw = dynamic_cast<HttpCallbackPacketRaw*>(reply->userData(Qt::UserRole));
-    if (!packetRaw)
-    {
-        do
-        {
-            std::this_thread::yield();
-            packetRaw = dynamic_cast<HttpCallbackPacketRaw*>(reply->userData(Qt::UserRole));
-        }
-        while (!packetRaw);
-    }
-    reply->setUserData(Qt::UserRole, nullptr);
+    HttpCallbackPacketRaw* packetRaw = userParam.value<HttpCallbackPacketRaw*>();
 
-    auto data = reply->readAll();
+    auto data = content.toUtf8();
 
     switch (packetRaw->type)
     {
@@ -504,9 +471,160 @@ void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
         default:
         break;
     }
-    reply->deleteLater();
+
     delete packetRaw;
 }
+
+//void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
+//{
+//    HttpCallbackPacketRaw* packetRaw = dynamic_cast<HttpCallbackPacketRaw*>(reply->userData(Qt::UserRole));
+//    if (!packetRaw)
+//    {
+//        do
+//        {
+//            std::this_thread::yield();
+//            packetRaw = dynamic_cast<HttpCallbackPacketRaw*>(reply->userData(Qt::UserRole));
+//        }
+//        while (!packetRaw);
+//    }
+//    reply->setUserData(Qt::UserRole, nullptr);
+//
+//    auto data = reply->readAll();
+//
+//    switch (packetRaw->type)
+//    {
+//        case httpPasswordLogin:
+//        {
+//            QJsonParseError err_rpt;
+//            auto document = QJsonDocument::fromJson(data, &err_rpt);
+//            int code = document["code"].toInt();
+//            QString token = document["data"]["accessToken"].toString();
+//            QString msg = document["msg"].toString();
+//
+//            auto packet = dynamic_cast<HttpCallbackPacket<PasswordLoginCallbackType>*>(packetRaw);
+//            UserLoginCallbackInternal(code, msg, token);
+//            packet->callback(code, msg, token);
+//        }
+//        break;
+//
+//        case httpGetVerifyCode:
+//        {
+//            //QJsonParseError err_rpt;
+//            //auto document = QJsonDocument::fromJson(data, &err_rpt);
+//            //int code = document["code"].toInt();
+//            //QString msg = document["msg"].toString();
+//            //QString img = document["data"]["img"].toString();
+//            //QString uuid = document["data"]["uuid"].toString();
+//
+//            //auto packet = dynamic_cast<HttpCallbackPacket<GetVerifyCodeCallbackType>*>(packetRaw);
+//            //packet->callback(code, msg, img, uuid);
+//        }
+//        break;
+//
+//        case httpRegister:
+//        {
+//            QJsonParseError err_rpt;
+//            auto document = QJsonDocument::fromJson(data, &err_rpt);
+//            int code = document["code"].toInt();
+//            QString msg = document["msg"].toString();
+//
+//            auto packet = dynamic_cast<HttpCallbackPacket<RegisterCallbackType>*>(packetRaw);
+//            packet->callback(code, msg);
+//        }
+//        break;
+//
+//        case httpSendVerifyCode:
+//        {
+//            QJsonParseError err_rpt;
+//            auto document = QJsonDocument::fromJson(data, &err_rpt);
+//            int code = document["code"].toInt();
+//            QString msg = document["msg"].toString();
+//
+//            auto packet = dynamic_cast<HttpCallbackPacket<SendVerifyCodeCallbackType>*>(packetRaw);
+//            packet->callback(code, msg);
+//        }
+//        break;
+//
+//        case httpGetTranslationSource:
+//        {
+//            QJsonParseError err_rpt;
+//            auto document = QJsonDocument::fromJson(data, &err_rpt);
+//            int code = document["code"].toInt();
+//            QString msg = document["msg"].toString();
+//            auto data = document["data"].toArray();
+//
+//            std::vector<TranslationLanguage> vecLan;
+//            for (const auto& it : data)
+//            {
+//                TranslationLanguage lan;
+//                auto obj = it.toObject();
+//                lan.language = obj["languaue"].toString();
+//                lan.name = obj["name"].toString();
+//                lan.nameEn = obj["nameEn"].toString();
+//                vecLan.push_back(lan);
+//            }
+//
+//            auto packet = dynamic_cast<HttpCallbackPacket<GetTranslationSourceListCallbackType>*>(packetRaw);
+//            packet->callback(code, msg, std::move(vecLan));
+//        }
+//        break;
+//
+//        case httpGetTranslationDest:
+//        {
+//            QJsonParseError err_rpt;
+//            auto document = QJsonDocument::fromJson(data, &err_rpt);
+//            int code = document["code"].toInt();
+//            QString msg = document["msg"].toString();
+//            auto data = document["data"].toArray();
+//
+//            std::vector<TranslationLanguage> vecLan;
+//            for (const auto& it : data)
+//            {
+//                TranslationLanguage lan;
+//                auto obj = it.toObject();
+//                lan.language = obj["languaue"].toString();
+//                lan.name = obj["name"].toString();
+//                lan.nameEn = obj["nameEn"].toString();
+//                vecLan.push_back(lan);
+//            }
+//
+//            auto packet = dynamic_cast<HttpCallbackPacket<GetTranslationDestListCallbackType>*>(packetRaw);
+//            packet->callback(code, msg, std::move(vecLan));
+//        }
+//        break;
+//
+//        case httpGetVoiceSpeakerCallback:
+//        {
+//            QJsonParseError err_rpt;
+//            auto document = QJsonDocument::fromJson(data, &err_rpt);
+//            int code = document["code"].toInt();
+//            QString msg = document["msg"].toString();
+//
+//            std::vector<VoiceData> vecVoiceData;
+//            auto data = document["data"].toArray();
+//            for (const auto& it : data)
+//            {
+//                VoiceData data;
+//                auto obj = it.toObject();
+//                data.id = obj["id"].toInt();
+//                data.voiceCode = obj["voiceCode"].toString();
+//                data.name = obj["name"].toString();
+//                data.language = obj["language"].toInt();
+//                data.gender = obj["gender"].toInt();
+//                vecVoiceData.push_back(data);
+//            }
+//
+//            auto packet = dynamic_cast<HttpCallbackPacket<GetVoiceSpeakerCallbackType>*>(packetRaw);
+//            packet->callback(code, msg, std::move(vecVoiceData));
+//        }
+//        break;
+//
+//        default:
+//        break;
+//    }
+//    reply->deleteLater();
+//    delete packetRaw;
+//}
 
 //void AiSound::CompositorTest(const QString& token)
 //{

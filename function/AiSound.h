@@ -8,6 +8,8 @@
 #include "Translation.h"
 #include "widget/login/WLoginUI.h"
 
+#include "HttpAsync.h"
+
 #include "WTip.h"
 #include "WRobotNavigation.h"
 #include "widget/chat/WRobotChatMainUI.h"
@@ -46,6 +48,31 @@ using GetTranslationDestListCallback = std::function<GetTranslationDestListCallb
 
 using GetVoiceSpeakerCallbackType = void(int code, const QString& msg, std::vector<VoiceData> vecVoiceData);
 using GetVoiceSpeakerCallback = std::function<GetVoiceSpeakerCallbackType>;
+
+enum HttpCallEnum
+{
+    httpPasswordLogin = 1,
+    httpGetVerifyCode = 2,
+    httpRegister = 3,
+    httpSendVerifyCode = 4,
+    httpGetTranslationSource = 5,
+    httpGetTranslationDest = 6,
+    httpGetVoiceSpeakerCallback = 7
+};
+
+struct HttpCallbackPacketRaw
+{
+    virtual ~HttpCallbackPacketRaw() {};
+
+    HttpCallEnum type;
+};
+Q_DECLARE_METATYPE(HttpCallbackPacketRaw*);
+
+template<typename T>
+struct HttpCallbackPacket : public HttpCallbackPacketRaw
+{
+    std::function<T> callback;
+};
 
 class AiSound : public QObject
 {
@@ -104,35 +131,14 @@ private slots:
 
 private:
     AiSound();
-    void HttpCallbackDispatch(QNetworkReply* reply);
+    void HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const QString& content, QVariant userParam);
+
+    //void HttpCallbackDispatch(QNetworkReply* reply);
 
     void FillTranslationFillList();
     void UserLoginCallbackInternal(int code, const QString& msg, const QString& token);
     void NextMessage();
     bool AiFunctionRunning();
-
-
-    enum HttpCallEnum
-    {
-        httpPasswordLogin = 1,
-        httpGetVerifyCode = 2,
-        httpRegister = 3,
-        httpSendVerifyCode = 4,
-        httpGetTranslationSource = 5,
-        httpGetTranslationDest = 6,
-        httpGetVoiceSpeakerCallback = 7
-    };
-
-    struct HttpCallbackPacketRaw : public QObjectUserData
-    {
-        HttpCallEnum type;
-    };
-
-    template<typename T>
-    struct HttpCallbackPacket : HttpCallbackPacketRaw
-    {
-        std::function<T> callback;
-    };
 
     static AiSound                      INSTANCE;
     LanguageType                        _sysLanguage;
@@ -140,8 +146,10 @@ private:
     std::list<QString>                  _ltMsg;
     QString                             _token;
 
-    QThread                             _netThread;
-    QNetworkAccessManager               _networkAccess;
+    HttpAsync                           _httpAsync;
+
+    //QThread                             _netThread;
+    //QNetworkAccessManager               _networkAccess;
 
 #pragma region ¹¦ÄÜ
     Translation                         _translation;

@@ -52,7 +52,5 @@ private:
 #ifdef MONITOR_MIC
     AudioOutput                             _audioOutput;
 #endif
-
-
 };
 

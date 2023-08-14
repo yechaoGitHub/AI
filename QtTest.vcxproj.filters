@@ -250,6 +250,9 @@
     <ClCompile Include="function\Bussiness\SettingInterfaceBussiness.cpp">
       <Filter>function\Bussiness</Filter>
     </ClCompile>
+    <ClCompile Include="function\HttpAsync.cpp">
+      <Filter>function</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -544,6 +547,9 @@
     </QtMoc>
     <QtMoc Include="function\Bussiness\SettingInterfaceBussiness.h">
       <Filter>function\Bussiness</Filter>
+    </QtMoc>
+    <QtMoc Include="function\HttpAsync.h">
+      <Filter>function</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
