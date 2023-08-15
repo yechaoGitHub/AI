@@ -14,6 +14,7 @@ HttpAsync::HttpAsync()
 
 HttpAsync::~HttpAsync()
 {
+    Uninitialize();
 }
 
 void HttpAsync::Initialize()
@@ -26,6 +27,11 @@ void HttpAsync::Initialize()
 
     this->moveToThread(&_workThread);
     _workThread.start();
+}
+
+void HttpAsync::Uninitialize()
+{
+    _workThread.quit();
 }
 
 void HttpAsync::Post(const QString& url, const QJsonObject& param, const QMap<QString, QString>& headers, QVariant userParam)

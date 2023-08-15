@@ -49,6 +49,9 @@ using GetTranslationDestListCallback = std::function<GetTranslationDestListCallb
 using GetVoiceSpeakerCallbackType = void(int code, const QString& msg, std::vector<VoiceData> vecVoiceData);
 using GetVoiceSpeakerCallback = std::function<GetVoiceSpeakerCallbackType>;
 
+using GetPhoneRegionNumberCallbackType = void(int code, const QString& msg, std::vector<PhoneRegionInfo> regionInfo);
+using GetPhoneRegionNumberCallback = std::function<GetPhoneRegionNumberCallbackType>;
+
 enum HttpCallEnum
 {
     httpPasswordLogin = 1,
@@ -57,7 +60,8 @@ enum HttpCallEnum
     httpSendVerifyCode = 4,
     httpGetTranslationSource = 5,
     httpGetTranslationDest = 6,
-    httpGetVoiceSpeakerCallback = 7
+    httpGetVoiceSpeakerCallback = 7,
+    httpGetPhoneRegionNumberCallback = 8
 };
 
 struct HttpCallbackPacketRaw
@@ -95,6 +99,7 @@ public:
     void GetTranslationSrourceList(GetTranslationSourceListCallback callback);
     void GetTranslationDestList(GetTranslationDestListCallback callback);
     void GetVoiceSpeaker(GetVoiceSpeakerCallback callback);
+    void GetPhoneRegionNumber(GetPhoneRegionNumberCallback callback);
 #pragma endregion
 
 #pragma region 窗口
@@ -135,7 +140,7 @@ private:
 
     //void HttpCallbackDispatch(QNetworkReply* reply);
 
-    void FillTranslationFillList();
+    void FetchInfo();
     void UserLoginCallbackInternal(int code, const QString& msg, const QString& token);
     void NextMessage();
     bool AiFunctionRunning();
@@ -148,9 +153,6 @@ private:
 
     HttpAsync                           _httpAsync;
 
-    //QThread                             _netThread;
-    //QNetworkAccessManager               _networkAccess;
-
 #pragma region 功能
     Translation                         _translation;
     VoiceCompositor                     _voiceCompositor;
@@ -161,6 +163,7 @@ private:
     std::vector<TranslationLanguage>    _srcTranslationLanguage;
     std::vector<TranslationLanguage>    _destTranslationLanguage;
     std::vector<VoiceData>              _voiceData;
+    std::vector<PhoneRegionInfo>        _phoneRegionData;
 #pragma endregion
 
 #pragma region 窗口

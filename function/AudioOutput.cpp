@@ -12,17 +12,7 @@ AudioOutput::~AudioOutput()
 
 void AudioOutput::Initialize()
 {
-    QAudioFormat auidoFormat;
-    auidoFormat.setSampleRate(16000);
-    auidoFormat.setChannelCount(1);
-    auidoFormat.setSampleSize(16);
-    auidoFormat.setCodec("audio/pcm");
-    auidoFormat.setByteOrder(QAudioFormat::LittleEndian);
-    auidoFormat.setSampleType(QAudioFormat::SignedInt);
-
-    QAudioDeviceInfo outInfo = QAudioDeviceInfo::defaultOutputDevice();
-    _audioOutput = new QAudioOutput{ outInfo, auidoFormat, this };
-    _audioOutput->setBufferSize(1280);
+    _outInfo = QAudioDeviceInfo::defaultOutputDevice();
 
     connect(this, &AudioOutput::start_speaker, this, &AudioOutput::StartSpeakerInternal);
     connect(this, &AudioOutput::end_speaker, this, &AudioOutput::EndSpeakerInternal);
@@ -32,16 +22,7 @@ void AudioOutput::Initialize()
 
 void AudioOutput::Initialize(const QAudioDeviceInfo& info)
 {
-    QAudioFormat auidoFormat;
-    auidoFormat.setSampleRate(16000);
-    auidoFormat.setChannelCount(1);
-    auidoFormat.setSampleSize(16);
-    auidoFormat.setCodec("audio/pcm");
-    auidoFormat.setByteOrder(QAudioFormat::LittleEndian);
-    auidoFormat.setSampleType(QAudioFormat::SignedInt);
-
-    _audioOutput = new QAudioOutput{ info, auidoFormat, this };
-    _audioOutput->setBufferSize(1280);
+    _outInfo = info;
 
     connect(this, &AudioOutput::start_speaker, this, &AudioOutput::StartSpeakerInternal);
     connect(this, &AudioOutput::end_speaker, this, &AudioOutput::EndSpeakerInternal);
@@ -54,13 +35,6 @@ void AudioOutput::Uninitialize()
     if (_workThread.isRunning())
     {
         EndSpeaker();
-    }
-
-    if (_audioOutput)
-    {
-        delete _audioOutput;
-        _audioOutput = nullptr;
-        _ioOutput = nullptr;
     }
 }
 
@@ -111,6 +85,17 @@ void AudioOutput::timerEvent(QTimerEvent* event)
 
 void AudioOutput::StartSpeakerInternal()
 {
+    QAudioFormat auidoFormat;
+    auidoFormat.setSampleRate(16000);
+    auidoFormat.setChannelCount(1);
+    auidoFormat.setSampleSize(16);
+    auidoFormat.setCodec("audio/pcm");
+    auidoFormat.setByteOrder(QAudioFormat::LittleEndian);
+    auidoFormat.setSampleType(QAudioFormat::SignedInt);
+
+    _audioOutput = new QAudioOutput{ _outInfo, auidoFormat, this };
+    _audioOutput->setBufferSize(1280);
+
     _ioOutput = _audioOutput->start();
     _timer = startTimer(1, Qt::PreciseTimer);
 }
@@ -119,8 +104,8 @@ void AudioOutput::EndSpeakerInternal()
 {
     killTimer(_timer);
     _audioOutput->stop();
-    //_ioOutput->close();
-    //delete _ioOutput;
+    delete _audioOutput;
+    _audioOutput = nullptr;
     _ioOutput = nullptr;
     _workThread.quit();
 }

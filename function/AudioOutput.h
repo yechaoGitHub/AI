@@ -35,6 +35,7 @@ private:
     void EndSpeakerInternal();
     void WriteOutputDataInternal(QByteArray data);
 
+    QAudioDeviceInfo        _outInfo;
     QAudioOutput*           _audioOutput = nullptr;
     QIODevice*              _ioOutput = nullptr;
     QThread                 _workThread;

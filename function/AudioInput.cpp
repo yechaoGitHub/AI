@@ -15,17 +15,7 @@ AudioInput::~AudioInput()
 
 void AudioInput::Initialize()
 {
-    QAudioFormat auidoFormat;
-    auidoFormat.setSampleRate(16000);
-    auidoFormat.setChannelCount(1);
-    auidoFormat.setSampleSize(16);
-    auidoFormat.setCodec("audio/pcm");
-    auidoFormat.setByteOrder(QAudioFormat::LittleEndian);
-    auidoFormat.setSampleType(QAudioFormat::UnSignedInt);
-
-    QAudioDeviceInfo info = QAudioDeviceInfo::defaultInputDevice();
-    _audioInput = new QAudioInput(info, auidoFormat, this);
-    _audioInput->setBufferSize(1280);
+    _devInfo = QAudioDeviceInfo::defaultInputDevice();
 
     connect(this, &AudioInput::start_mic, this, &AudioInput::StartMicInternal);
     connect(this, &AudioInput::end_mic, this, &AudioInput::EndMicInternal);
@@ -37,16 +27,7 @@ void AudioInput::Initialize()
 
 void AudioInput::Initialize(const QAudioDeviceInfo& info)
 {
-    QAudioFormat auidoFormat;
-    auidoFormat.setSampleRate(16000);
-    auidoFormat.setChannelCount(1);
-    auidoFormat.setSampleSize(16);
-    auidoFormat.setCodec("audio/pcm");
-    auidoFormat.setByteOrder(QAudioFormat::LittleEndian);
-    auidoFormat.setSampleType(QAudioFormat::UnSignedInt);
-
-    _audioInput = new QAudioInput(info, auidoFormat, this);
-    _audioInput->setBufferSize(1280);
+    _devInfo = info;
 
     connect(this, &AudioInput::start_mic, this, &AudioInput::StartMicInternal);
     connect(this, &AudioInput::end_mic, this, &AudioInput::EndMicInternal);
@@ -61,13 +42,6 @@ void AudioInput::Uninitialize()
     if (_workThread.isRunning())
     {
         EndMic();
-    }
-
-    if (_audioInput)
-    {
-        delete _audioInput;
-        _audioInput = nullptr;
-        _ioInput = nullptr;
     }
 }
 
@@ -102,6 +76,17 @@ void AudioInput::timerEvent(QTimerEvent* event)
 
 void AudioInput::StartMicInternal()
 {
+    QAudioFormat auidoFormat;
+    auidoFormat.setSampleRate(16000);
+    auidoFormat.setChannelCount(1);
+    auidoFormat.setSampleSize(16);
+    auidoFormat.setCodec("audio/pcm");
+    auidoFormat.setByteOrder(QAudioFormat::LittleEndian);
+    auidoFormat.setSampleType(QAudioFormat::UnSignedInt);
+
+    _audioInput = new QAudioInput(_devInfo, auidoFormat, this);
+    _audioInput->setBufferSize(1280);
+
     _ioInput = _audioInput->start();
     _inTimer = startTimer(1, Qt::PreciseTimer);
 
@@ -115,9 +100,10 @@ void AudioInput::EndMicInternal()
     killTimer(_inTimer);
 
     _audioInput->stop();
-    //_ioInput->close();
-    //delete _ioInput;
+    delete _audioInput;
+    _audioInput = nullptr;
     _ioInput = nullptr;
+
     _workThread.quit();
 
 #ifdef MONITOR_MIC

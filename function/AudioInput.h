@@ -41,6 +41,7 @@ private:
 
     uint64_t AvgVolume(const QByteArray& data);
 
+    QAudioDeviceInfo                        _devInfo;
     QAudioInput*                            _audioInput = nullptr;
     QThread                                 _workThread;
     QIODevice*                              _ioInput = nullptr;

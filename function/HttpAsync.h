@@ -15,6 +15,7 @@ public:
     ~HttpAsync();
 
     void Initialize();
+    void Uninitialize();
 
     void Post(const QString& url, const QJsonObject& param = {}, const QMap<QString, QString>& headers = {}, QVariant userParam = 0);
 

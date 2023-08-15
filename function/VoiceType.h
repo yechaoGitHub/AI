@@ -22,3 +22,10 @@ struct VoiceData
     int     language;
     int     gender;
 };
+
+struct PhoneRegionInfo
+{
+    QString name;
+    QString dialingCode;
+    QString abb;
+};

@@ -9,8 +9,9 @@ public:
     WUserNameLogin(QWidget* parent = nullptr);
     ~WUserNameLogin();
 
-    QLineEdit* userNameEdit;
-    QLineEdit* passwordEdit;
+    QLineEdit*          userNameEdit = nullptr;
+    QLineEdit*          passwordEdit = nullptr;
+    WClickedLabel*      forgetLabel = nullptr;
 
     bool    isRember();
 

@@ -38,8 +38,6 @@ void AiSound::Initialize()
     _httpAsync.Initialize();
     connect(&_httpAsync, &HttpAsync::httpRespond, this, &AiSound::HttpCallbackDispatch);
 
-    //connect(&_networkAccess, &QNetworkAccessManager::finished, this, &AiSound::HttpCallbackDispatch);
-
     _wLoginFrame = new WLoginUI{};
     _wTranslationSelect = new WTranslationSelect{};
     _wTranslationMain = new WTransaltionMain{};
@@ -184,6 +182,20 @@ void AiSound::GetVoiceSpeaker(GetVoiceSpeakerCallback callback)
     headers.insert("access_token", _token.toUtf8());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/config/getSpeakers", {}, headers, userParam);
+}
+
+void AiSound::GetPhoneRegionNumber(GetPhoneRegionNumberCallback callback)
+{
+    auto packet = new HttpCallbackPacket<GetPhoneRegionNumberCallbackType>();
+    packet->type = httpGetPhoneRegionNumberCallback;
+    packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
+
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("access_token", _token.toUtf8());
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/common/getMobileDialingList", {}, headers, userParam);
 }
 
 void AiSound::ShowLoginFrame()
@@ -339,13 +351,13 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
     HttpCallbackPacketRaw* packetRaw = userParam.value<HttpCallbackPacketRaw*>();
 
     auto data = content.toUtf8();
+    QJsonParseError err_rpt;
+    auto document = QJsonDocument::fromJson(data, &err_rpt);
 
     switch (packetRaw->type)
     {
         case httpPasswordLogin:
         {
-            QJsonParseError err_rpt;
-            auto document = QJsonDocument::fromJson(data, &err_rpt);
             int code = document["code"].toInt();
             QString token = document["data"]["accessToken"].toString();
             QString msg = document["msg"].toString();
@@ -372,8 +384,6 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
 
         case httpRegister:
         {
-            QJsonParseError err_rpt;
-            auto document = QJsonDocument::fromJson(data, &err_rpt);
             int code = document["code"].toInt();
             QString msg = document["msg"].toString();
 
@@ -384,8 +394,6 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
 
         case httpSendVerifyCode:
         {
-            QJsonParseError err_rpt;
-            auto document = QJsonDocument::fromJson(data, &err_rpt);
             int code = document["code"].toInt();
             QString msg = document["msg"].toString();
 
@@ -396,8 +404,6 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
 
         case httpGetTranslationSource:
         {
-            QJsonParseError err_rpt;
-            auto document = QJsonDocument::fromJson(data, &err_rpt);
             int code = document["code"].toInt();
             QString msg = document["msg"].toString();
             auto data = document["data"].toArray();
@@ -420,8 +426,6 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
 
         case httpGetTranslationDest:
         {
-            QJsonParseError err_rpt;
-            auto document = QJsonDocument::fromJson(data, &err_rpt);
             int code = document["code"].toInt();
             QString msg = document["msg"].toString();
             auto data = document["data"].toArray();
@@ -444,8 +448,6 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
 
         case httpGetVoiceSpeakerCallback:
         {
-            QJsonParseError err_rpt;
-            auto document = QJsonDocument::fromJson(data, &err_rpt);
             int code = document["code"].toInt();
             QString msg = document["msg"].toString();
 
@@ -468,6 +470,28 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
         }
         break;
 
+        case httpGetPhoneRegionNumberCallback:
+        {
+            int code = document["code"].toInt();
+            QString msg = document["msg"].toString();
+
+            std::vector<PhoneRegionInfo> regionData;
+            auto data = document["data"].toArray();
+            for (const auto& it : data)
+            {
+                PhoneRegionInfo data;
+                auto obj = it.toObject();
+                data.name = obj["name"].toString();
+                data.dialingCode = obj["dialingCode"].toString();
+                data.abb = obj["abb"].toString();
+                regionData.push_back(std::move(data));
+            }
+
+            auto packet = dynamic_cast<HttpCallbackPacket<GetPhoneRegionNumberCallbackType>*>(packetRaw);
+            packet->callback(code, msg, std::move(regionData));
+        }
+        break;
+
         default:
         break;
     }
@@ -475,168 +499,12 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
     delete packetRaw;
 }
 
-//void AiSound::HttpCallbackDispatch(QNetworkReply* reply)
-//{
-//    HttpCallbackPacketRaw* packetRaw = dynamic_cast<HttpCallbackPacketRaw*>(reply->userData(Qt::UserRole));
-//    if (!packetRaw)
-//    {
-//        do
-//        {
-//            std::this_thread::yield();
-//            packetRaw = dynamic_cast<HttpCallbackPacketRaw*>(reply->userData(Qt::UserRole));
-//        }
-//        while (!packetRaw);
-//    }
-//    reply->setUserData(Qt::UserRole, nullptr);
-//
-//    auto data = reply->readAll();
-//
-//    switch (packetRaw->type)
-//    {
-//        case httpPasswordLogin:
-//        {
-//            QJsonParseError err_rpt;
-//            auto document = QJsonDocument::fromJson(data, &err_rpt);
-//            int code = document["code"].toInt();
-//            QString token = document["data"]["accessToken"].toString();
-//            QString msg = document["msg"].toString();
-//
-//            auto packet = dynamic_cast<HttpCallbackPacket<PasswordLoginCallbackType>*>(packetRaw);
-//            UserLoginCallbackInternal(code, msg, token);
-//            packet->callback(code, msg, token);
-//        }
-//        break;
-//
-//        case httpGetVerifyCode:
-//        {
-//            //QJsonParseError err_rpt;
-//            //auto document = QJsonDocument::fromJson(data, &err_rpt);
-//            //int code = document["code"].toInt();
-//            //QString msg = document["msg"].toString();
-//            //QString img = document["data"]["img"].toString();
-//            //QString uuid = document["data"]["uuid"].toString();
-//
-//            //auto packet = dynamic_cast<HttpCallbackPacket<GetVerifyCodeCallbackType>*>(packetRaw);
-//            //packet->callback(code, msg, img, uuid);
-//        }
-//        break;
-//
-//        case httpRegister:
-//        {
-//            QJsonParseError err_rpt;
-//            auto document = QJsonDocument::fromJson(data, &err_rpt);
-//            int code = document["code"].toInt();
-//            QString msg = document["msg"].toString();
-//
-//            auto packet = dynamic_cast<HttpCallbackPacket<RegisterCallbackType>*>(packetRaw);
-//            packet->callback(code, msg);
-//        }
-//        break;
-//
-//        case httpSendVerifyCode:
-//        {
-//            QJsonParseError err_rpt;
-//            auto document = QJsonDocument::fromJson(data, &err_rpt);
-//            int code = document["code"].toInt();
-//            QString msg = document["msg"].toString();
-//
-//            auto packet = dynamic_cast<HttpCallbackPacket<SendVerifyCodeCallbackType>*>(packetRaw);
-//            packet->callback(code, msg);
-//        }
-//        break;
-//
-//        case httpGetTranslationSource:
-//        {
-//            QJsonParseError err_rpt;
-//            auto document = QJsonDocument::fromJson(data, &err_rpt);
-//            int code = document["code"].toInt();
-//            QString msg = document["msg"].toString();
-//            auto data = document["data"].toArray();
-//
-//            std::vector<TranslationLanguage> vecLan;
-//            for (const auto& it : data)
-//            {
-//                TranslationLanguage lan;
-//                auto obj = it.toObject();
-//                lan.language = obj["languaue"].toString();
-//                lan.name = obj["name"].toString();
-//                lan.nameEn = obj["nameEn"].toString();
-//                vecLan.push_back(lan);
-//            }
-//
-//            auto packet = dynamic_cast<HttpCallbackPacket<GetTranslationSourceListCallbackType>*>(packetRaw);
-//            packet->callback(code, msg, std::move(vecLan));
-//        }
-//        break;
-//
-//        case httpGetTranslationDest:
-//        {
-//            QJsonParseError err_rpt;
-//            auto document = QJsonDocument::fromJson(data, &err_rpt);
-//            int code = document["code"].toInt();
-//            QString msg = document["msg"].toString();
-//            auto data = document["data"].toArray();
-//
-//            std::vector<TranslationLanguage> vecLan;
-//            for (const auto& it : data)
-//            {
-//                TranslationLanguage lan;
-//                auto obj = it.toObject();
-//                lan.language = obj["languaue"].toString();
-//                lan.name = obj["name"].toString();
-//                lan.nameEn = obj["nameEn"].toString();
-//                vecLan.push_back(lan);
-//            }
-//
-//            auto packet = dynamic_cast<HttpCallbackPacket<GetTranslationDestListCallbackType>*>(packetRaw);
-//            packet->callback(code, msg, std::move(vecLan));
-//        }
-//        break;
-//
-//        case httpGetVoiceSpeakerCallback:
-//        {
-//            QJsonParseError err_rpt;
-//            auto document = QJsonDocument::fromJson(data, &err_rpt);
-//            int code = document["code"].toInt();
-//            QString msg = document["msg"].toString();
-//
-//            std::vector<VoiceData> vecVoiceData;
-//            auto data = document["data"].toArray();
-//            for (const auto& it : data)
-//            {
-//                VoiceData data;
-//                auto obj = it.toObject();
-//                data.id = obj["id"].toInt();
-//                data.voiceCode = obj["voiceCode"].toString();
-//                data.name = obj["name"].toString();
-//                data.language = obj["language"].toInt();
-//                data.gender = obj["gender"].toInt();
-//                vecVoiceData.push_back(data);
-//            }
-//
-//            auto packet = dynamic_cast<HttpCallbackPacket<GetVoiceSpeakerCallbackType>*>(packetRaw);
-//            packet->callback(code, msg, std::move(vecVoiceData));
-//        }
-//        break;
-//
-//        default:
-//        break;
-//    }
-//    reply->deleteLater();
-//    delete packetRaw;
-//}
-
-//void AiSound::CompositorTest(const QString& token)
-//{
-//    _voiceCompositor.Connect(token);
-//}
-
 void AiSound::ChatBotTest(const QString& token)
 {
     _chatBot.Connect(token);
 }
 
-void AiSound::FillTranslationFillList()
+void AiSound::FetchInfo()
 {
     GetTranslationSrourceList([this](int code, const QString& msg, std::vector<TranslationLanguage> languageList)
         {
@@ -661,6 +529,15 @@ void AiSound::FillTranslationFillList()
                 _voiceData = std::move(vecVoiceData);
             }
         });
+
+    GetPhoneRegionNumber([this](int code, const QString& msg, std::vector<PhoneRegionInfo> data)
+        {
+            if (code == 200)
+            {
+                _phoneRegionData = std::move(data);
+            }
+        });
+
 }
 
 void AiSound::UserLoginCallbackInternal(int code, const QString& msg, const QString& token)
@@ -669,7 +546,7 @@ void AiSound::UserLoginCallbackInternal(int code, const QString& msg, const QStr
     {
         _token = token;
         SETTING.setToken(token);
-        FillTranslationFillList();
+        FetchInfo();
     }
 }
 

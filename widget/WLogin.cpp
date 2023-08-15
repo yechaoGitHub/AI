@@ -11,8 +11,6 @@ WLogin::WLogin(QWidget* parent) :
     ui.lbLanguage->setPixmap(QPixmap{":/QtTest/icon/Speech/Language.png"});
     ui.btLanguageText->setText("English");
 
-    connect(ui.btLanguageText, &QPushButton::clicked, this, &WLogin::LanguageClicked);
-
     userNameLogin = new WUserNameLogin{ this };
     mobileLogin = new WMobileLogin{ this };
     loginOpt = new WLoginOpt{ this };
@@ -22,6 +20,7 @@ WLogin::WLogin(QWidget* parent) :
     registerLabel = loginOpt->registerLabel;
     loginBtn = loginOpt->loginBtn;
 
+    connect(ui.btLanguageText, &QPushButton::clicked, this, &WLogin::LanguageClicked);
     connect(ui.loginSwitch, &WLoginSwitch::TitleChanged, this, &WLogin::TitleChanged);
 }
 
