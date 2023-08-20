@@ -130,7 +130,7 @@ QPushButton#pb_open[open=false]{
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pb_open">
+       <widget class="QCheckBox" name="pb_open">
         <property name="minimumSize">
          <size>
           <width>32</width>
@@ -142,6 +142,18 @@ QPushButton#pb_open[open=false]{
           <width>32</width>
           <height>18</height>
          </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QCheckBox{
+	font: 20px &quot;微软雅黑&quot;;
+	color: rgb(255, 255, 255);
+}
+
+QCheckBox::indicator {width: 30px; height: 30px;}
+
+QCheckBox::indicator:unchecked {image: url(:/QtTest/icon/Setting/off.png);}
+
+QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}</string>
         </property>
         <property name="text">
          <string/>
@@ -173,7 +185,7 @@ QPushButton#pb_open[open=false]{
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(255, 255, 127);</string>
+      <string notr="true"/>
      </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
@@ -181,7 +193,17 @@ QPushButton#pb_open[open=false]{
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <property name="leftMargin">
+       <number>30</number>
+      </property>
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
+     </layout>
     </widget>
    </item>
    <item>

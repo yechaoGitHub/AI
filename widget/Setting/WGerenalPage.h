@@ -11,6 +11,9 @@ public:
 	WGerenalPage(QWidget *parent = nullptr);
 	~WGerenalPage();
 
+private slots:
+	void on_pb_send_clicked();
+
 private:
 	Ui::WGerenalPageClass ui;
 };

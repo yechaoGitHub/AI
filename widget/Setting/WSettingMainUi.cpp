@@ -29,6 +29,7 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
 
     connect(ui.select_widget, &WSettingSelectWidget::sig_robot_clicked, this, [this](bool clicked) {
         if (clicked) {
+            ui.chatbot_page->changeSelectBtn(WNavbarButton::BarType::Bar_Lib);
             this->setFixedSize(939, 830);
             ui.stackedWidget->setCurrentWidget(ui.chatbot_page);
         }

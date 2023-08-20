@@ -72,6 +72,12 @@ QLabel#lb_time{
    <property name="spacing">
     <number>12</number>
    </property>
+   <property name="leftMargin">
+    <number>16</number>
+   </property>
+   <property name="topMargin">
+    <number>16</number>
+   </property>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_7">
      <item>
@@ -117,14 +123,14 @@ QLabel#lb_time{
             <item>
              <widget class="QLabel" name="label">
               <property name="text">
-               <string>Full Name</string>
+               <string>Mobilephone</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_2">
+             <widget class="QLabel" name="lb_phone">
               <property name="text">
-               <string>Jhon joe</string>
+               <string>12345778</string>
               </property>
              </widget>
             </item>
@@ -169,7 +175,7 @@ QLabel#lb_time{
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_4">
+             <widget class="QLabel" name="lb_name">
               <property name="text">
                <string>Jone joe</string>
               </property>
@@ -223,7 +229,7 @@ QLabel#lb_time{
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_6">
+             <widget class="QLabel" name="lb_account">
               <property name="text">
                <string>#35666</string>
               </property>
@@ -270,7 +276,7 @@ QLabel#lb_time{
              </widget>
             </item>
             <item>
-             <widget class="QLabel" name="label_8">
+             <widget class="QLabel" name="lb_point">
               <property name="text">
                <string>23455</string>
               </property>
@@ -315,7 +321,7 @@ QLabel#lb_time{
              <widget class="QLabel" name="lb_time">
               <property name="minimumSize">
                <size>
-                <width>180</width>
+                <width>190</width>
                 <height>0</height>
                </size>
               </property>
@@ -331,7 +337,7 @@ QLabel#lb_time{
               </property>
               <property name="sizeHint" stdset="0">
                <size>
-                <width>88</width>
+                <width>40</width>
                 <height>20</height>
                </size>
               </property>

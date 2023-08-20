@@ -102,7 +102,9 @@
     <ClCompile Include="function\AiSound.cpp" />
     <ClCompile Include="function\AudioInput.cpp" />
     <ClCompile Include="function\AudioOutput.cpp" />
+    <ClCompile Include="function\Bussiness\historyListModel.cpp" />
     <ClCompile Include="function\Bussiness\SettingInterfaceBussiness.cpp" />
+    <ClCompile Include="function\Bussiness\teamListModel.cpp" />
     <ClCompile Include="function\ChatBot.cpp" />
     <ClCompile Include="function\HttpAsync.cpp" />
     <ClCompile Include="function\Translation.cpp" />
@@ -115,7 +117,10 @@
     <ClCompile Include="widget\login\UserLogin.cpp" />
     <ClCompile Include="widget\login\WLoginMainUi.cpp" />
     <ClCompile Include="widget\login\WLoginUI.cpp" />
+    <ClCompile Include="widget\model\WLabelButton.cpp" />
+    <ClCompile Include="widget\model\WLibModelWidget.cpp" />
     <ClCompile Include="widget\model\WNavbarButton.cpp" />
+    <ClCompile Include="widget\model\WPageCtlWidget.cpp" />
     <ClCompile Include="widget\Setting\ChatBot\WChatBotMainUI.cpp" />
     <ClCompile Include="widget\Setting\ChatBot\WHistoryPage.cpp" />
     <ClCompile Include="widget\Setting\ChatBot\WLibarary.cpp" />
@@ -129,11 +134,13 @@
     <ClCompile Include="widget\Setting\SoundBot\WVoiceLibPage.cpp" />
     <ClCompile Include="widget\Setting\SoundBot\WVoicelibWidget.cpp" />
     <ClCompile Include="widget\Setting\WAccountPage.cpp" />
+    <ClCompile Include="widget\Setting\WChatHistoryDelegate.cpp" />
     <ClCompile Include="widget\Setting\WGerenalPage.cpp" />
     <ClCompile Include="widget\Setting\WInvitePage.cpp" />
     <ClCompile Include="widget\Setting\WRobotPage.cpp" />
     <ClCompile Include="widget\Setting\WSettingMainUi.cpp" />
     <ClCompile Include="widget\Setting\WSettingSelectWidget.cpp" />
+    <ClCompile Include="widget\Setting\WTeamDelegate.cpp" />
     <ClCompile Include="widget\Speech\ComboxItem.cpp" />
     <ClCompile Include="widget\Speech\WSpeechGenerationUi.cpp" />
     <ClCompile Include="widget\WButton.cpp" />
@@ -178,6 +185,8 @@
     <QtUic Include="widget\login\UserLogin.ui" />
     <QtUic Include="widget\login\WLoginMainUi.ui" />
     <QtUic Include="widget\login\WLoginUI.ui" />
+    <QtUic Include="widget\model\WLibModelWidget.ui" />
+    <QtUic Include="widget\model\WPageCtlWidget.ui" />
     <QtUic Include="widget\Setting\ChatBot\WChatBotMainUI.ui" />
     <QtUic Include="widget\Setting\ChatBot\WHistoryPage.ui" />
     <QtUic Include="widget\Setting\ChatBot\WLibarary.ui" />
@@ -200,6 +209,11 @@
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="widget\Setting\WChatHistoryDelegate.h" />
+    <QtMoc Include="widget\model\WLibModelWidget.h" />
+    <QtMoc Include="widget\model\WLabelButton.h" />
+    <QtMoc Include="widget\model\WPageCtlWidget.h" />
+    <QtMoc Include="widget\Setting\WTeamDelegate.h" />
     <QtMoc Include="widget\Setting\SoundBot\WMyVoiceModel.h" />
     <QtMoc Include="widget\Setting\SoundBot\WHistoryDiaPage.h" />
     <QtMoc Include="widget\Setting\SoundBot\WSpeechSysPage.h" />
@@ -230,6 +244,8 @@
     <QtMoc Include="function\Bussiness\SettingInterfaceBussiness.h" />
     <ClInclude Include="function\Bussiness\Define.h" />
     <QtMoc Include="function\HttpAsync.h" />
+    <QtMoc Include="function\Bussiness\teamListModel.h" />
+    <QtMoc Include="function\Bussiness\historyListModel.h" />
     <ClInclude Include="function\VoiceType.h" />
     <QtMoc Include="widget\chat\WRobotChatMainUI.h" />
     <QtMoc Include="widget\chat\WRobotChat.h" />

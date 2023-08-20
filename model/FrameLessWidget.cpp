@@ -51,6 +51,11 @@ void FrameLessWidget::mousePressEvent(QMouseEvent* event)
 
 void FrameLessWidget::mouseMoveEvent(QMouseEvent* ev)
 {
+    if (ev->y() > 120) {
+        return;
+    }
+
+
 	static QPoint rightTop;
 	static QPoint leftBottom;
 	static QPoint leftTop;

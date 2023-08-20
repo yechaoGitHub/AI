@@ -1,5 +1,8 @@
 <RCC>
   <qresource prefix="/QtTest">
+    <file>icon/Setting/chatbot/eye.png</file>
+    <file>icon/Setting/chatbot/history.png</file>
+    <file>icon/Setting/del.png</file>
     <file>icon/Setting/soundbot/add.png</file>
     <file>icon/Setting/soundbot/btn_1.png</file>
     <file>icon/Setting/soundbot/btn_2.png</file>
@@ -41,8 +44,8 @@
     <file>icon/Setting/invite.png</file>
     <file>icon/Setting/peo.png</file>
     <file>icon/Setting/search.png</file>
-    <file>icon/Setting/send.png</file>
     <file>icon/chebox_select.png</file>
+    <file>icon/Setting/send.png</file>
     <file>icon/robot.png</file>
     <file>icon/icon.png</file>
     <file>icon/login/robot_bk.png</file>

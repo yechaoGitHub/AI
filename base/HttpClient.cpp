@@ -215,6 +215,7 @@ void HttpClientPrivate::executeQuery(HttpClientPrivate* d, HttpClientRequestMeth
         if (timeOut) {
             return;
         }
+        timeOut = true;
         loop.quit();
         QString successMessage = HttpClientPrivate::readReply(reply, cache.charset.toUtf8());
         QString failMessage = reply->errorString();
@@ -227,6 +228,9 @@ void HttpClientPrivate::executeQuery(HttpClientPrivate* d, HttpClientRequestMeth
         timer.stop();
     }
     else {
+        if (timeOut) {
+            return;
+        }
         timeOut = true;
         reply->abort();
 
@@ -586,7 +590,7 @@ HttpClient& HttpClient::params(const QMap<QString, QVariant>& ps) {
 // 设置请求超时时间
 HttpClient& HttpClient::timeout(int time) {
     d->timeout = time;
-    
+
     return *this;
 }
 

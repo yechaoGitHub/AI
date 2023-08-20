@@ -30,7 +30,7 @@ void WSettingSelectWidget::initData()
 void WSettingSelectWidget::slot_getUserInfoReplay(bool success, int code, const QString& msg, const stru_UserInfo& user_info)
 {
 	if (success && code == netCode::Success) {
-
+		ui.account_widget->initAccount(user_info);
 	}
 }
 
@@ -53,6 +53,11 @@ void WSettingSelectWidget::on_pb_team_clicked()
 	changeSelectBtn(WNavbarButton::Bar_Team);
 	emit sig_page_change(true);
 	ui.stackedWidget->setCurrentWidget(ui.invite_page);
+	static bool first = true;
+	if (first) {
+		first = false;
+		ui.invite_page->reqTeamData();
+	}
 }
 
 void WSettingSelectWidget::on_pb_tools_clicked()

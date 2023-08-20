@@ -77,17 +77,16 @@
     </message>
 </context>
 <context>
+    <name>WAccountPage</name>
+    <message>
+        <source>Premium(Expires on %1)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WAccountPageClass</name>
     <message>
         <source>WAccountPage</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full Name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Jhon joe</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -124,6 +123,14 @@
     </message>
     <message>
         <source>Recharge</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mobilephone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>12345778</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -211,6 +218,10 @@ enabling designers to focus on more creative aspects of their work.</source>
         <source>Write to feedback here</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Send</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WHistoryDiaPageClass</name>
@@ -232,6 +243,13 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
 </context>
 <context>
+    <name>WHistoryPage</name>
+    <message>
+        <source>Search any record</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WHistoryPageClass</name>
     <message>
         <source>WHistoryPage</source>
@@ -241,12 +259,19 @@ enabling designers to focus on more creative aspects of their work.</source>
         <source>All History</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>WInvitePage</name>
     <message>
-        <source>Show</source>
+        <source>Invite member</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>entries of 430</source>
+        <source>Enter user name to add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search any record</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -264,19 +289,11 @@ enabling designers to focus on more creative aspects of their work.</source>
         <source>Member</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Show</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>entries of 430</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
-    <name>WLibararyClass</name>
+    <name>WLibModelWidgetClass</name>
     <message>
-        <source>WLibarary</source>
+        <source>WLibModelWidget</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -287,12 +304,18 @@ enabling designers to focus on more creative aspects of their work.</source>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>WLibarary</name>
     <message>
-        <source>Show</source>
+        <source>Chatbot(%1)</source>
         <translation type="unfinished"></translation>
     </message>
+</context>
+<context>
+    <name>WLibararyClass</name>
     <message>
-        <source>entries of 430</source>
+        <source>WLibarary</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -393,6 +416,44 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
 </context>
 <context>
+    <name>WPageCtlWidget</name>
+    <message>
+        <source>entries of %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WPageCtlWidgetClass</name>
+    <message>
+        <source>WPageCtlWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>entries of 430</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>9</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WRobotChatClass</name>
     <message>
         <source>WRobotChat</source>
@@ -415,6 +476,17 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Chat</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WRobotPage</name>
+    <message>
+        <source>Integrate a variety of the latest and best large language models to achieve dialogue, question answering, copy generation and so on. The most efficient tool and encyclopedia assistant!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Support more than a dozen commonly used languages real-time translation, speech synthesis. Talk to the world in your own language!</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -655,6 +727,33 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
 </context>
 <context>
+    <name>historyListModel</name>
+    <message>
+        <source> Date and Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Chat Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Bot Type</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Chat</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>loginMainFrame</name>
     <message>
         <source>QtTest</source>
@@ -707,6 +806,33 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Let&apos;s sign up</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>teamListModel</name>
+    <message>
+        <source>In Team</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Credits Used</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Date and Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Actions</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

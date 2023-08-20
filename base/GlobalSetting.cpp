@@ -107,5 +107,30 @@ void GlobalSetting::setAutoLogin(bool b)
         m_pSettings->setValue("Login/autoLogin",b);
 }
 
+void GlobalSetting::setRobotBot(bool open)
+{
+    if (m_pSettings)
+        m_pSettings->setValue("Setting/robotBot", open);
+}
+
+bool GlobalSetting::getRobotBot()
+{
+    if (!m_pSettings)
+        return true;
+    return m_pSettings->value("Setting/robotBot", true).toBool();
+}
+
+void GlobalSetting::setSoundBot(bool open)
+{
+    if (m_pSettings)
+        m_pSettings->setValue("Setting/soundBot", open);
+}
+
+bool GlobalSetting::getSoundBot()
+{
+    if (!m_pSettings)
+        return true;
+    return m_pSettings->value("Setting/soundBot", true).toBool();
+}
 
 

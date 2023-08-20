@@ -2,6 +2,9 @@
 
 #include <QWidget>
 #include "ui_WChatBotMainUI.h"
+#include "function/Bussiness/Define.h"
+#include "model/WLabelButton.h"
+
 
 class WChatBotMainUI : public QWidget
 {
@@ -12,15 +15,20 @@ public:
 	WChatBotMainUI(QWidget *parent = nullptr);
 	~WChatBotMainUI();
 
-private:
 	void changeSelectBtn(WNavbarButton::BarType type);
 
 private slots:
 	void on_pb_lib_clicked();
 	void on_pb_history_clicked();
-
+	void slot_type_btn_clicked();
 	void slot_back();
+
+	void	slot_getChatBotListReplay(bool, int, const QString& msg, const QVector<strc_ChatbotInfo>& user_info);
 
 private:
 	Ui::WChatBotMainUIClass ui;
+	WLabelButton* _pre_select_btn = nullptr;
+
+	QVector<WLabelButton*>			_chatBot_btn_list;
+	QVector<int>					_chatBot_type_list;
 };

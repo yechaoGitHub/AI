@@ -13,6 +13,7 @@ public:
 	WRobotPage(QWidget *parent = nullptr);
 	~WRobotPage();
 
+	void initUI();
 private slots:
 	void on_pb_robot_lock_clicked();
 	void on_pb_sound_lock_clicked();

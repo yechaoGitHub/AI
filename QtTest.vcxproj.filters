@@ -253,6 +253,27 @@
     <ClCompile Include="function\HttpAsync.cpp">
       <Filter>function</Filter>
     </ClCompile>
+    <ClCompile Include="function\Bussiness\teamListModel.cpp">
+      <Filter>function\Bussiness</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\WTeamDelegate.cpp">
+      <Filter>widget\Setting</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\model\WPageCtlWidget.cpp">
+      <Filter>widget\model</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\model\WLabelButton.cpp">
+      <Filter>widget\model</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\model\WLibModelWidget.cpp">
+      <Filter>widget\model</Filter>
+    </ClCompile>
+    <ClCompile Include="function\Bussiness\historyListModel.cpp">
+      <Filter>function\Bussiness</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\WChatHistoryDelegate.cpp">
+      <Filter>widget\Setting</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -368,6 +389,12 @@
     </QtUic>
     <QtUic Include="widget\Setting\SoundBot\WMyVoiceModel.ui">
       <Filter>widget\Setting\SoundBot</Filter>
+    </QtUic>
+    <QtUic Include="widget\model\WPageCtlWidget.ui">
+      <Filter>widget\model</Filter>
+    </QtUic>
+    <QtUic Include="widget\model\WLibModelWidget.ui">
+      <Filter>widget\model</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -550,6 +577,27 @@
     </QtMoc>
     <QtMoc Include="function\HttpAsync.h">
       <Filter>function</Filter>
+    </QtMoc>
+    <QtMoc Include="function\Bussiness\teamListModel.h">
+      <Filter>function\Bussiness</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\WTeamDelegate.h">
+      <Filter>widget\Setting</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\model\WPageCtlWidget.h">
+      <Filter>widget\model</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\model\WLabelButton.h">
+      <Filter>widget\model</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\model\WLibModelWidget.h">
+      <Filter>widget\model</Filter>
+    </QtMoc>
+    <QtMoc Include="function\Bussiness\historyListModel.h">
+      <Filter>function\Bussiness</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\WChatHistoryDelegate.h">
+      <Filter>widget\Setting</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

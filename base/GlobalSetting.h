@@ -31,6 +31,12 @@ public:
     void setToken(const QString& token);
     QString getToken();
 
+    void setRobotBot(bool open);
+    bool getRobotBot();
+
+    void setSoundBot(bool open);
+    bool getSoundBot();
+
 private:
     QSettings       *m_pSettings = nullptr;
     QMutex           m_mutex;
