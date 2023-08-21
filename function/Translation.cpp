@@ -30,6 +30,7 @@ void Translation::Initialize()
     this->moveToThread(&_workThread);
 
     _audioInput.Initialize();
+    _audioMonitor.Initialize();
     _audioOutput.Initialize();
     QObject::connect(this, &Translation::connect, this, &Translation::ConnectInternal);
     QObject::connect(this, &Translation::disconnect, this, &Translation::DisconnectInternal);

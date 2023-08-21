@@ -8,7 +8,7 @@ class WTip : public QWidget
     Q_OBJECT
 
 public:
-    WTip();
+    WTip(QWidget* parent = nullptr);
     ~WTip();
 
     void SetMessage(const QString& msg);
@@ -24,6 +24,7 @@ protected:
 
 private:
     int                                     _alpha;
+    QRect                                   _xRect;
     QString                                 _msg;
     std::chrono::steady_clock::time_point   _showPoint;
 };

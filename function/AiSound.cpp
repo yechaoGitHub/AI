@@ -15,6 +15,8 @@
 #include <QDesktopWidget>
 #include <QApplication>
 #include <QTranslator>
+#include <QDir>
+#include <QDebug>
 
 #include <Windows.h>
 #include <thread>
@@ -54,12 +56,34 @@ void AiSound::Initialize()
     _translation.Initialize();
     _voiceCompositor.Initialize();
     _chatBot.Initialize();
+
+    QDir dir("./download");
+    if (!dir.exists())
+    {
+        dir.mkdir("./download");
+    }
+
+    GetPhoneRegionNumber([this](int code, const QString& msg, std::vector<PhoneRegionInfo> data)
+        {
+            if (code == 200)
+            {
+                QString contryFlagUrl = "http://47.106.253.9:9101/img/country-flags/";
+
+                _phoneRegionData = std::move(data);
+                for (auto& phoneData : _phoneRegionData)
+                {
+                    auto downloadUrl = contryFlagUrl + phoneData.abb + ".png";
+                    auto savePath = QString("./download/") + phoneData.abb + ".png";
+                    _httpAsync.Download(downloadUrl, savePath);
+                }
+            }
+        });
+
+    GetInputDeviceList();
 }
 
 void AiSound::Uninitialize()
 {
-    //_networkAccess.
-
     _translation.Uninitialize();
     _voiceCompositor.Uninitialize();
     _chatBot.Uninitialize();
@@ -504,7 +528,7 @@ void AiSound::ChatBotTest(const QString& token)
     _chatBot.Connect(token);
 }
 
-void AiSound::FetchInfo()
+void AiSound::FetchAppData()
 {
     GetTranslationSrourceList([this](int code, const QString& msg, std::vector<TranslationLanguage> languageList)
         {
@@ -529,15 +553,6 @@ void AiSound::FetchInfo()
                 _voiceData = std::move(vecVoiceData);
             }
         });
-
-    GetPhoneRegionNumber([this](int code, const QString& msg, std::vector<PhoneRegionInfo> data)
-        {
-            if (code == 200)
-            {
-                _phoneRegionData = std::move(data);
-            }
-        });
-
 }
 
 void AiSound::UserLoginCallbackInternal(int code, const QString& msg, const QString& token)
@@ -546,7 +561,7 @@ void AiSound::UserLoginCallbackInternal(int code, const QString& msg, const QStr
     {
         _token = token;
         SETTING.setToken(token);
-        FetchInfo();
+        FetchAppData();
     }
 }
 

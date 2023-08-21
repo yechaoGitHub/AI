@@ -122,11 +122,9 @@ public:
     std::vector<QAudioDeviceInfo> GetOutputDeviceList();
     void SwitchLanguage(LanguageType type);
     LanguageType GetSystemLanguage();
-
 #pragma endregion
 
 #pragma region ≤‚ ‘
-    //void CompositorTest(const QString& token);
     void ChatBotTest(const QString& token);
 #pragma endregion
 
@@ -140,7 +138,7 @@ private:
 
     //void HttpCallbackDispatch(QNetworkReply* reply);
 
-    void FetchInfo();
+    void FetchAppData();
     void UserLoginCallbackInternal(int code, const QString& msg, const QString& token);
     void NextMessage();
     bool AiFunctionRunning();

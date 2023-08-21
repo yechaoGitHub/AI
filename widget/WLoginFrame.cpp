@@ -17,7 +17,7 @@
 #include "base/GlobalSetting.h"
 
 
-WLoginFrame::WLoginFrame(QWidget *parent)
+WLoginFrame::WLoginFrame(QWidget* parent)
     : QWidget(parent)
 {
     ui.setupUi(this);
@@ -31,6 +31,10 @@ WLoginFrame::WLoginFrame(QWidget *parent)
     connect(_login->registerLabel, &WClickedLabel::clicked, this, &WLoginFrame::RegisterClicked);
     connect(_login->loginBtn, &WButton::clicked, this, &WLoginFrame::LoginBtnClicked);
     connect(_signUp->signBtn, &WButton::clicked, this, &WLoginFrame::CommitRegisterBtnClicked);
+
+    WTip* tip = new WTip{ this };
+    tip->resize(440, 48);
+    tip->show();
 
     //WTransaltionMain* t = new WTransaltionMain{};
 

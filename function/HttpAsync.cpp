@@ -7,6 +7,7 @@
 #include <QJsonParseError>
 #include <QJsonValue>
 #include <QJsonArray>
+#include <QFileInfo>
 
 HttpAsync::HttpAsync()
 {
@@ -24,6 +25,7 @@ void HttpAsync::Initialize()
 
     _manager.setParent(this);
     connect(this, &HttpAsync::post, this, &HttpAsync::PostInternal);
+    connect(this, &HttpAsync::download, this, &HttpAsync::DownloadInternal);
 
     this->moveToThread(&_workThread);
     _workThread.start();
@@ -37,6 +39,11 @@ void HttpAsync::Uninitialize()
 void HttpAsync::Post(const QString& url, const QJsonObject& param, const QMap<QString, QString>& headers, QVariant userParam)
 {
     emit post(url, param, headers, userParam);
+}
+
+void HttpAsync::Download(const QString& url, const QString& savePath)
+{
+    emit download(url, savePath);
 }
 
 void HttpAsync::PostInternal(const QString& url, const QJsonObject& param, QMap<QString, QString> headers, QVariant userParam)
@@ -71,5 +78,32 @@ void HttpAsync::PostInternal(const QString& url, const QJsonObject& param, QMap<
         delete client;
         });
     client->timeout(10).post();
+}
 
+void HttpAsync::DownloadInternal(const QString& url, const QString& savePath)
+{
+    QFileInfo fileInfo(savePath);
+    if (fileInfo.isFile())
+    {
+        emit downloadRespond(HttpResult::ALEADY_EXIST, url, savePath);
+        return;
+    }
+
+    HttpClient* client = new HttpClient{ url };
+    client->manager(&_manager);
+
+    client->success([this, client, url, savePath](const QString& response) {
+        emit downloadRespond(HttpResult::SUCCESS, url, savePath);
+        delete client;
+        });
+    client->timeout([this, client, url, savePath]() {
+        emit downloadRespond(HttpResult::TIMEOUT, url, savePath);
+        delete client;
+        });
+    client->fail([this, client, url, savePath](const QString& response, int code) {
+        emit downloadRespond(HttpResult::FAIL, url, savePath);
+        delete client;
+        });
+
+    client->download(savePath);
 }

@@ -8,7 +8,7 @@ class HttpAsync : public QObject
 {
     Q_OBJECT
 public:
-    enum class HttpResult{ SUCCESS, FAIL, TIMEOUT };
+    enum class HttpResult{ SUCCESS, FAIL, TIMEOUT, ALEADY_EXIST };
 
 public:
     HttpAsync();
@@ -18,14 +18,18 @@ public:
     void Uninitialize();
 
     void Post(const QString& url, const QJsonObject& param = {}, const QMap<QString, QString>& headers = {}, QVariant userParam = 0);
+    void Download(const QString& url, const QString& savePath);
 
-private:
-    Q_SIGNALS:
-        void post(const QString& url, const QJsonObject& param, QMap<QString, QString> headers, QVariant userParam);
-        void httpRespond(HttpResult result, int code, const QString& content, const QVariant& userParam);
+Q_SIGNALS:
+    void httpRespond(HttpResult result, int code, const QString& content, const QVariant& userParam);
+    void downloadRespond(HttpResult result, const QString& url, const QString& savePath);
+
+    void post(const QString& url, const QJsonObject& param, QMap<QString, QString> headers, QVariant userParam);
+    void download(const QString& url, const QString& savePath);
 
 private:
     void PostInternal(const QString& url, const QJsonObject& param, QMap<QString, QString> headers, QVariant userParam);
+    void DownloadInternal(const QString& url, const QString& savePath);
 
     QThread                 _workThread;
     QNetworkAccessManager   _manager;
