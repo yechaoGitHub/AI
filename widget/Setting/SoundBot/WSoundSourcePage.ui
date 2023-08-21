@@ -187,7 +187,7 @@ QComboBox QAbstractItemView::item {
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget" native="true">
+          <widget class="WSoundLine" name="widget" native="true">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -289,7 +289,7 @@ QComboBox QAbstractItemView::item {
           </widget>
          </item>
          <item>
-          <widget class="QWidget" name="widget_2" native="true">
+          <widget class="WSoundLine" name="widget_2" native="true">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -326,6 +326,14 @@ QComboBox QAbstractItemView::item {
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>WSoundLine</class>
+   <extends>QWidget</extends>
+   <header>WSoundLine.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../../../AiSound.qrc"/>
  </resources>

@@ -104,6 +104,7 @@
     <ClCompile Include="function\AudioOutput.cpp" />
     <ClCompile Include="function\Bussiness\historyListModel.cpp" />
     <ClCompile Include="function\Bussiness\SettingInterfaceBussiness.cpp" />
+    <ClCompile Include="function\Bussiness\soundHistoryModel.cpp" />
     <ClCompile Include="function\Bussiness\teamListModel.cpp" />
     <ClCompile Include="function\ChatBot.cpp" />
     <ClCompile Include="function\HttpAsync.cpp" />
@@ -128,6 +129,7 @@
     <ClCompile Include="widget\Setting\SoundBot\WMyVoiceModel.cpp" />
     <ClCompile Include="widget\Setting\SoundBot\WMyVoicePage.cpp" />
     <ClCompile Include="widget\Setting\SoundBot\WSoundBotMainUi.cpp" />
+    <ClCompile Include="widget\Setting\SoundBot\WSoundLine.cpp" />
     <ClCompile Include="widget\Setting\SoundBot\WSoundSourcePage.cpp" />
     <ClCompile Include="widget\Setting\SoundBot\WSpeechSysPage.cpp" />
     <ClCompile Include="widget\Setting\SoundBot\WTranslationPage.cpp" />
@@ -209,6 +211,7 @@
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="widget\Setting\SoundBot\WSoundLine.h" />
     <QtMoc Include="widget\Setting\WChatHistoryDelegate.h" />
     <QtMoc Include="widget\model\WLibModelWidget.h" />
     <QtMoc Include="widget\model\WLabelButton.h" />
@@ -246,6 +249,7 @@
     <QtMoc Include="function\HttpAsync.h" />
     <QtMoc Include="function\Bussiness\teamListModel.h" />
     <QtMoc Include="function\Bussiness\historyListModel.h" />
+    <QtMoc Include="function\Bussiness\soundHistoryModel.h" />
     <ClInclude Include="function\VoiceType.h" />
     <QtMoc Include="widget\chat\WRobotChatMainUI.h" />
     <QtMoc Include="widget\chat\WRobotChat.h" />

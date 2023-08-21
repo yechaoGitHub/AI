@@ -274,6 +274,12 @@
     <ClCompile Include="widget\Setting\WChatHistoryDelegate.cpp">
       <Filter>widget\Setting</Filter>
     </ClCompile>
+    <ClCompile Include="widget\Setting\SoundBot\WSoundLine.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
+    <ClCompile Include="function\Bussiness\soundHistoryModel.cpp">
+      <Filter>function\Bussiness</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -598,6 +604,12 @@
     </QtMoc>
     <QtMoc Include="widget\Setting\WChatHistoryDelegate.h">
       <Filter>widget\Setting</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\SoundBot\WSoundLine.h">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtMoc>
+    <QtMoc Include="function\Bussiness\soundHistoryModel.h">
+      <Filter>function\Bussiness</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

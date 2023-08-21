@@ -5,11 +5,11 @@
 
 
 WHistoryPage::WHistoryPage(QWidget *parent)
-	: QWidget(parent)
+    : QWidget(parent)
 {
-	ui.setupUi(this);
-	ui.lineEdit->setPlaceholderText(tr("Search any record"));
-	connect(SettingInterfaceBussiness::getInstance(),&SettingInterfaceBussiness::sig_chatHistoryReplay,this, &WHistoryPage::slot_chatHistoryReplay);
+    ui.setupUi(this);
+    ui.lineEdit->setPlaceholderText(tr("Search any record"));
+    connect(SettingInterfaceBussiness::getInstance(),&SettingInterfaceBussiness::sig_chatHistoryReplay,this, &WHistoryPage::slot_chatHistoryReplay);
 
     _history_model = new historyListModel(nullptr);
 
@@ -61,14 +61,14 @@ WHistoryPage::~WHistoryPage()
 
 void WHistoryPage::reqChatHistory()
 {
-	SettingInterfaceBussiness::getInstance()->getCharHistoryReq(1, _cur_page,"",10);
+    SettingInterfaceBussiness::getInstance()->getCharHistoryReq(1, _cur_page,"",10);
 }
 
 void WHistoryPage::slot_chatHistoryReplay(bool success, int, const QString& msg, const  QVector<strc_ChatHistory>& chat_info)
 {
-	if (success) {
+    if (success) {
         _history_model->updateData(chat_info);
-	}
+    }
 }
 
 void WHistoryPage::slot_changePage(int index)
@@ -78,9 +78,9 @@ void WHistoryPage::slot_changePage(int index)
 
 void WHistoryPage::on_pb_search_clicked()
 {
-	QString search = ui.lineEdit->text();
-	if (search.isEmpty()) {
-		return;
-	}
+    QString search = ui.lineEdit->text();
+    if (search.isEmpty()) {
+        return;
+    }
     SettingInterfaceBussiness::getInstance()->getCharHistoryReq(1, _cur_page, search, 10);
 }

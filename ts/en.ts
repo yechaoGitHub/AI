@@ -224,6 +224,13 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
 </context>
 <context>
+    <name>WHistoryDiaPage</name>
+    <message>
+        <source>Search anr record</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WHistoryDiaPageClass</name>
     <message>
         <source>WHistoryDiaPage</source>
@@ -231,14 +238,6 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>All History</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>entries of 430</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -806,6 +805,33 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Let&apos;s sign up</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>soundHistoryModel</name>
+    <message>
+        <source> Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Date and Time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Actions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>In Team</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Id</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source> Dialog</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
