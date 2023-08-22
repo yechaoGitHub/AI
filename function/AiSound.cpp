@@ -50,9 +50,6 @@ void AiSound::Initialize()
     _speech_ui = new WSpeechGenerationUi();
     _set_main = new WSettingMainUi();
 
-    _wTip = new WTip{};
-    connect(_wTip, &WTip::tipEnd, this, &AiSound::NextMessage);
-
     _translation.Initialize();
     _voiceCompositor.Initialize();
     _chatBot.Initialize();
@@ -281,17 +278,11 @@ void AiSound::ShowVoiceCompositorMainWindow(const TranslationLanguage& srcLan, c
     _speech_ui->show();
 }
 
-void AiSound::ShowTip( const QString& msg)
+void AiSound::ShowTip(QWidget* parent, const QString& msg)
 {
-    if (_wTip->isHidden())
-    {
-        _wTip->SetMessage(msg);
-        _wTip->show();
-    }
-    else
-    {
-        _ltMsg.push_back(msg);
-    }
+    WTip* tip = new WTip{ parent };
+    tip->SetMessage(msg);
+    tip->show();
 }
 
 Translation& AiSound::GetTranslation()
@@ -562,17 +553,6 @@ void AiSound::UserLoginCallbackInternal(int code, const QString& msg, const QStr
         _token = token;
         SETTING.setToken(token);
         FetchAppData();
-    }
-}
-
-void AiSound::NextMessage()
-{
-    if (!_ltMsg.empty())
-    {
-        auto msg =_ltMsg.front();
-        _ltMsg.pop_front();
-        _wTip->SetMessage(msg);
-        _wTip->show();
     }
 }
 

@@ -110,7 +110,7 @@ public:
 #pragma endregion
 
 #pragma region ¹¦ÄÜ
-    void ShowTip(const QString& msg);
+    void ShowTip(QWidget* parent, const QString& msg);
     Translation& GetTranslation();
     VoiceCompositor& GetVoiceCompositor();
     ChatBot& GetChatBot();
@@ -140,13 +140,11 @@ private:
 
     void FetchAppData();
     void UserLoginCallbackInternal(int code, const QString& msg, const QString& token);
-    void NextMessage();
     bool AiFunctionRunning();
 
     static AiSound                      INSTANCE;
     LanguageType                        _sysLanguage;
 
-    std::list<QString>                  _ltMsg;
     QString                             _token;
 
     HttpAsync                           _httpAsync;
@@ -168,7 +166,6 @@ private:
     WLoginUI*                           _wLoginFrame;
     WTranslationSelect*                 _wTranslationSelect;
     WTransaltionMain*                   _wTranslationMain;
-    WTip*                               _wTip;
 
     WRobotNavigation*                   _robotNaviga = nullptr;
     RobotChatMainUI*                    _robot_chat = nullptr;

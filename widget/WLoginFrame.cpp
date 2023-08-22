@@ -10,7 +10,6 @@
 #include <QNetworkReply>
 #include "AiSound.h"
 
-#include "WTip.h"
 #include "WComboBox.h"
 #include "WTranslationSelect.h"
 #include "WTransaltionMain.h"
@@ -31,108 +30,6 @@ WLoginFrame::WLoginFrame(QWidget* parent)
     connect(_login->registerLabel, &WClickedLabel::clicked, this, &WLoginFrame::RegisterClicked);
     connect(_login->loginBtn, &WButton::clicked, this, &WLoginFrame::LoginBtnClicked);
     connect(_signUp->signBtn, &WButton::clicked, this, &WLoginFrame::CommitRegisterBtnClicked);
-
-    WTip* tip = new WTip{ this };
-    tip->resize(440, 48);
-    tip->show();
-
-    //WTransaltionMain* t = new WTransaltionMain{};
-
-    //WComboBox* box = new WComboBox{};
-    //t->move(100, 100);
-    //t->show();
-    //WTip* tip = new WTip{};
-    //tip->move(50, 50);
-    //tip->show();
-
-
-    //ui.centralWidget->setStyleSheet("color:rgba(255,255,255,1)");
-    //ui.centralWidget->setAutoFillBackground(true);
-
-    //QFile f1;
-    //f1.setFileName("./main.css");
-    //f1.open(QIODevice::ReadOnly);
-    //QString strQss = f1.readAll();
-    //ui.centralWidget->setStyleSheet(strQss);
-
-    //QFile sourceFile;   // class member.
-    //QAudioOutput* audio; // class member.
-    //{
-    //    sourceFile.setFileName("C:/Users/86788/Desktop/test.pcm");
-    //    sourceFile.open(QIODevice::ReadOnly);
-
-    //    QAudioFormat format;
-    //    // Set up the format, eg.
-    //    format.setSampleRate(8000);
-    //    format.setChannelCount(1);
-    //    format.setSampleSize(8);
-    //    format.setCodec("audio/pcm");
-    //    format.setByteOrder(QAudioFormat::LittleEndian);
-    //    format.setSampleType(QAudioFormat::SignedInt);
-
-    //    QAudioDeviceInfo info(QAudioDeviceInfo::defaultOutputDevice());
-    //    if (!info.isFormatSupported(format)) {
-    //        //qWarning() << "Raw audio format not supported by backend, cannot play audio.";
-    //        return;
-    //    }
-
-    //    audio = new QAudioOutput(format, this);
-    //    //connect(audio, SIGNAL(stateChanged(QAudio::State)), this, SLOT(handleStateChanged(QAudio::State)));
-    //    audio->start(&sourceFile);
-
-
-    //    //int size = audio->periodSize();
-    //    //char* buf = new char[size]; //
-    //    //FILE* fp = fopen("C:/Users/86788/Desktop/test.pcm", "rb");
-    //    //while (!feof(fp))
-    //    //{
-    //    //    if (audio->bytesFree() < size)
-    //    //    {
-    //    //        ::Sleep(1);
-    //    //        continue;   //读的速度很快，等待播放完成
-    //    //    }
-    //    //    int len = fread(buf, 1, size, fp);
-    //    //    if (len <= 0) break;
-    //    //    io->write(buf, len);  // 播放
-    //    //}
-    //    //fclose(fp);
-    //    //delete[] buf;
-    //
-    //}
-
-    //_client = new QWebSocket{};
-    //_client->setParent(this);
-
-    //connect(_client, &QWebSocket::connected, this, &QtTest::Connected);
-    //connect(_client, &QWebSocket::disconnected, this, &QtTest::Disconnected);
-    //connect(_client, &QWebSocket::textMessageReceived, this, &QtTest::TextMessageReceived);
-    //connect(_client, &QWebSocket::stateChanged, this, &QtTest::StateChanged);
-
-    //QNetworkRequest request{ QUrl{"ws://47.106.253.9:9101/user/loginByPwd"} };
-    //
-
-    //_client->open(request);
-    //_client->sendTextMessage("{\"password\":\"qwert12345\", \"username\":\"cxm_test\" }");
-
-    //QJsonObject dataobj;
-
-    //dataobj.insert("password", "qwert12345");
-    //dataobj.insert("username", "cxm_test");
-
-    //QJsonDocument document;
-    //document.setObject(dataobj);
-    //QByteArray byte_array = document.toJson(QJsonDocument::Compact);    //类型转换
-
-    //_accessManager = new QNetworkAccessManager{};
-
-    //connect(_accessManager, &QNetworkAccessManager::finished, this, &QtTest::receiveGaodePostReply);
-
-    //QNetworkRequest request;
-    //request.setUrl(QUrl{ "http://47.106.253.9:9101/user/loginByPwd" });
-    //request.setHeader(QNetworkRequest::ContentTypeHeader, QVariant("application/json;charset=utf-8"));
-
-    //_accessManager->post(request, byte_array);
-    //_client->req
 }
 
 void WLoginFrame::RegisterClicked()
@@ -173,7 +70,7 @@ void WLoginFrame::LoginBtnClicked()
         SETTING.setUserName(userName);
     }
     SETTING.setRememberPWD(_login->remberPwd());
-    auto callback = [](int code, const QString& msg, const QString& token)->void
+    auto callback = [this](int code, const QString& msg, const QString& token)->void
     {
         auto& ins = AiSound::GetInstance();
 
@@ -184,7 +81,7 @@ void WLoginFrame::LoginBtnClicked()
         }
         else
         {
-            ins.ShowTip(msg);
+            ins.ShowTip(this, msg);
         }
     };
 
