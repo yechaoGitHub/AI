@@ -1,7 +1,9 @@
 #pragma once
-#include <QWidget>
 #include "AiSound.h"
 #include "ui_TranslateMain.h"
+
+#include <QWidget>
+#include <QEvent>
 
 
 class WTransaltionMain : public QWidget
@@ -19,9 +21,13 @@ protected:
     void mouseReleaseEvent(QMouseEvent* event) override;
     void paintEvent(QPaintEvent* event) override;
     void showEvent(QShowEvent* event) override;
+    void enterEvent(QEvent* event) override;
+    void leaveEvent(QEvent* event) override;
 
 private:
+    void MinClicked();
     void CloseClicked();
+    void LockClicked();
     void TranslationReceived(const QString& src, const QString& dst, int type);
 
     TranslationLanguage     _srcLan;
@@ -29,6 +35,7 @@ private:
 
     Ui::translateMain       ui;
     QPoint                  _clickPos;
-    bool                    _mouseHold;
+    bool                    _mouseHold = false;
+    bool                    _mouseIn = false;
 };
 

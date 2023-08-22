@@ -16,19 +16,19 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
     ui.minBtn->setIcon(QIcon{":/QtTest/icon/min_btn_white.png"});
     ui.closeBtn->setIcon(QIcon{":/QtTest/icon/close_btn_white.png"});
 
-    this->setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
-    this->setAttribute(Qt::WA_TransparentForMouseEvents, true);
+    this->setWindowFlags(Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 
     this->resize(1078, 252);
 
+    connect(ui.minBtn, &QPushButton::clicked, this, &WTransaltionMain::MinClicked);
     connect(ui.closeBtn, &QPushButton::clicked, this, &WTransaltionMain::CloseClicked);
-
-    ui.subtitleWidget->Subtitle()->SetTranslate("CHS", "EN");
+    connect(ui.lockButton, &QPushButton::clicked, this, &WTransaltionMain::LockClicked);
 
     auto& translation = AiSound::GetInstance().GetTranslation();
     connect(&translation, &Translation::translationReceived, this, &WTransaltionMain::TranslationReceived);
 
+    setMouseTracking(true);
 }
 
 WTransaltionMain::~WTransaltionMain()
@@ -39,6 +39,11 @@ void WTransaltionMain::SetLanguage(const TranslationLanguage& srcLan, const Tran
 {
     _srcLan = srcLan;
     _destLan = destLan;
+
+    ui.srcLabel->setText(_srcLan.name);
+    ui.destLabel->setText(_destLan.name);
+    ui.subtitleWidget->Subtitle()->SetTranslate(_srcLan.language, _destLan.language);
+
 }
 
 void WTransaltionMain::mousePressEvent(QMouseEvent* event)
@@ -68,7 +73,14 @@ void WTransaltionMain::paintEvent(QPaintEvent* event)
 {
     QPainter painter{ this };
     painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
-    painter.fillRect(this->rect(), QColor{0, 0, 0, 204});
+    if (_mouseHold)
+    {
+        painter.fillRect(this->rect(), QColor{0, 0, 0, 204});
+    }
+    else
+    {
+        painter.fillRect(this->rect(), QColor{ 0, 0, 0, 1 });
+    }
 }
 
 void WTransaltionMain::showEvent(QShowEvent* event)
@@ -78,11 +90,41 @@ void WTransaltionMain::showEvent(QShowEvent* event)
     ins.GetTranslation().Connect(token, _srcLan.language, _destLan.language);
 }
 
+void WTransaltionMain::enterEvent(QEvent* event)
+{
+    _mouseHold = true;
+    repaint();
+}
+
+void WTransaltionMain::leaveEvent(QEvent* event)
+{
+    _mouseHold = false;
+    repaint();
+}
+
+void WTransaltionMain::MinClicked()
+{
+    setWindowState(Qt::WindowMinimized);
+}
+
 void WTransaltionMain::CloseClicked()
 {
     auto& translation = AiSound::GetInstance().GetTranslation();
     translation.Disconnect();
     close();
+}
+
+void WTransaltionMain::LockClicked()
+{
+    if (this->windowFlags() & Qt::WindowStaysOnTopHint)
+    {
+        this->setWindowFlags(windowFlags() & (~Qt::WindowStaysOnTopHint));
+    }
+    else
+    {
+        this->setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
+    }
+    show();
 }
 
 void WTransaltionMain::TranslationReceived(const QString& src, const QString& dst, int type)

@@ -45,7 +45,7 @@
    <property name="geometry">
     <rect>
      <x>284</x>
-     <y>32</y>
+     <y>30</y>
      <width>81</width>
      <height>31</height>
     </rect>
@@ -89,7 +89,7 @@
    <property name="geometry">
     <rect>
      <x>400</x>
-     <y>32</y>
+     <y>30</y>
      <width>91</width>
      <height>31</height>
     </rect>
@@ -123,14 +123,19 @@
     </rect>
    </property>
   </widget>
-  <widget class="QWidget" name="stopBtn" native="true">
+  <widget class="WTranslationPlayBtn" name="stopBtn" native="true">
    <property name="geometry">
     <rect>
      <x>790</x>
      <y>32</y>
-     <width>56</width>
+     <width>81</width>
      <height>20</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QPushButton" name="lockButton">
@@ -239,6 +244,12 @@
    <class>WSubtitleAutoScroll</class>
    <extends>QWidget</extends>
    <header location="global">wsubtitle.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WTranslationPlayBtn</class>
+   <extends>QWidget</extends>
+   <header location="global">wtranslationplaybtn.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

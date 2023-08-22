@@ -97,24 +97,6 @@
     <ClCompile Include="widget\WDropDownList.cpp">
       <Filter>widget</Filter>
     </ClCompile>
-    <ClCompile Include="widget\WLogin.cpp">
-      <Filter>widget</Filter>
-    </ClCompile>
-    <ClCompile Include="widget\WLoginFrame.cpp">
-      <Filter>widget</Filter>
-    </ClCompile>
-    <ClCompile Include="widget\WLoginOpt.cpp">
-      <Filter>widget</Filter>
-    </ClCompile>
-    <ClCompile Include="widget\WLoginSwitch.cpp">
-      <Filter>widget</Filter>
-    </ClCompile>
-    <ClCompile Include="widget\WMobileLogin.cpp">
-      <Filter>widget</Filter>
-    </ClCompile>
-    <ClCompile Include="widget\WRegister.cpp">
-      <Filter>widget</Filter>
-    </ClCompile>
     <ClCompile Include="widget\WScrollBar.cpp">
       <Filter>widget</Filter>
     </ClCompile>
@@ -280,6 +262,27 @@
     <ClCompile Include="function\Bussiness\soundHistoryModel.cpp">
       <Filter>function\Bussiness</Filter>
     </ClCompile>
+    <ClCompile Include="widget\WLogin.cpp">
+      <Filter>widget\login</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\WLoginFrame.cpp">
+      <Filter>widget\login</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\WLoginOpt.cpp">
+      <Filter>widget\login</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\WMobileLogin.cpp">
+      <Filter>widget\login</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\WLoginSwitch.cpp">
+      <Filter>widget\login</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\WRegister.cpp">
+      <Filter>widget\login</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\WTranslationPlayBtn.cpp">
+      <Filter>widget\Tanslation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -426,24 +429,6 @@
       <Filter>widget</Filter>
     </QtMoc>
     <QtMoc Include="widget\WDropDownList.h">
-      <Filter>widget</Filter>
-    </QtMoc>
-    <QtMoc Include="widget\WLogin.h">
-      <Filter>widget</Filter>
-    </QtMoc>
-    <QtMoc Include="widget\WLoginFrame.h">
-      <Filter>widget</Filter>
-    </QtMoc>
-    <QtMoc Include="widget\WLoginOpt.h">
-      <Filter>widget</Filter>
-    </QtMoc>
-    <QtMoc Include="widget\WLoginSwitch.h">
-      <Filter>widget</Filter>
-    </QtMoc>
-    <QtMoc Include="widget\WMobileLogin.h">
-      <Filter>widget</Filter>
-    </QtMoc>
-    <QtMoc Include="widget\WRegister.h">
       <Filter>widget</Filter>
     </QtMoc>
     <QtMoc Include="widget\WScrollBar.h">
@@ -610,6 +595,27 @@
     </QtMoc>
     <QtMoc Include="function\Bussiness\soundHistoryModel.h">
       <Filter>function\Bussiness</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WLoginFrame.h">
+      <Filter>widget\login</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WMobileLogin.h">
+      <Filter>widget\login</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WLoginSwitch.h">
+      <Filter>widget\login</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WLoginOpt.h">
+      <Filter>widget\login</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WLogin.h">
+      <Filter>widget\login</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WRegister.h">
+      <Filter>widget\login</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WTranslationPlayBtn.h">
+      <Filter>widget\Tanslation</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
