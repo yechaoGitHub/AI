@@ -13,6 +13,8 @@ signals:
 	void	sig_searchTeam_replay(int pages, int cur_page,int total,const QVector<struc_teamInfo>& user_info);
 	void	sig_getChatBotListReplay(bool, int, const QString& msg, const  QVector<strc_ChatbotInfo>& user_info);
 	void	sig_chatHistoryReplay(bool, int, const QString& msg, const  QVector<strc_ChatHistory>& chat_info);
+	void	sig_soundFilterReplay(bool, int, const QString& msg, const  QVector<strc_SoundFilter>& filter_list);
+	void	sig_soundLibReplay(bool, int,const strc_PageInfo page_info,const QVector<strc_SoundLib>& filter_list);
 
 	void	sig_common_replay(httpReqType type,bool success,const QString& msg);
 public:
@@ -38,6 +40,11 @@ public:
 	void getCharBotListReq();
 
 	void getCharHistoryReq(int type, int page, const QString& search, int pageSize=10);
+
+	// 获取声音filter列表
+	void getFilterListReq();
+
+	void getSoundLIbReq(int pageNo, int page, strc_SoundType sound_type);
 
 private:
 	void paraseHttpResponse(httpReqType req_type,const QString& response);

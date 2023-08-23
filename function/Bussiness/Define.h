@@ -15,7 +15,9 @@ enum httpReqType {
 	Remove_Team,
 	Feedback,
 	ChatBot_req,
+	Filter_req,
 	ChatHistory_Req,
+	SoundLib_Req,
 };
 
 struct stru_UserInfo {
@@ -49,4 +51,34 @@ struct strc_ChatHistory {
 	QString initTime;
 	qint32  receiverId = 0;
 	qint32  senderId = 0;
+};
+
+struct strc_SoundFilter {
+	bool		is_label = false;
+	QString		value;
+	int			id = 0;
+};
+
+struct strc_SoundType {
+	int		gender = 0;
+	int		label = 0;
+	int		language = 0;
+	int     source = 0;
+};
+
+struct strc_SoundLib {
+	QString		description;
+	int			gender = 0;
+	int			label = 0;
+	int			language = 0;
+	int			source = 0;
+	int			voiceLibId = 0;
+	QString		voiceName;
+};
+
+struct strc_PageInfo {
+	int		total_size = 0;
+	int		page_size = 4;
+	int		total_pages = 0;
+	int		cur_page = 1;
 };

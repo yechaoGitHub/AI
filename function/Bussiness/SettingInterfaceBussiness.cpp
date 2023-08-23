@@ -135,6 +135,65 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
             emit sig_common_replay(httpReqType::ChatHistory_Req, false, json["msg"].toString());
         }
     }
+    else if (req_type == httpReqType::Filter_req) {
+        if (json["code"].toInt() == 200) {
+            QVector<strc_SoundFilter>  filter_list;
+            if (json["data"]["labelList"].isArray()) {
+                for (auto it : json["data"]["labelList"].toArray()) {
+                    strc_SoundFilter sound_filter;
+                    QJsonObject json_recode = it.toObject();
+                    sound_filter.is_label = true;
+                    sound_filter.id = json_recode["id"].toInt();
+                    sound_filter.value = json_recode["value"].toString();
+                    filter_list.push_back(std::move(sound_filter));
+                }
+            }
+            if (json["data"]["languageList"].isArray()) {
+                for (auto it : json["data"]["languageList"].toArray()) {
+                    strc_SoundFilter sound_filter;
+                    QJsonObject json_recode = it.toObject();
+                    sound_filter.id = json_recode["id"].toInt();
+                    sound_filter.value = json_recode["value"].toString();
+                    filter_list.push_back(std::move(sound_filter));
+                }
+            }
+
+            emit sig_soundFilterReplay(true, 200, "", filter_list);
+        }
+        else {
+            emit sig_common_replay(req_type, false, json["msg"].toString());
+        }
+    }
+    else if (req_type == httpReqType::SoundLib_Req) {
+        if (json["code"].toInt() == 200) {
+            QVector<strc_SoundLib>   sound_lib_list;
+            if (json["data"]["records"].isArray()) {
+                for (auto it : json["data"]["records"].toArray()) {
+                    strc_SoundLib sound_lib;
+                    QJsonObject json_recode = it.toObject();
+                    sound_lib.description = json_recode["description"].toString();
+                    sound_lib.gender = json_recode["gender"].toInt();
+                    sound_lib.label = json_recode["label"].toInt();
+                    sound_lib.language = json_recode["language"].toInt();
+                    sound_lib.source = json_recode["source"].toInt();
+                    sound_lib.voiceLibId = json_recode["voiceLibId"].toDouble();
+                    sound_lib.voiceName = json_recode["voiceName"].toString();
+                    sound_lib_list.push_back(std::move(sound_lib));
+                }
+            }
+
+            strc_PageInfo page_info;
+            page_info.total_size = json["data"]["total"].toInt();
+            page_info.cur_page = json["data"]["current"].toInt();
+            page_info.page_size = json["data"]["size"].toInt();
+            page_info.total_pages = json["data"]["pages"].toInt();
+
+            emit sig_soundLibReplay(true, 200, page_info, sound_lib_list);
+        }
+        else {
+            emit sig_common_replay(httpReqType::SoundLib_Req, false, json["msg"].toString());
+        }
+        }
 }
 
 void SettingInterfaceBussiness::getUserInfoReq()
@@ -329,6 +388,71 @@ void SettingInterfaceBussiness::getCharHistoryReq(int type ,int page, const QStr
     client.fail([=](const QString& response, int code) {
         qDebug() << "getTeamRecordReq error code=" << code;
         emit sig_common_replay(httpReqType::ChatHistory_Req, false, "查询聊天记录失败");
+        });
+    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+}
+
+void SettingInterfaceBussiness::getFilterListReq()
+{
+    QString token = SETTING.getToken();
+    QString url = SETTING.getHostAddress();
+    if (token.isEmpty() || url.isEmpty()) {
+        return;
+    }
+
+    HttpClient client(QString("%1/api/voice/library/getFilterList").arg(url));
+    client.success([=](const QString& response) {
+        paraseHttpResponse(httpReqType::Filter_req, response);
+        });
+    client.timeout([=]() {
+        qDebug() << "getFilterListReq timeout";
+        emit sig_common_replay(httpReqType::Filter_req, false, "获取声音列表超时");
+        });
+    client.fail([=](const QString& response, int code) {
+        qDebug() << "getFilterListReq error code=" << code;
+        emit sig_common_replay(httpReqType::Filter_req, false, "获取声音列表失败");
+        });
+    client.header("Content-Type", "application/x-www-form-urlencoded").header("access_token", token).timeout(10).post();
+}
+
+void SettingInterfaceBussiness::getSoundLIbReq(int pageNo, int pageSize, strc_SoundType sound_type)
+{
+    QString token = SETTING.getToken();
+    QString url = SETTING.getHostAddress();
+    if (token.isEmpty() || url.isEmpty()) {
+        return;
+    }
+
+    QJsonObject dataobj;
+    dataobj.insert("pageNo", pageNo);
+    dataobj.insert("pageSize", pageSize);
+    if (sound_type.gender != 0) {
+        dataobj.insert("gender", sound_type.gender);
+    }
+    if (sound_type.label != 0) {
+        dataobj.insert("label", sound_type.label);
+    }
+    if (sound_type.language != 0) {
+        dataobj.insert("language", sound_type.language);
+    }
+    if (sound_type.source != 0) {
+        dataobj.insert("source", sound_type.source);
+    }
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray jsonValue = document.toJson(QJsonDocument::Compact);
+
+    HttpClient client(QString("%1/api/voice/library/getList").arg(url));
+    client.success([=](const QString& response) {
+        paraseHttpResponse(httpReqType::SoundLib_Req, response);
+        });
+    client.timeout([=]() {
+        qDebug() << "getTeamRecordReq timeout";
+        emit sig_common_replay(httpReqType::SoundLib_Req, false, tr("获取声音列表超时"));
+        });
+    client.fail([=](const QString& response, int code) {
+        qDebug() << "getTeamRecordReq error code=" << code;
+        emit sig_common_replay(httpReqType::SoundLib_Req, false, tr("查询声音列表失败"));
         });
     client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
 }

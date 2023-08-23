@@ -1,5 +1,6 @@
 #include "WSoundBotMainUi.h"
 
+
 WSoundBotMainUi::WSoundBotMainUi(QWidget *parent)
 	: QWidget(parent)
 {
@@ -37,6 +38,7 @@ void WSoundBotMainUi::on_pb_sound_page3_clicked()
 {
 	changeSelectBtn(WNavbarButton::BarType::Sound_Page3);
 	ui.stackedWidget->setCurrentIndex(2);
+	ui.voice_lib_page->setSel();
 }
 
 void WSoundBotMainUi::on_pb_sound_page4_clicked()

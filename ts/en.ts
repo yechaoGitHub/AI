@@ -51,6 +51,17 @@
     </message>
 </context>
 <context>
+    <name>SettingInterfaceBussiness</name>
+    <message>
+        <source>��ȡ�����б���ʱ</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>��ѯ�����б�ʧ��</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Translation</name>
     <message>
         <source>Voice Translation</source>
@@ -669,6 +680,41 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
 </context>
 <context>
+    <name>WVoiceLibPage</name>
+    <message>
+        <source>gender</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>man</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>woman</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SoundaAI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>language</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WVoiceLibPageClass</name>
     <message>
         <source>WVoiceLibPage</source>
@@ -680,14 +726,6 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>entries of 430</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
