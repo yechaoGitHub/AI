@@ -13,6 +13,8 @@
 
 Translation::Translation()
 {
+    qRegisterMetaType<TransType>();
+    qRegisterMetaType<SystemLanguage>();
 }
 
 Translation::~Translation()
@@ -54,6 +56,16 @@ void Translation::Connect(const QString& token, const QString& srcLan, const QSt
     emit connect(token, srcLan, destLan, type, speaker, enableConvGuide, language);
 }
 
+void Translation::StartMic()
+{
+    _audioInput.StartMic();
+}
+
+void Translation::StopMic()
+{
+    _audioInput.EndMic();
+}
+
 void Translation::Disconnect()
 {
     emit disconnect();
@@ -91,11 +103,6 @@ void Translation::DisconnectInternal()
     _webSocket.close();
 }
 
-void Translation::StartListen()
-{
-    _audioInput.StartMic();
-}
-
 void Translation::EnableAudio(bool enable)
 {
     if (enable)
@@ -126,11 +133,11 @@ void Translation::SendParam()
     dataobj.insert("to", _destLan);
     switch (_transType)
     {
-        case Translation::TRANSTYPE_NORMAL:
+        case TRANSTYPE_NORMAL:
             dataobj.insert("transType", "2");
         break;
 
-        case Translation::TRANSTYPE_HIGH_PRECISION:
+        case TRANSTYPE_HIGH_PRECISION:
             dataobj.insert("transType", "1");
         break;
     }
@@ -140,11 +147,11 @@ void Translation::SendParam()
 
     switch (_language)
     {
-        case Translation::SYSTEM_LANGUAGE_CHS:
+        case SYSTEM_LANGUAGE_CHS:
             dataobj.insert("systemLanguaue", "zh-cn");
         break;
 
-        case Translation::SYSTEM_LANGUAGE_EN:
+        case SYSTEM_LANGUAGE_EN:
             dataobj.insert("systemLanguaue", "en_us");
         break;
     }
@@ -180,7 +187,7 @@ void Translation::WebsocketConnected()
 {
     SendHearBeat();
     SendParam();
-    StartListen();
+    EnableAudio(true);
     _connected = true;
     _heartBeatTimer = startTimer(5000);
     emit connected();
@@ -188,6 +195,7 @@ void Translation::WebsocketConnected()
 
 void Translation::WebsocketDisconnected()
 {
+    EnableAudio(false);
     _connected = false;
     emit disconnected();
     _workThread.quit();

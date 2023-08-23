@@ -20,7 +20,9 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 
     this->resize(1078, 252);
+    ui.stopBtn->SetState(WTranslationPlayBtn::STOP);
 
+    connect(ui.stopBtn, &WTranslationPlayBtn::stateChanged, this, &WTransaltionMain::StopBtnStateChanged);
     connect(ui.minBtn, &QPushButton::clicked, this, &WTransaltionMain::MinClicked);
     connect(ui.closeBtn, &QPushButton::clicked, this, &WTransaltionMain::CloseClicked);
     connect(ui.lockButton, &QPushButton::clicked, this, &WTransaltionMain::LockClicked);
@@ -42,7 +44,7 @@ void WTransaltionMain::SetLanguage(const TranslationLanguage& srcLan, const Tran
 
     ui.srcLabel->setText(_srcLan.name);
     ui.destLabel->setText(_destLan.name);
-    ui.subtitleWidget->Subtitle()->SetTranslate(_srcLan.language, _destLan.language);
+    ui.subtitleWidget->Subtitle()->SetTranslate(_srcLan.name, _destLan.name);
 
 }
 
@@ -129,8 +131,7 @@ void WTransaltionMain::LockClicked()
 
 void WTransaltionMain::TranslationReceived(const QString& src, const QString& dst, int type)
 {
-    static int lastType{ FIN };
-    if (lastType == FIN)
+    if (_newSubtitle)
     {
         ui.subtitleWidget->Subtitle()->AddSubtitle(src, dst);
     }
@@ -139,5 +140,25 @@ void WTransaltionMain::TranslationReceived(const QString& src, const QString& ds
         ui.subtitleWidget->Subtitle()->UpdateSubtitle(src, dst);
     }
 
-    lastType = type;
+    if (type == MID)
+    {
+        _newSubtitle = false;
+    }
+    else
+    {
+        _newSubtitle = true;
+    }
+}
+
+void WTransaltionMain::StopBtnStateChanged(WTranslationPlayBtn::State state)
+{
+    auto& translation = AiSound::GetInstance().GetTranslation();
+    if (state == WTranslationPlayBtn::STOP)
+    {
+        translation.StopMic();
+    }
+    else
+    {
+        translation.StartMic();
+    }
 }

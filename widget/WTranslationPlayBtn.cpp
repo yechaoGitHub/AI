@@ -13,6 +13,12 @@ WTranslationPlayBtn::~WTranslationPlayBtn()
 {
 }
 
+void WTranslationPlayBtn::SetState(State state)
+{
+    _state = state;
+    repaint();
+}
+
 void WTranslationPlayBtn::enterEvent(QEvent* event)
 {
     setCursor(Qt::PointingHandCursor);
@@ -36,9 +42,31 @@ void WTranslationPlayBtn::paintEvent(QPaintEvent* event)
 
     painter.setPen(QColor{255, 255, 255, 255});
     painter.setFont(this->font());
-    auto textRt = this->rect().marginsAdded({ -20, 0, 0, 0 });
+    auto textRt = this->rect();
     QTextOption opt;
     opt.setAlignment(Qt::AlignLeft | Qt::AlignCenter);
-    painter.drawText(textRt, "Stop", opt);
 
+    if (_state == PLAY)
+    {
+        painter.drawText(textRt, "Stop", opt);
+    }
+    else
+    {
+        painter.drawText(textRt, "Play", opt);
+    }
+}
+
+void WTranslationPlayBtn::mouseReleaseEvent(QMouseEvent* event)
+{
+    if (_state == STOP)
+    {
+        _state = PLAY;
+    }
+    else
+    {
+        _state = STOP;
+    }
+
+    emit stateChanged(_state);
+    repaint();
 }

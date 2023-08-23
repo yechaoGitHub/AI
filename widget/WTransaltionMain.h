@@ -29,6 +29,7 @@ private:
     void CloseClicked();
     void LockClicked();
     void TranslationReceived(const QString& src, const QString& dst, int type);
+    void StopBtnStateChanged(WTranslationPlayBtn::State state);
 
     TranslationLanguage     _srcLan;
     TranslationLanguage     _destLan;
@@ -37,5 +38,6 @@ private:
     QPoint                  _clickPos;
     bool                    _mouseHold = false;
     bool                    _mouseIn = false;
+    bool                    _newSubtitle = true;
 };
 

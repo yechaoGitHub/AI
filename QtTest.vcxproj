@@ -164,6 +164,7 @@
     <ClCompile Include="widget\WTransaltionMain.cpp" />
     <ClCompile Include="widget\WTranslationPlayBtn.cpp" />
     <ClCompile Include="widget\WTranslationSelect.cpp" />
+    <ClCompile Include="widget\WTranslationTimer.cpp" />
     <ClCompile Include="widget\WUserNameLogin.cpp" />
     <ClCompile Include="widget\WVerificationCode.cpp" />
     <ClCompile Include="WRobotNavigation.cpp" />
@@ -212,6 +213,7 @@
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="widget\WTranslationTimer.h" />
     <QtMoc Include="widget\WTranslationPlayBtn.h" />
     <QtMoc Include="widget\Setting\SoundBot\WSoundLine.h" />
     <QtMoc Include="widget\Setting\WChatHistoryDelegate.h" />

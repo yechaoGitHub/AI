@@ -8,13 +8,14 @@
 #include <QWebsocket>
 #include <QThread>
 
+enum TransType { TRANSTYPE_NORMAL, TRANSTYPE_HIGH_PRECISION };
+Q_DECLARE_METATYPE(TransType);
+enum SystemLanguage{ SYSTEM_LANGUAGE_CHS, SYSTEM_LANGUAGE_EN };
+Q_DECLARE_METATYPE(SystemLanguage);
+
 class Translation : public QObject
 {
     Q_OBJECT
-public:
-    enum TransType { TRANSTYPE_NORMAL, TRANSTYPE_HIGH_PRECISION };
-    enum SystemLanguage{ SYSTEM_LANGUAGE_CHS, SYSTEM_LANGUAGE_EN };
-
 public:
     Translation();
     ~Translation();
@@ -22,6 +23,9 @@ public:
     void Initialize();
     void Uninitialize();
     void Connect(const QString& token, const QString& srcLan, const QString& destLan, TransType type = TRANSTYPE_NORMAL, const QString& speaker = "", bool enableConvGuide = false, SystemLanguage language = SYSTEM_LANGUAGE_CHS);
+
+    void StartMic();
+    void StopMic();
 
     void Disconnect();
     bool Connected();
@@ -40,7 +44,6 @@ private:
     void ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, TransType type, const QString& speaker, bool enableConvGuide, SystemLanguage language);
     void DisconnectInternal();
 
-    void StartListen();
     void EnableAudio(bool enable);
     void SendParam();
     void SendHearBeat();

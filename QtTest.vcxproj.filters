@@ -283,6 +283,9 @@
     <ClCompile Include="widget\WTranslationPlayBtn.cpp">
       <Filter>widget\Tanslation</Filter>
     </ClCompile>
+    <ClCompile Include="widget\WTranslationTimer.cpp">
+      <Filter>widget\Tanslation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -615,6 +618,9 @@
       <Filter>widget\login</Filter>
     </QtMoc>
     <QtMoc Include="widget\WTranslationPlayBtn.h">
+      <Filter>widget\Tanslation</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WTranslationTimer.h">
       <Filter>widget\Tanslation</Filter>
     </QtMoc>
   </ItemGroup>
