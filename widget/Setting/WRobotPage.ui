@@ -6,14 +6,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>276</height>
+    <width>600</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>400</width>
-    <height>276</height>
+    <width>600</width>
+    <height>400</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -22,31 +22,30 @@
   <property name="styleSheet">
    <string notr="true">QWidget{
 	font: 12px &quot;微软雅黑&quot;;
-	background-color: transparent;
 }
 
 QFrame#frame_chat[is_sel=true]{
-	background-repeat: no-repeat;
-	background-image: url(:/QtTest/icon/Setting/frame_bg.png);
-	background-color: transparent;
-}
-
-QFrame#frame_sound[is_sel=false]{
-	border:1px solid #000000;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0,102,255,25), stop:1 rgba(189,0,255,25));
 	border-radius:8px;
-	background-color: transparent;
-}
-
-QFrame#frame_sound[is_sel=true]{
-	background-repeat: no-repeat;
-	background-image: url(:/QtTest/icon/Setting/frame_bg.png);
-	background-color: transparent;
+	border:1px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
 }
 
 QFrame#frame_chat[is_sel=false]{
 	border:1px solid #000000;
 	border-radius:8px;
-	background-color: transparent;
+	background-color: #ffffff;
+}
+
+QFrame#frame_sound[is_sel=false]{
+	border:1px solid #000000;
+	border-radius:8px;
+	background-color: #ffffff;
+}
+
+QFrame#frame_sound[is_sel=true]{
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0,102,255,25), stop:1 rgba(189,0,255,25));
+border-radius:8px;
+border:1px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
 }
 
 QLabel#lb_robot_icon{
@@ -127,18 +126,18 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
       <widget class="QFrame" name="frame_chat">
        <property name="minimumSize">
         <size>
-         <width>346</width>
-         <height>93</height>
+         <width>500</width>
+         <height>140</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>346</width>
-         <height>93</height>
+         <width>450</width>
+         <height>120</height>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -154,7 +153,7 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
          <number>4</number>
         </property>
         <property name="bottomMargin">
-         <number>16</number>
+         <number>6</number>
         </property>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -231,6 +230,18 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
              <layout class="QHBoxLayout" name="horizontalLayout">
               <item>
                <widget class="QLabel" name="lb_chat">
+                <property name="minimumSize">
+                 <size>
+                  <width>70</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>70</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">background-color: rgba(255, 255, 255,0);</string>
                 </property>
@@ -253,6 +264,12 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
             </item>
             <item>
              <widget class="QLabel" name="lb_robot_name">
+              <property name="minimumSize">
+               <size>
+                <width>300</width>
+                <height>60</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">background-color: rgba(255, 255, 255,0);</string>
               </property>
@@ -349,18 +366,18 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
       <widget class="QFrame" name="frame_sound">
        <property name="minimumSize">
         <size>
-         <width>346</width>
-         <height>93</height>
+         <width>500</width>
+         <height>140</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>346</width>
-         <height>93</height>
+         <width>450</width>
+         <height>120</height>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
+        <string notr="true"/>
        </property>
        <property name="frameShape">
         <enum>QFrame::StyledPanel</enum>
@@ -376,7 +393,7 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
          <number>4</number>
         </property>
         <property name="bottomMargin">
-         <number>16</number>
+         <number>6</number>
         </property>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -453,6 +470,18 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
              <layout class="QHBoxLayout" name="horizontalLayout_6">
               <item>
                <widget class="QLabel" name="lb_sound_name">
+                <property name="minimumSize">
+                 <size>
+                  <width>90</width>
+                  <height>0</height>
+                 </size>
+                </property>
+                <property name="maximumSize">
+                 <size>
+                  <width>90</width>
+                  <height>16777215</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">background-color: rgba(255, 255, 255,0);</string>
                 </property>
@@ -475,6 +504,12 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
             </item>
             <item>
              <widget class="QLabel" name="lb_sound_tip">
+              <property name="minimumSize">
+               <size>
+                <width>300</width>
+                <height>60</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">background-color: rgba(255, 255, 255,0);</string>
               </property>
