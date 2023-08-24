@@ -164,6 +164,19 @@
     <cursorShape>PointingHandCursor</cursorShape>
    </property>
   </widget>
+  <widget class="QPushButton" name="chatBotButton">
+   <property name="geometry">
+    <rect>
+     <x>942</x>
+     <y>24</y>
+     <width>32</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>PushButton</string>
+   </property>
+  </widget>
  </widget>
  <customwidgets>
   <customwidget>

@@ -18,6 +18,7 @@ WTranslationSelect::WTranslationSelect(QWidget* parent) :
     auto& ins = AiSound::GetInstance();
     connect(ui.startBtn, &WButton::clicked, this, &WTranslationSelect::StartClicked);
     connect(ui.closeBtn, &QPushButton::clicked, this, &WTranslationSelect::CloseClicked);
+    connect(ui.chatBotButton, &QPushButton::clicked, this, &WTranslationSelect::ChatBotClicked);
 }
 
 WTranslationSelect::~WTranslationSelect()
@@ -119,5 +120,18 @@ void WTranslationSelect::StartClicked()
 void WTranslationSelect::CloseClicked()
 {
     this->close();
+}
+
+void WTranslationSelect::ChatBotClicked()
+{
+    auto& ins = AiSound::GetInstance();
+    if (ins.IsConversationSuggestionShow())
+    {
+        ins.ShowConversationSuggestion(false);
+    }
+    else
+    {
+        ins.ShowConversationSuggestion(true);
+    }
 }
 

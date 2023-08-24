@@ -45,7 +45,6 @@ void WTransaltionMain::SetLanguage(const TranslationLanguage& srcLan, const Tran
     ui.srcLabel->setText(_srcLan.name);
     ui.destLabel->setText(_destLan.name);
     ui.subtitleWidget->Subtitle()->SetTranslate(_srcLan.name, _destLan.name);
-
 }
 
 void WTransaltionMain::mousePressEvent(QMouseEvent* event)
@@ -88,8 +87,9 @@ void WTransaltionMain::paintEvent(QPaintEvent* event)
 void WTransaltionMain::showEvent(QShowEvent* event)
 {
     auto& ins = AiSound::GetInstance();
+    bool enableConversation = ins.IsConversationSuggestionShow();
     auto& token = ins.Token();
-    ins.GetTranslation().Connect(token, _srcLan.language, _destLan.language);
+    ins.GetTranslation().Connect(token, _srcLan.language, _destLan.language, enableConversation);
 }
 
 void WTransaltionMain::enterEvent(QEvent* event)

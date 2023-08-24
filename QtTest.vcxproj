@@ -151,6 +151,7 @@
     <ClCompile Include="widget\WComboBox.cpp" />
     <ClCompile Include="widget\WCommonEdit.cpp" />
     <ClCompile Include="widget\WCommonWidget.cpp" />
+    <ClCompile Include="widget\WConversationSuggestion.cpp" />
     <ClCompile Include="widget\WDropDownList.cpp" />
     <ClCompile Include="widget\WLogin.cpp" />
     <ClCompile Include="widget\WLoginFrame.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="WRobotSettingMenu.cpp" />
     <QtRcc Include="AiSound.qrc" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="ui\ConversationSuggestion.ui" />
     <QtUic Include="ui\frame.ui" />
     <QtUic Include="ui\login.ui" />
     <QtUic Include="ui\loginMainFrame.ui" />
@@ -213,6 +215,7 @@
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="widget\WConversationSuggestion.h" />
     <QtMoc Include="widget\WTranslationTimer.h" />
     <QtMoc Include="widget\WTranslationPlayBtn.h" />
     <QtMoc Include="widget\Setting\SoundBot\WSoundLine.h" />

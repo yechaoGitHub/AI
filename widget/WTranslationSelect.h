@@ -24,6 +24,7 @@ protected:
 private:
     void StartClicked();
     void CloseClicked();
+    void ChatBotClicked();
     Ui::Translation                     ui;
 
     FunctionType                        _type;

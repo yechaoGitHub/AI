@@ -44,6 +44,7 @@ void AiSound::Initialize()
     _wTranslationSelect = new WTranslationSelect{};
     _wTranslationMain = new WTransaltionMain{};
     _robotNaviga = new WRobotNavigation(nullptr);
+    _wConversationSuggestion = new WConversationSuggestion{};
     connect(_robotNaviga,&WRobotNavigation::sig_robot_clicked,this, &AiSound::slot_robot_nv_clicked);
 
     _robot_chat = new RobotChatMainUI();
@@ -276,6 +277,23 @@ void AiSound::ShowVoiceCompositorMainWindow(const TranslationLanguage& srcLan, c
 {
     _speech_ui->SetLanguage(srcLan, destLan);
     _speech_ui->show();
+}
+
+bool AiSound::IsConversationSuggestionShow()
+{
+    return !_wConversationSuggestion->isHidden();
+}
+
+void AiSound::ShowConversationSuggestion(bool show)
+{
+    if (show)
+    {
+        _wConversationSuggestion->show();
+    }
+    else
+    {
+        _wConversationSuggestion->hide();
+    }
 }
 
 void AiSound::ShowTip(QWidget* parent, const QString& msg)

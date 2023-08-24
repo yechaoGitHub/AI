@@ -286,6 +286,9 @@
     <ClCompile Include="widget\WTranslationTimer.cpp">
       <Filter>widget\Tanslation</Filter>
     </ClCompile>
+    <ClCompile Include="widget\WConversationSuggestion.cpp">
+      <Filter>widget\Tanslation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -407,6 +410,9 @@
     </QtUic>
     <QtUic Include="widget\model\WLibModelWidget.ui">
       <Filter>widget\model</Filter>
+    </QtUic>
+    <QtUic Include="ui\ConversationSuggestion.ui">
+      <Filter>ui</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -621,6 +627,9 @@
       <Filter>widget\Tanslation</Filter>
     </QtMoc>
     <QtMoc Include="widget\WTranslationTimer.h">
+      <Filter>widget\Tanslation</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WConversationSuggestion.h">
       <Filter>widget\Tanslation</Filter>
     </QtMoc>
   </ItemGroup>

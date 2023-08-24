@@ -15,6 +15,7 @@
 #include "widget/chat/WRobotChatMainUI.h"
 #include "widget/Speech/WSpeechGenerationUi.h"
 #include "widget/Setting/WSettingMainUi.h"
+#include "WConversationSuggestion.h"
 
 #include <QString>
 #include <QObject>
@@ -107,6 +108,8 @@ public:
     void ShowTranslationWindow();
     void ShowTranslationMainWindow(const TranslationLanguage& srcLan, const TranslationLanguage& destLan);
     void ShowVoiceCompositorMainWindow(const TranslationLanguage& srcLan, const TranslationLanguage& destLan);
+    void ShowConversationSuggestion(bool show);
+    bool IsConversationSuggestionShow();
 #pragma endregion
 
 #pragma region ¹¦ÄÜ
@@ -163,9 +166,10 @@ private:
 #pragma endregion
 
 #pragma region ´°¿Ú
-    WLoginUI*                           _wLoginFrame;
-    WTranslationSelect*                 _wTranslationSelect;
-    WTransaltionMain*                   _wTranslationMain;
+    WLoginUI*                           _wLoginFrame = nullptr;
+    WTranslationSelect*                 _wTranslationSelect = nullptr;
+    WTransaltionMain*                   _wTranslationMain = nullptr;
+    WConversationSuggestion*            _wConversationSuggestion = nullptr;
 
     WRobotNavigation*                   _robotNaviga = nullptr;
     RobotChatMainUI*                    _robot_chat = nullptr;

@@ -22,7 +22,7 @@ public:
 
     void Initialize();
     void Uninitialize();
-    void Connect(const QString& token, const QString& srcLan, const QString& destLan, TransType type = TRANSTYPE_NORMAL, const QString& speaker = "", bool enableConvGuide = false, SystemLanguage language = SYSTEM_LANGUAGE_CHS);
+    void Connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide = false, TransType type = TRANSTYPE_NORMAL, const QString& speaker = "", SystemLanguage language = SYSTEM_LANGUAGE_CHS);
 
     void StartMic();
     void StopMic();
@@ -32,7 +32,7 @@ public:
     bool IsRunning();
 
 Q_SIGNALS:
-    void connect(const QString& token, const QString& srcLan, const QString& destLan, TransType type, const QString& speaker, bool enableConvGuide, SystemLanguage language);
+    void connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, TransType type, const QString& speaker, SystemLanguage language);
     void disconnect();
 
     void connected();
@@ -41,7 +41,7 @@ Q_SIGNALS:
     void conversationGuideReceived(const QString& message, int type);
 
 private:
-    void ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, TransType type, const QString& speaker, bool enableConvGuide, SystemLanguage language);
+    void ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, TransType type, const QString& speaker, SystemLanguage language);
     void DisconnectInternal();
 
     void EnableAudio(bool enable);
