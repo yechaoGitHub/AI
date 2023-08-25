@@ -3,6 +3,8 @@
 #include <QWidget>
 #include "ui_WMyVoicePage.h"
 
+
+class WMyVoiceModel;
 class WMyVoicePage : public QWidget
 {
 	Q_OBJECT
@@ -13,4 +15,6 @@ public:
 
 private:
 	Ui::WMyVoicePageClass ui;
+
+	QVector<WMyVoiceModel*>		_voice_widget_list;
 };

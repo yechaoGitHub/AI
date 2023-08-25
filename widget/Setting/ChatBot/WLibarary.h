@@ -31,4 +31,5 @@ private:
 	int		_pages = 1;
 	int		_total_size = 0;
 	int		_cur_page = 1;
+	int		_page_size = 6;
 };

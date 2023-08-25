@@ -15,6 +15,12 @@ public:
 
 	void updateVoiceLib(const strc_SoundLib& lib);
 
+private slots:
+	void on_pb_add_clicked();
+	void on_pb_sample_clicked();
+
+	void slot_commonReplay(int type,bool success, const QString& msg);
 private:
 	Ui::WVoicelibWidgetClass ui;
+	int		_libId = 0;
 };

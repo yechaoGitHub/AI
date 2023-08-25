@@ -178,6 +178,7 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
                     sound_lib.source = json_recode["source"].toInt();
                     sound_lib.voiceLibId = json_recode["voiceLibId"].toDouble();
                     sound_lib.voiceName = json_recode["voiceName"].toString();
+                    sound_lib.clonedByCount = json_recode["clonedByCount"].toInt();
                     sound_lib_list.push_back(std::move(sound_lib));
                 }
             }
@@ -453,6 +454,46 @@ void SettingInterfaceBussiness::getSoundLIbReq(int pageNo, int pageSize, strc_So
     client.fail([=](const QString& response, int code) {
         qDebug() << "getTeamRecordReq error code=" << code;
         emit sig_common_replay(httpReqType::SoundLib_Req, false, tr("²éÑ¯ÉùÒôÁÐ±íÊ§°Ü"));
+        });
+    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+}
+
+void SettingInterfaceBussiness::addMyVoice(int libId)
+{
+    QString token = SETTING.getToken();
+    QString url = SETTING.getHostAddress();
+    if (token.isEmpty() || url.isEmpty()) {
+        return;
+    }
+
+    QJsonObject dataobj;
+    dataobj.insert("voiceLibId", libId);
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray jsonValue = document.toJson(QJsonDocument::Compact);
+
+    HttpClient client(QString("%1/api/voice/library/addVoice").arg(url));
+    client.success([=](const QString& response) {
+        QJsonParseError err_rpt;
+        auto json = QJsonDocument::fromJson(response.toUtf8(), &err_rpt);
+        if (err_rpt.error != QJsonParseError::NoError) {
+            emit sig_common_replay(httpReqType::AddVoice, false, tr("add voice fail"));
+            return;
+        }
+        if (json["code"].toInt() == 200) {
+            emit sig_common_replay(httpReqType::AddVoice, true, tr("add Success"));
+        }
+        else {
+            emit sig_common_replay(httpReqType::AddVoice, false, json["msg"].toString());
+        }
+        });
+    client.timeout([=]() {
+        qDebug() << "feedBackReq timeout";
+        emit sig_common_replay(httpReqType::AddVoice, false, tr("add voice timeout"));
+        });
+    client.fail([=](const QString& response, int code) {
+        qDebug() << "feedBackReq error code=" << code;
+        emit sig_common_replay(httpReqType::AddVoice, false, tr("add voice fail"));
         });
     client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
 }

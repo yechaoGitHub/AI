@@ -18,6 +18,7 @@ enum httpReqType {
 	Filter_req,
 	ChatHistory_Req,
 	SoundLib_Req,
+	AddVoice,
 };
 
 struct stru_UserInfo {
@@ -73,6 +74,7 @@ struct strc_SoundLib {
 	int			language = 0;
 	int			source = 0;
 	int			voiceLibId = 0;
+	int			clonedByCount = 0;
 	QString		voiceName;
 };
 

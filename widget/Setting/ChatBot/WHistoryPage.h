@@ -18,9 +18,13 @@ public:
 	void  reqChatHistory();
 
 private slots:
-	void on_pb_search_clicked();
-	void slot_changePage(int index);
+	void	on_pb_search_clicked();
+	void	slot_changePage(int index);
 	void	slot_chatHistoryReplay(bool, int, const QString& msg, const  QVector<strc_ChatHistory>& chat_info);
+
+private:
+	void	userOpe(int type);
+
 private:
 	Ui::WHistoryPageClass ui;
 	historyListModel* _history_model = nullptr;

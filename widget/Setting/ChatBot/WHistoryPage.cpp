@@ -45,7 +45,7 @@ WHistoryPage::WHistoryPage(QWidget *parent)
 
     connect(_history_delegate, &WHistoryDelegate::sig_opeData, this, [=](const QModelIndex& index,int type) {
         int btn_index = index.row();
-
+        userOpe(btn_index);
         });
 
     connect(ui.widget, &WPageCtlWidget::sig_changePage, this, &WHistoryPage::slot_changePage);
@@ -56,6 +56,19 @@ WHistoryPage::~WHistoryPage()
     if (_history_model) {
         delete _history_model;
         _history_model = nullptr;
+    }
+}
+
+void WHistoryPage::userOpe(int type)
+{
+    if (type == 0) {
+
+    }
+    else if (type == 1) {
+
+    }
+    else {
+
     }
 }
 

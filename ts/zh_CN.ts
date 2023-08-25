@@ -2,6 +2,33 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh_CN">
 <context>
+    <name>ConversationSuggestion</name>
+    <message>
+        <source>WChatDesc</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Summary Chat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>the meeting on the scope of AI in the design field provided a platform for 
+professionals to discuss the current landscape and future possibilities. 
+It highlighted the positive impact of AI in design while emphasizing the need
+for responsible and ethical integration. The meeting concluded with a 
+shared vision of a harmonious collaboration between designers and AI
+systems, leveraging the strengths of both to drive innovation in the field.
+
+During the meeting, several key points were highlighted. Firstly, participants
+acknowledged that AI has already made significant contributions to the 
+design field, particularly in areas such as automated design generation, 
+predictive analytics, and data-driven decision-making. AI-powered tools and 
+algorithms have facilitated faster and more efficient design processes, 
+enabling designers to focus on more creative aspects of their work.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Form</name>
     <message>
         <source>Form</source>
@@ -60,11 +87,27 @@
         <source>��ѯ�����б�ʧ��</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>add voice fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>add Success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>add voice timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Translation</name>
     <message>
         <source>Voice Translation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PushButton</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -188,6 +231,21 @@ design field, particularly in areas such as automated design generation,
 predictive analytics, and data-driven decision-making. AI-powered tools and 
 algorithms have facilitated faster and more efficient design processes, 
 enabling designers to focus on more creative aspects of their work.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WGerenalPage</name>
+    <message>
+        <source>Send Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chinese</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -382,19 +440,19 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>123532</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>This voice has been randomly generated</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Sample</source>
+        <source>Edit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add to my Voice</source>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -414,14 +472,6 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>1/10</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Show</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>entries of 430</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

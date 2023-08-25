@@ -17,6 +17,7 @@ signals:
 	void	sig_soundLibReplay(bool, int,const strc_PageInfo page_info,const QVector<strc_SoundLib>& filter_list);
 
 	void	sig_common_replay(httpReqType type,bool success,const QString& msg);
+
 public:
 	SettingInterfaceBussiness(QObject *parent);
 	~SettingInterfaceBussiness();
@@ -43,8 +44,10 @@ public:
 
 	// 获取声音filter列表
 	void getFilterListReq();
-
 	void getSoundLIbReq(int pageNo, int page, strc_SoundType sound_type);
+
+	//voice
+	void addMyVoice(int libId);
 
 private:
 	void paraseHttpResponse(httpReqType req_type,const QString& response);

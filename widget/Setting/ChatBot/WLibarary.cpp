@@ -27,7 +27,7 @@ void WLibarary::slot_model_clicked()
 void WLibarary::slot_page_change(int index)
 {
 	_cur_page = index;
-	int start_index = (_cur_page - 1) * 6;
+	int start_index = (_cur_page - 1) * _page_size;
 	int list_index = 0;
 	for (int var = start_index; var < _chatBot__type_list.size() - start_index; var++) {
 		if (list_index > 5) {
@@ -38,7 +38,7 @@ void WLibarary::slot_page_change(int index)
 		list_index++;
 	}
 
-	for (auto i = list_index; i < 6; i++) {
+	for (auto i = list_index; i < _page_size; i++) {
 		_lib_model_list.at(i)->hide();
 	}
 }
@@ -67,7 +67,7 @@ void WLibarary::updateLibBySelType(int type)
 	}
 
 	_total_size = _chatBot__type_list.size();
-	_pages = ceil(_total_size / 6);
+	_pages = ceil(_total_size / _page_size);
 	_cur_page = 1;
 	ui.widget->initCtl(_pages, _total_size, _cur_page);
 	slot_page_change(0);

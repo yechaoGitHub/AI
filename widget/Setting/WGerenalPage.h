@@ -12,7 +12,9 @@ public:
 	~WGerenalPage();
 
 private slots:
-	void on_pb_send_clicked();
+	void	on_pb_send_clicked();
+	void	slot_comboxIndexChange(int index);
+	void	slot_common_replay(int, bool, const QString& msg);
 
 private:
 	Ui::WGerenalPageClass ui;
