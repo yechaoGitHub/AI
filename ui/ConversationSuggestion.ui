@@ -188,19 +188,7 @@ QFrame#frame{
       <item>
        <widget class="QLabel" name="labelText">
         <property name="text">
-         <string>the meeting on the scope of AI in the design field provided a platform for 
-professionals to discuss the current landscape and future possibilities. 
-It highlighted the positive impact of AI in design while emphasizing the need
-for responsible and ethical integration. The meeting concluded with a 
-shared vision of a harmonious collaboration between designers and AI
-systems, leveraging the strengths of both to drive innovation in the field.
-
-During the meeting, several key points were highlighted. Firstly, participants
-acknowledged that AI has already made significant contributions to the 
-design field, particularly in areas such as automated design generation, 
-predictive analytics, and data-driven decision-making. AI-powered tools and 
-algorithms have facilitated faster and more efficient design processes, 
-enabling designers to focus on more creative aspects of their work.</string>
+         <string/>
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
