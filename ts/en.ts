@@ -99,6 +99,26 @@ enabling designers to focus on more creative aspects of their work.</source>
         <source>add voice timeout</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>get voice list timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>get voice list fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>delete voice fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>delete voice Success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>delete voice timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Translation</name>
@@ -448,10 +468,6 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Use</source>
         <translation type="unfinished"></translation>
     </message>
@@ -675,6 +691,14 @@ enabling designers to focus on more creative aspects of their work.</source>
     <name>WSpeechSysPageClass</name>
     <message>
         <source>WSpeechSysPage</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Background Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Original Color</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -194,7 +194,34 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
         else {
             emit sig_common_replay(httpReqType::SoundLib_Req, false, json["msg"].toString());
         }
+    }
+    else if (req_type == httpReqType::VoiceList_Req) {
+        if (json["code"].toInt() == 200) {
+            QVector<strc_MyVoice>   voice_list;
+            if (json["data"]["records"].isArray()) {
+                for (auto it : json["data"]["records"].toArray()) {
+                    strc_MyVoice voice;
+                    QJsonObject json_recode = it.toObject();
+                    voice.description = json_recode["description"].toString();
+                    voice.voiceId = json_recode["voiceId"].toInt();
+                    voice.voiceName = json_recode["voiceName"].toString();
+                    voice.voiceType = json_recode["voiceType"].toInt();
+                    voice_list.push_back(std::move(voice));
+                }
+            }
+
+            strc_PageInfo page_info;
+            page_info.total_size = json["data"]["total"].toInt();
+            page_info.cur_page = json["data"]["current"].toInt();
+            page_info.page_size = json["data"]["size"].toInt();
+            page_info.total_pages = json["data"]["pages"].toInt();
+
+            emit sig_myVoiceListReplay(true, 200, page_info, voice_list);
         }
+        else {
+            emit sig_common_replay(httpReqType::VoiceList_Req, false, json["msg"].toString());
+        }
+    }
 }
 
 void SettingInterfaceBussiness::getUserInfoReq()
@@ -496,4 +523,68 @@ void SettingInterfaceBussiness::addMyVoice(int libId)
         emit sig_common_replay(httpReqType::AddVoice, false, tr("add voice fail"));
         });
     client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+}
+
+void SettingInterfaceBussiness::getVoiceListReq(int cur_page, int page_size)
+{
+    QString token = SETTING.getToken();
+    QString url = SETTING.getHostAddress();
+    if (token.isEmpty() || url.isEmpty()) {
+        return;
+    }
+
+    QJsonObject dataobj;
+    dataobj.insert("pageNo", cur_page);
+    dataobj.insert("pageSize", page_size);
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray jsonValue = document.toJson(QJsonDocument::Compact);
+
+    HttpClient client(QString("%1/api/voice/myVoice/getList").arg(url));
+    client.success([=](const QString& response) {
+        paraseHttpResponse(httpReqType::VoiceList_Req, response);
+        });
+    client.timeout([=]() {
+        qDebug() << "getVoiceListReq timeout";
+        emit sig_common_replay(httpReqType::VoiceList_Req, false, tr("get voice list timeout"));
+        });
+    client.fail([=](const QString& response, int code) {
+        qDebug() << "getVoiceListReq error code=" << code;
+        emit sig_common_replay(httpReqType::VoiceList_Req, false, tr("get voice list fail"));
+        });
+    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+}
+
+void SettingInterfaceBussiness::delVoiceReq(int voiceId)
+{
+    QString token = SETTING.getToken();
+    QString url = SETTING.getHostAddress();
+    if (token.isEmpty() || url.isEmpty()) {
+        return;
+    }
+
+    HttpClient client(QString("%1/api/voice/myVoice/delete").arg(url));
+    client.success([=](const QString& response) {
+        QJsonParseError err_rpt;
+        auto json = QJsonDocument::fromJson(response.toUtf8(), &err_rpt);
+        if (err_rpt.error != QJsonParseError::NoError) {
+            emit sig_common_replay(httpReqType::DelVoice_Req, false, tr("delete voice fail"));
+            return;
+        }
+        if (json["code"].toInt() == 200) {
+            emit sig_common_replay(httpReqType::DelVoice_Req, true, tr("delete voice Success"));
+        }
+        else {
+            emit sig_common_replay(httpReqType::DelVoice_Req, false, json["msg"].toString());
+        }
+        });
+    client.timeout([=]() {
+        qDebug() << "delVoiceReq timeout";
+        emit sig_common_replay(httpReqType::DelVoice_Req, false, tr("delete voice timeout"));
+        });
+    client.fail([=](const QString& response, int code) {
+        qDebug() << "delVoiceReq error code=" << code;
+        emit sig_common_replay(httpReqType::DelVoice_Req, false, tr("delete voice fail"));
+        });
+    client.header("Content-Type", "application/json").header("access_token", token).timeout(10).post();
 }

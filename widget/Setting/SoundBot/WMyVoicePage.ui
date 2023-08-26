@@ -197,7 +197,7 @@ border:none;
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label_3">
+         <widget class="QLabel" name="label_page">
           <property name="text">
            <string>1/10</string>
           </property>

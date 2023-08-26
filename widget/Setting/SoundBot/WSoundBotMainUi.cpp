@@ -45,6 +45,7 @@ void WSoundBotMainUi::on_pb_sound_page4_clicked()
 {
 	changeSelectBtn(WNavbarButton::BarType::Sound_Page4);
 	ui.stackedWidget->setCurrentIndex(3);
+	ui.myVoice_page->initMyVoice();
 }
 
 void WSoundBotMainUi::on_pb_sound_page5_clicked()

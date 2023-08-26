@@ -17,7 +17,7 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
         this->close();
         });
 
-    connect(ui.select_widget, &WSettingSelectWidget::sig_page_change, this, [this](bool max) {
+   /* connect(ui.select_widget, &WSettingSelectWidget::sig_page_change, this, [this](bool max) {
         if (max) {
             this->setFixedSize(852, 830);
         }
@@ -25,26 +25,26 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
             this->setFixedSize(664, 490);
         }
         });
-    this->setFixedSize(664, 490);
+    this->setFixedSize(664, 490);*/
 
     connect(ui.select_widget, &WSettingSelectWidget::sig_robot_clicked, this, [this](bool clicked) {
         if (clicked) {
             ui.chatbot_page->changeSelectBtn(WNavbarButton::BarType::Bar_Lib);
-            this->setFixedSize(939, 830);
+            //this->setFixedSize(939, 830);
             ui.stackedWidget->setCurrentWidget(ui.chatbot_page);
         }
         else {
-            this->setFixedSize(852, 830);
+            //this->setFixedSize(852, 830);
             ui.stackedWidget->setCurrentWidget(ui.soundbot_page);
         }
     });
 
     connect(ui.chatbot_page, &WChatBotMainUI::sig_chatBotBack, this, [this] {
-        this->setFixedSize(664, 490);
+        //this->setFixedSize(664, 490);
         ui.stackedWidget->setCurrentWidget(ui.select_widget);
         });
     connect(ui.soundbot_page, &WSoundBotMainUi::sig_soundBack, this, [this] {
-        this->setFixedSize(664, 490);
+        //this->setFixedSize(664, 490);
         ui.stackedWidget->setCurrentWidget(ui.select_widget);
         });
 }

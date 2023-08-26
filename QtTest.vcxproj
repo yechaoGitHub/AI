@@ -122,6 +122,7 @@
     <ClCompile Include="widget\model\WLibModelWidget.cpp" />
     <ClCompile Include="widget\model\WNavbarButton.cpp" />
     <ClCompile Include="widget\model\WPageCtlWidget.cpp" />
+    <ClCompile Include="widget\model\WRadioBtn.cpp" />
     <ClCompile Include="widget\Setting\ChatBot\WChatBotMainUI.cpp" />
     <ClCompile Include="widget\Setting\ChatBot\WHistoryPage.cpp" />
     <ClCompile Include="widget\Setting\ChatBot\WLibarary.cpp" />
@@ -215,6 +216,7 @@
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="widget\model\WRadioBtn.h" />
     <QtMoc Include="widget\WConversationSuggestion.h" />
     <QtMoc Include="widget\WTranslationTimer.h" />
     <QtMoc Include="widget\WTranslationPlayBtn.h" />

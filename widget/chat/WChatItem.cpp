@@ -9,7 +9,7 @@
 
 
 WChatItem::WChatItem(QWidget*parent)
-	: QWidget(parent)
+    : QWidget(parent)
 {
     QFont te_font = this->font();
     te_font.setFamily("MicrosoftYaHei");
@@ -187,7 +187,7 @@ void WChatItem::paintEvent(QPaintEvent* event)
         painter.setFont(this->font());
         painter.drawText(m_textLeftRect, m_msg, option);
     }
-    else if (m_userType == User_Type::User_Self) { 
+    else if (m_userType == User_Type::User_Self) {
         painter.drawPixmap(m_iconRightRect, m_selfPixmap);
 
         QColor col_Kuang(0,102,255);

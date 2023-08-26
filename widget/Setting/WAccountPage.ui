@@ -100,8 +100,8 @@ QLabel#lb_time{
            </property>
            <property name="maximumSize">
             <size>
-             <width>192</width>
-             <height>62</height>
+             <width>240</width>
+             <height>100</height>
             </size>
            </property>
            <property name="frameShape">
@@ -147,8 +147,8 @@ QLabel#lb_time{
            </property>
            <property name="maximumSize">
             <size>
-             <width>192</width>
-             <height>62</height>
+             <width>240</width>
+             <height>199</height>
             </size>
            </property>
            <property name="frameShape">
@@ -297,8 +297,8 @@ QLabel#lb_time{
          </property>
          <property name="maximumSize">
           <size>
-           <width>409</width>
-           <height>94</height>
+           <width>600</width>
+           <height>140</height>
           </size>
          </property>
          <property name="frameShape">

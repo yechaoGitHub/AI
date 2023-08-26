@@ -82,7 +82,7 @@ QPushButton#pb_sample{
 	color:#ffffff;
 }
 
-QPushButton#pb_add{
+QPushButton#pb_edit{
 	border:1px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
 	border-radius:6px;
 	padding-right:46px;
@@ -246,7 +246,7 @@ QPushButton#pb_add{
             </layout>
            </item>
            <item>
-            <widget class="QLabel" name="label_6">
+            <widget class="QLabel" name="label_name">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -278,7 +278,7 @@ QPushButton#pb_add{
             </spacer>
            </item>
            <item>
-            <widget class="QToolButton" name="toolButton">
+            <widget class="QToolButton" name="del_btn">
              <property name="styleSheet">
               <string notr="true">background-image: url(:/QtTest/icon/Setting/soundbot/del.png);
 background-origin: content;
@@ -286,7 +286,7 @@ background-origin: content;
 border:none;</string>
              </property>
              <property name="text">
-              <string>...</string>
+              <string/>
              </property>
             </widget>
            </item>
@@ -327,7 +327,7 @@ border:none;</string>
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pb_add">
+         <widget class="QPushButton" name="pb_edit">
           <property name="minimumSize">
            <size>
             <width>133</width>

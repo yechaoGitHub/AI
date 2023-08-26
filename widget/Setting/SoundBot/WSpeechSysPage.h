@@ -11,6 +11,9 @@ public:
 	WSpeechSysPage(QWidget *parent = nullptr);
 	~WSpeechSysPage();
 
+private slots:
+	void slot_color_change();
+	void slot_bk_change();
 private:
 	Ui::WSpeechSysPageClass ui;
 };

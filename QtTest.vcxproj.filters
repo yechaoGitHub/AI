@@ -289,6 +289,9 @@
     <ClCompile Include="widget\WConversationSuggestion.cpp">
       <Filter>widget\Tanslation</Filter>
     </ClCompile>
+    <ClCompile Include="widget\model\WRadioBtn.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -631,6 +634,9 @@
     </QtMoc>
     <QtMoc Include="widget\WConversationSuggestion.h">
       <Filter>widget\Tanslation</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\model\WRadioBtn.h">
+      <Filter>widget\Setting\SoundBot</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
