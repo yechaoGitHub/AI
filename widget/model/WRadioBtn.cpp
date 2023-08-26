@@ -9,7 +9,7 @@ WRadioBtn::WRadioBtn(QWidget*parent, QColor color)
     , _color(color)
 {
     this->setStyleSheet("border:none;");
-    this->setFixedSize(64,64);
+    this->setFixedSize(36,36);
 }
 
 WRadioBtn::~WRadioBtn()
@@ -23,14 +23,12 @@ void WRadioBtn::setColor(QColor color)
 
 void WRadioBtn::setSel(bool sel)
 {
-    _select = true;
+    _select = sel;
     update();
 }
 
 void WRadioBtn::paintEvent(QPaintEvent* event)
 {
-    auto rect = QRect();
-
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform | QPainter::Qt4CompatiblePainting);
 

@@ -7,7 +7,7 @@ WNavbarButton::WNavbarButton(QWidget*parent)
 {
 	m_linePixmap = QPixmap(":/QtTest/icon/Setting/line.png");
 	m_rightPixmap = QPixmap(":/QtTest/icon/Setting/right.png");
-	this->setStyleSheet("border:none;");
+	this->setStyleSheet("border:none;font: 12px");
 }
 
 WNavbarButton::~WNavbarButton()

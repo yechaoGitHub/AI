@@ -16,4 +16,6 @@ private slots:
 	void slot_bk_change();
 private:
 	Ui::WSpeechSysPageClass ui;
+
+	QVector<WRadioBtn*>		_orig_btn_list;
 };

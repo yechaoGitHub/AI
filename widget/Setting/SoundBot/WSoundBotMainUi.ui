@@ -33,11 +33,11 @@ QPushButton#pb_back{
 	background-image: url(:/QtTest/icon/Setting/soundbot/back.png);
 }
 
-QCheckBox::indicator {width: 30px; height: 30px;}
+QCheckBox#checkBox::indicator {width: 30px; height: 30px;}
 
-QCheckBox::indicator:unchecked {image: url(:/QtTest/icon/Setting/off.png);}
+QCheckBox#checkBox::indicator:unchecked {image: url(:/QtTest/icon/Setting/off.png);}
 
-QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
+QCheckBox#checkBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
