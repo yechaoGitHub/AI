@@ -28,6 +28,7 @@ private:
     void MinClicked();
     void CloseClicked();
     void LockClicked();
+    void PlayInternal(bool play);
     void TranslationReceived(const QString& src, const QString& dst, int type);
     void StopBtnStateChanged(WTranslationPlayBtn::State state);
 

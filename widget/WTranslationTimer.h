@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QWidget>
+#include <QLabel>
 
 class WTranslationTimer : public QWidget
 {
@@ -11,7 +12,12 @@ public:
 
     void StartTimer();
 
+    void Play(bool play);
+
 protected:
     void timerEvent(QTimerEvent* event) override;
 
+private:
+    QLabel*     _effect = nullptr;
+    QMovie*     _movie = nullptr;
 };

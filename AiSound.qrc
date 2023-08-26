@@ -116,5 +116,7 @@
     <file>icon/min_btn_white.png</file>
     <file>icon/exchange_big.png</file>
     <file>icon/stop.png</file>
+    <file>icon/color_sound.apng</file>
+    <file>icon/white_sound.apng</file>
   </qresource>
 </RCC>

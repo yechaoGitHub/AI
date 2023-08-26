@@ -1,5 +1,7 @@
 #pragma once
 
+#define MONITOR_MIC
+
 #include <QAudioInput>
 #include <QObject>
 #include <QThread>
@@ -24,6 +26,7 @@ public:
 
 Q_SIGNALS:
     void audioInput(QByteArray data);
+    void soundPlay(bool play);
 
 protected:
     void timerEvent(QTimerEvent* event) override;

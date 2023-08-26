@@ -34,6 +34,7 @@ public:
 Q_SIGNALS:
     void connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, TransType type, const QString& speaker, SystemLanguage language);
     void disconnect();
+    void soundPlay(bool play);
 
     void connected();
     void disconnected();
@@ -49,6 +50,7 @@ private:
     void SendHearBeat();
     void SendFinish();
 
+    void SoundPlayInternal(bool play);
     void ReceiveAudioInput(QByteArray data);
     void ReceiveMonitorAudioInput(QByteArray data);
 

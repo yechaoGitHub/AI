@@ -37,6 +37,7 @@ void Translation::Initialize()
     QObject::connect(this, &Translation::connect, this, &Translation::ConnectInternal);
     QObject::connect(this, &Translation::disconnect, this, &Translation::DisconnectInternal);
     QObject::connect(&_audioInput, &AudioInput::audioInput, this, &Translation::ReceiveAudioInput);
+    QObject::connect(&_audioInput, &AudioInput::soundPlay, this, &Translation::SoundPlayInternal);
     QObject::connect(&_audioMonitor, &AudioInput::audioInput, this, &Translation::ReceiveMonitorAudioInput);
 }
 
@@ -264,6 +265,11 @@ void Translation::SendFinish()
     document.setObject(dataobj);
     QByteArray byteArray = document.toJson(QJsonDocument::Compact);
     _webSocket.sendTextMessage(byteArray);
+}
+
+void Translation::SoundPlayInternal(bool play)
+{
+    emit soundPlay(play);
 }
 
 void Translation::ReceiveAudioInput(QByteArray data)

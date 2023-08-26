@@ -113,7 +113,7 @@
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
    </property>
   </widget>
-  <widget class="QWidget" name="SoundWidget" native="true">
+  <widget class="WTranslationTimer" name="timerWidget" native="true">
    <property name="geometry">
     <rect>
      <x>502</x>
@@ -250,6 +250,12 @@
    <class>WTranslationPlayBtn</class>
    <extends>QWidget</extends>
    <header location="global">wtranslationplaybtn.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WTranslationTimer</class>
+   <extends>QWidget</extends>
+   <header location="global">wtranslationtimer.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

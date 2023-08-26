@@ -125,7 +125,6 @@ void AudioInput::ReadAudioData(QIODevice* dev, int& readLen, QByteArray& bufferD
 
         if (data.size() == 1280)
         {
-
             bufferData = std::move(data);
             readLen = 1280;
         }
@@ -142,17 +141,20 @@ void AudioInput::ReadAudioData(QIODevice* dev, int& readLen, QByteArray& bufferD
     {
         if (readLen == 1280)
         {
-            //if (AvgVolume(bufferData) > 50)
+            if (AvgVolume(bufferData) > 15000)
             {
 #ifdef MONITOR_MIC
                 _audioOutput.WriteOutputData(bufferData);
 #endif
                 emit (this->*sginal)(std::move(bufferData));
+
+                emit soundPlay(true);
             }
-            //else
-            //{
-            //    bufferData.clear();
-           // }
+            else
+            {
+                emit soundPlay(false);
+                bufferData.clear();
+            }
 
             readLen = 0;
             timePoint = cur;
@@ -171,27 +173,5 @@ uint64_t AudioInput::AvgVolume(const QByteArray& data)
     }
 
     uint64_t avg = total / count;
-    auto dB = (int)(20 * log10(avg));
-    qDebug() << dB << "\n";
-    return dB;
-}
-
-static int komijbox_sound_dB(const uint8_t* pcm, int len)
-{
-    int sum = 0;
-    int dB = 0;
-    short tmp = 0;
-    short* pcmaddr = (short*)pcm;
-
-    for (int i = 0; i < len; i += 2) {
-        memcpy(&tmp, pcmaddr + i, sizeof(short)); // 获取2字节PCM数据
-        sum += abs(tmp); // 绝对值求和累加
-    }
-
-    sum = sum / (len / 2); // 求PCM数据的平均值，2个字节表示一个16Bit PCM采样数据
-    if (sum) {
-        dB = (int)(20 * log10(sum));
-    }
-
-    return dB;
+    return avg;
 }

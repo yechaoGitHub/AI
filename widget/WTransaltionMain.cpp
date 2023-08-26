@@ -29,6 +29,7 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
 
     auto& translation = AiSound::GetInstance().GetTranslation();
     connect(&translation, &Translation::translationReceived, this, &WTransaltionMain::TranslationReceived);
+    connect(&translation, &Translation::soundPlay, this, &WTransaltionMain::PlayInternal);
 
     setMouseTracking(true);
 }
@@ -127,6 +128,11 @@ void WTransaltionMain::LockClicked()
         this->setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
     }
     show();
+}
+
+void WTransaltionMain::PlayInternal(bool play)
+{
+    ui.timerWidget->Play(play);
 }
 
 void WTransaltionMain::TranslationReceived(const QString& src, const QString& dst, int type)
