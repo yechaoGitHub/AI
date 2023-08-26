@@ -51,10 +51,10 @@ void Translation::Uninitialize()
     _audioInput.Uninitialize();
 }
 
-void Translation::Connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, TransType type, const QString& speaker, SystemLanguage language)
+void Translation::Connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, const QString& speaker, SystemLanguage language)
 {
     _workThread.start();
-    emit connect(token, srcLan, destLan,  enableConvGuide, type, speaker, language);
+    emit connect(token, srcLan, destLan, enableConvGuide, micDev, momitorDev, type, speaker, language);
 }
 
 void Translation::StartMic()
@@ -76,13 +76,15 @@ void Translation::Disconnect()
     }
 }
 
-void Translation::ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, TransType type, const QString& speaker, SystemLanguage language)
+void Translation::ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, const QString& speaker, SystemLanguage language)
 {
     QUrl url{ "ws://47.106.253.9:9501/service/v1/st" };
     QUrlQuery quurl;
     quurl.addQueryItem("access_token", token);
     url.setQuery(quurl);
 
+    _micDev = micDev;
+    _momitorDev = momitorDev;
     _srcLan = srcLan;
     _destLan = destLan;
     _transType = type;
@@ -99,7 +101,7 @@ void Translation::DisconnectInternal()
     killTimer(_heartBeatTimer);
     _heartBeatTimer = 0;
 
-    _audioInput.EndMic();
+    EnableAudio(false);
     SendFinish();
     _webSocket.close();
 }
@@ -108,10 +110,10 @@ void Translation::EnableAudio(bool enable)
 {
     if (enable)
     {
-        _audioInput.StartMic();
+        _audioInput.StartMic(_micDev);
         if (_isConvGuide)
         {
-            _audioMonitor.StartMic();
+            _audioMonitor.StartMic(_momitorDev);
             _audioOutput.StartSpeaker();
         }
     }
@@ -196,7 +198,6 @@ void Translation::WebsocketConnected()
 
 void Translation::WebsocketDisconnected()
 {
-    EnableAudio(false);
     _connected = false;
     emit disconnected();
     _workThread.quit();

@@ -1,4 +1,6 @@
 #include "WTransaltionMain.h"
+#include "base/GlobalSetting.h"
+
 #include <QPainter>
 #include <QMouseEvent>
 
@@ -90,7 +92,8 @@ void WTransaltionMain::showEvent(QShowEvent* event)
     auto& ins = AiSound::GetInstance();
     bool enableConversation = ins.IsConversationSuggestionShow();
     auto& token = ins.Token();
-    ins.GetTranslation().Connect(token, _srcLan.language, _destLan.language, enableConversation);
+
+    ins.GetTranslation().Connect(token, _srcLan.language, _destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo());
 }
 
 void WTransaltionMain::enterEvent(QEvent* event)

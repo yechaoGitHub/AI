@@ -25,18 +25,6 @@ void AudioInput::Initialize()
 #endif
 }
 
-void AudioInput::Initialize(const QAudioDeviceInfo& info)
-{
-    _devInfo = info;
-
-    connect(this, &AudioInput::start_mic, this, &AudioInput::StartMicInternal);
-    connect(this, &AudioInput::end_mic, this, &AudioInput::EndMicInternal);
-    this->moveToThread(&_workThread);
-#ifdef MONITOR_MIC
-    _audioOutput.Initialize();
-#endif
-}
-
 void AudioInput::Uninitialize()
 {
     if (_workThread.isRunning())
@@ -52,6 +40,19 @@ void AudioInput::StartMic()
         return;
     }
 
+    _devInfo = {};
+    _workThread.start();
+    emit start_mic();
+}
+
+void AudioInput::StartMic(const QAudioDeviceInfo& info)
+{
+    if (_workThread.isRunning())
+    {
+        return;
+    }
+
+    _devInfo = info;
     _workThread.start();
     emit start_mic();
 }
@@ -111,8 +112,6 @@ void AudioInput::EndMicInternal()
 #endif
 }
 
-static int komijbox_sound_dB(const uint8_t* pcm, int len);
-
 void AudioInput::ReadAudioData(QIODevice* dev, int& readLen, QByteArray& bufferData, std::chrono::steady_clock::time_point& timePoint, void(AudioInput::*sginal)(QByteArray))
 {
     if (readLen < 1280)
@@ -141,7 +140,7 @@ void AudioInput::ReadAudioData(QIODevice* dev, int& readLen, QByteArray& bufferD
     {
         if (readLen == 1280)
         {
-            if (AvgVolume(bufferData) > 15000)
+            if (AvgDb(bufferData) > -15)
             {
 #ifdef MONITOR_MIC
                 _audioOutput.WriteOutputData(bufferData);
@@ -162,7 +161,7 @@ void AudioInput::ReadAudioData(QIODevice* dev, int& readLen, QByteArray& bufferD
     }
 }
 
-uint64_t AudioInput::AvgVolume(const QByteArray& data)
+int32_t AudioInput::AvgDb(const QByteArray& data)
 {
     uint64_t total{};
     auto count = data.size() / 2;
@@ -173,5 +172,6 @@ uint64_t AudioInput::AvgVolume(const QByteArray& data)
     }
 
     uint64_t avg = total / count;
-    return avg;
+    auto db = 20 * log10((double)avg / (double)UINT16_MAX);
+    return db;
 }

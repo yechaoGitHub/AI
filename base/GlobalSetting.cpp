@@ -1,9 +1,11 @@
 #include "GlobalSetting.h"
+#include "AiSound.h"
+
 #include <QSettings>
 #include <QStandardPaths>
 
-GlobalSetting SETTING;
 
+GlobalSetting SETTING;
 
 #define VERSION_NAME  QString("V 1.0.1")
 
@@ -24,6 +26,29 @@ bool GlobalSetting::init(const QString& path)
 {
     if (m_pSettings)
         return false;
+
+    auto& ins = AiSound::GetInstance();
+    auto&& list = ins.GetOutputDeviceList();
+    if (list.size())
+    {
+        m_speakerDeviceInfo = list[0];
+    }
+
+    list = ins.GetInputDeviceList();
+    if (list.size())
+    {
+        m_micDeviceInfo = list[0];
+    }
+
+    for (auto& in : list)
+    {
+        if (in.deviceName().indexOf("VoiceMeeter Output") != -1)
+        {
+            m_monitorDeviceInfo = in;
+            break;
+        }
+    }
+
     m_pSettings = new QSettings(path, QSettings::IniFormat);
     if (m_pSettings)
         return true;
@@ -131,6 +156,21 @@ bool GlobalSetting::getSoundBot()
     if (!m_pSettings)
         return true;
     return m_pSettings->value("Setting/soundBot", true).toBool();
+}
+
+QAudioDeviceInfo& GlobalSetting::MicDeviceInfo()
+{
+    return m_micDeviceInfo;
+}
+
+QAudioDeviceInfo& GlobalSetting::SpeakerDeviceInfo()
+{
+    return m_speakerDeviceInfo;
+}
+
+QAudioDeviceInfo& GlobalSetting::MonitorDeviceInfo()
+{
+    return m_monitorDeviceInfo;
 }
 
 

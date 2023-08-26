@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QMutex>
+#include <QAudioDeviceInfo>
 
 class QSettings;
 class GlobalSetting
@@ -37,12 +38,18 @@ public:
     void setSoundBot(bool open);
     bool getSoundBot();
 
-private:
-    QSettings       *m_pSettings = nullptr;
-    QMutex           m_mutex;
-    QString         m_strToken;
-    QString         m_strCurPwd;
+    QAudioDeviceInfo& MicDeviceInfo();
+    QAudioDeviceInfo& SpeakerDeviceInfo();
+    QAudioDeviceInfo& MonitorDeviceInfo();
 
+private:
+    QSettings           *m_pSettings = nullptr;
+    QMutex              m_mutex;
+    QString             m_strToken;
+    QString             m_strCurPwd;
+    QAudioDeviceInfo    m_micDeviceInfo;
+    QAudioDeviceInfo    m_speakerDeviceInfo;
+    QAudioDeviceInfo    m_monitorDeviceInfo;
 };
 
 extern GlobalSetting SETTING;

@@ -1,6 +1,6 @@
 #pragma once
 
-#define MONITOR_MIC
+//#define MONITOR_MIC
 
 #include <QAudioInput>
 #include <QObject>
@@ -18,10 +18,10 @@ public:
     ~AudioInput();
 
     void Initialize();
-    void Initialize(const QAudioDeviceInfo& info);
     void Uninitialize();
 
     void StartMic();
+    void StartMic(const QAudioDeviceInfo& info);
     void EndMic();
 
 Q_SIGNALS:
@@ -42,7 +42,7 @@ private:
 
     void ReadAudioData(QIODevice* dev, int& readLen, QByteArray& bufferData, std::chrono::steady_clock::time_point& timePoint, void(AudioInput::*sginal)(QByteArray));
 
-    uint64_t AvgVolume(const QByteArray& data);
+    int32_t AvgDb(const QByteArray& data);
 
     QAudioDeviceInfo                        _devInfo;
     QAudioInput*                            _audioInput = nullptr;
