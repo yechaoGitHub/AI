@@ -55,11 +55,11 @@ void AiSound::Initialize()
     _voiceCompositor.Initialize();
     _chatBot.Initialize();
 
-    QDir dir("./download");
+    /*QDir dir("./download");
     if (!dir.exists())
     {
         dir.mkdir("./download");
-    }
+    }*/
 
     GetPhoneRegionNumber([this](int code, const QString& msg, std::vector<PhoneRegionInfo> data)
         {
@@ -67,16 +67,27 @@ void AiSound::Initialize()
             {
                 QString contryFlagUrl = "http://47.106.253.9:9101/img/country-flags/";
 
+                QString root_path = QCoreApplication::applicationDirPath();
+                QString path = root_path + "/download";
+                QDir dir(path);
+                if (!dir.exists()) {
+                    dir.mkdir(dir.absolutePath());
+                }
+
                 _phoneRegionData = std::move(data);
                 for (auto& phoneData : _phoneRegionData)
                 {
                     auto downloadUrl = contryFlagUrl + phoneData.abb + ".png";
-                    auto savePath = QString("./download/") + phoneData.abb + ".png";
+                    auto savePath = path+ "/" + phoneData.abb + ".png";
+                    QFile file(savePath);
+                    if (file.exists()) {
+                        continue;
+                    }
                     _httpAsync.Download(downloadUrl, savePath);
                 }
             }
         });
-
+    //_wLoginFrame
     GetInputDeviceList();
 
     hook.installHook();

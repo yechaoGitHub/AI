@@ -1,5 +1,7 @@
 #include "WMobileLogin.h"
 #include "AiSound.h"
+#include <qstyle.h>
+
 
 WMobileLogin::WMobileLogin(QWidget* parent) :
     QWidget{ parent },
@@ -24,7 +26,26 @@ WMobileLogin::WMobileLogin(QWidget* parent) :
 
     loggedCheckBox = ui.loggedCheckBox;
 
-    
+    ui.comboBox->setStyleSheet(
+        "QComboBox{border:1px red solid;}QComboBox::drop-down "
+        "{width:0px;border:1px red solid;}"
+        "QComboBox::down-arrow{image:none;}");
+    ui.comboBox->setIconSize(QSize(16, 16));
+    ui.comboBox->addItem(QIcon(":/QtTest/icon/China.png"),"+86");
+    ui.lineEdit->setPlaceholderText(tr("Enter your phone"));
+
+    ui.frame->setStyleSheet("QFrame#frame{border:1px solid #e5e5e5;border-radius:8px;}; ");
+    connect(ui.lineEdit, &QLineEdit::textChanged, this, [=](const QString& phone) {
+        if (phone.isEmpty()) {
+            ui.frame->setStyleSheet("QFrame#frame{border:1px solid #e5e5e5;border-radius:8px;}; ");
+        }
+        else {
+            ui.frame->setStyleSheet("QFrame#frame{border:1px solid qlineargradient(spread : pad, x1 : 0, y1 : 0, x2 : 1, y2 : 1, stop : 0 #0066FF, stop:1 #BD00FF);border-radius:8px;}; ");
+        }
+        });
+    connect(ui.pushButton, &QPushButton::clicked, this, [=] {
+        ui.comboBox->showPopup();
+        });
 }
 
 WMobileLogin::~WMobileLogin()
@@ -33,7 +54,8 @@ WMobileLogin::~WMobileLogin()
 
 QString WMobileLogin::PhoneNumber()
 {
-    return ui.mobileNumEdit->textEdit->text();
+    //return ui.mobileNumEdit->textEdit->text();
+    return "";
 }
 
 QString WMobileLogin::VerifyCode()
@@ -45,7 +67,7 @@ void WMobileLogin::GetCodeCallback()
 {
     auto& ins = AiSound::GetInstance();
 
-    auto phoneNumber = ui.mobileNumEdit->textEdit->text();
+    QString phoneNumber;// = ui.mobileNumEdit->textEdit->text();
     auto phpneCode = ui.codeEdit->textEdit->text();
     auto verifyCode = ui.verificationCodeEdit->textEdit->text();
     auto uuid = ui.verificationCodePic->Uuid();

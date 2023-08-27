@@ -454,6 +454,13 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
 </context>
 <context>
+    <name>WMobileLogin</name>
+    <message>
+        <source>Enter your phone</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WMyVoiceModelClass</name>
     <message>
         <source>WVoicelibWidget</source>

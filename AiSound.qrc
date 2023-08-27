@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/QtTest">
+    <file>icon/China.png</file>
+    <file>icon/small-right.png</file>
     <file>icon/Setting/soundbot/ckeck.png</file>
     <file>icon/Setting/soundbot/unsel.png</file>
     <file>icon/Setting/soundbot/del.png</file>
