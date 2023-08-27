@@ -22,7 +22,6 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 
     this->resize(1078, 252);
-    ui.stopBtn->SetState(WTranslationPlayBtn::STOP);
 
     connect(ui.stopBtn, &WTranslationPlayBtn::stateChanged, this, &WTransaltionMain::StopBtnStateChanged);
     connect(ui.minBtn, &QPushButton::clicked, this, &WTransaltionMain::MinClicked);
@@ -92,6 +91,8 @@ void WTransaltionMain::showEvent(QShowEvent* event)
     auto& ins = AiSound::GetInstance();
     bool enableConversation = ins.IsConversationSuggestionShow();
     auto& token = ins.Token();
+    ui.timerWidget->StartTimer(true);
+    ui.stopBtn->SetState(WTranslationPlayBtn::PLAY);
 
     ins.GetTranslation().Connect(token, _srcLan.language, _destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo());
 }
