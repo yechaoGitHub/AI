@@ -2,6 +2,7 @@
 
 #include <QObject>
 #include <QMutex>
+#include <QThread>
 #include "Define.h"
 
 
@@ -20,26 +21,33 @@ signals:
 	void	sig_common_replay(httpReqType type,bool success,const QString& msg);
 
 public:
-	SettingInterfaceBussiness(QObject *parent);
+	SettingInterfaceBussiness(QObject *parent = nullptr);
 	~SettingInterfaceBussiness();
 
 	static SettingInterfaceBussiness* getInstance();
 	static SettingInterfaceBussiness* _instance;
 
+	void	initThread();
+	void	uninitialize();
+
 	// 获取用户信息请求
 	void getUserInfoReq();
+	Q_INVOKABLE void _getUserInfoReq();
 
 	// 邀请入团
 	void inviteUserJoinReq(const QString& username);
 	// 团队成员
 	void getTeamRecordReq(int page,int pageSize,const QString& search);
+	Q_INVOKABLE void _getTeamRecordReq(int page, int pageSize, const QString& search);
 	// 移除成员
 	void removeTeamReq(qint64 userId);
+	Q_INVOKABLE void _removeTeamReq(qint64 userId);
 
 	void feedBackReq(const QString& msg);
 
 	// 获取机器人模板list
 	void getCharBotListReq();
+	Q_INVOKABLE void _getCharBotListReq();
 
 	void getCharHistoryReq(int type, int page, const QString& search, int pageSize=10);
 	void delChatHsitory(const QStringList& chatId_list);
@@ -54,4 +62,6 @@ public:
 	void delVoiceReq(int voiceId);
 private:
 	void paraseHttpResponse(httpReqType req_type,const QString& response);
+
+	QThread* _thread = nullptr;
 };

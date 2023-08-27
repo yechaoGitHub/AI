@@ -18,6 +18,7 @@ WInvitePage::WInvitePage(QWidget *parent)
     ui.le_invite->setPlaceholderText(tr("Enter user name to add"));
     ui.le_search->setPlaceholderText(tr("Search any record"));
 
+    qRegisterMetaType< QVector<struc_teamInfo>>(" QVector<struc_teamInfo>");
     connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_common_replay,this, &WInvitePage::slot_inviteReplay);
     connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_searchTeam_replay, this, &WInvitePage::slot_searchTeam_replay);
 

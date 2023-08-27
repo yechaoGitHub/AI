@@ -16,6 +16,7 @@ WSettingSelectWidget::WSettingSelectWidget(QWidget *parent)
 	connect(ui.robot_page, &WRobotPage::sig_robot_clicked, this, [=](int is_robot) {
 		emit sig_robot_clicked(is_robot);
 		});
+	qRegisterMetaType<stru_UserInfo>("stru_UserInfo");
 	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_getUserInfoReplay,this, &WSettingSelectWidget::slot_getUserInfoReplay);
 }
 

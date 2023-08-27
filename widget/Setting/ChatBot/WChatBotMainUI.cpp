@@ -12,6 +12,7 @@ WChatBotMainUI::WChatBotMainUI(QWidget *parent)
 	ui.pb_history->initBar("History", WNavbarButton::BarType::Bar_History);
 	changeSelectBtn(WNavbarButton::BarType::Bar_Lib);
 
+	qRegisterMetaType<QVector<strc_ChatbotInfo>>("QVector<strc_ChatbotInfo>");
 	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_getChatBotListReplay,this, &WChatBotMainUI::slot_getChatBotListReplay);
 	for (int var = 0; var < 5; var++) {
 		WLabelButton* label_btn = new WLabelButton(this);

@@ -24,10 +24,29 @@ SettingInterfaceBussiness* SettingInterfaceBussiness::getInstance()
     if (!_instance) {
         QMutexLocker lk(&g_mutex);
         if (!_instance) {
-            _instance = new SettingInterfaceBussiness(nullptr);
+            _instance = new SettingInterfaceBussiness();
+            _instance->initThread();
         }
     }
     return _instance;
+}
+
+void SettingInterfaceBussiness::initThread()
+{
+    _thread = new QThread();
+    _instance->moveToThread(_thread);
+    _thread->start();
+
+    _thread->setObjectName("http_thread");
+}
+
+void SettingInterfaceBussiness::uninitialize()
+{
+    if (_thread) {
+        _thread->quit();
+        _thread->wait();
+        delete _thread;
+    }
 }
 
 void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const QString& response)
@@ -226,7 +245,7 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
     }
 }
 
-void SettingInterfaceBussiness::getUserInfoReq()
+void SettingInterfaceBussiness::_getUserInfoReq()
 {
     QString token = SETTING.getToken();
     QString url = SETTING.getHostAddress();
@@ -247,6 +266,11 @@ void SettingInterfaceBussiness::getUserInfoReq()
         emit sig_getUserInfoReplay(false, netCode::ServerErr, "查询个人信息请求失败", stru_UserInfo{});
         });
     client.header("Content-Type", "application/x-www-form-urlencoded").header("access_token", token).timeout(10).post();
+}
+
+void SettingInterfaceBussiness::getUserInfoReq()
+{
+    QMetaObject::invokeMethod(this, "_getUserInfoReq");
 }
 
 void SettingInterfaceBussiness::inviteUserJoinReq(const QString& username)
@@ -280,6 +304,11 @@ void SettingInterfaceBussiness::inviteUserJoinReq(const QString& username)
 
 void SettingInterfaceBussiness::getTeamRecordReq(int page, int pageSize, const QString& search)
 {
+    QMetaObject::invokeMethod(this, "_getTeamRecordReq", Q_ARG(int, page), Q_ARG(int, pageSize), Q_ARG(QString, search));
+}
+
+void SettingInterfaceBussiness::_getTeamRecordReq(int page, int pageSize, const QString& search)
+{
     QString token = SETTING.getToken();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
@@ -309,7 +338,7 @@ void SettingInterfaceBussiness::getTeamRecordReq(int page, int pageSize, const Q
     client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
-void SettingInterfaceBussiness::removeTeamReq(qint64 userId)
+void SettingInterfaceBussiness::_removeTeamReq(qint64 userId)
 {
     QString token = SETTING.getToken();
     QString url = SETTING.getHostAddress();
@@ -336,6 +365,11 @@ void SettingInterfaceBussiness::removeTeamReq(qint64 userId)
         emit sig_common_replay(httpReqType::Remove_Team, false, "移除用户请求失败");
         });
     client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+}
+
+void SettingInterfaceBussiness::removeTeamReq(qint64 userId)
+{
+    QMetaObject::invokeMethod(this, "_getUserInfoReq", Q_ARG(qint64, userId));
 }
 
 void SettingInterfaceBussiness::feedBackReq(const QString& msg)
@@ -368,6 +402,11 @@ void SettingInterfaceBussiness::feedBackReq(const QString& msg)
 }
 
 void SettingInterfaceBussiness::getCharBotListReq()
+{
+    QMetaObject::invokeMethod(this, "_getCharBotListReq");
+}
+
+void SettingInterfaceBussiness::_getCharBotListReq()
 {
     QString token = SETTING.getToken();
     QString url = SETTING.getHostAddress();

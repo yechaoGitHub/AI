@@ -683,10 +683,6 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>08:23</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Auto Send</source>
         <translation type="unfinished"></translation>
     </message>

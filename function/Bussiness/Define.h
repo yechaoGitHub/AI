@@ -23,6 +23,7 @@ enum httpReqType {
 	VoiceList_Req,
 	DelVoice_Req,
 };
+Q_DECLARE_METATYPE(httpReqType)
 
 struct stru_UserInfo {
 	qint32 userId = 0;
@@ -30,6 +31,7 @@ struct stru_UserInfo {
 	QString userName;
 	double	balance = 0.0f;
 };
+Q_DECLARE_METATYPE(stru_UserInfo)
 
 struct struc_teamInfo {
 	QString username;
@@ -38,6 +40,7 @@ struct struc_teamInfo {
 	int status;
 	qint64  userId = 0;
 };
+Q_DECLARE_METATYPE(struc_teamInfo)
 
 struct strc_ChatbotInfo {
 	QString  typeName;
@@ -47,6 +50,7 @@ struct strc_ChatbotInfo {
 	QString  initialMessage;
 	bool     isRecommend = false;
 };
+Q_DECLARE_METATYPE(strc_ChatbotInfo)
 
 struct strc_ChatHistory {
 	int		chatHistoryId = 0;
@@ -56,12 +60,14 @@ struct strc_ChatHistory {
 	qint32  receiverId = 0;
 	qint32  senderId = 0;
 };
+Q_DECLARE_METATYPE(strc_ChatHistory)
 
 struct strc_SoundFilter {
 	bool		is_label = false;
 	QString		value;
 	int			id = 0;
 };
+Q_DECLARE_METATYPE(strc_SoundFilter)
 
 struct strc_SoundType {
 	int		gender = 0;
@@ -69,6 +75,7 @@ struct strc_SoundType {
 	int		language = 0;
 	int     source = 0;
 };
+Q_DECLARE_METATYPE(strc_SoundType)
 
 struct strc_SoundLib {
 	QString		description;
@@ -80,6 +87,7 @@ struct strc_SoundLib {
 	int			clonedByCount = 0;
 	QString		voiceName;
 };
+Q_DECLARE_METATYPE(strc_SoundLib)
 
 struct strc_MyVoice {
 	QString description;
@@ -89,6 +97,7 @@ struct strc_MyVoice {
 	int		gender = 1;
 	int		language = 1;   //1жа 2гЂ
 };
+Q_DECLARE_METATYPE(strc_MyVoice)
 
 struct strc_PageInfo {
 	int		total_size = 0;
@@ -96,3 +105,4 @@ struct strc_PageInfo {
 	int		total_pages = 0;
 	int		cur_page = 1;
 };
+Q_DECLARE_METATYPE(strc_PageInfo)
