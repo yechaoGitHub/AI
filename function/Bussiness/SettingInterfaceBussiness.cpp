@@ -529,6 +529,11 @@ void SettingInterfaceBussiness::getFilterListReq()
 
 void SettingInterfaceBussiness::getSoundLIbReq(int pageNo, int pageSize, strc_SoundType sound_type)
 {
+    QMetaObject::invokeMethod(this, "_getSoundLIbReq", Q_ARG(int, pageNo), Q_ARG(int, pageSize), Q_ARG(strc_SoundType, sound_type));
+}
+
+void SettingInterfaceBussiness::_getSoundLIbReq(int pageNo, int pageSize, strc_SoundType sound_type)
+{
     QString token = SETTING.getToken();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {

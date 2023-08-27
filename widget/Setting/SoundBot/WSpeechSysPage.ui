@@ -178,7 +178,104 @@
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pb_bk_1</sender>
+   <signal>clicked()</signal>
+   <receiver>WSpeechSysPageClass</receiver>
+   <slot>slot_bk_change()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>44</x>
+     <y>69</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>8</x>
+     <y>73</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pb_bk_2</sender>
+   <signal>clicked()</signal>
+   <receiver>WSpeechSysPageClass</receiver>
+   <slot>slot_bk_change()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>101</x>
+     <y>68</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>4</x>
+     <y>59</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pb_og_1</sender>
+   <signal>clicked()</signal>
+   <receiver>WSpeechSysPageClass</receiver>
+   <slot>slot_color_change()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>43</x>
+     <y>149</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>11</x>
+     <y>182</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pb_og_2</sender>
+   <signal>clicked()</signal>
+   <receiver>WSpeechSysPageClass</receiver>
+   <slot>slot_color_change()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>89</x>
+     <y>152</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>15</x>
+     <y>112</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pb_og_3</sender>
+   <signal>clicked()</signal>
+   <receiver>WSpeechSysPageClass</receiver>
+   <slot>slot_color_change()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>144</x>
+     <y>145</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>7</x>
+     <y>142</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pb_og_4</sender>
+   <signal>clicked()</signal>
+   <receiver>WSpeechSysPageClass</receiver>
+   <slot>slot_color_change()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>195</x>
+     <y>150</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>299</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
  <slots>
   <slot>slot_color_change()</slot>
   <slot>slot_bk_change()</slot>

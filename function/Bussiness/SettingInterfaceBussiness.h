@@ -55,6 +55,7 @@ public:
 	// 获取声音filter列表
 	void getFilterListReq();
 	void getSoundLIbReq(int pageNo, int page, strc_SoundType sound_type);
+	Q_INVOKABLE void _getSoundLIbReq(int pageNo, int page, strc_SoundType sound_type);
 
 	//voice
 	void addMyVoice(int libId);

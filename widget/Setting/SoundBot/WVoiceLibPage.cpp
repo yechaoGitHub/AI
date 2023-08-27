@@ -22,6 +22,8 @@ WVoiceLibPage::WVoiceLibPage(QWidget *parent)
 	QStringList source_list{ tr("source"),tr("SoundaAI"),tr("User") };
 	ui.comboBox_source->addItems(source_list);
 
+	qRegisterMetaType<strc_PageInfo>("strc_PageInfo");
+	qRegisterMetaType<QVector<strc_SoundLib> >("QVector<strc_SoundLib> ");
 	connect(SettingInterfaceBussiness::getInstance(),&SettingInterfaceBussiness::sig_common_replay,this,&WVoiceLibPage::slot_common_replay);
 	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_soundFilterReplay, this, &WVoiceLibPage::slot_soundFilterReplay);
 	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_soundLibReplay, this, &WVoiceLibPage::slot_soundLibReplay);
@@ -37,11 +39,12 @@ WVoiceLibPage::~WVoiceLibPage()
 
 void WVoiceLibPage::setSel()
 {
-	SettingInterfaceBussiness::getInstance()->getFilterListReq();
-
 	static bool first = true;
 	if (first) {
 		first = false;
+		SettingInterfaceBussiness::getInstance()->getFilterListReq();
+	}
+	else {
 		SettingInterfaceBussiness::getInstance()->getSoundLIbReq(_cur_page, _page_size, _sound_type);
 	}
 }
