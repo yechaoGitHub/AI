@@ -4,7 +4,7 @@
 #include "login/WLoginUI.h"
 #include "WRobotNavigation.h"
 #include "base/GlobalSetting.h"
-
+#include "AiDebug.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,6 +14,8 @@ int main(int argc, char *argv[])
     if (!SETTING.init(QString(SETTING.getRootLocalPath() + "/system.ini"))) {
         return -1;
     }
+
+    AiDebug::ShowDebugWindow(true);
 
     AiSound::GetInstance().Initialize();
     AiSound::GetInstance().ShowLoginFrame();

@@ -9,6 +9,8 @@
 #include <QJsonArray>
 #include <QFileInfo>
 
+#include "AiDebug.h"
+
 HttpAsync::HttpAsync()
 {
 }
@@ -57,25 +59,63 @@ void HttpAsync::PostInternal(const QString& url, const QJsonObject& param, QMap<
         client->headers(headers);
     }
 
+#ifdef _DEBUG
+    QString debugText;
+    debugText = "http call:";
+    debugText += url;
+#endif
+
     if (!param.isEmpty())
     {
         QJsonDocument document;
         document.setObject(param);
         QByteArray byteArray = document.toJson(QJsonDocument::Compact);
         client->json(byteArray);
+
+#ifdef _DEBUG
+        QString debugText;
+        debugText += " param:";
+        debugText += byteArray;
+#endif
     }
 
-    client->success([this, client, userParam](const QString& response) {
+#ifdef _DEBUG
+    AiDebug::Output(debugText);
+#endif
+
+    client->success([this, url, client, userParam](const QString& response) {
         emit httpRespond(HttpResult::SUCCESS, -1, response, userParam);
         delete client;
+#ifdef _DEBUG
+        QString debugText;
+        debugText = "http responed:";
+        debugText += url;
+        debugText += " content: ";
+        debugText += response;
+        AiDebug::Output(debugText);
+#endif
         });
-    client->timeout([this, client, userParam]() {
+    client->timeout([this, url, client, userParam]() {
         emit httpRespond(HttpResult::TIMEOUT, -1, "", userParam);
         delete client;
+#ifdef _DEBUG
+        QString debugText;
+        debugText = "http responed:";
+        debugText += url;
+        debugText += " time out";
+        AiDebug::Output(debugText);
+#endif
         });
-    client->fail([this, client, userParam](const QString& response, int code) {
+    client->fail([this, url, client, userParam](const QString& response, int code) {
         emit httpRespond(HttpResult::FAIL, -1, response, userParam);
         delete client;
+#ifdef _DEBUG
+        QString debugText;
+        debugText = "http responed:";
+        debugText += url;
+        debugText += " failed";
+        AiDebug::Output(debugText);
+#endif
         });
     client->timeout(10).post();
 }

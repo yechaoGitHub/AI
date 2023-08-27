@@ -9,6 +9,10 @@
 #include <QUrlQuery>
 #include <QTimerEvent>
 
+#include "AiDebug.h"
+
+
+
 VoiceCompositor::VoiceCompositor()
 {
 }
@@ -85,6 +89,14 @@ void VoiceCompositor::SendParam()
     document.setObject(dataobj);
     QByteArray byteArray = document.toJson(QJsonDocument::Compact);
     _webSocket.sendTextMessage(byteArray);
+
+#if _DEBUG
+    QString debugText;
+    debugText = "Translation send:";
+    debugText += byteArray;
+    AiDebug::Output(debugText);
+#endif
+
 }
 
 void VoiceCompositor::SendHearBeat()
@@ -96,6 +108,13 @@ void VoiceCompositor::SendHearBeat()
     document.setObject(dataobj);
     QByteArray byteArray = document.toJson(QJsonDocument::Compact);
     _webSocket.sendTextMessage(byteArray);
+
+#if _DEBUG
+    QString debugText;
+    debugText = "Translation send:";
+    debugText += byteArray;
+    AiDebug::Output(debugText);
+#endif
 }
 
 void VoiceCompositor::AudioStart(bool enable)
@@ -121,6 +140,13 @@ void VoiceCompositor::SendFinish()
     document.setObject(dataobj);
     QByteArray byteArray = document.toJson(QJsonDocument::Compact);
     _webSocket.sendTextMessage(byteArray);
+
+#if _DEBUG
+    QString debugText;
+    debugText = "Translation send:";
+    debugText += byteArray;
+    AiDebug::Output(debugText);
+#endif
 }
 
 void VoiceCompositor::ReceiveAudioInput(QByteArray data)
@@ -152,6 +178,14 @@ void VoiceCompositor::ConnectInternal(const QString& token, const QString& srcLa
     url.setQuery(quurl);
     auto str = url.toString();
     _webSocket.open(url);
+
+#if _DEBUG
+    QString debugText;
+    debugText = "Translation connect:";
+    debugText += str;
+    AiDebug::Output(debugText);
+#endif
+
 }
 
 void VoiceCompositor::DisconnectInternal()
@@ -178,6 +212,13 @@ void VoiceCompositor::SendMessageInternal(const QString& msg)
     document.setObject(dataobj);
     QByteArray byteArray = document.toJson(QJsonDocument::Compact);
     _webSocket.sendTextMessage(byteArray);
+
+#if _DEBUG
+    QString debugText;
+    debugText = "Translation send:";
+    debugText += byteArray;
+    AiDebug::Output(debugText);
+#endif
 }
 
 void VoiceCompositor::SocketConnected()
@@ -248,6 +289,13 @@ void VoiceCompositor::SocketTextMessageReceived(const QString& message)
             }
         }
     }
+
+#if _DEBUG
+    QString debugText;
+    debugText = "Translation receive:";
+    debugText += message;
+    AiDebug::Output(debugText);
+#endif
 }
 
 void VoiceCompositor::timerEvent(QTimerEvent* ev)

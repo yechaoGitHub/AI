@@ -1,4 +1,6 @@
 #include "Translation.h"
+#include "AiDebug.h"
+
 #include <QJsonDocument>
 #include <QJsonParseError>
 #include <QJsonObject>
@@ -94,6 +96,13 @@ void Translation::ConnectInternal(const QString& token, const QString& srcLan, c
 
     auto str = url.toString();
     _webSocket.open(url);
+
+#if _DEBUG
+    QString debugText;
+    debugText = "Translation connect:";
+    debugText += str;
+    AiDebug::Output(debugText);
+#endif
 }
 
 void Translation::DisconnectInternal()
@@ -163,6 +172,14 @@ void Translation::SendParam()
     document.setObject(dataobj);
     QByteArray byteArray = document.toJson(QJsonDocument::Compact);
     _webSocket.sendTextMessage(byteArray);
+
+#if _DEBUG
+    QString debugText;
+    debugText = "Translation send:";
+    debugText += byteArray;
+    AiDebug::Output(debugText);
+#endif
+
 }
 
 void Translation::SendHearBeat()
@@ -174,6 +191,13 @@ void Translation::SendHearBeat()
     document.setObject(dataobj);
     QByteArray byteArray = document.toJson(QJsonDocument::Compact);
     _webSocket.sendTextMessage(byteArray);
+
+#if _DEBUG
+    QString debugText;
+    debugText = "Translation send:";
+    debugText += byteArray;
+    AiDebug::Output(debugText);
+#endif
 }
 
 bool Translation::Connected()
@@ -255,6 +279,13 @@ void Translation::TranslateTextMessageReceived(const QString& message)
             emit conversationGuideReceived(message, iType);
         }
     }
+
+#if _DEBUG
+    QString debugText;
+    debugText = "Translation receive:";
+    debugText += message;
+    AiDebug::Output(debugText);
+#endif
 }
 
 void Translation::SendFinish()
@@ -266,6 +297,13 @@ void Translation::SendFinish()
     document.setObject(dataobj);
     QByteArray byteArray = document.toJson(QJsonDocument::Compact);
     _webSocket.sendTextMessage(byteArray);
+
+#if _DEBUG
+    QString debugText;
+    debugText = "Translation send:";
+    debugText += byteArray;
+    AiDebug::Output(debugText);
+#endif
 }
 
 void Translation::SoundPlayInternal(bool play)

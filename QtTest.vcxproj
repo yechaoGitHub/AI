@@ -99,6 +99,7 @@
   <ItemGroup>
     <ClCompile Include="base\GlobalSetting.cpp" />
     <ClCompile Include="base\HttpClient.cpp" />
+    <ClCompile Include="function\AiDebug.cpp" />
     <ClCompile Include="function\AiSound.cpp" />
     <ClCompile Include="function\AudioInput.cpp" />
     <ClCompile Include="function\AudioOutput.cpp" />
@@ -257,6 +258,7 @@
     <ClInclude Include="base\GlobalSetting.h" />
     <QtMoc Include="function\AudioOutput.h" />
     <QtMoc Include="function\Bussiness\SettingInterfaceBussiness.h" />
+    <QtMoc Include="function\AiDebug.h" />
     <ClInclude Include="function\Bussiness\Define.h" />
     <QtMoc Include="function\HttpAsync.h" />
     <QtMoc Include="function\Bussiness\teamListModel.h" />
