@@ -1,9 +1,18 @@
 #include "WSpeechSysPage.h"
+#include "base/GlobalSetting.h"
+
 
 WSpeechSysPage::WSpeechSysPage(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
+
+	if (SETTING.getSpeechBk() == 1) {
+		ui.pb_bk_1->setSel(true);
+	}
+	else {
+		ui.pb_bk_2->setSel(true);
+	}
 
 	ui.pb_bk_2->setColor(QColor("#C9C9C9"));
 	ui.pb_og_2->setColor(QColor("#00D7F4"));
@@ -14,6 +23,12 @@ WSpeechSysPage::WSpeechSysPage(QWidget *parent)
 	_orig_btn_list.push_back(ui.pb_og_2);
 	_orig_btn_list.push_back(ui.pb_og_3);
 	_orig_btn_list.push_back(ui.pb_og_4);
+
+	int value = SETTING.getSpeechOg();
+	for (int i = 0; i < _orig_btn_list.size(); i++) {
+		int index = i + 1;
+		_orig_btn_list.at(i)->setSel(value==index);
+	}
 
 	/*connect(ui.pb_bk_1, &QCheckBox::stateChanged, [this](int nState) {
 		if (nState == Qt::CheckState::Checked)
@@ -51,9 +66,14 @@ void WSpeechSysPage::slot_color_change()
 	WRadioBtn* btn = static_cast<WRadioBtn*>(QObject::sender());
 	if (btn) {
 		btn->setSel(true);
+		int index = 0;
 		for (auto it: _orig_btn_list) {
+			index++;
 			if (it != btn) {
 				it->setSel(false);
+			}
+			else {
+				SETTING.setSpeechOg(index);
 			}
 		}
 	}
@@ -64,9 +84,11 @@ void WSpeechSysPage::slot_bk_change()
 	if (QObject::sender() == ui.pb_bk_1) {
 		ui.pb_bk_1->setSel(true);
 		ui.pb_bk_2->setSel(false);
+		SETTING.setSpeechBk(1);
 	}
 	else {
 		ui.pb_bk_1->setSel(false);
 		ui.pb_bk_2->setSel(true);
+		SETTING.setSpeechBk(2);
 	}
 }

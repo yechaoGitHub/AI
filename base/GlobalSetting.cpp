@@ -158,6 +158,97 @@ bool GlobalSetting::getSoundBot()
     return m_pSettings->value("Setting/soundBot", true).toBool();
 }
 
+void GlobalSetting::setSpeechBk(int bk)
+{
+    if (m_pSettings)
+        m_pSettings->setValue("Color/SpeechBk", bk);
+}
+
+int GlobalSetting::getSpeechBk()
+{
+    if (!m_pSettings)
+        return 1;
+    return m_pSettings->value("Color/SpeechBk", 1).toInt();
+}
+
+void GlobalSetting::setSpeechOg(int bk)
+{
+    if (m_pSettings)
+        m_pSettings->setValue("Color/SpeechOg", bk);
+}
+
+int GlobalSetting::getSpeechOg()
+{
+    if (!m_pSettings)
+        return 1;
+    return m_pSettings->value("Color/SpeechOg", 1).toInt();
+}
+
+void GlobalSetting::setTransBk(int bk)
+{
+    if (m_pSettings)
+        m_pSettings->setValue("Color/TransBk", bk);
+}
+
+int GlobalSetting::getTransBk()
+{
+    if (!m_pSettings)
+        return 1;
+    return m_pSettings->value("Color/TransBk", 1).toInt();
+}
+
+void GlobalSetting::setTransOg(int bk)
+{
+    if (m_pSettings)
+        m_pSettings->setValue("Color/TransOg", bk);
+}
+
+int GlobalSetting::getTransOg()
+{
+    if (!m_pSettings)
+        return 1;
+    return m_pSettings->value("Color/TransOg", 1).toInt();
+}
+
+void GlobalSetting::setTransTl(int bk)
+{
+    if (m_pSettings)
+        m_pSettings->setValue("Color/TransTl", bk);
+}
+
+int GlobalSetting::getTransTl()
+{
+    if (!m_pSettings)
+        return 1;
+    return m_pSettings->value("Color/TransTl", 1).toInt();
+}
+
+void GlobalSetting::setTransTT(int bk)
+{
+    if (m_pSettings)
+        m_pSettings->setValue("Color/TransTT", bk);
+}
+
+int GlobalSetting::getTransTT()
+{
+    if (!m_pSettings)
+        return 1;
+    return m_pSettings->value("Color/TransTT", 1).toInt();
+}
+
+void GlobalSetting::setTransSD(int bk)
+{
+    if (m_pSettings)
+        m_pSettings->setValue("Color/TransSD", bk);
+}
+
+int GlobalSetting::getTransSD()
+{
+    if (!m_pSettings)
+        return 1;
+    return m_pSettings->value("Color/TransSD", 1).toInt();
+}
+
 QAudioDeviceInfo& GlobalSetting::MicDeviceInfo()
 {
     return m_micDeviceInfo;

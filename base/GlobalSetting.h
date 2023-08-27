@@ -38,6 +38,27 @@ public:
     void setSoundBot(bool open);
     bool getSoundBot();
 
+    void setSpeechBk(int bk);
+    int  getSpeechBk();
+
+    void setSpeechOg(int bk);
+    int  getSpeechOg();
+
+    void setTransBk(int bk);
+    int  getTransBk();
+
+    void setTransOg(int bk);
+    int  getTransOg();
+
+    void setTransTl(int bk);
+    int  getTransTl();
+
+    void setTransTT(int bk);
+    int  getTransTT();
+
+    void setTransSD(int bk);
+    int  getTransSD();
+
     QAudioDeviceInfo& MicDeviceInfo();
     QAudioDeviceInfo& SpeakerDeviceInfo();
     QAudioDeviceInfo& MonitorDeviceInfo();

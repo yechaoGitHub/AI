@@ -3,14 +3,14 @@
 
 #define MOUSE_GAP 10
 FrameLessWidget::FrameLessWidget(QWidget *parent)
-	: QWidget(parent)
+    : QWidget(parent)
 {
-	this->setMouseTracking(true);
-	this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint);
-	this->setMinimumSize(100, 100);
+    this->setMouseTracking(true);
+    this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint);
+    this->setMinimumSize(100, 100);
 
-	m_oldSize = this->size();
-	m_globalPoint = this->pos();
+    m_oldSize = this->size();
+    m_globalPoint = this->pos();
 }
 
 FrameLessWidget::~FrameLessWidget()
@@ -38,28 +38,28 @@ void FrameLessWidget::mouseDoubleClickEvent(QMouseEvent* event)
 
 void FrameLessWidget::mousePressEvent(QMouseEvent* event)
 {
-	if (!m_bMax){
-		m_isPressed = true;
-		m_startMovePos = event->globalPos();
+    if (!m_bMax){
+        m_isPressed = true;
+        m_startMovePos = event->globalPos();
 
-		if (event->buttons() == Qt::LeftButton && m_clickType != CLICK_NULL){
-			m_bCanResize = true;
-		}
-	}
-	return QWidget::mousePressEvent(event);
+        if (event->buttons() == Qt::LeftButton && m_clickType != CLICK_NULL){
+            m_bCanResize = true;
+        }
+    }
+    return QWidget::mousePressEvent(event);
 }
 
 void FrameLessWidget::mouseMoveEvent(QMouseEvent* ev)
 {
-    if (ev->y() > 120) {
+  /*  if (ev->y() > 120) {
         return;
-    }
+    }*/
 
 
-	static QPoint rightTop;
-	static QPoint leftBottom;
-	static QPoint leftTop;
-	static QPoint rightBottom;
+    static QPoint rightTop;
+    static QPoint leftBottom;
+    static QPoint leftTop;
+    static QPoint rightBottom;
 
     if (!m_bResizeIng && drag_type_!= DragType::Drag_Null){
         if (drag_type_ == DragType::Drag_Heigt) {
@@ -283,15 +283,15 @@ void FrameLessWidget::mouseMoveEvent(QMouseEvent* ev)
     m_oldSize = this->size();
     m_globalPoint = ev->globalPos();
 
-	return QWidget::mouseMoveEvent(ev);
+    return QWidget::mouseMoveEvent(ev);
 }
 
 void FrameLessWidget::mouseReleaseEvent(QMouseEvent* event)
 {
-	this->setCursor(Qt::ArrowCursor);
-	m_isPressed = false;
-	m_clickType = CLICK_NULL;
-	m_bCanResize = false;
-	m_bResizeIng = false;
-	return QWidget::mouseReleaseEvent(event);
+    this->setCursor(Qt::ArrowCursor);
+    m_isPressed = false;
+    m_clickType = CLICK_NULL;
+    m_bCanResize = false;
+    m_bResizeIng = false;
+    return QWidget::mouseReleaseEvent(event);
 }

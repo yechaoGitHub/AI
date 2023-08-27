@@ -299,7 +299,6 @@
     <QtMoc Include="widget\WButton.h" />
     <QtMoc Include="model\FrameLessWidget.h" />
     <ClInclude Include="base\HttpClient.h" />
-    <ClInclude Include="base\httplib.h" />
   </ItemGroup>
   <ItemGroup>
     <QtTranslation Include="ts\zh_CN.ts">
