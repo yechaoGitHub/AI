@@ -34,7 +34,7 @@ void WRobotPage::on_pb_robot_lock_clicked()
 void WRobotPage::on_pb_sound_lock_clicked()
 {
 	_sound_open = ui.pb_sound_lock->isChecked();
-	SETTING.setRobotBot(_sound_open);
+	SETTING.setSoundBot(_sound_open);
 	initUI();
 }
 

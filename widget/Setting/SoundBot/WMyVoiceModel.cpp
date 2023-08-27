@@ -24,13 +24,7 @@ void WMyVoiceModel::setVoice(const strc_MyVoice& voice)
 	_voiceType = voice.voiceType;
 	_voiceId = voice.voiceId;
 
-	if (voice.gender == 1) {
-		ui.lb_1->setProperty("man", true);
-	}
-	else {
-		ui.lb_1->setProperty("man", false);
-	}
-
+	ui.lb_1->setProperty("man", voice.gender == 1);
 	ui.lb_1->style()->unpolish(ui.lb_1);
 }
 

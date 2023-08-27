@@ -103,6 +103,26 @@
         <source>delete voice timeout</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>invite Success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>del chat history</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>del Success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>del chat history timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>del chat history fail</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Translation</name>

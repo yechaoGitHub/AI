@@ -78,6 +78,9 @@ void AiSound::Initialize()
         });
 
     GetInputDeviceList();
+
+    hook.installHook();
+    connect(&hook, SIGNAL(sig_sendKeyType(int)), this, SLOT(slot_keyType(int)));
 }
 
 void AiSound::Uninitialize()
@@ -90,6 +93,16 @@ void AiSound::Uninitialize()
 AiSound& AiSound::GetInstance()
 {
     return INSTANCE;
+}
+
+void AiSound::slot_keyType(int type)
+{
+    if (type == 1) {
+        _wTranslationMain->show();
+    }
+    else if (type == 2) {
+        _speech_ui->show();
+    }
 }
 
 void AiSound::PasswordLogin(const QString& userName, const QString& password, PasswordLoginCallback callback)
@@ -282,6 +295,11 @@ void AiSound::ShowVoiceCompositorMainWindow(const TranslationLanguage& srcLan, c
 bool AiSound::IsConversationSuggestionShow()
 {
     return !_wConversationSuggestion->isHidden();
+}
+
+void AiSound::ShowRobotChat(int type, const QString& msg)
+{
+    _robot_chat->show();
 }
 
 void AiSound::ShowConversationSuggestion(bool show)

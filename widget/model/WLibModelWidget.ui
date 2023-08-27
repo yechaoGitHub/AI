@@ -81,13 +81,13 @@ QLabel#lb_content[sel=true]{
     <widget class="QFrame" name="frame">
      <property name="minimumSize">
       <size>
-       <width>317</width>
+       <width>310</width>
        <height>151</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
-       <width>317</width>
+       <width>310</width>
        <height>151</height>
       </size>
      </property>

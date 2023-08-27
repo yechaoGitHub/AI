@@ -2,6 +2,7 @@
 #include "function/Bussiness/SettingInterfaceBussiness.h"
 #include "function/Bussiness/historyListModel.h"
 #include "widget/Setting/WChatHistoryDelegate.h"
+#include "function/AiSound.h"
 
 
 WHistoryPage::WHistoryPage(QWidget *parent)
@@ -10,6 +11,7 @@ WHistoryPage::WHistoryPage(QWidget *parent)
     ui.setupUi(this);
     ui.lineEdit->setPlaceholderText(tr("Search any record"));
     connect(SettingInterfaceBussiness::getInstance(),&SettingInterfaceBussiness::sig_chatHistoryReplay,this, &WHistoryPage::slot_chatHistoryReplay);
+    connect(SettingInterfaceBussiness::getInstance(),&SettingInterfaceBussiness::sig_common_replay,this,&WHistoryPage::slot_commonReplay);
 
     _history_model = new historyListModel(nullptr);
 
@@ -45,7 +47,7 @@ WHistoryPage::WHistoryPage(QWidget *parent)
 
     connect(_history_delegate, &WHistoryDelegate::sig_opeData, this, [=](const QModelIndex& index,int type) {
         int btn_index = index.row();
-        userOpe(btn_index);
+        userOpe(type,btn_index);
         });
 
     connect(ui.widget, &WPageCtlWidget::sig_changePage, this, &WHistoryPage::slot_changePage);
@@ -59,16 +61,26 @@ WHistoryPage::~WHistoryPage()
     }
 }
 
-void WHistoryPage::userOpe(int type)
+void WHistoryPage::slot_commonReplay(int type, bool, const QString& msg)
 {
-    if (type == 0) {
 
-    }
-    else if (type == 1) {
+}
 
-    }
-    else {
-
+void WHistoryPage::userOpe(int type,int index)
+{
+    if (index < chat_list_.size()) {
+        strc_ChatHistory chat_history = chat_list_.at(index);
+        if (type == 0) {
+            AiSound::GetInstance().ShowRobotChat(type,"");
+        }
+        else if (type == 1) {
+            AiSound::GetInstance().ShowRobotChat(type, "");
+        }
+        else {
+            QStringList list;
+            list << QString::number(chat_history.chatHistoryId);
+            SettingInterfaceBussiness::getInstance()->delChatHsitory(list);
+        }
     }
 }
 
@@ -80,6 +92,7 @@ void WHistoryPage::reqChatHistory()
 void WHistoryPage::slot_chatHistoryReplay(bool success, int, const QString& msg, const  QVector<strc_ChatHistory>& chat_info)
 {
     if (success) {
+        chat_list_ = chat_info;
         _history_model->updateData(chat_info);
     }
 }

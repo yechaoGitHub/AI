@@ -17,6 +17,7 @@ enum httpReqType {
 	ChatBot_req,
 	Filter_req,
 	ChatHistory_Req,
+	Del_ChatHistory,
 	SoundLib_Req,
 	AddVoice,
 	VoiceList_Req,
@@ -86,6 +87,7 @@ struct strc_MyVoice {
 	QString voiceName;
 	int		voiceType = 0;
 	int		gender = 1;
+	int		language = 1;   //1жа 2гЂ
 };
 
 struct strc_PageInfo {

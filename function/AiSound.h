@@ -9,6 +9,7 @@
 #include "widget/login/WLoginUI.h"
 
 #include "HttpAsync.h"
+#include "QHook.h"
 
 #include "WTip.h"
 #include "WRobotNavigation.h"
@@ -110,6 +111,7 @@ public:
     void ShowVoiceCompositorMainWindow(const TranslationLanguage& srcLan, const TranslationLanguage& destLan);
     void ShowConversationSuggestion(bool show);
     bool IsConversationSuggestionShow();
+    void ShowRobotChat(int type ,const QString& msg);
 #pragma endregion
 
 #pragma region ¹¦ÄÜ
@@ -133,7 +135,7 @@ public:
 
 private slots:
     void slot_robot_nv_clicked(Navig_Type type);
-
+    void slot_keyType(int type);
 
 private:
     AiSound();
@@ -176,5 +178,6 @@ private:
     WSpeechGenerationUi*                _speech_ui = nullptr;
     WSettingMainUi*                     _set_main = nullptr;
 #pragma endregion
+    Hook hook;
 };
 

@@ -50,7 +50,7 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
     }
     else if (req_type == httpReqType::InviteUser_Req) {
         if (json["code"].toInt() == 200) {
-            emit sig_common_replay(httpReqType::InviteUser_Req, true, "");
+            emit sig_common_replay(httpReqType::InviteUser_Req, true, tr("invite Success"));
         }
         else {
             emit sig_common_replay(httpReqType::InviteUser_Req, false, json["msg"].toString());
@@ -206,6 +206,8 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
                     voice.voiceId = json_recode["voiceId"].toInt();
                     voice.voiceName = json_recode["voiceName"].toString();
                     voice.voiceType = json_recode["voiceType"].toInt();
+                    voice.gender = json_recode["gender"].toInt();
+                    voice.language = json_recode["language"].toInt();
                     voice_list.push_back(std::move(voice));
                 }
             }
@@ -416,6 +418,49 @@ void SettingInterfaceBussiness::getCharHistoryReq(int type ,int page, const QStr
     client.fail([=](const QString& response, int code) {
         qDebug() << "getTeamRecordReq error code=" << code;
         emit sig_common_replay(httpReqType::ChatHistory_Req, false, "²éÑ¯ÁÄÌì¼ÇÂ¼Ê§°Ü");
+        });
+    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+}
+
+void SettingInterfaceBussiness::delChatHsitory(const QStringList& chatId_list)
+{
+    QString token = SETTING.getToken();
+    QString url = SETTING.getHostAddress();
+    if (token.isEmpty() || url.isEmpty()) {
+        return;
+    }
+    QJsonObject dataobj;
+    QJsonArray array;
+    for (auto it : chatId_list) {
+        array.append(it.toInt());
+    }
+    dataobj.insert("chatHistoryIdList", array);
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray jsonValue = document.toJson(QJsonDocument::Compact);
+
+    HttpClient client(QString("%1/api/setting/deleteChatHistory").arg(url));
+    client.success([=](const QString& response) {
+        QJsonParseError err_rpt;
+        auto json = QJsonDocument::fromJson(response.toUtf8(), &err_rpt);
+        if (err_rpt.error != QJsonParseError::NoError) {
+            emit sig_common_replay(httpReqType::Del_ChatHistory, false, tr("del chat history"));
+            return;
+        }
+        if (json["code"].toInt() == 200) {
+            emit sig_common_replay(httpReqType::Del_ChatHistory, true, tr("del Success"));
+        }
+        else {
+            emit sig_common_replay(httpReqType::Del_ChatHistory, false, json["msg"].toString());
+        }
+        });
+    client.timeout([=]() {
+        qDebug() << "delChatHsitory timeout";
+        emit sig_common_replay(httpReqType::Del_ChatHistory, false, tr("del chat history timeout"));
+        });
+    client.fail([=](const QString& response, int code) {
+        qDebug() << "delChatHsitory error code=" << code;
+        emit sig_common_replay(httpReqType::Del_ChatHistory, false, tr("del chat history fail"));
         });
     client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
 }

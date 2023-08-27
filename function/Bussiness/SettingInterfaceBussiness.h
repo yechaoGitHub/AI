@@ -42,6 +42,7 @@ public:
 	void getCharBotListReq();
 
 	void getCharHistoryReq(int type, int page, const QString& search, int pageSize=10);
+	void delChatHsitory(const QStringList& chatId_list);
 
 	// 获取声音filter列表
 	void getFilterListReq();

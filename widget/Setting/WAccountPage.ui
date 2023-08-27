@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>525</width>
+    <width>615</width>
     <height>344</height>
    </rect>
   </property>
@@ -100,8 +100,8 @@ QLabel#lb_time{
            </property>
            <property name="maximumSize">
             <size>
-             <width>240</width>
-             <height>100</height>
+             <width>300</width>
+             <height>62</height>
             </size>
            </property>
            <property name="frameShape">
@@ -147,7 +147,7 @@ QLabel#lb_time{
            </property>
            <property name="maximumSize">
             <size>
-             <width>240</width>
+             <width>300</width>
              <height>199</height>
             </size>
            </property>
@@ -201,7 +201,7 @@ QLabel#lb_time{
            </property>
            <property name="maximumSize">
             <size>
-             <width>192</width>
+             <width>300</width>
              <height>62</height>
             </size>
            </property>
@@ -248,7 +248,7 @@ QLabel#lb_time{
            </property>
            <property name="maximumSize">
             <size>
-             <width>192</width>
+             <width>300</width>
              <height>62</height>
             </size>
            </property>
@@ -383,19 +383,6 @@ QLabel#lb_time{
       </spacer>
      </item>
     </layout>
-   </item>
-   <item>
-    <spacer name="horizontalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>83</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>

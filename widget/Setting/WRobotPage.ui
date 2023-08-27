@@ -6,13 +6,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>600</width>
+    <width>640</width>
     <height>400</height>
    </rect>
   </property>
   <property name="maximumSize">
    <size>
-    <width>600</width>
+    <width>640</width>
     <height>400</height>
    </size>
   </property>
@@ -132,7 +132,7 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
        </property>
        <property name="maximumSize">
         <size>
-         <width>450</width>
+         <width>600</width>
          <height>120</height>
         </size>
        </property>
@@ -147,7 +147,7 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <property name="spacing">
-         <number>6</number>
+         <number>10</number>
         </property>
         <property name="topMargin">
          <number>4</number>
@@ -260,13 +260,26 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
                 </property>
                </widget>
               </item>
+              <item>
+               <spacer name="horizontalSpacer_6">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
              </layout>
             </item>
             <item>
              <widget class="QLabel" name="lb_robot_name">
               <property name="minimumSize">
                <size>
-                <width>300</width>
+                <width>380</width>
                 <height>60</height>
                </size>
               </property>
@@ -342,19 +355,6 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
        </layout>
       </widget>
      </item>
-     <item>
-      <spacer name="horizontalSpacer_5">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>188</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
     </layout>
    </item>
    <item>
@@ -372,7 +372,7 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
        </property>
        <property name="maximumSize">
         <size>
-         <width>450</width>
+         <width>600</width>
          <height>120</height>
         </size>
        </property>
@@ -387,7 +387,7 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <property name="spacing">
-         <number>12</number>
+         <number>10</number>
         </property>
         <property name="topMargin">
          <number>4</number>
@@ -500,13 +500,26 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
                 </property>
                </widget>
               </item>
+              <item>
+               <spacer name="horizontalSpacer_5">
+                <property name="orientation">
+                 <enum>Qt::Horizontal</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>40</width>
+                  <height>20</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
              </layout>
             </item>
             <item>
              <widget class="QLabel" name="lb_sound_tip">
               <property name="minimumSize">
                <size>
-                <width>300</width>
+                <width>380</width>
                 <height>60</height>
                </size>
               </property>
@@ -581,19 +594,6 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
         </item>
        </layout>
       </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_6">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>208</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
      </item>
     </layout>
    </item>

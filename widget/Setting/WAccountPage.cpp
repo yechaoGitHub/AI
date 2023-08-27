@@ -1,5 +1,7 @@
 #include "WAccountPage.h"
 #include <QDate>
+#include <QDesktopServices>
+#include <QUrl>
 
 
 WAccountPage::WAccountPage(QWidget *parent)
@@ -21,4 +23,9 @@ void WAccountPage::initAccount(const stru_UserInfo& user_info)
 	QDate qdate = QDate::currentDate();
 	QString cur_date = qdate.toString("dd/MM/yyyy");
 	ui.lb_time->setText(tr("Premium(Expires on %1)").arg(cur_date));
+}
+
+void WAccountPage::on_pb_charge_clicked()
+{
+	QDesktopServices::openUrl(QUrl("https://aisounda.cn/#/account/package"));
 }

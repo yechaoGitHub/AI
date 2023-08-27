@@ -15,6 +15,9 @@ public:
 
 	void initAccount(const stru_UserInfo& user_info);
 
+private slots:
+	void on_pb_charge_clicked();
+
 private:
 	Ui::WAccountPageClass ui;
 };

@@ -5,6 +5,7 @@
 #include "WTeamDelegate.h"
 #include <QTimer>
 #include "model/WPageCtlWidget.h"
+#include "function/AiSound.h"
 
 
 
@@ -81,7 +82,7 @@ void WInvitePage::reqTeamData()
 void WInvitePage::slot_inviteReplay(int type, bool success, const QString& msg)
 {
     if (type == httpReqType::InviteUser_Req) {
-
+        AiSound::GetInstance().ShowTip(this, msg);
     }
     else if (type == httpReqType::Search_Team) {
 
@@ -112,7 +113,7 @@ void WInvitePage::on_pb_invite_clicked()
     if (invite_user.isEmpty()) {
         return;
     }
-
+    ui.le_invite->clear();
     SettingInterfaceBussiness::getInstance()->inviteUserJoinReq(invite_user);
 }
 

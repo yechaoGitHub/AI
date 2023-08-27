@@ -292,6 +292,9 @@
     <ClCompile Include="widget\model\WRadioBtn.cpp">
       <Filter>widget\Setting\SoundBot</Filter>
     </ClCompile>
+    <ClCompile Include="function\QHook.cpp">
+      <Filter>function</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -637,6 +640,9 @@
     </QtMoc>
     <QtMoc Include="widget\model\WRadioBtn.h">
       <Filter>widget\Setting\SoundBot</Filter>
+    </QtMoc>
+    <QtMoc Include="function\QHook.h">
+      <Filter>function</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
