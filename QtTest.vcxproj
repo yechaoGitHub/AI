@@ -145,6 +145,7 @@
     <ClCompile Include="widget\Setting\WSettingSelectWidget.cpp" />
     <ClCompile Include="widget\Setting\WTeamDelegate.cpp" />
     <ClCompile Include="widget\Speech\ComboxItem.cpp" />
+    <ClCompile Include="widget\Speech\WSpeechEffect.cpp" />
     <ClCompile Include="widget\Speech\WSpeechGenerationUi.cpp" />
     <ClCompile Include="widget\WButton.cpp" />
     <ClCompile Include="widget\WCheckBox.cpp" />
@@ -216,6 +217,7 @@
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="widget\Speech\WSpeechEffect.h" />
     <QtMoc Include="widget\model\WRadioBtn.h" />
     <QtMoc Include="widget\WConversationSuggestion.h" />
     <QtMoc Include="widget\WTranslationTimer.h" />

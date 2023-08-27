@@ -59,6 +59,9 @@ void WSpeechGenerationUi::showEvent(QShowEvent* event)
     {
         ui.comboBox_vector->addItem(data.name);
     }
+
+    ui.speechEffect->Play(true);
+    ui.speechEffect->StartTimer(true);
 }
 
 void WSpeechGenerationUi::CloseClicked()

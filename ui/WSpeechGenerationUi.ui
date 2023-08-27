@@ -594,7 +594,7 @@ QComboBox QAbstractItemView::item {
       </widget>
      </item>
      <item>
-      <widget class="QWidget" name="widget" native="true">
+      <widget class="WSpeechEffect" name="speechEffect" native="true">
        <property name="minimumSize">
         <size>
          <width>425</width>
@@ -609,25 +609,6 @@ QComboBox QAbstractItemView::item {
        </property>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="lb_time">
-       <property name="minimumSize">
-        <size>
-         <width>47</width>
-         <height>35</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>47</width>
-         <height>35</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>08:23</string>
        </property>
       </widget>
      </item>
@@ -719,6 +700,14 @@ QComboBox QAbstractItemView::item {
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>WSpeechEffect</class>
+   <extends>QWidget</extends>
+   <header location="global">widget\Speech\wspeecheffect.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../AiSound.qrc"/>
  </resources>

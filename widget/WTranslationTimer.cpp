@@ -19,7 +19,7 @@ WTranslationTimer::WTranslationTimer(QWidget* parent) :
     horizontalLayout->addWidget(_effect);
 
     _counter->setText("00:00");
-    _counter->setStyleSheet("color:#FFFFFF; font:14px");
+    _counter->setStyleSheet("color:#FFFFFF; font:12px");
     horizontalLayout->addWidget(_counter);
 
     startTimer(std::chrono::milliseconds{100});
