@@ -4,7 +4,7 @@
 !define PRODUCT_NAME "AiSound"
 !define PRODUCT_VERSION "1.0.1"
 !define PRODUCT_PUBLISHER "AiSound"
-!define PRODUCT_WEB_SITE "http://www.ovopark.com"
+!define PRODUCT_WEB_SITE "http://www.aisound.com"
 !define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\AiSound.exe"
 !define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
