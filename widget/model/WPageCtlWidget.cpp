@@ -4,7 +4,6 @@ WPageCtlWidget::WPageCtlWidget(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
-	connect(ui.comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboxSelect(int)));
 }
 
 WPageCtlWidget::~WPageCtlWidget()
@@ -20,10 +19,14 @@ void WPageCtlWidget::initCtl(int total_page, int total_size, int cur_page)
 	for (int i = 1; i <= total_page; i++) {
 		list.append(QString::number(i));
 	}
+
+	disconnect(ui.comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboxSelect(int)));
+	ui.comboBox->clear();
 	ui.comboBox->addItems(list);
 	ui.comboBox->setCurrentIndex(cur_page-1);
+	connect(ui.comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboxSelect(int)));
 
-	if (total_page < 2) {
+	if (total_page < 3) {
 		ui.pb_next->hide();
 		ui.pb_pre->hide();
 		ui.frame_3->hide();

@@ -1,6 +1,7 @@
 #include "WMyVoicePage.h"
 #include "function/Bussiness/SettingInterfaceBussiness.h"
 #include "function/AiSound.h"
+#include <QDesktopServices>
 
 
 WMyVoicePage::WMyVoicePage(QWidget *parent)
@@ -8,6 +9,7 @@ WMyVoicePage::WMyVoicePage(QWidget *parent)
 {
 	ui.setupUi(this);
 
+	this->setFixedSize(660,572);
 	_voice_widget_list.push_back(ui.widget_2);
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 2; j++) {
@@ -17,8 +19,11 @@ WMyVoicePage::WMyVoicePage(QWidget *parent)
 		}
 	}
 
+	qRegisterMetaType<strc_PageInfo>("strc_PageInfo");
+	qRegisterMetaType<QVector<strc_MyVoice>>("QVector<strc_MyVoice>");
 	connect(SettingInterfaceBussiness::getInstance(),&SettingInterfaceBussiness::sig_common_replay,this, &WMyVoicePage::slot_commonReplay);
 	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_myVoiceListReplay, this, &WMyVoicePage::slot_myVoiceListReplay);
+	connect(ui.widget, &WPageCtlWidget::sig_changePage, this, &WMyVoicePage::slot_pageChange);
 }
 
 WMyVoicePage::~WMyVoicePage()
@@ -27,6 +32,16 @@ WMyVoicePage::~WMyVoicePage()
 void WMyVoicePage::initMyVoice()
 {
 	SettingInterfaceBussiness::getInstance()->getVoiceListReq(_cur_page, _page_size);
+}
+
+void WMyVoicePage::slot_pageChange(int index)
+{
+	SettingInterfaceBussiness::getInstance()->getVoiceListReq(index, _page_size);
+}
+
+void WMyVoicePage::on_pb_add_clicked()
+{
+	QDesktopServices::openUrl(QUrl("https://aisounda.cn/#/custom"));
 }
 
 void WMyVoicePage::slot_commonReplay(int type, bool success, const QString& msg)

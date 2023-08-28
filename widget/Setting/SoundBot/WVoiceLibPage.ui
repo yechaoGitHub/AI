@@ -22,7 +22,7 @@ QLabel#label{
 	font: 16px &quot;微软雅黑&quot;;
 }
 
-QLabel#label_2,#label_3,#label_4{
+QLabel#label_22,#label_33,#label_44{
 	background-color: #c9c9c9;
 }
 
@@ -155,7 +155,7 @@ QComboBox QAbstractItemView::item {
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="label_22">
         <property name="minimumSize">
          <size>
           <width>1</width>
@@ -190,7 +190,7 @@ QComboBox QAbstractItemView::item {
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="label_33">
         <property name="minimumSize">
          <size>
           <width>1</width>
@@ -225,7 +225,7 @@ QComboBox QAbstractItemView::item {
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_4">
+       <widget class="QLabel" name="label_44">
         <property name="minimumSize">
          <size>
           <width>1</width>

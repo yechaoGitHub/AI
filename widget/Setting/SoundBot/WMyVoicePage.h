@@ -19,6 +19,8 @@ public:
 private slots:
 	void	slot_commonReplay(int type, bool, const QString& msg);
 	void	slot_myVoiceListReplay(bool, int, const strc_PageInfo page_info, const QVector<strc_MyVoice>& voice_list);
+	void	slot_pageChange(int index);
+	void	on_pb_add_clicked();
 private:
 	Ui::WMyVoicePageClass ui;
 
