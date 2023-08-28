@@ -7,8 +7,6 @@ FrameLessWidget::FrameLessWidget(QWidget *parent)
 {
     this->setMouseTracking(true);
     this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint);
-    this->setMinimumSize(100, 100);
-
     m_oldSize = this->size();
     m_globalPoint = this->pos();
 }
@@ -51,6 +49,9 @@ void FrameLessWidget::mousePressEvent(QMouseEvent* event)
 
 void FrameLessWidget::mouseMoveEvent(QMouseEvent* ev)
 {
+    if (ev->y() > 100 && m_bLimit) {
+        return;
+    }
     static QPoint rightTop;
     static QPoint leftBottom;
     static QPoint leftTop;
@@ -271,13 +272,14 @@ void FrameLessWidget::mouseMoveEvent(QMouseEvent* ev)
         }
     }
 
-    leftTop = this->pos();
-    leftBottom.setX(this->pos().x()); leftBottom.setY(this->y() + this->height());
-    rightTop.setX(this->x() + this->width()); rightTop.setY(this->y());
-    rightBottom.setX(this->x() + this->width()); rightBottom.setY(this->y() + this->height());
-    m_oldSize = this->size();
-    m_globalPoint = ev->globalPos();
-
+    if (m_bCanResize) {
+        leftTop = this->pos();
+        leftBottom.setX(this->pos().x()); leftBottom.setY(this->y() + this->height());
+        rightTop.setX(this->x() + this->width()); rightTop.setY(this->y());
+        rightBottom.setX(this->x() + this->width()); rightBottom.setY(this->y() + this->height());
+        m_oldSize = this->size();
+        m_globalPoint = ev->globalPos();
+    }
     return QWidget::mouseMoveEvent(ev);
 }
 

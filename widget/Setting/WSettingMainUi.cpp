@@ -9,7 +9,7 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
     ui.setupUi(this);
     setAttribute(Qt::WA_TranslucentBackground);
     this->setWidgetType(true, DragType::Drag_Null, false);
-
+    this->setLimit();
     connect(ui.pb_min, &QPushButton::clicked, this, [this] {
         this->showMinimized();
         });
@@ -60,6 +60,12 @@ void WSettingMainUi::Show(int type)
         ui.stackedWidget->setCurrentWidget(ui.chatbot_page);
     }
     ui.select_widget->initData();
+}
+
+void WSettingMainUi::resizeEvent(QResizeEvent* re)
+{
+    auto size = this->size();
+    this->setFixedSize(939, 830);
 }
 
 void WSettingMainUi::paintEvent(QPaintEvent*)

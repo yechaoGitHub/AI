@@ -17,7 +17,7 @@ public:
 
 protected:
 	void paintEvent(QPaintEvent*) override;
-
+	void resizeEvent(QResizeEvent* re) override;
 private:
 	Ui::WSettingMainUiClass ui;
 };
