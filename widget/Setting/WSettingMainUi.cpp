@@ -52,9 +52,13 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
 WSettingMainUi::~WSettingMainUi()
 {}
 
-void WSettingMainUi::Show()
+void WSettingMainUi::Show(int type)
 {
     show();
+    if (type == 1) {
+        ui.chatbot_page->changeSelectBtn(WNavbarButton::BarType::Bar_Lib);
+        ui.stackedWidget->setCurrentWidget(ui.chatbot_page);
+    }
     ui.select_widget->initData();
 }
 

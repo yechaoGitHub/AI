@@ -18,7 +18,7 @@ signals:
 	void	sig_soundLibReplay(bool, int,const strc_PageInfo page_info,const QVector<strc_SoundLib>& filter_list);
 	void	sig_myVoiceListReplay(bool, int, const strc_PageInfo page_info, const QVector<strc_MyVoice>& voice_list);
 
-	void	sig_common_replay(httpReqType type,bool success,const QString& msg);
+	void	sig_common_replay(int type,bool success,const QString& msg);
 
 public:
 	SettingInterfaceBussiness(QObject *parent = nullptr);
@@ -60,9 +60,14 @@ public:
 	//voice
 	void addMyVoice(int libId);
 	void getVoiceListReq(int cur_page,int page_size);
+	Q_INVOKABLE void _getVoiceListReq(int cur_page, int page_size);
 	void delVoiceReq(int voiceId);
+
+	void getVoiceUrlReq(int voiceId);
+	Q_INVOKABLE void _getVoiceUrlReq(int voiceId);
 private:
 	void paraseHttpResponse(httpReqType req_type,const QString& response);
 
 	QThread* _thread = nullptr;
+	QMutex   _mutex;
 };

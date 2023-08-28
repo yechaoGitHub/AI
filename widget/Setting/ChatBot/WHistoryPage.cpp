@@ -61,7 +61,7 @@ WHistoryPage::~WHistoryPage()
     }
 }
 
-void WHistoryPage::slot_commonReplay(int type, bool, const QString& msg)
+void WHistoryPage::slot_commonReplay(int type, bool success , const QString& msg)
 {
 
 }

@@ -127,6 +127,7 @@ public:
     std::vector<QAudioDeviceInfo> GetOutputDeviceList();
     void SwitchLanguage(LanguageType type);
     LanguageType GetSystemLanguage();
+    void playVoiceMp3(const QString& url);
 #pragma endregion
 
 #pragma region ≤‚ ‘

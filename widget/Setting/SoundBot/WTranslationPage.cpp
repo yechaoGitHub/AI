@@ -59,8 +59,14 @@ WTranslationPage::WTranslationPage(QWidget *parent)
 	if (SETTING.getTransTT() == 1) {
 		ui.ck_tr_1->setChecked(true);
 	}
+	else {
+		ui.ck_tr_2->setChecked(true);
+	}
 	if (SETTING.getTransSD() == 1) {
 		ui.ck_sd_1->setChecked(true);
+	}
+	else {
+		ui.ck_sd_2->setChecked(true);
 	}
 
 	connect(ui.ck_tr_1, &QCheckBox::stateChanged, [this](int nState) {

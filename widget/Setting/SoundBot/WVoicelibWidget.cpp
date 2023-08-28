@@ -11,8 +11,6 @@ WVoicelibWidget::WVoicelibWidget(QWidget *parent)
 	ui.lb_content->setWordWrap(true);
 	ui.lb_1->setProperty("man",true);
 	ui.lb_1->style()->unpolish(ui.lb_1);
-
-	connect(SettingInterfaceBussiness::getInstance(),&SettingInterfaceBussiness::sig_common_replay,this, &WVoicelibWidget::slot_commonReplay);
 }
 
 WVoicelibWidget::~WVoicelibWidget()
@@ -25,14 +23,7 @@ void WVoicelibWidget::on_pb_add_clicked()
 
 void WVoicelibWidget::on_pb_sample_clicked()
 {
-
-}
-
-void WVoicelibWidget::slot_commonReplay(int type, bool success, const QString& msg)
-{
-	if (type == httpReqType::AddVoice) {
-		AiSound::GetInstance().ShowTip(this,msg);
-	}
+	SettingInterfaceBussiness::getInstance()->getVoiceUrlReq(_libId);
 }
 
 void WVoicelibWidget::updateVoiceLib(const strc_SoundLib& lib)

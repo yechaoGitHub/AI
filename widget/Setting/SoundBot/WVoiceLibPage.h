@@ -17,13 +17,15 @@ public:
 	void	setSel();
 
 private slots:
-	void	slot_common_replay(httpReqType type, bool success, const QString& msg);
+	void	slot_common_replay(int type, bool success, const QString& msg);
 	void	slot_soundFilterReplay(bool, int, const QString& msg, const  QVector<strc_SoundFilter>& filter_list);
 	void	slot_soundLibReplay(bool, int, const strc_PageInfo page_info, const QVector<strc_SoundLib>& filter_list);
 
-
 	void	slot_comboxIndexChange(int index);
 	void	slot_comboxTextChange(const QString& index);
+private:
+	void	bindCombox(bool bind);
+
 private:
 	Ui::WVoiceLibPageClass ui;
 	QVector<WVoicelibWidget*>  _voice_widget_list;

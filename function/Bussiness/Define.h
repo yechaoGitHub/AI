@@ -22,6 +22,7 @@ enum httpReqType {
 	AddVoice,
 	VoiceList_Req,
 	DelVoice_Req,
+	GetVoiceUrl_Req
 };
 Q_DECLARE_METATYPE(httpReqType)
 

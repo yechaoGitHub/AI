@@ -23,15 +23,12 @@ WVoiceLibPage::WVoiceLibPage(QWidget *parent)
 	ui.comboBox_source->addItems(source_list);
 
 	qRegisterMetaType<strc_PageInfo>("strc_PageInfo");
-	qRegisterMetaType<QVector<strc_SoundLib> >("QVector<strc_SoundLib> ");
+	qRegisterMetaType<QVector<strc_SoundLib>>("QVector<strc_SoundLib>");
 	connect(SettingInterfaceBussiness::getInstance(),&SettingInterfaceBussiness::sig_common_replay,this,&WVoiceLibPage::slot_common_replay);
+
+	//qRegisterMetaType<QVector<strc_SoundLib>>("QVector<strc_SoundFilter>");
 	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_soundFilterReplay, this, &WVoiceLibPage::slot_soundFilterReplay);
 	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_soundLibReplay, this, &WVoiceLibPage::slot_soundLibReplay);
-
-	connect(ui.comboBox_gender, SIGNAL(currentIndexChanged(int)), this, SLOT(slot_comboxIndexChange(int)));
-	connect(ui.comboBox_source, SIGNAL(currentIndexChanged(int)), this, SLOT(slot_comboxIndexChange(int)));
-	connect(ui.comboBox_lan, &QComboBox::currentTextChanged, this, &WVoiceLibPage::slot_comboxTextChange);
-	connect(ui.comboBox_label, &QComboBox::currentTextChanged, this, &WVoiceLibPage::slot_comboxTextChange);
 }
 
 WVoiceLibPage::~WVoiceLibPage()
@@ -76,16 +73,46 @@ void WVoiceLibPage::slot_comboxTextChange(const QString& text)
 	SettingInterfaceBussiness::getInstance()->getSoundLIbReq(1, _page_size, _sound_type);
 }
 
-void WVoiceLibPage::slot_common_replay(httpReqType type, bool success, const QString& msg)
+void WVoiceLibPage::slot_common_replay(int type, bool success, const QString& msg)
 {
 	if (type == httpReqType::Filter_req || type == httpReqType::SoundLib_Req) {
 		AiSound::GetInstance().ShowTip(this,msg);
+	}
+	else if (type == httpReqType::AddVoice) {
+		AiSound::GetInstance().ShowTip(this, msg);
+	}
+	else if (type == httpReqType::GetVoiceUrl_Req) {
+		if (success) {
+			if (!msg.isEmpty()) {
+				AiSound::GetInstance().playVoiceMp3(msg);
+			}
+		}
+		else {
+			AiSound::GetInstance().ShowTip(this, msg);
+		}
+	}
+}
+
+void WVoiceLibPage::bindCombox(bool bind)
+{
+	if (bind) {
+		connect(ui.comboBox_gender, SIGNAL(currentIndexChanged(int)), this, SLOT(slot_comboxIndexChange(int)));
+		connect(ui.comboBox_source, SIGNAL(currentIndexChanged(int)), this, SLOT(slot_comboxIndexChange(int)));
+		connect(ui.comboBox_lan, &QComboBox::currentTextChanged, this, &WVoiceLibPage::slot_comboxTextChange);
+		connect(ui.comboBox_label, &QComboBox::currentTextChanged, this, &WVoiceLibPage::slot_comboxTextChange);
+	}
+	else {
+		disconnect(ui.comboBox_gender, SIGNAL(currentIndexChanged(int)), this, SLOT(slot_comboxIndexChange(int)));
+		disconnect(ui.comboBox_source, SIGNAL(currentIndexChanged(int)), this, SLOT(slot_comboxIndexChange(int)));
+		disconnect(ui.comboBox_lan, &QComboBox::currentTextChanged, this, &WVoiceLibPage::slot_comboxTextChange);
+		disconnect(ui.comboBox_label, &QComboBox::currentTextChanged, this, &WVoiceLibPage::slot_comboxTextChange);
 	}
 }
 
 void WVoiceLibPage::slot_soundFilterReplay(bool success, int, const QString& msg, const  QVector<strc_SoundFilter>& filter_list)
 {
 	if (success) {
+		bindCombox(false);
 		_label_map.clear();
 		_lang_map.clear();
 		QStringList  label_list;
@@ -108,6 +135,9 @@ void WVoiceLibPage::slot_soundFilterReplay(bool success, int, const QString& msg
 		ui.comboBox_lan->clear();
 		ui.comboBox_label->addItems(label_list);
 		ui.comboBox_lan->addItems(lang_list);
+		bindCombox(true);
+
+		SettingInterfaceBussiness::getInstance()->getSoundLIbReq(_cur_page, _page_size, _sound_type);
 	}
 }
 

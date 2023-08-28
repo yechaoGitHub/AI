@@ -289,6 +289,12 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
     else if (type == Navig_Type::System_Set) {
         _set_main->Show();
     }
+    else if (type == Navig_Type::Chat_Set) {
+        _set_main->Show(1);
+    }
+    else if (type == Navig_Type::Quite) {
+
+    }
 }
 
 void AiSound::ShowTranslationMainWindow(const TranslationLanguage& srcLan, const TranslationLanguage& destLan)
@@ -406,6 +412,11 @@ void AiSound::SwitchLanguage(LanguageType type)
 LanguageType AiSound::GetSystemLanguage()
 {
     return _sysLanguage;
+}
+
+void AiSound::playVoiceMp3(const QString& url)
+{
+
 }
 
 void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const QString& content, QVariant userParam)

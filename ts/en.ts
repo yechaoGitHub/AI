@@ -123,6 +123,14 @@
         <source>del chat history fail</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>get voice url timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>get voice url fail</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Translation</name>
