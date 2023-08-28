@@ -22,7 +22,7 @@ public:
 
     void Initialize();
     void Uninitialize();
-    void Connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide = false, const QAudioDeviceInfo& micDev = {}, const QAudioDeviceInfo& momitorDev = {}, TransType type = TRANSTYPE_NORMAL, const QString & speaker = "", SystemLanguage language = SYSTEM_LANGUAGE_CHS);
+    void Connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide = false, const QAudioDeviceInfo& micDev = {}, const QAudioDeviceInfo& momitorDev = {}, TransType type = TRANSTYPE_NORMAL, SystemLanguage language = SYSTEM_LANGUAGE_CHS);
 
     void StartMic();
     void StopMic();
@@ -32,7 +32,7 @@ public:
     bool IsRunning();
 
 Q_SIGNALS:
-    void connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, const QString& speaker, SystemLanguage language);
+    void connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, SystemLanguage language);
     void disconnect();
     void soundPlay(bool play);
 
@@ -42,7 +42,7 @@ Q_SIGNALS:
     void conversationGuideReceived(const QString& message, int type);
 
 private:
-    void ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, const QString& speaker, SystemLanguage language);
+    void ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, SystemLanguage language);
     void DisconnectInternal();
 
     void EnableAudio(bool enable);

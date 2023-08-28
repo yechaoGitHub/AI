@@ -5,7 +5,11 @@ WConversationSuggestion::WConversationSuggestion(QWidget* parent) :
     QWidget{ parent }
 {
     ui.setupUi(this);
-    ui.labelText->setWordWrap(true);
+    ui.plainTextEdit->setWordWrapMode(QTextOption::WordWrap);
+    ui.plainTextEdit->setLineWrapMode(QPlainTextEdit::WidgetWidth);
+    ui.plainTextEdit->setSizeAdjustPolicy(QPlainTextEdit::AdjustToContents);
+    ui.plainTextEdit->setReadOnly(true);
+    ui.plainTextEdit->setStyleSheet("color:rgba(255, 255, 255, 255);border:0px;background-color:rgba(0, 0, 0, 0);");
 
     this->setWindowFlags(Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground, true);
@@ -17,11 +21,6 @@ WConversationSuggestion::WConversationSuggestion(QWidget* parent) :
 
 WConversationSuggestion::~WConversationSuggestion()
 {
-}
-
-void WConversationSuggestion::SetText(const QString& text)
-{
-    ui.labelText->setText(text);
 }
 
 void WConversationSuggestion::mousePressEvent(QMouseEvent* event)
@@ -56,6 +55,14 @@ void WConversationSuggestion::paintEvent(QPaintEvent* event)
 
 void WConversationSuggestion::ConversationGuideReceived(const QString& message, int type)
 {
-
-
+    if (type == MID)
+    {
+        _textCache.append(message);
+    }
+    else if (type == FIN)
+    {
+        _textCache.append("\n");
+        ui.plainTextEdit->appendPlainText(_textCache);
+        _textCache.clear();
+    }
 }

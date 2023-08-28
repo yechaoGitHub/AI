@@ -1,7 +1,7 @@
 #pragma once
 #include <QObject>
 #include <QWidget>
-#include <QLabel>
+#include <QPlainTextEdit>
 #include <QScrollArea>
 
 class WDebugWindow : public QWidget
@@ -18,7 +18,7 @@ protected:
 private:
     QScrollArea* _scrollArea = nullptr;
     QString _debugText;
-    QLabel* _label = nullptr;
+    QPlainTextEdit* _label = nullptr;
 };
 
 class AiDebug : public QObject

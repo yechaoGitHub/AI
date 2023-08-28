@@ -9,8 +9,6 @@ public:
     WConversationSuggestion(QWidget* parent = nullptr);
     ~WConversationSuggestion();
 
-    void SetText(const QString& text);
-
 protected:
     void mousePressEvent(QMouseEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;
@@ -21,6 +19,7 @@ private:
     void ConversationGuideReceived(const QString& message, int type);
 
     Ui::ConversationSuggestion      ui;
+    QString                         _textCache;
     QPoint                          _clickPos;
     bool                            _mouseHold = false;
 };

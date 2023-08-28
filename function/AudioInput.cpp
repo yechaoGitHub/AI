@@ -64,6 +64,7 @@ void AudioInput::EndMic()
     {
         _workThread.quit();
     }
+    emit soundPlay(false);
 }
 
 void AudioInput::timerEvent(QTimerEvent* event)

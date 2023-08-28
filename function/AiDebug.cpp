@@ -49,20 +49,21 @@ WDebugWindow::WDebugWindow() :
 {
     setWindowFlags(Qt::Tool);
 
-    _scrollArea = new QScrollArea{ this };
-    _scrollArea->setFrameStyle(QFrame::NoFrame);
-    _scrollArea->setStyleSheet("background:transparent");
-    _scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-    _scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    //_scrollArea = new QScrollArea{ this };
+    //_scrollArea->setFrameStyle(QFrame::NoFrame);
+    //_scrollArea->setStyleSheet("background:transparent");
+    //_scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    //_scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
-    _label = new QLabel{ this };
-    _label->setWordWrap(true);
-    _label->setAlignment(Qt::AlignLeft | Qt::AlignTop);
-    _scrollArea->setWidget(_label);
+    _label = new QPlainTextEdit{ this };
+    _label->setWordWrapMode(QTextOption::WordWrap);
+    _label->setSizeAdjustPolicy(QPlainTextEdit::AdjustToContents);
+    _label->setReadOnly(true);
+    //_scrollArea->setWidget(_label);
 
     resize(QSize{400, 300});
 
-    _scrollArea->resize(this->size());
+    _label->resize(this->size());
 }
 
 WDebugWindow::~WDebugWindow()
@@ -71,19 +72,12 @@ WDebugWindow::~WDebugWindow()
 
 void WDebugWindow::AddText(const QString& text)
 {
-    auto t = text.trimmed();
-    if (t.isEmpty())
-    {
-        return;
-    }
-
-    _debugText += t + '\n';
-    _label->setText(_debugText);
-    _label->adjustSize();
+    _label->appendPlainText(text + '\n');
+    //_label->adjustSize();
 }
 
 void WDebugWindow::resizeEvent(QResizeEvent* event)
 {
-    _scrollArea->resize(this->size());
+    _label->resize(this->size());
 }
 

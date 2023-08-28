@@ -53,10 +53,10 @@ void Translation::Uninitialize()
     _audioInput.Uninitialize();
 }
 
-void Translation::Connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, const QString& speaker, SystemLanguage language)
+void Translation::Connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, SystemLanguage language)
 {
     _workThread.start();
-    emit connect(token, srcLan, destLan, enableConvGuide, micDev, momitorDev, type, speaker, language);
+    emit connect(token, srcLan, destLan, enableConvGuide, micDev, momitorDev, type, language);
 }
 
 void Translation::StartMic()
@@ -78,7 +78,7 @@ void Translation::Disconnect()
     }
 }
 
-void Translation::ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, const QString& speaker, SystemLanguage language)
+void Translation::ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, SystemLanguage language)
 {
     QUrl url{ "ws://47.106.253.9:9501/service/v1/st" };
     QUrlQuery quurl;
@@ -90,7 +90,6 @@ void Translation::ConnectInternal(const QString& token, const QString& srcLan, c
     _srcLan = srcLan;
     _destLan = destLan;
     _transType = type;
-    _speaker = speaker;
     _isConvGuide = enableConvGuide;
     _language = language;
 
@@ -154,8 +153,7 @@ void Translation::SendParam()
         break;
     }
 
-    dataobj.insert("ttsSpeaker", _speaker);
-    dataobj.insert("isConvGuide", _isConvGuide ? 1 : 0);
+    dataobj.insert("guideFlag", _isConvGuide ? 1 : 0);
 
     switch (_language)
     {
