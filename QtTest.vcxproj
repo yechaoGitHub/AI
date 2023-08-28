@@ -110,6 +110,7 @@
     <ClCompile Include="function\Bussiness\teamListModel.cpp" />
     <ClCompile Include="function\ChatBot.cpp" />
     <ClCompile Include="function\HttpAsync.cpp" />
+    <ClCompile Include="function\QAudioPlayer.cpp" />
     <ClCompile Include="function\QHook.cpp" />
     <ClCompile Include="function\Translation.cpp" />
     <ClCompile Include="function\VoiceCompositor.cpp" />
@@ -266,6 +267,7 @@
     <QtMoc Include="function\Bussiness\historyListModel.h" />
     <QtMoc Include="function\Bussiness\soundHistoryModel.h" />
     <QtMoc Include="function\QHook.h" />
+    <QtMoc Include="function\QAudioPlayer.h" />
     <ClInclude Include="function\VoiceType.h" />
     <QtMoc Include="widget\chat\WRobotChatMainUI.h" />
     <QtMoc Include="widget\chat\WRobotChat.h" />

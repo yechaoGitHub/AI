@@ -295,6 +295,15 @@
     <ClCompile Include="function\QHook.cpp">
       <Filter>function</Filter>
     </ClCompile>
+    <ClCompile Include="function\AiDebug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Speech\WSpeechEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="function\QAudioPlayer.cpp">
+      <Filter>function</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -644,12 +653,18 @@
     <QtMoc Include="function\QHook.h">
       <Filter>function</Filter>
     </QtMoc>
+    <QtMoc Include="widget\Speech\WSpeechEffect.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="function\AiDebug.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="function\QAudioPlayer.h">
+      <Filter>function</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="base\HttpClient.h">
-      <Filter>Source Files\base</Filter>
-    </ClInclude>
-    <ClInclude Include="base\httplib.h">
       <Filter>Source Files\base</Filter>
     </ClInclude>
     <ClInclude Include="function\VoiceType.h">

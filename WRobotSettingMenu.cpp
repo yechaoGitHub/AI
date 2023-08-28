@@ -8,10 +8,10 @@ WRobotSettingMenu::WRobotSettingMenu(QWidget *parent)
 	connect(ui.pb_system, &QPushButton::clicked, this, [=] {
 		emit sig_settingMenu_clicked(1);
 		});
-	connect(ui.pb_quite, &QPushButton::clicked, this, [=] {
+	connect(ui.pb_chatbot, &QPushButton::clicked, this, [=] {
 		emit sig_settingMenu_clicked(2);
 		});
-	connect(ui.pb_chatbot, &QPushButton::clicked, this, [=] {
+	connect(ui.pb_quite, &QPushButton::clicked, this, [=] {
 		emit sig_settingMenu_clicked(3);
 		});
 }

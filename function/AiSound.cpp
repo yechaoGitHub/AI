@@ -3,6 +3,7 @@
 #include "WTranslationSelect.h"
 #include "WTransaltionMain.h"
 #include "base/GlobalSetting.h"
+#include "function/QAudioPlayer.h"
 
 #include <QJsonDocument>
 #include <QJsonParseError>
@@ -87,7 +88,7 @@ void AiSound::Initialize()
                 }
             }
         });
-    //_wLoginFrame
+    _audio_play = new QAudioPlayer(nullptr);
     GetInputDeviceList();
 
     hook.installHook();
@@ -416,7 +417,7 @@ LanguageType AiSound::GetSystemLanguage()
 
 void AiSound::playVoiceMp3(const QString& url)
 {
-
+    _audio_play->playUrl(url);
 }
 
 void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const QString& content, QVariant userParam)

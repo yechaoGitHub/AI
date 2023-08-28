@@ -29,6 +29,7 @@
 
 class WTranslationSelect;
 class WTransaltionMain;
+class QAudioPlayer;
 
 using PasswordLoginCallbackType = void(int code, const QString& msg, const QString& token);
 using PasswordLoginCallback = std::function<PasswordLoginCallbackType>;
@@ -159,6 +160,7 @@ private:
     Translation                         _translation;
     VoiceCompositor                     _voiceCompositor;
     ChatBot                             _chatBot;
+    QAudioPlayer*                       _audio_play = nullptr;
 #pragma endregion
 
 #pragma region Êý¾Ý
