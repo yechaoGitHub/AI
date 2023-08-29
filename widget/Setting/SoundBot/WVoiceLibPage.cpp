@@ -81,7 +81,7 @@ void WVoiceLibPage::slot_common_replay(int type, bool success, const QString& ms
 	else if (type == httpReqType::AddVoice) {
 		AiSound::GetInstance().ShowTip(this, msg);
 	}
-	else if (type == httpReqType::GetVoiceUrl_Req) {
+	else if (type == httpReqType::GetVoiceLib_Req) {
 		if (success) {
 			if (!msg.isEmpty()) {
 				AiSound::GetInstance().playVoiceMp3(msg);

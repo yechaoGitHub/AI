@@ -684,9 +684,14 @@ void SettingInterfaceBussiness::delVoiceReq(int voiceId)
     client.header("Content-Type", "application/json").header("access_token", token).timeout(10).post();
 }
 
-void SettingInterfaceBussiness::getVoiceUrlReq(int voiceId)
+void SettingInterfaceBussiness::getVoiceUrlReq(int voiceId,bool my_voice)
 {
-    QMetaObject::invokeMethod(this, "_getVoiceUrlReq", Q_ARG(int, voiceId));
+    if (my_voice) {
+        QMetaObject::invokeMethod(this, "_getVoiceUrlReq", Q_ARG(int, voiceId));
+    }
+    else {
+        QMetaObject::invokeMethod(this, "_getVoiceLibUrlReq", Q_ARG(int, voiceId));
+    }
 }
 
 void SettingInterfaceBussiness::_getVoiceUrlReq(int voiceId)
@@ -725,6 +730,46 @@ void SettingInterfaceBussiness::_getVoiceUrlReq(int voiceId)
     client.fail([=](const QString& response, int code) {
         qDebug() << "getVoiceListReq error code=" << code;
         emit sig_common_replay(httpReqType::GetVoiceUrl_Req, false, tr("get voice url fail"));
+        });
+    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+}
+
+void SettingInterfaceBussiness::_getVoiceLibUrlReq(int voiceId)
+{
+    QString token = SETTING.getToken();
+    QString url = SETTING.getHostAddress();
+    if (token.isEmpty() || url.isEmpty()) {
+        return;
+    }
+
+    QJsonObject dataobj;
+    dataobj.insert("voiceId", voiceId);
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray jsonValue = document.toJson(QJsonDocument::Compact);
+
+    HttpClient client(QString("%1/api/voice/library/getVoiceUrl").arg(url));
+    client.success([=](const QString& response) {
+        QJsonParseError err_rpt;
+        auto json = QJsonDocument::fromJson(response.toUtf8(), &err_rpt);
+        if (err_rpt.error != QJsonParseError::NoError) {
+            emit sig_common_replay(httpReqType::GetVoiceLib_Req, false, tr("get voice url timeout"));
+            return;
+        }
+        if (json["code"].toInt() == 200) {
+            emit sig_common_replay(httpReqType::GetVoiceLib_Req, true, json["data"]["voiceUrl"].toString());
+        }
+        else {
+            emit sig_common_replay(httpReqType::GetVoiceLib_Req, false, json["msg"].toString());
+        }
+        });
+    client.timeout([=]() {
+        qDebug() << "getVoiceListReq timeout";
+        emit sig_common_replay(httpReqType::GetVoiceLib_Req, false, tr("get voice url timeout"));
+        });
+    client.fail([=](const QString& response, int code) {
+        qDebug() << "getVoiceListReq error code=" << code;
+        emit sig_common_replay(httpReqType::GetVoiceLib_Req, false, tr("get voice url fail"));
         });
     client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
 }

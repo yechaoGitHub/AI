@@ -23,7 +23,7 @@ void WVoicelibWidget::on_pb_add_clicked()
 
 void WVoicelibWidget::on_pb_sample_clicked()
 {
-	SettingInterfaceBussiness::getInstance()->getVoiceUrlReq(_libId);
+	SettingInterfaceBussiness::getInstance()->getVoiceUrlReq(_libId,false);
 }
 
 void WVoicelibWidget::updateVoiceLib(const strc_SoundLib& lib)

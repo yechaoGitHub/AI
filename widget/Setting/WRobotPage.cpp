@@ -7,7 +7,6 @@ WRobotPage::WRobotPage(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
-	setAttribute(Qt::WA_TranslucentBackground);
 
 	_robot_open = SETTING.getRobotBot();
 	_sound_open = SETTING.getSoundBot();

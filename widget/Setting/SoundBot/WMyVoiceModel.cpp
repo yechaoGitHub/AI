@@ -37,3 +37,8 @@ void WMyVoiceModel::on_pb_edit_clicked()
 {
 
 }
+
+void WMyVoiceModel::on_pb_use_clicked()
+{
+	SettingInterfaceBussiness::getInstance()->getVoiceUrlReq(_voiceId);
+}

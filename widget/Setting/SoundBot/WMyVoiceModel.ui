@@ -67,7 +67,7 @@ QLabel#lb_4{
 	background-image: url(:/QtTest/icon/Setting/soundbot/peo.png);	
 }
 
-QPushButton#pb_sample{
+QPushButton#pb_use{
 	border:none;
 	border-radius:6px;
 	padding-right:30px;
@@ -308,7 +308,7 @@ border:none;</string>
          <number>20</number>
         </property>
         <item>
-         <widget class="QPushButton" name="pb_sample">
+         <widget class="QPushButton" name="pb_use">
           <property name="minimumSize">
            <size>
             <width>109</width>

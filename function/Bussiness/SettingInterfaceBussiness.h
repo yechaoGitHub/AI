@@ -63,8 +63,9 @@ public:
 	Q_INVOKABLE void _getVoiceListReq(int cur_page, int page_size);
 	void delVoiceReq(int voiceId);
 
-	void getVoiceUrlReq(int voiceId);
+	void getVoiceUrlReq(int voiceId,bool my_voice = true);
 	Q_INVOKABLE void _getVoiceUrlReq(int voiceId);
+	Q_INVOKABLE void _getVoiceLibUrlReq(int voiceId);
 private:
 	void paraseHttpResponse(httpReqType req_type,const QString& response);
 

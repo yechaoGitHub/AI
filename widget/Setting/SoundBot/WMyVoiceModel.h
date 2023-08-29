@@ -17,6 +17,7 @@ public:
 private slots:
 	void on_del_btn_clicked();
 	void on_pb_edit_clicked();
+	void on_pb_use_clicked();
 private:
 	Ui::WMyVoiceModelClass ui;
 

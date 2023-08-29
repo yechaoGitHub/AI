@@ -4,12 +4,14 @@
 
 
 WSettingMainUi::WSettingMainUi(QWidget *parent)
-    : FrameLessWidget(parent)
+    : QWidget(parent)
 {
     ui.setupUi(this);
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
     setAttribute(Qt::WA_TranslucentBackground);
-    this->setWidgetType(true, DragType::Drag_Null, false);
-    this->setLimit();
+    this->installEventFilter(this);
+    //this->setWidgetType(true, DragType::Drag_Null, false);
+    //this->setLimit();
     connect(ui.pb_min, &QPushButton::clicked, this, [this] {
         this->showMinimized();
         });
@@ -65,7 +67,7 @@ void WSettingMainUi::Show(int type)
 void WSettingMainUi::resizeEvent(QResizeEvent* re)
 {
     auto size = this->size();
-    this->setFixedSize(939, 830);
+    this->setFixedSize(939, 900);
 }
 
 void WSettingMainUi::paintEvent(QPaintEvent*)
@@ -88,4 +90,30 @@ void WSettingMainUi::paintEvent(QPaintEvent*)
     p.setPen(QColor("#ffffff"));
     p.setBrush(QColor("#ffffff"));
     p.drawRoundedRect(4, 4, width() - 8, height() - 8, 8, 8);
+}
+
+bool WSettingMainUi::eventFilter(QObject* obj, QEvent* e)
+{
+    if (obj)
+    {
+        if (e->type() == QEvent::MouseButtonPress)
+        {
+            pressedPoint_ = static_cast<QMouseEvent*>(e)->pos();
+        }
+        else if (e->type() == QEvent::MouseMove)
+        {
+            if (pressedPoint_ != QPoint(-1, -1))
+            {
+                auto p = static_cast<QMouseEvent*>(e)->pos();
+                if (p.y() < 90 && p.y() > 0) {
+                    move(pos() + p - pressedPoint_);
+                }
+            }
+        }
+        else if (e->type() == QEvent::MouseButtonRelease)
+        {
+            pressedPoint_ = QPoint{ -1, -1 };
+        }
+    }
+    return false;
 }

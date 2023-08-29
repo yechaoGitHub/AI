@@ -57,6 +57,16 @@ void WMyVoicePage::slot_commonReplay(int type, bool success, const QString& msg)
 			AiSound::GetInstance().ShowTip(this, msg);
 		}
 	}
+	else if (type == httpReqType::GetVoiceUrl_Req) {
+		if (success) {
+			if (!msg.isEmpty()) {
+				AiSound::GetInstance().playVoiceMp3(msg);
+			}
+		}
+		else {
+			AiSound::GetInstance().ShowTip(this, msg);
+		}
+	}
 }
 
 void WMyVoicePage::slot_myVoiceListReplay(bool success, int, const strc_PageInfo page_info, const QVector<strc_MyVoice>& voice_list)

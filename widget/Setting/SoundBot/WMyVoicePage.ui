@@ -80,6 +80,9 @@ QComboBox{
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
+   <property name="leftMargin">
+    <number>40</number>
+   </property>
    <property name="topMargin">
     <number>0</number>
    </property>
@@ -300,6 +303,9 @@ border:none;
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <property name="topMargin">
+       <number>0</number>
+      </property>
+      <property name="rightMargin">
        <number>0</number>
       </property>
       <property name="horizontalSpacing">

@@ -5,7 +5,7 @@
 #include "model/FrameLessWidget.h"
 
 
-class WSettingMainUi : public FrameLessWidget
+class WSettingMainUi : public QWidget//FrameLessWidget
 {
 	Q_OBJECT
 
@@ -18,6 +18,9 @@ public:
 protected:
 	void paintEvent(QPaintEvent*) override;
 	void resizeEvent(QResizeEvent* re) override;
+	bool eventFilter(QObject* obj, QEvent* e);
 private:
 	Ui::WSettingMainUiClass ui;
+
+	QPoint      pressedPoint_;
 };
