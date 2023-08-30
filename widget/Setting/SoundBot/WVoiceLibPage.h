@@ -3,7 +3,7 @@
 #include <QWidget>
 #include "ui_WVoiceLibPage.h"
 #include "Bussiness/SettingInterfaceBussiness.h"
-
+#include "QAddVoiceDlg.h"
 
 class WVoicelibWidget;
 class WVoiceLibPage : public QWidget
@@ -23,12 +23,15 @@ private slots:
 
 	void	slot_comboxIndexChange(int index);
 	void	slot_comboxTextChange(const QString& index);
+
+	void	slot_addVoice(int voiceID,const QString& name);
 private:
 	void	bindCombox(bool bind);
 
 private:
 	Ui::WVoiceLibPageClass ui;
 	QVector<WVoicelibWidget*>  _voice_widget_list;
+	QAddVoiceDlg* _addVoiceDlg = nullptr;
 	QMap<QString, int>	_label_map;
 	QMap<QString, int>	_lang_map;
 	strc_SoundType _sound_type;

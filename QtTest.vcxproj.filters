@@ -304,6 +304,12 @@
     <ClCompile Include="function\QAudioPlayer.cpp">
       <Filter>function</Filter>
     </ClCompile>
+    <ClCompile Include="widget\Setting\SoundBot\QAddVoiceDlg.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\SoundBot\WEditVoiceDlg.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -428,6 +434,12 @@
     </QtUic>
     <QtUic Include="ui\ConversationSuggestion.ui">
       <Filter>ui</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\SoundBot\QAddVoiceDlg.ui">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\SoundBot\WEditVoiceDlg.ui">
+      <Filter>widget\Setting\SoundBot</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -661,6 +673,12 @@
     </QtMoc>
     <QtMoc Include="function\QAudioPlayer.h">
       <Filter>function</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\SoundBot\QAddVoiceDlg.h">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\SoundBot\WEditVoiceDlg.h">
+      <Filter>widget\Setting\SoundBot</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

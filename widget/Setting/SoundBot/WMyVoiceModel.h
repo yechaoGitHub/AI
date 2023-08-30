@@ -7,7 +7,8 @@
 class WMyVoiceModel : public QWidget
 {
 	Q_OBJECT
-
+signals:
+	void sig_editMyVoice(int voiceId,const QString& name,const QString& desc);
 public:
 	WMyVoiceModel(QWidget *parent = nullptr);
 	~WMyVoiceModel();

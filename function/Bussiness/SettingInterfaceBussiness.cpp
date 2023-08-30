@@ -246,6 +246,11 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
     }
 }
 
+void SettingInterfaceBussiness::getUserInfoReq()
+{
+    QMetaObject::invokeMethod(this, "_getUserInfoReq");
+}
+
 void SettingInterfaceBussiness::_getUserInfoReq()
 {
     QString token = SETTING.getToken();
@@ -269,9 +274,38 @@ void SettingInterfaceBussiness::_getUserInfoReq()
     client.header("Content-Type", "application/x-www-form-urlencoded").header("access_token", token).timeout(10).post();
 }
 
-void SettingInterfaceBussiness::getUserInfoReq()
+void SettingInterfaceBussiness::getGlobalInfo()
 {
-    QMetaObject::invokeMethod(this, "_getUserInfoReq");
+    QMetaObject::invokeMethod(this, "getGlobalInfo");
+}
+
+void SettingInterfaceBussiness::_getGlobalInfo()
+{
+    QString token = SETTING.getToken();
+    QString url = SETTING.getHostAddress();
+    if (token.isEmpty() || url.isEmpty()) {
+        return;
+    }
+
+    HttpClient client(QString("%1/api/config/getGlobalConfig").arg(url));
+    client.success([=](const QString& response) {
+        QJsonParseError err_rpt;
+        auto json = QJsonDocument::fromJson(response.toUtf8(), &err_rpt);
+        if (err_rpt.error != QJsonParseError::NoError) {
+            qDebug() << response;
+            return;
+        }
+        if (json["code"].toInt() == 200) {
+            SETTING.setRechargeUrl(json["data"]["websiteRechargeUrl"].toString());
+        }
+        });
+    client.timeout([=]() {
+        qDebug() << "_getGlobalInfo timeout";
+        });
+    client.fail([=](const QString& response, int code) {
+        qDebug() << "_getGlobalInfo error code=" << code;
+        });
+    client.header("Content-Type", "application/x-www-form-urlencoded").header("access_token", token).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::inviteUserJoinReq(const QString& username)
@@ -575,7 +609,7 @@ void SettingInterfaceBussiness::_getSoundLIbReq(int pageNo, int pageSize, strc_S
     client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
-void SettingInterfaceBussiness::addMyVoice(int libId)
+void SettingInterfaceBussiness::addMyVoice(int libId, const QString& voiceName)
 {
     QString token = SETTING.getToken();
     QString url = SETTING.getHostAddress();
@@ -585,6 +619,7 @@ void SettingInterfaceBussiness::addMyVoice(int libId)
 
     QJsonObject dataobj;
     dataobj.insert("voiceLibId", libId);
+    dataobj.insert("voiceLibName", voiceName);
     QJsonDocument document;
     document.setObject(dataobj);
     QByteArray jsonValue = document.toJson(QJsonDocument::Compact);
@@ -770,6 +805,48 @@ void SettingInterfaceBussiness::_getVoiceLibUrlReq(int voiceId)
     client.fail([=](const QString& response, int code) {
         qDebug() << "getVoiceListReq error code=" << code;
         emit sig_common_replay(httpReqType::GetVoiceLib_Req, false, tr("get voice url fail"));
+        });
+    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+}
+
+void SettingInterfaceBussiness::editMyVoice(int libId, const QString& voiceName, const QString& desc)
+{
+    QString token = SETTING.getToken();
+    QString url = SETTING.getHostAddress();
+    if (token.isEmpty() || url.isEmpty()) {
+        return;
+    }
+
+    QJsonObject dataobj;
+    dataobj.insert("voiceId", libId);
+    dataobj.insert("voiceName", voiceName);
+    dataobj.insert("description", desc);
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray jsonValue = document.toJson(QJsonDocument::Compact);
+
+    HttpClient client(QString("%1/api/voice/myVoice/edit").arg(url));
+    client.success([=](const QString& response) {
+        QJsonParseError err_rpt;
+        auto json = QJsonDocument::fromJson(response.toUtf8(), &err_rpt);
+        if (err_rpt.error != QJsonParseError::NoError) {
+            emit sig_common_replay(httpReqType::EditVoice, false, tr("edit voice fail"));
+            return;
+        }
+        if (json["code"].toInt() == 200) {
+            emit sig_common_replay(httpReqType::EditVoice, true, tr("edit Success"));
+        }
+        else {
+            emit sig_common_replay(httpReqType::EditVoice, false, json["msg"].toString());
+        }
+        });
+    client.timeout([=]() {
+        qDebug() << "editMyVoice timeout";
+        emit sig_common_replay(httpReqType::EditVoice, false, tr("add voice timeout"));
+        });
+    client.fail([=](const QString& response, int code) {
+        qDebug() << "editMyVoice error code=" << code;
+        emit sig_common_replay(httpReqType::AddVoice, false, tr("edit voice fail"));
         });
     client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
 }

@@ -8,6 +8,8 @@
 class WVoicelibWidget : public QWidget
 {
 	Q_OBJECT
+signals:
+	void sig_addVoice(int voiceId,const QString& name);
 
 public:
 	WVoicelibWidget(QWidget *parent = nullptr);

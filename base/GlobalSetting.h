@@ -12,6 +12,9 @@ public:
     GlobalSetting();
     ~GlobalSetting();
 
+    void setRechargeUrl(const QString& url);
+    QString getRechargeUrl();
+
     bool init(const QString& path);
     QString getRootLocalPath();
 
@@ -71,6 +74,8 @@ private:
     QAudioDeviceInfo    m_micDeviceInfo;
     QAudioDeviceInfo    m_speakerDeviceInfo;
     QAudioDeviceInfo    m_monitorDeviceInfo;
+
+    QString             m_strRechargeUrl;
 };
 
 extern GlobalSetting SETTING;

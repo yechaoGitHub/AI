@@ -55,6 +55,16 @@ bool GlobalSetting::init(const QString& path)
     return false;
 }
 
+void GlobalSetting::setRechargeUrl(const QString& url)
+{
+    m_strRechargeUrl = url;
+}
+
+QString GlobalSetting::getRechargeUrl()
+{
+    return m_strRechargeUrl;
+}
+
 QString GlobalSetting::getRootLocalPath()
 {
     return QStandardPaths::standardLocations(QStandardPaths::AppConfigLocation).first();

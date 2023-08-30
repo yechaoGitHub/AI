@@ -30,6 +30,9 @@ public:
 	void	initThread();
 	void	uninitialize();
 
+	void	getGlobalInfo();
+	Q_INVOKABLE void _getGlobalInfo();
+
 	// 获取用户信息请求
 	void getUserInfoReq();
 	Q_INVOKABLE void _getUserInfoReq();
@@ -58,10 +61,11 @@ public:
 	Q_INVOKABLE void _getSoundLIbReq(int pageNo, int page, strc_SoundType sound_type);
 
 	//voice
-	void addMyVoice(int libId);
+	void addMyVoice(int libId,const QString& voiceName);
 	void getVoiceListReq(int cur_page,int page_size);
 	Q_INVOKABLE void _getVoiceListReq(int cur_page, int page_size);
 	void delVoiceReq(int voiceId);
+	void editMyVoice(int libId, const QString& voiceName,const QString& desc);
 
 	void getVoiceUrlReq(int voiceId,bool my_voice = true);
 	Q_INVOKABLE void _getVoiceUrlReq(int voiceId);

@@ -7,9 +7,13 @@ WVoiceLibPage::WVoiceLibPage(QWidget *parent)
 {
 	ui.setupUi(this);
 
+	_addVoiceDlg = new QAddVoiceDlg(nullptr);
+	_addVoiceDlg->hide();
+
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 2; j++) {
 			WVoicelibWidget* widget = new WVoicelibWidget(this);
+			connect(widget,&WVoicelibWidget::sig_addVoice,this,&WVoiceLibPage::slot_addVoice);
 			ui.gridLayout->addWidget(widget, i, j);
 			_voice_widget_list.push_back(widget);
 		}
@@ -32,7 +36,12 @@ WVoiceLibPage::WVoiceLibPage(QWidget *parent)
 }
 
 WVoiceLibPage::~WVoiceLibPage()
-{}
+{
+	if (_addVoiceDlg) {
+		delete _addVoiceDlg;
+		_addVoiceDlg = nullptr;
+	}
+}
 
 void WVoiceLibPage::setSel()
 {
@@ -44,6 +53,11 @@ void WVoiceLibPage::setSel()
 	else {
 		SettingInterfaceBussiness::getInstance()->getSoundLIbReq(_cur_page, _page_size, _sound_type);
 	}
+}
+
+void WVoiceLibPage::slot_addVoice(int voiceId,const QString& name)
+{
+	_addVoiceDlg->Show(voiceId, name);
 }
 
 void WVoiceLibPage::slot_comboxIndexChange(int index)

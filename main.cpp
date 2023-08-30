@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon(":QtTest/icon/icon.png"));
-
+    QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
     if (!SETTING.init(QString(SETTING.getRootLocalPath() + "/system.ini"))) {
         return -1;
     }

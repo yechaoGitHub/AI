@@ -51,6 +51,33 @@
     </message>
 </context>
 <context>
+    <name>QAddVoiceDlgClass</name>
+    <message>
+        <source>QAddVoiceDlg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Voice To My Voice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New voice name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Play voice preview</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AddVoice</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>RobotChatMainUIClass</name>
     <message>
         <source>RobotChatMainUI</source>
@@ -129,6 +156,14 @@
     </message>
     <message>
         <source>get voice url fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>edit voice fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>edit Success</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -263,6 +298,33 @@ design field, particularly in areas such as automated design generation,
 predictive analytics, and data-driven decision-making. AI-powered tools and 
 algorithms have facilitated faster and more efficient design processes, 
 enabling designers to focus on more creative aspects of their work.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WEditVoiceDlgClass</name>
+    <message>
+        <source>WEditVoiceDlg</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Voice To My Voice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New voice name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>description voice name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>EditVoice</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

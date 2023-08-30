@@ -20,6 +20,7 @@ enum httpReqType {
 	Del_ChatHistory,
 	SoundLib_Req,
 	AddVoice,
+	EditVoice,
 	VoiceList_Req,
 	DelVoice_Req,
 	GetVoiceUrl_Req,

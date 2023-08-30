@@ -18,7 +18,7 @@ WVoicelibWidget::~WVoicelibWidget()
 
 void WVoicelibWidget::on_pb_add_clicked()
 {
-	SettingInterfaceBussiness::getInstance()->addMyVoice(_libId);
+	emit sig_addVoice(_libId, ui.lb_name->text());
 }
 
 void WVoicelibWidget::on_pb_sample_clicked()

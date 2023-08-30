@@ -35,7 +35,7 @@ void WMyVoiceModel::on_del_btn_clicked()
 
 void WMyVoiceModel::on_pb_edit_clicked()
 {
-
+	emit sig_editMyVoice(_voiceId, ui.label_name->text(), ui.lb_content->text());
 }
 
 void WMyVoiceModel::on_pb_use_clicked()

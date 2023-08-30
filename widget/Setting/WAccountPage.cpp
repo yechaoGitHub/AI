@@ -2,6 +2,7 @@
 #include <QDate>
 #include <QDesktopServices>
 #include <QUrl>
+#include "base/GlobalSetting.h"
 
 
 WAccountPage::WAccountPage(QWidget *parent)
@@ -27,5 +28,9 @@ void WAccountPage::initAccount(const stru_UserInfo& user_info)
 
 void WAccountPage::on_pb_charge_clicked()
 {
-	QDesktopServices::openUrl(QUrl("https://aisounda.cn/#/account/package"));
+	QString url = SETTING.getRechargeUrl();
+	if (url.isEmpty()) {
+		url = "https://aisounda.cn/#/account/package";
+	}
+	QDesktopServices::openUrl(QUrl(url));
 }

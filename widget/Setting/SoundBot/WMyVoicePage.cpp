@@ -14,16 +14,21 @@ WMyVoicePage::WMyVoicePage(QWidget *parent)
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 2; j++) {
 			WMyVoiceModel* voice = new WMyVoiceModel(this);
+			connect(voice,&WMyVoiceModel::sig_editMyVoice,this,&WMyVoicePage::slot_editMyVoice);
 			ui.gridLayout->addWidget(voice,i,j);
 			_voice_widget_list.push_back(voice);
 		}
 	}
+	connect(ui.widget_2, &WMyVoiceModel::sig_editMyVoice, this, &WMyVoicePage::slot_editMyVoice);
 
 	qRegisterMetaType<strc_PageInfo>("strc_PageInfo");
 	qRegisterMetaType<QVector<strc_MyVoice>>("QVector<strc_MyVoice>");
 	connect(SettingInterfaceBussiness::getInstance(),&SettingInterfaceBussiness::sig_common_replay,this, &WMyVoicePage::slot_commonReplay);
 	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_myVoiceListReplay, this, &WMyVoicePage::slot_myVoiceListReplay);
 	connect(ui.widget, &WPageCtlWidget::sig_changePage, this, &WMyVoicePage::slot_pageChange);
+
+	_voice_editDlg = new WEditVoiceDlg(nullptr);
+	_voice_editDlg->hide();
 }
 
 WMyVoicePage::~WMyVoicePage()
@@ -44,12 +49,17 @@ void WMyVoicePage::on_pb_add_clicked()
 	QDesktopServices::openUrl(QUrl("https://aisounda.cn/#/custom"));
 }
 
+void WMyVoicePage::slot_editMyVoice(int voiceId, const QString& name, const QString& desc)
+{
+	_voice_editDlg->Show(voiceId, name,desc);
+}
+
 void WMyVoicePage::slot_commonReplay(int type, bool success, const QString& msg)
 {
 	if (type == httpReqType::VoiceList_Req) {
 		AiSound::GetInstance().ShowTip(this,msg);
 	}
-	else if (type == httpReqType::DelVoice_Req) {
+	else if (type == httpReqType::DelVoice_Req || type == httpReqType::EditVoice) {
 		if (success) {
 			initMyVoice();
 		}

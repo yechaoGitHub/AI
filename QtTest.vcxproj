@@ -130,6 +130,8 @@
     <ClCompile Include="widget\Setting\ChatBot\WChatBotMainUI.cpp" />
     <ClCompile Include="widget\Setting\ChatBot\WHistoryPage.cpp" />
     <ClCompile Include="widget\Setting\ChatBot\WLibarary.cpp" />
+    <ClCompile Include="widget\Setting\SoundBot\QAddVoiceDlg.cpp" />
+    <ClCompile Include="widget\Setting\SoundBot\WEditVoiceDlg.cpp" />
     <ClCompile Include="widget\Setting\SoundBot\WHistoryDiaPage.cpp" />
     <ClCompile Include="widget\Setting\SoundBot\WMyVoiceModel.cpp" />
     <ClCompile Include="widget\Setting\SoundBot\WMyVoicePage.cpp" />
@@ -202,6 +204,8 @@
     <QtUic Include="widget\Setting\ChatBot\WChatBotMainUI.ui" />
     <QtUic Include="widget\Setting\ChatBot\WHistoryPage.ui" />
     <QtUic Include="widget\Setting\ChatBot\WLibarary.ui" />
+    <QtUic Include="widget\Setting\SoundBot\QAddVoiceDlg.ui" />
+    <QtUic Include="widget\Setting\SoundBot\WEditVoiceDlg.ui" />
     <QtUic Include="widget\Setting\SoundBot\WHistoryDiaPage.ui" />
     <QtUic Include="widget\Setting\SoundBot\WMyVoiceModel.ui" />
     <QtUic Include="widget\Setting\SoundBot\WMyVoicePage.ui" />
@@ -221,6 +225,8 @@
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="widget\Setting\SoundBot\WEditVoiceDlg.h" />
+    <QtMoc Include="widget\Setting\SoundBot\QAddVoiceDlg.h" />
     <QtMoc Include="widget\Speech\WSpeechEffect.h" />
     <QtMoc Include="widget\model\WRadioBtn.h" />
     <QtMoc Include="widget\WConversationSuggestion.h" />
