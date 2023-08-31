@@ -113,8 +113,8 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
     else if (req_type == httpReqType::ChatBot_req) {
         if (json["code"].toInt() == 200) {
             QVector<strc_ChatbotInfo>   chatbot_list;
-            if (json["data"].isArray()) {
-                for (auto it : json["data"].toArray()) {
+            if (json["data"]["records"].isArray()) {
+                for (auto it : json["data"]["records"].toArray()) {
                     strc_ChatbotInfo chatbot_info;
                     QJsonObject json_recode = it.toObject();
                     chatbot_info.desc = json_recode["description"].toString();
@@ -126,7 +126,14 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
                     chatbot_list.push_back(std::move(chatbot_info));
                 }
             }
-            emit sig_getChatBotListReplay(true, json["code"].toInt(), "", chatbot_list);
+
+            strc_PageInfo page_info;
+            page_info.total_size = json["data"]["total"].toInt();
+            page_info.cur_page = json["data"]["current"].toInt();
+            page_info.page_size = json["data"]["size"].toInt();
+            page_info.total_pages = json["data"]["pages"].toInt();
+
+            emit sig_getChatBotListReplay(true, json["code"].toInt(), page_info, chatbot_list);
         }
         else {
             emit sig_common_replay(req_type, false, json["msg"].toString());
@@ -242,6 +249,24 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
         }
         else {
             emit sig_common_replay(httpReqType::VoiceList_Req, false, json["msg"].toString());
+        }
+    }
+    else if (req_type == httpReqType::ChatBotType_Req) {
+        if (json["code"].toInt() == 200) {
+            QMap<int, QString> chatbot_map;
+            if (json["data"]["typeList"].isArray()) {
+                for (auto it : json["data"]["typeList"].toArray()) {
+                    strc_MyVoice voice;
+                    QJsonObject json_recode = it.toObject();
+                    QString value = json_recode["value"].toString();
+                    int id = json_recode["id"].toInt();
+                    chatbot_map[id] = value;
+                }
+            }
+            emit sig_chatBotListReplay(true,httpReqType::ChatBotType_Req, chatbot_map);
+        }
+        else {
+            emit sig_common_replay(httpReqType::ChatBotType_Req, false, json["msg"].toString());
         }
     }
 }
@@ -436,18 +461,51 @@ void SettingInterfaceBussiness::feedBackReq(const QString& msg)
     client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
-void SettingInterfaceBussiness::getCharBotListReq()
-{
-    QMetaObject::invokeMethod(this, "_getCharBotListReq");
-}
-
-void SettingInterfaceBussiness::_getCharBotListReq()
+void SettingInterfaceBussiness::getChatBotType()
 {
     QString token = SETTING.getToken();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
     }
+
+    HttpClient client(QString("%1/api/config/getChatbotTempTypeFilter").arg(url));
+    client.success([=](const QString& response) {
+        paraseHttpResponse(httpReqType::ChatBotType_Req, response);
+        });
+    client.timeout([=]() {
+        qDebug() << "getTeamRecordReq timeout";
+        emit sig_common_replay(httpReqType::ChatBotType_Req, false, tr("get chatbot type timeout"));
+        });
+    client.fail([=](const QString& response, int code) {
+        qDebug() << "getTeamRecordReq error code=" << code;
+        emit sig_common_replay(httpReqType::ChatBotType_Req, false, tr("get chatbot type fail"));
+        });
+    client.header("Content-Type", "application/json").header("access_token", token).timeout(10).post();
+}
+
+void SettingInterfaceBussiness::getCharBotListReq(int page, int page_size,int type)
+{
+    QMetaObject::invokeMethod(this, "_getCharBotListReq",Q_ARG(int, page), Q_ARG(int, page_size), Q_ARG(int, type));
+}
+
+void SettingInterfaceBussiness::_getCharBotListReq(int page, int page_size,int type)
+{
+    QString token = SETTING.getToken();
+    QString url = SETTING.getHostAddress();
+    if (token.isEmpty() || url.isEmpty()) {
+        return;
+    }
+
+    QJsonObject dataobj;
+    dataobj.insert("pageNo", page);
+    dataobj.insert("pageSize", page_size);
+    if (type >= 0) {
+        dataobj.insert("type", type);
+    }
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray jsonValue = document.toJson(QJsonDocument::Compact);
 
     HttpClient client(QString("%1/api/config/getChatbotTemplateList").arg(url));
     client.success([=](const QString& response) {
@@ -461,7 +519,7 @@ void SettingInterfaceBussiness::_getCharBotListReq()
         qDebug() << "getCharBotListReq error code=" << code;
         emit sig_common_replay(httpReqType::ChatBot_req, false, "»ñÈ¡ChatBotÊ§°Ü");
         });
-    client.header("Content-Type", "application/x-www-form-urlencoded").header("access_token", token).timeout(10).post();
+    client.header("Content-Type", "application/x-www-form-urlencoded").header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::getCharHistoryReq(int type ,int page, const QString& search, int pageSize)

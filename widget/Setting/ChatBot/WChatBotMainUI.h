@@ -4,6 +4,7 @@
 #include "ui_WChatBotMainUI.h"
 #include "function/Bussiness/Define.h"
 #include "model/WLabelButton.h"
+#include <QMap>
 
 
 class WChatBotMainUI : public QWidget
@@ -23,12 +24,10 @@ private slots:
 	void slot_type_btn_clicked();
 	void slot_back();
 
-	void	slot_getChatBotListReplay(bool, int, const QString& msg, const QVector<strc_ChatbotInfo>& user_info);
-
+	void	slot_getChatBotType(bool,int,const QMap<int,QString>&);
 private:
 	Ui::WChatBotMainUIClass ui;
 	WLabelButton* _pre_select_btn = nullptr;
 
 	QVector<WLabelButton*>			_chatBot_btn_list;
-	QVector<int>					_chatBot_type_list;
 };

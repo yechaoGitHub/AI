@@ -12,40 +12,28 @@ WChatBotMainUI::WChatBotMainUI(QWidget *parent)
 	ui.pb_history->initBar("History", WNavbarButton::BarType::Bar_History);
 	changeSelectBtn(WNavbarButton::BarType::Bar_Lib);
 
-	qRegisterMetaType<QVector<strc_ChatbotInfo>>("QVector<strc_ChatbotInfo>");
-	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_getChatBotListReplay,this, &WChatBotMainUI::slot_getChatBotListReplay);
-	for (int var = 0; var < 5; var++) {
-		WLabelButton* label_btn = new WLabelButton(this);
-		label_btn->setType(var, QString("test001----%1").arg(var));
-		ui.horizontalLayout_2->addWidget(label_btn);
-		connect(label_btn,&QPushButton::clicked,this,&WChatBotMainUI::slot_type_btn_clicked);
-	}
-	ui.horizontalLayout_2->addStretch();
+	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_chatBotListReplay, this, &WChatBotMainUI::slot_getChatBotType);
+
+	WLabelButton* label_btn = new WLabelButton(this);
+	_pre_select_btn = label_btn;
+	label_btn->setType(-1,tr("All templates"));
+	label_btn->setSelected(true);
+	ui.horizontalLayout_2->addWidget(label_btn);
+	connect(label_btn, &QPushButton::clicked, this, &WChatBotMainUI::slot_type_btn_clicked);
 }
 
 WChatBotMainUI::~WChatBotMainUI()
 {}
 
-void WChatBotMainUI::slot_getChatBotListReplay(bool success, int, const QString& msg, const QVector<strc_ChatbotInfo>& chatbot_list)
+void WChatBotMainUI::slot_getChatBotType(bool, int, const QMap<int, QString>& type_map)
 {
-	if (success) {
-		for (auto it : chatbot_list) {
-			auto item = std::find_if(_chatBot_type_list.begin(), _chatBot_type_list.end(), [=](int type) {
-				return it.type == type;
-				});
-
-			if (item == _chatBot_type_list.end()) {
-				_chatBot_type_list.push_back(it.type);
-				WLabelButton* label_btn = new WLabelButton(this);
-				label_btn->setType(it.type,it.typeName);
-				ui.horizontalLayout_2->addWidget(label_btn);
-				_chatBot_btn_list.push_back(label_btn);
-				connect(label_btn, &QPushButton::clicked, this, &WChatBotMainUI::slot_type_btn_clicked);
-			}
-		}
-		ui.lib_page->updateLib(chatbot_list);
-		ui.horizontalLayout_2->addStretch();
+	for (auto& key : type_map.keys()) {
+		WLabelButton* label_btn = new WLabelButton(this);
+		label_btn->setType(key, type_map.value(key));
+		ui.horizontalLayout_2->addWidget(label_btn);
+		connect(label_btn, &QPushButton::clicked, this, &WChatBotMainUI::slot_type_btn_clicked);
 	}
+	ui.horizontalLayout_2->addStretch();
 }
 
 void WChatBotMainUI::slot_type_btn_clicked()
@@ -58,7 +46,7 @@ void WChatBotMainUI::slot_type_btn_clicked()
 		_pre_select_btn->setSelected(false);
 	}
 	_pre_select_btn = btn;
-
+	ui.lib_page->updateLibBySelType(btn->getType());
 }
 
 void WChatBotMainUI::on_pb_lib_clicked()
@@ -89,10 +77,8 @@ void WChatBotMainUI::changeSelectBtn(WNavbarButton::BarType type)
 	if (!first) {
 		if (first_chatbot && type == WNavbarButton::BarType::Bar_Lib) {
 			first_chatbot = false;
-			QTimer::singleShot(200, this, [=]() {
-				SettingInterfaceBussiness::getInstance()->getCharBotListReq();
-				});
-
+			ui.lib_page->getChatBotTemplate();
+			SettingInterfaceBussiness::getInstance()->getChatBotType();
 		}
 		else if (first_sound && type == WNavbarButton::BarType::Bar_History) {
 			first_sound = false;

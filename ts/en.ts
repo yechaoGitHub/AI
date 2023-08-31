@@ -166,6 +166,14 @@
         <source>edit Success</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>get chatbot type timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>get chatbot type fail</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Translation</name>
@@ -252,6 +260,13 @@
     </message>
     <message>
         <source>12345778</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WChatBotMainUI</name>
+    <message>
+        <source>All templates</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -716,6 +731,33 @@ enabling designers to focus on more creative aspects of their work.</source>
     <name>WSettingSelectWidgetClass</name>
     <message>
         <source>WSettingSelectWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WSoundBotMainUi</name>
+    <message>
+        <source>Sound source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translation Setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Voice Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>My Voice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speech Synthesis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translation History</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

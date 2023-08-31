@@ -12,7 +12,9 @@ public:
 
 	void	setSelected(bool sel);
 	void	setType(int type, const QString& typeName);
-
+	int		getType(){
+		return _type;
+	}
 private:
 	int			_type = 0;
 	QString		_typeName;

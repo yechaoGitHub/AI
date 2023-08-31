@@ -1,4 +1,6 @@
 #include "WLibarary.h"
+#include "Bussiness/SettingInterfaceBussiness.h"
+
 
 WLibarary::WLibarary(QWidget *parent)
 	: QWidget(parent)
@@ -11,13 +13,28 @@ WLibarary::WLibarary(QWidget *parent)
 			_lib_model_list.push_back(lib);
 			ui.gridLayout->addWidget(lib, i,j);
 		}
-		ui.gridLayout->setRowStretch(i,400);
+		ui.gridLayout->setRowStretch(i,600);
 	}
 	connect(ui.widget,&WPageCtlWidget::sig_changePage,this, &WLibarary::slot_page_change);
+
+	qRegisterMetaType<QVector<strc_ChatbotInfo>>("QVector<strc_ChatbotInfo>");
+	qRegisterMetaType<strc_PageInfo>("strc_PageInfo");
+	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_getChatBotListReplay, this, &WLibarary::slot_getChatBotListReplay);
 }
 
 WLibarary::~WLibarary()
 {}
+
+void WLibarary::getChatBotTemplate()
+{
+	SettingInterfaceBussiness::getInstance()->getCharBotListReq(_cur_page, _page_size, _cur_type);
+}
+
+void WLibarary::updateLibBySelType(int type)
+{
+	_cur_type = type;
+	getChatBotTemplate();
+}
 
 void WLibarary::slot_model_clicked()
 {
@@ -26,49 +43,27 @@ void WLibarary::slot_model_clicked()
 
 void WLibarary::slot_page_change(int index)
 {
-	_cur_page = index;
-	int start_index = (_cur_page - 1) * _page_size;
-	int list_index = 0;
-	for (int var = start_index; var < _chatBot__type_list.size() - start_index; var++) {
-		if (list_index > 5) {
-			break;
-		}
-		_lib_model_list.at(list_index)->setTitle(tr("Chatbot(%1)").arg(_chatBot__type_list.at(list_index).name), _chatBot__type_list.at(list_index).desc);
-		_lib_model_list.at(list_index)->show();
-		list_index++;
-	}
-
-	for (auto i = list_index; i < _page_size; i++) {
-		_lib_model_list.at(i)->hide();
-	}
+	SettingInterfaceBussiness::getInstance()->getCharBotListReq(index, _page_size, _cur_type);
 }
 
-void WLibarary::updateLib(const QVector<strc_ChatbotInfo>& chatbot_list)
+void WLibarary::slot_getChatBotListReplay(bool success, int, const strc_PageInfo& page_info, const QVector<strc_ChatbotInfo>& chatbot_list)
 {
-	_chatBot_list = chatbot_list;
-	updateLibBySelType(-1);
-}
+	if (success) {
+		int list_index = 0;
+		for (auto it : chatbot_list) {
+			_lib_model_list.at(list_index)->setTitle(tr("Chatbot(%1)").arg(it.name), it.desc);
+			_lib_model_list.at(list_index)->show();
 
-void WLibarary::updateLibBySelType(int type)
-{
-	_cur_type = type;
-	_chatBot__type_list.clear();
-	if (type == -1) {//all
-		_chatBot__type_list = _chatBot_list;
-	}
-	else {
-
-		for (auto it : _chatBot_list) {
-			if (it.type == type) {
-				_chatBot__type_list.push_back(it);
-			}
+			list_index++;
 		}
 
-	}
+		for (auto i = list_index; i < _page_size; i++) {
+			_lib_model_list.at(i)->hide();
+		}
 
-	_total_size = _chatBot__type_list.size();
-	_pages = ceil(_total_size / _page_size);
-	_cur_page = 1;
-	ui.widget->initCtl(_pages, _total_size, _cur_page);
-	slot_page_change(0);
+		_total_size = page_info.total_size;
+		_pages = page_info.total_pages;
+		_cur_page = page_info.cur_page;
+		ui.widget->initCtl(_pages, _total_size, _cur_page);
+	}
 }

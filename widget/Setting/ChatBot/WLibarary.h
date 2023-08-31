@@ -14,17 +14,17 @@ public:
 	WLibarary(QWidget *parent = nullptr);
 	~WLibarary();
 
-	void	updateLib(const QVector<strc_ChatbotInfo>& chatbot_list);
 	void	updateLibBySelType(int type);
 
+	void	getChatBotTemplate();
 private slots:
 	void	slot_model_clicked();
 	void    slot_page_change(int index);
+
+	void	slot_getChatBotListReplay(bool, int, const strc_PageInfo& page_info, const QVector<strc_ChatbotInfo>& user_info);
 private:
 	Ui::WLibararyClass ui;
 
-	QVector<strc_ChatbotInfo>		_chatBot_list;
-	QVector<strc_ChatbotInfo>		_chatBot__type_list;
 	QVector<WLibModelWidget*>		_lib_model_list;
 	int		_cur_type = -1;
 

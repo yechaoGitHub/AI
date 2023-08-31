@@ -17,6 +17,7 @@ enum httpReqType {
 	ChatBot_req,
 	Filter_req,
 	ChatHistory_Req,
+	ChatBotType_Req,
 	Del_ChatHistory,
 	SoundLib_Req,
 	AddVoice,

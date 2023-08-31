@@ -5,12 +5,12 @@ WSoundBotMainUi::WSoundBotMainUi(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
-	ui.pb_sound_page1->initBar("Sound source", WNavbarButton::BarType::Sound_Page1);
-	ui.pb_sound_page2->initBar("Translation Setting", WNavbarButton::BarType::Sound_Page2);
-	ui.pb_sound_page3->initBar("Voice Library", WNavbarButton::BarType::Sound_Page3);
-	ui.pb_sound_page4->initBar("My Voice", WNavbarButton::BarType::Sound_Page4);
-	ui.pb_sound_page5->initBar("Speech Synthesis", WNavbarButton::BarType::Sound_Page5);
-	ui.pb_sound_page6->initBar("Historical dialogue", WNavbarButton::BarType::Sound_Page6);
+	ui.pb_sound_page1->initBar(tr("Sound source"), WNavbarButton::BarType::Sound_Page1);
+	ui.pb_sound_page2->initBar(tr("Translation Setting"), WNavbarButton::BarType::Sound_Page2);
+	ui.pb_sound_page3->initBar(tr("Voice Library"), WNavbarButton::BarType::Sound_Page3);
+	ui.pb_sound_page4->initBar(tr("My Voice"), WNavbarButton::BarType::Sound_Page4);
+	ui.pb_sound_page5->initBar(tr("Speech Synthesis"), WNavbarButton::BarType::Sound_Page5);
+	ui.pb_sound_page6->initBar(tr("Translation History"), WNavbarButton::BarType::Sound_Page6);
 	changeSelectBtn(WNavbarButton::BarType::Sound_Page1);
 }
 

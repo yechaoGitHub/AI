@@ -59,7 +59,9 @@ void WNavbarButton::initBar(const QString& text, BarType bar_type)
 
 	m_strText = text;
 
-	QFontMetrics fm(this->font());
+	QFont font = this->font();
+	font.setPixelSize(18);
+	QFontMetrics fm(font);
 	_width = fm.width(m_strText);
 	_height = fm.height();
 }
@@ -91,6 +93,6 @@ void WNavbarButton::paintEvent(QPaintEvent*)
 		p.setPen(QColor(0, 0, 0));
 		p.setBrush(QBrush(QColor(0, 0, 0)));
 	}
-	p.drawText(QRectF(icon_size.width()+6, (btn_rect.height() - _height) / 2 - 4, _width, _height), m_strText);
+	p.drawText(QRectF(icon_size.width()+6, (btn_rect.height() - _height) / 2 - 2, _width, _height), m_strText);
 
 }
