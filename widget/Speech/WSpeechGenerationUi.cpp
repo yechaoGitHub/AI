@@ -10,6 +10,9 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget *parent)
     this->setWidgetType(true, DragType::Drag_Null, false);
     setAttribute(Qt::WA_TranslucentBackground);
 
+    _simTrans = new WSimTrans{ this };
+    _simTrans->hide();
+
     ui.comboBox_lang->setView(new  QListView());
     ui.comboBox_lang->addItem("English");
     ui.comboBox_lang->addItem("Chinese");
@@ -23,6 +26,7 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget *parent)
     auto& ins = AiSound::GetInstance();
     auto& voiceCompositor = ins.GetVoiceCompositor();
 
+    connect(ui.pb_simTrans, &QPushButton::clicked, this, &WSpeechGenerationUi::SimTransClicked);
     connect(ui.pb_start, &QPushButton::clicked, this, &WSpeechGenerationUi::StartClicked);
     connect(ui.pb_close, &QPushButton::clicked, this, &WSpeechGenerationUi::CloseClicked);
     connect(ui.pb_send, &QPushButton::clicked, this, &WSpeechGenerationUi::SendClicked);
@@ -60,8 +64,20 @@ void WSpeechGenerationUi::showEvent(QShowEvent* event)
         ui.comboBox_vector->addItem(data.name);
     }
 
-    ui.speechEffect->Play(true);
-    ui.speechEffect->StartTimer(true);
+    //ui.speechEffect->Play(true);
+    //ui.speechEffect->StartTimer(true);
+}
+
+void WSpeechGenerationUi::SimTransClicked()
+{
+    if (_simTrans->isHidden())
+    {
+        _simTrans->show();
+    }
+    else
+    {
+        _simTrans->hide();
+    }
 }
 
 void WSpeechGenerationUi::CloseClicked()
@@ -71,7 +87,6 @@ void WSpeechGenerationUi::CloseClicked()
 
 void WSpeechGenerationUi::StartClicked()
 {
-    auto it = ui.checkBox->checkState();
     auto index = ui.comboBox_vector->currentIndex();
     if (index == -1)
     {
@@ -81,9 +96,8 @@ void WSpeechGenerationUi::StartClicked()
     auto& ins = AiSound::GetInstance();
     auto& token = AiSound::GetInstance().Token();
     auto& name = ins.GetVoiceData()[index].voiceCode;
-    auto isAutoSend = ui.checkBox->isChecked();
 
-    AiSound::GetInstance().GetVoiceCompositor().Connect(token, _srcLan.language, _destLan.language, name, isAutoSend);
+    AiSound::GetInstance().GetVoiceCompositor().Connect(token, _srcLan.language, _destLan.language, name, true);
 }
 
 void WSpeechGenerationUi::SendClicked()

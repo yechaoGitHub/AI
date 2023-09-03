@@ -153,6 +153,7 @@
     <ClCompile Include="widget\Setting\WSettingSelectWidget.cpp" />
     <ClCompile Include="widget\Setting\WTeamDelegate.cpp" />
     <ClCompile Include="widget\Speech\ComboxItem.cpp" />
+    <ClCompile Include="widget\Speech\WSimTrans.cpp" />
     <ClCompile Include="widget\Speech\WSpeechEffect.cpp" />
     <ClCompile Include="widget\Speech\WSpeechGenerationUi.cpp" />
     <ClCompile Include="widget\WButton.cpp" />
@@ -189,6 +190,7 @@
     <QtUic Include="ui\loginOpt.ui" />
     <QtUic Include="ui\mobileLogin.ui" />
     <QtUic Include="ui\signUp.ui" />
+    <QtUic Include="ui\SimultaneousInterpretation.ui" />
     <QtUic Include="ui\TranslateMain.ui" />
     <QtUic Include="ui\translateSelect.ui" />
     <QtUic Include="ui\userNameLogin.ui" />
@@ -227,6 +229,7 @@
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="widget\Speech\WSimTrans.h" />
     <QtMoc Include="widget\Setting\SoundBot\WEditVoiceDlg.h" />
     <QtMoc Include="widget\Setting\SoundBot\QAddVoiceDlg.h" />
     <QtMoc Include="widget\Speech\WSpeechEffect.h" />

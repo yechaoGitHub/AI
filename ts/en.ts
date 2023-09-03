@@ -801,10 +801,6 @@ enabling designers to focus on more creative aspects of their work.</source>
         <source>Generated text will appear here</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Auto Send</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>WSpeechSysPageClass</name>
@@ -1032,6 +1028,17 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Let&apos;s sign up</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>simTrans</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

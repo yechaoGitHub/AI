@@ -5,7 +5,6 @@ WTranslationSelect::WTranslationSelect(QWidget* parent) :
     QWidget{ parent }
 {
     this->setWindowFlags(Qt::Tool | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
-    this->setAttribute(Qt::WA_TransparentForMouseEvents, true);
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 
     ui.setupUi(this);

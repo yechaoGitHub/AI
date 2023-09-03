@@ -7,19 +7,19 @@
     <x>0</x>
     <y>0</y>
     <width>1078</width>
-    <height>448</height>
+    <height>368</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>1078</width>
-    <height>448</height>
+    <height>368</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>1078</width>
-    <height>448</height>
+    <height>368</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -48,7 +48,7 @@ QLabel#lb_sp_title{
 	font: 20px &quot;微软雅黑&quot;;
 }
 
-QPushButton#pb_lock,#pb_min,#pb_close,#pb_pause,#pb_start,#pb_send{
+QPushButton#pb_lock,#pb_min,#pb_close,#pb_pause,#pb_start,#pb_send,#pb_start,#pb_export{
 	border:none;
 	background-position: center;
     background-repeat: no-repeat;
@@ -210,6 +210,74 @@ QComboBox QAbstractItemView::item {
        </spacer>
       </item>
       <item>
+       <widget class="QPushButton" name="pb_simTrans">
+        <property name="minimumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image:url(:/QtTest/icon/icon.png);
+border:1px solid;
+border-radius:8px;
+border-color:#7F7F7F ;
+background-position: center;
+background-repeat: no-repeat;
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="autoDefault">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_convGuide">
+        <property name="minimumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>32</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-image:url(:/QtTest/icon/btn_robot.png);
+border:1px solid;
+border-radius:8px;
+border-color:#7F7F7F ;
+background-position: center;
+background-repeat: no-repeat;
+</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="autoDefault">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="pb_lock">
         <property name="minimumSize">
          <size>
@@ -222,6 +290,9 @@ QComboBox QAbstractItemView::item {
           <width>32</width>
           <height>32</height>
          </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="text">
          <string/>
@@ -242,6 +313,9 @@ QComboBox QAbstractItemView::item {
           <height>32</height>
          </size>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -260,6 +334,9 @@ QComboBox QAbstractItemView::item {
           <width>32</width>
           <height>32</height>
          </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="text">
          <string/>
@@ -316,18 +393,43 @@ QComboBox QAbstractItemView::item {
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pb_copy">
+         <widget class="QPushButton" name="pb_export">
           <property name="minimumSize">
            <size>
             <width>85</width>
-            <height>17</height>
+            <height>22</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>85</width>
-            <height>17</height>
+            <height>22</height>
            </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="pb_send">
+          <property name="minimumSize">
+           <size>
+            <width>85</width>
+            <height>22</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>85</width>
+            <height>22</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="text">
            <string/>
@@ -539,112 +641,6 @@ QComboBox QAbstractItemView::item {
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pb_export">
-       <property name="minimumSize">
-        <size>
-         <width>155</width>
-         <height>56</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>155</width>
-         <height>56</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QPushButton" name="pb_pause">
-       <property name="minimumSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>24</width>
-         <height>24</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="WSpeechEffect" name="speechEffect" native="true">
-       <property name="minimumSize">
-        <size>
-         <width>425</width>
-         <height>44</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>425</width>
-         <height>44</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 255, 255);</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_5">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QCheckBox" name="checkBox">
-       <property name="minimumSize">
-        <size>
-         <width>133</width>
-         <height>40</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>133</width>
-         <height>40</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Auto Send</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <spacer name="horizontalSpacer_4">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -671,43 +667,32 @@ QComboBox QAbstractItemView::item {
          <height>53</height>
         </size>
        </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
        <property name="text">
         <string/>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pb_send">
-       <property name="minimumSize">
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
         <size>
-         <width>140</width>
-         <height>53</height>
+         <width>40</width>
+         <height>20</height>
         </size>
        </property>
-       <property name="maximumSize">
-        <size>
-         <width>140</width>
-         <height>53</height>
-        </size>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
+      </spacer>
      </item>
     </layout>
    </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <customwidgets>
-  <customwidget>
-   <class>WSpeechEffect</class>
-   <extends>QWidget</extends>
-   <header location="global">widget\Speech\wspeecheffect.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources>
   <include location="../AiSound.qrc"/>
  </resources>

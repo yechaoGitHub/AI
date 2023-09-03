@@ -33,6 +33,6 @@ private:
     TranslationLanguage                 _selSrvLan;
     TranslationLanguage                 _selDestLan;
     QPoint                              _clickPos;
-    bool                                _mouseHold;
+    bool                                _mouseHold = false;
 };
 

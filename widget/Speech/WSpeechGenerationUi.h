@@ -1,10 +1,11 @@
 #pragma once
 
 #include "VoiceType.h"
+#include "WSimTrans.h"
+#include "model/FrameLessWidget.h"
 
 #include <QWidget>
 #include "ui_WSpeechGenerationUi.h"
-#include "model/FrameLessWidget.h"
 
 class WSpeechGenerationUi : public FrameLessWidget
 {
@@ -24,14 +25,19 @@ private slots:
     void on_pb_close_clicked();
 
 private:
+    void SimTransClicked();
     void CloseClicked();
     void StartClicked();
     void SendClicked();
     void TranslationReceived(const QString& src, const QString& dst, int type);
 
+    Ui::WSpeechGenerationUiClass    ui;
+
+    WSimTrans*                      _simTrans = nullptr;
     TranslationLanguage             _srcLan;
     TranslationLanguage             _destLan;
     std::vector<VoiceData>          _voiceData;
 
-    Ui::WSpeechGenerationUiClass    ui;
+    QPoint                          _clickPos;
+    bool                            _mouseHold = false;
 };
