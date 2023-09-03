@@ -59,7 +59,7 @@ void HttpAsync::PostInternal(const QString& url, const QJsonObject& param, QMap<
         client->headers(headers);
     }
 
-#ifdef _DEBUG
+#ifdef _AI_DEBUG
     QString debugText;
     debugText = "http call:";
     debugText += url;
@@ -79,14 +79,14 @@ void HttpAsync::PostInternal(const QString& url, const QJsonObject& param, QMap<
 #endif
     }
 
-#ifdef _DEBUG
+#ifdef _AI_DEBUG
     AiDebug::Output(debugText);
 #endif
 
     client->success([this, url, client, userParam](const QString& response) {
         emit httpRespond(HttpResult::SUCCESS, -1, response, userParam);
         delete client;
-#ifdef _DEBUG
+#ifdef _AI_DEBUG
         QString debugText;
         debugText = "http responed:";
         debugText += url;
@@ -98,7 +98,7 @@ void HttpAsync::PostInternal(const QString& url, const QJsonObject& param, QMap<
     client->timeout([this, url, client, userParam]() {
         emit httpRespond(HttpResult::TIMEOUT, -1, "", userParam);
         delete client;
-#ifdef _DEBUG
+#ifdef _AI_DEBUG
         QString debugText;
         debugText = "http responed:";
         debugText += url;
@@ -109,7 +109,7 @@ void HttpAsync::PostInternal(const QString& url, const QJsonObject& param, QMap<
     client->fail([this, url, client, userParam](const QString& response, int code) {
         emit httpRespond(HttpResult::FAIL, -1, response, userParam);
         delete client;
-#ifdef _DEBUG
+#ifdef _AI_DEBUG
         QString debugText;
         debugText = "http responed:";
         debugText += url;

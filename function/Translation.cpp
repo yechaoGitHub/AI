@@ -96,7 +96,7 @@ void Translation::ConnectInternal(const QString& token, const QString& srcLan, c
     auto str = url.toString();
     _webSocket.open(url);
 
-#if _DEBUG
+#if _AI_DEBUG
     QString debugText;
     debugText = "Translation connect:";
     debugText += str;
@@ -171,7 +171,7 @@ void Translation::SendParam()
     QByteArray byteArray = document.toJson(QJsonDocument::Compact);
     _webSocket.sendTextMessage(byteArray);
 
-#if _DEBUG
+#if _AI_DEBUG
     QString debugText;
     debugText = "Translation send:";
     debugText += byteArray;
@@ -190,7 +190,7 @@ void Translation::SendHearBeat()
     QByteArray byteArray = document.toJson(QJsonDocument::Compact);
     _webSocket.sendTextMessage(byteArray);
 
-#if _DEBUG
+#if _AI_DEBUG
     QString debugText;
     debugText = "Translation send:";
     debugText += byteArray;
@@ -278,7 +278,7 @@ void Translation::TranslateTextMessageReceived(const QString& message)
         }
     }
 
-#if _DEBUG
+#if _AI_DEBUG
     QString debugText;
     debugText = "Translation receive:";
     debugText += message;
@@ -296,7 +296,7 @@ void Translation::SendFinish()
     QByteArray byteArray = document.toJson(QJsonDocument::Compact);
     _webSocket.sendTextMessage(byteArray);
 
-#if _DEBUG
+#if _AI_DEBUG
     QString debugText;
     debugText = "Translation send:";
     debugText += byteArray;

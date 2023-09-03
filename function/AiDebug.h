@@ -36,7 +36,7 @@ signals:
     void addText(const QString& text);
 
 private:
-#ifdef _DEBUG
+#ifdef _AI_DEBUG
     static AiDebug INSTANCE;
     WDebugWindow* _debugWindow = nullptr;
 #endif

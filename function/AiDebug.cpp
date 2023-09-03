@@ -1,6 +1,6 @@
 #include "AiDebug.h"
 
-#ifdef _DEBUG
+#ifdef _AI_DEBUG
 AiDebug AiDebug::INSTANCE;
 #endif
 
@@ -15,7 +15,7 @@ AiDebug::~AiDebug()
 
 void AiDebug::Output(const QString& text)
 {
-#ifdef _DEBUG
+#ifdef _AI_DEBUG
     if (INSTANCE._debugWindow)
     {
         emit INSTANCE.addText(text);
@@ -25,7 +25,7 @@ void AiDebug::Output(const QString& text)
 
 void AiDebug::ShowDebugWindow(bool show)
 {
-#ifdef _DEBUG
+#ifdef _AI_DEBUG
 
     if (!INSTANCE._debugWindow)
     {
