@@ -64,7 +64,7 @@ void WPageCtlWidget::on_pb_next_clicked()
 		return;
 	}
 
-	emit sig_changePage(_cur_page++);
+	emit sig_changePage(_cur_page+1);
 }
 
 void WPageCtlWidget::on_pb_pre_clicked()
@@ -72,7 +72,7 @@ void WPageCtlWidget::on_pb_pre_clicked()
 	if (_cur_page < 2) {
 		return;
 	}
-	emit sig_changePage(_cur_page--);
+	emit sig_changePage(_cur_page-1);
 }
 
 void WPageCtlWidget::onComboxSelect(int index)

@@ -30,6 +30,7 @@ WInvitePage::WInvitePage(QWidget *parent)
     ui.tableView->setItemDelegateForColumn(4, _team_delegate);
 
     ui.tableView->setShowGrid(false);
+    ui.tableView->setAlternatingRowColors(true);
 
     ui.tableView->verticalHeader()->setDefaultSectionSize(44);
     ui.tableView->setColumnWidth(0, 160);

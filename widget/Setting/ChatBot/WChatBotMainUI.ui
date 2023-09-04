@@ -30,7 +30,13 @@ QPushButton#pb_left_icon{
 }
 
 QPushButton#pb_left{
-	font: 18px &quot;微软雅黑&quot;;
+	font: 24px &quot;微软雅黑&quot;;
+	color:#000000;
+}
+
+QPushButton#pb_left:hover{
+	font: 24px &quot;微软雅黑&quot;;
+	color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
 }
 
 QPushButton#pb_open[open=true]{
@@ -101,14 +107,14 @@ QPushButton#pb_open[open=false]{
        <widget class="QPushButton" name="pb_left">
         <property name="minimumSize">
          <size>
-          <width>81</width>
-          <height>17</height>
+          <width>100</width>
+          <height>24</height>
          </size>
         </property>
         <property name="maximumSize">
          <size>
-          <width>81</width>
-          <height>17</height>
+          <width>100</width>
+          <height>24</height>
          </size>
         </property>
         <property name="text">

@@ -7,7 +7,7 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
     : QWidget(parent)
 {
     ui.setupUi(this);
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowMinimizeButtonHint);
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::SubWindow | Qt::X11BypassWindowManagerHint);
     setAttribute(Qt::WA_TranslucentBackground);
     this->installEventFilter(this);
     //this->setWidgetType(true, DragType::Drag_Null, false);

@@ -58,6 +58,12 @@ void WSoundBotMainUi::on_pb_sound_page6_clicked()
 {
 	changeSelectBtn(WNavbarButton::BarType::Sound_Page6);
 	ui.stackedWidget->setCurrentIndex(5);
+
+	static bool first = true;
+	if (first) {
+		first = false;
+		ui.history_dia_page->getTransHistory();
+	}
 }
 
 void WSoundBotMainUi::changeSelectBtn(WNavbarButton::BarType type)

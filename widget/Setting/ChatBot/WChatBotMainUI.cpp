@@ -53,6 +53,7 @@ void WChatBotMainUI::on_pb_lib_clicked()
 {
 	changeSelectBtn(WNavbarButton::BarType::Bar_Lib);
 	ui.stackedWidget->setCurrentWidget(ui.lib_page);
+	ui.frame_2->setVisible(true);
 }
 
 void WChatBotMainUI::slot_back()
@@ -64,6 +65,7 @@ void WChatBotMainUI::on_pb_history_clicked()
 {
 	changeSelectBtn(WNavbarButton::BarType::Bar_History);
 	ui.stackedWidget->setCurrentWidget(ui.history_page);
+	ui.frame_2->setVisible(false);
 }
 
 void WChatBotMainUI::changeSelectBtn(WNavbarButton::BarType type)

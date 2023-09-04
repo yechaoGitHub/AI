@@ -30,7 +30,7 @@ private:
 	WTeamDelegate* _team_delegate = nullptr;
 	QVector<struc_teamInfo>     _teal_list;
 
-	int		_page_size = 10;
+	int		_page_size = 8;
 	int		_total_size = 0;
 	int		_total_pages = 0;
 	int		_cur_page = 1;

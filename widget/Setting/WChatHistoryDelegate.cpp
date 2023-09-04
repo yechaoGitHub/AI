@@ -22,7 +22,7 @@ void WHistoryDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opti
 
     QStyledItemDelegate::paint(painter, viewOption, index);
 
-    int nCount = 3;
+    int nCount = 2;
     int w = option.rect.width() / nCount;
     if (w < 0) {
         return;
@@ -38,9 +38,6 @@ void WHistoryDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opti
         QPushButton pushBtn;
         if (i == 0) {
             pushBtn.setStyleSheet("QPushButton{border:none;background-position:center;background-repeat:no-repeat;background-image: url(:/QtTest/icon/Setting/chatbot/history.png);}");
-        }
-        else if (i == 1) {
-            pushBtn.setStyleSheet("QPushButton{border:none;background-position:center;background-repeat:no-repeat;background-image: url(:/QtTest/icon/Setting/chatbot/eye.png);}");
         }
         else {
             pushBtn.setStyleSheet("QPushButton{border:none;background-position:center;background-repeat:no-repeat;background-image: url(:/QtTest/icon/Setting/del.png);}");
@@ -59,7 +56,7 @@ bool WHistoryDelegate::editorEvent(QEvent* event, QAbstractItemModel* model, con
 
     QApplication::restoreOverrideCursor();
 
-    int nCount = 3;
+    int nCount = 2;
     int w = option.rect.width() / nCount;
     if (w < 0) {
         return false;

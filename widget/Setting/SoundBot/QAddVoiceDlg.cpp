@@ -8,7 +8,7 @@ QAddVoiceDlg::QAddVoiceDlg(QWidget *parent)
     : QDialog(parent)
 {
     ui.setupUi(this);
-    this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint);
+    this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint | Qt::SubWindow);
 }
 
 QAddVoiceDlg::~QAddVoiceDlg()

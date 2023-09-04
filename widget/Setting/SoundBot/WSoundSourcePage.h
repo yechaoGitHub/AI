@@ -19,7 +19,6 @@ protected:
 private:
     void MicIndexChanged(int index);
     void SpeakerIndexChanged(int index);
-    void MonitorIndexChanged(int index);
 
     Ui::WSoundSourcePageClass           ui;
     std::vector<QAudioDeviceInfo>       _inList;

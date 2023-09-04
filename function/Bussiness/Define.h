@@ -25,7 +25,9 @@ enum httpReqType {
 	VoiceList_Req,
 	DelVoice_Req,
 	GetVoiceUrl_Req,
-	GetVoiceLib_Req
+	GetVoiceLib_Req,
+	TransHistory_Req,
+	DelTrans_Req,
 };
 Q_DECLARE_METATYPE(httpReqType)
 
@@ -63,6 +65,9 @@ struct strc_ChatHistory {
 	QString initTime;
 	qint32  receiverId = 0;
 	qint32  senderId = 0;
+	QString	synopsis;				//¹£¸Å
+	QString templateName;			//Ä£°åÃû³Æ
+	QString chatName;
 };
 Q_DECLARE_METATYPE(strc_ChatHistory)
 
@@ -110,3 +115,11 @@ struct strc_PageInfo {
 	int		cur_page = 1;
 };
 Q_DECLARE_METATYPE(strc_PageInfo)
+
+struct strc_transHistory {
+	int		id = 0;
+	QString transName;
+	QString transTypeName;
+	QString updateTime;
+};
+Q_DECLARE_METATYPE(strc_transHistory)

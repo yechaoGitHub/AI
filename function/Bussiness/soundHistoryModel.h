@@ -15,7 +15,7 @@ public:
 	soundHistoryModel(QObject *parent=nullptr);
 	~soundHistoryModel();
 
-	void updateData(const QVector<struc_teamInfo>& team_list);
+	void updateData(const QVector<strc_transHistory>& team_list);
 
 protected:
 	int rowCount(const QModelIndex& parent = QModelIndex()) const;
@@ -26,5 +26,5 @@ protected:
 
 private:
 	QStringList _headerList;
-	QList<QSharedPointer<struc_teamInfo>> _list;
+	QList<QSharedPointer<strc_transHistory>> _list;
 };

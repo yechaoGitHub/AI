@@ -61,7 +61,7 @@ QLabel#lb_9{
 
 QLabel#lb_time{
 	color: rgb(255, 255, 255);
-	font: 14px &quot;微软雅黑&quot;;
+	font: 10px &quot;微软雅黑&quot;;
 }
 
 
@@ -122,6 +122,9 @@ QLabel#lb_time{
             </property>
             <item>
              <widget class="QLabel" name="label">
+              <property name="styleSheet">
+               <string notr="true">color:#848484;</string>
+              </property>
               <property name="text">
                <string>Mobilephone</string>
               </property>
@@ -169,6 +172,9 @@ QLabel#lb_time{
             </property>
             <item>
              <widget class="QLabel" name="label_3">
+              <property name="styleSheet">
+               <string notr="true">color:#848484;</string>
+              </property>
               <property name="text">
                <string>UserName</string>
               </property>
@@ -223,6 +229,9 @@ QLabel#lb_time{
             </property>
             <item>
              <widget class="QLabel" name="label_5">
+              <property name="styleSheet">
+               <string notr="true">color:#848484;</string>
+              </property>
               <property name="text">
                <string>AccountNumber</string>
               </property>
@@ -270,6 +279,9 @@ QLabel#lb_time{
             </property>
             <item>
              <widget class="QLabel" name="label_7">
+              <property name="styleSheet">
+               <string notr="true">color:#848484;</string>
+              </property>
               <property name="text">
                <string>Total Points</string>
               </property>
@@ -308,6 +320,9 @@ QLabel#lb_time{
           <enum>QFrame::Raised</enum>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_5">
+          <property name="spacing">
+           <number>6</number>
+          </property>
           <item>
            <widget class="QLabel" name="lb_9">
             <property name="text">
@@ -317,6 +332,20 @@ QLabel#lb_time{
           </item>
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout">
+            <property name="spacing">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="styleSheet">
+               <string notr="true">color: rgb(255, 255, 255);
+font: 18px &quot;微软雅黑&quot;;</string>
+              </property>
+              <property name="text">
+               <string>Premium</string>
+              </property>
+             </widget>
+            </item>
             <item>
              <widget class="QLabel" name="lb_time">
               <property name="minimumSize">
@@ -326,7 +355,7 @@ QLabel#lb_time{
                </size>
               </property>
               <property name="text">
-               <string>Premium(Expires on 12/05/2023)</string>
+               <string>(Expires on 12/05/2023)</string>
               </property>
              </widget>
             </item>

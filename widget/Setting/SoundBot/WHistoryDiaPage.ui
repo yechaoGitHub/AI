@@ -14,10 +14,9 @@
    <string>WHistoryDiaPage</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QLabel#lb_search{
-	background-image: url(:/QtTest/icon/Setting/search.png);
+   <string notr="true">QWidget{
+	font: 12px &quot;微软雅黑&quot;;
 }
-
 QLineEdit{
 	border:none;
 	background-color: rgba(255, 255, 255,0);
@@ -154,18 +153,25 @@ QHeaderView::section{
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="lb_search">
+         <widget class="QPushButton" name="pb_search">
           <property name="minimumSize">
            <size>
-            <width>16</width>
-            <height>16</height>
+            <width>24</width>
+            <height>24</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>16</width>
-            <height>16</height>
+            <width>24</width>
+            <height>24</height>
            </size>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border:none;
+background-position: center;
+    background-repeat: no-repeat;
+	background-image: url(:/QtTest/icon/Setting/search.png);
+</string>
           </property>
           <property name="text">
            <string/>
@@ -188,7 +194,7 @@ QHeaderView::section{
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>410</height>
+       <height>486</height>
       </size>
      </property>
     </widget>

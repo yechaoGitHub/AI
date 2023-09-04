@@ -3,6 +3,7 @@
 #include "function/Bussiness/historyListModel.h"
 #include "widget/Setting/WChatHistoryDelegate.h"
 #include "function/AiSound.h"
+#include "function/AiSound.h"
 
 
 WHistoryPage::WHistoryPage(QWidget *parent)
@@ -21,14 +22,14 @@ WHistoryPage::WHistoryPage(QWidget *parent)
     ui.tableView->setItemDelegateForColumn(5, _history_delegate);
 
     ui.tableView->setShowGrid(false);
-
+    ui.tableView->setAlternatingRowColors(true);
     ui.tableView->verticalHeader()->setDefaultSectionSize(44);
     ui.tableView->setColumnWidth(0, 90);
     ui.tableView->setColumnWidth(1, 120);
     ui.tableView->setColumnWidth(2, 100);
     ui.tableView->setColumnWidth(3, 180);
     ui.tableView->setColumnWidth(4, 120);
-    ui.tableView->setColumnWidth(5, 100);
+    ui.tableView->setColumnWidth(5, 80);
 
     ui.tableView->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
     ui.tableView->horizontalHeader()->setSectionResizeMode(1, QHeaderView::Stretch);
@@ -63,7 +64,11 @@ WHistoryPage::~WHistoryPage()
 
 void WHistoryPage::slot_commonReplay(int type, bool success , const QString& msg)
 {
-
+    if (type == httpReqType::ChatHistory_Req) {
+        if (!success) {
+            AiSound::GetInstance().ShowTip(this,msg);
+        }
+    }
 }
 
 void WHistoryPage::userOpe(int type,int index)
@@ -72,9 +77,6 @@ void WHistoryPage::userOpe(int type,int index)
         strc_ChatHistory chat_history = chat_list_.at(index);
         if (type == 0) {
             AiSound::GetInstance().ShowRobotChat(type,"");
-        }
-        else if (type == 1) {
-            AiSound::GetInstance().ShowRobotChat(type, "");
         }
         else {
             QStringList list;
@@ -86,27 +88,30 @@ void WHistoryPage::userOpe(int type,int index)
 
 void WHistoryPage::reqChatHistory()
 {
-    SettingInterfaceBussiness::getInstance()->getCharHistoryReq(1, _cur_page,"",10);
+    QString search = ui.lineEdit->text();
+    SettingInterfaceBussiness::getInstance()->getChatHistoryReq(_cur_page, search, _page_size);
 }
 
-void WHistoryPage::slot_chatHistoryReplay(bool success, int, const QString& msg, const  QVector<strc_ChatHistory>& chat_info)
+void WHistoryPage::slot_chatHistoryReplay(bool success, int, const strc_PageInfo& page, const  QVector<strc_ChatHistory>& chat_info)
 {
     if (success) {
         chat_list_ = chat_info;
         _history_model->updateData(chat_info);
+
+        _total_pages = page.total_pages;
+        _total_size = page.total_size;
+        _cur_page = page.cur_page;
+        ui.widget->initCtl(_total_pages, _total_size, _cur_page);
     }
 }
 
 void WHistoryPage::slot_changePage(int index)
 {
-
+    QString search = ui.lineEdit->text();
+    SettingInterfaceBussiness::getInstance()->getChatHistoryReq(index, search, _page_size);
 }
 
 void WHistoryPage::on_pb_search_clicked()
 {
-    QString search = ui.lineEdit->text();
-    if (search.isEmpty()) {
-        return;
-    }
-    SettingInterfaceBussiness::getInstance()->getCharHistoryReq(1, _cur_page, search, 10);
+    reqChatHistory();
 }

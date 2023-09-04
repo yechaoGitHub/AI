@@ -174,6 +174,34 @@
         <source>get chatbot type fail</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>search chatbot history timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>search chatbot history fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>search Trans history timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>search Trans history fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>delete trans fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>delete trans Success</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>delete trans timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Translation</name>
@@ -208,7 +236,7 @@
 <context>
     <name>WAccountPage</name>
     <message>
-        <source>Premium(Expires on %1)</source>
+        <source>(Expires on %1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -247,10 +275,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Premium(Expires on 12/05/2023)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Recharge</source>
         <translation type="unfinished"></translation>
     </message>
@@ -260,6 +284,14 @@
     </message>
     <message>
         <source>12345778</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Premium</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(Expires on 12/05/2023)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -723,7 +755,7 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Settings</source>
+        <source>  Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -967,11 +999,11 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> Bot Type</source>
+        <source> Bot Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> Chat</source>
+        <source> Synopsis</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1049,15 +1081,7 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> Date and Time</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source> Actions</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>In Team</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1065,7 +1089,7 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> Dialog</source>
+        <source> Translation Type</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

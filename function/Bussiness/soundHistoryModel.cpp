@@ -3,21 +3,20 @@
 
 soundHistoryModel::soundHistoryModel(QObject* parent)
     :QAbstractTableModel(parent)
-    , _headerList(QStringList() << tr(" Id") << tr(" Name") << tr(" Date and Time") << tr(" Dialog") << tr(" Actions"))
+    , _headerList(QStringList() << tr(" Id") << tr(" Name") << tr(" Translation Type") << tr(" Actions"))
 {
 }
 
-void soundHistoryModel::updateData(const QVector<struc_teamInfo>& team_list)
+void soundHistoryModel::updateData(const QVector<strc_transHistory>& team_list)
 {
     this->beginResetModel();
     _list.clear();
     for (auto it : team_list) {
-        QSharedPointer<struc_teamInfo> service = QSharedPointer<struc_teamInfo>(new struc_teamInfo);
-        service->username = it.username;
-        service->credits_used = it.credits_used;
-        service->join_time = it.join_time;
-        service->status = it.status;
-        service->userId = it.userId;
+        QSharedPointer<strc_transHistory> service = QSharedPointer<strc_transHistory>(new strc_transHistory);
+        service->id = it.id;
+        service->transName = it.transName;
+        service->transTypeName = it.transTypeName;
+        service->updateTime = it.updateTime;
         _list.push_back(std::move(service));
     }
     this->endResetModel();
@@ -44,14 +43,12 @@ QVariant soundHistoryModel::data(const QModelIndex& index, int role) const
         return QVariant();
     if (role == Qt::DisplayRole) {
         if (c == 0) {
-            return _list[r]->username;
+            return QString::number(_list[r]->id);
         }
         else if (c == 1)
-            return tr("In Team");
+            return _list[r]->transName;
         else if (c == 2)
-            return QString::number(_list[r]->credits_used,'f',2);
-        else if (c == 3)
-            return _list[r]->join_time;
+            return _list[r]->transTypeName;
     }
     return QVariant();
 }

@@ -9,6 +9,7 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget *parent)
     ui.setupUi(this);
     this->setWidgetType(true, DragType::Drag_Null, false);
     setAttribute(Qt::WA_TranslucentBackground);
+    this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint | Qt::SubWindow);
 
     _simTrans = new WSimTrans{ this };
     _simTrans->hide();

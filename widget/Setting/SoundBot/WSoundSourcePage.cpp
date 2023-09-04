@@ -6,10 +6,8 @@ WSoundSourcePage::WSoundSourcePage(QWidget *parent)
     : QWidget(parent)
 {
     ui.setupUi(this);
-
     connect(ui.cbMic, static_cast<void(QComboBox::*)(int)>(& QComboBox::currentIndexChanged), this, &WSoundSourcePage::MicIndexChanged);
     connect(ui.cbSpeaker, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WSoundSourcePage::SpeakerIndexChanged);
-    connect(ui.cbMonitor, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WSoundSourcePage::MonitorIndexChanged);
 }
 
 WSoundSourcePage::~WSoundSourcePage()
@@ -43,25 +41,12 @@ void WSoundSourcePage::showEvent(QShowEvent* event)
         }
         index++;
     }
-
-    index = 0;
-    _monitorList = ins.GetInputDeviceList();
-    for (auto& monitor : _monitorList)
-    {
-        ui.cbMonitor->addItem(monitor.deviceName(), QVariant::fromValue(index));
-        if (SETTING.MonitorDeviceInfo() == monitor)
-        {
-            ui.cbMonitor->setCurrentIndex(index);
-        }
-        index++;
-    }
 }
 
 void WSoundSourcePage::hideEvent(QHideEvent* event)
 {
     ui.cbMic->clear();
     ui.cbSpeaker->clear();
-    ui.cbMonitor->clear();
 }
 
 void WSoundSourcePage::MicIndexChanged(int index)
@@ -79,14 +64,5 @@ void WSoundSourcePage::SpeakerIndexChanged(int index)
     if (curIndex > 0 && curIndex < _outList.size())
     {
         SETTING.SpeakerDeviceInfo() = _outList[curIndex];
-    }
-}
-
-void WSoundSourcePage::MonitorIndexChanged(int index)
-{
-    auto curIndex = ui.cbMonitor->currentIndex();
-    if (curIndex > 0 && curIndex < _monitorList.size())
-    {
-        SETTING.MonitorDeviceInfo() = _monitorList[curIndex];
     }
 }

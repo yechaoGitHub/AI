@@ -3,7 +3,7 @@
 
 historyListModel::historyListModel(QObject* parent)
     :QAbstractTableModel(parent)
-    , _headerList(QStringList() << tr(" ID") << tr(" Chat Name") << tr(" Bot Type") << tr(" Date and Time") << tr(" Chat") << tr(" Actions"))
+    , _headerList(QStringList() << tr(" ID") << tr(" Chat Name") << tr(" Bot Template") << tr(" Date and Time") << tr(" Synopsis") << tr(" Actions"))
 {
 }
 
@@ -19,6 +19,9 @@ void historyListModel::updateData(const QVector<strc_ChatHistory>& team_list)
         service->initTime = it.initTime;
         service->receiverId = it.receiverId;
         service->senderId = it.senderId;
+        service->synopsis = it.synopsis;
+        service->chatName = it.chatName;
+        service->templateName = it.templateName;
         _list.push_back(std::move(service));
     }
     this->endResetModel();
@@ -48,13 +51,13 @@ QVariant historyListModel::data(const QModelIndex& index, int role) const
             return QString::number(_list[r]->chatHistoryId);
         }
         else if (c == 1)
-            return _list[r]->senderId;
+            return _list[r]->chatName;
         else if (c == 2)
-            return QString::number(_list[r]->chatType);
+            return _list[r]->templateName;
         else if (c == 3)
             return _list[r]->initTime;
         else if (c == 4)
-            return _list[r]->receiverId;
+            return _list[r]->synopsis;
     }
     return QVariant();
 }

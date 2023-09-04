@@ -23,7 +23,7 @@ void WAccountPage::initAccount(const stru_UserInfo& user_info)
 
 	QDate qdate = QDate::currentDate();
 	QString cur_date = qdate.toString("dd/MM/yyyy");
-	ui.lb_time->setText(tr("Premium(Expires on %1)").arg(cur_date));
+	ui.lb_time->setText(tr("(Expires on %1)").arg(cur_date));
 }
 
 void WAccountPage::on_pb_charge_clicked()
@@ -32,5 +32,6 @@ void WAccountPage::on_pb_charge_clicked()
 	if (url.isEmpty()) {
 		url = "https://aisounda.cn/#/account/package";
 	}
+	url.append("?").append("access_token=").append(SETTING.getToken());
 	QDesktopServices::openUrl(QUrl(url));
 }

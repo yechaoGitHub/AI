@@ -14,10 +14,11 @@ signals:
 	void	sig_getUserInfoReplay(bool,int, const QString& msg,const stru_UserInfo& user_info);
 	void	sig_searchTeam_replay(int pages, int cur_page,int total,const QVector<struc_teamInfo>& user_info);
 	void	sig_getChatBotListReplay(bool, int, const strc_PageInfo&, const  QVector<strc_ChatbotInfo>& user_info);
-	void	sig_chatHistoryReplay(bool, int, const QString& msg, const  QVector<strc_ChatHistory>& chat_info);
+	void	sig_chatHistoryReplay(bool, int, const strc_PageInfo& page, const  QVector<strc_ChatHistory>& chat_info);
 	void	sig_soundFilterReplay(bool, int, const QString& msg, const  QVector<strc_SoundFilter>& filter_list);
 	void	sig_soundLibReplay(bool, int,const strc_PageInfo page_info,const QVector<strc_SoundLib>& filter_list);
 	void	sig_myVoiceListReplay(bool, int, const strc_PageInfo page_info, const QVector<strc_MyVoice>& voice_list);
+	void	sig_transHistoryReplay(bool, int, const strc_PageInfo& page, const  QVector<strc_transHistory>& chat_info);
 	void	sig_chatBotListReplay(bool, int,const QMap<int,QString>&);
 
 	void	sig_common_replay(int type,bool success,const QString& msg);
@@ -55,7 +56,7 @@ public:
 	void getCharBotListReq(int page,int page_size,int type=-1);
 	Q_INVOKABLE void _getCharBotListReq(int page, int page_size,int type);
 
-	void getCharHistoryReq(int type, int page, const QString& search, int pageSize=10);
+	void getChatHistoryReq(int page, const QString& search, int pageSize=10);
 	void delChatHsitory(const QStringList& chatId_list);
 
 	// 获取声音filter列表
@@ -73,6 +74,9 @@ public:
 	void getVoiceUrlReq(int voiceId,bool my_voice = true);
 	Q_INVOKABLE void _getVoiceUrlReq(int voiceId);
 	Q_INVOKABLE void _getVoiceLibUrlReq(int voiceId);
+
+	void getTransHistory(int page_size,int pageNo,const QString& text);
+	void delTransId(int id);
 private:
 	void paraseHttpResponse(httpReqType req_type,const QString& response);
 

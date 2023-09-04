@@ -20,7 +20,7 @@ public:
 private slots:
 	void	on_pb_search_clicked();
 	void	slot_changePage(int index);
-	void	slot_chatHistoryReplay(bool, int, const QString& msg, const  QVector<strc_ChatHistory>& chat_info);
+	void	slot_chatHistoryReplay(bool, int, const strc_PageInfo& page, const  QVector<strc_ChatHistory>& chat_info);
 	void	slot_commonReplay(int type,bool,const QString& msg);
 private:
 	void	userOpe(int type,int index);
@@ -34,4 +34,6 @@ private:
 	int    _total_pages = 0;
 	int	   _cur_page = 1;
 	int    _total_size = 0;
+	int    _page_size = 12;
+	QString _search_text;
 };
