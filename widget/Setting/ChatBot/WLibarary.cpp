@@ -13,7 +13,6 @@ WLibarary::WLibarary(QWidget *parent)
 			_lib_model_list.push_back(lib);
 			ui.gridLayout->addWidget(lib, i,j);
 		}
-		ui.gridLayout->setRowStretch(i,600);
 	}
 	connect(ui.widget,&WPageCtlWidget::sig_changePage,this, &WLibarary::slot_page_change);
 

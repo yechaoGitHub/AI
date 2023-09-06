@@ -10,8 +10,6 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::SubWindow | Qt::X11BypassWindowManagerHint);
     setAttribute(Qt::WA_TranslucentBackground);
     this->installEventFilter(this);
-    //this->setWidgetType(true, DragType::Drag_Null, false);
-    //this->setLimit();
     connect(ui.pb_min, &QPushButton::clicked, this, [this] {
         this->showMinimized();
         });
@@ -19,36 +17,23 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
         this->close();
         });
 
-   /* connect(ui.select_widget, &WSettingSelectWidget::sig_page_change, this, [this](bool max) {
-        if (max) {
-            this->setFixedSize(852, 830);
-        }
-        else {
-            this->setFixedSize(664, 490);
-        }
-        });
-    this->setFixedSize(664, 490);*/
-
     connect(ui.select_widget, &WSettingSelectWidget::sig_robot_clicked, this, [this](bool clicked) {
         if (clicked) {
             ui.chatbot_page->changeSelectBtn(WNavbarButton::BarType::Bar_Lib);
-            //this->setFixedSize(939, 830);
             ui.stackedWidget->setCurrentWidget(ui.chatbot_page);
         }
         else {
-            //this->setFixedSize(852, 830);
             ui.stackedWidget->setCurrentWidget(ui.soundbot_page);
         }
     });
 
     connect(ui.chatbot_page, &WChatBotMainUI::sig_chatBotBack, this, [this] {
-        //this->setFixedSize(664, 490);
         ui.stackedWidget->setCurrentWidget(ui.select_widget);
         });
     connect(ui.soundbot_page, &WSoundBotMainUi::sig_soundBack, this, [this] {
-        //this->setFixedSize(664, 490);
         ui.stackedWidget->setCurrentWidget(ui.select_widget);
         });
+    this->setFixedHeight(830);
 }
 
 WSettingMainUi::~WSettingMainUi()
@@ -67,7 +52,7 @@ void WSettingMainUi::Show(int type)
 void WSettingMainUi::resizeEvent(QResizeEvent* re)
 {
     auto size = this->size();
-    this->setFixedSize(939, 900);
+    int i = 1;
 }
 
 void WSettingMainUi::paintEvent(QPaintEvent*)
@@ -76,8 +61,8 @@ void WSettingMainUi::paintEvent(QPaintEvent*)
     if (isActiveWindow()) {
         p.save();
         p.setRenderHint(QPainter::Antialiasing, true);
-        QColor color(0, 0, 0);
-        for (int i = 0; i < 4; i++)
+        QColor color("505050");
+        for (int i = 0; i < 2; i++)
         {
             color.setAlpha(60 - qSqrt(i) * 20);
             p.setPen(color);
@@ -85,7 +70,7 @@ void WSettingMainUi::paintEvent(QPaintEvent*)
         }
         p.restore();
     }
-
+    auto ss = height();
     p.setRenderHint(QPainter::Antialiasing, true);
     p.setPen(QColor("#ffffff"));
     p.setBrush(QColor("#ffffff"));

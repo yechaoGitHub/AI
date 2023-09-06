@@ -233,6 +233,9 @@ QTableView::item:!alternate:!selected{
      </property>
      <item>
       <widget class="QLabel" name="label_2">
+       <property name="styleSheet">
+        <string notr="true">font: 18px &quot;微软雅黑&quot;;</string>
+       </property>
        <property name="text">
         <string>Member</string>
        </property>
