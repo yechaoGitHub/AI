@@ -131,8 +131,19 @@ QFrame#frame{
           <height>0</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-image:url(:/QtTest/icon/minBtn.png);
+border:1px solid;
+border-radius:8px;
+border-color:#7F7F7F ;
+background-position: center;
+background-repeat: no-repeat;</string>
+        </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -156,8 +167,19 @@ QFrame#frame{
           <height>32</height>
          </size>
         </property>
+        <property name="styleSheet">
+         <string notr="true">background-image:url(:/QtTest/icon/closeBtn.png);
+border:1px solid;
+border-radius:8px;
+border-color:#7F7F7F ;
+background-position: center;
+background-repeat: no-repeat;</string>
+        </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
