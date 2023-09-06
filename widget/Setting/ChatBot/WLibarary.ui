@@ -25,7 +25,7 @@
   <property name="maximumSize">
    <size>
     <width>650</width>
-    <height>586</height>
+    <height>121344</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -95,6 +95,12 @@ QPushButton#pb_next{
 </string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="leftMargin">
+    <number>12</number>
+   </property>
+   <property name="rightMargin">
+    <number>2</number>
+   </property>
    <item>
     <widget class="QFrame" name="frame">
      <property name="minimumSize">
@@ -105,7 +111,7 @@ QPushButton#pb_next{
      </property>
      <property name="maximumSize">
       <size>
-       <width>632</width>
+       <width>1231234</width>
        <height>520</height>
       </size>
      </property>
@@ -115,7 +121,11 @@ QPushButton#pb_next{
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QGridLayout" name="gridLayout"/>
+     <layout class="QGridLayout" name="gridLayout">
+      <property name="leftMargin">
+       <number>0</number>
+      </property>
+     </layout>
     </widget>
    </item>
    <item>

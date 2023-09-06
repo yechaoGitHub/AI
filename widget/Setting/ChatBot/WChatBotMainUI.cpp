@@ -33,7 +33,7 @@ void WChatBotMainUI::slot_getChatBotType(bool, int, const QMap<int, QString>& ty
 		ui.horizontalLayout_2->addWidget(label_btn);
 		connect(label_btn, &QPushButton::clicked, this, &WChatBotMainUI::slot_type_btn_clicked);
 	}
-	//ui.horizontalLayout_2->addStretch();
+	ui.horizontalLayout_2->addStretch();
 }
 
 void WChatBotMainUI::slot_type_btn_clicked()

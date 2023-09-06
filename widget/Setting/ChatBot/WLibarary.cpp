@@ -9,6 +9,9 @@ WLibarary::WLibarary(QWidget *parent)
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 2; j++) {
 			WLibModelWidget* lib = new WLibModelWidget(this);
+			QSizePolicy sp_retain = lib->sizePolicy();
+			sp_retain.setRetainSizeWhenHidden(true);
+			lib->setSizePolicy(sp_retain);
 			connect(lib, &WLibModelWidget::sig_libModel_click,this,&WLibarary::slot_model_clicked);
 			_lib_model_list.push_back(lib);
 			ui.gridLayout->addWidget(lib, i,j);
