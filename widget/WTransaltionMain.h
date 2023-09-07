@@ -30,7 +30,7 @@ private:
     void LockClicked();
     void PlayInternal(bool play);
     void TranslationReceived(const QString& src, const QString& dst, int type);
-    void StopBtnStateChanged(WTranslationPlayBtn::State state);
+    //void StopBtnStateChanged(WTranslationPlayBtn::State state);
 
     TranslationLanguage     _srcLan;
     TranslationLanguage     _destLan;

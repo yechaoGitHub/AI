@@ -11,6 +11,8 @@ public:
     WTranslationTimer(QWidget *parent = nullptr);
     ~WTranslationTimer();
 
+    QLabel* Effect();
+
     void StartTimer(bool start);
     void Play(bool play);
 

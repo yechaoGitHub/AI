@@ -3,7 +3,7 @@
 
 #include <QPainter>
 #include <QMouseEvent>
-
+#include <QPainterPath>
 
 WTransaltionMain::WTransaltionMain(QWidget* parent) :
     QWidget{ parent }
@@ -23,7 +23,7 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
 
     this->resize(1078, 252);
 
-    connect(ui.stopBtn, &WTranslationPlayBtn::stateChanged, this, &WTransaltionMain::StopBtnStateChanged);
+    //connect(ui.stopBtn, &WTranslationPlayBtn::stateChanged, this, &WTransaltionMain::StopBtnStateChanged);
     connect(ui.minBtn, &QPushButton::clicked, this, &WTransaltionMain::MinClicked);
     connect(ui.closeBtn, &QPushButton::clicked, this, &WTransaltionMain::CloseClicked);
     connect(ui.lockButton, &QPushButton::clicked, this, &WTransaltionMain::LockClicked);
@@ -75,14 +75,19 @@ void WTransaltionMain::mouseReleaseEvent(QMouseEvent* event)
 void WTransaltionMain::paintEvent(QPaintEvent* event)
 {
     QPainter painter{ this };
+
     painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
+
+    QPainterPath path;
+    path.setFillRule(Qt::WindingFill);
+    path.addRoundedRect(this->rect(), 16, 16);
     if (_mouseHold)
     {
-        painter.fillRect(this->rect(), QColor{0, 0, 0, 204});
+        painter.fillPath(path, QBrush(QColor(0, 0, 0, 204)));
     }
     else
     {
-        painter.fillRect(this->rect(), QColor{ 0, 0, 0, 1 });
+        painter.fillPath(path, QBrush(QColor(0, 0, 0, 1)));
     }
 }
 
@@ -92,7 +97,7 @@ void WTransaltionMain::showEvent(QShowEvent* event)
     bool enableConversation = ins.IsConversationSuggestionShow();
     auto& token = ins.Token();
     ui.timerWidget->StartTimer(true);
-    ui.stopBtn->SetState(WTranslationPlayBtn::PLAY);
+    //ui.stopBtn->SetState(WTranslationPlayBtn::PLAY);
 
     ins.GetTranslation().Connect(token, _srcLan.language, _destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo());
 }
@@ -160,15 +165,15 @@ void WTransaltionMain::TranslationReceived(const QString& src, const QString& ds
     }
 }
 
-void WTransaltionMain::StopBtnStateChanged(WTranslationPlayBtn::State state)
-{
-    auto& translation = AiSound::GetInstance().GetTranslation();
-    if (state == WTranslationPlayBtn::STOP)
-    {
-        translation.StopMic();
-    }
-    else
-    {
-        translation.StartMic();
-    }
-}
+//void WTransaltionMain::StopBtnStateChanged(WTranslationPlayBtn::State state)
+//{
+//    auto& translation = AiSound::GetInstance().GetTranslation();
+//    if (state == WTranslationPlayBtn::STOP)
+//    {
+//        translation.StopMic();
+//    }
+//    else
+//    {
+//        translation.StartMic();
+//    }
+//}

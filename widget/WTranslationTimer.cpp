@@ -8,10 +8,16 @@ WTranslationTimer::WTranslationTimer(QWidget* parent) :
 {
     QHBoxLayout *horizontalLayout = new QHBoxLayout(this);
     horizontalLayout->setSpacing(14);
-    horizontalLayout->setContentsMargins(11, 11, 11, 11);
+    horizontalLayout->setContentsMargins(11, 0, 11, 0);
 
     _effect = new QLabel{ this };
     _counter = new QLabel{ this };
+
+    _effect->setStyleSheet("border:1px solid;border-radius:8px;border-color:#FFFFFF;");
+    QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    sizePolicy.setHorizontalStretch(0);
+    sizePolicy.setVerticalStretch(1);
+    _effect->setSizePolicy(sizePolicy);
 
     _movie = new QMovie(":/QtTest/icon/white_sound.apng", "apng", this);
     _movie->start();
@@ -19,7 +25,7 @@ WTranslationTimer::WTranslationTimer(QWidget* parent) :
     horizontalLayout->addWidget(_effect);
 
     _counter->setText("00:00");
-    _counter->setStyleSheet("color:#FFFFFF; font:12px");
+    _counter->setStyleSheet("color:#FFFFFF; font:14px");
     horizontalLayout->addWidget(_counter);
 
     startTimer(std::chrono::milliseconds{100});
@@ -27,6 +33,11 @@ WTranslationTimer::WTranslationTimer(QWidget* parent) :
 
 WTranslationTimer::~WTranslationTimer()
 {
+}
+
+QLabel* WTranslationTimer::Effect()
+{
+    return _effect;
 }
 
 void WTranslationTimer::StartTimer(bool start)
