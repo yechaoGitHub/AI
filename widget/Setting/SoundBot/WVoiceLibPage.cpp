@@ -13,18 +13,23 @@ WVoiceLibPage::WVoiceLibPage(QWidget *parent)
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 2; j++) {
 			WVoicelibWidget* widget = new WVoicelibWidget(this);
+			QSizePolicy sp_retain = widget->sizePolicy();
+			sp_retain.setRetainSizeWhenHidden(true);
+			widget->setSizePolicy(sp_retain);
 			connect(widget,&WVoicelibWidget::sig_addVoice,this,&WVoiceLibPage::slot_addVoice);
 			ui.gridLayout->addWidget(widget, i, j);
 			_voice_widget_list.push_back(widget);
 		}
-		ui.gridLayout->setRowStretch(i, 600);
 	}
-	ui.gridLayout->setSpacing(12);
 
 	QStringList gender_list{tr("gender"),tr("man"),tr("woman")};
 	ui.comboBox_gender->addItems(gender_list);
+	ui.comboBox_gender->setView(new QListView);
 	QStringList source_list{ tr("source"),tr("SoundaAI"),tr("User") };
 	ui.comboBox_source->addItems(source_list);
+	ui.comboBox_source->setView(new QListView);
+	ui.comboBox_lan->setView(new QListView);
+	ui.comboBox_label->setView(new QListView);
 
 	qRegisterMetaType<strc_PageInfo>("strc_PageInfo");
 	qRegisterMetaType<QVector<strc_SoundLib>>("QVector<strc_SoundLib>");

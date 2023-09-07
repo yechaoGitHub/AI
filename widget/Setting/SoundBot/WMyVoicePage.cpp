@@ -2,6 +2,7 @@
 #include "function/Bussiness/SettingInterfaceBussiness.h"
 #include "function/AiSound.h"
 #include <QDesktopServices>
+#include "WMyVoiceModel.h"
 
 
 WMyVoicePage::WMyVoicePage(QWidget *parent)
@@ -9,17 +10,23 @@ WMyVoicePage::WMyVoicePage(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	this->setFixedSize(660,572);
-	_voice_widget_list.push_back(ui.widget_2);
-	for (int i = 0; i < 2; i++) {
+	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 2; j++) {
-			WMyVoiceModel* voice = new WMyVoiceModel(this);
-			connect(voice,&WMyVoiceModel::sig_editMyVoice,this,&WMyVoicePage::slot_editMyVoice);
-			ui.gridLayout->addWidget(voice,i,j);
-			_voice_widget_list.push_back(voice);
+			if (i == 0 && j == 0) {
+				_add_widget = new WAddVoiceModel(this);
+				ui.gridLayout->addWidget(_add_widget,i,j);
+			}
+			else {
+				WMyVoiceModel* voice = new WMyVoiceModel(this);
+				QSizePolicy sp_retain = voice->sizePolicy();
+				sp_retain.setRetainSizeWhenHidden(true);
+				voice->setSizePolicy(sp_retain);
+				connect(voice, &WMyVoiceModel::sig_editMyVoice, this, &WMyVoicePage::slot_editMyVoice);
+				ui.gridLayout->addWidget(voice, i, j);
+				_voice_widget_list.push_back(voice);
+			}
 		}
 	}
-	connect(ui.widget_2, &WMyVoiceModel::sig_editMyVoice, this, &WMyVoicePage::slot_editMyVoice);
 
 	qRegisterMetaType<strc_PageInfo>("strc_PageInfo");
 	qRegisterMetaType<QVector<strc_MyVoice>>("QVector<strc_MyVoice>");
@@ -29,6 +36,7 @@ WMyVoicePage::WMyVoicePage(QWidget *parent)
 
 	_voice_editDlg = new WEditVoiceDlg(nullptr);
 	_voice_editDlg->hide();
+
 }
 
 WMyVoicePage::~WMyVoicePage()
@@ -42,11 +50,6 @@ void WMyVoicePage::initMyVoice()
 void WMyVoicePage::slot_pageChange(int index)
 {
 	SettingInterfaceBussiness::getInstance()->getVoiceListReq(index, _page_size);
-}
-
-void WMyVoicePage::on_pb_add_clicked()
-{
-	QDesktopServices::openUrl(QUrl("https://aisounda.cn/#/custom"));
 }
 
 void WMyVoicePage::slot_editMyVoice(int voiceId, const QString& name, const QString& desc)
@@ -99,7 +102,7 @@ void WMyVoicePage::slot_myVoiceListReplay(bool success, int, const strc_PageInfo
 		for (int i = index; i < _page_size; i++) {
 			_voice_widget_list.at(i)->setVisible(false);
 		}
-		ui.label_page->setText(QString("%1/%2").arg(_cur_page).arg(_total_page));
+		_add_widget->setModelText(QString("%1/%2").arg(_cur_page).arg(_total_page));
 		ui.widget->initCtl(_total_page, _total_size, _cur_page);
 	}
 }

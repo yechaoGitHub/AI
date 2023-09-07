@@ -4,7 +4,7 @@ WLabelButton::WLabelButton(QWidget *parent)
 	: QPushButton(parent)
 {
 	this->setStyleSheet("border:none;color:#000000;font: 14px");
-	this->setMinimumSize(90,18);
+	this->setMinimumSize(55,18);
 	this->setMaximumSize(180, 18);
 }
 

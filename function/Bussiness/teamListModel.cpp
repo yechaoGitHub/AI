@@ -44,14 +44,14 @@ QVariant teamListModel::data(const QModelIndex& index, int role) const
         return QVariant();
     if (role == Qt::DisplayRole) {
         if (c == 0) {
-            return _list[r]->username;
+            return QString(" %1").arg(_list[r]->username);
         }
         else if (c == 1)
-            return tr("In Team");
+            return QString(" %1").arg(tr("In Team"));
         else if (c == 2)
-            return QString::number(_list[r]->credits_used,'f',2);
+            return QString(" %1").arg(QString::number(_list[r]->credits_used, 'f', 2));
         else if (c == 3)
-            return _list[r]->join_time;
+            return QString(" %1").arg(_list[r]->join_time);
     }
     return QVariant();
 }

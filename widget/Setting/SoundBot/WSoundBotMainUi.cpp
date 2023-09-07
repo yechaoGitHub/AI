@@ -5,7 +5,7 @@ WSoundBotMainUi::WSoundBotMainUi(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
-	ui.pb_sound_page1->initBar(tr("Sound source"), WNavbarButton::BarType::Sound_Page1);
+	ui.pb_sound_page1->initBar(tr("Sound Source"), WNavbarButton::BarType::Sound_Page1);
 	ui.pb_sound_page2->initBar(tr("Translation Setting"), WNavbarButton::BarType::Sound_Page2);
 	ui.pb_sound_page3->initBar(tr("Voice Library"), WNavbarButton::BarType::Sound_Page3);
 	ui.pb_sound_page4->initBar(tr("My Voice"), WNavbarButton::BarType::Sound_Page4);

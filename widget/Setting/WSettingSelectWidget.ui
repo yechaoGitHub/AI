@@ -61,7 +61,10 @@ QFrame#frame_left{
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <property name="leftMargin">
-       <number>9</number>
+       <number>4</number>
+      </property>
+      <property name="rightMargin">
+       <number>4</number>
       </property>
       <item>
        <widget class="WNavbarButton" name="pb_account">

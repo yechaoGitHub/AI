@@ -61,7 +61,7 @@ QLabel#lb_9{
 
 QLabel#lb_time{
 	color: rgb(255, 255, 255);
-	font: 10px &quot;微软雅黑&quot;;
+	font: 12px &quot;微软雅黑&quot;;
 }
 
 
@@ -350,84 +350,86 @@ QLabel#lb_time{
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_5">
-      <property name="spacing">
-       <number>6</number>
+     <widget class="QLabel" name="lb_9">
+      <property name="geometry">
+       <rect>
+        <x>16</x>
+        <y>9</y>
+        <width>116</width>
+        <height>22</height>
+       </rect>
       </property>
-      <property name="bottomMargin">
-       <number>30</number>
+      <property name="text">
+       <string>Package Status</string>
       </property>
-      <item>
-       <widget class="QLabel" name="lb_9">
-        <property name="text">
-         <string>Package Status</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QLabel" name="label_2">
-          <property name="styleSheet">
-           <string notr="true">color: rgb(255, 255, 255);
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>16</x>
+        <y>47</y>
+        <width>78</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);
 font: 18px &quot;微软雅黑&quot;;</string>
-          </property>
-          <property name="text">
-           <string>Premium</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="lb_time">
-          <property name="minimumSize">
-           <size>
-            <width>190</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>(Expires on 12/05/2023)</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <spacer name="horizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item>
-         <widget class="QPushButton" name="pb_charge">
-          <property name="minimumSize">
-           <size>
-            <width>80</width>
-            <height>35</height>
-           </size>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>80</width>
-            <height>35</height>
-           </size>
-          </property>
-          <property name="text">
-           <string>Recharge</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
+      </property>
+      <property name="text">
+       <string>Premium</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lb_time">
+      <property name="geometry">
+       <rect>
+        <x>96</x>
+        <y>52</y>
+        <width>190</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>190</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>(Expires on 12/05/2023)</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pb_charge">
+      <property name="geometry">
+       <rect>
+        <x>536</x>
+        <y>50</y>
+        <width>80</width>
+        <height>35</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>80</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>80</width>
+        <height>35</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Recharge</string>
+      </property>
+     </widget>
     </widget>
    </item>
    <item>

@@ -64,6 +64,29 @@ QPushButton#pb_close{
 	background-image: url(:/QtTest/icon/Setting/close.png);
 }
 
+QComboBox QAbstractItemView {
+    outline: 1px solid rgba(0,0,0,10);
+    border: 1px solid rgba(0,0,0,10);
+    color: #000000;
+    background-color: #FFFFFF; 
+    selection-color: #000000;
+    selection-background-color:rgba(160, 195, 255,0);
+}
+
+QComboBox QAbstractScrollArea QScrollBar:vertical {
+    width: 10px;
+    background-color: #ffffff; 
+}
+
+QComboBox QAbstractScrollArea QScrollBar::handle:vertical {
+    border-radius: 5px;
+    background: rgba(0,0,0,10);
+}
+
+QComboBox QAbstractScrollArea QScrollBar::handle:vertical:hover {
+    background: #505050;
+}
+
 
 QScrollBar:vertical
 {

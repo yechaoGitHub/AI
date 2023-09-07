@@ -43,12 +43,12 @@ QVariant soundHistoryModel::data(const QModelIndex& index, int role) const
         return QVariant();
     if (role == Qt::DisplayRole) {
         if (c == 0) {
-            return QString::number(_list[r]->id);
+            return QString(" %1").arg(_list[r]->id);
         }
         else if (c == 1)
-            return _list[r]->transName;
+            return QString(" %1").arg(_list[r]->transName);
         else if (c == 2)
-            return _list[r]->transTypeName;
+            return QString(" %1").arg(_list[r]->transTypeName);
     }
     return QVariant();
 }

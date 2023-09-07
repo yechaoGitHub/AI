@@ -48,16 +48,16 @@ QVariant historyListModel::data(const QModelIndex& index, int role) const
         return QVariant();
     if (role == Qt::DisplayRole) {
         if (c == 0) {
-            return QString::number(_list[r]->chatHistoryId);
+            return QString(" %1").arg(_list[r]->chatHistoryId);
         }
         else if (c == 1)
-            return _list[r]->chatName;
+            return QString(" %1").arg(_list[r]->chatName);
         else if (c == 2)
-            return _list[r]->templateName;
+            return QString(" %1").arg(_list[r]->templateName);
         else if (c == 3)
-            return _list[r]->initTime;
+            return QString(" %1").arg(_list[r]->initTime);
         else if (c == 4)
-            return _list[r]->synopsis;
+            return QString(" %1").arg(_list[r]->synopsis);
     }
     return QVariant();
 }

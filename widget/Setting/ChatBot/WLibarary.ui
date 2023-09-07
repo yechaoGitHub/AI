@@ -105,7 +105,7 @@ QPushButton#pb_next{
     <widget class="QFrame" name="frame">
      <property name="minimumSize">
       <size>
-       <width>632</width>
+       <width>646</width>
        <height>520</height>
       </size>
      </property>

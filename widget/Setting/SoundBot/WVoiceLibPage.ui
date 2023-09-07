@@ -81,6 +81,9 @@ QComboBox QAbstractItemView::item {
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="leftMargin">
+    <number>24</number>
+   </property>
+   <property name="rightMargin">
     <number>20</number>
    </property>
    <item>
@@ -96,6 +99,9 @@ QComboBox QAbstractItemView::item {
        <width>16777215</width>
        <height>22</height>
       </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <property name="text">
       <string>Voice Library</string>
@@ -289,7 +295,10 @@ QComboBox QAbstractItemView::item {
       <property name="bottomMargin">
        <number>0</number>
       </property>
-      <property name="spacing">
+      <property name="horizontalSpacing">
+       <number>12</number>
+      </property>
+      <property name="verticalSpacing">
        <number>0</number>
       </property>
      </layout>

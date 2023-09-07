@@ -33,8 +33,8 @@ WInvitePage::WInvitePage(QWidget *parent)
     ui.tableView->setAlternatingRowColors(true);
 
     ui.tableView->verticalHeader()->setDefaultSectionSize(44);
-    ui.tableView->setColumnWidth(0, 160);
-    ui.tableView->setColumnWidth(1, 90);
+    ui.tableView->setColumnWidth(0, 120);
+    ui.tableView->setColumnWidth(1, 100);
     ui.tableView->setColumnWidth(2, 100);
     ui.tableView->setColumnWidth(3, 200);
     ui.tableView->setColumnWidth(4, 70);

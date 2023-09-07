@@ -1,11 +1,15 @@
 #include "WSoundSourcePage.h"
 #include "AiSound.h"
 #include "base\GlobalSetting.h"
+#include <QListView>
+
 
 WSoundSourcePage::WSoundSourcePage(QWidget *parent)
     : QWidget(parent)
 {
     ui.setupUi(this);
+    ui.cbMic->setView(new QListView);
+    ui.cbSpeaker->setView(new QListView);
     connect(ui.cbMic, static_cast<void(QComboBox::*)(int)>(& QComboBox::currentIndexChanged), this, &WSoundSourcePage::MicIndexChanged);
     connect(ui.cbSpeaker, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WSoundSourcePage::SpeakerIndexChanged);
 }

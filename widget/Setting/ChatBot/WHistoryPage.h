@@ -34,6 +34,6 @@ private:
 	int    _total_pages = 0;
 	int	   _cur_page = 1;
 	int    _total_size = 0;
-	int    _page_size = 12;
+	int    _page_size = 10;
 	QString _search_text;
 };

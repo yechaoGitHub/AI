@@ -296,6 +296,21 @@
     </message>
 </context>
 <context>
+    <name>WAddVoiceModelClass</name>
+    <message>
+        <source>WAddVoiceModel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add Generative or Cloned Voice</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>1/10</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WChatBotMainUI</name>
     <message>
         <source>All templates</source>
@@ -610,14 +625,6 @@ enabling designers to focus on more creative aspects of their work.</source>
         <source>My Voice</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Add Generative or Cloned Voice</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>1/10</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>WPageCtlWidget</name>
@@ -769,10 +776,6 @@ enabling designers to focus on more creative aspects of their work.</source>
 <context>
     <name>WSoundBotMainUi</name>
     <message>
-        <source>Sound source</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Translation Setting</source>
         <translation type="unfinished"></translation>
     </message>
@@ -790,6 +793,10 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Translation History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sound Source</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

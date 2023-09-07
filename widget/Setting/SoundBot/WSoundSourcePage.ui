@@ -67,10 +67,13 @@ QComboBox::down-arrow {
 }
 
 QComboBox QAbstractItemView::item { 
-	min-height: 30px;
+	min-height: 40px;
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_4">
+   <property name="spacing">
+    <number>16</number>
+   </property>
    <item>
     <widget class="QLabel" name="label">
      <property name="minimumSize">
@@ -85,20 +88,23 @@ QComboBox QAbstractItemView::item {
        <height>20</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true">font: 22px &quot;微软雅黑&quot;;</string>
+     </property>
      <property name="text">
       <string>Sound source</string>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,1">
      <property name="spacing">
       <number>20</number>
      </property>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="spacing">
-        <number>12</number>
+        <number>16</number>
        </property>
        <item>
         <widget class="QFrame" name="frame1">
@@ -110,7 +116,7 @@ QComboBox QAbstractItemView::item {
          </property>
          <property name="maximumSize">
           <size>
-           <width>200</width>
+           <width>306</width>
            <height>56</height>
           </size>
          </property>
@@ -202,11 +208,14 @@ QComboBox QAbstractItemView::item {
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>16</number>
+       </property>
        <item>
         <widget class="QFrame" name="frame2">
          <property name="minimumSize">
           <size>
-           <width>200</width>
+           <width>306</width>
            <height>56</height>
           </size>
          </property>

@@ -310,6 +310,12 @@
     <ClCompile Include="widget\Setting\SoundBot\WEditVoiceDlg.cpp">
       <Filter>widget\Setting\SoundBot</Filter>
     </ClCompile>
+    <ClCompile Include="widget\Speech\WSimTrans.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\SoundBot\WAddVoiceModel.cpp">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -439,6 +445,12 @@
       <Filter>widget\Setting\SoundBot</Filter>
     </QtUic>
     <QtUic Include="widget\Setting\SoundBot\WEditVoiceDlg.ui">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtUic>
+    <QtUic Include="ui\SimultaneousInterpretation.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\SoundBot\WAddVoiceModel.ui">
       <Filter>widget\Setting\SoundBot</Filter>
     </QtUic>
   </ItemGroup>
@@ -678,6 +690,12 @@
       <Filter>widget\Setting\SoundBot</Filter>
     </QtMoc>
     <QtMoc Include="widget\Setting\SoundBot\WEditVoiceDlg.h">
+      <Filter>widget\Setting\SoundBot</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Speech\WSimTrans.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\SoundBot\WAddVoiceModel.h">
       <Filter>widget\Setting\SoundBot</Filter>
     </QtMoc>
   </ItemGroup>

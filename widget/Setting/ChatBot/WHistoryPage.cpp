@@ -24,9 +24,9 @@ WHistoryPage::WHistoryPage(QWidget *parent)
     ui.tableView->setShowGrid(false);
     ui.tableView->setAlternatingRowColors(true);
     ui.tableView->verticalHeader()->setDefaultSectionSize(44);
-    ui.tableView->setColumnWidth(0, 90);
+    ui.tableView->setColumnWidth(0, 70);
     ui.tableView->setColumnWidth(1, 120);
-    ui.tableView->setColumnWidth(2, 100);
+    ui.tableView->setColumnWidth(2, 120);
     ui.tableView->setColumnWidth(3, 180);
     ui.tableView->setColumnWidth(4, 120);
     ui.tableView->setColumnWidth(5, 80);

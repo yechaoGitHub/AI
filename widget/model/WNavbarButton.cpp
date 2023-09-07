@@ -7,7 +7,7 @@ WNavbarButton::WNavbarButton(QWidget*parent)
 {
 	m_linePixmap = QPixmap(":/QtTest/icon/Setting/line.png");
 	m_rightPixmap = QPixmap(":/QtTest/icon/Setting/right.png");
-	this->setStyleSheet("border:none;font: 12px");
+	this->setStyleSheet("border:none;font: 16px");
 }
 
 WNavbarButton::~WNavbarButton()
@@ -60,7 +60,7 @@ void WNavbarButton::initBar(const QString& text, BarType bar_type)
 	m_strText = text;
 
 	QFont font = this->font();
-	font.setPixelSize(18);
+	font.setPixelSize(22);
 	QFontMetrics fm(font);
 	_width = fm.width(m_strText);
 	_height = fm.height();
@@ -78,7 +78,7 @@ void WNavbarButton::paintEvent(QPaintEvent*)
 
 	QPainter p(this);
 	auto icon_size = m_iconPixmap.size();
-	p.drawPixmap(QRect(0, (btn_rect.height()- icon_size.height())/2, icon_size.width(), icon_size.height()), m_iconPixmap);
+	p.drawPixmap(QRect(0, (btn_rect.height()- icon_size.height())/2 -2, icon_size.width(), icon_size.height()), m_iconPixmap);
 
 	if (_is_select) {
 		p.setBrush(QBrush(QColor("#BD00FF")));
@@ -86,7 +86,7 @@ void WNavbarButton::paintEvent(QPaintEvent*)
 		p.drawPixmap(QRect(icon_size.width() + 6, btn_rect.height()-8, line_size.width(), line_size.height()), m_linePixmap);
 
 		auto right_size = m_rightPixmap.size();
-		p.drawPixmap(QRect(btn_rect.width() - right_size.width() - 10, (btn_rect.height() - right_size.height())/2, right_size.width(), right_size.height()), m_rightPixmap);
+		p.drawPixmap(QRect(btn_rect.width() - right_size.width(), (btn_rect.height() - right_size.height())/2, right_size.width(), right_size.height()), m_rightPixmap);
 		p.setPen(QColor("#BD00FF"));
 	}
 	else {
