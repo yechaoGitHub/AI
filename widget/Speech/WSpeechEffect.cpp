@@ -6,9 +6,11 @@ WSpeechEffect::WSpeechEffect(QWidget* parent) :
 {
     QHBoxLayout* horizontalLayout = new QHBoxLayout(this);
     horizontalLayout->setSpacing(14);
-    horizontalLayout->setContentsMargins(11, 11, 11, 11);
+    horizontalLayout->setContentsMargins(0, 0, 0, 0);
 
     _effect = new QLabel{ this };
+    _effect->setStyleSheet("border:1px solid;border-radius:8px;border-color:rgb(255, 255, 255, 50%); ");
+
     _movie = new QMovie(":/QtTest/icon/color_sound.apng", "apng", this);
     _movie->start();
     _effect->setMovie(_movie);
@@ -16,7 +18,7 @@ WSpeechEffect::WSpeechEffect(QWidget* parent) :
 
     _counter = new QLabel{ this };
     _counter->setText("00:00");
-    _counter->setStyleSheet("color:#FFFFFF; font:12px; background-color:#000000");
+    _counter->setStyleSheet("color:#FFFFFF; font:14px; background-color:transparent");
     horizontalLayout->addWidget(_counter);
 
     startTimer(std::chrono::milliseconds{ 100 });

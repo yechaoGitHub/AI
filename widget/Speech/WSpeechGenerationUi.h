@@ -25,7 +25,7 @@ private slots:
     void on_pb_close_clicked();
 
 private:
-    void SimTransClicked();
+    //void SimTransClicked();
     void CloseClicked();
     void StartClicked();
     void SendClicked();

@@ -1,7 +1,9 @@
 #include "WSpeechGenerationUi.h"
 #include "AiSound.h"
+
 #include <QPainter>
 #include <QListView>
+#include <QPainterPath>
 
 WSpeechGenerationUi::WSpeechGenerationUi(QWidget *parent)
     : FrameLessWidget(parent)
@@ -27,7 +29,7 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget *parent)
     auto& ins = AiSound::GetInstance();
     auto& voiceCompositor = ins.GetVoiceCompositor();
 
-    connect(ui.pb_simTrans, &QPushButton::clicked, this, &WSpeechGenerationUi::SimTransClicked);
+    //connect(ui.pb_simTrans, &QPushButton::clicked, this, &WSpeechGenerationUi::SimTransClicked);
     connect(ui.pb_start, &QPushButton::clicked, this, &WSpeechGenerationUi::StartClicked);
     connect(ui.pb_close, &QPushButton::clicked, this, &WSpeechGenerationUi::CloseClicked);
     connect(ui.pb_send, &QPushButton::clicked, this, &WSpeechGenerationUi::SendClicked);
@@ -50,11 +52,13 @@ void WSpeechGenerationUi::on_pb_close_clicked()
 
 void WSpeechGenerationUi::paintEvent(QPaintEvent* event)
 {
-    QPainter p(this);
-    QRect frameRect = rect();
-    p.setPen(QColor(0, 0, 0, 204));
-    p.setBrush(QColor(0, 0, 0, 204));
-    p.drawRoundRect(frameRect, 6, 6);
+    QPainter painter{ this };
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
+
+    QPainterPath path;
+    path.setFillRule(Qt::WindingFill);
+    path.addRoundedRect(this->rect(), 16, 16);
+    painter.fillPath(path, QBrush(QColor(0, 0, 0, 204)));
 }
 
 void WSpeechGenerationUi::showEvent(QShowEvent* event)
@@ -69,17 +73,17 @@ void WSpeechGenerationUi::showEvent(QShowEvent* event)
     //ui.speechEffect->StartTimer(true);
 }
 
-void WSpeechGenerationUi::SimTransClicked()
-{
-    if (_simTrans->isHidden())
-    {
-        _simTrans->show();
-    }
-    else
-    {
-        _simTrans->hide();
-    }
-}
+//void WSpeechGenerationUi::SimTransClicked()
+//{
+//    if (_simTrans->isHidden())
+//    {
+//        _simTrans->show();
+//    }
+//    else
+//    {
+//        _simTrans->hide();
+//    }
+//}
 
 void WSpeechGenerationUi::CloseClicked()
 {
