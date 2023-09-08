@@ -101,8 +101,9 @@ void WSpeechGenerationUi::StartClicked()
     auto& ins = AiSound::GetInstance();
     auto& token = AiSound::GetInstance().Token();
     auto& name = ins.GetVoiceData()[index].voiceCode;
+    auto isSend = ui.cbAutoSend->isChecked();
 
-    AiSound::GetInstance().GetVoiceCompositor().Connect(token, _srcLan.language, _destLan.language, name, true);
+    AiSound::GetInstance().GetVoiceCompositor().Connect(token, _srcLan.language, _destLan.language, name, isSend);
 }
 
 void WSpeechGenerationUi::SendClicked()

@@ -26,11 +26,7 @@
    <string>WSpeechGenerationUi</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">
-
-
-
-</string>
+   <string notr="true"/>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -832,7 +828,7 @@ color:#FFFFFFFF
        </spacer>
       </item>
       <item>
-       <widget class="QCheckBox" name="checkBox">
+       <widget class="QCheckBox" name="cbAutoSend">
         <property name="styleSheet">
          <string notr="true">QCheckBox::indicator{width: 30px; height: 30px;}
 QCheckBox::indicator:unchecked {image: url(:/QtTest/icon/Speech/chebox_sel.png);}

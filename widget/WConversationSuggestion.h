@@ -17,6 +17,8 @@ protected:
 
 private:
     void ConversationGuideReceived(const QString& message, int type);
+    void minBtnClicked();
+    void closeCBtnClicked();
 
     Ui::ConversationSuggestion      ui;
     QString                         _textCache;
