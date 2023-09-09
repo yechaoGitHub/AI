@@ -16,6 +16,7 @@ public:
 	WChatBotMainUI(QWidget *parent = nullptr);
 	~WChatBotMainUI();
 
+	void initCheck();
 	void changeSelectBtn(WNavbarButton::BarType type);
 
 private slots:

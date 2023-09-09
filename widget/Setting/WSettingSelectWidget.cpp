@@ -28,6 +28,11 @@ void WSettingSelectWidget::initData()
 	SettingInterfaceBussiness::getInstance()->getUserInfoReq();
 }
 
+void WSettingSelectWidget::initCheck()
+{
+	ui.robot_page->initCheck();
+}
+
 void WSettingSelectWidget::slot_getUserInfoReplay(bool success, int code, const QString& msg, const stru_UserInfo& user_info)
 {
 	if (success && code == netCode::Success) {
@@ -46,6 +51,7 @@ void WSettingSelectWidget::on_pb_help_clicked()
 {
 	changeSelectBtn(WNavbarButton::Bar_Help);
 	emit sig_page_change(true);
+	ui.robot_page->initCheck();
 	ui.stackedWidget->setCurrentWidget(ui.robot_page);
 }
 

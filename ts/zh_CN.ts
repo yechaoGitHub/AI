@@ -762,7 +762,7 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>  Settings</source>
+        <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

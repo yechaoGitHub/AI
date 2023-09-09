@@ -12,8 +12,8 @@ public:
     GlobalSetting();
     ~GlobalSetting();
 
-    void setRebotModel(const QString& model);
-    QString getRebotModel();
+    void setRebotModel(int model);
+    int getRebotModel();
 
     void setRechargeUrl(const QString& url);
     QString getRechargeUrl();

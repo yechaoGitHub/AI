@@ -55,17 +55,17 @@ bool GlobalSetting::init(const QString& path)
     return false;
 }
 
-void GlobalSetting::setRebotModel(const QString& model)
+void GlobalSetting::setRebotModel(int model)
 {
     if (m_pSettings)
         m_pSettings->setValue("Robot/model", model);
 }
 
-QString GlobalSetting::getRebotModel()
+int GlobalSetting::getRebotModel()
 {
     if (!m_pSettings)
-        return QString();
-    return m_pSettings->value("Robot/model", "").toString();
+        return 0;
+    return m_pSettings->value("Robot/model", 0).toInt();
 }
 
 void GlobalSetting::setRechargeUrl(const QString& url)

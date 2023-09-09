@@ -9,8 +9,6 @@
 class WLibarary : public QWidget
 {
 	Q_OBJECT
-signals:
-	void	sig_model_sel(bool sel);
 public:
 	WLibarary(QWidget *parent = nullptr);
 	~WLibarary();
@@ -18,8 +16,6 @@ public:
 	void	updateLibBySelType(int type);
 
 	void	getChatBotTemplate();
-
-	void	setModelOpen(bool open);
 private slots:
 	void	slot_model_clicked();
 	void    slot_page_change(int index);
@@ -27,7 +23,6 @@ private slots:
 	void	slot_getChatBotListReplay(bool, int, const strc_PageInfo& page_info, const QVector<strc_ChatbotInfo>& user_info);
 
 private:
-	bool hasOpen(int id);
 	void opeModelswitch(bool open,int id);
 private:
 	Ui::WLibararyClass ui;

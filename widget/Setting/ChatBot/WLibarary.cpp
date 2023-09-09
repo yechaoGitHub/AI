@@ -24,10 +24,6 @@ WLibarary::WLibarary(QWidget *parent)
 	qRegisterMetaType<QVector<strc_ChatbotInfo>>("QVector<strc_ChatbotInfo>");
 	qRegisterMetaType<strc_PageInfo>("strc_PageInfo");
 	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_getChatBotListReplay, this, &WLibarary::slot_getChatBotListReplay);
-	QString model = SETTING.getRebotModel();
-	if (!model.isEmpty()) {
-		_model_list = model.split(";");
-	}
 }
 
 WLibarary::~WLibarary()
@@ -38,15 +34,6 @@ void WLibarary::getChatBotTemplate()
 	SettingInterfaceBussiness::getInstance()->getCharBotListReq(_cur_page, _page_size, _cur_type);
 }
 
-void WLibarary::setModelOpen(bool open)
-{
-	if (_select_model) {
-		_select_model->setSel(open);
-		int id = _select_model->getModelId();
-		opeModelswitch(open,id);
-	}
-}
-
 void WLibarary::updateLibBySelType(int type)
 {
 	_cur_type = type;
@@ -55,10 +42,18 @@ void WLibarary::updateLibBySelType(int type)
 
 void WLibarary::slot_model_clicked()
 {
-	_select_model = static_cast<WLibModelWidget*>(QObject::sender());
-	if (_select_model) {
-		emit sig_model_sel(_select_model->is_sel());
+	WLibModelWidget* btn = static_cast<WLibModelWidget*>(QObject::sender());
+	if (btn == _select_model && _select_model) {
+		_select_model->setSel(true);
+		SETTING.setRebotModel(_select_model->getModelId());
+		return;
 	}
+	if (_select_model) {
+		_select_model->setSel(false);
+	}
+	_select_model = btn;
+	_select_model->setSel(true);
+	SETTING.setRebotModel(_select_model->getModelId());
 }
 
 void WLibarary::slot_page_change(int index)
@@ -88,30 +83,29 @@ void WLibarary::opeModelswitch(bool open,int id)
 	if (!open && exist) {
 		_model_list.removeAll(QString::number(id));
 	}
-
-	SETTING.setRebotModel(strList);
-}
-
-bool WLibarary::hasOpen(int id)
-{
-	for (auto it : _model_list) {
-		if (it == QString::number(id)) {
-			return  true;
-		}
-	}
-
-	return false;
 }
 
 void WLibarary::slot_getChatBotListReplay(bool success, int, const strc_PageInfo& page_info, const QVector<strc_ChatbotInfo>& chatbot_list)
 {
 	if (success) {
+		int cur_model = SETTING.getRebotModel();
 		int list_index = 0;
 		for (auto it : chatbot_list) {
 			_lib_model_list.at(list_index)->setTitle(tr("Chatbot(%1)").arg(it.name), it.desc,it.id);
 			_lib_model_list.at(list_index)->show();
 
-			_lib_model_list.at(list_index)->setSel(hasOpen(it.id));
+			if ((cur_model == 0 && list_index == 0)) {
+				_lib_model_list.at(list_index)->setSel(true);
+				SETTING.setRebotModel(it.id);
+				_select_model = _lib_model_list.at(list_index);
+			}
+			else if (cur_model == it.id && cur_model != 0) {
+				_lib_model_list.at(list_index)->setSel(true);
+			}
+			else {
+				_lib_model_list.at(list_index)->setSel(false);
+			}
+
 			list_index++;
 		}
 

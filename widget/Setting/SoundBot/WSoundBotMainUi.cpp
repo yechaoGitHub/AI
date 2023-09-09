@@ -1,4 +1,5 @@
 #include "WSoundBotMainUi.h"
+#include "base/GlobalSetting.h"
 
 
 WSoundBotMainUi::WSoundBotMainUi(QWidget *parent)
@@ -12,10 +13,25 @@ WSoundBotMainUi::WSoundBotMainUi(QWidget *parent)
 	ui.pb_sound_page5->initBar(tr("Speech Synthesis"), WNavbarButton::BarType::Sound_Page5);
 	ui.pb_sound_page6->initBar(tr("Translation History"), WNavbarButton::BarType::Sound_Page6);
 	changeSelectBtn(WNavbarButton::BarType::Sound_Page1);
+
+	connect(ui.checkBox, &QCheckBox::clicked, this, [=] {
+		if (ui.checkBox->checkState() == Qt::CheckState::Checked) {
+			SETTING.setSoundBot(true);
+		}
+		else {
+			SETTING.setSoundBot(false);
+		}
+		});
 }
 
 WSoundBotMainUi::~WSoundBotMainUi()
 {}
+
+void WSoundBotMainUi::initCheck()
+{
+	bool ret = SETTING.getSoundBot();
+	ui.checkBox->setChecked(ret);
+}
 
 void WSoundBotMainUi::slot_sound_back()
 {

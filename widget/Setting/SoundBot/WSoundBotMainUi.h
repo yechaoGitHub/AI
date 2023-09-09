@@ -12,6 +12,7 @@ public:
 	WSoundBotMainUi(QWidget *parent = nullptr);
 	~WSoundBotMainUi();
 
+	void initCheck();
 private:
 	void changeSelectBtn(WNavbarButton::BarType type);
 

@@ -2,6 +2,7 @@
 #include <qstyle.h>
 #include "function/Bussiness/SettingInterfaceBussiness.h"
 #include <QTimer>
+#include "base/GlobalSetting.h"
 
 
 WChatBotMainUI::WChatBotMainUI(QWidget *parent)
@@ -21,23 +22,23 @@ WChatBotMainUI::WChatBotMainUI(QWidget *parent)
 	ui.horizontalLayout_2->addWidget(label_btn);
 	connect(label_btn, &QPushButton::clicked, this, &WChatBotMainUI::slot_type_btn_clicked);
 
-	connect(ui.lib_page, &WLibarary::sig_model_sel, this, [=](bool sel) {
-			ui.pb_open->setChecked(sel);
-		});
-	connect(ui.pb_open, &QCheckBox::clicked, this, [=]{
-		if (_cur_type == WNavbarButton::BarType::Bar_Lib) {
-			if (ui.pb_open->checkState() == Qt::CheckState::Checked) {
-				ui.lib_page->setModelOpen(true);
-			}
-			else {
-				ui.lib_page->setModelOpen(false);
-			}
+	connect(ui.pb_open, &QCheckBox::clicked, this, [=] {
+		if (ui.pb_open->checkState() == Qt::CheckState::Checked) {
+			SETTING.setRobotBot(true);
+		}
+		else {
+			SETTING.setRobotBot(false);
 		}
 		});
 }
 
 WChatBotMainUI::~WChatBotMainUI()
 {}
+
+void WChatBotMainUI::initCheck()
+{
+	ui.pb_open->setChecked(SETTING.getRobotBot());
+}
 
 void WChatBotMainUI::slot_getChatBotType(bool, int, const QMap<int, QString>& type_map)
 {

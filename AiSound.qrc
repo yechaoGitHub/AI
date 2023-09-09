@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/QtTest">
+    <file>icon/Setting/set_icon.png</file>
     <file>icon/Setting/sett.png</file>
     <file>icon/Setting/soundbot/add_voice.png</file>
     <file>icon/China.png</file>
@@ -79,7 +80,6 @@
     <file>icon/Speech/down.png</file>
     <file>icon/Speech/gender.png</file>
     <file>icon/Speech/Language.png</file>
-    
     <file>icon/Speech/export.png</file>
     <file>icon/Speech/export.png</file>
     <file>icon/Speech/send.png</file>
@@ -121,6 +121,7 @@
     <file>icon/color_sound.apng</file>
     <file>icon/white_sound.apng</file>
     <file>icon/btn_robot.png</file>
-        <file>icon/Speech/User.png</file>
+    <file>icon/Speech/User.png</file>
+    <file>icon/icon.ico</file>
   </qresource>
 </RCC>

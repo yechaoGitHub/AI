@@ -11,7 +11,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.setWindowIcon(QIcon(":QtTest/icon/icon.png"));
+    a.setWindowIcon(QIcon(":QtTest/icon/icon.ico"));
 
     QSharedMemory shared("AiSound");
     if (shared.attach())

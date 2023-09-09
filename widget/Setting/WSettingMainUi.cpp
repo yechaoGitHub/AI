@@ -24,17 +24,21 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
                 first = false;
                 ui.chatbot_page->changeSelectBtn(WNavbarButton::BarType::Bar_Lib);
             }
+            ui.chatbot_page->initCheck();
             ui.stackedWidget->setCurrentWidget(ui.chatbot_page);
         }
         else {
+            ui.soundbot_page->initCheck();
             ui.stackedWidget->setCurrentWidget(ui.soundbot_page);
         }
     });
 
     connect(ui.chatbot_page, &WChatBotMainUI::sig_chatBotBack, this, [this] {
+        ui.select_widget->initCheck();
         ui.stackedWidget->setCurrentWidget(ui.select_widget);
         });
     connect(ui.soundbot_page, &WSoundBotMainUi::sig_soundBack, this, [this] {
+        ui.select_widget->initCheck();
         ui.stackedWidget->setCurrentWidget(ui.select_widget);
         });
     this->setFixedHeight(830);

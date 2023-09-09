@@ -16,7 +16,7 @@ public:
 	~WSettingSelectWidget();
 
 	void initData();
-
+	void initCheck();
 private slots:
 	void on_pb_account_clicked();
 	void on_pb_help_clicked();

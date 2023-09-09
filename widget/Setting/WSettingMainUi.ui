@@ -52,8 +52,7 @@ QPushButton#pb_robot,#pb_min,#pb_close{
 }
 
 QPushButton#pb_robot{
-	
-	background-image: url(:/QtTest/icon/icon.png);
+	background-image: url(:/QtTest/icon/Setting/set_icon.png);
 }
 
 QPushButton#pb_min{
@@ -148,103 +147,106 @@ QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="leftMargin">
-       <number>0</number>
+     <widget class="QPushButton" name="pb_robot">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>2</y>
+        <width>83</width>
+        <height>83</height>
+       </rect>
       </property>
-      <property name="topMargin">
-       <number>0</number>
+      <property name="minimumSize">
+       <size>
+        <width>83</width>
+        <height>83</height>
+       </size>
       </property>
-      <property name="rightMargin">
-       <number>0</number>
+      <property name="maximumSize">
+       <size>
+        <width>83</width>
+        <height>83</height>
+       </size>
       </property>
-      <property name="bottomMargin">
-       <number>0</number>
+      <property name="text">
+       <string/>
       </property>
-      <item>
-       <widget class="QPushButton" name="pb_robot">
-        <property name="minimumSize">
-         <size>
-          <width>52</width>
-          <height>52</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>52</width>
-          <height>52</height>
-         </size>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="label">
-        <property name="minimumSize">
-         <size>
-          <width>87</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>  Settings</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>590</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pb_min">
-        <property name="minimumSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="pb_close">
-        <property name="minimumSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>89</x>
+        <y>9</y>
+        <width>83</width>
+        <height>80</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>83</width>
+        <height>80</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>83</width>
+        <height>80</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>Settings</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pb_min">
+      <property name="geometry">
+       <rect>
+        <x>750</x>
+        <y>27</y>
+        <width>32</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pb_close">
+      <property name="geometry">
+       <rect>
+        <x>788</x>
+        <y>27</y>
+        <width>32</width>
+        <height>32</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>32</width>
+        <height>32</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
     </widget>
    </item>
    <item>

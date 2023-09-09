@@ -25,6 +25,15 @@ WRobotPage::WRobotPage(QWidget *parent)
 WRobotPage::~WRobotPage()
 {}
 
+void WRobotPage::initCheck()
+{
+	_robot_open = SETTING.getRobotBot();
+	_sound_open = SETTING.getSoundBot();
+	ui.pb_robot_lock->setChecked(SETTING.getRobotBot());
+	ui.pb_sound_lock->setChecked(SETTING.getSoundBot());
+	initUI();
+}
+
 void WRobotPage::on_pb_robot_lock_clicked()
 {
 	_robot_open = ui.pb_robot_lock->isChecked();

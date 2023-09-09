@@ -1,4 +1,6 @@
 #include "WPageCtlWidget.h"
+#include <QTimer>
+
 
 WPageCtlWidget::WPageCtlWidget(QWidget *parent)
 	: QWidget(parent)
@@ -59,8 +61,10 @@ void WPageCtlWidget::initCtl(int total_page, int total_size, int cur_page)
 			ui.pb_2->setText(QString::number(_total_pages-1));
 		}
 	}
+	QTimer::singleShot(200, this, [=] {
+		selCurIndex(_cur_page);
+		});
 
-	selCurIndex(_cur_page);
 }
 
 void WPageCtlWidget::on_pb_next_clicked()
@@ -107,12 +111,17 @@ void WPageCtlWidget::selCurIndex(int index)
 	int num_1 = ui.pb_1->text().toInt();
 	ui.pb_1->setProperty("sel", num_1 == index);
 	ui.pb_1->style()->unpolish(ui.pb_1);
-	num_1 = ui.pb_2->text().toInt();
-	ui.pb_2->setProperty("sel", num_1 == index);
+	int num_2 = ui.pb_2->text().toInt();
+	ui.pb_2->setProperty("sel", num_2 == index);
 	ui.pb_2->style()->unpolish(ui.pb_2);
-	num_1 = ui.pb_last->text().toInt();
-	ui.pb_last->setProperty("sel", num_1 == index);
+	int num_3 = ui.pb_last->text().toInt();
+	ui.pb_last->setProperty("sel", num_3 == index);
 	ui.pb_last->style()->unpolish(ui.pb_last);
-	ui.pb_about->setProperty("sel", false);
-	ui.pb_about->style()->unpolish(ui.pb_about);
+
+	if (num_3 > num_2 + 1) {
+		ui.pb_about->setVisible(true);
+	}
+	else {
+		ui.pb_about->setVisible(false);
+	}
 }

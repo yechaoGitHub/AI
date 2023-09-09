@@ -27,6 +27,7 @@ void WLibModelWidget::setSel(bool sel)
 
 void WLibModelWidget::mouseReleaseEvent(QMouseEvent* event)
 {
+	//if(!_select)
 	emit sig_libModel_click();
 }
 
