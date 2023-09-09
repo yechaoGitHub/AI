@@ -26,7 +26,7 @@ QTextEdit#textEdit{
 
 QFrame#frame{
 	border:none;
-	background-color: rgba(0, 0, 0,204);
+	background-color: transparent;
 }
 
 QPushButton#pb_send{
@@ -43,7 +43,7 @@ QPushButton#pb_voice{
 }
 
 QListWidget{
-	background-color: rgba(0, 0, 0,204);
+	background-color: transparent;
     color:rgb(51,51,51); 		 	 	    
     border: none;
     outline:0px;
@@ -159,6 +159,9 @@ QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
           <height>40</height>
          </size>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="text">
          <string/>
         </property>
@@ -196,6 +199,9 @@ QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
           <width>36</width>
           <height>36</height>
          </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="text">
          <string/>

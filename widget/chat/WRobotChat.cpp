@@ -1,8 +1,8 @@
 #include "WRobotChat.h"
 #include "AiSound.h"
 #include <QDateTime>
+#include <QKeyEvent>
 #include <qdebug.h>
-
 
 
 WRobotChat::WRobotChat(QWidget *parent)
@@ -13,6 +13,8 @@ WRobotChat::WRobotChat(QWidget *parent)
 
     auto& bot = AiSound::GetInstance().GetChatBot();
     connect(&bot, &ChatBot::receiveText, this, &WRobotChat::ReceiveBotText);
+
+    ui.textEdit->installEventFilter(this);
 }
 
 WRobotChat::~WRobotChat()
@@ -24,6 +26,7 @@ void WRobotChat::on_pb_voice_clicked()
     ui.textEdit->setText("");
     addRobotChatItem(msg);
 }
+
 
 void WRobotChat::addRobotChatItem(const QString& msg)
 {
@@ -155,3 +158,20 @@ void WRobotChat::closeEvent(QCloseEvent* event)
 {
 
 }
+
+bool WRobotChat::eventFilter(QObject* watched, QEvent* event)
+{
+    if (watched == ui.textEdit &&
+        event->type() == QEvent::KeyPress)
+    {
+        QKeyEvent* p = static_cast<QKeyEvent*>(event);
+        if (p->key() == Qt::Key_Return)
+        {
+            on_pb_send_clicked();
+            return true;
+        }
+    }
+
+    return QWidget::eventFilter(watched, event);
+}
+

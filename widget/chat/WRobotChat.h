@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QWidget>
+#include <QShortcut>
 #include "ui_WRobotChat.h"
 #include "WChatItem.h"
 
@@ -20,14 +21,17 @@ protected:
     void showEvent(QShowEvent* event) override;
     void hideEvent(QHideEvent* event) override;
     void closeEvent(QCloseEvent* event) override;
+    bool eventFilter(QObject* watched, QEvent* event) override;
 
 private slots:
     void on_pb_send_clicked();
     void on_pb_voice_clicked();
+
 private:
     void chatMessage(WChatItem* messageW, QListWidgetItem* item, QString text, QString time, WChatItem::User_Type type);
     void chatMessageTime(QString curMsgTime);
-private:
     void ReceiveBotText(const QString& text);
+
     Ui::WRobotChatClass ui;
+    QShortcut* _shortCut = nullptr;
 };

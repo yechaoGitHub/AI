@@ -1,7 +1,7 @@
 #include "WRobotChatMainUI.h"
 #include "AiSound.h"
 #include <QPainter>
-
+#include <QPainterPath>
 
 RobotChatMainUI::RobotChatMainUI(QWidget *parent)
     : FrameLessWidget(parent)
@@ -13,6 +13,7 @@ RobotChatMainUI::RobotChatMainUI(QWidget *parent)
     ui.stackedWidget->setCurrentWidget(ui.chat_desc_wgt);
     connect(ui.chat_desc_wgt, &WChatDesc::sig_startClick, this, &RobotChatMainUI::StartBtnClicked);
 
+    this->setAttribute(Qt::WA_TranslucentBackground, true);
 }
 
 RobotChatMainUI::~RobotChatMainUI()
@@ -36,10 +37,11 @@ void RobotChatMainUI::StartBtnClicked()
 
 void RobotChatMainUI::paintEvent(QPaintEvent* event)
 {
-    QPainter p(this);
-    QRect frameRect = rect();
-    frameRect.adjust(1, 1, 0, 0);
-    p.setPen(QColor(0, 0, 0,204));
-    p.setBrush(QColor(0, 0, 0, 204));
-    p.drawRoundRect(frameRect,8,8);
+    QPainter painter{ this };
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
+
+    QPainterPath path;
+    path.setFillRule(Qt::WindingFill);
+    path.addRoundedRect(this->rect(), 16, 16);
+    painter.fillPath(path, QBrush(QColor(0, 0, 0, 204)));
 }

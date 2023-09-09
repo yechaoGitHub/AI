@@ -496,7 +496,7 @@ QComboBox QAbstractItemView::item {
           </property>
           <property name="styleSheet">
            <string notr="true">background-image: url(:/QtTest/icon/Speech/gender.png);
-background-positon:center;
+background-position:center;
 background-repeat:no-repeat;
 background-color:transparent;</string>
           </property>
