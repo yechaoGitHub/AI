@@ -10,14 +10,6 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
 {
     ui.setupUi(this);
 
-    ui.label->setStyleSheet("color:#FFFFFF");
-    ui.srcLabel->setStyleSheet("color:#FFFFFF");
-    ui.destLabel->setStyleSheet("color:#FFFFFF");
-    ui.imgLabel->setPixmap(QPixmap{":/QtTest/icon/exchange.png"});
-    ui.lockButton->setIcon(QIcon{":/QtTest/icon/lock_white.png"});
-    ui.minBtn->setIcon(QIcon{":/QtTest/icon/min_btn_white.png"});
-    ui.closeBtn->setIcon(QIcon{":/QtTest/icon/close_btn_white.png"});
-
     this->setWindowFlags(Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 
@@ -75,7 +67,6 @@ void WTransaltionMain::mouseReleaseEvent(QMouseEvent* event)
 void WTransaltionMain::paintEvent(QPaintEvent* event)
 {
     QPainter painter{ this };
-
     painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
 
     QPainterPath path;

@@ -72,7 +72,7 @@ QFrame#frame{
 border-style:solid;
 border-radius:0px;
 border-bottom-width:1px;
-border-bottom-color:#FFFFFFFF;
+border-bottom-color:rgba(255,255,255,50%);
 };
 </string>
      </property>

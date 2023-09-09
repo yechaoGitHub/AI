@@ -159,6 +159,9 @@ QPushButton#pb_close{
      <property name="styleSheet">
       <string notr="true"/>
      </property>
+     <property name="currentIndex">
+      <number>1</number>
+     </property>
      <widget class="WRobotChat" name="chat_widget"/>
      <widget class="WChatDesc" name="chat_desc_wgt"/>
     </widget>

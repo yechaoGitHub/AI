@@ -64,7 +64,7 @@
 border-style:solid;
 border-radius:0px;
 border-bottom-width:1px;
-border-bottom-color:#FFFFFFFF;
+border-bottom-color:rgba(255,255,255,50%);
 };
 </string>
      </property>
@@ -152,12 +152,15 @@ background-position: center;
 background-repeat: no-repeat;
 border:1px solid;
 border-radius:4px;
-border-color:rgb(255,255,255,50%);</string>
+border-color:rgba(255,255,255,50%);</string>
         </property>
         <property name="text">
          <string/>
         </property>
         <property name="autoDefault">
+         <bool>true</bool>
+        </property>
+        <property name="flat">
          <bool>true</bool>
         </property>
        </widget>
@@ -186,10 +189,13 @@ background-position:center;
 background-repeat:no-repeat;
 border:1px solid;
 border-radius:4px;
-border-color:rgb(255,255,255,50%);</string>
+border-color:rgba(255,255,255,50%);</string>
         </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -217,10 +223,13 @@ background-position:center;
 background-repeat:no-repeat;
 border:1px solid;
 border-radius:4px;
-border-color:rgb(255,255,255,50%);</string>
+border-color:rgba(255,255,255,50%);</string>
         </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -248,10 +257,13 @@ background-position:center;
 background-repeat:no-repeat;
 border:1px solid;
 border-radius:4px;
-border-color:rgb(255,255,255,50%);</string>
+border-color:rgba(255,255,255,50%);</string>
         </property>
         <property name="text">
          <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -732,7 +744,7 @@ border-color:#FFFFFF;</string>
 border-style:solid;
 border-radius:0px;
 border-bottom-width:1px;
-border-bottom-color:#FFFFFFFF;
+border-bottom-color:rgba(255,255,255,50%);
 };
 </string>
      </property>

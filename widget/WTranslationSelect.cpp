@@ -1,5 +1,6 @@
 #include "WTranslationSelect.h"
 #include <QMouseEvent>
+#include <QPainterPath>
 
 WTranslationSelect::WTranslationSelect(QWidget* parent) :
     QWidget{ parent }
@@ -8,14 +9,9 @@ WTranslationSelect::WTranslationSelect(QWidget* parent) :
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 
     ui.setupUi(this);
-    ui.label->setStyleSheet("color:#FFFFFF");
-    ui.minBtn->setIcon(QIcon{":/QtTest/icon/min_btn_white.png"});
-    ui.closeBtn->setIcon(QIcon{ ":/QtTest/icon/close_btn_white.png" });
-    ui.startBtn->SetText("Start");
-    ui.imgLabel->setPixmap(QPixmap{":/QtTest/icon/exchange_big.png"});
 
     auto& ins = AiSound::GetInstance();
-    connect(ui.startBtn, &WButton::clicked, this, &WTranslationSelect::StartClicked);
+    connect(ui.startBtn, &QPushButton::clicked, this, &WTranslationSelect::StartClicked);
     connect(ui.closeBtn, &QPushButton::clicked, this, &WTranslationSelect::CloseClicked);
     connect(ui.chatBotButton, &QPushButton::clicked, this, &WTranslationSelect::ChatBotClicked);
 }
@@ -32,20 +28,18 @@ void WTranslationSelect::SetFunctionType(FunctionType type)
 void WTranslationSelect::SetSrcLanguage(const std::vector<TranslationLanguage>& vecSrc)
 {
     _vecSrc = vecSrc;
-
     for (auto& item : vecSrc)
     {
-        ui.comboSrc->AddItem(item.name, nullptr);
+        ui.comboSrc->addItem(item.name);
     }
 }
 
 void WTranslationSelect::SetDestLanguage(const std::vector<TranslationLanguage>& vecDest)
 {
     _vecDest = vecDest;
-
     for (auto& item : vecDest)
     {
-        ui.comboDest->AddItem(item.name, nullptr);
+        ui.comboDest->addItem(item.name);
     }
 }
 
@@ -76,7 +70,11 @@ void WTranslationSelect::paintEvent(QPaintEvent* event)
 {
     QPainter painter{ this };
     painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
-    painter.fillRect(this->rect(), QColor{ 0, 0, 0, 204 });
+
+    QPainterPath path;
+    path.setFillRule(Qt::WindingFill);
+    path.addRoundedRect(this->rect(), 16, 16);
+    painter.fillPath(path, QBrush(QColor(0, 0, 0, 204)));
 }
 
 void WTranslationSelect::showEvent(QShowEvent* event)
@@ -88,8 +86,8 @@ void WTranslationSelect::showEvent(QShowEvent* event)
 
 void WTranslationSelect::StartClicked()
 {
-    auto srcSel = ui.comboSrc->SelectItem();
-    auto destSel = ui.comboDest->SelectItem();
+    auto srcSel = ui.comboSrc->currentIndex();
+    auto destSel = ui.comboDest->currentIndex();
     if (srcSel == -1 || destSel == -1)
     {
         return;

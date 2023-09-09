@@ -9,7 +9,7 @@ WSpeechEffect::WSpeechEffect(QWidget* parent) :
     horizontalLayout->setContentsMargins(0, 0, 0, 0);
 
     _effect = new QLabel{ this };
-    _effect->setStyleSheet("border:1px solid;border-radius:8px;border-color:rgb(255, 255, 255, 50%); ");
+    _effect->setStyleSheet("border:1px solid;border-radius:8px;border-color:rgba(255,255,255,50%);");
 
     _movie = new QMovie(":/QtTest/icon/color_sound.apng", "apng", this);
     _movie->start();
