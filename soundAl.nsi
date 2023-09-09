@@ -34,8 +34,8 @@ SetCompressor lzma
 
 
 ; 安装界面包含的语言设置
-!insertmacro MUI_LANGUAGE "SimpChinese"
 !insertmacro MUI_LANGUAGE "English"
+
 
 ; 安装预释放文件
 !insertmacro MUI_RESERVEFILE_INSTALLOPTIONS
@@ -89,7 +89,6 @@ Section Uninstall
   Delete "$SMPROGRAMS\AiSound\Uninstall.lnk"
   Delete "$SMPROGRAMS\AiSound\Website.lnk"
   Delete "$DESKTOP\AiSound.lnk"
-  Delete "$INSTDIR\ovoDownload.db"
   Delete "$INSTDIR\*.*"
 
   RMDir "$SMPROGRAMS\AiSound"

@@ -6,7 +6,7 @@ WSoundBotMainUi::WSoundBotMainUi(QWidget *parent)
 {
 	ui.setupUi(this);
 	ui.pb_sound_page1->initBar(tr("Sound Source"), WNavbarButton::BarType::Sound_Page1);
-	ui.pb_sound_page2->initBar(tr("Translation Setting"), WNavbarButton::BarType::Sound_Page2);
+	ui.pb_sound_page2->initBar(tr("Translation"), WNavbarButton::BarType::Sound_Page2);
 	ui.pb_sound_page3->initBar(tr("Voice Library"), WNavbarButton::BarType::Sound_Page3);
 	ui.pb_sound_page4->initBar(tr("My Voice"), WNavbarButton::BarType::Sound_Page4);
 	ui.pb_sound_page5->initBar(tr("Speech Synthesis"), WNavbarButton::BarType::Sound_Page5);
@@ -59,11 +59,7 @@ void WSoundBotMainUi::on_pb_sound_page6_clicked()
 	changeSelectBtn(WNavbarButton::BarType::Sound_Page6);
 	ui.stackedWidget->setCurrentIndex(5);
 
-	static bool first = true;
-	if (first) {
-		first = false;
-		ui.history_dia_page->getTransHistory();
-	}
+	ui.history_dia_page->getTransHistory();
 }
 
 void WSoundBotMainUi::changeSelectBtn(WNavbarButton::BarType type)

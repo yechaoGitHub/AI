@@ -24,7 +24,7 @@ QLabel#label{
 
 QFrame#frame1,#frame2{
 	border-radius:8px;
-	border:1px solid #000000;
+	border:1px solid #505050;
 }
 
 QPushButton{
@@ -89,7 +89,7 @@ QComboBox QAbstractItemView::item {
       </size>
      </property>
      <property name="styleSheet">
-      <string notr="true">font: 22px &quot;微软雅黑&quot;;</string>
+      <string notr="true">font: 18px &quot;微软雅黑&quot;;</string>
      </property>
      <property name="text">
       <string>Sound source</string>

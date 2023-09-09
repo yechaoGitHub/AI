@@ -10,8 +10,8 @@ WHistoryDiaPage::WHistoryDiaPage(QWidget *parent)
 {
     ui.setupUi(this);
     ui.le_search->setPlaceholderText(tr("Search anr record"));
-
-    _sound_model = new soundHistoryModel(nullptr);
+    this->installEventFilter(this);
+    _sound_model = new soundHistoryModel(this);
 
     ui.tableView->setModel(_sound_model);
     ui.tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
@@ -48,6 +48,7 @@ WHistoryDiaPage::WHistoryDiaPage(QWidget *parent)
     connect(ui.widget_page, &WPageCtlWidget::sig_changePage, this, &WHistoryDiaPage::slot_changePage);
     connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_common_replay, this, &WHistoryDiaPage::slot_commonReplay);
     connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_transHistoryReplay,this, &WHistoryDiaPage::slot_transHistoryReplay);
+    connect(ui.le_search, &QLineEdit::returnPressed, this, &WHistoryDiaPage::on_pb_search_clicked);
 }
 
 WHistoryDiaPage::~WHistoryDiaPage()
@@ -98,3 +99,11 @@ void WHistoryDiaPage::slot_transHistoryReplay(bool success, int type, const strc
     _sound_model->updateData(trans_list);
     ui.widget_page->initCtl(page.total_pages,page.total_size,page.cur_page);
 }
+
+//void WHistoryDiaPage::keyReleaseEvent(QKeyEvent* event)
+//{
+//    if (event->key() == Qt::Key_Return)
+//    {
+//        on_pb_search_clicked();
+//    }
+//}

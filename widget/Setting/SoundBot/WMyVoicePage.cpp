@@ -40,7 +40,12 @@ WMyVoicePage::WMyVoicePage(QWidget *parent)
 }
 
 WMyVoicePage::~WMyVoicePage()
-{}
+{
+	if (_voice_editDlg) {
+		delete _voice_editDlg;
+		_voice_editDlg = nullptr;
+	}
+}
 
 void WMyVoicePage::initMyVoice()
 {

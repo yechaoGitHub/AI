@@ -3,7 +3,7 @@
 
 historyListModel::historyListModel(QObject* parent)
     :QAbstractTableModel(parent)
-    , _headerList(QStringList() << tr(" ID") << tr(" Chat Name") << tr(" Bot Template") << tr(" Date and Time") << tr(" Synopsis") << tr(" Actions"))
+    , _headerList(QStringList() << tr("     ID") << tr(" Chat Name") << tr(" Bot Template") << tr(" Date and Time") << tr(" Synopsis") << tr(" Actions"))
 {
 }
 
@@ -19,7 +19,11 @@ void historyListModel::updateData(const QVector<strc_ChatHistory>& team_list)
         service->initTime = it.initTime;
         service->receiverId = it.receiverId;
         service->senderId = it.senderId;
-        service->synopsis = it.synopsis;
+        QString syn = it.synopsis.toLocal8Bit();
+        if (syn.length() > 10) {
+            service->synopsis = QString("%1...").arg(it.synopsis.left(8));
+        }
+        //service->synopsis = it.synopsis;
         service->chatName = it.chatName;
         service->templateName = it.templateName;
         _list.push_back(std::move(service));
@@ -48,7 +52,13 @@ QVariant historyListModel::data(const QModelIndex& index, int role) const
         return QVariant();
     if (role == Qt::DisplayRole) {
         if (c == 0) {
-            return QString(" %1").arg(_list[r]->chatHistoryId);
+            if (_list[r]->chatHistoryId < 10) {
+                return QString("      %1").arg(_list[r]->chatHistoryId);
+            }
+            else {
+                return QString("     %1").arg(_list[r]->chatHistoryId);
+            }
+
         }
         else if (c == 1)
             return QString(" %1").arg(_list[r]->chatName);
@@ -64,12 +74,33 @@ QVariant historyListModel::data(const QModelIndex& index, int role) const
 
 QVariant historyListModel::headerData(int section, Qt::Orientation orientation,
     int role) const
-{
+{//_headerList(QStringList() << tr("     ID") << tr(" Chat Name") << tr(" Bot Template") << tr(" Date and Time") << tr(" Synopsis") << tr(" Actions"))
     if (role == Qt::DisplayRole) {
-        if (section < _headerList.count())
-            return _headerList[section];
-        else
-            return QVariant();
+        if (section == 0) {
+            return tr("     ID");
+        }
+        else if (section == 1) {
+            return tr(" Chat Name");
+        }
+        else if (section == 2) {
+            return tr(" Bot Template");
+        }
+        else if (section == 3) {
+            return tr(" Date and Time");
+        }
+        else if (section == 3) {
+            return tr(" Synopsis");
+        }
+        else if (section == 4) {
+            return tr(" Actions");
+        }
+        else {
+            if (section < _headerList.count())
+                return _headerList[section];
+            else
+                return QVariant();
+        }
+
     }
     else
         return QAbstractTableModel::headerData(section, orientation, role);

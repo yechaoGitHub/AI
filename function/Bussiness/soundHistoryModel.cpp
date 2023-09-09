@@ -3,7 +3,7 @@
 
 soundHistoryModel::soundHistoryModel(QObject* parent)
     :QAbstractTableModel(parent)
-    , _headerList(QStringList() << tr(" Id") << tr(" Name") << tr(" Translation Type") << tr(" Actions"))
+    , _headerList(QStringList() << tr("    Id") << tr(" Name") << tr(" Translation Type") << tr(" Actions"))
 {
 }
 
@@ -43,7 +43,12 @@ QVariant soundHistoryModel::data(const QModelIndex& index, int role) const
         return QVariant();
     if (role == Qt::DisplayRole) {
         if (c == 0) {
-            return QString(" %1").arg(_list[r]->id);
+            if (_list[r]->id < 10) {
+                return QString("     %1").arg(_list[r]->id);
+            }
+            else {
+                return QString("    %1").arg(_list[r]->id);
+            }
         }
         else if (c == 1)
             return QString(" %1").arg(_list[r]->transName);
@@ -55,12 +60,26 @@ QVariant soundHistoryModel::data(const QModelIndex& index, int role) const
 
 QVariant soundHistoryModel::headerData(int section, Qt::Orientation orientation,
     int role) const
-{
+{//_headerList(QStringList() << tr("     Id") << tr(" Name") << tr(" Translation Type") << tr(" Actions"))
     if (role == Qt::DisplayRole) {
-        if (section < _headerList.count())
-            return _headerList[section];
-        else
-            return QVariant();
+        if (section == 0) {
+            return tr("     Id");
+        }
+        else if (section == 1) {
+            return tr(" Name");
+        }
+        else if (section == 1) {
+            return tr(" Translation Type");
+        }
+        else if (section == 1) {
+            return tr(" Actions");
+        }
+        else {
+            if (section < _headerList.count())
+                return _headerList[section];
+            else
+                return QVariant();
+        }
     }
     else
         return QAbstractTableModel::headerData(section, orientation, role);

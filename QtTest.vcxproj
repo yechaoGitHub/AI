@@ -231,6 +231,7 @@
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="resource.h" />
     <QtMoc Include="widget\Setting\SoundBot\WAddVoiceModel.h" />
     <QtMoc Include="widget\Speech\WSimTrans.h" />
     <QtMoc Include="widget\Setting\SoundBot\WEditVoiceDlg.h" />
@@ -329,6 +330,12 @@
   <ItemGroup>
     <None Include="en.qm" />
     <None Include="zh_CN.qm" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AiSound.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon\icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

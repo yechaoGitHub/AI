@@ -19,5 +19,5 @@ void WAddVoiceModel::on_pb_add_clicked()
 
 void WAddVoiceModel::setModelText(const QString& text)
 {
-	ui.label_page->setText(text);
+	//ui.label_page->setText(text);
 }

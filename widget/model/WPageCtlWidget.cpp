@@ -4,6 +4,10 @@ WPageCtlWidget::WPageCtlWidget(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
+	ui.pb_pre->setProperty("sel", false);
+	ui.pb_pre->style()->unpolish(ui.pb_pre);
+	ui.pb_next->setProperty("sel", false);
+	ui.pb_next->style()->unpolish(ui.pb_next);
 }
 
 WPageCtlWidget::~WPageCtlWidget()
@@ -54,8 +58,9 @@ void WPageCtlWidget::initCtl(int total_page, int total_size, int cur_page)
 			ui.pb_1->setText(QString::number(_total_pages-2));
 			ui.pb_2->setText(QString::number(_total_pages-1));
 		}
-
 	}
+
+	selCurIndex(_cur_page);
 }
 
 void WPageCtlWidget::on_pb_next_clicked()
@@ -95,4 +100,19 @@ void WPageCtlWidget::on_pb_2_clicked()
 void WPageCtlWidget::on_pb_last_clicked()
 {
 	emit sig_changePage(ui.pb_last->text().toInt());
+}
+
+void WPageCtlWidget::selCurIndex(int index)
+{
+	int num_1 = ui.pb_1->text().toInt();
+	ui.pb_1->setProperty("sel", num_1 == index);
+	ui.pb_1->style()->unpolish(ui.pb_1);
+	num_1 = ui.pb_2->text().toInt();
+	ui.pb_2->setProperty("sel", num_1 == index);
+	ui.pb_2->style()->unpolish(ui.pb_2);
+	num_1 = ui.pb_last->text().toInt();
+	ui.pb_last->setProperty("sel", num_1 == index);
+	ui.pb_last->style()->unpolish(ui.pb_last);
+	ui.pb_about->setProperty("sel", false);
+	ui.pb_about->style()->unpolish(ui.pb_about);
 }

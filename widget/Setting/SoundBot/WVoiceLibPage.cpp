@@ -62,6 +62,7 @@ void WVoiceLibPage::setSel()
 
 void WVoiceLibPage::slot_addVoice(int voiceId,const QString& name)
 {
+	auto it = this->pos();
 	_addVoiceDlg->Show(voiceId, name);
 }
 

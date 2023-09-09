@@ -74,10 +74,12 @@ QPushButton{
 }
 
 QPushButton#pb_robot_setting{
+	font: 16px &quot;微软雅黑&quot;;
 	background-color: transparent;
 	background-position: left;
     background-repeat: no-repeat;
-	background-image: url(:/QtTest/icon/Setting/set.png);
+	border-bottom:1px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(0,102,255), stop:1 rgb(189,0,255));
+	text-align: right;
 }
 
 
@@ -90,10 +92,12 @@ QLabel#lb_sound{
 }
 
 QPushButton#pb_sound_set{
+	font: 16px &quot;微软雅黑&quot;;
 	background-color: transparent;
 	background-position: left;
     background-repeat: no-repeat;
-	background-image: url(:/QtTest/icon/Setting/set.png);
+	border-bottom:1px solid qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgb(0,102,255), stop:1 rgb(189,0,255));
+	text-align: right;
 }
 
 QCheckBox{
@@ -222,15 +226,28 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
             <property name="text">
              <string>ChatBot</string>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QLabel" name="lb_aced">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>20</height>
+             </size>
+            </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgba(255, 255, 255,0);</string>
+             <string notr="true">background-color: rgba(255, 255, 255,0);
+color:505050</string>
             </property>
             <property name="text">
              <string>(Activated)</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
             </property>
            </widget>
           </item>
@@ -258,7 +275,8 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgba(255, 255, 255,0);</string>
+           <string notr="true">background-color: rgba(255, 255, 255,0);
+color:#505050;</string>
           </property>
           <property name="text">
            <string>xxxxxxxxxxx</string>
@@ -280,6 +298,9 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
         </property>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <property name="spacing">
+           <number>2</number>
+          </property>
           <item>
            <spacer name="horizontalSpacer_2">
             <property name="orientation">
@@ -294,16 +315,38 @@ QCheckBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png);}
            </spacer>
           </item>
           <item>
+           <widget class="QPushButton" name="pushButton_robot">
+            <property name="minimumSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-image: url(:/QtTest/icon/Setting/sett.png);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pb_robot_setting">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
             <property name="minimumSize">
              <size>
-              <width>60</width>
+              <width>44</width>
               <height>14</height>
              </size>
             </property>
@@ -359,7 +402,7 @@ color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1
            <widget class="QLabel" name="label_5">
             <property name="minimumSize">
              <size>
-              <width>58</width>
+              <width>66</width>
               <height>19</height>
              </size>
             </property>
@@ -370,7 +413,8 @@ color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgba(255, 255, 255,0);</string>
+             <string notr="true">background-color: rgba(255, 255, 255,0);
+font: 16px &quot;微软雅黑&quot;;</string>
             </property>
             <property name="text">
              <string>Activate</string>
@@ -475,6 +519,9 @@ color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
+          <property name="topMargin">
+           <number>0</number>
+          </property>
           <item>
            <widget class="QLabel" name="lb_sound_name">
             <property name="minimumSize">
@@ -495,15 +542,28 @@ color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1
             <property name="text">
              <string>Sound Bot</string>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
+            </property>
            </widget>
           </item>
           <item>
            <widget class="QLabel" name="lb_sound_act">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>20</height>
+             </size>
+            </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgba(255, 255, 255,0);</string>
+             <string notr="true">background-color: rgba(255, 255, 255,0);
+color:#505050</string>
             </property>
             <property name="text">
              <string>(Activated)</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
             </property>
            </widget>
           </item>
@@ -531,7 +591,8 @@ color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-color: rgba(255, 255, 255,0);</string>
+           <string notr="true">background-color: rgba(255, 255, 255,0);
+color:505050;</string>
           </property>
           <property name="text">
            <string>xxxxxxxxxxxxxxxxx</string>
@@ -553,6 +614,9 @@ color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1
         </property>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <property name="spacing">
+           <number>2</number>
+          </property>
           <item>
            <spacer name="horizontalSpacer_4">
             <property name="orientation">
@@ -567,6 +631,22 @@ color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1
            </spacer>
           </item>
           <item>
+           <widget class="QPushButton" name="pushButton__set">
+            <property name="maximumSize">
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-image: url(:/QtTest/icon/Setting/sett.png);</string>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="pb_sound_set">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
@@ -576,7 +656,7 @@ color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1
             </property>
             <property name="minimumSize">
              <size>
-              <width>60</width>
+              <width>44</width>
               <height>14</height>
              </size>
             </property>
@@ -632,7 +712,7 @@ color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1
            <widget class="QLabel" name="label_10">
             <property name="minimumSize">
              <size>
-              <width>58</width>
+              <width>66</width>
               <height>19</height>
              </size>
             </property>
@@ -643,7 +723,8 @@ color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color: rgba(255, 255, 255,0);</string>
+             <string notr="true">background-color: rgba(255, 255, 255,0);
+font: 16px &quot;微软雅黑&quot;;</string>
             </property>
             <property name="text">
              <string>Activate</string>

@@ -80,11 +80,17 @@ QComboBox QAbstractItemView::item {
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>12</number>
+   </property>
    <property name="leftMargin">
     <number>24</number>
    </property>
    <property name="rightMargin">
     <number>20</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
    </property>
    <item>
     <widget class="QLabel" name="label">
@@ -309,13 +315,13 @@ QComboBox QAbstractItemView::item {
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>40</height>
+       <height>32</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>40</height>
+       <height>32</height>
       </size>
      </property>
     </widget>

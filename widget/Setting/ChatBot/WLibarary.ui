@@ -98,6 +98,9 @@ QPushButton#pb_next{
    <property name="leftMargin">
     <number>12</number>
    </property>
+   <property name="topMargin">
+    <number>9</number>
+   </property>
    <property name="rightMargin">
     <number>2</number>
    </property>
@@ -115,6 +118,9 @@ QPushButton#pb_next{
        <height>520</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -123,6 +129,9 @@ QPushButton#pb_next{
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <property name="leftMargin">
+       <number>0</number>
+      </property>
+      <property name="topMargin">
        <number>0</number>
       </property>
      </layout>

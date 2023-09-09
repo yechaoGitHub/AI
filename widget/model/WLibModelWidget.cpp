@@ -7,7 +7,7 @@ WLibModelWidget::WLibModelWidget(QWidget *parent)
 {
 	ui.setupUi(this);
 	ui.lb_content->setWordWrap(true);
-	setSel(true);
+	setSel(false);
 	//this->installEventFilter(this);
 }
 
@@ -22,6 +22,7 @@ void WLibModelWidget::setSel(bool sel)
 	ui.lb_title->style()->unpolish(ui.lb_title);
 	ui.lb_content->setProperty("sel", sel);
 	ui.lb_content->style()->unpolish(ui.lb_content);
+	_select = sel;
 }
 
 void WLibModelWidget::mouseReleaseEvent(QMouseEvent* event)
@@ -29,8 +30,9 @@ void WLibModelWidget::mouseReleaseEvent(QMouseEvent* event)
 	emit sig_libModel_click();
 }
 
-void WLibModelWidget::setTitle(const QString& title, const QString& content)
+void WLibModelWidget::setTitle(const QString& title, const QString& content,int id)
 {
+	_model_id = id;
 	ui.lb_title->setText(title);
 	ui.lb_content->setText(content);
 }

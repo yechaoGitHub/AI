@@ -30,7 +30,7 @@
 	font: 12px &quot;微软雅黑&quot;;
 }
 
-QPushButton{
+QPushButton[sel=false]{
 	border:none;
 	background-color: #BEC8D0;
 	border-radius:4px;
@@ -38,8 +38,20 @@ QPushButton{
     background-repeat: no-repeat;
 }
 
-QPushButton#pb_1::hover,#pb_2::hover,#pb_last::hover{
+QPushButton[sel=false]::hover{
+	border:none;
 	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
+	border-radius:4px;
+	background-position: center;
+    background-repeat: no-repeat;
+}
+
+QPushButton[sel=true]{
+	border:none;
+	background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
+	border-radius:4px;
+	background-position: center;
+    background-repeat: no-repeat;
 }
 
 QPushButton#pb_pre{

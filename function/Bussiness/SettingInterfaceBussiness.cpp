@@ -120,6 +120,7 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
                     chatbot_info.desc = json_recode["description"].toString();
                     chatbot_info.initialMessage = json_recode["initialMessage"].toString();
                     chatbot_info.name = json_recode["name"].toString();
+                    chatbot_info.id = json_recode["id"].toInt();
                     chatbot_info.type = json_recode["type"].toInt();
                     chatbot_info.typeName = json_recode["typeName"].toString();
                     chatbot_info.isRecommend = json_recode["isRecommend"].toBool();

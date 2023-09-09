@@ -28,6 +28,6 @@ private slots:
 private:
 	Ui::WChatBotMainUIClass ui;
 	WLabelButton* _pre_select_btn = nullptr;
-
+	WNavbarButton::BarType			_cur_type;
 	QVector<WLabelButton*>			_chatBot_btn_list;
 };

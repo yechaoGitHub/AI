@@ -27,8 +27,8 @@ WHistoryPage::WHistoryPage(QWidget *parent)
     ui.tableView->setColumnWidth(0, 70);
     ui.tableView->setColumnWidth(1, 120);
     ui.tableView->setColumnWidth(2, 120);
-    ui.tableView->setColumnWidth(3, 180);
-    ui.tableView->setColumnWidth(4, 120);
+    ui.tableView->setColumnWidth(3, 160);
+    ui.tableView->setColumnWidth(4, 140);
     ui.tableView->setColumnWidth(5, 80);
 
     ui.tableView->horizontalHeader()->setSectionResizeMode(0, QHeaderView::Fixed);
@@ -52,6 +52,7 @@ WHistoryPage::WHistoryPage(QWidget *parent)
         });
 
     connect(ui.widget, &WPageCtlWidget::sig_changePage, this, &WHistoryPage::slot_changePage);
+    connect(ui.lineEdit, &QLineEdit::returnPressed, this, &WHistoryPage::on_pb_search_clicked);
 }
 
 WHistoryPage::~WHistoryPage()

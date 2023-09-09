@@ -12,11 +12,21 @@ public:
 	WLibModelWidget(QWidget *parent = nullptr);
 	~WLibModelWidget();
 
+	bool is_sel() {
+		return _select;
+	}
+
+	int getModelId() {
+		return _model_id;
+	}
+
 	void setSel(bool sel);
-	void setTitle(const QString& title,const QString& content);
+	void setTitle(const QString& title,const QString& content,int id);
 protected:
 	void mouseReleaseEvent(QMouseEvent* event);
 
 private:
 	Ui::WLibModelWidgetClass ui;
+	bool  _select = false;
+	int		_model_id = 0;
 };

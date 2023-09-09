@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QPushButton>
+#include <QLabel>
 
 class WNavbarButton  : public QPushButton
 {
@@ -35,9 +36,12 @@ private:
 
 private:
 	bool	_is_select = false;
+	BarType  _button_type = BarType::Bar_Account;
 	QPixmap m_iconPixmap;
 	QPixmap m_linePixmap;
 	QPixmap m_rightPixmap;
+
+	QLabel* m_pLabel = nullptr;
 
 	QString m_strText;
 	int _width =0;

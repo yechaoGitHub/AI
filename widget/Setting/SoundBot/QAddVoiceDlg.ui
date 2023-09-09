@@ -26,22 +26,30 @@
    <string>QAddVoiceDlg</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget{
+   <string notr="true">QWidget#QAddVoiceDlgClass{
+	border:1px solid rgba(0,0,0,10);
+	border-radius:8px;
+}
+
+QWidget{
 	font: 12px &quot;微软雅黑&quot;;
 	background-color: rgb(255, 255, 255);
 }</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_2">
+  <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0,0">
    <property name="spacing">
-    <number>40</number>
+    <number>30</number>
    </property>
    <property name="leftMargin">
+    <number>20</number>
+   </property>
+   <property name="bottomMargin">
     <number>20</number>
    </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <property name="bottomMargin">
-      <number>15</number>
+      <number>0</number>
      </property>
      <item>
       <widget class="QLabel" name="label">
@@ -89,6 +97,9 @@ border:none;
    </item>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="bottomMargin">
+      <number>20</number>
+     </property>
      <item>
       <widget class="QLabel" name="label_2">
        <property name="styleSheet">
@@ -148,6 +159,12 @@ border:none;
    </item>
    <item>
     <widget class="QFrame" name="frame">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>70</height>
+      </size>
+     </property>
      <property name="styleSheet">
       <string notr="true">QFrame{
 	border:none;
@@ -161,6 +178,12 @@ border:none;
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout">
+      <property name="topMargin">
+       <number>9</number>
+      </property>
+      <property name="bottomMargin">
+       <number>0</number>
+      </property>
       <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
@@ -218,7 +241,7 @@ color: rgb(255, 255, 255);
 border-radius:6px;</string>
         </property>
         <property name="text">
-         <string>AddVoice</string>
+         <string>Add Voice</string>
         </property>
        </widget>
       </item>

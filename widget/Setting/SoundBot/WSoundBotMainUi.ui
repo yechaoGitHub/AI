@@ -125,7 +125,7 @@ QCheckBox#checkBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png
         <property name="styleSheet">
          <string notr="true">QPushButton{
 	font: 24px &quot;微软雅黑&quot;;
-	color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
+	color:qlineargradient(spread:pad, x1:0, y1:0, x2:111, y2:20, stop:0 #0066FF, stop:1 #BD00FF);
 }</string>
         </property>
         <property name="text">

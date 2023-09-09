@@ -26,13 +26,24 @@
    <string>WEditVoiceDlg</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget{
+   <string notr="true">QWidget#WEditVoiceDlgClass{
+	border:1px solid rgba(0,0,0,10);
+	border-radius:8px;
+}
+
+QWidget{
 	font: 12px &quot;微软雅黑&quot;;
 	background-color: rgb(255, 255, 255);
 }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <property name="spacing">
+    <number>16</number>
+   </property>
+   <property name="leftMargin">
+    <number>16</number>
+   </property>
+   <property name="rightMargin">
     <number>16</number>
    </property>
    <item>
@@ -46,7 +57,7 @@
         <string notr="true">font: 16px &quot;微软雅黑&quot;;</string>
        </property>
        <property name="text">
-        <string>Add Voice To My Voice</string>
+        <string>Edit Voice</string>
        </property>
       </widget>
      </item>
@@ -222,7 +233,7 @@ color: rgb(255, 255, 255);
 border-radius:6px;</string>
         </property>
         <property name="text">
-         <string>EditVoice</string>
+         <string>Edit Voice</string>
         </property>
        </widget>
       </item>

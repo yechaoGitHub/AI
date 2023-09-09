@@ -8,8 +8,8 @@ WChatBotMainUI::WChatBotMainUI(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
-	ui.pb_lib->initBar("Libarary", WNavbarButton::BarType::Bar_Lib);
-	ui.pb_history->initBar("History", WNavbarButton::BarType::Bar_History);
+	ui.pb_lib->initBar(tr("Library"), WNavbarButton::BarType::Bar_Lib);
+	ui.pb_history->initBar(tr("History"), WNavbarButton::BarType::Bar_History);
 	changeSelectBtn(WNavbarButton::BarType::Bar_Lib);
 
 	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_chatBotListReplay, this, &WChatBotMainUI::slot_getChatBotType);
@@ -20,6 +20,20 @@ WChatBotMainUI::WChatBotMainUI(QWidget *parent)
 	label_btn->setSelected(true);
 	ui.horizontalLayout_2->addWidget(label_btn);
 	connect(label_btn, &QPushButton::clicked, this, &WChatBotMainUI::slot_type_btn_clicked);
+
+	connect(ui.lib_page, &WLibarary::sig_model_sel, this, [=](bool sel) {
+			ui.pb_open->setChecked(sel);
+		});
+	connect(ui.pb_open, &QCheckBox::clicked, this, [=]{
+		if (_cur_type == WNavbarButton::BarType::Bar_Lib) {
+			if (ui.pb_open->checkState() == Qt::CheckState::Checked) {
+				ui.lib_page->setModelOpen(true);
+			}
+			else {
+				ui.lib_page->setModelOpen(false);
+			}
+		}
+		});
 }
 
 WChatBotMainUI::~WChatBotMainUI()
@@ -70,24 +84,19 @@ void WChatBotMainUI::on_pb_history_clicked()
 
 void WChatBotMainUI::changeSelectBtn(WNavbarButton::BarType type)
 {
+	_cur_type = WNavbarButton::BarType::Bar_Lib;
 	ui.pb_lib->setSelect(type == WNavbarButton::BarType::Bar_Lib);
 	ui.pb_history->setSelect(type == WNavbarButton::BarType::Bar_History);
 
-	static bool first = true;
-	static bool first_chatbot = true;
-	static bool first_sound = true;
-	if (!first) {
-		if (first_chatbot && type == WNavbarButton::BarType::Bar_Lib) {
-			first_chatbot = false;
-			ui.lib_page->getChatBotTemplate();
+	if (type == WNavbarButton::BarType::Bar_Lib) {
+		ui.lib_page->getChatBotTemplate();
+		static int first_bot = 0;
+		first_bot++;
+		if (first_bot == 2) {
 			SettingInterfaceBussiness::getInstance()->getChatBotType();
 		}
-		else if (first_sound && type == WNavbarButton::BarType::Bar_History) {
-			first_sound = false;
-			ui.history_page->reqChatHistory();
-		}
 	}
-	else {
-		first = false;
+	else if (type == WNavbarButton::BarType::Bar_History) {
+		ui.history_page->reqChatHistory();
 	}
 }

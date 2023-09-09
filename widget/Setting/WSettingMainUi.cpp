@@ -19,7 +19,11 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
 
     connect(ui.select_widget, &WSettingSelectWidget::sig_robot_clicked, this, [this](bool clicked) {
         if (clicked) {
-            ui.chatbot_page->changeSelectBtn(WNavbarButton::BarType::Bar_Lib);
+            static bool first = true;
+            if (first) {
+                first = false;
+                ui.chatbot_page->changeSelectBtn(WNavbarButton::BarType::Bar_Lib);
+            }
             ui.stackedWidget->setCurrentWidget(ui.chatbot_page);
         }
         else {
@@ -61,10 +65,10 @@ void WSettingMainUi::paintEvent(QPaintEvent*)
     if (isActiveWindow()) {
         p.save();
         p.setRenderHint(QPainter::Antialiasing, true);
-        QColor color("505050");
+        QColor color(QColor(0,0,0,10));
         for (int i = 0; i < 2; i++)
         {
-            color.setAlpha(60 - qSqrt(i) * 20);
+            //color.setAlpha(40 - qSqrt(i) * 20);
             p.setPen(color);
             p.drawRoundedRect(rect().adjusted(4 - i, 4 - i, i - 4, i - 4), 4, 4);
         }

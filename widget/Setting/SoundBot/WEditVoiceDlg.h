@@ -2,8 +2,10 @@
 
 #include <QDialog>
 #include "ui_WEditVoiceDlg.h"
+#include "model/FrameLessWidget.h"
 
-class WEditVoiceDlg : public QWidget
+
+class WEditVoiceDlg : public FrameLessWidget
 {
 	Q_OBJECT
 

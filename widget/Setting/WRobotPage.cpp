@@ -18,6 +18,8 @@ WRobotPage::WRobotPage(QWidget *parent)
 	ui.lb_sound_tip->setText(tr("Support more than a dozen commonly used languages real-time translation, speech synthesis. Talk to the world in your own language!"));
 	ui.lb_sound_tip->setWordWrap(true);
 	initUI();
+	connect(ui.pushButton_robot,&QPushButton::clicked,this,&WRobotPage::on_pb_robot_setting_clicked);
+	connect(ui.pushButton__set, &QPushButton::clicked, this, &WRobotPage::on_pb_sound_set_clicked);
 }
 
 WRobotPage::~WRobotPage()

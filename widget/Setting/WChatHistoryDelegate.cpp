@@ -24,13 +24,28 @@ void WHistoryDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opti
 
     int nCount = 2;
     int w = option.rect.width() / nCount;
+    w = 20;
     if (w < 0) {
         return;
     }
     for (int i = 0; i < nCount; ++i)
     {
         QStyleOptionButton button;
+        /*auto it = option.rect;
         button.rect = option.rect.adjusted(4 + i * w, 4, -(w * (nCount - i - 1) + 4), -4);
+        auto ss = button.rect;*/
+
+        if (i == 0) {
+            button.rect = option.rect.adjusted(2 + i * w, 4, -60, -4);
+        }
+        else {
+            button.rect = option.rect.adjusted(4 + i * w, 4, -(w * (nCount - i - 1) + 4), -4);
+           /* auto it = option.rect;
+            button.rect = option.rect.adjusted(2 + i * w, 4, -60, -4);
+            auto ss = button.rect;
+            int i = 1;*/
+        }
+
         button.state |= QStyle::State_Enabled;
 
         button.state |= QStyle::State_Enabled;

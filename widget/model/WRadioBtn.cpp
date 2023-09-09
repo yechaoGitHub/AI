@@ -4,6 +4,7 @@
 
 
 #define  radius 12
+#define  round_bot 5
 WRadioBtn::WRadioBtn(QWidget*parent, QColor color)
     : QPushButton(parent)
     , _color(color)
@@ -42,16 +43,16 @@ void WRadioBtn::paintEvent(QPaintEvent* event)
         painter.setPen(QPen(QColor("#B9B9B9")));
         painter.setBrush(QColor("#B9B9B9"));
     }
-    painter.drawEllipse(10, 10, radius*2, radius*2);
+    painter.drawEllipse(round_bot, round_bot, radius*2, radius*2);
     painter.restore();
 
     painter.setPen(QPen(QColor("#ffffff")));
     painter.setBrush(QColor("#ffffff"));
-    painter.drawEllipse(10+3, 10+3, radius+6, radius+6);
+    painter.drawEllipse(round_bot +3, round_bot +3, radius+6, radius+6);
 
     painter.setPen(QPen(_color));
     painter.setBrush(_color);
 
-    painter.drawEllipse(16, 16, radius, radius);
+    painter.drawEllipse(round_bot+6, round_bot+6, radius, radius);
 
 }

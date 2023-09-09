@@ -8,7 +8,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Summary Chat</source>
+        <source>Conversation Suggestion</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -73,7 +73,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>AddVoice</source>
+        <source>Add Voice</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -210,7 +210,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>PushButton</source>
+        <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -255,10 +255,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>AccountNumber</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>#35666</source>
         <translation type="unfinished"></translation>
     </message>
@@ -279,10 +275,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Mobilephone</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>12345778</source>
         <translation type="unfinished"></translation>
     </message>
@@ -292,6 +284,14 @@
     </message>
     <message>
         <source>(Expires on 12/05/2023)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mobile Phone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account Number</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -305,15 +305,19 @@
         <source>Add Generative or Cloned Voice</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>1/10</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>WChatBotMainUI</name>
     <message>
         <source>All templates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Library</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>History</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -370,10 +374,6 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add Voice To My Voice</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>New voice name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -386,7 +386,7 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>EditVoice</source>
+        <source>Edit Voice</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -776,10 +776,6 @@ enabling designers to focus on more creative aspects of their work.</source>
 <context>
     <name>WSoundBotMainUi</name>
     <message>
-        <source>Translation Setting</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Voice Library</source>
         <translation type="unfinished"></translation>
     </message>
@@ -797,6 +793,10 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Sound Source</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -840,6 +840,26 @@ enabling designers to focus on more creative aspects of their work.</source>
         <source>Generated text will appear here</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sounda Speech</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Auto Send</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WSpeechSysPageClass</name>
@@ -853,6 +873,10 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Original Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Speech Synthesis Settings</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -998,10 +1022,6 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> ID</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source> Chat Name</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1011,6 +1031,10 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source> Synopsis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>     ID</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1092,11 +1116,15 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> Id</source>
+        <source> Translation Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source> Translation Type</source>
+        <source>    Id</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>     Id</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1138,15 +1166,11 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>English</source>
+        <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>token</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Chinese</source>
+        <source>PushButton</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

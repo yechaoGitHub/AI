@@ -22,6 +22,10 @@ private slots:
 	void on_pb_last_clicked();
 
 	void onComboxSelect(int);
+
+private:
+	void selCurIndex(int index);
+
 private:
 	Ui::WPageCtlWidgetClass ui;
 

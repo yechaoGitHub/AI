@@ -135,7 +135,7 @@ QLabel#lb_time{
           <string notr="true">color:#848484;</string>
          </property>
          <property name="text">
-          <string>Mobilephone</string>
+          <string>Mobile Phone</string>
          </property>
         </widget>
        </item>
@@ -315,7 +315,7 @@ QLabel#lb_time{
           <string notr="true">color:#848484;</string>
          </property>
          <property name="text">
-          <string>AccountNumber</string>
+          <string>Account Number</string>
          </property>
         </widget>
        </item>

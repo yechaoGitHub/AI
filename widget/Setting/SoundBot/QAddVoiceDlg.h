@@ -2,6 +2,8 @@
 
 #include <QDialog>
 #include "ui_QAddVoiceDlg.h"
+#include "model/FrameLessWidget.h"
+
 
 class QAddVoiceDlg : public QDialog
 {

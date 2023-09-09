@@ -18,6 +18,7 @@ void QAddVoiceDlg::Show(int voiceId, const QString& name)
 {
     _voiceId = voiceId;
     ui.lineEdit->setText(name);
+
     show();
 }
 
@@ -52,12 +53,12 @@ void QAddVoiceDlg::paintEvent(QPaintEvent*)
     if (isActiveWindow()) {
         p.save();
         p.setRenderHint(QPainter::Antialiasing, true);
-        QColor color(0, 0, 0);
-        for (int i = 0; i < 4; i++)
+        QColor color(0, 0, 0, 10);
+        for (int i = 0; i < 2; i++)
         {
-            color.setAlpha(60 - qSqrt(i) * 20);
+            //color.setAlpha(60 - qSqrt(i) * 20);
             p.setPen(color);
-            p.drawRoundedRect(rect().adjusted(4 - i, 4 - i, i - 4, i - 4), 4, 4);
+            p.drawRoundedRect(rect().adjusted(2 - i, 2 - i, i - 2, i - 2), 8, 8);
         }
         p.restore();
     }
@@ -65,5 +66,5 @@ void QAddVoiceDlg::paintEvent(QPaintEvent*)
     p.setRenderHint(QPainter::Antialiasing, true);
     p.setPen(QColor("#ffffff"));
     p.setBrush(QColor("#ffffff"));
-    p.drawRoundedRect(4, 4, width() - 8, height() - 8, 8, 8);
+    p.drawRoundedRect(8, 8, width() - 10, height() - 10, 8, 8);
 }

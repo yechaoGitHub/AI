@@ -159,7 +159,7 @@ border:none;
       <item>
        <widget class="QLabel" name="label_page">
         <property name="text">
-         <string>1/10</string>
+         <string/>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>

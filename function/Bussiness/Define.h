@@ -53,6 +53,7 @@ struct strc_ChatbotInfo {
 	int		 type = 0;
 	QString  name;
 	QString  desc;
+	int	     id = 0;
 	QString  initialMessage;
 	bool     isRecommend = false;
 };

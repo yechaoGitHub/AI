@@ -5,11 +5,21 @@
 #include "WRobotNavigation.h"
 #include "base/GlobalSetting.h"
 #include "AiDebug.h"
+#include <QSharedMemory>
+
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon(":QtTest/icon/icon.png"));
+
+    QSharedMemory shared("AiSound");
+    if (shared.attach())
+    {
+        exit(0);
+    }
+    shared.create(1);
+
     QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
     if (!SETTING.init(QString(SETTING.getRootLocalPath() + "/system.ini"))) {
         return -1;
