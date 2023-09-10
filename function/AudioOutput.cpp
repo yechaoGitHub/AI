@@ -12,17 +12,7 @@ AudioOutput::~AudioOutput()
 
 void AudioOutput::Initialize()
 {
-    _outInfo = QAudioDeviceInfo::defaultOutputDevice();
-
-    connect(this, &AudioOutput::start_speaker, this, &AudioOutput::StartSpeakerInternal);
-    connect(this, &AudioOutput::end_speaker, this, &AudioOutput::EndSpeakerInternal);
-    connect(this, &AudioOutput::write_output_data, this, &AudioOutput::WriteOutputDataInternal);
-    this->moveToThread(&_workThread);
-}
-
-void AudioOutput::Initialize(const QAudioDeviceInfo& info)
-{
-    _outInfo = info;
+    _devInfo = QAudioDeviceInfo::defaultOutputDevice();
 
     connect(this, &AudioOutput::start_speaker, this, &AudioOutput::StartSpeakerInternal);
     connect(this, &AudioOutput::end_speaker, this, &AudioOutput::EndSpeakerInternal);
@@ -40,6 +30,23 @@ void AudioOutput::Uninitialize()
 
 void AudioOutput::StartSpeaker()
 {
+    if (_workThread.isRunning())
+    {
+        return;
+    }
+
+    _workThread.start();
+    emit start_speaker();
+}
+
+void AudioOutput::StartSpeaker(const QAudioDeviceInfo& info)
+{
+    if (_workThread.isRunning())
+    {
+        return;
+    }
+
+    _devInfo = info;
     _workThread.start();
     emit start_speaker();
 }
@@ -93,7 +100,7 @@ void AudioOutput::StartSpeakerInternal()
     auidoFormat.setByteOrder(QAudioFormat::LittleEndian);
     auidoFormat.setSampleType(QAudioFormat::SignedInt);
 
-    _audioOutput = new QAudioOutput{ _outInfo, auidoFormat, this };
+    _audioOutput = new QAudioOutput{ _devInfo, auidoFormat, this };
     _audioOutput->setBufferSize(1280);
 
     _ioOutput = _audioOutput->start();

@@ -63,9 +63,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile />
     <ClCompile>
-      <AdditionalIncludeDirectories>.\widget;.\ui;.\function;.\;$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\ffmpeg\include;.\widget;.\ui;.\function;.\;$(Qt_INCLUDEPATH_);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>.\ffmpeg\lib\*.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -114,6 +117,7 @@
     <ClCompile Include="function\HttpAsync.cpp" />
     <ClCompile Include="function\QAudioPlayer.cpp" />
     <ClCompile Include="function\QHook.cpp" />
+    <ClCompile Include="function\QPcmToMp3.cpp" />
     <ClCompile Include="function\Translation.cpp" />
     <ClCompile Include="function\VoiceCompositor.cpp" />
     <ClCompile Include="model\FrameLessWidget.cpp" />
@@ -231,6 +235,7 @@
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="function\QPcmToMp3.h" />
     <ClInclude Include="resource.h" />
     <QtMoc Include="widget\Setting\SoundBot\WAddVoiceModel.h" />
     <QtMoc Include="widget\Speech\WSimTrans.h" />

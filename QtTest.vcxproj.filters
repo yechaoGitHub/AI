@@ -316,6 +316,9 @@
     <ClCompile Include="widget\Setting\SoundBot\WAddVoiceModel.cpp">
       <Filter>widget\Setting\SoundBot</Filter>
     </ClCompile>
+    <ClCompile Include="function\QPcmToMp3.cpp">
+      <Filter>function</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -714,6 +717,9 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="function\QPcmToMp3.h">
+      <Filter>function</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

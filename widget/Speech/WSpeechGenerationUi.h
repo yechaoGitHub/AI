@@ -29,6 +29,7 @@ private:
     void CloseClicked();
     void StartClicked();
     void SendClicked();
+    void ExportClicked();
     void TranslationReceived(const QString& src, const QString& dst, int type);
 
     Ui::WSpeechGenerationUiClass    ui;

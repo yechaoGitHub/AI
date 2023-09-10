@@ -1,7 +1,8 @@
 #pragma once
+#include "VoiceType.h"
 #include "AudioInput.h"
 #include "AudioOutput.h"
-#include "VoiceType.h"
+#include "QPcmToMp3.h"
 
 #include <QWebsocket>
 #include <QThread>
@@ -15,8 +16,9 @@ public:
 
     void Initialize();
     void Uninitialize();
-    void Connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender);
+    void Connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev = {}, const QAudioDeviceInfo& speakerDev = {});
     void SendMessage(const QString& msg);
+    bool SaveMp3(const QString& savePath);
     void Disconnect();
     bool IsRunning();
 
@@ -27,13 +29,13 @@ Q_SIGNALS:
 
 private:
 Q_SIGNALS:
-    void connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender);
+    void connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev);
     void disconnect();
     void receiveAudio(const QByteArray& data);
     void sendMessage(const QString& msg);
 
 private:
-    void ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender);
+    void ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev);
     void DisconnectInternal();
     void SendMessageInternal(const QString& msg);
 
@@ -50,8 +52,11 @@ private:
     void SocketTextMessageReceived(const QString& message);
     void timerEvent(QTimerEvent* ev) override;
 
+    QAudioDeviceInfo        _micDev;
+    QAudioDeviceInfo        _speakerDev;
     AudioInput              _audioInput;
     AudioOutput             _audioOutput;
+    QPcmToMp3               _transformMp3;
     QWebSocket              _webSocket;
     QThread                 _workThread;
     QString                 _srcLan;
@@ -59,6 +64,7 @@ private:
     QString                 _speaker;
     bool                    _autoSender = false;
 
+    QByteArray              _voiceBuffer;
     QByteArray              _buffer;
     bool                    _connected = false;
     int                     _heartBeatTimer = 0;

@@ -24,6 +24,8 @@ VoiceCompositor::~VoiceCompositor()
 
 void VoiceCompositor::Initialize()
 {
+    _transformMp3.Initialize(16000, AV_SAMPLE_FMT_S16P, 2);
+
     _webSocket.setParent(this);
     QObject::connect(&_webSocket, &QWebSocket::connected, this, &VoiceCompositor::SocketConnected);
     QObject::connect(&_webSocket, &QWebSocket::disconnected, this, &VoiceCompositor::SocketDisconnected);
@@ -49,17 +51,23 @@ void VoiceCompositor::Uninitialize()
 
     _audioInput.Uninitialize();
     _audioOutput.Uninitialize();
+    _transformMp3.Clear();
 }
 
-void VoiceCompositor::Connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender)
+void VoiceCompositor::Connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev)
 {
     _workThread.start();
-    emit connect(token, srcLan, destLan, speaker, autoSender);
+    emit connect(token, srcLan, destLan, speaker, autoSender, micDev, speakerDev);
 }
 
 void VoiceCompositor::SendMessage(const QString& msg)
 {
     emit sendMessage(msg);
+}
+
+bool VoiceCompositor::SaveMp3(const QString& savePath)
+{
+    return _transformMp3.TransformToMp3(savePath, _voiceBuffer);
 }
 
 void VoiceCompositor::Disconnect()
@@ -121,8 +129,8 @@ void VoiceCompositor::AudioStart(bool enable)
 {
     if (enable)
     {
-        _audioInput.StartMic();
-        _audioOutput.StartSpeaker();
+        _audioInput.StartMic(_micDev);
+        _audioOutput.StartSpeaker(_speakerDev);
     }
     else
     {
@@ -165,8 +173,10 @@ void VoiceCompositor::ReceiveAudioInput(QByteArray data)
     _webSocket.sendTextMessage(byteArray);
 }
 
-void VoiceCompositor::ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender)
+void VoiceCompositor::ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev)
 {
+    _micDev = micDev;
+    _speakerDev = speakerDev;
     _srcLan = srcLan;
     _destLan = destLan;
     _speaker = speaker;
@@ -284,7 +294,8 @@ void VoiceCompositor::SocketTextMessageReceived(const QString& message)
             _buffer.append(std::move(audioData));
             if (type == "FIN")
             {
-                _audioOutput.WriteOutputData(std::move(_buffer));
+                _audioOutput.WriteOutputData(_buffer);
+                _voiceBuffer = std::move(_buffer);
                 _buffer.clear();
             }
         }

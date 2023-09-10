@@ -1,9 +1,12 @@
 #include "WSpeechGenerationUi.h"
 #include "AiSound.h"
+#include "base/GlobalSetting.h"
 
+#include <QFileDialog>
 #include <QPainter>
 #include <QListView>
 #include <QPainterPath>
+#include <QStandardPaths>
 
 WSpeechGenerationUi::WSpeechGenerationUi(QWidget *parent)
     : FrameLessWidget(parent)
@@ -29,10 +32,10 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget *parent)
     auto& ins = AiSound::GetInstance();
     auto& voiceCompositor = ins.GetVoiceCompositor();
 
-    //connect(ui.pb_simTrans, &QPushButton::clicked, this, &WSpeechGenerationUi::SimTransClicked);
     connect(ui.pb_start, &QPushButton::clicked, this, &WSpeechGenerationUi::StartClicked);
     connect(ui.pb_close, &QPushButton::clicked, this, &WSpeechGenerationUi::CloseClicked);
     connect(ui.pb_send, &QPushButton::clicked, this, &WSpeechGenerationUi::SendClicked);
+    connect(ui.pb_export, &QPushButton::clicked, this, &WSpeechGenerationUi::ExportClicked);
     connect(&voiceCompositor, &VoiceCompositor::translationReceived, this, &WSpeechGenerationUi::TranslationReceived);
 }
 
@@ -103,13 +106,21 @@ void WSpeechGenerationUi::StartClicked()
     auto& name = ins.GetVoiceData()[index].voiceCode;
     auto isSend = ui.cbAutoSend->isChecked();
 
-    AiSound::GetInstance().GetVoiceCompositor().Connect(token, _srcLan.language, _destLan.language, name, isSend);
+    AiSound::GetInstance().GetVoiceCompositor().Connect(token, _srcLan.language, _destLan.language, name, isSend, SETTING.MicDeviceInfo(), SETTING.SpeakerDeviceInfo());
 }
 
 void WSpeechGenerationUi::SendClicked()
 {
     auto&& text = ui.textEdit->toPlainText();
     AiSound::GetInstance().GetVoiceCompositor().SendMessage(text);
+}
+
+void WSpeechGenerationUi::ExportClicked()
+{
+    QString homeLocation = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
+    auto savePath = QFileDialog::getSaveFileName(this, QString::fromLocal8Bit("Save Mp3 File"), homeLocation, "mp3(*.mp3)");
+    auto& vc = AiSound::GetInstance().GetVoiceCompositor();
+    vc.SaveMp3(savePath);
 }
 
 void WSpeechGenerationUi::TranslationReceived(const QString& src, const QString& dst, int type)

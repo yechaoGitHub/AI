@@ -40,7 +40,6 @@ void AudioInput::StartMic()
         return;
     }
 
-    _devInfo = {};
     _workThread.start();
     emit start_mic();
 }

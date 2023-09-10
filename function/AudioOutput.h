@@ -13,10 +13,10 @@ public:
     ~AudioOutput();
 
     void Initialize();
-    void Initialize(const QAudioDeviceInfo& info);
     void Uninitialize();
 
     void StartSpeaker();
+    void StartSpeaker(const QAudioDeviceInfo& info);
     void EndSpeaker();
 
     void WriteOutputData(QByteArray data);
@@ -35,7 +35,7 @@ private:
     void EndSpeakerInternal();
     void WriteOutputDataInternal(QByteArray data);
 
-    QAudioDeviceInfo        _outInfo;
+    QAudioDeviceInfo        _devInfo;
     QAudioOutput*           _audioOutput = nullptr;
     QIODevice*              _ioOutput = nullptr;
     QThread                 _workThread;
