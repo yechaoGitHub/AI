@@ -4,6 +4,10 @@
 #include "ui_WRobotNavigation.h"
 #include "model/FrameLessWidget.h"
 #include "WRobotSettingMenu.h"
+#include <QSystemTrayIcon>
+#include <QSharedPointer>
+#include <QMenu>
+#include <QAction>
 
 
 enum Navig_Type {
@@ -33,6 +37,15 @@ private slots:
 	void on_pb_speech_clicked();
 
 private:
+	void initTrayIcon();
+
+private:
 	Ui::WRobotNavigationClass ui;
 	WRobotSettingMenu*		_setting_menu = nullptr;
+
+	QSharedPointer<QSystemTrayIcon> trayIcon_;
+	QSharedPointer<QMenu>           trayMenu_;
+	QSharedPointer<QAction>         exitAction_;
+	QSharedPointer<QAction>         exitAction1_;
+	QSharedPointer<QAction>         exitAction2_;
 };

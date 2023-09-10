@@ -294,7 +294,7 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
         _set_main->Show(1);
     }
     else if (type == Navig_Type::Quite) {
-
+        qApp->exit();
     }
 }
 

@@ -15,7 +15,7 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
     ui.setupUi(this);
     this->setWidgetType(true, DragType::Drag_Null, false);
     setAttribute(Qt::WA_TranslucentBackground);
-    this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint | Qt::SubWindow);
+    this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint);
 
     ui.comboBox_lang->setView(new QListView());
     ui.comboBox_lang->addItem("English");
@@ -80,7 +80,8 @@ void WSpeechGenerationUi::closeEvent(QCloseEvent* event)
 
 void WSpeechGenerationUi::CloseClicked()
 {
-    close();
+    this->hide();
+    //close();
 }
 
 void WSpeechGenerationUi::StartClicked()

@@ -672,6 +672,25 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
 </context>
 <context>
+    <name>WRobotNavigation</name>
+    <message>
+        <source>AiSound</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Setting</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Float Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WRobotNavigationClass</name>
     <message>
         <source>WRobotNavigation</source>
@@ -876,7 +895,7 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Speech Synthesis Settings</source>
+        <source>Speech Synthesis</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -884,10 +903,6 @@ enabling designers to focus on more creative aspects of their work.</source>
     <name>WTranslationPageClass</name>
     <message>
         <source>WTranslationPage</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Translation Setting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -924,6 +939,10 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Original Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Translation </source>
         <translation type="unfinished"></translation>
     </message>
 </context>

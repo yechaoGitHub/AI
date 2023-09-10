@@ -7,14 +7,14 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
     : QWidget(parent)
 {
     ui.setupUi(this);
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::SubWindow | Qt::X11BypassWindowManagerHint);
+    this->setWindowFlags(Qt::FramelessWindowHint| Qt::X11BypassWindowManagerHint);
     setAttribute(Qt::WA_TranslucentBackground);
     this->installEventFilter(this);
     connect(ui.pb_min, &QPushButton::clicked, this, [this] {
         this->showMinimized();
         });
     connect(ui.pb_close, &QPushButton::clicked, this, [this] {
-        this->close();
+        this->hide();
         });
 
     connect(ui.select_widget, &WSettingSelectWidget::sig_robot_clicked, this, [this](bool clicked) {
@@ -49,6 +49,10 @@ WSettingMainUi::~WSettingMainUi()
 
 void WSettingMainUi::Show(int type)
 {
+    if (!this->isHidden()) {
+
+    }
+
     show();
     if (type == 1) {
         ui.chatbot_page->changeSelectBtn(WNavbarButton::BarType::Bar_Lib);

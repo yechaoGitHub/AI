@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/QtTest">
+    <file>icon/robot_main.png</file>
     <file>icon/Setting/set_icon.png</file>
     <file>icon/Setting/sett.png</file>
     <file>icon/Setting/soundbot/add_voice.png</file>

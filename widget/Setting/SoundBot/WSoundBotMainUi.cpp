@@ -31,6 +31,7 @@ void WSoundBotMainUi::initCheck()
 {
 	bool ret = SETTING.getSoundBot();
 	ui.checkBox->setChecked(ret);
+	ui.pb_sound_page1->click();
 }
 
 void WSoundBotMainUi::slot_sound_back()

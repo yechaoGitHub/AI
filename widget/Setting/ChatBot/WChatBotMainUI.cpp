@@ -38,6 +38,7 @@ WChatBotMainUI::~WChatBotMainUI()
 void WChatBotMainUI::initCheck()
 {
 	ui.pb_open->setChecked(SETTING.getRobotBot());
+	ui.pb_lib->click();
 }
 
 void WChatBotMainUI::slot_getChatBotType(bool, int, const QMap<int, QString>& type_map)

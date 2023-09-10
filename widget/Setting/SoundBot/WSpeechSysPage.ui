@@ -32,7 +32,7 @@
 font: 18px &quot;微软雅黑&quot;;</string>
        </property>
        <property name="text">
-        <string>Speech Synthesis Settings</string>
+        <string>Speech Synthesis</string>
        </property>
       </widget>
      </item>

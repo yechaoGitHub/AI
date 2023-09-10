@@ -8,7 +8,6 @@ RobotChatMainUI::RobotChatMainUI(QWidget *parent)
 {
     ui.setupUi(this);
     this->setWidgetType(true, DragType::Drag_Null, false);
-    this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint | Qt::SubWindow);
 
     ui.stackedWidget->setCurrentWidget(ui.chat_desc_wgt);
     connect(ui.chat_desc_wgt, &WChatDesc::sig_startClick, this, &RobotChatMainUI::StartBtnClicked);
@@ -26,7 +25,7 @@ void RobotChatMainUI::on_pb_min_clicked()
 
 void RobotChatMainUI::on_pb_close_clicked()
 {
-    this->close();
+    this->hide();
 }
 
 void RobotChatMainUI::StartBtnClicked()
