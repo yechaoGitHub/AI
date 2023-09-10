@@ -23,6 +23,7 @@ public:
     void StartMic();
     void StartMic(const QAudioDeviceInfo& info);
     void EndMic();
+    bool IsRunning();
 
 Q_SIGNALS:
     void audioInput(QByteArray data);

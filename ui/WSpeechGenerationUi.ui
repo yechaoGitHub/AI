@@ -792,6 +792,9 @@ color:#FFFFFFFF
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_8">
+      <property name="spacing">
+       <number>8</number>
+      </property>
       <property name="leftMargin">
        <number>0</number>
       </property>
@@ -805,9 +808,40 @@ color:#FFFFFFFF
        <number>0</number>
       </property>
       <item>
-       <widget class="WSpeechEffect" name="widget" native="true">
+       <widget class="QPushButton" name="pb_play">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16</width>
+          <height>16</height>
+         </size>
+        </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="WSpeechTimer" name="vcEffectTimer" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>1</verstretch>
          </sizepolicy>
@@ -950,9 +984,9 @@ border-radius:8px;
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>WSpeechEffect</class>
+   <class>WSpeechTimer</class>
    <extends>QWidget</extends>
-   <header location="global">.\widget\Speech\wspeecheffect.h</header>
+   <header location="global">.\widget\Speech\wspeechTimer.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

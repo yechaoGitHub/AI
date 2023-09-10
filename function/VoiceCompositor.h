@@ -21,11 +21,17 @@ public:
     bool SaveMp3(const QString& savePath);
     void Disconnect();
     bool IsRunning();
+    bool IsMicWorking();
+
+    void StartMic();
+    void StopMic();
 
 Q_SIGNALS:
     void connected();
     void disconnected();
     void translationReceived(const QString& src, const QString& dst, int type);
+    void soundPlay(bool play);
+    void stateChanged();
 
 private:
 Q_SIGNALS:
@@ -38,6 +44,7 @@ private:
     void ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev);
     void DisconnectInternal();
     void SendMessageInternal(const QString& msg);
+    void SoundPlayInternal(bool play);
 
     void SendParam();
     void SendHearBeat();

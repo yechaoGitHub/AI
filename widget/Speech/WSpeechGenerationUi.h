@@ -1,7 +1,6 @@
 #pragma once
 
 #include "VoiceType.h"
-#include "WSimTrans.h"
 #include "model/FrameLessWidget.h"
 
 #include <QWidget>
@@ -20,21 +19,19 @@ public:
 protected:
     void paintEvent(QPaintEvent* event) override;
     void showEvent(QShowEvent* event) override;
-
-private slots:
-    void on_pb_close_clicked();
+    void closeEvent(QCloseEvent* event) override;
 
 private:
-    //void SimTransClicked();
     void CloseClicked();
     void StartClicked();
     void SendClicked();
     void ExportClicked();
+    void PlayClicked();
     void TranslationReceived(const QString& src, const QString& dst, int type);
+    void VcStateChanged();
 
     Ui::WSpeechGenerationUiClass    ui;
 
-    WSimTrans*                      _simTrans = nullptr;
     TranslationLanguage             _srcLan;
     TranslationLanguage             _destLan;
     std::vector<VoiceData>          _voiceData;

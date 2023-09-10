@@ -298,9 +298,6 @@
     <ClCompile Include="function\AiDebug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="widget\Speech\WSpeechEffect.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="function\QAudioPlayer.cpp">
       <Filter>function</Filter>
     </ClCompile>
@@ -310,14 +307,14 @@
     <ClCompile Include="widget\Setting\SoundBot\WEditVoiceDlg.cpp">
       <Filter>widget\Setting\SoundBot</Filter>
     </ClCompile>
-    <ClCompile Include="widget\Speech\WSimTrans.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="widget\Setting\SoundBot\WAddVoiceModel.cpp">
       <Filter>widget\Setting\SoundBot</Filter>
     </ClCompile>
     <ClCompile Include="function\QPcmToMp3.cpp">
       <Filter>function</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Speech\WSpeechTimer.cpp">
+      <Filter>widget\Speech</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -449,9 +446,6 @@
     </QtUic>
     <QtUic Include="widget\Setting\SoundBot\WEditVoiceDlg.ui">
       <Filter>widget\Setting\SoundBot</Filter>
-    </QtUic>
-    <QtUic Include="ui\SimultaneousInterpretation.ui">
-      <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="widget\Setting\SoundBot\WAddVoiceModel.ui">
       <Filter>widget\Setting\SoundBot</Filter>
@@ -680,9 +674,6 @@
     <QtMoc Include="function\QHook.h">
       <Filter>function</Filter>
     </QtMoc>
-    <QtMoc Include="widget\Speech\WSpeechEffect.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="function\AiDebug.h">
       <Filter>Header Files</Filter>
     </QtMoc>
@@ -695,11 +686,11 @@
     <QtMoc Include="widget\Setting\SoundBot\WEditVoiceDlg.h">
       <Filter>widget\Setting\SoundBot</Filter>
     </QtMoc>
-    <QtMoc Include="widget\Speech\WSimTrans.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="widget\Setting\SoundBot\WAddVoiceModel.h">
       <Filter>widget\Setting\SoundBot</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Speech\WSpeechTimer.h">
+      <Filter>widget\Speech</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

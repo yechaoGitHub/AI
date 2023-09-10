@@ -18,6 +18,7 @@ public:
     void StartSpeaker();
     void StartSpeaker(const QAudioDeviceInfo& info);
     void EndSpeaker();
+    bool IsRunning();
 
     void WriteOutputData(QByteArray data);
 

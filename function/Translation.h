@@ -30,11 +30,13 @@ public:
     void Disconnect();
     bool Connected();
     bool IsRunning();
+    bool IsMicWorking();
 
 Q_SIGNALS:
     void connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, SystemLanguage language);
     void disconnect();
     void soundPlay(bool play);
+    void stateChanged();
 
     void connected();
     void disconnected();

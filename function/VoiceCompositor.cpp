@@ -40,6 +40,7 @@ void VoiceCompositor::Initialize()
     QObject::connect(this, &VoiceCompositor::disconnect, this, &VoiceCompositor::DisconnectInternal);
     QObject::connect(this, &VoiceCompositor::sendMessage, this, &VoiceCompositor::SendMessageInternal);
     QObject::connect(&_audioInput, &AudioInput::audioInput, this, &VoiceCompositor::ReceiveAudioInput);
+    QObject::connect(&_audioInput, &AudioInput::soundPlay, this, &VoiceCompositor::SoundPlayInternal);
 }
 
 void VoiceCompositor::Uninitialize()
@@ -82,6 +83,25 @@ void VoiceCompositor::Disconnect()
 bool VoiceCompositor::IsRunning()
 {
     return _workThread.isRunning();
+}
+
+bool VoiceCompositor::IsMicWorking()
+{
+    return _audioInput.IsRunning();
+}
+
+void VoiceCompositor::StartMic()
+{
+    _audioInput.StartMic();
+
+    emit stateChanged();
+}
+
+void VoiceCompositor::StopMic()
+{
+    _audioInput.EndMic();
+
+    emit stateChanged();
 }
 
 void VoiceCompositor::SendParam()
@@ -231,15 +251,20 @@ void VoiceCompositor::SendMessageInternal(const QString& msg)
 #endif
 }
 
+void VoiceCompositor::SoundPlayInternal(bool play)
+{
+    emit soundPlay(play);
+}
+
 void VoiceCompositor::SocketConnected()
 {
     SendHearBeat();
     SendParam();
     AudioStart(true);
-
     _heartBeatTimer = startTimer(5000);
     _connected = true;
     emit connected();
+    emit stateChanged();
 }
 
 void VoiceCompositor::SocketError(QAbstractSocket::SocketError)

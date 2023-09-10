@@ -15,11 +15,14 @@ public:
 
     void StartTimer(bool start);
     void Play(bool play);
+    void Clear();
 
 protected:
     void timerEvent(QTimerEvent* event) override;
 
 private:
+    void VcSoundPlay(bool play);
+
     QLabel*             _effect = nullptr;
     QMovie*             _movie = nullptr;
     QLabel*             _counter = nullptr;

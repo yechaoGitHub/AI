@@ -4,20 +4,23 @@
 #include <QMovie>
 #include <QElapsedTimer>
 
-class WSpeechEffect : public QWidget
+class WSpeechTimer : public QWidget
 {
     Q_OBJECT
 public:
-    WSpeechEffect(QWidget* parent = nullptr);
-    ~WSpeechEffect();
+    WSpeechTimer(QWidget* parent = nullptr);
+    ~WSpeechTimer();
 
     void StartTimer(bool start);
     void Play(bool play);
+    void Clear();
 
 protected:
     void timerEvent(QTimerEvent* event) override;
 
 private:
+    void VcSoundPlay(bool play);
+
     QLabel*             _effect = nullptr;
     QMovie*             _movie = nullptr;
 

@@ -66,6 +66,11 @@ void AudioInput::EndMic()
     emit soundPlay(false);
 }
 
+bool AudioInput::IsRunning()
+{
+    return _workThread.isRunning();
+}
+
 void AudioInput::timerEvent(QTimerEvent* event)
 {
     auto id = event->timerId();
@@ -90,6 +95,11 @@ void AudioInput::StartMicInternal()
 
     _ioInput = _audioInput->start();
     _inTimer = startTimer(1, Qt::PreciseTimer);
+
+    if (!_ioInput)
+    {
+        EndMicInternal();
+    }
 
 #ifdef MONITOR_MIC
     _audioOutput.StartSpeaker();
@@ -140,7 +150,7 @@ void AudioInput::ReadAudioData(QIODevice* dev, int& readLen, QByteArray& bufferD
     {
         if (readLen == 1280)
         {
-            if (AvgDb(bufferData) > -15)
+            if (AvgDb(bufferData) > -13)
             {
 #ifdef MONITOR_MIC
                 _audioOutput.WriteOutputData(bufferData);

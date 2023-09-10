@@ -5,6 +5,23 @@
 #include <QMouseEvent>
 #include <QPainterPath>
 
+
+QString stopStyle = "background-image:url(:/QtTest/icon/stop.png);\
+background-position:left;\
+background-repeat:no-repeat;\
+text-align:left;\
+padding-left:20px;\
+font-size:14px;\
+color:#FFFFFF;";
+
+QString playStyle = "background-image:url(:/QtTest/icon/Speech/pause.png);\
+background-position:left;\
+background-repeat:no-repeat;\
+text-align:left;\
+padding-left:20px;\
+font-size:14px;\
+color:#FFFFFF;";
+
 WTransaltionMain::WTransaltionMain(QWidget* parent) :
     QWidget{ parent }
 {
@@ -15,14 +32,15 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
 
     this->resize(1078, 252);
 
-    //connect(ui.stopBtn, &WTranslationPlayBtn::stateChanged, this, &WTransaltionMain::StopBtnStateChanged);
     connect(ui.minBtn, &QPushButton::clicked, this, &WTransaltionMain::MinClicked);
     connect(ui.closeBtn, &QPushButton::clicked, this, &WTransaltionMain::CloseClicked);
     connect(ui.lockButton, &QPushButton::clicked, this, &WTransaltionMain::LockClicked);
+    connect(ui.stopBtn, &QPushButton::clicked, this, &WTransaltionMain::StopClicked);
 
     auto& translation = AiSound::GetInstance().GetTranslation();
     connect(&translation, &Translation::translationReceived, this, &WTransaltionMain::TranslationReceived);
     connect(&translation, &Translation::soundPlay, this, &WTransaltionMain::PlayInternal);
+    connect(&translation, &Translation::stateChanged, this, &WTransaltionMain::TransStateChanged);
 
     setMouseTracking(true);
 }
@@ -87,10 +105,15 @@ void WTransaltionMain::showEvent(QShowEvent* event)
     auto& ins = AiSound::GetInstance();
     bool enableConversation = ins.IsConversationSuggestionShow();
     auto& token = ins.Token();
-    ui.timerWidget->StartTimer(true);
-    //ui.stopBtn->SetState(WTranslationPlayBtn::PLAY);
+    ui.timerWidget->Clear();
 
     ins.GetTranslation().Connect(token, _srcLan.language, _destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo());
+}
+
+void WTransaltionMain::closeEvent(QCloseEvent* event)
+{
+    auto& translation = AiSound::GetInstance().GetTranslation();
+    translation.Disconnect();
 }
 
 void WTransaltionMain::enterEvent(QEvent* event)
@@ -112,8 +135,6 @@ void WTransaltionMain::MinClicked()
 
 void WTransaltionMain::CloseClicked()
 {
-    auto& translation = AiSound::GetInstance().GetTranslation();
-    translation.Disconnect();
     close();
 }
 
@@ -130,9 +151,52 @@ void WTransaltionMain::LockClicked()
     show();
 }
 
+void WTransaltionMain::StopClicked()
+{
+    auto& trans = AiSound::GetInstance().GetTranslation();
+    if (trans.IsRunning())
+    {
+        if (trans.IsMicWorking())
+        {
+            trans.StopMic();
+            ui.timerWidget->StartTimer(false);
+
+            ui.stopBtn->setStyleSheet(playStyle);
+            ui.stopBtn->setText(QString::fromLocal8Bit("Play"));
+        }
+        else
+        {
+            trans.StartMic();
+            ui.timerWidget->StartTimer(true);
+            ui.stopBtn->setStyleSheet(stopStyle);
+            ui.stopBtn->setText(QString::fromLocal8Bit("Stop"));
+        }
+    }
+}
+
 void WTransaltionMain::PlayInternal(bool play)
 {
     ui.timerWidget->Play(play);
+}
+
+void WTransaltionMain::TransStateChanged()
+{
+    auto& trans = AiSound::GetInstance().GetTranslation();
+    if (trans.IsRunning())
+    {
+        if (trans.IsMicWorking())
+        {
+            ui.timerWidget->StartTimer(true);
+            ui.stopBtn->setStyleSheet(stopStyle);
+            ui.stopBtn->setText(QString::fromLocal8Bit("Stop"));
+        }
+        else
+        {
+            ui.timerWidget->StartTimer(false);
+            ui.stopBtn->setStyleSheet(playStyle);
+            ui.stopBtn->setText(QString::fromLocal8Bit("Play"));
+        }
+    }
 }
 
 void WTransaltionMain::TranslationReceived(const QString& src, const QString& dst, int type)
@@ -155,16 +219,3 @@ void WTransaltionMain::TranslationReceived(const QString& src, const QString& ds
         _newSubtitle = true;
     }
 }
-
-//void WTransaltionMain::StopBtnStateChanged(WTranslationPlayBtn::State state)
-//{
-//    auto& translation = AiSound::GetInstance().GetTranslation();
-//    if (state == WTranslationPlayBtn::STOP)
-//    {
-//        translation.StopMic();
-//    }
-//    else
-//    {
-//        translation.StartMic();
-//    }
-//}

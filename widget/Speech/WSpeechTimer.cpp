@@ -1,7 +1,8 @@
-#include "WSpeechEffect.h"
+#include "WSpeechTimer.h"
+#include "AiSound.h"
 #include <QHBoxLayout>
 
-WSpeechEffect::WSpeechEffect(QWidget* parent) :
+WSpeechTimer::WSpeechTimer(QWidget* parent) :
     QWidget{ parent }
 {
     QHBoxLayout* horizontalLayout = new QHBoxLayout(this);
@@ -10,11 +11,13 @@ WSpeechEffect::WSpeechEffect(QWidget* parent) :
 
     _effect = new QLabel{ this };
     _effect->setStyleSheet("border:1px solid;border-radius:8px;border-color:rgba(255,255,255,50%);");
+    _effect->setMaximumSize(QSize{425, 44});
+    _effect->setMinimumSize(QSize{ 425, 44});
 
     _movie = new QMovie(":/QtTest/icon/color_sound.apng", "apng", this);
-    _movie->start();
     _effect->setMovie(_movie);
     horizontalLayout->addWidget(_effect);
+
 
     _counter = new QLabel{ this };
     _counter->setText("00:00");
@@ -22,13 +25,19 @@ WSpeechEffect::WSpeechEffect(QWidget* parent) :
     horizontalLayout->addWidget(_counter);
 
     startTimer(std::chrono::milliseconds{ 100 });
+
+    auto& vc = AiSound::GetInstance().GetVoiceCompositor();
+    connect(&vc, &VoiceCompositor::soundPlay, this, &WSpeechTimer::VcSoundPlay);
+
+    //_movie->start();
+    //_movie->stop();
 }
 
-WSpeechEffect::~WSpeechEffect()
+WSpeechTimer::~WSpeechTimer()
 {
 }
 
-void WSpeechEffect::StartTimer(bool start)
+void WSpeechTimer::StartTimer(bool start)
 {
     if (start)
     {
@@ -45,12 +54,13 @@ void WSpeechEffect::StartTimer(bool start)
     else
     {
         _runCounter = false;
+        Play(false);
     }
 }
 
-void WSpeechEffect::Play(bool play)
+void WSpeechTimer::Play(bool play)
 {
-    if (play)
+    if (play && _runCounter)
     {
         _movie->start();
     }
@@ -60,7 +70,7 @@ void WSpeechEffect::Play(bool play)
     }
 }
 
-void WSpeechEffect::timerEvent(QTimerEvent* event)
+void WSpeechTimer::timerEvent(QTimerEvent* event)
 {
     if (_runCounter)
     {
@@ -70,3 +80,17 @@ void WSpeechEffect::timerEvent(QTimerEvent* event)
         _counter->setText(text);
     }
 }
+
+void WSpeechTimer::VcSoundPlay(bool play)
+{
+    Play(play);
+}
+
+void  WSpeechTimer::Clear()
+{
+    StartTimer(false);
+    _passTime = 0;
+    _preTime = 0;
+    _counter->setText("00:00");
+}
+

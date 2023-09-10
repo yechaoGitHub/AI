@@ -1,4 +1,7 @@
 #include "WTranslationTimer.h"
+
+#include "AiSound.h"
+
 #include <QHBoxLayout>
 #include <QMovie>
 #include <QTime>
@@ -19,8 +22,11 @@ WTranslationTimer::WTranslationTimer(QWidget* parent) :
     sizePolicy.setVerticalStretch(1);
     _effect->setSizePolicy(sizePolicy);
 
+    _effect->setMaximumSize(QSize{ 206, 36 });
+    _effect->setMinimumSize(QSize{ 206, 36 });
+
+
     _movie = new QMovie(":/QtTest/icon/white_sound.apng", "apng", this);
-    _movie->start();
     _effect->setMovie(_movie);
     horizontalLayout->addWidget(_effect);
 
@@ -29,6 +35,9 @@ WTranslationTimer::WTranslationTimer(QWidget* parent) :
     horizontalLayout->addWidget(_counter);
 
     startTimer(std::chrono::milliseconds{100});
+
+    auto& trans = AiSound::GetInstance().GetTranslation();
+    connect(&trans, &Translation::soundPlay, this, &WTranslationTimer::VcSoundPlay);
 }
 
 WTranslationTimer::~WTranslationTimer()
@@ -57,12 +66,13 @@ void WTranslationTimer::StartTimer(bool start)
     else
     {
         _runCounter = false;
+        Play(false);
     }
 }
 
 void WTranslationTimer::Play(bool play)
 {
-    if (play)
+    if (play && _runCounter)
     {
         _movie->start();
     }
@@ -70,6 +80,14 @@ void WTranslationTimer::Play(bool play)
     {
         _movie->stop();
     }
+}
+
+void WTranslationTimer::Clear()
+{
+    StartTimer(false);
+    _passTime = 0;
+    _preTime = 0;
+    _counter->setText("00:00");
 }
 
 void WTranslationTimer::timerEvent(QTimerEvent* event)
@@ -81,4 +99,9 @@ void WTranslationTimer::timerEvent(QTimerEvent* event)
         QString text = QString{ "%1:%2" }.arg(QString::number(t.minute()), 2, '0').arg(QString::number(t.second()), 2, '0');
         _counter->setText(text);
     }
+}
+
+void WTranslationTimer::VcSoundPlay(bool play)
+{
+    Play(play);
 }

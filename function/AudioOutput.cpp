@@ -60,6 +60,11 @@ void AudioOutput::EndSpeaker()
     }
 }
 
+bool AudioOutput::IsRunning()
+{
+    return _workThread.isRunning();
+}
+
 void AudioOutput::WriteOutputData(QByteArray data)
 {
     emit write_output_data(std::move(data));
@@ -105,6 +110,11 @@ void AudioOutput::StartSpeakerInternal()
 
     _ioOutput = _audioOutput->start();
     _timer = startTimer(1, Qt::PreciseTimer);
+
+    if (!_ioOutput)
+    {
+        EndSpeakerInternal();
+    }
 }
 
 void AudioOutput::EndSpeakerInternal()

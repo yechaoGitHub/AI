@@ -8,16 +8,13 @@
 #include <QPainterPath>
 #include <QStandardPaths>
 
-WSpeechGenerationUi::WSpeechGenerationUi(QWidget *parent)
+WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
     : FrameLessWidget(parent)
 {
     ui.setupUi(this);
     this->setWidgetType(true, DragType::Drag_Null, false);
     setAttribute(Qt::WA_TranslucentBackground);
     this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint | Qt::SubWindow);
-
-    _simTrans = new WSimTrans{ this };
-    _simTrans->hide();
 
     ui.comboBox_lang->setView(new  QListView());
     ui.comboBox_lang->addItem("English");
@@ -32,11 +29,16 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget *parent)
     auto& ins = AiSound::GetInstance();
     auto& voiceCompositor = ins.GetVoiceCompositor();
 
+    ui.pb_play->setIcon(QIcon{":/QtTest/icon/Speech/pause.png"});
+    ui.pb_play->setIconSize(QSize{16, 16});
+
     connect(ui.pb_start, &QPushButton::clicked, this, &WSpeechGenerationUi::StartClicked);
     connect(ui.pb_close, &QPushButton::clicked, this, &WSpeechGenerationUi::CloseClicked);
     connect(ui.pb_send, &QPushButton::clicked, this, &WSpeechGenerationUi::SendClicked);
     connect(ui.pb_export, &QPushButton::clicked, this, &WSpeechGenerationUi::ExportClicked);
+    connect(ui.pb_play, &QPushButton::clicked, this, &WSpeechGenerationUi::PlayClicked);
     connect(&voiceCompositor, &VoiceCompositor::translationReceived, this, &WSpeechGenerationUi::TranslationReceived);
+    connect(&voiceCompositor, &VoiceCompositor::stateChanged, this, &WSpeechGenerationUi::VcStateChanged);
 }
 
 WSpeechGenerationUi::~WSpeechGenerationUi()
@@ -46,11 +48,6 @@ void WSpeechGenerationUi::SetLanguage(const TranslationLanguage &srcLan, const T
 {
     _srcLan = srcLan;
     _destLan = destLan;
-}
-
-void WSpeechGenerationUi::on_pb_close_clicked()
-{
-    close();
 }
 
 void WSpeechGenerationUi::paintEvent(QPaintEvent* event)
@@ -72,25 +69,17 @@ void WSpeechGenerationUi::showEvent(QShowEvent* event)
         ui.comboBox_vector->addItem(data.name);
     }
 
-    //ui.speechEffect->Play(true);
-    //ui.speechEffect->StartTimer(true);
+    ui.vcEffectTimer->Clear();
 }
 
-//void WSpeechGenerationUi::SimTransClicked()
-//{
-//    if (_simTrans->isHidden())
-//    {
-//        _simTrans->show();
-//    }
-//    else
-//    {
-//        _simTrans->hide();
-//    }
-//}
+void WSpeechGenerationUi::closeEvent(QCloseEvent* event)
+{
+    AiSound::GetInstance().GetVoiceCompositor().Disconnect();
+}
 
 void WSpeechGenerationUi::CloseClicked()
 {
-    AiSound::GetInstance().GetVoiceCompositor().Disconnect();
+    close();
 }
 
 void WSpeechGenerationUi::StartClicked()
@@ -123,10 +112,48 @@ void WSpeechGenerationUi::ExportClicked()
     vc.SaveMp3(savePath);
 }
 
+void WSpeechGenerationUi::PlayClicked()
+{
+    auto& vc = AiSound::GetInstance().GetVoiceCompositor();
+    if (vc.IsRunning())
+    {
+        if (vc.IsMicWorking())
+        {
+            vc.StopMic();
+            ui.vcEffectTimer->StartTimer(false);
+            ui.pb_play->setIcon(QIcon{":/QtTest/icon/Speech/pause.png"});
+        }
+        else
+        {
+            vc.StartMic();
+            ui.vcEffectTimer->StartTimer(true);
+            ui.pb_play->setIcon(QIcon{":/QtTest/icon/stop.png"});
+        }
+    }
+}
+
 void WSpeechGenerationUi::TranslationReceived(const QString& src, const QString& dst, int type)
 {
     if (type == FIN)
     {
         ui.textEdit->setText(dst);
+    }
+}
+
+void WSpeechGenerationUi::VcStateChanged()
+{
+    auto& vc = AiSound::GetInstance().GetVoiceCompositor();
+    if (vc.IsRunning())
+    {
+        if (vc.IsMicWorking())
+        {
+            ui.vcEffectTimer->StartTimer(true);
+            ui.pb_play->setIcon(QIcon{ ":/QtTest/icon/stop.png" });
+        }
+        else
+        {
+            ui.vcEffectTimer->StartTimer(false);
+            ui.pb_play->setIcon(QIcon{ ":/QtTest/icon/Speech/pause.png" });
+        }
     }
 }

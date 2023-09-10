@@ -21,6 +21,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent* event) override;
     void paintEvent(QPaintEvent* event) override;
     void showEvent(QShowEvent* event) override;
+    void closeEvent(QCloseEvent* event);
     void enterEvent(QEvent* event) override;
     void leaveEvent(QEvent* event) override;
 
@@ -28,9 +29,10 @@ private:
     void MinClicked();
     void CloseClicked();
     void LockClicked();
+    void StopClicked();
     void PlayInternal(bool play);
+    void TransStateChanged();
     void TranslationReceived(const QString& src, const QString& dst, int type);
-    //void StopBtnStateChanged(WTranslationPlayBtn::State state);
 
     TranslationLanguage     _srcLan;
     TranslationLanguage     _destLan;
