@@ -7,6 +7,7 @@
 #include <QListView>
 #include <QPainterPath>
 #include <QStandardPaths>
+#include <QListView>
 
 WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
     : FrameLessWidget(parent)
@@ -16,15 +17,15 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
     setAttribute(Qt::WA_TranslucentBackground);
     this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint | Qt::SubWindow);
 
-    ui.comboBox_lang->setView(new  QListView());
+    ui.comboBox_lang->setView(new QListView());
     ui.comboBox_lang->addItem("English");
     ui.comboBox_lang->addItem("Chinese");
 
-    ui.comboBox_sex->setView(new  QListView());
+    ui.comboBox_sex->setView(new QListView());
     ui.comboBox_sex->addItem("Male");
     ui.comboBox_sex->addItem("Woman");
 
-    ui.comboBox_vector->setView(new  QListView());
+    ui.comboBox_vector->setView(new QListView());
 
     auto& ins = AiSound::GetInstance();
     auto& voiceCompositor = ins.GetVoiceCompositor();

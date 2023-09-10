@@ -1095,17 +1095,6 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
 </context>
 <context>
-    <name>simTrans</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>soundHistoryModel</name>
     <message>
         <source> Name</source>

@@ -423,8 +423,7 @@ background-color:transparent;</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">QComboBox
-{
+           <string notr="true">QComboBox{
 	border:none;
 	background-color: rgba(255, 255, 255,0);
 }
@@ -433,6 +432,8 @@ QComboBox::drop-down {
     subcontrol-origin: padding;
     subcontrol-position: top right;
     width: 20px;
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
 }
 
 QComboBox::down-arrow {
@@ -440,9 +441,8 @@ QComboBox::down-arrow {
 }
 
 QComboBox QAbstractItemView::item { 
-	min-height: 30px;
+	min-height: 40px;
 }
-
 </string>
           </property>
          </widget>
@@ -535,8 +535,7 @@ background-color:transparent;</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">QComboBox
-{
+           <string notr="true">QComboBox{
 	border:none;
 	background-color: rgba(255, 255, 255,0);
 }
@@ -545,6 +544,8 @@ QComboBox::drop-down {
     subcontrol-origin: padding;
     subcontrol-position: top right;
     width: 20px;
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
 }
 
 QComboBox::down-arrow {
@@ -552,7 +553,7 @@ QComboBox::down-arrow {
 }
 
 QComboBox QAbstractItemView::item { 
-	min-height: 30px;
+	min-height: 40px;
 }
 </string>
           </property>
@@ -646,8 +647,7 @@ background-color:transparent;</string>
            </size>
           </property>
           <property name="styleSheet">
-           <string notr="true">QComboBox
-{
+           <string notr="true">QComboBox{
 	border:none;
 	background-color: rgba(255, 255, 255,0);
 }
@@ -656,6 +656,8 @@ QComboBox::drop-down {
     subcontrol-origin: padding;
     subcontrol-position: top right;
     width: 20px;
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
 }
 
 QComboBox::down-arrow {
@@ -663,7 +665,7 @@ QComboBox::down-arrow {
 }
 
 QComboBox QAbstractItemView::item { 
-	min-height: 30px;
+	min-height: 40px;
 }
 </string>
           </property>

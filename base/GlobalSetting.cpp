@@ -40,6 +40,8 @@ bool GlobalSetting::init(const QString& path)
         m_micDeviceInfo = list[0];
     }
 
+    m_monitorDeviceInfo = m_micDeviceInfo;
+
     for (auto& in : list)
     {
         if (in.deviceName().indexOf("VoiceMeeter Output") != -1)

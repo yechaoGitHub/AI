@@ -5,7 +5,6 @@
 #include <QMouseEvent>
 #include <QPainterPath>
 
-
 QString stopStyle = "background-image:url(:/QtTest/icon/stop.png);\
 background-position:left;\
 background-repeat:no-repeat;\
@@ -26,6 +25,7 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
     QWidget{ parent }
 {
     ui.setupUi(this);
+
 
     this->setWindowFlags(Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground, true);

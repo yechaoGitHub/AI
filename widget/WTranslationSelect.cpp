@@ -1,6 +1,7 @@
 #include "WTranslationSelect.h"
 #include <QMouseEvent>
 #include <QPainterPath>
+#include <QListView>
 
 WTranslationSelect::WTranslationSelect(QWidget* parent) :
     QWidget{ parent }
@@ -9,6 +10,8 @@ WTranslationSelect::WTranslationSelect(QWidget* parent) :
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 
     ui.setupUi(this);
+    ui.comboSrc->setView(new QListView);
+    ui.comboDest->setView(new QListView);
 
     auto& ins = AiSound::GetInstance();
     connect(ui.startBtn, &QPushButton::clicked, this, &WTranslationSelect::StartClicked);
