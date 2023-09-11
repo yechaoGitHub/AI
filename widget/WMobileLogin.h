@@ -9,7 +9,7 @@ public:
     WMobileLogin(QWidget* parent = nullptr);
     ~WMobileLogin();
 
-    WCheckBox* loggedCheckBox;
+    //WCheckBox* loggedCheckBox;
 
     QString PhoneNumber();
     QString VerifyCode();

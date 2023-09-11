@@ -22,22 +22,21 @@ WLoginFrame::WLoginFrame(QWidget* parent)
     ui.setupUi(this);
 
     _login = new WLogin(this);
-    _login->move(0, 24);
 
     _signUp = new WRegister(this);
     _signUp->hide();
 
-    connect(_login->registerLabel, &WClickedLabel::clicked, this, &WLoginFrame::RegisterClicked);
-    connect(_login->loginBtn, &WButton::clicked, this, &WLoginFrame::LoginBtnClicked);
-    connect(_signUp->signBtn, &WButton::clicked, this, &WLoginFrame::CommitRegisterBtnClicked);
+    //connect(_login->registerLabel, &WClickedLabel::clicked, this, &WLoginFrame::RegisterClicked);
+    //connect(_login->loginBtn, &WButton::clicked, this, &WLoginFrame::LoginBtnClicked);
+    //connect(_signUp->signBtn, &WButton::clicked, this, &WLoginFrame::CommitRegisterBtnClicked);
 }
 
 void WLoginFrame::RegisterClicked()
 {
-    _login->hide();
+    //_login->hide();
 
-    _signUp->move(0, 24);
-    _signUp->show();
+   /* _signUp->move(0, 24);
+    _signUp->show();*/
 }
 
 void WLoginFrame::CommitRegisterBtnClicked()

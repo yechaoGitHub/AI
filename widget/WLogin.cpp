@@ -2,23 +2,22 @@
 #include "AiSound.h"
 
 WLogin::WLogin(QWidget* parent) :
-    QWidget{ parent },
-    registerLabel{ nullptr },
-    userNameLogin{ nullptr },
-    loginOpt{ nullptr }
+    QWidget{ parent }//,
+    //registerLabel{ nullptr },
+    //userNameLogin{ nullptr },
+    //loginOpt{ nullptr }
 {
     ui.setupUi(this);
-    ui.lbLanguage->setPixmap(QPixmap{":/QtTest/icon/Speech/Language.png"});
-    ui.btLanguageText->setText("English");
 
-    userNameLogin = new WUserNameLogin{ this };
-    mobileLogin = new WMobileLogin{ this };
-    loginOpt = new WLoginOpt{ this };
+
+    //userNameLogin = new WUserNameLogin{ this };
+    //mobileLogin = new WMobileLogin{ this };
+    //loginOpt = new WLoginOpt{ this };
 
     TitleChanged(WLoginSwitch::ETitle::userName);
 
-    registerLabel = loginOpt->registerLabel;
-    loginBtn = loginOpt->loginBtn;
+    //registerLabel = loginOpt->registerLabel;
+    //loginBtn = loginOpt->loginBtn;
 
     connect(ui.btLanguageText, &QPushButton::clicked, this, &WLogin::LanguageClicked);
     connect(ui.loginSwitch, &WLoginSwitch::TitleChanged, this, &WLogin::TitleChanged);
@@ -31,20 +30,20 @@ WLogin::~WLogin()
 
 bool  WLogin::remberPwd()
 {
-    if (_cur_login_title == WLoginSwitch::ETitle::userName) {
-        return userNameLogin->isRember();
-    }
+    //if (_cur_login_title == WLoginSwitch::ETitle::userName) {
+    //    return userNameLogin->isRember();
+    //}
     return false;
 }
 
 QString WLogin::UserName()
 {
-    return userNameLogin->userNameEdit->text();
+    return "";// userNameLogin->userNameEdit->text();
 }
 
 QString WLogin::Password()
 {
-    return userNameLogin->passwordEdit->text();
+    return "";// userNameLogin->passwordEdit->text();
 }
 
 void WLogin::changeEvent(QEvent* event)
@@ -62,17 +61,21 @@ void WLogin::TitleChanged(WLoginSwitch::ETitle title)
     _cur_login_title = title;
     if (title == WLoginSwitch::ETitle::userName)
     {
-        mobileLogin->hide();
-        userNameLogin->move(0, 296);
-        loginOpt->move(0, 520);
-        userNameLogin->show();
+        ui.stackedWidget->setCurrentIndex(0);
+
+        //mobileLogin->hide();
+        //userNameLogin->move(0, 296);
+        //loginOpt->move(0, 520);
+        //userNameLogin->show();
     }
     else
     {
-        userNameLogin->hide();
-        mobileLogin->move(0, 296);
-        loginOpt->move(0, 621);
-        mobileLogin->show();
+        ui.stackedWidget->setCurrentIndex(1);
+
+        //userNameLogin->hide();
+        //mobileLogin->move(0, 296);
+        //loginOpt->move(0, 621);
+        //mobileLogin->show();
     }
 }
 

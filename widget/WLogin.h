@@ -30,9 +30,9 @@ private:
     void LanguageClicked();
 
     Ui::Login       ui;
-    WUserNameLogin* userNameLogin;
-    WMobileLogin*   mobileLogin;
-    WLoginOpt*      loginOpt;
+    //WUserNameLogin* userNameLogin;
+    //WMobileLogin*   mobileLogin;
+    //WLoginOpt*      loginOpt;
 
     WLoginSwitch::ETitle  _cur_login_title;
 };
