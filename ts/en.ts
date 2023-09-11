@@ -368,6 +368,36 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
 </context>
 <context>
+    <name>WChatItem</name>
+    <message>
+        <source>Content copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WConformWidgetClass</name>
+    <message>
+        <source>WConformWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>delete confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sure</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WEditVoiceDlgClass</name>
     <message>
         <source>WEditVoiceDlg</source>
@@ -454,6 +484,10 @@ enabling designers to focus on more creative aspects of their work.</source>
         <source>Search anr record</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Are you sure you want to delete the Translation History?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WHistoryDiaPageClass</name>
@@ -470,6 +504,10 @@ enabling designers to focus on more creative aspects of their work.</source>
     <name>WHistoryPage</name>
     <message>
         <source>Search any record</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the historical synopsis?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

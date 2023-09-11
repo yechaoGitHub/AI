@@ -316,6 +316,9 @@
     <ClCompile Include="widget\Speech\WSpeechTimer.cpp">
       <Filter>widget\Speech</Filter>
     </ClCompile>
+    <ClCompile Include="widget\Setting\WConformWidget.cpp">
+      <Filter>widget\Setting</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -449,6 +452,9 @@
     </QtUic>
     <QtUic Include="widget\Setting\SoundBot\WAddVoiceModel.ui">
       <Filter>widget\Setting\SoundBot</Filter>
+    </QtUic>
+    <QtUic Include="widget\Setting\WConformWidget.ui">
+      <Filter>widget\Setting</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -691,6 +697,9 @@
     </QtMoc>
     <QtMoc Include="widget\Speech\WSpeechTimer.h">
       <Filter>widget\Speech</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\Setting\WConformWidget.h">
+      <Filter>widget\Setting</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

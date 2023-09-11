@@ -6,6 +6,9 @@
 #include <QMovie>
 #include <QLabel>
 #include <QDebug>
+#include <QClipboard>
+#include <QApplication>
+#include "AiSound.h"
 
 
 WChatItem::WChatItem(QWidget*parent)
@@ -26,6 +29,7 @@ WChatItem::WChatItem(QWidget*parent)
     m_loading->setAttribute(Qt::WA_TranslucentBackground, true);
     m_loading->setAutoFillBackground(false);
     setAttribute(Qt::WA_TranslucentBackground);
+    this->installEventFilter(this);
 }
 
 WChatItem::~WChatItem()
@@ -36,6 +40,15 @@ void WChatItem::setTextSuccess()
     m_loading->hide();
     m_loadingMovie->stop();
     m_isSending = true;
+}
+
+void WChatItem::mouseReleaseEvent(QMouseEvent* event)
+{
+    if (event->button() == Qt::LeftButton) {
+        QClipboard* clip = QApplication::clipboard();
+        clip->setText(m_msg);
+        AiSound::GetInstance().ShowTip(this,tr("Content copied"));
+    }
 }
 
 void WChatItem::setText(QString text, QString time, QSize allSize, WChatItem::User_Type userType)
@@ -154,6 +167,10 @@ void WChatItem::paintEvent(QPaintEvent* event)
     painter.setBrush(QBrush(Qt::gray));
 
     if (m_userType == User_Type::User_Robot) {
+
+        auto it = this->size();
+        auto itt = rect();
+
         painter.drawPixmap(m_iconLeftRect, m_robotPixmap);
 
         QColor col_KuangB(234, 234, 234);

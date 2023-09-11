@@ -151,6 +151,7 @@
     <ClCompile Include="widget\Setting\SoundBot\WVoicelibWidget.cpp" />
     <ClCompile Include="widget\Setting\WAccountPage.cpp" />
     <ClCompile Include="widget\Setting\WChatHistoryDelegate.cpp" />
+    <ClCompile Include="widget\Setting\WConformWidget.cpp" />
     <ClCompile Include="widget\Setting\WGerenalPage.cpp" />
     <ClCompile Include="widget\Setting\WInvitePage.cpp" />
     <ClCompile Include="widget\Setting\WRobotPage.cpp" />
@@ -224,6 +225,7 @@
     <QtUic Include="widget\Setting\SoundBot\WVoiceLibPage.ui" />
     <QtUic Include="widget\Setting\SoundBot\WVoicelibWidget.ui" />
     <QtUic Include="widget\Setting\WAccountPage.ui" />
+    <QtUic Include="widget\Setting\WConformWidget.ui" />
     <QtUic Include="widget\Setting\WGerenalPage.ui" />
     <QtUic Include="widget\Setting\WInvitePage.ui" />
     <QtUic Include="widget\Setting\WRobotPage.ui" />
@@ -235,6 +237,7 @@
   <ItemGroup>
     <ClInclude Include="function\QPcmToMp3.h" />
     <ClInclude Include="resource.h" />
+    <QtMoc Include="widget\Setting\WConformWidget.h" />
     <QtMoc Include="widget\Setting\SoundBot\WAddVoiceModel.h" />
     <QtMoc Include="widget\Setting\SoundBot\WEditVoiceDlg.h" />
     <QtMoc Include="widget\Setting\SoundBot\QAddVoiceDlg.h" />

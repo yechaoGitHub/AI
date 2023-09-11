@@ -10,7 +10,7 @@ WRobotChat::WRobotChat(QWidget *parent)
 {
     ui.setupUi(this);
     ui.listWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
+    ui.listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     auto& bot = AiSound::GetInstance().GetChatBot();
     connect(&bot, &ChatBot::receiveText, this, &WRobotChat::ReceiveBotText);
 
@@ -39,6 +39,12 @@ void WRobotChat::addRobotChatItem(const QString& msg)
 
     WChatItem* messageW = new WChatItem(ui.listWidget->parentWidget());
     QListWidgetItem* item = new QListWidgetItem(ui.listWidget);
+
+   /* messageW->setFixedWidth(this->width());
+    QSize size = messageW->fontRect(msg);
+    size.setHeight(1000);
+    item->setSizeHint(size);*/
+
     chatMessage(messageW, item, msg, time, WChatItem::User_Robot);
     ui.listWidget->setCurrentRow(ui.listWidget->count() - 1);
 }

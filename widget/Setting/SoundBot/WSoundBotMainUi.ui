@@ -148,6 +148,10 @@ QCheckBox#checkBox::indicator:checked {image: url(:/QtTest/icon/Setting/open.png
       </item>
       <item>
        <widget class="QCheckBox" name="checkBox">
+        <property name="styleSheet">
+         <string notr="true">font: 16px &quot;微软雅黑&quot;;
+color:#505050;</string>
+        </property>
         <property name="text">
          <string>Activated</string>
         </property>

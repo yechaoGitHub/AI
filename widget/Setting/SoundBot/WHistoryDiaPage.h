@@ -5,6 +5,7 @@
 #include "Bussiness/Define.h"
 
 
+class WConformWidget;
 class soundHistoryModel;
 class WHistoryDelegate;
 class WHistoryDiaPage : public QWidget
@@ -29,10 +30,13 @@ private:
 	Ui::WHistoryDiaPageClass ui;
 	soundHistoryModel* _sound_model = nullptr;
 	WHistoryDelegate* _history_delegate = nullptr;
+	WConformWidget* _conform_widget = nullptr;
 	QVector<strc_transHistory>   _trans_info_list;
 
 	int		_cur_page = 1;
 	int		_total_size = 0;
 	int		_total_pages = 1;
 	int		_page_size = 10;
+
+	int		_select_id = 0;
 };

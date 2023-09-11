@@ -5,6 +5,7 @@
 #include "Bussiness/Define.h"
 
 
+class WConformWidget;
 class WHistoryDelegate;
 class historyListModel;
 class WHistoryPage : public QWidget
@@ -29,6 +30,7 @@ private:
 	Ui::WHistoryPageClass ui;
 	historyListModel* _history_model = nullptr;
 	WHistoryDelegate* _history_delegate = nullptr;
+	WConformWidget* _conform_widget = nullptr;
 
 	QVector<strc_ChatHistory>  chat_list_;
 	int    _total_pages = 0;
@@ -36,4 +38,6 @@ private:
 	int    _total_size = 0;
 	int    _page_size = 10;
 	QString _search_text;
+
+	QStringList		_select_id;
 };

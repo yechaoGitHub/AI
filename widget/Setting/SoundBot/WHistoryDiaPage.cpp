@@ -3,6 +3,7 @@
 #include "Bussiness/SettingInterfaceBussiness.h"
 #include "widget/Setting/WChatHistoryDelegate.h"
 #include "function/AiSound.h"
+#include "../WConformWidget.h"
 
 
 WHistoryDiaPage::WHistoryDiaPage(QWidget *parent)
@@ -49,10 +50,20 @@ WHistoryDiaPage::WHistoryDiaPage(QWidget *parent)
     connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_common_replay, this, &WHistoryDiaPage::slot_commonReplay);
     connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_transHistoryReplay,this, &WHistoryDiaPage::slot_transHistoryReplay);
     connect(ui.le_search, &QLineEdit::returnPressed, this, &WHistoryDiaPage::on_pb_search_clicked);
+
+    _conform_widget = new WConformWidget(nullptr);
+    connect(_conform_widget, &WConformWidget::sig_conform, this, [=] {
+        SettingInterfaceBussiness::getInstance()->delTransId(_select_id);
+        });
 }
 
 WHistoryDiaPage::~WHistoryDiaPage()
-{}
+{
+    if (_conform_widget) {
+        delete _conform_widget;
+        _conform_widget = nullptr;
+    }
+}
 
 void WHistoryDiaPage::on_pb_search_clicked()
 {
@@ -77,7 +88,9 @@ void WHistoryDiaPage::opeHistoryItem(int type,int index)
 
     }
     else {
-        SettingInterfaceBussiness::getInstance()->delTransId(_trans_info_list.at(index).id);
+        _select_id = _trans_info_list.at(index).id;
+        _conform_widget->ShowConform(tr("Are you sure you want to delete the Translation History?"));
+        //SettingInterfaceBussiness::getInstance()->delTransId(_trans_info_list.at(index).id);
     }
 }
 

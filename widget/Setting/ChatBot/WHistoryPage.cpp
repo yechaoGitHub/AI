@@ -3,7 +3,7 @@
 #include "function/Bussiness/historyListModel.h"
 #include "widget/Setting/WChatHistoryDelegate.h"
 #include "function/AiSound.h"
-#include "function/AiSound.h"
+#include "../WConformWidget.h"
 
 
 WHistoryPage::WHistoryPage(QWidget *parent)
@@ -53,6 +53,10 @@ WHistoryPage::WHistoryPage(QWidget *parent)
 
     connect(ui.widget, &WPageCtlWidget::sig_changePage, this, &WHistoryPage::slot_changePage);
     connect(ui.lineEdit, &QLineEdit::returnPressed, this, &WHistoryPage::on_pb_search_clicked);
+    _conform_widget = new WConformWidget(nullptr);
+    connect(_conform_widget, &WConformWidget::sig_conform, this, [=] {
+        SettingInterfaceBussiness::getInstance()->delChatHsitory(_select_id);
+        });
 }
 
 WHistoryPage::~WHistoryPage()
@@ -61,6 +65,10 @@ WHistoryPage::~WHistoryPage()
         delete _history_model;
         _history_model = nullptr;
     }
+    if (_conform_widget) {
+        delete _conform_widget;
+        _conform_widget = nullptr;
+    }
 }
 
 void WHistoryPage::slot_commonReplay(int type, bool success , const QString& msg)
@@ -68,6 +76,14 @@ void WHistoryPage::slot_commonReplay(int type, bool success , const QString& msg
     if (type == httpReqType::ChatHistory_Req) {
         if (!success) {
             AiSound::GetInstance().ShowTip(this,msg);
+        }
+    }
+    else if (type == Del_ChatHistory) {
+        if (!success) {
+            AiSound::GetInstance().ShowTip(this, msg);
+        }
+        else {
+            reqChatHistory();
         }
     }
 }
@@ -80,9 +96,11 @@ void WHistoryPage::userOpe(int type,int index)
             AiSound::GetInstance().ShowRobotChat(type,"");
         }
         else {
-            QStringList list;
-            list << QString::number(chat_history.chatHistoryId);
-            SettingInterfaceBussiness::getInstance()->delChatHsitory(list);
+            _select_id.clear();
+            _select_id << QString::number(chat_history.chatHistoryId);
+
+            _conform_widget->ShowConform(tr("Are you sure you want to delete the historical synopsis?"));
+            //SettingInterfaceBussiness::getInstance()->delChatHsitory(list);
         }
     }
 }

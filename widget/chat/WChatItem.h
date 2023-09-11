@@ -9,11 +9,11 @@ class QMovie;
 
 class WChatItem  : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
     explicit WChatItem(QWidget*parent);
-	~WChatItem();
+    ~WChatItem();
 
     enum User_Type {
         User_System,//ϵͳ
@@ -32,6 +32,7 @@ public:
     inline User_Type userType() { return m_userType; }
 protected:
     void paintEvent(QPaintEvent* event);
+    void mouseReleaseEvent(QMouseEvent* event) override;
 private:
     QString m_msg;
     QString m_time;

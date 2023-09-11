@@ -602,12 +602,12 @@ void SettingInterfaceBussiness::delChatHsitory(const QStringList& chatId_list)
     for (auto it : chatId_list) {
         array.append(it.toInt());
     }
-    dataobj.insert("chatHistoryIdList", array);
+    dataobj.insert("idList", array);
     QJsonDocument document;
     document.setObject(dataobj);
     QByteArray jsonValue = document.toJson(QJsonDocument::Compact);
 
-    HttpClient client(QString("%1/api/setting/deleteChatHistory").arg(url));
+    HttpClient client(QString("%1/api/chatbot/deleteChatHistory").arg(url));
     client.success([=](const QString& response) {
         QJsonParseError err_rpt;
         auto json = QJsonDocument::fromJson(response.toUtf8(), &err_rpt);

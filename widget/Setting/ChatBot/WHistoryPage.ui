@@ -152,6 +152,10 @@ QComboBox::drop-down {
             <height>40</height>
            </size>
           </property>
+          <property name="styleSheet">
+           <string notr="true">font: 18px &quot;微软雅黑&quot;;
+color:#131313;</string>
+          </property>
           <property name="text">
            <string>All History</string>
           </property>
