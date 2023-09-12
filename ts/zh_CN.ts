@@ -46,7 +46,23 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Login through user name</source>
+        <source>Keep me logged in</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not registered yet?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Let’s Register</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>English</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -211,25 +227,6 @@
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>UserLoginClass</name>
-    <message>
-        <source>UserLogin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Login through Username</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CheckBox</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -578,37 +575,6 @@ enabling designers to focus on more creative aspects of their work.</source>
     <name>WLibararyClass</name>
     <message>
         <source>WLibarary</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>WLoginMainUiClass</name>
-    <message>
-        <source>WLoginMainUi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Welcome Back..!!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>UserName</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Mobel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PushButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>xxxxxx</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1096,13 +1062,6 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
 </context>
 <context>
-    <name>loginMainFrame</name>
-    <message>
-        <source>QtTest</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>loginOpt</name>
     <message>
         <source>Form</source>
@@ -1136,7 +1095,7 @@ enabling designers to focus on more creative aspects of their work.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Keep me logged in</source>
+        <source>Get Code</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1228,10 +1187,6 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Forgot Password?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Keep me logged in</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

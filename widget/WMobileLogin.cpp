@@ -4,15 +4,12 @@
 
 
 WMobileLogin::WMobileLogin(QWidget* parent) :
-    QWidget{ parent }//,
-    //loggedCheckBox{ nullptr }
+    QWidget{ parent }
 {
     ui.setupUi(this);
 
     ui.verificationCodeEdit->SetImage(":/QtTest/icon/lock.png");
     ui.verificationCodeEdit->textEdit->setPlaceholderText("Enter the code in picture");
-
-    ui.getCodeBtn->SetText("Get Code");
 
     ui.estimatedLable->setStyleSheet("color:rgba(155, 155, 155, 1)");
     ui.resendLabel->setStyleSheet("color:rgba(155, 155, 155, 1)");
@@ -22,7 +19,7 @@ WMobileLogin::WMobileLogin(QWidget* parent) :
 
     //ui.loggedCheckBox->SetText("Keep me logged in");
     //ui.loggedCheckBox->hide();
-    connect(ui.getCodeBtn, &WButton::clicked, this, &WMobileLogin::GetCodeCallback);
+    connect(ui.getCodeBtn, &QPushButton::clicked, this, &WMobileLogin::GetCodeCallback);
 
     //loggedCheckBox = ui.loggedCheckBox;
 

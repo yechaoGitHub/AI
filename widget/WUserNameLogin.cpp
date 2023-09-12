@@ -23,13 +23,7 @@ WUserNameLogin::WUserNameLogin(QWidget* parent) :
         userNameEdit->setText(SETTING.getUserName());
         passwordEdit->setText(SETTING.getPWD());
     }
-    //ui.checkBox->setChecked(ret);
 }
-
-//bool  WUserNameLogin::isRember()
-//{
-//    return ui.->checkState() == Qt::CheckState::Checked;
-//}
 
 WUserNameLogin::~WUserNameLogin()
 {

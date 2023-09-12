@@ -5,7 +5,6 @@ WRegister::WRegister(QWidget* parent) :
     signBtn{ nullptr }
 {
     ui.setupUi(this);
-    //ui.verfyCodeWidget->loggedCheckBox->hide();
 
     ui.userNameEdit->SetImage(":/QtTest/icon/user_active.png");
     ui.userNameEdit->textEdit->setPlaceholderText("Enter user name");

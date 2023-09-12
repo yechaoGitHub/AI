@@ -125,8 +125,6 @@
     <ClCompile Include="widget\chat\WChatItem.cpp" />
     <ClCompile Include="widget\chat\WRobotChat.cpp" />
     <ClCompile Include="widget\chat\WRobotChatMainUI.cpp" />
-    <ClCompile Include="widget\login\UserLogin.cpp" />
-    <ClCompile Include="widget\login\WLoginMainUi.cpp" />
     <ClCompile Include="widget\login\WLoginUI.cpp" />
     <ClCompile Include="widget\model\WLabelButton.cpp" />
     <ClCompile Include="widget\model\WLibModelWidget.cpp" />
@@ -170,7 +168,6 @@
     <ClCompile Include="widget\WConversationSuggestion.cpp" />
     <ClCompile Include="widget\WDropDownList.cpp" />
     <ClCompile Include="widget\WLogin.cpp" />
-    <ClCompile Include="widget\WLoginFrame.cpp" />
     <ClCompile Include="widget\WLoginOpt.cpp" />
     <ClCompile Include="widget\WLoginSwitch.cpp" />
     <ClCompile Include="widget\WMobileLogin.cpp" />
@@ -191,7 +188,6 @@
     <QtUic Include="ui\ConversationSuggestion.ui" />
     <QtUic Include="ui\frame.ui" />
     <QtUic Include="ui\login.ui" />
-    <QtUic Include="ui\loginMainFrame.ui" />
     <QtUic Include="ui\loginOpt.ui" />
     <QtUic Include="ui\mobileLogin.ui" />
     <QtUic Include="ui\signUp.ui" />
@@ -204,8 +200,6 @@
     <QtUic Include="widget\chat\WChatDesc.ui" />
     <QtUic Include="widget\chat\WRobotChat.ui" />
     <QtUic Include="widget\chat\WRobotChatMainUI.ui" />
-    <QtUic Include="widget\login\UserLogin.ui" />
-    <QtUic Include="widget\login\WLoginMainUi.ui" />
     <QtUic Include="widget\login\WLoginUI.ui" />
     <QtUic Include="widget\model\WLibModelWidget.ui" />
     <QtUic Include="widget\model\WPageCtlWidget.ui" />
@@ -269,9 +263,7 @@
     <QtMoc Include="widget\Setting\WGerenalPage.h" />
     <QtMoc Include="WRobotSettingMenu.h" />
     <QtMoc Include="WRobotNavigation.h" />
-    <QtMoc Include="widget\login\UserLogin.h" />
     <QtMoc Include="widget\login\WLoginUI.h" />
-    <QtMoc Include="widget\login\WLoginMainUi.h" />
     <QtMoc Include="widget\Setting\WAccountPage.h" />
     <QtMoc Include="widget\model\WNavbarButton.h" />
     <QtMoc Include="widget\Setting\WSettingSelectWidget.h" />
@@ -310,7 +302,6 @@
     <QtMoc Include="widget\WMobileLogin.h" />
     <QtMoc Include="widget\WLoginSwitch.h" />
     <QtMoc Include="widget\WLoginOpt.h" />
-    <QtMoc Include="widget\WLoginFrame.h" />
     <QtMoc Include="widget\WLogin.h" />
     <QtMoc Include="widget\WDropDownList.h" />
     <QtMoc Include="widget\WCommonWidget.h" />

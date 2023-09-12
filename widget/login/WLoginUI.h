@@ -7,12 +7,15 @@
 
 class WLoginUI : public FrameLessWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	WLoginUI(QWidget *parent = nullptr);
-	~WLoginUI();
+    WLoginUI(QWidget *parent = nullptr);
+    ~WLoginUI();
 
 private:
-	Ui::WLoginUIClass ui;
+    void RegisterClicked();
+    void LoginClicked();
+
+    Ui::WLoginUIClass ui;
 };

@@ -315,19 +315,9 @@ QFrame#frame_left{
        </widget>
       </item>
       <item>
-       <widget class="WLoginFrame" name="widget" native="true">
-        <property name="minimumSize">
-         <size>
-          <width>400</width>
-          <height>608</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>400</width>
-          <height>608</height>
-         </size>
-        </property>
+       <widget class="QStackedWidget" name="stackedWidget">
+        <widget class="WLogin" name="PageLogin"/>
+        <widget class="WRegister" name="pageRegister"/>
        </widget>
       </item>
      </layout>
@@ -338,9 +328,15 @@ QFrame#frame_left{
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
-   <class>WLoginFrame</class>
+   <class>WRegister</class>
    <extends>QWidget</extends>
-   <header>../widget/WLoginFrame.h</header>
+   <header location="global">wregister.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WLogin</class>
+   <extends>QWidget</extends>
+   <header location="global">wlogin.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
