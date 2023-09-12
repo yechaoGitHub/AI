@@ -2,22 +2,14 @@
 #include "AiSound.h"
 
 WLogin::WLogin(QWidget* parent) :
-    QWidget{ parent }//,
-    //registerLabel{ nullptr },
-    //userNameLogin{ nullptr },
-    //loginOpt{ nullptr }
+    QWidget{ parent }
 {
     ui.setupUi(this);
-
-
-    //userNameLogin = new WUserNameLogin{ this };
-    //mobileLogin = new WMobileLogin{ this };
-    //loginOpt = new WLoginOpt{ this };
-
     TitleChanged(WLoginSwitch::ETitle::userName);
 
-    //registerLabel = loginOpt->registerLabel;
-    //loginBtn = loginOpt->loginBtn;
+    registerLabel = ui.registerBtn;
+    loginBtn = ui.loginBtn;
+    cbRemeber = ui.cbKeepLogin;
 
     connect(ui.btLanguageText, &QPushButton::clicked, this, &WLogin::LanguageClicked);
     connect(ui.loginSwitch, &WLoginSwitch::TitleChanged, this, &WLogin::TitleChanged);
@@ -30,20 +22,17 @@ WLogin::~WLogin()
 
 bool  WLogin::remberPwd()
 {
-    //if (_cur_login_title == WLoginSwitch::ETitle::userName) {
-    //    return userNameLogin->isRember();
-    //}
-    return false;
+    return ui.cbKeepLogin->isChecked();
 }
 
 QString WLogin::UserName()
 {
-    return "";// userNameLogin->userNameEdit->text();
+    return ui.userLogin->userNameEdit->text();
 }
 
 QString WLogin::Password()
 {
-    return "";// userNameLogin->passwordEdit->text();
+    return ui.userLogin->passwordEdit->text();
 }
 
 void WLogin::changeEvent(QEvent* event)
@@ -62,20 +51,10 @@ void WLogin::TitleChanged(WLoginSwitch::ETitle title)
     if (title == WLoginSwitch::ETitle::userName)
     {
         ui.stackedWidget->setCurrentIndex(0);
-
-        //mobileLogin->hide();
-        //userNameLogin->move(0, 296);
-        //loginOpt->move(0, 520);
-        //userNameLogin->show();
     }
     else
     {
         ui.stackedWidget->setCurrentIndex(1);
-
-        //userNameLogin->hide();
-        //mobileLogin->move(0, 296);
-        //loginOpt->move(0, 621);
-        //mobileLogin->show();
     }
 }
 

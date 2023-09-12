@@ -56,13 +56,13 @@ QLabel#lb_2{
     <number>24</number>
    </property>
    <property name="topMargin">
-    <number>50</number>
+    <number>30</number>
    </property>
    <property name="rightMargin">
     <number>24</number>
    </property>
    <property name="bottomMargin">
-    <number>20</number>
+    <number>50</number>
    </property>
    <item>
     <widget class="QLabel" name="lb_come">
@@ -180,17 +180,74 @@ QLabel#lb_2{
      <property name="minimumSize">
       <size>
        <width>352</width>
-       <height>252</height>
+       <height>232</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
        <width>352</width>
-       <height>252</height>
+       <height>232</height>
       </size>
      </property>
      <widget class="WUserNameLogin" name="userLogin"/>
      <widget class="WMobileLogin" name="mobileLogin"/>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="cbKeepLogin">
+     <property name="styleSheet">
+      <string notr="true">QCheckBox::indicator {width: 20px; height: 20px;}
+QCheckBox::indicator:unchecked {background-image: url(:/QtTest/icon/check_sel.png);}
+QCheckBox::indicator:checked {background-image: url(:/QtTest/icon/chebox_select.png);}
+</string>
+     </property>
+     <property name="text">
+      <string>Keep me logged in</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="loginBtn">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>48</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>48</height>
+      </size>
+     </property>
+     <property name="sizeIncrement">
+      <size>
+       <width>0</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:16px;
+font-weight: 700;
+background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
+color:#FFFFFF;
+border-radius:8px;</string>
+     </property>
+     <property name="text">
+      <string>login</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item>
@@ -205,6 +262,76 @@ QLabel#lb_2{
       </size>
      </property>
     </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="styleSheet">
+        <string notr="true">font-size: 14px;
+color: #9B9B9B;</string>
+       </property>
+       <property name="text">
+        <string>Not registered yet?</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="registerBtn">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: #06F;
+font-size: 14px;</string>
+       </property>
+       <property name="text">
+        <string>Let’s Register</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -228,34 +355,25 @@ QLabel#lb_2{
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="lbLanguage">
+      <widget class="QPushButton" name="btLanguageText">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="minimumSize">
         <size>
-         <width>16</width>
-         <height>16</height>
+         <width>75</width>
+         <height>0</height>
         </size>
        </property>
-       <property name="sizeIncrement">
+       <property name="maximumSize">
         <size>
-         <width>16</width>
-         <height>16</height>
+         <width>75</width>
+         <height>16777215</height>
         </size>
        </property>
-       <property name="cursor">
-        <cursorShape>PointingHandCursor</cursorShape>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-image:url(:/QtTest/icon/Speech/Language.png);
-background-position:center;
-background-repeat:bo-repeat;</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="btLanguageText">
        <property name="font">
         <font>
          <family>微软雅黑</family>
@@ -266,6 +384,16 @@ background-repeat:bo-repeat;</string>
        </property>
        <property name="cursor">
         <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-image:url(:/QtTest/icon/Speech/Language.png);
+background-origin: content;
+background-position:left;
+background-repeat: no-repeat;
+text-align:right;
+font-size:14px;
+
+</string>
        </property>
        <property name="text">
         <string>English</string>

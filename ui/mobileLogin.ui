@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>352</width>
-    <height>252</height>
+    <height>232</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -65,13 +65,13 @@ QFrame#frame{
        </property>
        <property name="minimumSize">
         <size>
-         <width>0</width>
+         <width>159</width>
          <height>56</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>159</width>
          <height>56</height>
         </size>
        </property>
@@ -202,13 +202,13 @@ background-origin: content;</string>
        </property>
        <property name="minimumSize">
         <size>
-         <width>0</width>
+         <width>103</width>
          <height>56</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>103</width>
          <height>56</height>
         </size>
        </property>
@@ -335,43 +335,6 @@ background-origin: content;</string>
          <italic>false</italic>
          <bold>false</bold>
         </font>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
-     <property name="spacing">
-      <number>8</number>
-     </property>
-     <item>
-      <widget class="QCheckBox" name="checkBox">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="maximumSize">
-        <size>
-         <width>16777215</width>
-         <height>20</height>
-        </size>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QCheckBox::indicator {width: 20px; height: 20px;}
-QCheckBox::indicator:unchecked {background-image: url(:/QtTest/icon/check_sel.png);}
-QCheckBox::indicator:checked {background-image: url(:/QtTest/icon/chebox_select.png);}</string>
-       </property>
-       <property name="text">
-        <string>Keep me logged in</string>
        </property>
       </widget>
      </item>

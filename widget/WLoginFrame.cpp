@@ -26,9 +26,12 @@ WLoginFrame::WLoginFrame(QWidget* parent)
     _signUp = new WRegister(this);
     _signUp->hide();
 
-    //connect(_login->registerLabel, &WClickedLabel::clicked, this, &WLoginFrame::RegisterClicked);
-    //connect(_login->loginBtn, &WButton::clicked, this, &WLoginFrame::LoginBtnClicked);
-    //connect(_signUp->signBtn, &WButton::clicked, this, &WLoginFrame::CommitRegisterBtnClicked);
+    bool ret = SETTING.getRememberPWD();
+    _login->cbRemeber->setChecked(ret);
+
+    connect(_login->registerLabel, &QPushButton::clicked, this, &WLoginFrame::RegisterClicked);
+    connect(_login->loginBtn, &QPushButton::clicked, this, &WLoginFrame::LoginBtnClicked);
+    //connect(_signUp->signBtn, &QPushButton::clicked, this, &WLoginFrame::CommitRegisterBtnClicked);
 }
 
 void WLoginFrame::RegisterClicked()

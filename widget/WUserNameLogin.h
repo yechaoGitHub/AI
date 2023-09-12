@@ -13,7 +13,7 @@ public:
     QLineEdit*          passwordEdit = nullptr;
     WClickedLabel*      forgetLabel = nullptr;
 
-    bool    isRember();
+    //bool    isRember();
 
 private:
     Ui::userNameLogin ui;

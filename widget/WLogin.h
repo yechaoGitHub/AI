@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QWidget>
+#include <QCheckBox>
 #include "ui_login.h"
 #include "WUserNameLogin.h"
 #include "WMobileLogin.h"
@@ -16,10 +17,11 @@ public:
 
     QString UserName();
     QString Password();
-    bool    remberPwd();
+    bool remberPwd();
 
-    WClickedLabel*  registerLabel;
-    WButton*        loginBtn;
+    QPushButton*        registerLabel;
+    QPushButton*        loginBtn;
+    QCheckBox*          cbRemeber;
 
 protected:
     void changeEvent(QEvent* event) override;
@@ -30,9 +32,6 @@ private:
     void LanguageClicked();
 
     Ui::Login       ui;
-    //WUserNameLogin* userNameLogin;
-    //WMobileLogin*   mobileLogin;
-    //WLoginOpt*      loginOpt;
 
     WLoginSwitch::ETitle  _cur_login_title;
 };

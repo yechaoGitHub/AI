@@ -109,25 +109,6 @@
       <enum>QLayout::SetDefaultConstraint</enum>
      </property>
      <item>
-      <widget class="QCheckBox" name="checkBox">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QCheckBox::indicator {width: 20px; height: 20px;}
-QCheckBox::indicator:unchecked {background-image: url(:/QtTest/icon/check_sel.png);}
-QCheckBox::indicator:checked {background-image: url(:/QtTest/icon/chebox_select.png);}
-</string>
-       </property>
-       <property name="text">
-        <string>Keep me logged in</string>
-       </property>
-      </widget>
-     </item>
-     <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
