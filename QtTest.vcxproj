@@ -168,7 +168,6 @@
     <ClCompile Include="widget\WConversationSuggestion.cpp" />
     <ClCompile Include="widget\WDropDownList.cpp" />
     <ClCompile Include="widget\WLogin.cpp" />
-    <ClCompile Include="widget\WLoginOpt.cpp" />
     <ClCompile Include="widget\WLoginSwitch.cpp" />
     <ClCompile Include="widget\WMobileLogin.cpp" />
     <ClCompile Include="widget\WRegister.cpp" />
@@ -188,7 +187,6 @@
     <QtUic Include="ui\ConversationSuggestion.ui" />
     <QtUic Include="ui\frame.ui" />
     <QtUic Include="ui\login.ui" />
-    <QtUic Include="ui\loginOpt.ui" />
     <QtUic Include="ui\mobileLogin.ui" />
     <QtUic Include="ui\signUp.ui" />
     <QtUic Include="ui\TranslateMain.ui" />
@@ -301,7 +299,6 @@
     <QtMoc Include="widget\WRegister.h" />
     <QtMoc Include="widget\WMobileLogin.h" />
     <QtMoc Include="widget\WLoginSwitch.h" />
-    <QtMoc Include="widget\WLoginOpt.h" />
     <QtMoc Include="widget\WLogin.h" />
     <QtMoc Include="widget\WDropDownList.h" />
     <QtMoc Include="widget\WCommonWidget.h" />

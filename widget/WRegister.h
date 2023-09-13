@@ -16,7 +16,10 @@ public:
 
     bool Check();
 
-    WButton* signBtn;
+    QPushButton* signBtn;
+
+protected:
+    void showEvent(QShowEvent* event) override;
 
 private:
     Ui::signUp ui;

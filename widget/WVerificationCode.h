@@ -8,12 +8,14 @@ public:
     WVerificationCode(QWidget* parent = nullptr);
     ~WVerificationCode();
 
+    void FlushVCode();
     QString Uuid();
 
 protected:
     void paintEvent(QPaintEvent* event) override;
     void mouseReleaseEvent(QMouseEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;
+    void resizeEvent(QResizeEvent* event) override;
 
 private:
     void GetVertifyCodeCallback(int code, const QString& msg, const QString& img, const QString& uuid);
@@ -22,8 +24,8 @@ private:
     QImage _refreshImg;
     QImage _speakerImg;
 
+    QRect _imgRt;
     QRect _refreshRt;
-    QRect _speakerRt;
 
     QString _uuid;
 };

@@ -5,8 +5,6 @@
 #include "ui_login.h"
 #include "WUserNameLogin.h"
 #include "WMobileLogin.h"
-#include "WLoginOpt.h"
-
 
 class WLogin : public QWidget
 {

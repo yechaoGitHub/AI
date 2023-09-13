@@ -4,13 +4,10 @@
 #include "AiSound.h"
 
 WVerificationCode::WVerificationCode(QWidget* parent):
-    WCommonWidget{ parent },
-    _refreshRt{ 135, 8, 16, 16 },
-    _speakerRt{ 135, 31, 16, 16 }
+    WCommonWidget{ parent }
 {
     _vImg.load(":/QtTest/icon/image.png");
     _refreshImg.load(":/QtTest/icon/refresh.png");
-    _speakerImg.load(":/QtTest/icon/speaker.png");
 
     auto& i = AiSound::GetInstance();
     i.GetVerifyCode(std::bind(&WVerificationCode::GetVertifyCodeCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
@@ -20,6 +17,12 @@ WVerificationCode::WVerificationCode(QWidget* parent):
 
 WVerificationCode::~WVerificationCode()
 {
+}
+
+void WVerificationCode::FlushVCode()
+{
+    auto& i = AiSound::GetInstance();
+    i.GetVerifyCode(std::bind(&WVerificationCode::GetVertifyCodeCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
 }
 
 QString WVerificationCode::Uuid()
@@ -32,14 +35,12 @@ void WVerificationCode::paintEvent(QPaintEvent* event)
     WCommonWidget::paintEvent(event);
 
     QPainter painter{ this };
-    painter.setRenderHint(QPainter::Antialiasing, true);
-    painter.setRenderHint(QPainter::HighQualityAntialiasing, true);
-
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing, true);
     auto imageRt = rect().marginsRemoved(QMargins{8, 8, 32, 8});
 
     painter.drawImage(imageRt, _vImg, _vImg.rect());
     painter.drawImage(_refreshRt, _refreshImg, _refreshImg.rect());
-    painter.drawImage(_speakerRt, _speakerImg, _speakerImg.rect());
+    //painter.drawImage(_speakerRt, _speakerImg, _speakerImg.rect());
 }
 
 void WVerificationCode::mouseReleaseEvent(QMouseEvent* event)
@@ -49,10 +50,10 @@ void WVerificationCode::mouseReleaseEvent(QMouseEvent* event)
         auto& i = AiSound::GetInstance();
         i.GetVerifyCode(std::bind(&WVerificationCode::GetVertifyCodeCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
     }
-    else if (_speakerRt.contains(event->pos()))
-    {
-       
-    }
+    //else if (_speakerRt.contains(event->pos()))
+    //{
+
+    //}
 }
 
 void WVerificationCode::mouseMoveEvent(QMouseEvent* event)
@@ -61,14 +62,22 @@ void WVerificationCode::mouseMoveEvent(QMouseEvent* event)
     {
         setCursor(Qt::PointingHandCursor);
     }
-    else if (_speakerRt.contains(event->pos()))
-    {
-        setCursor(Qt::PointingHandCursor);
-    }
-    else 
+    //else if (_speakerRt.contains(event->pos()))
+    //{
+    //    setCursor(Qt::PointingHandCursor);
+    //}
+    else
     {
         unsetCursor();
     }
+}
+
+void WVerificationCode::resizeEvent(QResizeEvent* event)
+{
+    _imgRt = rect().marginsRemoved(QMargins{ 8, 8, 32, 8 });
+    _refreshRt.setX(_imgRt.right() + 8);
+    _refreshRt.setY(8);
+    _refreshRt.setSize(QSize{16, 16});
 }
 
 void WVerificationCode::GetVertifyCodeCallback(int code, const QString& msg, const QString& img, const QString& uuid)

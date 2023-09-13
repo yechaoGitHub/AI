@@ -148,17 +148,11 @@
     <ClCompile Include="widget\login\WLoginUI.cpp">
       <Filter>widget\login</Filter>
     </ClCompile>
-    <ClCompile Include="widget\login\WLoginMainUi.cpp">
-      <Filter>widget\login</Filter>
-    </ClCompile>
     <ClCompile Include="widget\Setting\WAccountPage.cpp">
       <Filter>widget\Setting</Filter>
     </ClCompile>
     <ClCompile Include="widget\Setting\WSettingSelectWidget.cpp">
       <Filter>widget\Setting</Filter>
-    </ClCompile>
-    <ClCompile Include="widget\login\UserLogin.cpp">
-      <Filter>widget\login</Filter>
     </ClCompile>
     <ClCompile Include="WRobotNavigation.cpp">
       <Filter>Source Files</Filter>
@@ -265,12 +259,6 @@
     <ClCompile Include="widget\WLogin.cpp">
       <Filter>widget\login</Filter>
     </ClCompile>
-    <ClCompile Include="widget\WLoginFrame.cpp">
-      <Filter>widget\login</Filter>
-    </ClCompile>
-    <ClCompile Include="widget\WLoginOpt.cpp">
-      <Filter>widget\login</Filter>
-    </ClCompile>
     <ClCompile Include="widget\WMobileLogin.cpp">
       <Filter>widget\login</Filter>
     </ClCompile>
@@ -327,12 +315,6 @@
     <QtUic Include="ui\login.ui">
       <Filter>ui</Filter>
     </QtUic>
-    <QtUic Include="ui\loginMainFrame.ui">
-      <Filter>ui</Filter>
-    </QtUic>
-    <QtUic Include="ui\loginOpt.ui">
-      <Filter>ui</Filter>
-    </QtUic>
     <QtUic Include="ui\mobileLogin.ui">
       <Filter>ui</Filter>
     </QtUic>
@@ -365,12 +347,6 @@
     </QtUic>
     <QtUic Include="widget\chat\WRobotChatMainUI.ui">
       <Filter>ui</Filter>
-    </QtUic>
-    <QtUic Include="widget\login\UserLogin.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="widget\login\WLoginMainUi.ui">
-      <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="widget\login\WLoginUI.ui">
       <Filter>Form Files</Filter>
@@ -524,13 +500,7 @@
     <QtMoc Include="widget\chat\WRobotChatMainUI.h">
       <Filter>widget\chat</Filter>
     </QtMoc>
-    <QtMoc Include="widget\login\UserLogin.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <QtMoc Include="widget\login\WLoginUI.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="widget\login\WLoginMainUi.h">
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="widget\Setting\WAccountPage.h">
@@ -647,16 +617,10 @@
     <QtMoc Include="function\Bussiness\soundHistoryModel.h">
       <Filter>function\Bussiness</Filter>
     </QtMoc>
-    <QtMoc Include="widget\WLoginFrame.h">
-      <Filter>widget\login</Filter>
-    </QtMoc>
     <QtMoc Include="widget\WMobileLogin.h">
       <Filter>widget\login</Filter>
     </QtMoc>
     <QtMoc Include="widget\WLoginSwitch.h">
-      <Filter>widget\login</Filter>
-    </QtMoc>
-    <QtMoc Include="widget\WLoginOpt.h">
       <Filter>widget\login</Filter>
     </QtMoc>
     <QtMoc Include="widget\WLogin.h">

@@ -119,13 +119,13 @@ QLabel#lb_2{
      <property name="minimumSize">
       <size>
        <width>0</width>
-       <height>58</height>
+       <height>45</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
        <width>16777215</width>
-       <height>58</height>
+       <height>45</height>
       </size>
      </property>
      <property name="font">
@@ -139,7 +139,7 @@ QLabel#lb_2{
     </widget>
    </item>
    <item>
-    <widget class="QStackedWidget" name="stackedWidget">
+    <widget class="QStackedWidget" name="loginStackedWidget">
      <property name="minimumSize">
       <size>
        <width>352</width>

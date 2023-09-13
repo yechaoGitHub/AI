@@ -1,4 +1,5 @@
 #include "WRegister.h"
+#include "AiSound.h"
 
 WRegister::WRegister(QWidget* parent) :
     QWidget{ parent },
@@ -15,10 +16,7 @@ WRegister::WRegister(QWidget* parent) :
     ui.passwordEdit2->SetImage(":/QtTest/icon/lock.png");
     ui.passwordEdit2->textEdit->setPlaceholderText("Enter password again");
 
-    ui.signBtn->SetText("Sign Up");
-    ui.signBtn->setCursor(Qt::PointingHandCursor);
-
-    signBtn = ui.signBtn;
+    signBtn = ui.pbSignUp;
 }
 
 WRegister::~WRegister()
@@ -37,15 +35,37 @@ QString WRegister::Password()
 
 QString WRegister::PhoneNumber()
 {
-    return ui.verfyCodeWidget->PhoneNumber();
+    return ui.userNameEdit->textEdit->text();
 }
 
 QString WRegister::VerifyCode()
 {
-    return ui.verfyCodeWidget->VerifyCode();
+    return ui.verificationCodeEdit->textEdit->text();
 }
 
 bool WRegister::Check()
 {
     return false;
+}
+
+void WRegister::showEvent(QShowEvent* event)
+{
+    static bool firstShow = true;
+    if (firstShow)
+    {
+        ui.verificationCodePic->FlushVCode();
+        firstShow = false;
+    }
+
+    if (ui.comboBox->count() == 0)
+    {
+        auto& ai = AiSound::GetInstance();
+        const auto& phoneData = ai.GetPhoneRegionInfo();
+        for (auto& data : phoneData)
+        {
+            QString iconPath = ":/QtTest/icon/country/" + data.abb + ".png";
+            ui.comboBox->setIconSize(QSize{ 32, 16 });
+            ui.comboBox->addItem(QIcon{ iconPath }, data.name, data.dialingCode);
+        }
+    }
 }

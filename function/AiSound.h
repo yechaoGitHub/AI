@@ -123,6 +123,7 @@ public:
     const std::vector<TranslationLanguage>& GetTranslationSrourceListData();
     const std::vector<TranslationLanguage>& GetTranslationDestListData();
     const std::vector<VoiceData>& GetVoiceData();
+    const std::vector<PhoneRegionInfo>& GetPhoneRegionInfo();
     std::vector<QAudioDeviceInfo> GetInputDeviceList();
     std::vector<QAudioDeviceInfo> GetOutputDeviceList();
     void SwitchLanguage(LanguageType type);

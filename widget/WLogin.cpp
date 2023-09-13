@@ -50,11 +50,11 @@ void WLogin::TitleChanged(WLoginSwitch::ETitle title)
     _cur_login_title = title;
     if (title == WLoginSwitch::ETitle::userName)
     {
-        ui.stackedWidget->setCurrentIndex(0);
+        ui.loginStackedWidget->setCurrentIndex(0);
     }
     else
     {
-        ui.stackedWidget->setCurrentIndex(1);
+        ui.loginStackedWidget->setCurrentIndex(1);
     }
 }
 

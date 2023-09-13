@@ -66,26 +66,26 @@ void AiSound::Initialize()
         {
             if (code == 200)
             {
-                QString contryFlagUrl = "http://47.106.253.9:9101/img/country-flags/";
+              /*  QString contryFlagUrl = "http://47.106.253.9:9101/img/country-flags/";*/
 
-                QString root_path = QCoreApplication::applicationDirPath();
+            /*    QString root_path = QCoreApplication::applicationDirPath();
                 QString path = root_path + "/download";
                 QDir dir(path);
                 if (!dir.exists()) {
                     dir.mkdir(dir.absolutePath());
-                }
+                }*/
 
                 _phoneRegionData = std::move(data);
-                for (auto& phoneData : _phoneRegionData)
-                {
-                    auto downloadUrl = contryFlagUrl + phoneData.abb + ".png";
-                    auto savePath = path+ "/" + phoneData.abb + ".png";
-                    QFile file(savePath);
-                    if (file.exists()) {
-                        continue;
-                    }
-                    _httpAsync.Download(downloadUrl, savePath);
-                }
+                //for (auto& phoneData : _phoneRegionData)
+                //{
+                //    auto downloadUrl = contryFlagUrl + phoneData.abb + ".png";
+                //    auto savePath = path+ "/" + phoneData.abb + ".png";
+                //    QFile file(savePath);
+                //    if (file.exists()) {
+                //        continue;
+                //    }
+                //    _httpAsync.Download(downloadUrl, savePath);
+                //}
             }
         });
     _audio_play = new QAudioPlayer(nullptr);
@@ -372,6 +372,11 @@ const std::vector<TranslationLanguage>& AiSound::GetTranslationDestListData()
 const std::vector<VoiceData>& AiSound::GetVoiceData()
 {
     return _voiceData;
+}
+
+const std::vector<PhoneRegionInfo>& AiSound::GetPhoneRegionInfo()
+{
+    return _phoneRegionData;
 }
 
 std::vector<QAudioDeviceInfo> AiSound::GetInputDeviceList()

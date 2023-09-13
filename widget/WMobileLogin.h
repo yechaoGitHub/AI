@@ -9,10 +9,11 @@ public:
     WMobileLogin(QWidget* parent = nullptr);
     ~WMobileLogin();
 
-    //WCheckBox* loggedCheckBox;
-
     QString PhoneNumber();
     QString VerifyCode();
+
+protected:
+    void showEvent(QShowEvent* event) override;
 
 private:
     void GetCodeCallback();
