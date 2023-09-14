@@ -307,6 +307,9 @@
     <ClCompile Include="widget\Setting\WConformWidget.cpp">
       <Filter>widget\Setting</Filter>
     </ClCompile>
+    <ClCompile Include="widget\WForgotPassword.cpp">
+      <Filter>widget\login</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -431,6 +434,9 @@
     </QtUic>
     <QtUic Include="widget\Setting\WConformWidget.ui">
       <Filter>widget\Setting</Filter>
+    </QtUic>
+    <QtUic Include="ui\forgotPassword.ui">
+      <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -684,6 +690,9 @@
     </ClInclude>
     <ClInclude Include="function\QPcmToMp3.h">
       <Filter>function</Filter>
+    </ClInclude>
+    <ClInclude Include="widget\WForgotPassword.h">
+      <Filter>widget\login</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

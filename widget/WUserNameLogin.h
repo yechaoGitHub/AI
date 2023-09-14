@@ -11,7 +11,6 @@ public:
 
     QLineEdit*          userNameEdit = nullptr;
     QLineEdit*          passwordEdit = nullptr;
-    WClickedLabel*      forgetLabel = nullptr;
 
     //bool    isRember();
 

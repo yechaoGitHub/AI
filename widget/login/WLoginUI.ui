@@ -26,31 +26,8 @@
    <string>WLoginUI</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget{
-	font: 12px &quot;微软雅黑&quot;;
-}
-
-QFrame#frame_2,#frame_3,#frame_left,#frame{
+   <string notr="true">QFrame#frame_2,#frame_3,#frame_left,#frame{
 	border:none;
-}
-
-QLabel#lb_left{
-	border:none;
-	color: rgb(255, 255, 255);
-}
-
-QPushButton{
-	border:none;
-	background-position: center;
-    background-repeat: no-repeat;
-}
-
-QPushButton#pb_min{
-	background-image: url(:/QtTest/icon/minBtn.png);
-}
-
-QPushButton#pb_close{
-	background-image: url(:/QtTest/icon/closeBtn.png);
 }
 
 QLabel#lb_robot{
@@ -103,10 +80,10 @@ QFrame#frame_left{
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <property name="spacing">
-       <number>0</number>
+       <number>16</number>
       </property>
       <property name="leftMargin">
-       <number>12</number>
+       <number>24</number>
       </property>
       <property name="topMargin">
        <number>12</number>
@@ -118,66 +95,177 @@ QFrame#frame_left{
        <number>12</number>
       </property>
       <item>
-       <widget class="QLabel" name="lb_left">
-        <property name="minimumSize">
-         <size>
-          <width>60</width>
-          <height>12</height>
-         </size>
+       <layout class="QHBoxLayout" name="horizontalLayout_3">
+        <property name="spacing">
+         <number>0</number>
         </property>
-        <property name="maximumSize">
-         <size>
-          <width>60</width>
-          <height>12</height>
-         </size>
-        </property>
-        <property name="text">
-         <string>Sounda</string>
-        </property>
-       </widget>
+        <item>
+         <widget class="QLabel" name="lb_left">
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>80</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>-1</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">font-size:18px;
+color:#FFFFFF;</string>
+          </property>
+          <property name="text">
+           <string>Sounda</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="QFrame" name="frame">
-        <property name="minimumSize">
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
          <size>
-          <width>400</width>
-          <height>640</height>
+          <width>20</width>
+          <height>40</height>
          </size>
         </property>
-        <property name="maximumSize">
+       </spacer>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_6">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="minimumSize">
+           <size>
+            <width>178</width>
+            <height>126</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>178</width>
+            <height>126</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-image:url(:/QtTest/icon/Background.png);</string>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
          <size>
-          <width>400</width>
-          <height>640</height>
+          <width>20</width>
+          <height>47</height>
          </size>
         </property>
-        <property name="frameShape">
-         <enum>QFrame::StyledPanel</enum>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_7">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>-1</pointsize>
+            <bold>true</bold>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:#FFFFFF;
+font-size: 20px;
+font-weight: 700;</string>
+          </property>
+          <property name="text">
+           <string>Sounda</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_8">
+        <item>
+         <widget class="QLabel" name="label_3">
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <pointsize>-1</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: #FFFFFF;
+text-align: center;
+font-size: 16px;</string>
+          </property>
+          <property name="text">
+           <string>Just talk to the world !</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
         </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
         </property>
-        <layout class="QGridLayout" name="gridLayout">
-         <item row="0" column="0">
-          <widget class="QLabel" name="lb_robot">
-           <property name="minimumSize">
-            <size>
-             <width>464</width>
-             <height>374</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>464</width>
-             <height>374</height>
-            </size>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
+       </spacer>
       </item>
      </layout>
     </widget>
@@ -261,6 +349,44 @@ QFrame#frame_left{
           <number>0</number>
          </property>
          <item>
+          <widget class="QPushButton" name="pbBack">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-image:url(:/QtTest/icon/back.png);
+border:none;
+background-position: center;
+background-repeat: no-repeat;
+</string>
+           </property>
+           <property name="text">
+            <string> </string>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -287,6 +413,18 @@ QFrame#frame_left{
              <height>32</height>
             </size>
            </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-image: url(:/QtTest/icon/minBtn.png);
+border:none;
+background-position: center;
+background-repeat: no-repeat;
+
+
+</string>
+           </property>
            <property name="text">
             <string/>
            </property>
@@ -305,6 +443,16 @@ QFrame#frame_left{
              <width>32</width>
              <height>32</height>
             </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-image: url(:/QtTest/icon/closeBtn.png);
+border:none;
+background-position: center;
+background-repeat: no-repeat;
+</string>
            </property>
            <property name="text">
             <string/>
@@ -362,7 +510,7 @@ QFrame#frame_left{
           <string notr="true"/>
          </property>
         </widget>
-        <widget class="QWidget" name="pageForgetPassword">
+        <widget class="WForgotPassword" name="pageForgetPassword">
          <property name="sizePolicy">
           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
            <horstretch>1</horstretch>
@@ -401,6 +549,12 @@ QFrame#frame_left{
    <class>WLogin</class>
    <extends>QWidget</extends>
    <header location="global">wlogin.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>WForgotPassword</class>
+   <extends>QWidget</extends>
+   <header>wforgotpassword.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

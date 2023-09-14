@@ -167,6 +167,7 @@
     <ClCompile Include="widget\WCommonWidget.cpp" />
     <ClCompile Include="widget\WConversationSuggestion.cpp" />
     <ClCompile Include="widget\WDropDownList.cpp" />
+    <ClCompile Include="widget\WForgotPassword.cpp" />
     <ClCompile Include="widget\WLogin.cpp" />
     <ClCompile Include="widget\WLoginSwitch.cpp" />
     <ClCompile Include="widget\WMobileLogin.cpp" />
@@ -185,6 +186,7 @@
     <QtRcc Include="AiSound.qrc" />
     <ClCompile Include="main.cpp" />
     <QtUic Include="ui\ConversationSuggestion.ui" />
+    <QtUic Include="ui\forgotPassword.ui" />
     <QtUic Include="ui\frame.ui" />
     <QtUic Include="ui\login.ui" />
     <QtUic Include="ui\mobileLogin.ui" />
@@ -229,6 +231,7 @@
   <ItemGroup>
     <ClInclude Include="function\QPcmToMp3.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="widget\WForgotPassword.h" />
     <QtMoc Include="widget\Setting\WConformWidget.h" />
     <QtMoc Include="widget\Setting\SoundBot\WAddVoiceModel.h" />
     <QtMoc Include="widget\Setting\SoundBot\WEditVoiceDlg.h" />

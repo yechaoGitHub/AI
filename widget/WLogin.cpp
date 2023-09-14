@@ -10,6 +10,7 @@ WLogin::WLogin(QWidget* parent) :
     registerLabel = ui.registerBtn;
     loginBtn = ui.loginBtn;
     cbRemeber = ui.cbKeepLogin;
+    forgotPasswordBtn = ui.pbForgotPassword;
 
     connect(ui.btLanguageText, &QPushButton::clicked, this, &WLogin::LanguageClicked);
     connect(ui.loginSwitch, &WLoginSwitch::TitleChanged, this, &WLogin::TitleChanged);

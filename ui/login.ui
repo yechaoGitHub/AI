@@ -157,17 +157,69 @@ QLabel#lb_2{
     </widget>
    </item>
    <item>
-    <widget class="QCheckBox" name="cbKeepLogin">
-     <property name="styleSheet">
-      <string notr="true">QCheckBox::indicator {width: 20px; height: 20px;}
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <property name="spacing">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <item>
+      <widget class="QCheckBox" name="cbKeepLogin">
+       <property name="styleSheet">
+        <string notr="true">font-size:12px;
+QCheckBox::indicator {width: 20px; height: 20px;}
 QCheckBox::indicator:unchecked {background-image: url(:/QtTest/icon/check_sel.png);}
 QCheckBox::indicator:checked {background-image: url(:/QtTest/icon/chebox_select.png);}
 </string>
-     </property>
-     <property name="text">
-      <string>Keep me logged in</string>
-     </property>
-    </widget>
+       </property>
+       <property name="text">
+        <string>Keep me logged in</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pbForgotPassword">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>-1</pointsize>
+         <italic>false</italic>
+         <bold>false</bold>
+         <underline>true</underline>
+        </font>
+       </property>
+       <property name="cursor">
+        <cursorShape>PointingHandCursor</cursorShape>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size: 12px;
+font-style: normal;
+font-weight: 400;
+color:qlineargradient(spread:pad,x1:0, y1:0, x2 :113, y2:24, stop :0 #0066FF, stop:1 #BD00FF);</string>
+       </property>
+       <property name="text">
+        <string>Forgot Password?</string>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <widget class="QPushButton" name="loginBtn">

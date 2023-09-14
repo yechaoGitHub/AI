@@ -14,7 +14,9 @@ public:
     ~WLoginUI();
 
 private:
+    void BackClicked();
     void RegisterClicked();
+    void ForgotClicked();
     void LoginClicked();
 
     Ui::WLoginUIClass ui;

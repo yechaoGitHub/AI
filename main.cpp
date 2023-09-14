@@ -1,5 +1,4 @@
-﻿//#include "WLoginFrame.h"
-#include <QtWidgets/QApplication>
+﻿#include <QtWidgets/QApplication>
 #include "AiSound.h"
 #include "login/WLoginUI.h"
 #include "WRobotNavigation.h"

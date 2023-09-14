@@ -17,9 +17,10 @@ public:
     QString Password();
     bool remberPwd();
 
-    QPushButton*        registerLabel;
-    QPushButton*        loginBtn;
-    QCheckBox*          cbRemeber;
+    QPushButton*        registerLabel = nullptr;
+    QPushButton*        loginBtn = nullptr;
+    QPushButton*        forgotPasswordBtn = nullptr;;
+    QCheckBox*          cbRemeber = nullptr;
 
 protected:
     void changeEvent(QEvent* event) override;

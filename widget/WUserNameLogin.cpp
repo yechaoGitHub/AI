@@ -14,7 +14,6 @@ WUserNameLogin::WUserNameLogin(QWidget* parent) :
 
     userNameEdit = ui.userNameEdit->textEdit;
     passwordEdit = ui.passWordEdit->textEdit;
-    forgetLabel = ui.forgetLabel;
 
     ui.passWordEdit->SetPwd();
 
