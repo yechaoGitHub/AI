@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QWidget>
+#include <qpushbutton.h>
 
 class QPaintEvent;
 class QPainter;
@@ -33,6 +34,10 @@ public:
 protected:
     void paintEvent(QPaintEvent* event);
     void mouseReleaseEvent(QMouseEvent* event) override;
+
+private:
+    void copyContent();
+
 private:
     QString m_msg;
     QString m_time;
@@ -59,4 +64,6 @@ private:
     QLabel* m_loading = nullptr;
     QMovie* m_loadingMovie = nullptr;
     bool m_isSending = false;
+
+    QPushButton* m_pCopyBtn = nullptr;
 };

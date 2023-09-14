@@ -102,6 +102,19 @@ QString GlobalSetting::getToken()
     return m_strToken;
 }
 
+void GlobalSetting::setCurLanguage(int language)
+{
+    if (m_pSettings)
+        m_pSettings->setValue("Setting/language", language);
+}
+
+int  GlobalSetting::getCurLanguage()
+{
+    if (!m_pSettings)
+        return 1;
+    return m_pSettings->value("Setting/language", 1).toInt();
+}
+
 QString GlobalSetting::getUserName()
 {
     if (!m_pSettings)

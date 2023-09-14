@@ -38,6 +38,9 @@ public:
     void setToken(const QString& token);
     QString getToken();
 
+    void setCurLanguage(int language);
+    int  getCurLanguage();
+
     void setRobotBot(bool open);
     bool getRobotBot();
 

@@ -26,6 +26,13 @@ WChatItem::WChatItem(QWidget*parent)
     m_loading = new QLabel(this);
     m_loading->setMovie(m_loadingMovie);
     m_loading->resize(16, 16);
+    m_pCopyBtn = new QPushButton(this);
+    m_pCopyBtn->setStyleSheet("color:none;background-color:transparent;background-image:url(:/QtTest/icon/copy.png)");
+    m_pCopyBtn->resize(16, 16);
+    m_pCopyBtn->hide();
+    connect(m_pCopyBtn, &QPushButton::clicked, this, [=] {
+        copyContent();
+        });
     m_loading->setAttribute(Qt::WA_TranslucentBackground, true);
     m_loading->setAutoFillBackground(false);
     setAttribute(Qt::WA_TranslucentBackground);
@@ -42,12 +49,17 @@ void WChatItem::setTextSuccess()
     m_isSending = true;
 }
 
+void WChatItem::copyContent()
+{
+    QClipboard* clip = QApplication::clipboard();
+    clip->setText(m_msg);
+    AiSound::GetInstance().ShowTip(this, tr("Content copied"));
+}
+
 void WChatItem::mouseReleaseEvent(QMouseEvent* event)
 {
     if (event->button() == Qt::LeftButton) {
-        QClipboard* clip = QApplication::clipboard();
-        clip->setText(m_msg);
-        AiSound::GetInstance().ShowTip(this,tr("Content copied"));
+        copyContent();
     }
 }
 
@@ -75,6 +87,7 @@ void WChatItem::setText(QString text, QString time, QSize allSize, WChatItem::Us
 QSize WChatItem::fontRect(QString str)
 {
     m_msg = str;
+    int btn_height = 10;
     int minHei = 30;
     int iconWH = 40;
     int iconSpaceW = 20;
@@ -90,7 +103,7 @@ QSize WChatItem::fontRect(QString str)
     m_iconRightRect = QRect(this->width() - iconSpaceW - iconWH, iconTMPH, iconWH, iconWH);
 
     QSize size = getRealString(m_msg);
-
+    size.setHeight(size.height() + btn_height);
     int hei = size.height() < minHei ? minHei : size.height();
 
     m_sanjiaoLeftRect = QRect(iconWH + iconSpaceW + iconRectW, m_lineHeight / 2, sanJiaoW, hei - m_lineHeight);
@@ -105,7 +118,7 @@ QSize WChatItem::fontRect(QString str)
         m_kuangLeftRect.setRect(m_sanjiaoLeftRect.x() + m_sanjiaoLeftRect.width(), m_lineHeight / 4 * 3, m_kuangWidth, hei - m_lineHeight);
         m_kuangRightRect.setRect(iconWH + kuangTMP + iconSpaceW + iconRectW - sanJiaoW, m_lineHeight / 4 * 3, m_kuangWidth, hei - m_lineHeight);
     }
-    m_textLeftRect.setRect(m_kuangLeftRect.x() + textSpaceRect, m_kuangLeftRect.y() + iconTMPH,
+    m_textLeftRect.setRect(m_kuangLeftRect.x() + textSpaceRect, m_kuangLeftRect.y() + iconTMPH + btn_height,
         m_kuangLeftRect.width() - 2 * textSpaceRect, m_kuangLeftRect.height() - 2 * iconTMPH);
     m_textRightRect.setRect(m_kuangRightRect.x() + textSpaceRect, m_kuangRightRect.y() + iconTMPH,
         m_kuangRightRect.width() - 2 * textSpaceRect, m_kuangRightRect.height() - 2 * iconTMPH);
@@ -203,6 +216,9 @@ void WChatItem::paintEvent(QPaintEvent* event)
         option.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
         painter.setFont(this->font());
         painter.drawText(m_textLeftRect, m_msg, option);
+
+        m_pCopyBtn->move(m_textLeftRect.x()+ m_textLeftRect.width() - m_pCopyBtn->width() - 4, m_textLeftRect.y()-12);
+        m_pCopyBtn->show();
     }
     else if (m_userType == User_Type::User_Self) {
         painter.drawPixmap(m_iconRightRect, m_selfPixmap);

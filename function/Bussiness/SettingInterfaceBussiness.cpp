@@ -684,6 +684,7 @@ void SettingInterfaceBussiness::_getSoundLIbReq(int pageNo, int pageSize, strc_S
     if (sound_type.source != 0) {
         dataobj.insert("source", sound_type.source);
     }
+
     QJsonDocument document;
     document.setObject(dataobj);
     QByteArray jsonValue = document.toJson(QJsonDocument::Compact);

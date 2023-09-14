@@ -88,10 +88,10 @@ QVariant historyListModel::headerData(int section, Qt::Orientation orientation,
         else if (section == 3) {
             return tr(" Date and Time");
         }
-        else if (section == 3) {
+        else if (section == 4) {
             return tr(" Synopsis");
         }
-        else if (section == 4) {
+        else if (section == 5) {
             return tr(" Actions");
         }
         else {

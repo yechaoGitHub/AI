@@ -11,6 +11,13 @@ WMyVoiceModel::WMyVoiceModel(QWidget *parent)
 	ui.lb_1->style()->unpolish(ui.lb_1);
 
 	ui.lb_content->setWordWrap(true);
+
+	_effect = new QLabel(this);
+	_effect->setStyleSheet("border:none;border-color:rgba(255,255,255,0);");
+	_effect->setFixedSize(QSize{ 20, 20 });
+
+	_movie = new QMovie(":/QtTest/icon/Setting/voice_move.png", "apng", this);
+	_effect->setMovie(_movie);
 }
 
 WMyVoiceModel::~WMyVoiceModel()

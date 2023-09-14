@@ -1062,25 +1062,6 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
 </context>
 <context>
-    <name>loginOpt</name>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>or continue with</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Not registered yet?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Let&apos;s Register</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>mobileLogin</name>
     <message>
         <source>Form</source>
@@ -1088,10 +1069,6 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Estimated time of code in 43 seconds</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Resend Code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1107,6 +1084,14 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Let&apos;s sign up</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Get Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sign Up</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
