@@ -36,7 +36,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent* event) override;
 
 private:
-    void copyContent();
+    void copyContent(bool show_toast=true);
 
 private:
     QString m_msg;

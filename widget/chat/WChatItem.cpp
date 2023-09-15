@@ -49,17 +49,19 @@ void WChatItem::setTextSuccess()
     m_isSending = true;
 }
 
-void WChatItem::copyContent()
+void WChatItem::copyContent(bool show_toast)
 {
     QClipboard* clip = QApplication::clipboard();
     clip->setText(m_msg);
-    AiSound::GetInstance().ShowTip(this, tr("Content copied"));
+    if (show_toast) {
+        AiSound::GetInstance().ShowTip(this, tr("Content copied"));
+    }
 }
 
 void WChatItem::mouseReleaseEvent(QMouseEvent* event)
 {
     if (event->button() == Qt::LeftButton) {
-        copyContent();
+        copyContent(false);
     }
 }
 
@@ -217,7 +219,7 @@ void WChatItem::paintEvent(QPaintEvent* event)
         painter.setFont(this->font());
         painter.drawText(m_textLeftRect, m_msg, option);
 
-        m_pCopyBtn->move(m_textLeftRect.x()+ m_textLeftRect.width() - m_pCopyBtn->width() - 4, m_textLeftRect.y()-12);
+        m_pCopyBtn->move(m_textLeftRect.x()+ m_textLeftRect.width() - m_pCopyBtn->width() - 4, m_textLeftRect.y()-18);
         m_pCopyBtn->show();
     }
     else if (m_userType == User_Type::User_Self) {

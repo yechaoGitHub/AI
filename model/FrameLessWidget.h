@@ -32,7 +32,10 @@ public:
 	~FrameLessWidget();
 
 	void setWidgetType(bool canMove, DragType drag_type, bool cam_double_max=false);
-	void setLimit() { m_bLimit = true; };
+	void setLimit(int height) {
+		m_bLimit = true; m_bMoveHeight
+			= height;
+	};
 protected:
 	void mouseDoubleClickEvent(QMouseEvent* event) override;
 	void mousePressEvent(QMouseEvent* event) override;
@@ -50,6 +53,7 @@ private:
 	bool		m_bCanResize = false;
 	bool		m_bResizeIng = false;
 	bool		m_bLimit = false;
+	int			m_bMoveHeight = 0;
 
 	QSize		m_oldSize;
 	QPoint		m_globalPoint;

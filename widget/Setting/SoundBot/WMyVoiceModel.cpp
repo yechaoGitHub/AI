@@ -13,10 +13,11 @@ WMyVoiceModel::WMyVoiceModel(QWidget *parent)
 	ui.lb_content->setWordWrap(true);
 
 	_effect = new QLabel(this);
-	_effect->setStyleSheet("border:none;border-color:rgba(255,255,255,0);");
-	_effect->setFixedSize(QSize{ 20, 20 });
+	_effect->setStyleSheet("border:none;background-color:rgba(0,0,0,0);");
+	_effect->setFixedSize(QSize{ 15, 16 });
 
-	_movie = new QMovie(":/QtTest/icon/Setting/voice_move.png", "apng", this);
+	_movie = new QMovie(":/QtTest/icon/Setting/soundbot/voice_tick.png", "apng", this);
+	//_movie = new QMovie(":/QtTest/icon/Setting/voice_gif.png", "apng", this);
 	_effect->setMovie(_movie);
 }
 
@@ -37,7 +38,10 @@ void WMyVoiceModel::setVoice(const strc_MyVoice& voice)
 
 void WMyVoiceModel::on_del_btn_clicked()
 {
-	SettingInterfaceBussiness::getInstance()->delVoiceReq(_voiceId);
+	auto pos = ui.pb_use->pos();
+	_effect->move(pos.x() + 10, pos.y() + 10);
+	_movie->start();
+	//SettingInterfaceBussiness::getInstance()->delVoiceReq(_voiceId);
 }
 
 void WMyVoiceModel::on_pb_edit_clicked()

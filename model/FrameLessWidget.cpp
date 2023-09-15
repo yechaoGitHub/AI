@@ -49,7 +49,7 @@ void FrameLessWidget::mousePressEvent(QMouseEvent* event)
 
 void FrameLessWidget::mouseMoveEvent(QMouseEvent* ev)
 {
-    if (ev->y() > 100 && m_bLimit) {
+    if (ev->y() > m_bMoveHeight && m_bLimit) {
         return;
     }
     static QPoint rightTop;

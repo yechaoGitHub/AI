@@ -8,9 +8,9 @@ RobotChatMainUI::RobotChatMainUI(QWidget *parent)
 {
     ui.setupUi(this);
     this->setWidgetType(true, DragType::Drag_Null, false);
-
+    this->setLimit(60);
     ui.stackedWidget->setCurrentWidget(ui.chat_widget);
-    ui.lb_title->setText("Chat");
+    ui.lb_title->setText(tr("Chat"));
 
     //ui.stackedWidget->setCurrentWidget(ui.chat_desc_wgt);
     connect(ui.chat_desc_wgt, &WChatDesc::sig_startClick, this, &RobotChatMainUI::StartBtnClicked);

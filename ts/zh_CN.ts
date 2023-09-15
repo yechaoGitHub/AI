@@ -13,6 +13,33 @@
     </message>
 </context>
 <context>
+    <name>ForgotPassword</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Forgot Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter the registered phone number or email so that we will verify and send send you code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send Code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated time of code in 43 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Verify</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Form</name>
     <message>
         <source>Form</source>
@@ -65,6 +92,10 @@
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Forgot Password?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QAddVoiceDlgClass</name>
@@ -90,6 +121,13 @@
     </message>
     <message>
         <source>Add Voice</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>RobotChatMainUI</name>
+    <message>
+        <source>Chat</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -586,6 +624,10 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Sounda</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Just talk to the world !</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1168,10 +1210,6 @@ enabling designers to focus on more creative aspects of their work.</source>
     <name>userNameLogin</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Forgot Password?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
