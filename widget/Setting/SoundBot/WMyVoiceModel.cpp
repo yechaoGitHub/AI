@@ -16,8 +16,10 @@ WMyVoiceModel::WMyVoiceModel(QWidget *parent)
 	_effect->setStyleSheet("border:none;background-color:rgba(0,0,0,0);");
 	_effect->setFixedSize(QSize{ 15, 16 });
 
-	_movie = new QMovie(":/QtTest/icon/Setting/soundbot/voice_tick.png", "apng", this);
+	//_movie = new QMovie(":/QtTest/icon/Setting/soundbot/voice_tick.png", "apng", this);
 	//_movie = new QMovie(":/QtTest/icon/Setting/voice_gif.png", "apng", this);
+	_movie = new QMovie(":/QtTest/icon/voice_tick.apng", "apng", this);
+
 	_effect->setMovie(_movie);
 }
 

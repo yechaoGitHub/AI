@@ -1,5 +1,7 @@
 <RCC>
   <qresource prefix="/QtTest">
+    <file>icon/voice_tick.apng</file>
+    <file>icon/voice_tick.apng</file>
     <file>icon/Setting/soundbot/voice_tick.png</file>
     <file>icon/Setting/voice_gif.png</file>
     <file>icon/Setting/voice_move.png</file>
