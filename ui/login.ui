@@ -62,7 +62,7 @@ QLabel#lb_2{
     <number>24</number>
    </property>
    <property name="bottomMargin">
-    <number>50</number>
+    <number>24</number>
    </property>
    <item>
     <widget class="QLabel" name="lb_come">
@@ -155,6 +155,19 @@ QLabel#lb_2{
      <widget class="WUserNameLogin" name="userLogin"/>
      <widget class="WMobileLogin" name="mobileLogin"/>
     </widget>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">

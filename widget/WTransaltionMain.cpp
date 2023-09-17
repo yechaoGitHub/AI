@@ -8,6 +8,22 @@
 #include <QPainterPath>
 #include <QListView>
 
+//QString lockStyle = "background-image:url(:/QtTest/icon/Speech/lock.png);\
+//background-color:rgb(0,0,0);\
+//background-position:center;\
+//background-repeat:no-repeat;\
+//border:1px solid;\
+//border-radius:4px;\
+//border-color:rgba(255, 255, 255, 50 %);";
+//
+//QString lockActStyle = "background-image:url(:/QtTest/icon/Speech/lock_act.png);\
+//background-color:rgb(0,0,0);\
+//background-position:center;\
+//background-repeat:no-repeat;\
+//border:1px solid;\
+//border-radius:4px;\
+//border-color:rgba(255, 255, 255, 50 %);";
+
 
 QString stopStyle = "background-image:url(:/QtTest/icon/stop.png);\
 background-position:left;\
@@ -35,6 +51,8 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
 
     this->setWindowFlags(Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground, true);
+
+    SetPlayBtnState(true);
 
     this->resize(1078, 252);
 
@@ -71,8 +89,6 @@ void WTransaltionMain::SetLanguage(const std::vector<TranslationLanguage>& srcLa
     {
         ui.cbDest->addItem(item.name);
     }
-
-    //ui.subtitleWidget->Subtitle()->SetTranslate(_srcLan.name, _destLan.name);
 }
 
 void WTransaltionMain::mousePressEvent(QMouseEvent* event)
@@ -121,12 +137,9 @@ void WTransaltionMain::paintEvent(QPaintEvent* event)
 
 void WTransaltionMain::showEvent(QShowEvent* event)
 {
-    auto& ins = AiSound::GetInstance();
-    bool enableConversation = ins.IsConversationSuggestionShow();
-    auto& token = ins.Token();
     ui.timerWidget->Clear();
-
-    //ins.GetTranslation().Connect(token, _srcLan.language, _destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo());
+    ui.cbSrc->setEnabled(true);
+    ui.cbDest->setEnabled(true);
 }
 
 void WTransaltionMain::closeEvent(QCloseEvent* event)
@@ -157,7 +170,7 @@ void WTransaltionMain::MinClicked()
 
 void WTransaltionMain::CloseClicked()
 {
-    close();
+    hide();
 }
 
 void WTransaltionMain::LockClicked()
@@ -165,10 +178,12 @@ void WTransaltionMain::LockClicked()
     if (this->windowFlags() & Qt::WindowStaysOnTopHint)
     {
         this->setWindowFlags(windowFlags() & (~Qt::WindowStaysOnTopHint));
+        //ui.lockButton->setStyleSheet(lockStyle);
     }
     else
     {
         this->setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
+        //ui.lockButton->setStyleSheet(lockActStyle);
     }
     show();
 }
@@ -188,16 +203,21 @@ void WTransaltionMain::StopClicked()
         trans.StopMic();
         ui.timerWidget->StartTimer(false);
         SetPlayBtnState(true);
+
+        ui.cbSrc->setEnabled(true);
+        ui.cbDest->setEnabled(true);
     }
     else
     {
         TranslationLanguage srcLan;
         TranslationLanguage destLan;
-        if (GetSelectSrcLanguage(srcLan) &&
-            GetSelectSrcLanguage(destLan))
+        if (!GetSelectSrcLanguage(srcLan) ||
+            !GetSelectDestLanguage(destLan))
         {
             return;
         }
+
+        ui.subtitleWidget->Subtitle()->SetTranslate(srcLan.name, destLan.name);
 
         trans.Connect(token, srcLan.language, destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo());
 
@@ -209,8 +229,10 @@ void WTransaltionMain::StopClicked()
         bool enableConversation = ins.IsConversationSuggestionShow();
         auto& token = ins.Token();
         ui.timerWidget->Clear();
-    }
 
+        ui.cbSrc->setEnabled(false);
+        ui.cbDest->setEnabled(false);
+    }
 }
 
 void WTransaltionMain::PlayInternal(bool play)

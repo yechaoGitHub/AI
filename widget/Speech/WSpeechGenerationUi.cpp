@@ -245,7 +245,7 @@ void WSpeechGenerationUi::NameIndexChanged(int index)
 
 void WSpeechGenerationUi::CloseClicked()
 {
-    close();
+    hide();
 }
 
 void WSpeechGenerationUi::StartClicked()

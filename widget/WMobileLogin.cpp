@@ -18,6 +18,8 @@ WMobileLogin::WMobileLogin(QWidget* parent) :
     connect(ui.getCodeBtn, &QPushButton::clicked, this, &WMobileLogin::GetCodeCallback);
 
     ui.lineEdit->setPlaceholderText(tr("Enter your phone"));
+
+    ui.lbEstimated->setVisible(false);
 }
 
 WMobileLogin::~WMobileLogin()
@@ -32,6 +34,23 @@ QString WMobileLogin::PhoneNumber()
 QString WMobileLogin::VerifyCode()
 {
     return ui.verificationCodeEdit->textEdit->text();
+}
+
+void WMobileLogin::timerEvent(QTimerEvent* event)
+{
+    static int count{ 60 };
+
+    ui.lbEstimated->setVisible(true);
+    QString text = QString::fromLocal8Bit("Estimated time of code in %1 seconds").arg(count);
+    ui.lbEstimated->setText(text);
+
+    count--;
+    if (count == 0)
+    {
+        killTimer(_timer);
+        count = 60;
+        ui.lbEstimated->setVisible(false);
+    }
 }
 
 void WMobileLogin::showEvent(QShowEvent* event)
@@ -81,4 +100,6 @@ void WMobileLogin::GetCodeCallback()
     };
 
     ins.SendVerifyCode(dialingCode, phoneNumber, verifyCode, uuid, callback);
+
+    _timer = startTimer(1000);
 }

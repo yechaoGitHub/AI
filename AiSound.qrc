@@ -381,5 +381,6 @@
         <file>icon/back.png</file>
         <file>icon/Background.png</file>
         <file>icon/chat/save.png</file>
+        <file>icon/Speech/lock_act.png</file>
     </qresource>
 </RCC>
