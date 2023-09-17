@@ -4,7 +4,7 @@
 
 #include <QWidget>
 #include <QEvent>
-
+#include <vector>
 
 class WTransaltionMain : public QWidget
 {
@@ -13,7 +13,7 @@ public:
     WTransaltionMain(QWidget* parent = nullptr);
     ~WTransaltionMain();
 
-    void SetLanguage(const TranslationLanguage& srcLan, const TranslationLanguage& destLan);
+    void SetLanguage(const std::vector<TranslationLanguage>& srcLan, const std::vector<TranslationLanguage>& destLan);
 
 protected:
     void mousePressEvent(QMouseEvent* event) override;
@@ -33,14 +33,17 @@ private:
     void PlayInternal(bool play);
     void TransStateChanged();
     void TranslationReceived(const QString& src, const QString& dst, int type);
+    void SetPlayBtnState(bool play);
+    bool GetSelectSrcLanguage(TranslationLanguage& language);
+    bool GetSelectDestLanguage(TranslationLanguage& language);
 
-    TranslationLanguage     _srcLan;
-    TranslationLanguage     _destLan;
+    Ui::translateMain                   ui;
 
-    Ui::translateMain       ui;
-    QPoint                  _clickPos;
-    bool                    _mouseHold = false;
-    bool                    _mouseIn = false;
-    bool                    _newSubtitle = true;
+    std::vector<TranslationLanguage>    _srcLan;
+    std::vector<TranslationLanguage>    _destLan;
+    QPoint                              _clickPos;
+    bool                                _mouseHold = false;
+    bool                                _mouseIn = false;
+    bool                                _newSubtitle = true;
 };
 

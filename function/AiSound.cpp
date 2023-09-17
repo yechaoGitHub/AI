@@ -250,7 +250,7 @@ void AiSound::ShowLoginFrame()
     _wLoginFrame->show();
 }
 
-void AiSound::ShowTranslationWindow()
+void AiSound::ShowRobotNavigation()
 {
     //_wTranslationSelect->show();
     _wLoginFrame->close();
@@ -274,16 +274,16 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
         }
     }
     else if (type == Navig_Type::Voice) {
-        if (_wTranslationSelect->isHidden())
+        if (_wTranslationMain->isHidden())
         {
-            _wTranslationSelect->SetFunctionType(FunctionType::Translation);
-            _wTranslationSelect->show();
+            _wTranslationMain->SetLanguage(GetTranslationSrourceListData(), GetTranslationDestListData());
+            _wTranslationMain->show();
         }
     }
     else if (type == Navig_Type::Speech) {
         if (_wTranslationSelect->isHidden())
         {
-            _wTranslationSelect->SetFunctionType(FunctionType::VoiceCompositor);
+            //_wTranslationSelect->SetFunctionType(FunctionType::VoiceCompositor);
             _wTranslationSelect->show();
         }
     }
@@ -298,9 +298,8 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
     }
 }
 
-void AiSound::ShowTranslationMainWindow(const TranslationLanguage& srcLan, const TranslationLanguage& destLan)
+void AiSound::ShowTranslationMainWindow()
 {
-    _wTranslationMain->SetLanguage(srcLan, destLan);
     _wTranslationMain->show();
 }
 

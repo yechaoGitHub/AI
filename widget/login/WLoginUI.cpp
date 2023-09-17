@@ -63,7 +63,7 @@ void WLoginUI::LoginClicked()
 
         if (code == 200)
         {
-            ins.ShowTranslationWindow();
+            ins.ShowRobotNavigation();
 
         }
         else

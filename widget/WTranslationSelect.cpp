@@ -23,11 +23,6 @@ WTranslationSelect::~WTranslationSelect()
 {
 }
 
-void WTranslationSelect::SetFunctionType(FunctionType type)
-{
-    _type = type;
-}
-
 void WTranslationSelect::SetSrcLanguage(const std::vector<TranslationLanguage>& vecSrc)
 {
     _vecSrc = vecSrc;
@@ -99,22 +94,8 @@ void WTranslationSelect::StartClicked()
     _selSrvLan = _vecSrc[srcSel];
     _selDestLan = _vecDest[destSel];
     auto& ins = AiSound::GetInstance();
-    switch (_type)
-    {
-        case FunctionType::Translation:
-            ins.ShowTranslationMainWindow(_selSrvLan, _selDestLan);
-            this->close();
-        break;
-
-        case FunctionType::VoiceCompositor:
-            ins.ShowVoiceCompositorMainWindow(_selSrvLan, _selDestLan);
-            this->close();
-        break;
-
-        case FunctionType::ChatBot:
-        break;
-
-    }
+    ins.ShowVoiceCompositorMainWindow(_selSrvLan, _selDestLan);
+    this->close();
 }
 
 void WTranslationSelect::CloseClicked()

@@ -21,7 +21,7 @@ private slots:
     void on_pb_close_clicked();
 
 private:
-    void StartBtnClicked();
+    //void StartBtnClicked();
 
     Ui::RobotChatMainUIClass ui;
 };

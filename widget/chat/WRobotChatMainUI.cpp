@@ -13,7 +13,7 @@ RobotChatMainUI::RobotChatMainUI(QWidget *parent)
     ui.lb_title->setText(tr("Chat"));
 
     //ui.stackedWidget->setCurrentWidget(ui.chat_desc_wgt);
-    connect(ui.chat_desc_wgt, &WChatDesc::sig_startClick, this, &RobotChatMainUI::StartBtnClicked);
+    //connect(ui.chat_desc_wgt, &WChatDesc::sig_startClick, this, &RobotChatMainUI::StartBtnClicked);
 
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 }
@@ -31,11 +31,11 @@ void RobotChatMainUI::on_pb_close_clicked()
     this->hide();
 }
 
-void RobotChatMainUI::StartBtnClicked()
-{
-    ui.stackedWidget->setCurrentWidget(ui.chat_widget);
-    ui.lb_title->setText("Chat");
-}
+//void RobotChatMainUI::StartBtnClicked()
+//{
+//    ui.stackedWidget->setCurrentWidget(ui.chat_widget);
+//    ui.lb_title->setText("Chat");
+//}
 
 void RobotChatMainUI::paintEvent(QPaintEvent* event)
 {

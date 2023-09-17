@@ -106,8 +106,8 @@ public:
 
 #pragma region ´°¿Ú
     void ShowLoginFrame();
-    void ShowTranslationWindow();
-    void ShowTranslationMainWindow(const TranslationLanguage& srcLan, const TranslationLanguage& destLan);
+    void ShowRobotNavigation();
+    void ShowTranslationMainWindow();
     void ShowVoiceCompositorMainWindow(const TranslationLanguage& srcLan, const TranslationLanguage& destLan);
     void ShowConversationSuggestion(bool show);
     bool IsConversationSuggestionShow();

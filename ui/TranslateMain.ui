@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1111</width>
+    <width>1135</width>
     <height>252</height>
    </rect>
   </property>
@@ -37,6 +37,9 @@
    </property>
    <item>
     <widget class="QFrame" name="frame">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <property name="spacing">
        <number>0</number>
@@ -80,27 +83,33 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLabel" name="srcLabel">
+       <widget class="QComboBox" name="cbSrc">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="font">
-         <font>
-          <family>微软雅黑</family>
-          <pointsize>16</pointsize>
-         </font>
-        </property>
         <property name="styleSheet">
-         <string notr="true">color:rgb(255,255,255);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         <string notr="true">QComboBox
+{
+	color:rgb(255,255,255);
+	border:none;
+	background-color:transparent;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-top-right-radius: 3px; 
+    border-bottom-right-radius: 3px;
+}
+
+QComboBox QAbstractItemView::item { 
+	min-height: 40px;
+}
+</string>
         </property>
        </widget>
       </item>
@@ -164,27 +173,35 @@ background-repeat:no-repeat;</string>
        </spacer>
       </item>
       <item>
-       <widget class="QLabel" name="destLabel">
+       <widget class="QComboBox" name="cbDest">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="font">
-         <font>
-          <family>微软雅黑</family>
-          <pointsize>16</pointsize>
-         </font>
-        </property>
         <property name="styleSheet">
-         <string notr="true">color:rgb(255,255,255);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         <string notr="true">QComboBox
+{
+	color:rgb(255,255,255);
+	border:none;
+	background-color:transparent;
+}
+
+QComboBox QAbstractItemView::item { 
+	min-height: 40px;
+}
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-top-right-radius: 3px; 
+    border-bottom-right-radius: 3px;
+}
+
+QComboBox QAbstractItemView::item { 
+	min-height: 40px;
+}</string>
         </property>
        </widget>
       </item>

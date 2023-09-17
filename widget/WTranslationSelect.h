@@ -10,7 +10,7 @@ public:
     WTranslationSelect(QWidget* parent = nullptr);
     ~WTranslationSelect();
 
-    void SetFunctionType(FunctionType type);
+    //void SetFunctionType(FunctionType type);
     void SetSrcLanguage(const std::vector<TranslationLanguage>& vecSrc);
     void SetDestLanguage(const std::vector<TranslationLanguage>& vecDest);
 
@@ -27,7 +27,7 @@ private:
     void ChatBotClicked();
     Ui::Translation                     ui;
 
-    FunctionType                        _type;
+    //FunctionType                        _type;
     std::vector<TranslationLanguage>    _vecSrc;
     std::vector<TranslationLanguage>    _vecDest;
     TranslationLanguage                 _selSrvLan;

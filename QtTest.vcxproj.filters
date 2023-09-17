@@ -127,9 +127,6 @@
     <ClCompile Include="widget\Speech\ComboxItem.cpp">
       <Filter>widget\Speech</Filter>
     </ClCompile>
-    <ClCompile Include="widget\chat\WChatDesc.cpp">
-      <Filter>widget\chat</Filter>
-    </ClCompile>
     <ClCompile Include="widget\chat\WChatItem.cpp">
       <Filter>widget\chat</Filter>
     </ClCompile>
@@ -164,9 +161,6 @@
       <Filter>function</Filter>
     </ClCompile>
     <ClCompile Include="widget\WTransaltionMain.cpp">
-      <Filter>widget\Tanslation</Filter>
-    </ClCompile>
-    <ClCompile Include="widget\WTranslationSelect.cpp">
       <Filter>widget\Tanslation</Filter>
     </ClCompile>
     <ClCompile Include="function\ChatBot.cpp">
@@ -310,6 +304,9 @@
     <ClCompile Include="widget\WForgotPassword.cpp">
       <Filter>widget\login</Filter>
     </ClCompile>
+    <ClCompile Include="widget\WTranslationSelect.cpp">
+      <Filter>widget\Speech</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -327,9 +324,6 @@
     <QtUic Include="ui\TranslateMain.ui">
       <Filter>ui</Filter>
     </QtUic>
-    <QtUic Include="ui\translateSelect.ui">
-      <Filter>ui</Filter>
-    </QtUic>
     <QtUic Include="ui\userNameLogin.ui">
       <Filter>ui</Filter>
     </QtUic>
@@ -340,9 +334,6 @@
       <Filter>ui</Filter>
     </QtUic>
     <QtUic Include="ui\WSpeechGenerationUi.ui">
-      <Filter>ui</Filter>
-    </QtUic>
-    <QtUic Include="widget\chat\WChatDesc.ui">
       <Filter>ui</Filter>
     </QtUic>
     <QtUic Include="widget\chat\WRobotChat.ui">
@@ -438,6 +429,9 @@
     <QtUic Include="ui\forgotPassword.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="ui\translateSelect.ui">
+      <Filter>ui</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="model\FrameLessWidget.h">
@@ -494,9 +488,6 @@
     <QtMoc Include="widget\Speech\ComboxItem.h">
       <Filter>widget\Speech</Filter>
     </QtMoc>
-    <QtMoc Include="widget\chat\WChatDesc.h">
-      <Filter>widget\chat</Filter>
-    </QtMoc>
     <QtMoc Include="widget\chat\WChatItem.h">
       <Filter>widget\chat</Filter>
     </QtMoc>
@@ -534,9 +525,6 @@
       <Filter>function</Filter>
     </QtMoc>
     <QtMoc Include="widget\WTransaltionMain.h">
-      <Filter>widget\Tanslation</Filter>
-    </QtMoc>
-    <QtMoc Include="widget\WTranslationSelect.h">
       <Filter>widget\Tanslation</Filter>
     </QtMoc>
     <QtMoc Include="function\ChatBot.h">
@@ -670,6 +658,9 @@
     </QtMoc>
     <QtMoc Include="widget\Setting\WConformWidget.h">
       <Filter>widget\Setting</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WTranslationSelect.h">
+      <Filter>widget\Speech</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

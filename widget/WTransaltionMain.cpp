@@ -1,9 +1,13 @@
 #include "WTransaltionMain.h"
 #include "base/GlobalSetting.h"
 
+#include <Windows.h>
+
 #include <QPainter>
 #include <QMouseEvent>
 #include <QPainterPath>
+#include <QListView>
+
 
 QString stopStyle = "background-image:url(:/QtTest/icon/stop.png);\
 background-position:left;\
@@ -26,6 +30,8 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
 {
     ui.setupUi(this);
 
+    ui.cbSrc->setView(new QListView{});
+    ui.cbDest->setView(new QListView{});
 
     this->setWindowFlags(Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground, true);
@@ -49,14 +55,24 @@ WTransaltionMain::~WTransaltionMain()
 {
 }
 
-void WTransaltionMain::SetLanguage(const TranslationLanguage& srcLan, const TranslationLanguage& destLan)
+void WTransaltionMain::SetLanguage(const std::vector<TranslationLanguage>& srcLan, const std::vector<TranslationLanguage>& destLan)
 {
     _srcLan = srcLan;
     _destLan = destLan;
 
-    ui.srcLabel->setText(_srcLan.name);
-    ui.destLabel->setText(_destLan.name);
-    ui.subtitleWidget->Subtitle()->SetTranslate(_srcLan.name, _destLan.name);
+    ui.cbSrc->clear();
+    for (auto item : _srcLan)
+    {
+        ui.cbSrc->addItem(item.name);
+    }
+
+    ui.cbDest->clear();
+    for (auto item : _destLan)
+    {
+        ui.cbDest->addItem(item.name);
+    }
+
+    //ui.subtitleWidget->Subtitle()->SetTranslate(_srcLan.name, _destLan.name);
 }
 
 void WTransaltionMain::mousePressEvent(QMouseEvent* event)
@@ -66,6 +82,8 @@ void WTransaltionMain::mousePressEvent(QMouseEvent* event)
         _clickPos.setX(event->pos().x());
         _clickPos.setY(event->pos().y());
         _mouseHold = true;
+
+        ::SetCapture((HWND)winId());
     }
 }
 
@@ -80,6 +98,7 @@ void WTransaltionMain::mouseMoveEvent(QMouseEvent* event)
 void WTransaltionMain::mouseReleaseEvent(QMouseEvent* event)
 {
     _mouseHold = false;
+    ::ReleaseCapture();
 }
 
 void WTransaltionMain::paintEvent(QPaintEvent* event)
@@ -107,13 +126,16 @@ void WTransaltionMain::showEvent(QShowEvent* event)
     auto& token = ins.Token();
     ui.timerWidget->Clear();
 
-    ins.GetTranslation().Connect(token, _srcLan.language, _destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo());
+    //ins.GetTranslation().Connect(token, _srcLan.language, _destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo());
 }
 
 void WTransaltionMain::closeEvent(QCloseEvent* event)
 {
-    auto& translation = AiSound::GetInstance().GetTranslation();
-    translation.Disconnect();
+    auto& trans = AiSound::GetInstance().GetTranslation();
+    if (trans.IsRunning())
+    {
+        trans.Disconnect();
+    }
 }
 
 void WTransaltionMain::enterEvent(QEvent* event)
@@ -153,25 +175,42 @@ void WTransaltionMain::LockClicked()
 
 void WTransaltionMain::StopClicked()
 {
+    auto& ins = AiSound::GetInstance();
     auto& trans = AiSound::GetInstance().GetTranslation();
+    bool enableConversation = ins.IsConversationSuggestionShow();
+    auto& token = ins.Token();
+
     if (trans.IsRunning())
     {
-        if (trans.IsMicWorking())
-        {
-            trans.StopMic();
-            ui.timerWidget->StartTimer(false);
+        auto& translation = AiSound::GetInstance().GetTranslation();
+        translation.Disconnect();
 
-            ui.stopBtn->setStyleSheet(playStyle);
-            ui.stopBtn->setText(QString::fromLocal8Bit("Play"));
-        }
-        else
-        {
-            trans.StartMic();
-            ui.timerWidget->StartTimer(true);
-            ui.stopBtn->setStyleSheet(stopStyle);
-            ui.stopBtn->setText(QString::fromLocal8Bit("Stop"));
-        }
+        trans.StopMic();
+        ui.timerWidget->StartTimer(false);
+        SetPlayBtnState(true);
     }
+    else
+    {
+        TranslationLanguage srcLan;
+        TranslationLanguage destLan;
+        if (GetSelectSrcLanguage(srcLan) &&
+            GetSelectSrcLanguage(destLan))
+        {
+            return;
+        }
+
+        trans.Connect(token, srcLan.language, destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo());
+
+        trans.StartMic();
+        ui.timerWidget->StartTimer(true);
+        SetPlayBtnState(false);
+
+        auto& ins = AiSound::GetInstance();
+        bool enableConversation = ins.IsConversationSuggestionShow();
+        auto& token = ins.Token();
+        ui.timerWidget->Clear();
+    }
+
 }
 
 void WTransaltionMain::PlayInternal(bool play)
@@ -187,14 +226,12 @@ void WTransaltionMain::TransStateChanged()
         if (trans.IsMicWorking())
         {
             ui.timerWidget->StartTimer(true);
-            ui.stopBtn->setStyleSheet(stopStyle);
-            ui.stopBtn->setText(QString::fromLocal8Bit("Stop"));
+            SetPlayBtnState(false);
         }
         else
         {
             ui.timerWidget->StartTimer(false);
-            ui.stopBtn->setStyleSheet(playStyle);
-            ui.stopBtn->setText(QString::fromLocal8Bit("Play"));
+            SetPlayBtnState(true);
         }
     }
 }
@@ -218,4 +255,54 @@ void WTransaltionMain::TranslationReceived(const QString& src, const QString& ds
     {
         _newSubtitle = true;
     }
+}
+
+void WTransaltionMain::SetPlayBtnState(bool play)
+{
+    if (play)
+    {
+        ui.stopBtn->setStyleSheet(playStyle);
+        ui.stopBtn->setText(QString::fromLocal8Bit("Play"));
+    }
+    else
+    {
+        ui.stopBtn->setStyleSheet(stopStyle);
+        ui.stopBtn->setText(QString::fromLocal8Bit("Stpp"));
+    }
+}
+
+bool WTransaltionMain::GetSelectSrcLanguage(TranslationLanguage& language)
+{
+    auto index = ui.cbSrc->currentIndex();
+    if (index < 0)
+    {
+        return false;
+    }
+
+    if (index >= _srcLan.size())
+    {
+        return false;
+    }
+
+    language = _srcLan[index];
+
+    return true;
+}
+
+bool WTransaltionMain::GetSelectDestLanguage(TranslationLanguage& language)
+{
+    auto index = ui.cbDest->currentIndex();
+    if (index < 0)
+    {
+        return false;
+    }
+
+    if (index >= _srcLan.size())
+    {
+        return false;
+    }
+
+    language = _srcLan[index];
+
+    return true;
 }

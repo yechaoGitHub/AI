@@ -163,7 +163,7 @@ QPushButton#pb_close{
       <number>1</number>
      </property>
      <widget class="WRobotChat" name="chat_widget"/>
-     <widget class="WChatDesc" name="chat_desc_wgt"/>
+     <widget class="QWidget" name="chat_desc_wgt"/>
     </widget>
    </item>
   </layout>
@@ -174,12 +174,6 @@ QPushButton#pb_close{
    <class>WRobotChat</class>
    <extends>QWidget</extends>
    <header>WRobotChat.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>WChatDesc</class>
-   <extends>QWidget</extends>
-   <header>WChatDesc.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
