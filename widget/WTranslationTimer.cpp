@@ -67,6 +67,7 @@ void WTranslationTimer::StartTimer(bool start)
     {
         _runCounter = false;
         Play(false);
+        _counter->setText("00:00");
     }
 }
 
@@ -95,7 +96,7 @@ void WTranslationTimer::timerEvent(QTimerEvent* event)
     if (_runCounter)
     {
         _passTime = _time.elapsed();
-        auto t = QTime::fromMSecsSinceStartOfDay(_passTime + _preTime);
+        auto t = QTime::fromMSecsSinceStartOfDay(_passTime /*+ _preTime*/);
         QString text = QString{ "%1:%2" }.arg(QString::number(t.minute()), 2, '0').arg(QString::number(t.second()), 2, '0');
         _counter->setText(text);
     }

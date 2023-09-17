@@ -126,6 +126,17 @@ public:
     const std::vector<PhoneRegionInfo>& GetPhoneRegionInfo();
     std::vector<QAudioDeviceInfo> GetInputDeviceList();
     std::vector<QAudioDeviceInfo> GetOutputDeviceList();
+
+    const std::map<int, std::pair<QString, QString>>& GetIDLanguageMap();
+    const std::map<int, std::pair<QString, QString>>& GetIDSexMap();
+
+    QString GetVoiceLanguageName(int id);
+    QString GetVoiceSexName(int id);
+    std::vector<int> GetVoiceLanguage();
+    std::vector<int> GetVoiceSex(int language);
+    std::vector<int> GetVoiceName(int language, int sex);
+    bool GetVoiceData(int id, VoiceData& findData);
+
     void SwitchLanguage(LanguageType type);
     LanguageType GetSystemLanguage();
     void playVoiceMp3(const QString& url);

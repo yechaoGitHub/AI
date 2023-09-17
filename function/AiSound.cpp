@@ -21,8 +21,34 @@
 
 #include <Windows.h>
 #include <thread>
+#include <set>
 
 #include "base/HttpClient.h"
+
+const std::map<int, std::pair<QString, QString>> MP_ID_TO_LANG =
+{
+    {1, {QString::fromLocal8Bit("普通话"), QString::fromLocal8Bit("Mandarin")}},
+    {2, {QString::fromLocal8Bit("英话"), QString::fromLocal8Bit("English")}},
+    {3, {QString::fromLocal8Bit("日话"), QString::fromLocal8Bit("Japanese")}},
+    {4, {QString::fromLocal8Bit("阿拉伯话"), QString::fromLocal8Bit("Arabic")}},
+    {5, {QString::fromLocal8Bit("法话"), QString::fromLocal8Bit("French")}},
+    {6, {QString::fromLocal8Bit("俄话"), QString::fromLocal8Bit("Russian")}},
+    {7, {QString::fromLocal8Bit("西班牙话"), QString::fromLocal8Bit("Spanish")}},
+    {8, {QString::fromLocal8Bit("越南话"), QString::fromLocal8Bit("Vietnamese")}},
+    {9, {QString::fromLocal8Bit("泰话"), QString::fromLocal8Bit("Thai")}},
+    {10, {QString::fromLocal8Bit("马来话"), QString::fromLocal8Bit("Malay")}},
+    {11, {QString::fromLocal8Bit("德话"), QString::fromLocal8Bit("German")}},
+    {12, {QString::fromLocal8Bit("土耳其话"), QString::fromLocal8Bit("Turkish")}},
+    {13, {QString::fromLocal8Bit("韩语话"), QString::fromLocal8Bit("Korean")}},
+    {14, {QString::fromLocal8Bit("葡萄牙话"), QString::fromLocal8Bit("Portuguese")}},
+};
+
+const std::map<int, std::pair<QString, QString>> MP_ID_TO_SEX =
+{
+    {0, {QString::fromLocal8Bit("其他"), QString::fromLocal8Bit("Other")}},
+    {1, {QString::fromLocal8Bit("男"), QString::fromLocal8Bit("Man")}},
+    {1, {QString::fromLocal8Bit("女"), QString::fromLocal8Bit("Woman")}},
+};
 
 AiSound AiSound::INSTANCE;
 
@@ -390,6 +416,147 @@ std::vector<QAudioDeviceInfo> AiSound::GetOutputDeviceList()
     return list.toVector().toStdVector();
 }
 
+const std::map<int, std::pair<QString, QString>>& AiSound::GetIDLanguageMap()
+{
+    return MP_ID_TO_LANG;
+}
+
+const std::map<int, std::pair<QString, QString>>& AiSound::GetIDSexMap()
+{
+    return MP_ID_TO_SEX;
+}
+
+QString AiSound::GetVoiceLanguageName(int id)
+{
+    auto it = MP_ID_TO_LANG.find(id);
+    if (it != MP_ID_TO_LANG.end())
+    {
+        return it->second.first;
+    }
+    else
+    {
+        return "";
+    }
+}
+
+QString AiSound::GetVoiceSexName(int id)
+{
+    auto it = MP_ID_TO_SEX.find(id);
+    if (it != MP_ID_TO_SEX.end())
+    {
+        return it->second.first;
+    }
+    else
+    {
+        return "";
+    }
+}
+
+std::vector<int> AiSound::GetVoiceLanguage()
+{
+    std::vector<int> ret;
+    std::set<int> st;
+    for (auto& data : _voiceData)
+    {
+        st.insert(data.language);
+    }
+
+    for (auto& elem : st)
+    {
+        ret.push_back(elem);
+    }
+
+    return ret;
+}
+
+std::vector<int> AiSound::GetVoiceSex(int language)
+{
+    std::vector<int> ret;
+    std::set<int> st;
+    for (auto& data : _voiceData)
+    {
+        if (language != -1)
+        {
+            if (data.language == language)
+            {
+                st.insert(data.gender);
+            }
+        }
+        else
+        {
+            st.insert(data.gender);
+        }
+    }
+
+    for (auto& elem : st)
+    {
+        ret.push_back(elem);
+    }
+
+    return ret;
+}
+
+std::vector<int> AiSound::GetVoiceName(int language, int sex)
+{
+    std::vector<int> ret;
+    std::set<int> st;
+    for (auto& data : _voiceData)
+    {
+        if (language != -1)
+        {
+            if (data.language == language)
+            {
+                if (sex == -1)
+                {
+                    st.insert(data.id);
+                }
+                else
+                {
+                    if (data.gender == sex)
+                    {
+                        st.insert(data.id);
+                    }
+                }
+            }
+        }
+        else
+        {
+            if (sex == -1)
+            {
+                st.insert(data.id);
+            }
+            else
+            {
+                if (data.gender == sex)
+                {
+                    st.insert(data.id);
+                }
+            }
+        }
+    }
+
+    for (auto& elem : st)
+    {
+        ret.push_back(elem);
+    }
+
+    return ret;
+}
+
+bool AiSound::GetVoiceData(int id, VoiceData& findData)
+{
+    for (auto& data : _voiceData)
+    {
+        if (data.id == id)
+        {
+            findData = data;
+            return true;
+        }
+    }
+
+    return false;
+}
+
 void AiSound::SwitchLanguage(LanguageType type)
 {
     if (type == _sysLanguage)
@@ -448,15 +615,15 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
 
         case httpGetVerifyCode:
         {
-            //QJsonParseError err_rpt;
-            //auto document = QJsonDocument::fromJson(data, &err_rpt);
-            //int code = document["code"].toInt();
-            //QString msg = document["msg"].toString();
-            //QString img = document["data"]["img"].toString();
-            //QString uuid = document["data"]["uuid"].toString();
+            QJsonParseError err_rpt;
+            auto document = QJsonDocument::fromJson(data, &err_rpt);
+            int code = document["code"].toInt();
+            QString msg = document["msg"].toString();
+            QString img = document["data"]["img"].toString();
+            QString uuid = document["data"]["uuid"].toString();
 
-            //auto packet = dynamic_cast<HttpCallbackPacket<GetVerifyCodeCallbackType>*>(packetRaw);
-            //packet->callback(code, msg, img, uuid);
+            auto packet = dynamic_cast<HttpCallbackPacket<GetVerifyCodeCallbackType>*>(packetRaw);
+            packet->callback(code, msg, img, uuid);
         }
         break;
 

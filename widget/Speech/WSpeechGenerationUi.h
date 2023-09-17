@@ -22,19 +22,21 @@ protected:
     void closeEvent(QCloseEvent* event) override;
 
 private:
+    void LanguageIndexChanged(int index);
+    void SexIndexChanged(int index);
+    void NameIndexChanged(int index);
+
     void CloseClicked();
     void StartClicked();
     void SendClicked();
     void ExportClicked();
-    void PlayClicked();
     void TranslationReceived(const QString& src, const QString& dst, int type);
-    void VcStateChanged();
+    QString GetSelectSpeaker();
 
     Ui::WSpeechGenerationUiClass    ui;
 
     TranslationLanguage             _srcLan;
     TranslationLanguage             _destLan;
-    std::vector<VoiceData>          _voiceData;
 
     QPoint                          _clickPos;
     bool                            _mouseHold = false;

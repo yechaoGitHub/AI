@@ -65,7 +65,7 @@ void HttpAsync::PostInternal(const QString& url, const QJsonObject& param, QMap<
     debugText += url;
 #endif
 
-    if (!param.isEmpty())
+    //if (!param.isEmpty())
     {
         QJsonDocument document;
         document.setObject(param);
