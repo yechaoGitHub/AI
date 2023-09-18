@@ -1,6 +1,8 @@
 #include "WVoiceLibPage.h"
 #include "WVoicelibWidget.h"
 #include "function/AiSound.h"
+#include "function/QAudioPlayer.h"
+
 
 WVoiceLibPage::WVoiceLibPage(QWidget *parent)
 	: QWidget(parent)
@@ -38,6 +40,13 @@ WVoiceLibPage::WVoiceLibPage(QWidget *parent)
 	//qRegisterMetaType<QVector<strc_SoundLib>>("QVector<strc_SoundFilter>");
 	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_soundFilterReplay, this, &WVoiceLibPage::slot_soundFilterReplay);
 	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_soundLibReplay, this, &WVoiceLibPage::slot_soundLibReplay);
+
+	connect(QAudioPlayer::GetInstance(), &QAudioPlayer::sig_playStop, this, [=] {
+		if (_cur_lib_wgt) {
+			_cur_lib_wgt->opeMovie(false);
+			_cur_lib_wgt = nullptr;
+		}
+		});
 }
 
 WVoiceLibPage::~WVoiceLibPage()
@@ -62,8 +71,17 @@ void WVoiceLibPage::setSel()
 
 void WVoiceLibPage::slot_addVoice(int voiceId,const QString& name)
 {
-	auto it = this->pos();
-	_addVoiceDlg->Show(voiceId, name);
+	if (name == "-1") {
+		WVoicelibWidget* lib = static_cast<WVoicelibWidget*>(QObject::sender());
+		if (_cur_lib_wgt) {
+			_cur_lib_wgt->opeMovie(false);
+		}
+		_cur_lib_wgt = lib;
+	}
+	else {
+		auto it = this->pos();
+		_addVoiceDlg->Show(voiceId, name);
+	}
 }
 
 void WVoiceLibPage::slot_comboxIndexChange(int index)
@@ -104,10 +122,19 @@ void WVoiceLibPage::slot_common_replay(int type, bool success, const QString& ms
 	else if (type == httpReqType::GetVoiceLib_Req) {
 		if (success) {
 			if (!msg.isEmpty()) {
-				AiSound::GetInstance().playVoiceMp3(msg);
+				//AiSound::GetInstance().playVoiceMp3(msg);
+				QAudioPlayer::GetInstance()->playUrl(msg);
+				if (_cur_lib_wgt) {
+					_cur_lib_wgt->opeMovie(true);
+				}
+			}
+			else {
+				_cur_lib_wgt = nullptr;
+				AiSound::GetInstance().ShowTip(this, tr("url is empty"));
 			}
 		}
 		else {
+			_cur_lib_wgt = nullptr;
 			AiSound::GetInstance().ShowTip(this, msg);
 		}
 	}

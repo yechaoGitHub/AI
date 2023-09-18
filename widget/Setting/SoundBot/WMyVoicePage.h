@@ -25,6 +25,7 @@ private slots:
 
 
 	void	slot_editMyVoice(int voiceId, const QString& name, const QString& desc);
+	void	slot_playVoice(int voiceId);
 private:
 	Ui::WMyVoicePageClass ui;
 
@@ -36,4 +37,7 @@ private:
 	int		_total_page = 0;
 	int		_total_size = 0;
 	int		_page_size = 5;
+
+	int		_pre_play_voiceId = 0;
+	WMyVoiceModel* _pre_model = nullptr;
 };

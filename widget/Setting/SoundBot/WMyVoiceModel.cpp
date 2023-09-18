@@ -21,6 +21,7 @@ WMyVoiceModel::WMyVoiceModel(QWidget *parent)
 	_movie = new QMovie(":/QtTest/icon/voice_tick.apng", "apng", this);
 
 	_effect->setMovie(_movie);
+	_effect->move(50, 122);
 }
 
 WMyVoiceModel::~WMyVoiceModel()
@@ -36,14 +37,15 @@ void WMyVoiceModel::setVoice(const strc_MyVoice& voice)
 
 	ui.lb_1->setProperty("man", voice.gender == 1);
 	ui.lb_1->style()->unpolish(ui.lb_1);
+
+	_movie->start();
+	_movie->stop();
 }
 
 void WMyVoiceModel::on_del_btn_clicked()
 {
 	auto pos = ui.pb_use->pos();
-	_effect->move(pos.x() + 10, pos.y() + 10);
-	_movie->start();
-	//SettingInterfaceBussiness::getInstance()->delVoiceReq(_voiceId);
+	SettingInterfaceBussiness::getInstance()->delVoiceReq(_voiceId);
 }
 
 void WMyVoiceModel::on_pb_edit_clicked()
@@ -51,7 +53,19 @@ void WMyVoiceModel::on_pb_edit_clicked()
 	emit sig_editMyVoice(_voiceId, ui.label_name->text(), ui.lb_content->text());
 }
 
+void WMyVoiceModel::opeMoive(bool start)
+{
+	if (start) {
+		_movie->start();
+	}
+	else {
+		_movie->stop();
+	}
+}
+
 void WMyVoiceModel::on_pb_use_clicked()
 {
+
+	emit sig_playVoice(_voiceId);
 	SettingInterfaceBussiness::getInstance()->getVoiceUrlReq(_voiceId);
 }

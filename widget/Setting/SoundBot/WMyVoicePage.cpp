@@ -3,6 +3,7 @@
 #include "function/AiSound.h"
 #include <QDesktopServices>
 #include "WMyVoiceModel.h"
+#include "function/QAudioPlayer.h"
 
 
 WMyVoicePage::WMyVoicePage(QWidget *parent)
@@ -22,6 +23,7 @@ WMyVoicePage::WMyVoicePage(QWidget *parent)
 				sp_retain.setRetainSizeWhenHidden(true);
 				voice->setSizePolicy(sp_retain);
 				connect(voice, &WMyVoiceModel::sig_editMyVoice, this, &WMyVoicePage::slot_editMyVoice);
+				connect(voice, &WMyVoiceModel::sig_playVoice, this, &WMyVoicePage::slot_playVoice);
 				ui.gridLayout->addWidget(voice, i, j);
 				_voice_widget_list.push_back(voice);
 			}
@@ -37,6 +39,12 @@ WMyVoicePage::WMyVoicePage(QWidget *parent)
 	_voice_editDlg = new WEditVoiceDlg(nullptr);
 	_voice_editDlg->hide();
 
+	connect(QAudioPlayer::GetInstance(), &QAudioPlayer::sig_playStop, this, [=] {
+		if (_pre_model) {
+			_pre_model->opeMoive(false);
+			_pre_model = nullptr;
+		}
+		});
 }
 
 WMyVoicePage::~WMyVoicePage()
@@ -78,13 +86,34 @@ void WMyVoicePage::slot_commonReplay(int type, bool success, const QString& msg)
 	else if (type == httpReqType::GetVoiceUrl_Req) {
 		if (success) {
 			if (!msg.isEmpty()) {
-				AiSound::GetInstance().playVoiceMp3(msg);
+				//AiSound::GetInstance().playVoiceMp3(msg);
+				QAudioPlayer::GetInstance()->playUrl(msg);
+				if (_pre_model) {
+					_pre_model->opeMoive(true);
+				}
+			}
+			else {
+				_pre_model = nullptr;
+				AiSound::GetInstance().ShowTip(this, tr("Address is empty"));
 			}
 		}
 		else {
+			_pre_model = nullptr;
 			AiSound::GetInstance().ShowTip(this, msg);
 		}
 	}
+}
+
+void WMyVoicePage::slot_playVoice(int voiceId)
+{
+	WMyVoiceModel* model = static_cast<WMyVoiceModel*>(QObject::sender());
+	if (!model) {
+		return;
+	}
+	if (_pre_model) {
+		_pre_model->opeMoive(false);
+	}
+	_pre_model = model;
 }
 
 void WMyVoicePage::slot_myVoiceListReplay(bool success, int, const strc_PageInfo page_info, const QVector<strc_MyVoice>& voice_list)

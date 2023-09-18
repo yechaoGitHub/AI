@@ -11,12 +11,13 @@ class WMyVoiceModel : public QWidget
 	Q_OBJECT
 signals:
 	void sig_editMyVoice(int voiceId,const QString& name,const QString& desc);
+	void sig_playVoice(int voiceId);
 public:
 	WMyVoiceModel(QWidget *parent = nullptr);
 	~WMyVoiceModel();
 
 	void	setVoice(const strc_MyVoice& voice);
-
+	void	opeMoive(bool start);
 private slots:
 	void on_del_btn_clicked();
 	void on_pb_edit_clicked();

@@ -372,37 +372,6 @@
     </message>
 </context>
 <context>
-    <name>WChatDescClass</name>
-    <message>
-        <source>WChatDesc</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Summary Chat</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Meeting Name: Discussing AI in design field</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>the meeting on the scope of AI in the design field provided a platform for 
-professionals to discuss the current landscape and future possibilities. 
-It highlighted the positive impact of AI in design while emphasizing the need
-for responsible and ethical integration. The meeting concluded with a 
-shared vision of a harmonious collaboration between designers and AI
-systems, leveraging the strengths of both to drive innovation in the field.
-
-During the meeting, several key points were highlighted. Firstly, participants
-acknowledged that AI has already made significant contributions to the 
-design field, particularly in areas such as automated design generation, 
-predictive analytics, and data-driven decision-making. AI-powered tools and 
-algorithms have facilitated faster and more efficient design processes, 
-enabling designers to focus on more creative aspects of their work.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>WChatItem</name>
     <message>
         <source>Content copied</source>
@@ -658,6 +627,13 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Use</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WMyVoicePage</name>
+    <message>
+        <source>Address is empty</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1026,6 +1002,10 @@ enabling designers to focus on more creative aspects of their work.</source>
         <source>language</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>url is empty</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WVoiceLibPageClass</name>
@@ -1199,10 +1179,6 @@ enabling designers to focus on more creative aspects of their work.</source>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PushButton</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -40,4 +40,6 @@ private:
 	int		_page_size = 6;
 	int		_total_size = 0;
 	int		_total_pages = 0;
+
+	WVoicelibWidget* _cur_lib_wgt = nullptr;
 };
