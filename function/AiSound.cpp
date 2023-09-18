@@ -296,7 +296,7 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
     if (type == Navig_Type::Chat) {
         if (_robot_chat->isHidden())
         {
-            _robot_chat->show();
+            _robot_chat->Show();
         }
     }
     else if (type == Navig_Type::Voice) {

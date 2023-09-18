@@ -122,7 +122,7 @@ QSize WChatItem::fontRect(QString str)
     }
     m_textLeftRect.setRect(m_kuangLeftRect.x() + textSpaceRect, m_kuangLeftRect.y() + iconTMPH + btn_height,
         m_kuangLeftRect.width() - 2 * textSpaceRect, m_kuangLeftRect.height() - 2 * iconTMPH);
-    m_textRightRect.setRect(m_kuangRightRect.x() + textSpaceRect, m_kuangRightRect.y() + iconTMPH,
+    m_textRightRect.setRect(m_kuangRightRect.x() + textSpaceRect, m_kuangRightRect.y() + iconTMPH+ btn_height,
         m_kuangRightRect.width() - 2 * textSpaceRect, m_kuangRightRect.height() - 2 * iconTMPH);
 
     return QSize(size.width(), hei);
@@ -246,6 +246,9 @@ void WChatItem::paintEvent(QPaintEvent* event)
         option.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
         painter.setFont(this->font());
         painter.drawText(m_textRightRect, m_msg, option);
+
+        m_pCopyBtn->move(m_textRightRect.x() + m_textRightRect.width() - m_pCopyBtn->width() - 4, m_textRightRect.y() - 18);
+        m_pCopyBtn->show();
     }
     else if (m_userType == User_Type::User_Time) {
         QPen penText;

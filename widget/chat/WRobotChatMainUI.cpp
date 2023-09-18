@@ -2,6 +2,8 @@
 #include "AiSound.h"
 #include <QPainter>
 #include <QPainterPath>
+#include <QDesktopWidget>
+
 
 RobotChatMainUI::RobotChatMainUI(QWidget *parent)
     : FrameLessWidget(parent)
@@ -21,6 +23,15 @@ RobotChatMainUI::RobotChatMainUI(QWidget *parent)
 RobotChatMainUI::~RobotChatMainUI()
 {}
 
+void RobotChatMainUI::Show()
+{
+    QDesktopWidget* desktopWidget = QApplication::desktop();
+    //QRect deskRect = desktopWidget->availableGeometry();
+    QRect screenRect = desktopWidget->screenGeometry();
+    this->move(screenRect.width()-this->width()-20, screenRect.height()-this->height()-300);
+    show();
+}
+
 void RobotChatMainUI::on_pb_min_clicked()
 {
     this->showMinimized();
@@ -28,7 +39,7 @@ void RobotChatMainUI::on_pb_min_clicked()
 
 void RobotChatMainUI::on_pb_close_clicked()
 {
-    this->hide();
+    this->close();
 }
 
 //void RobotChatMainUI::StartBtnClicked()
