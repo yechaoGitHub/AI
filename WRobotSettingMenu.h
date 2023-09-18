@@ -12,6 +12,8 @@ public:
 	WRobotSettingMenu(QWidget *parent = nullptr);
 	~WRobotSettingMenu();
 
+	void	setFloatText(const QString& text);
+
 private:
 	Ui::WRobotSettingMenuClass ui;
 };

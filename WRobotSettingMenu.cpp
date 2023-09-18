@@ -16,5 +16,10 @@ WRobotSettingMenu::WRobotSettingMenu(QWidget *parent)
 		});
 }
 
+void WRobotSettingMenu::setFloatText(const QString& text)
+{
+	ui.pb_quite->setText(text);
+}
+
 WRobotSettingMenu::~WRobotSettingMenu()
 {}

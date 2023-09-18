@@ -69,10 +69,32 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
     connect(ui.comboBox_vector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WSpeechGenerationUi::NameIndexChanged);
 
     connect(&voiceCompositor, &VoiceCompositor::translationReceived, this, &WSpeechGenerationUi::TranslationReceived);
+
+    ui.pb_lock->setProperty("lock", false);
+    ui.pb_lock->style()->unpolish(ui.pb_lock);
+    ui.pb_convGuide->hide();
 }
 
 WSpeechGenerationUi::~WSpeechGenerationUi()
 {}
+
+void WSpeechGenerationUi::on_pb_lock_clicked()
+{
+    _lock = !_lock;
+    ui.pb_lock->setProperty("lock", _lock);
+    ui.pb_lock->style()->unpolish(ui.pb_lock);
+    Qt::WindowFlags flags = windowFlags();
+    if (_lock) {
+        //QT 方式存在闪烁，如果后面说闪烁问题，就改windows的
+        //::SetWindowPos((HWND)(this->winId()), HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+        //::SetWindowPos((HWND)(this->winId()), HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
+        this->setWindowFlags(flags | Qt::WindowStaysOnTopHint);
+    }
+    else {
+        this->setWindowFlags(flags ^ Qt::WindowStaysOnTopHint); // 取消置顶
+    }
+    show();
+}
 
 void WSpeechGenerationUi::SetLanguage(const TranslationLanguage &srcLan, const TranslationLanguage &destLan)
 {

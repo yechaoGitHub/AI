@@ -26,7 +26,62 @@
    <string>WSpeechGenerationUi</string>
   </property>
   <property name="styleSheet">
-   <string notr="true"/>
+   <string notr="true">QComboBox QAbstractItemView {
+    outline: 1px solid rgba(0,0,0,10);
+    border: 1px solid rgba(0,0,0,10);
+    color: #000000;
+    background-color: #FFFFFF; 
+    selection-color: #000000;
+    selection-background-color:rgba(160, 195, 255,0);
+}
+
+QComboBox QAbstractScrollArea QScrollBar:vertical {
+    width: 10px;
+    background-color: #ffffff; 
+}
+
+QComboBox QAbstractScrollArea QScrollBar::handle:vertical {
+    border-radius: 5px;
+    background: rgba(0,0,0,10);
+}
+
+QComboBox QAbstractScrollArea QScrollBar::handle:vertical:hover {
+    background: #505050;
+}
+
+
+QScrollBar:vertical
+{
+    width:6px;
+    background:transparent;
+    margin:0px,0px,0px,0px;
+	border-radius:none;
+}
+QScrollBar::handle:vertical
+{
+    width:6px;
+    background:rgba(0,0,0,25%);
+    border-radius:4px;
+	min-height: 30;
+}
+QScrollBar::handle:vertical:hover
+{
+    width:6px;
+    background:rgba(0,0,0,50%);   
+    border-radius:4px;
+	min-height: 30;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::add-line:horizontal {
+      background: transparent;
+      height: 0px;
+      width: 0px;
+}
+QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
+      background: transparent;
+       height: 0px;
+      width: 0px;
+    }</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
@@ -183,13 +238,26 @@ border-color:rgba(255,255,255,50%);</string>
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-image:url(:/QtTest/icon/Speech/lock.png);
+         <string notr="true">QPushButton#pb_lock[lock=false]{
+	background-image:url(:/QtTest/icon/Speech/lock.png);
 background-color:rgb(0,0,0);
 background-position:center;
 background-repeat:no-repeat;
 border:1px solid;
 border-radius:4px;
-border-color:rgba(255,255,255,50%);</string>
+border-color:rgba(255,255,255,50%);
+}
+
+QPushButton#pb_lock[lock=true]{
+	background-image:url(:/QtTest/icon/Speech/lock_ok.png);
+background-color:rgb(0,0,0);
+background-position:center;
+background-repeat:no-repeat;
+border:1px solid;
+border-radius:4px;
+border-color:rgba(255,255,255,50%);
+}
+</string>
         </property>
         <property name="text">
          <string/>

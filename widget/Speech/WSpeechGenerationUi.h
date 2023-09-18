@@ -21,6 +21,9 @@ protected:
     void showEvent(QShowEvent* event) override;
     void closeEvent(QCloseEvent* event) override;
 
+private slots:
+    void on_pb_lock_clicked();
+
 private:
     void LanguageIndexChanged(int index);
     void SexIndexChanged(int index);
@@ -40,4 +43,5 @@ private:
 
     QPoint                          _clickPos;
     bool                            _mouseHold = false;
+    bool                            _lock = false;
 };

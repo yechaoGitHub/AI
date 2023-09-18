@@ -711,6 +711,10 @@
         <source>Float Window</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Quite Floating Window</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WRobotNavigationClass</name>
@@ -792,7 +796,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Quite Floating Window</source>
+        <source>√Quite Floating Window</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -2,7 +2,7 @@
 #include "base/GlobalSetting.h"
 
 #include <Windows.h>
-
+#include <QStandardItemModel>
 #include <QPainter>
 #include <QMouseEvent>
 #include <QPainterPath>

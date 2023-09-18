@@ -22,7 +22,9 @@ WRobotNavigation::WRobotNavigation(QWidget *parent)
             emit sig_robot_clicked(Navig_Type::Chat_Set);
         }
         else {
-            emit sig_robot_clicked(Navig_Type::Quite);
+            //emit sig_robot_clicked(Navig_Type::Quite);
+            exitAction2_->setText(tr("Float Window"));
+            this->hide();
         }
         _setting_menu->hide();
         ui.frame->hide();
@@ -56,13 +58,17 @@ void WRobotNavigation::initTrayIcon()
         });
     trayMenu_->addAction(exitAction_.data());
 
-    exitAction2_.reset(new QAction(tr("Float Window")));
+    exitAction2_.reset(new QAction(QString::fromLocal8Bit("¡ÌFloat Window")));
     connect(exitAction2_.data(), &QAction::triggered, this, [=] {
         if (this->isHidden()) {
             this->show();
+            exitAction2_->setText(QString::fromLocal8Bit("¡ÌFloat Window"));
+            _setting_menu->setFloatText(QString::fromLocal8Bit("¡ÌQuite Floating Window"));
         }
         else {
             this->hide();
+            exitAction2_->setText(tr("Float Window"));
+            _setting_menu->setFloatText(tr("Quite Floating Window"));
         }
         });
     trayMenu_->addAction(exitAction2_.data());
