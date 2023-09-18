@@ -27,11 +27,13 @@ protected:
 
 private:
     void TitleChanged(WLoginSwitch::ETitle title);
-
+    void LoginClicked();
     void LanguageClicked();
+    void PasswordLogin();
+    void EmailLogin();
+    void PhoneLogin();
 
     Ui::Login       ui;
-
     WLoginSwitch::ETitle  _cur_login_title;
 };
 

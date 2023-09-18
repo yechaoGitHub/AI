@@ -11,6 +11,7 @@ public:
 
     QString PhoneNumber();
     QString VerifyCode();
+    QString DialingCode();
 
 protected:
     void timerEvent(QTimerEvent* event) override;
@@ -21,6 +22,7 @@ private:
 
     Ui::mobileLogin ui;
     bool _canResend = true;
+    int _downCount = 60;
     int _timer = 0;
 };
 

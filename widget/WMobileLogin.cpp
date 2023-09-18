@@ -9,15 +9,14 @@ WMobileLogin::WMobileLogin(QWidget* parent) :
 
     ui.comboBox->setView(new QListView{});
 
+    ui.codeEdit->textEdit->setPlaceholderText("Enter the email address");
+
     ui.verificationCodeEdit->SetImage(":/QtTest/icon/lock.png");
     ui.verificationCodeEdit->textEdit->setPlaceholderText("Enter the code in picture");
 
-    ui.codeEdit->SetImage(":/QtTest/icon/lock.png");
-    ui.verificationCodeEdit->textEdit->setPlaceholderText("Enter the code send on your mobile");
+    ui.lineEdit->setPlaceholderText(tr("Enter the code send on your email"));
 
     connect(ui.getCodeBtn, &QPushButton::clicked, this, &WMobileLogin::GetCodeCallback);
-
-    ui.lineEdit->setPlaceholderText(tr("Enter your phone"));
 
     ui.lbEstimated->setVisible(false);
 }
@@ -36,20 +35,35 @@ QString WMobileLogin::VerifyCode()
     return ui.verificationCodeEdit->textEdit->text();
 }
 
+QString WMobileLogin::DialingCode()
+{
+    auto index = ui.comboBox->currentIndex();
+    QString dialingCode;
+    if (index != -1)
+    {
+        dialingCode = ui.comboBox->itemData(index).toString();
+        return dialingCode;
+    }
+    else
+    {
+        return "";
+    }
+
+    return "";
+}
+
 void WMobileLogin::timerEvent(QTimerEvent* event)
 {
-    static int count{ 60 };
-
     ui.lbEstimated->setVisible(true);
-    QString text = QString::fromLocal8Bit("Estimated time of code in %1 seconds").arg(count);
+    QString text = QString::fromLocal8Bit("Estimated time of code in %1 seconds").arg(_downCount);
     ui.lbEstimated->setText(text);
 
-    count--;
-    if (count == 0)
+    _downCount--;
+    if (_downCount == 0)
     {
         killTimer(_timer);
-        count = 60;
         ui.lbEstimated->setVisible(false);
+        ui.getCodeBtn->setEnabled(true);
     }
 }
 
@@ -97,9 +111,13 @@ void WMobileLogin::GetCodeCallback()
             auto& ins = AiSound::GetInstance();
             ins.ShowTip(this, msg);
         }
+        else
+        {
+            _downCount = 60;
+            _timer = startTimer(1000);
+            ui.getCodeBtn->setEnabled(false);
+        }
     };
 
     ins.SendVerifyCode(dialingCode, phoneNumber, verifyCode, uuid, callback);
-
-    _timer = startTimer(1000);
 }

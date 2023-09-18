@@ -82,36 +82,11 @@ void AiSound::Initialize()
     _voiceCompositor.Initialize();
     _chatBot.Initialize();
 
-    /*QDir dir("./download");
-    if (!dir.exists())
-    {
-        dir.mkdir("./download");
-    }*/
-
     GetPhoneRegionNumber([this](int code, const QString& msg, std::vector<PhoneRegionInfo> data)
         {
             if (code == 200)
             {
-              /*  QString contryFlagUrl = "http://47.106.253.9:9101/img/country-flags/";*/
-
-            /*    QString root_path = QCoreApplication::applicationDirPath();
-                QString path = root_path + "/download";
-                QDir dir(path);
-                if (!dir.exists()) {
-                    dir.mkdir(dir.absolutePath());
-                }*/
-
                 _phoneRegionData = std::move(data);
-                //for (auto& phoneData : _phoneRegionData)
-                //{
-                //    auto downloadUrl = contryFlagUrl + phoneData.abb + ".png";
-                //    auto savePath = path+ "/" + phoneData.abb + ".png";
-                //    QFile file(savePath);
-                //    if (file.exists()) {
-                //        continue;
-                //    }
-                //    _httpAsync.Download(downloadUrl, savePath);
-                //}
             }
         });
     _audio_play = new QAudioPlayer(nullptr);
@@ -143,13 +118,14 @@ void AiSound::slot_keyType(int type)
     }
 }
 
-void AiSound::PasswordLogin(const QString& userName, const QString& password, PasswordLoginCallback callback)
+//º”…œLanguage
+void AiSound::PasswordLogin(const QString& userName, const QString& password, LoginCallback callback)
 {
     QJsonObject dataObj;
     dataObj.insert("password", password);
     dataObj.insert("username", userName);
 
-    auto packet = new HttpCallbackPacket<PasswordLoginCallbackType>();
+    auto packet = new HttpCallbackPacket<LoginCallbackType>();
     packet->type = httpPasswordLogin;
     packet->callback = callback;
     QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
@@ -158,6 +134,41 @@ void AiSound::PasswordLogin(const QString& userName, const QString& password, Pa
     headers.insert("Content-Type", "application/json;charset=utf-8");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/loginByPwd", dataObj, headers, userParam);
+}
+
+void AiSound::PhoneLogin(const QString& dialingCode, const QString& mobileNumber, const QString& verifyCode, LoginCallback callback)
+{
+    QJsonObject dataObj;
+    dataObj.insert("dialingCode", dialingCode);
+    dataObj.insert("mobileNumber", mobileNumber);
+    dataObj.insert("verifyCode", verifyCode);
+
+    auto packet = new HttpCallbackPacket<LoginCallbackType>();
+    packet->type = httpPasswordLogin;
+    packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
+
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/user/loginByMobile", dataObj, headers, userParam);
+}
+
+void AiSound::EmailLogin(const QString& mailAddress, const QString& verifyCode, LoginCallback callback)
+{
+    QJsonObject dataObj;
+    dataObj.insert("mailAddress", mailAddress);
+    dataObj.insert("verifyCode", verifyCode);
+
+    auto packet = new HttpCallbackPacket<LoginCallbackType>();
+    packet->type = httpPasswordLogin;
+    packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
+
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/user/loginByMail", dataObj, headers, userParam);
 }
 
 void AiSound::GetVerifyCode(GetVerifyCodeCallback callback)
@@ -607,7 +618,7 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
             QString token = document["data"]["accessToken"].toString();
             QString msg = document["msg"].toString();
 
-            auto packet = dynamic_cast<HttpCallbackPacket<PasswordLoginCallbackType>*>(packetRaw);
+            auto packet = dynamic_cast<HttpCallbackPacket<LoginCallbackType>*>(packetRaw);
             UserLoginCallbackInternal(code, msg, token);
             packet->callback(code, msg, token);
         }

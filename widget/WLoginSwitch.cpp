@@ -25,13 +25,13 @@ void WLoginSwitch::paintEvent(QPaintEvent* event)
 
     QPainter painter{ this };
     painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
-    
+
     QBrush brush;
     brush.setColor(QColor{ 228, 239, 255 });
     brush.setStyle(Qt::BrushStyle::SolidPattern);
     QPainterPath path;
     path.setFillRule(Qt::WindingFill);
-    
+
     if (_title == ETitle::userName)
     {
         path.addRoundedRect(rtUser, 8, 8);
@@ -39,7 +39,7 @@ void WLoginSwitch::paintEvent(QPaintEvent* event)
         path.addRect(temp_rect);
         painter.fillPath(path, brush);
     }
-    else 
+    else
     {
         path.addRoundedRect(rtMobile, 8, 8);
         QRect temp_rect(rtMobile.left(), rtMobile.top() + 8, rtMobile.width(), rtMobile.height());
@@ -53,8 +53,8 @@ void WLoginSwitch::paintEvent(QPaintEvent* event)
     g.setColorAt(1, QColor{ 189, 0, 255 });
 
     QPen pen;
-    auto userNameStr = QString::fromLocal8Bit("Username");
-    auto mobileStr = QString::fromLocal8Bit("Mobile");
+    auto userNameStr = QString::fromLocal8Bit("Password Login");
+    auto mobileStr = QString::fromLocal8Bit("Verification Code Login");
 
     painter.setFont(this->font());
 
@@ -71,16 +71,16 @@ void WLoginSwitch::paintEvent(QPaintEvent* event)
     QTextOption opt;
     opt.setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
 
-    if (_title == ETitle::userName) 
+    if (_title == ETitle::userName)
     {
         g.setFinalStop((float)tW, (float)tH);
         pen.setBrush(g);
         painter.setPen(pen);
     }
-    else 
+    else
     {
         painter.setPen(QColor{ 19, 19, 19 });
-    }       
+    }
     painter.drawText(inTextRt, userNameStr, opt);
 
 
@@ -147,7 +147,7 @@ QRect WLoginSwitch::GetTextRect(ETitle title)
     {
         return QRect{ 0, 0, rt.width() / 2, rt.height() };
     }
-    else 
+    else
     {
         return QRect{ rt.width() / 2, 0, rt.width() / 2, rt.height() };
     }

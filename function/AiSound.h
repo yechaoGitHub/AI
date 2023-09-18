@@ -30,8 +30,8 @@ class WTranslationSelect;
 class WTransaltionMain;
 class QAudioPlayer;
 
-using PasswordLoginCallbackType = void(int code, const QString& msg, const QString& token);
-using PasswordLoginCallback = std::function<PasswordLoginCallbackType>;
+using LoginCallbackType = void(int code, const QString& msg, const QString& token);
+using LoginCallback = std::function<LoginCallbackType>;
 
 using GetVerifyCodeCallbackType = void(int code, const QString& msg, const QString& img, const QString& uuid);
 using GetVerifyCodeCallback = std::function<GetVerifyCodeCallbackType>;
@@ -94,7 +94,10 @@ public:
     void Uninitialize();
 
 #pragma region httpµ÷ÓÃ
-    void PasswordLogin(const QString& userName, const QString& password, PasswordLoginCallback callback);
+    void PasswordLogin(const QString& userName, const QString& password, LoginCallback callback);
+    void PhoneLogin(const QString& dialingCode, const QString& mobileNumber, const QString& verifyCode, LoginCallback callback);
+    void EmailLogin(const QString& mailAddress, const QString& verifyCode, LoginCallback callback);
+
     void GetVerifyCode(GetVerifyCodeCallback callback);
     void Register(const QString& userName, const QString& password, const QString& dialingCode, const QString& phoneNumber, const QString& verifyCode, RegisterCallback callback);
     void SendVerifyCode(const QString& dCode, const QString& mobileNumber, const QString& verifyCode, const QString& uuid, SendVerifyCodeCallback callback);

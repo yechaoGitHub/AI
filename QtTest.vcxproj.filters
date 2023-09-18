@@ -106,12 +106,6 @@
     <ClCompile Include="widget\WTip.cpp">
       <Filter>widget</Filter>
     </ClCompile>
-    <ClCompile Include="widget\WUserNameLogin.cpp">
-      <Filter>widget</Filter>
-    </ClCompile>
-    <ClCompile Include="widget\WVerificationCode.cpp">
-      <Filter>widget</Filter>
-    </ClCompile>
     <ClCompile Include="function\AiSound.cpp">
       <Filter>function</Filter>
     </ClCompile>
@@ -307,6 +301,12 @@
     <ClCompile Include="widget\WTranslationSelect.cpp">
       <Filter>widget\Speech</Filter>
     </ClCompile>
+    <ClCompile Include="widget\WUserNameLogin.cpp">
+      <Filter>widget\login</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\WVerificationCode.cpp">
+      <Filter>widget\login</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -465,12 +465,6 @@
       <Filter>widget</Filter>
     </QtMoc>
     <QtMoc Include="widget\WTip.h">
-      <Filter>widget</Filter>
-    </QtMoc>
-    <QtMoc Include="widget\WUserNameLogin.h">
-      <Filter>widget</Filter>
-    </QtMoc>
-    <QtMoc Include="widget\WVerificationCode.h">
       <Filter>widget</Filter>
     </QtMoc>
     <QtMoc Include="function\AiSound.h">
@@ -661,6 +655,12 @@
     </QtMoc>
     <QtMoc Include="widget\WTranslationSelect.h">
       <Filter>widget\Speech</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WUserNameLogin.h">
+      <Filter>widget\login</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\WVerificationCode.h">
+      <Filter>widget\login</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
