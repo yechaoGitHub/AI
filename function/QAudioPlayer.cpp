@@ -10,6 +10,9 @@ QAudioPlayer::QAudioPlayer(QObject *parent)
 		if (state == QMediaPlayer::StoppedState && !_user_stop) {
 			emit sig_playStop();
 		}
+		if (_user_stop) {
+			_user_stop = false;
+		}
 		});
 }
 

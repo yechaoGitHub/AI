@@ -603,7 +603,7 @@
 <context>
     <name>WMobileLogin</name>
     <message>
-        <source>Enter your phone</source>
+        <source>Enter the code send on your email</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

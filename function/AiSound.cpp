@@ -110,6 +110,10 @@ AiSound& AiSound::GetInstance()
 
 void AiSound::slot_keyType(int type)
 {
+    QString token = SETTING.getToken();
+    if (token.isEmpty()) {
+        return;
+    }
     if (type == 1) {
         _wTranslationMain->show();
     }
@@ -331,6 +335,23 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
         _set_main->Show(1);
     }
     else if (type == Navig_Type::Quite) {
+        if (_robotNaviga) {
+            delete _robotNaviga;
+            _robotNaviga = nullptr;
+        }
+        if (_robot_chat) {
+            delete _robot_chat;
+            _robot_chat = nullptr;
+        }
+        if (_speech_ui) {
+            delete _speech_ui;
+            _speech_ui = nullptr;
+        }
+        if (_set_main) {
+            delete _set_main;
+            _set_main = nullptr;
+        }
+
         qApp->exit();
     }
 }
