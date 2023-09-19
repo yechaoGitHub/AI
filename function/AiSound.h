@@ -39,6 +39,9 @@ using GetVerifyCodeCallback = std::function<GetVerifyCodeCallbackType>;
 using RegisterCallbackType = void(int code, const QString& msg);
 using RegisterCallback = std::function<RegisterCallbackType>;
 
+using CommomCallbackType = RegisterCallbackType;
+using CommomCallback = RegisterCallback;
+
 using SendVerifyCodeCallbackType = void(int code, const QString& msg);
 using SendVerifyCodeCallback = std::function<SendVerifyCodeCallbackType>;
 
@@ -63,7 +66,8 @@ enum HttpCallEnum
     httpGetTranslationSource = 5,
     httpGetTranslationDest = 6,
     httpGetVoiceSpeakerCallback = 7,
-    httpGetPhoneRegionNumberCallback = 8
+    httpGetPhoneRegionNumberCallback = 8,
+    httpCommonCallback
 };
 
 struct HttpCallbackPacketRaw
@@ -97,8 +101,8 @@ public:
     void PasswordLogin(const QString& userName, const QString& password, LoginCallback callback);
     void PhoneLogin(const QString& dialingCode, const QString& mobileNumber, const QString& verifyCode, LoginCallback callback);
     void EmailLogin(const QString& mailAddress, const QString& verifyCode, LoginCallback callback);
-    void ForgetPassword();
-
+    void ForgetPassword(const QString& dialingCode, const QString& phoneEmail, const QString& password, const QString& rePassword, const QString& verifyCode, CommomCallback callback);
+    void Register(const QString& dialingCode, const QString& phoneEmail, const QString& password, const QString& rePassword, const QString& recommendCode, const QString& verifyCode, CommomCallback callback);
     void GetVerifyCode(GetVerifyCodeCallback callback);
     void Register(const QString& userName, const QString& password, const QString& dialingCode, const QString& phoneNumber, const QString& verifyCode, RegisterCallback callback);
     void SendVerifyCode(const QString& dCode, const QString& mobileNumber, const QString& verifyCode, const QString& uuid, SendVerifyCodeCallback callback);
@@ -157,9 +161,6 @@ private slots:
 private:
     AiSound();
     void HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const QString& content, QVariant userParam);
-
-    //void HttpCallbackDispatch(QNetworkReply* reply);
-
     void FetchAppData();
     void UserLoginCallbackInternal(int code, const QString& msg, const QString& token);
     bool AiFunctionRunning();

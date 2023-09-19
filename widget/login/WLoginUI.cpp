@@ -45,7 +45,7 @@ void WLoginUI::SignUpClicked()
 
 void WLoginUI::RegisterClicked()
 {
-    ui.stackedWidget->setCurrentIndex(2);
+    ui.stackedWidget->setCurrentIndex(1);
     ui.pbBack->setVisible(true);
 }
 

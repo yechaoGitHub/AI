@@ -11,10 +11,9 @@ public:
 
     QString UserName();
     QString Password();
-    QString PhoneNumber();
+    QString Repassword();
     QString VerifyCode();
-
-    bool Check();
+    QString DialingCode();
 
     QPushButton* signBtn;
 
@@ -22,6 +21,8 @@ protected:
     void showEvent(QShowEvent* event) override;
 
 private:
+    void GetCodeCallback();
+
     Ui::signUp ui;
 };
 

@@ -1,22 +1,30 @@
 #include "WRegister.h"
 #include "AiSound.h"
 
+#include <QListView>
+
 WRegister::WRegister(QWidget* parent) :
     QWidget{ parent },
     signBtn{ nullptr }
 {
     ui.setupUi(this);
 
-    ui.userNameEdit->SetImage(":/QtTest/icon/user_active.png");
-    ui.userNameEdit->textEdit->setPlaceholderText("Enter user name");
+    ui.cbPhone->setView(new QListView{});
 
-    ui.passwordEdit->SetImage(":/QtTest/icon/lock.png");
-    ui.passwordEdit->textEdit->setPlaceholderText("Enter password");
+    ui.edRecommend->textEdit->setPlaceholderText("(Optional) Enter the invitation code. If not please leave blank");
 
-    ui.passwordEdit2->SetImage(":/QtTest/icon/lock.png");
-    ui.passwordEdit2->textEdit->setPlaceholderText("Enter password again");
+    ui.edUser->SetImage(":/QtTest/icon/user_active.png");
+    ui.edUser->textEdit->setPlaceholderText("Enter user name");
+
+    ui.edPassword->SetImage(":/QtTest/icon/lock.png");
+    ui.edPassword->textEdit->setPlaceholderText("Enter password");
+
+    ui.edPassword2->SetImage(":/QtTest/icon/lock.png");
+    ui.edPassword2->textEdit->setPlaceholderText("Enter password again");
 
     signBtn = ui.pbSignUp;
+
+    connect(ui.getCodeBtn, &QPushButton::clicked, this, &WRegister::GetCodeCallback);
 }
 
 WRegister::~WRegister()
@@ -25,27 +33,39 @@ WRegister::~WRegister()
 
 QString WRegister::UserName()
 {
-    return ui.userNameEdit->textEdit->text();
+    return ui.edUser->textEdit->text();
 }
 
 QString WRegister::Password()
 {
-    return ui.passwordEdit->textEdit->text();
+    return ui.edPassword->textEdit->text();
 }
 
-QString WRegister::PhoneNumber()
+QString WRegister::Repassword()
 {
-    return ui.userNameEdit->textEdit->text();
+    return ui.edPassword2->textEdit->text();
 }
 
 QString WRegister::VerifyCode()
 {
-    return ui.verificationCodeEdit->textEdit->text();
+    return ui.edVCode->text();
 }
 
-bool WRegister::Check()
+QString WRegister::DialingCode()
 {
-    return false;
+    auto index = ui.cbPhone->currentIndex();
+    QString dialingCode;
+    if (index != -1)
+    {
+        dialingCode = ui.cbPhone->itemData(index).toString();
+        return dialingCode;
+    }
+    else
+    {
+        return "";
+    }
+
+    return "";
 }
 
 void WRegister::showEvent(QShowEvent* event)
@@ -57,15 +77,41 @@ void WRegister::showEvent(QShowEvent* event)
         firstShow = false;
     }
 
-    if (ui.comboBox->count() == 0)
+    if (ui.cbPhone->count() == 0)
     {
         auto& ai = AiSound::GetInstance();
         const auto& phoneData = ai.GetPhoneRegionInfo();
         for (auto& data : phoneData)
         {
             QString iconPath = ":/QtTest/icon/country/" + data.abb + ".png";
-            ui.comboBox->setIconSize(QSize{ 32, 16 });
-            ui.comboBox->addItem(QIcon{ iconPath }, data.name, data.dialingCode);
+            ui.cbPhone->setIconSize(QSize{ 32, 16 });
+            ui.cbPhone->addItem(QIcon{ iconPath }, data.name, data.dialingCode);
         }
     }
+}
+
+void WRegister::GetCodeCallback()
+{
+    auto& ins = AiSound::GetInstance();
+
+    auto&& phoneNumber = UserName();
+    auto verifyCode = ui.verificationCodeEdit->textEdit->text();
+    auto uuid = ui.verificationCodePic->Uuid();
+    auto index = ui.cbPhone->currentIndex();
+    QString dialingCode;
+    if (index != -1)
+    {
+        dialingCode = ui.cbPhone->itemData(index).toString();
+    }
+
+    auto callback = [this](int code, const QString& msg)
+    {
+        if (code != 200)
+        {
+            auto& ins = AiSound::GetInstance();
+            ins.ShowTip(this, msg);
+        }
+    };
+
+    ins.SendVerifyCode(dialingCode, phoneNumber, verifyCode, uuid, callback);
 }

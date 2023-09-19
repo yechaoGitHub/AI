@@ -286,6 +286,65 @@ void AiSound::GetPhoneRegionNumber(GetPhoneRegionNumberCallback callback)
     _httpAsync.Post("http://47.106.253.9:9101/api/common/getMobileDialingList", {}, headers, userParam);
 }
 
+void AiSound::ForgetPassword(const QString& dialingCode, const QString& phoneEmail, const QString& password, const QString& rePassword, const QString& verifyCode, CommomCallback callback)
+{
+    QJsonObject dataObj;
+    dataObj.insert("dialingCode", dialingCode);
+    if (dialingCode == QString::fromLocal8Bit("+86"))
+    {
+        dataObj.insert("mobileNumber", phoneEmail);
+    }
+    else
+    {
+        dataObj.insert("mailAddress", phoneEmail);
+    }
+    dataObj.insert("password", password);
+    dataObj.insert("rePassword", rePassword);
+    dataObj.insert("rePassword", password);
+    dataObj.insert("verifyCode", verifyCode);
+
+    auto packet = new HttpCallbackPacket<CommomCallbackType>();
+    packet->type = httpCommonCallback;
+    packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
+
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("access_token", _token.toUtf8());
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/user/modify/password", dataObj, headers, userParam);
+}
+
+void AiSound::Register(const QString& dialingCode, const QString& phoneEmail, const QString& password, const QString& rePassword, const QString& recommendCode, const QString& verifyCode, CommomCallback callback)
+{
+    QJsonObject dataObj;
+    dataObj.insert("dialingCode", dialingCode);
+    if (dialingCode == QString::fromLocal8Bit("+86"))
+    {
+        dataObj.insert("mobileNumber", phoneEmail);
+    }
+    else
+    {
+        dataObj.insert("mailAddress", phoneEmail);
+    }
+    dataObj.insert("password", password);
+    dataObj.insert("rePassword", rePassword);
+    dataObj.insert("rePassword", password);
+    dataObj.insert("recommendCode", recommendCode);
+    dataObj.insert("verifyCode", verifyCode);
+
+    auto packet = new HttpCallbackPacket<CommomCallbackType>();
+    packet->type = httpCommonCallback;
+    packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
+
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("access_token", _token.toUtf8());
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/user/register", dataObj, headers, userParam);
+}
+
 void AiSound::ShowLoginFrame()
 {
     _wLoginFrame->show();
@@ -766,6 +825,16 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
 
             auto packet = dynamic_cast<HttpCallbackPacket<GetPhoneRegionNumberCallbackType>*>(packetRaw);
             packet->callback(code, msg, std::move(regionData));
+        }
+        break;
+
+        case httpCommonCallback:
+        {
+            int code = document["code"].toInt();
+            QString msg = document["msg"].toString();
+
+            auto packet = dynamic_cast<HttpCallbackPacket<CommomCallbackType>*>(packetRaw);
+            packet->callback(code, msg);
         }
         break;
 

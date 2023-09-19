@@ -130,6 +130,11 @@ void WLogin::PasswordLogin()
                 SETTING.setPWD(password);
                 SETTING.setUserName(userName);
             }
+            else
+            {
+                SETTING.setPWD("");
+                SETTING.setUserName("");
+            }
             SETTING.setRememberPWD(remberPwd());
 
             ins.ShowRobotNavigation();
@@ -190,5 +195,3 @@ void WLogin::PhoneLogin()
 
     ins.PhoneLogin(dCode, phoneNum, vCode, callback);
 }
-
-
