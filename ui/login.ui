@@ -341,6 +341,9 @@ font-size: 14px;</string>
        <property name="text">
         <string>Let’s Register</string>
        </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
        <property name="flat">
         <bool>true</bool>
        </property>

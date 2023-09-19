@@ -33,7 +33,7 @@ private:
     void EmailLogin();
     void PhoneLogin();
 
-    Ui::Login       ui;
-    WLoginSwitch::ETitle  _cur_login_title;
+    Ui::Login               ui;
+    WLoginSwitch::ETitle    _cur_login_title;
 };
 

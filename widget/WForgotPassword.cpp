@@ -13,6 +13,8 @@ WForgotPassword::WForgotPassword(QWidget* parent) :
 
     ui.vCodeEdit->SetImage(":/QtTest/icon/lock.png");
     ui.vCodeEdit->textEdit->setPlaceholderText("Enter the code you received");
+
+    verifyBtn = ui.pbVerify;
 }
 
 WForgotPassword::~WForgotPassword()

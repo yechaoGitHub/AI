@@ -15,6 +15,8 @@ public:
 
 private:
     void BackClicked();
+    void ForgetPasswordClicked();
+    void SignUpClicked();
     void RegisterClicked();
     void ForgotClicked();
 

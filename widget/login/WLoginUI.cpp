@@ -11,6 +11,8 @@ WLoginUI::WLoginUI(QWidget *parent)
     connect(ui.PageLogin->registerLabel, &QPushButton::clicked, this, &WLoginUI::RegisterClicked);
     connect(ui.PageLogin->forgotPasswordBtn, &QPushButton::clicked, this, &WLoginUI::ForgotClicked);
     connect(ui.pbBack, &QPushButton::clicked, this, &WLoginUI::BackClicked);
+    connect(ui.pageRegister->signBtn, &QPushButton::clicked, this, &WLoginUI::SignUpClicked);
+    connect(ui.pageForgetPassword->verifyBtn, &QPushButton::clicked, this, &WLoginUI::ForgetPasswordClicked);
 
     connect(ui.pb_min, &QPushButton::clicked, this, [=] {
         this->showMinimized();
@@ -30,6 +32,15 @@ void WLoginUI::BackClicked()
 {
     ui.stackedWidget->setCurrentIndex(0);
     ui.pbBack->setVisible(false);
+}
+
+void WLoginUI::ForgetPasswordClicked()
+{
+}
+
+void WLoginUI::SignUpClicked()
+{
+
 }
 
 void WLoginUI::RegisterClicked()

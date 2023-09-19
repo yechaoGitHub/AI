@@ -8,6 +8,7 @@ public:
     WForgotPassword(QWidget* parent = nullptr);
     ~WForgotPassword();
 
+    QPushButton* verifyBtn;
 
 private:
     Ui::ForgotPassword ui;

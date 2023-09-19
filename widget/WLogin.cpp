@@ -14,13 +14,16 @@ WLogin::WLogin(QWidget* parent) :
     forgotPasswordBtn = ui.pbForgotPassword;
 
     auto userName = UserName();
-    auto password = Password();
-    if (remberPwd())
+
+    if (SETTING.getRememberPWD())
     {
-        SETTING.setPWD(password);
-        SETTING.setUserName(userName);
+        auto password = SETTING.getPWD();
+        auto userName = SETTING.getUserName();
+
+        ui.userLogin->userNameEdit->setText(userName);
+        ui.userLogin->passwordEdit->setText(password);
+        ui.cbKeepLogin->setChecked(true);
     }
-    SETTING.setRememberPWD(remberPwd());
 
     connect(ui.btLanguageText, &QPushButton::clicked, this, &WLogin::LanguageClicked);
     connect(ui.loginSwitch, &WLoginSwitch::TitleChanged, this, &WLogin::TitleChanged);
@@ -66,6 +69,15 @@ void WLogin::LoginClicked()
         break;
 
         case 1:
+            if (ui.mobileLogin->DialingCode() ==
+                QString::fromLocal8Bit("+86"))
+            {
+                PhoneLogin();
+            }
+            else
+            {
+                EmailLogin();
+            }
         break;
 
         default:
@@ -111,8 +123,39 @@ void WLogin::PasswordLogin()
 
         if (code == 200)
         {
-            ins.ShowRobotNavigation();
+            auto userName = UserName();
+            auto password = Password();
+            if (remberPwd())
+            {
+                SETTING.setPWD(password);
+                SETTING.setUserName(userName);
+            }
+            SETTING.setRememberPWD(remberPwd());
 
+            ins.ShowRobotNavigation();
+        }
+        else
+        {
+            ins.ShowTip(this, msg);
+        }
+    };
+    ins.PasswordLogin(UserName(), Password(), std::bind(callback, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
+}
+
+void WLogin::EmailLogin()
+{
+    auto& ins = AiSound::GetInstance();
+
+    auto&& phoneNum = ui.mobileLogin->PhoneNumber();
+    auto&& vCode = ui.mobileLogin->VerifyCode();
+
+    auto callback = [this](int code, const QString& msg, const QString& token)->void
+    {
+        auto& ins = AiSound::GetInstance();
+
+        if (code == 200)
+        {
+            ins.ShowRobotNavigation();
         }
         else
         {
@@ -120,18 +163,32 @@ void WLogin::PasswordLogin()
         }
     };
 
-    ins.PasswordLogin(UserName(), Password(), std::bind(callback, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
-}
-
-void WLogin::EmailLogin()
-{
-
-
-
+    ins.EmailLogin(phoneNum, vCode, callback);
 }
 
 void WLogin::PhoneLogin()
 {
+    auto& ins = AiSound::GetInstance();
+
+    auto&& dCode = ui.mobileLogin->DialingCode();
+    auto&& phoneNum = ui.mobileLogin->PhoneNumber();
+    auto&& vCode = ui.mobileLogin->VerifyCode();
+
+    auto callback = [this](int code, const QString& msg, const QString& token)->void
+    {
+        auto& ins = AiSound::GetInstance();
+
+        if (code == 200)
+        {
+            ins.ShowRobotNavigation();
+        }
+        else
+        {
+            ins.ShowTip(this, msg);
+        }
+    };
+
+    ins.PhoneLogin(dCode, phoneNum, vCode, callback);
 }
 
 

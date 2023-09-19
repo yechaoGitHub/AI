@@ -97,6 +97,7 @@ public:
     void PasswordLogin(const QString& userName, const QString& password, LoginCallback callback);
     void PhoneLogin(const QString& dialingCode, const QString& mobileNumber, const QString& verifyCode, LoginCallback callback);
     void EmailLogin(const QString& mailAddress, const QString& verifyCode, LoginCallback callback);
+    void ForgetPassword();
 
     void GetVerifyCode(GetVerifyCodeCallback callback);
     void Register(const QString& userName, const QString& password, const QString& dialingCode, const QString& phoneNumber, const QString& verifyCode, RegisterCallback callback);
