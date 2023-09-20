@@ -9,18 +9,18 @@ WForgotPassword::WForgotPassword(QWidget* parent) :
 {
     ui.setupUi(this);
 
-    ui.verificationCodeEdit->SetImage(":/QtTest/icon/user_active.png");
-    ui.verificationCodeEdit->textEdit->setPlaceholderText("Enter the code in picture");
-
-    ui.edPhone->SetImage(":/QtTest/icon/lock.png");
-    ui.edPhone->textEdit->setPlaceholderText("Enter phone number");
-
-    ui.vCodeEdit->SetImage(":/QtTest/icon/lock.png");
-    ui.vCodeEdit->textEdit->setPlaceholderText("Enter the code you received");
-
     ui.cbPhone->setView(new QListView{});
 
-    verifyBtn = ui.pbVerify;
+    ui.edUser->SetImage(":/QtTest/icon/user_active.png");
+    ui.edUser->textEdit->setPlaceholderText("Enter user name");
+
+    ui.edPassword->SetImage(":/QtTest/icon/lock.png");
+    ui.edPassword->textEdit->setPlaceholderText("Enter password");
+
+    ui.edPassword2->SetImage(":/QtTest/icon/lock.png");
+    ui.edPassword2->textEdit->setPlaceholderText("Enter password again");
+
+    verifyBtn = ui.pbVerfy;
 }
 
 WForgotPassword::~WForgotPassword()
@@ -46,22 +46,22 @@ QString WForgotPassword::DialingCode()
 
 QString WForgotPassword::UserName()
 {
-    return ui.edPhone->textEdit->text();
+    return ui.edUser->textEdit->text();
 }
 
 QString WForgotPassword::Password()
 {
-    return QString();
+    return ui.edPassword->textEdit->text();
 }
 
 QString WForgotPassword::Repassword()
 {
-    return QString();
+    return ui.edPassword2->textEdit->text();
 }
 
 QString WForgotPassword::VerifyCode()
 {
-    return QString();
+    return ui.edVCode->text();
 }
 
 void WForgotPassword::showEvent(QShowEvent* event)

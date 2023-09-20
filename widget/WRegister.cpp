@@ -68,6 +68,12 @@ QString WRegister::DialingCode()
     return "";
 }
 
+
+QString WRegister::RecommondCode()
+{
+    return ui.edRecommend->textEdit->text();
+}
+
 void WRegister::showEvent(QShowEvent* event)
 {
     static bool firstShow = true;

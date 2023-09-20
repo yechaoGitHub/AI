@@ -188,28 +188,6 @@ void AiSound::GetVerifyCode(GetVerifyCodeCallback callback)
     _httpAsync.Post("http://47.106.253.9:9101/api/common/getImgVerifyCode", {}, headers, userParam);
 }
 
-void AiSound::Register(const QString& userName, const QString& password, const QString& dialingCode, const QString& phoneNumber, const QString& verifyCode, RegisterCallback callback)
-{
-    QJsonObject dataObj;
-    dataObj.insert("moduleType", "register");
-    dataObj.insert("username", userName);
-    dataObj.insert("password", password);
-    dataObj.insert("rePassword", password);
-    dataObj.insert("dialingCode", dialingCode);
-    dataObj.insert("mobileNumber", phoneNumber);
-    dataObj.insert("verifyCode", verifyCode);
-
-    auto packet = new HttpCallbackPacket<RegisterCallbackType>();
-    packet->type = httpRegister;
-    packet->callback = callback;
-    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
-
-    QMap<QString, QString> headers;
-    headers.insert("Content-Type", "application/json;charset=utf-8");
-
-    _httpAsync.Post("http://47.106.253.9:9101/api/user/register", dataObj, headers, userParam);
-}
-
 void AiSound::SendVerifyCode(const QString& dCode, const QString& mobileNumber, const QString& verifyCode, const QString& uuid, SendVerifyCodeCallback callback)
 {
     QJsonObject dataObj;

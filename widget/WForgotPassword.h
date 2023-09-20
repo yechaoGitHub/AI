@@ -22,5 +22,4 @@ protected:
 
 private:
     Ui::ForgotPassword ui;
-
 };

@@ -36,11 +36,56 @@ void WLoginUI::BackClicked()
 
 void WLoginUI::ForgetPasswordClicked()
 {
+    auto& ins = AiSound::GetInstance();
+    auto&& phoneCode = ui.pageRegister->DialingCode();
+    auto&& userName = ui.pageRegister->UserName();
+    auto&& password = ui.pageRegister->Password();
+    auto&& rePassword = ui.pageRegister->Repassword();
+    auto&& vCode = ui.pageRegister->VerifyCode();
+    auto&& recommondCode = ui.pageRegister->RecommondCode();
+
+    auto callback = [this](int code, const QString& msg)
+    {
+        if (code == 200)
+        {
+            ui.stackedWidget->setCurrentIndex(0);
+            ui.pbBack->setVisible(false);
+        }
+        else
+        {
+            auto& ins = AiSound::GetInstance();
+            ins.ShowTip(this, msg);
+        }
+    };
+
+    ins.ForgetPassword(userName, password, rePassword, phoneCode, vCode, callback);
 }
 
 void WLoginUI::SignUpClicked()
 {
+    auto& ins = AiSound::GetInstance();
+    auto&& phoneCode = ui.pageRegister->DialingCode();
+    auto&& userName = ui.pageRegister->UserName();
+    auto&& password = ui.pageRegister->Password();
+    auto&& rePassword = ui.pageRegister->Repassword();
+    auto&& vCode = ui.pageRegister->VerifyCode();
+    auto&& recommondCode = ui.pageRegister->RecommondCode();
 
+    auto callback = [this](int code, const QString& msg)
+    {
+        if (code == 200)
+        {
+            ui.stackedWidget->setCurrentIndex(0);
+            ui.pbBack->setVisible(false);
+        }
+        else
+        {
+            auto& ins = AiSound::GetInstance();
+            ins.ShowTip(this, msg);
+        }
+    };
+
+    ins.Register(userName, password, rePassword, phoneCode, recommondCode, vCode, callback);
 }
 
 void WLoginUI::RegisterClicked()

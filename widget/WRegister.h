@@ -14,6 +14,8 @@ public:
     QString Repassword();
     QString VerifyCode();
     QString DialingCode();
+    QString VerfyCode();
+    QString RecommondCode();
 
     QPushButton* signBtn;
 
