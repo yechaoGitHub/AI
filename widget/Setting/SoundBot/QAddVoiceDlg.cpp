@@ -19,7 +19,7 @@ void QAddVoiceDlg::Show(int voiceId, const QString& name)
     _voiceId = voiceId;
     ui.lineEdit->setText(name);
 
-    show();
+    exec();
 }
 
 void QAddVoiceDlg::on_btn_close_clicked()

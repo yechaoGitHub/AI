@@ -8,7 +8,38 @@ WSoundLine::WSoundLine(QWidget *parent)
 {}
 
 WSoundLine::~WSoundLine()
-{}
+{
+	if (_timer) {
+		if (_timer->isActive()) {
+			_timer->stop();
+		}
+		delete _timer;
+	}
+}
+
+void WSoundLine::startMovice(int volume)
+{
+	_volume = volume>16? 16: volume;
+	if (!_timer) {
+		_timer = new QTimer;
+		connect(_timer, &QTimer::timeout, this, [=] {
+			update();
+			});
+		_timer->start(100);
+	}
+	if (!_timer->isActive()) {
+		_timer->start(100);
+	}
+	_movice = true;
+}
+
+void WSoundLine::stopMovice()
+{
+	if (_timer->isActive()) {
+		_movice = false;
+		_timer->stop();
+	}
+}
 
 void WSoundLine::paintEvent(QPaintEvent* event)
 {
@@ -16,23 +47,45 @@ void WSoundLine::paintEvent(QPaintEvent* event)
 	QPainter p(this);
 	QPen pen;
 	pen.setWidth(4);
-	pen.setColor("#EDEDED");
 	p.setRenderHint(QPainter::Antialiasing);
-	//pen.setColor("qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF)");
-	p.setPen(pen);
 
 	int range = 14;
 	int start = 10;
 	int total = frame_rect.width() / range;
 
 	QPainterPath path;
+	pen.setColor("#EDEDED");
+	p.setPen(pen);
 	for (int i = 0; i < total; i++) {
 		if (i * range + 2 + start + 50 > frame_rect.width()) {
 			break;
 		}
 		path.addRoundedRect(QRectF(i * range + 2 + start,1,3, frame_rect.height() - 2),4, 4);
-		//p.drawLine(QPoint(i*range+2+ start,1), QPoint(i * range + 2+10, frame_rect.height()-2));
 		p.drawPath(path);
-
 	}
+	if (_movice) {
+		QPainterPath path_tick;
+		pen.setColor("#00ff00");
+		p.setPen(pen);
+		for (int i = 0; i < total; i++) {
+			if (i * range + 2 + start + 50 > frame_rect.width()) {
+				break;
+			}
+
+			if (i >= _cur_line) {
+				break;
+			}
+
+			path_tick.addRoundedRect(QRectF(i * range + 2 + start, 1, 3, frame_rect.height() - 2), 4, 4);
+			p.drawPath(path_tick);
+		}
+		_cur_line++;
+		if (_cur_line > _volume) {
+			_cur_line = 0;
+		}
+	}
+
+	//pen.setColor("qlineargradient(spread:pad, x1:0, y1:0, x2:111, y2:20, stop:0 #0066FF, stop:1 #BD00FF)");
+
+	//p.drawLine(QPoint(i*range+2+ start,1), QPoint(i * range + 2+10, frame_rect.height()-2));
 }

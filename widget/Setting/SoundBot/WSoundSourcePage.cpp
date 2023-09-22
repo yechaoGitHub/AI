@@ -14,6 +14,18 @@ WSoundSourcePage::WSoundSourcePage(QWidget *parent)
     connect(ui.cbMic, static_cast<void(QComboBox::*)(int)>(& QComboBox::currentIndexChanged), this, &WSoundSourcePage::MicIndexChanged);
     connect(ui.cbSpeaker, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WSoundSourcePage::SpeakerIndexChanged);
     connect(ui.cbMonitor, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WSoundSourcePage::WSoundSourcePage::MonitorIndexChanged);
+    connect(ui.pb_speak, &QPushButton::clicked, this, [=] {
+        ui.widget->startMovice(8);
+        });
+    connect(ui.pb_speak, &QPushButton::clicked, this, [=] {
+        ui.widget->startMovice(8);
+        });
+    connect(ui.pb_mic, &QPushButton::clicked, this, [=] {
+        ui.widget_2->startMovice(6);
+        });
+    connect(ui.pb_monitor, &QPushButton::clicked, this, [=] {
+        ui.widget_3->startMovice(88);
+        });
 }
 
 WSoundSourcePage::~WSoundSourcePage()

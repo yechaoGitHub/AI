@@ -19,23 +19,15 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Forgot Password</source>
+        <source>Forget Password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please enter the registered phone number or email so that we will verify and send send you code</source>
+        <source>Get Code</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Send Code</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Estimated time of code in 43 seconds</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Verify</source>
+        <source>Verfy</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
