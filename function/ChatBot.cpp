@@ -1,4 +1,6 @@
 #include "ChatBot.h"
+#include "VoiceType.h"
+
 #include <QJsonDocument>
 #include <QJsonParseError>
 #include <QJsonObject>
@@ -39,10 +41,10 @@ void ChatBot::Uninitialize()
     }
 }
 
-void ChatBot::Connect(const QString& token)
+void ChatBot::Connect(const QString& token, int id)
 {
     _workThread.start();
-    emit connect(token);
+    emit connect(token, id);
 }
 
 void ChatBot::Disconnect()
@@ -69,6 +71,10 @@ bool ChatBot::IsRunning()
     return _workThread.isRunning();
 }
 
+void ChatBot::SaveChat()
+{
+}
+
 void ChatBot::timerEvent(QTimerEvent* event)
 {
     if (event->timerId() == _heartBeatTimer)
@@ -77,7 +83,7 @@ void ChatBot::timerEvent(QTimerEvent* event)
     }
 }
 
-void ChatBot::ConnectInternal(const QString& token)
+void ChatBot::ConnectInternal(const QString& token, int id)
 {
     QUrl url{ "ws://47.106.253.9:9501/service/v1/chat" };
     QUrlQuery quurl;
@@ -113,6 +119,8 @@ void ChatBot::SendParam()
 {
     QJsonObject msgObj;
     msgObj.insert("type", "START");
+    msgObj.insert("templateId", _id);
+    //msgObj.insert("conversationId", _conversationId);
 
     QJsonDocument document;
     document.setObject(msgObj);
@@ -179,17 +187,22 @@ void ChatBot::TranslateTextMessageReceived(const QString& message)
         {
             auto obj = document["data"]["result"].toObject();
             auto message = obj["message"].toString();
-            auto type = obj["type"].toString();
+            auto typeStr = obj["type"].toString();
 
-            if (type == "FIN")
+            if (typeStr == "MID")
             {
-                emit receiveText(std::move(_receiveText));
-                _receiveText.clear();
+                emit receiveText(MID, message);
             }
-            else if (type == "MID")
+            else if (typeStr == "FIN")
             {
-                _receiveText.append(message);
+                emit receiveText(FIN, message);
             }
+        }
+
+        auto resultObj = document["data"]["result"].toObject();
+        if (!resultObj.isEmpty())
+        {
+            _conversationId = resultObj["conversationId"].toString();
         }
     }
 }

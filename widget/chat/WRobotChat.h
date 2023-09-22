@@ -30,8 +30,13 @@ private slots:
 private:
     void chatMessage(WChatItem* messageW, QListWidgetItem* item, QString text, QString time, WChatItem::User_Type type);
     void chatMessageTime(QString curMsgTime);
-    void ReceiveBotText(const QString& text);
+    void ReceiveBotText(int type, const QString& text);
+    void CurItemAppendText(const QString& text);
+    void CurItemStopAnimation();
 
-    Ui::WRobotChatClass ui;
-    QShortcut* _shortCut = nullptr;
+    Ui::WRobotChatClass     ui;
+    QShortcut*              _shortCut = nullptr;
+    WChatItem*              _curMessage = nullptr;
+    QListWidgetItem*        _curItem = nullptr;
+    bool                    _newMsg = true;
 };

@@ -1,9 +1,9 @@
 #include "WRobotChat.h"
+#include "base/GlobalSetting.h"
 #include "AiSound.h"
 #include <QDateTime>
 #include <QKeyEvent>
 #include <qdebug.h>
-
 
 WRobotChat::WRobotChat(QWidget *parent)
     : QWidget(parent)
@@ -39,6 +39,9 @@ void WRobotChat::addRobotChatItem(const QString& msg)
 
     WChatItem* messageW = new WChatItem(ui.listWidget->parentWidget());
     QListWidgetItem* item = new QListWidgetItem(ui.listWidget);
+
+    _curMessage = messageW;
+    _curItem = item;
 
    /* messageW->setFixedWidth(this->width());
     QSize size = messageW->fontRect(msg);
@@ -128,9 +131,50 @@ void WRobotChat::chatMessageTime(QString curMsgTime)
     }
 }
 
-void WRobotChat::ReceiveBotText(const QString& text)
+void WRobotChat::ReceiveBotText(int type, const QString& text)
 {
-    addRobotChatItem(text);
+    if (type == FIN)
+    {
+        _newMsg = true;
+        CurItemStopAnimation();
+    }
+    else
+    {
+        if (_newMsg)
+        {
+            addRobotChatItem(text);
+        }
+        else
+        {
+            CurItemAppendText(text);
+        }
+
+        _newMsg = false;
+    }
+}
+
+void WRobotChat::CurItemAppendText(const QString& text)
+{
+    if (_curMessage)
+    {
+        _curMessage->appendText(text);
+
+        _curMessage->setFixedWidth(this->width());
+        QSize size = _curMessage->fontRect();
+        if (_curItem)
+        {
+            _curItem->setSizeHint(size);
+        }
+        ui.listWidget->setItemWidget(_curItem, _curMessage);
+    }
+}
+
+void WRobotChat::CurItemStopAnimation()
+{
+    if (_curMessage)
+    {
+        _curMessage->stopAimation();
+    }
 }
 
 void WRobotChat::chatMessage(WChatItem* messageW, QListWidgetItem* item, QString text, QString time, WChatItem::User_Type type)
@@ -151,7 +195,10 @@ void WRobotChat::showEvent(QShowEvent* event)
 {
     auto& token = AiSound::GetInstance().Token();
     auto& bot = AiSound::GetInstance().GetChatBot();
-    bot.Connect(token);
+
+    auto modelID = SETTING.getRebotModel();
+
+    bot.Connect(token, modelID);
 }
 
 void WRobotChat::hideEvent(QHideEvent* event)

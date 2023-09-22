@@ -12,16 +12,18 @@ public:
 
     void Initialize();
     void Uninitialize();
-    void Connect(const QString& token);
+    void Connect(const QString& token, int id);
     void Disconnect();
     bool Connected();
     void SendMessage(const QString& msg);
     bool IsRunning();
 
+    void SaveChat();
+
 Q_SIGNALS:
-    void connect(const QString& token);
+    void connect(const QString& token, int id);
     void disconnect();
-    void receiveText(QString text);
+    void receiveText(int type, QString text);
 
     void connected();
     void disconnected();
@@ -31,7 +33,7 @@ protected:
     void timerEvent(QTimerEvent* event) override;
 
 private:
-    void ConnectInternal(const QString& token);
+    void ConnectInternal(const QString& token, int id);
     void DisconnectInternal();
     void SendMessageInternal(const QString& msg);
 
@@ -46,7 +48,9 @@ private:
 
     QWebSocket              _webSocket;
     QThread                 _workThread;
+    int                     _id = 0;
     bool                    _connected = false;
     int                     _heartBeatTimer = 0;
     QString                 _receiveText;
+    QString                 _conversationId;
 };

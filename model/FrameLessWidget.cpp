@@ -1,5 +1,5 @@
 ﻿#include "FrameLessWidget.h"
-
+#include <Windows.h>
 
 #define MOUSE_GAP 10
 FrameLessWidget::FrameLessWidget(QWidget *parent)
@@ -36,11 +36,11 @@ void FrameLessWidget::mouseDoubleClickEvent(QMouseEvent* event)
 
 void FrameLessWidget::mousePressEvent(QMouseEvent* event)
 {
-    if (!m_bMax){
+    if (!m_bMax && event->buttons() == Qt::LeftButton){
         m_isPressed = true;
         m_startMovePos = event->globalPos();
 
-        if (event->buttons() == Qt::LeftButton && m_clickType != CLICK_NULL){
+        if (m_clickType != CLICK_NULL){
             m_bCanResize = true;
         }
     }
@@ -290,5 +290,6 @@ void FrameLessWidget::mouseReleaseEvent(QMouseEvent* event)
     m_clickType = CLICK_NULL;
     m_bCanResize = false;
     m_bResizeIng = false;
+
     return QWidget::mouseReleaseEvent(event);
 }

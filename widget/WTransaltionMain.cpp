@@ -154,12 +154,22 @@ void WTransaltionMain::closeEvent(QCloseEvent* event)
 void WTransaltionMain::enterEvent(QEvent* event)
 {
     _mouseHold = true;
+
+
+    ui.lockButton->setProperty("tt", true);
+    ui.lockButton->style()->unpolish(ui.lockButton);
+
+
     repaint();
 }
 
 void WTransaltionMain::leaveEvent(QEvent* event)
 {
     _mouseHold = false;
+
+    ui.lockButton->setProperty("tt", false);
+    ui.lockButton->style()->unpolish(ui.lockButton);
+
     repaint();
 }
 

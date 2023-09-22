@@ -823,11 +823,6 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
     delete packetRaw;
 }
 
-void AiSound::ChatBotTest(const QString& token)
-{
-    _chatBot.Connect(token);
-}
-
 void AiSound::FetchAppData()
 {
     GetTranslationSrourceList([this](int code, const QString& msg, std::vector<TranslationLanguage> languageList)

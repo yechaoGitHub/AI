@@ -86,6 +86,19 @@ void WChatItem::setText(QString text, QString time, QSize allSize, WChatItem::Us
     this->update();
 }
 
+void WChatItem::stopAimation()
+{
+    m_loading->hide();
+    m_loadingMovie->stop();
+    this->update();
+}
+
+void WChatItem::appendText(const QString& text)
+{
+    m_msg.append(text);
+    this->update();
+}
+
 QSize WChatItem::fontRect(QString str)
 {
     m_msg = str;
@@ -123,6 +136,47 @@ QSize WChatItem::fontRect(QString str)
     m_textLeftRect.setRect(m_kuangLeftRect.x() + textSpaceRect, m_kuangLeftRect.y() + iconTMPH + btn_height,
         m_kuangLeftRect.width() - 2 * textSpaceRect, m_kuangLeftRect.height() - 2 * iconTMPH);
     m_textRightRect.setRect(m_kuangRightRect.x() + textSpaceRect, m_kuangRightRect.y() + iconTMPH+ btn_height,
+        m_kuangRightRect.width() - 2 * textSpaceRect, m_kuangRightRect.height() - 2 * iconTMPH);
+
+    return QSize(size.width(), hei);
+}
+
+QSize WChatItem::fontRect()
+{
+    int btn_height = 10;
+    int minHei = 30;
+    int iconWH = 40;
+    int iconSpaceW = 20;
+    int iconRectW = 5;
+    int iconTMPH = 10;
+    int sanJiaoW = 6;
+    int kuangTMP = 20;
+    int textSpaceRect = 12;
+    m_kuangWidth = this->width() - kuangTMP - 2 * (iconWH + iconSpaceW + iconRectW);
+    m_textWidth = m_kuangWidth - 2 * textSpaceRect;
+    m_spaceWid = this->width() - m_textWidth;
+    m_iconLeftRect = QRect(iconSpaceW, iconTMPH, iconWH, iconWH);
+    m_iconRightRect = QRect(this->width() - iconSpaceW - iconWH, iconTMPH, iconWH, iconWH);
+
+    QSize size = getRealString(m_msg);
+    size.setHeight(size.height() + btn_height);
+    int hei = size.height() < minHei ? minHei : size.height();
+
+    m_sanjiaoLeftRect = QRect(iconWH + iconSpaceW + iconRectW, m_lineHeight / 2, sanJiaoW, hei - m_lineHeight);
+    m_sanjiaoRightRect = QRect(this->width() - iconRectW - iconWH - iconSpaceW - sanJiaoW, m_lineHeight / 2, sanJiaoW, hei - m_lineHeight);
+
+    if (size.width() < (m_textWidth + m_spaceWid)) {
+        m_kuangLeftRect.setRect(m_sanjiaoLeftRect.x() + m_sanjiaoLeftRect.width(), m_lineHeight / 4 * 3, size.width() - m_spaceWid + 2 * textSpaceRect, hei - m_lineHeight);
+        m_kuangRightRect.setRect(this->width() - size.width() + m_spaceWid - 2 * textSpaceRect - iconWH - iconSpaceW - iconRectW - sanJiaoW,
+            m_lineHeight / 4 * 3, size.width() - m_spaceWid + 2 * textSpaceRect, hei - m_lineHeight);
+    }
+    else {
+        m_kuangLeftRect.setRect(m_sanjiaoLeftRect.x() + m_sanjiaoLeftRect.width(), m_lineHeight / 4 * 3, m_kuangWidth, hei - m_lineHeight);
+        m_kuangRightRect.setRect(iconWH + kuangTMP + iconSpaceW + iconRectW - sanJiaoW, m_lineHeight / 4 * 3, m_kuangWidth, hei - m_lineHeight);
+    }
+    m_textLeftRect.setRect(m_kuangLeftRect.x() + textSpaceRect, m_kuangLeftRect.y() + iconTMPH + btn_height,
+        m_kuangLeftRect.width() - 2 * textSpaceRect, m_kuangLeftRect.height() - 2 * iconTMPH);
+    m_textRightRect.setRect(m_kuangRightRect.x() + textSpaceRect, m_kuangRightRect.y() + iconTMPH + btn_height,
         m_kuangRightRect.width() - 2 * textSpaceRect, m_kuangRightRect.height() - 2 * iconTMPH);
 
     return QSize(size.width(), hei);

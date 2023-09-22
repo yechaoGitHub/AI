@@ -149,10 +149,6 @@ public:
     void playVoiceMp3(const QString& url);
 #pragma endregion
 
-#pragma region ≤‚ ‘
-    void ChatBotTest(const QString& token);
-#pragma endregion
-
 private slots:
     void slot_robot_nv_clicked(Navig_Type type);
     void slot_keyType(int type);

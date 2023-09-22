@@ -24,9 +24,12 @@ public:
     };
     void setTextSuccess();
     void setText(QString text, QString time, QSize allSize, User_Type userType);
+    void appendText(const QString& text);
+    void stopAimation();
 
     QSize getRealString(QString src);
     QSize fontRect(QString str);
+    QSize fontRect();
 
     inline QString text() { return m_msg; }
     inline QString time() { return m_time; }
