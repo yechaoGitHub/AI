@@ -16,6 +16,8 @@ WSubtitle::WSubtitle(QWidget* parent) :
     font.setFamily(QString::fromUtf8("\345\276\256\350\275\257\351\233\205\351\273\221"));
     font.setPointSize(16);
     this->setFont(font);
+
+    setFocusPolicy(Qt::NoFocus);
 }
 
 WSubtitle::~WSubtitle()

@@ -1095,6 +1095,17 @@
     </message>
 </context>
 <context>
+    <name>name</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>signUp</name>
     <message>
         <source>Form</source>

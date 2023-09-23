@@ -66,6 +66,9 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
     connect(&translation, &Translation::soundPlay, this, &WTransaltionMain::PlayInternal);
     connect(&translation, &Translation::stateChanged, this, &WTransaltionMain::TransStateChanged);
 
+    ui.lockButton->setProperty("lock", false);
+    ui.lockButton->style()->unpolish(ui.lockButton);
+
     setMouseTracking(true);
 }
 
@@ -155,8 +158,8 @@ void WTransaltionMain::enterEvent(QEvent* event)
 {
     _mouseHold = true;
 
-    ui.lockButton->setProperty("tt", true);
-    ui.lockButton->style()->unpolish(ui.lockButton);
+    ui.frame->setProperty("transparent", false);
+    ui.frame->style()->unpolish(ui.frame);
 
     repaint();
 }
@@ -165,8 +168,28 @@ void WTransaltionMain::leaveEvent(QEvent* event)
 {
     _mouseHold = false;
 
-    ui.lockButton->setProperty("tt", false);
-    ui.lockButton->style()->unpolish(ui.lockButton);
+    ui.frame->setProperty("transparent", true);
+    ui.frame->style()->unpolish(ui.frame);
+
+    repaint();
+}
+
+void WTransaltionMain::focusInEvent(QFocusEvent* event)
+{
+    _mouseHold = true;
+
+    ui.frame->setProperty("transparent", false);
+    ui.frame->style()->unpolish(ui.frame);
+
+    repaint();
+}
+
+void WTransaltionMain::focusOutEvent(QFocusEvent* event)
+{
+    _mouseHold = false;
+
+    ui.frame->setProperty("transparent", true);
+    ui.frame->style()->unpolish(ui.frame);
 
     repaint();
 }
@@ -186,12 +209,14 @@ void WTransaltionMain::LockClicked()
     if (this->windowFlags() & Qt::WindowStaysOnTopHint)
     {
         this->setWindowFlags(windowFlags() & (~Qt::WindowStaysOnTopHint));
-        //ui.lockButton->setStyleSheet(lockStyle);
+        ui.lockButton->setProperty("lock", false);
+        ui.lockButton->style()->unpolish(ui.lockButton);
     }
     else
     {
         this->setWindowFlags(windowFlags() | Qt::WindowStaysOnTopHint);
-        //ui.lockButton->setStyleSheet(lockActStyle);
+        ui.lockButton->setProperty("lock", true);
+        ui.lockButton->style()->unpolish(ui.lockButton);
     }
     show();
 }

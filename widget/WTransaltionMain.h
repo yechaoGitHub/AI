@@ -24,6 +24,8 @@ protected:
     void closeEvent(QCloseEvent* event);
     void enterEvent(QEvent* event) override;
     void leaveEvent(QEvent* event) override;
+    void focusInEvent(QFocusEvent* event) override;
+    void focusOutEvent(QFocusEvent* event) override;
 
 private:
     void MinClicked();

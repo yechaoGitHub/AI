@@ -13,7 +13,7 @@ public:
     RobotChatMainUI(QWidget *parent = nullptr);
     ~RobotChatMainUI();
 
-    void    Show();
+    void Show();
 protected:
     void paintEvent(QPaintEvent* event) override;
 
