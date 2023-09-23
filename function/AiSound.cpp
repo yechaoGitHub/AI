@@ -323,6 +323,25 @@ void AiSound::Register(const QString& dialingCode, const QString& phoneEmail, co
     _httpAsync.Post("http://47.106.253.9:9101/api/user/register", dataObj, headers, userParam);
 }
 
+void AiSound::SaveChat(const QString& name, SaveChatCallback callback)
+{
+    QJsonObject dataObj;
+    dataObj.insert("chatName", name);
+    dataObj.insert("conversationId", _chatBot.ConversationID());
+    dataObj.insert("templateId", _chatBot.TemplateID());
+
+    auto packet = new HttpCallbackPacket<SaveChatCallbackType>();
+    packet->type = httpSaveChat;
+    packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
+
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("access_token", _token.toUtf8());
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/chatbot/saveConversation", dataObj, headers, userParam);
+}
+
 void AiSound::ShowLoginFrame()
 {
     _wLoginFrame->show();
@@ -813,6 +832,22 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
 
             auto packet = dynamic_cast<HttpCallbackPacket<CommomCallbackType>*>(packetRaw);
             packet->callback(code, msg);
+        }
+        break;
+
+        case httpSaveChat:
+        {
+            int code = document["code"].toInt();
+            QString msg = document["msg"].toString();
+
+            auto current = document["data"]["current"].toInt();
+            auto pages = document["data"]["pages"].toInt();
+            auto records = document["data"]["records"].toInt();
+            auto size = document["data"]["size"].toInt();
+            auto total = document["data"]["total"].toInt();
+
+            auto packet = dynamic_cast<HttpCallbackPacket<SaveChatCallbackType>*>(packetRaw);
+            packet->callback(code, msg, current, pages, records, size, total);
         }
         break;
 

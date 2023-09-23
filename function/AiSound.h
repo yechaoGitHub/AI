@@ -57,6 +57,9 @@ using GetVoiceSpeakerCallback = std::function<GetVoiceSpeakerCallbackType>;
 using GetPhoneRegionNumberCallbackType = void(int code, const QString& msg, std::vector<PhoneRegionInfo> regionInfo);
 using GetPhoneRegionNumberCallback = std::function<GetPhoneRegionNumberCallbackType>;
 
+using SaveChatCallbackType = void(int code, const QString& msg, int32_t current, int32_t pages, int32_t records, int32_t size, int32_t total);
+using SaveChatCallback = std::function<SaveChatCallbackType>;
+
 enum HttpCallEnum
 {
     httpPasswordLogin = 1,
@@ -67,7 +70,8 @@ enum HttpCallEnum
     httpGetTranslationDest = 6,
     httpGetVoiceSpeakerCallback = 7,
     httpGetPhoneRegionNumberCallback = 8,
-    httpCommonCallback
+    httpCommonCallback,
+    httpSaveChat
 };
 
 struct HttpCallbackPacketRaw
@@ -101,6 +105,7 @@ public:
     void PasswordLogin(const QString& userName, const QString& password, LoginCallback callback);
     void PhoneLogin(const QString& dialingCode, const QString& mobileNumber, const QString& verifyCode, LoginCallback callback);
     void EmailLogin(const QString& mailAddress, const QString& verifyCode, LoginCallback callback);
+    void SaveChat(const QString& name, SaveChatCallback callback);
     void ForgetPassword(const QString& dialingCode, const QString& phoneEmail, const QString& password, const QString& rePassword, const QString& verifyCode, CommomCallback callback);
     void Register(const QString& dialingCode, const QString& phoneEmail, const QString& password, const QString& rePassword, const QString& recommendCode, const QString& verifyCode, CommomCallback callback);
     void GetVerifyCode(GetVerifyCodeCallback callback);

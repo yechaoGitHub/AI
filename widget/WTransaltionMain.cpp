@@ -155,10 +155,8 @@ void WTransaltionMain::enterEvent(QEvent* event)
 {
     _mouseHold = true;
 
-
     ui.lockButton->setProperty("tt", true);
     ui.lockButton->style()->unpolish(ui.lockButton);
-
 
     repaint();
 }

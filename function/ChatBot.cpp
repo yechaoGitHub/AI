@@ -71,8 +71,14 @@ bool ChatBot::IsRunning()
     return _workThread.isRunning();
 }
 
-void ChatBot::SaveChat()
+int ChatBot::TemplateID()
 {
+    return _id;
+}
+
+QString ChatBot::ConversationID()
+{
+    return _conversationId;
 }
 
 void ChatBot::timerEvent(QTimerEvent* event)

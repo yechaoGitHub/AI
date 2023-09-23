@@ -1,4 +1,6 @@
 #include "WRobotChat.h"
+#include "WName.h"
+
 #include "base/GlobalSetting.h"
 #include "AiSound.h"
 #include <QDateTime>
@@ -13,6 +15,8 @@ WRobotChat::WRobotChat(QWidget *parent)
     ui.listWidget->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
     auto& bot = AiSound::GetInstance().GetChatBot();
     connect(&bot, &ChatBot::receiveText, this, &WRobotChat::ReceiveBotText);
+
+    connect(ui.pbSave, &QPushButton::clicked, this, &WRobotChat::SaveBtnClicked);
 
     ui.textEdit->installEventFilter(this);
 }
@@ -174,6 +178,30 @@ void WRobotChat::CurItemStopAnimation()
     if (_curMessage)
     {
         _curMessage->stopAimation();
+    }
+}
+
+void WRobotChat::SaveBtnClicked()
+{
+    WName nameDlg{ this };
+    nameDlg.exec();
+
+    if (nameDlg.Confirmed())
+    {
+        auto name = nameDlg.Name();
+
+        auto& ins = AiSound::GetInstance();
+
+        auto callback = [this](int code, const QString& msg, int32_t current, int32_t pages, int32_t records, int32_t size, int32_t total)
+        {
+            if (code != 200)
+            {
+                auto& ins = AiSound::GetInstance();
+                ins.ShowTip(this, msg);
+            }
+        };
+
+        ins.SaveChat(name, callback);
     }
 }
 

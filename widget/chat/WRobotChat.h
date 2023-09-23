@@ -33,6 +33,7 @@ private:
     void ReceiveBotText(int type, const QString& text);
     void CurItemAppendText(const QString& text);
     void CurItemStopAnimation();
+    void SaveBtnClicked();
 
     Ui::WRobotChatClass     ui;
     QShortcut*              _shortCut = nullptr;

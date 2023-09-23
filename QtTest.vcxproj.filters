@@ -307,6 +307,9 @@
     <ClCompile Include="widget\WVerificationCode.cpp">
       <Filter>widget\login</Filter>
     </ClCompile>
+    <ClCompile Include="widget\WName.cpp">
+      <Filter>widget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -430,6 +433,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="ui\translateSelect.ui">
+      <Filter>ui</Filter>
+    </QtUic>
+    <QtUic Include="ui\name.ui">
       <Filter>ui</Filter>
     </QtUic>
   </ItemGroup>
@@ -684,6 +690,9 @@
     </ClInclude>
     <ClInclude Include="widget\WForgotPassword.h">
       <Filter>widget\login</Filter>
+    </ClInclude>
+    <ClInclude Include="widget\WName.h">
+      <Filter>widget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

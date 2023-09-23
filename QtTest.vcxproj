@@ -170,6 +170,7 @@
     <ClCompile Include="widget\WLogin.cpp" />
     <ClCompile Include="widget\WLoginSwitch.cpp" />
     <ClCompile Include="widget\WMobileLogin.cpp" />
+    <ClCompile Include="widget\WName.cpp" />
     <ClCompile Include="widget\WRegister.cpp" />
     <ClCompile Include="widget\WScrollBar.cpp" />
     <ClCompile Include="widget\WSubtitle.cpp" />
@@ -189,6 +190,7 @@
     <QtUic Include="ui\frame.ui" />
     <QtUic Include="ui\login.ui" />
     <QtUic Include="ui\mobileLogin.ui" />
+    <QtUic Include="ui\name.ui" />
     <QtUic Include="ui\signUp.ui" />
     <QtUic Include="ui\TranslateMain.ui" />
     <QtUic Include="ui\translateSelect.ui" />
@@ -230,6 +232,7 @@
     <ClInclude Include="function\QPcmToMp3.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="widget\WForgotPassword.h" />
+    <ClInclude Include="widget\WName.h" />
     <QtMoc Include="widget\WTranslationSelect.h" />
     <QtMoc Include="widget\Setting\WConformWidget.h" />
     <QtMoc Include="widget\Setting\SoundBot\WAddVoiceModel.h" />

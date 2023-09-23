@@ -18,7 +18,8 @@ public:
     void SendMessage(const QString& msg);
     bool IsRunning();
 
-    void SaveChat();
+    int TemplateID();
+    QString ConversationID();
 
 Q_SIGNALS:
     void connect(const QString& token, int id);
