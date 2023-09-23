@@ -14,6 +14,8 @@ public:
     WRobotChat(QWidget *parent = nullptr);
     ~WRobotChat();
 
+    QPushButton* SaveBtn();
+
     // 机器人说话调用
     void addRobotChatItem(const QString& msg);
 protected:
@@ -33,7 +35,7 @@ private:
     void ReceiveBotText(int type, const QString& text);
     void CurItemAppendText(const QString& text);
     void CurItemStopAnimation();
-    void SaveBtnClicked();
+    //void SaveBtnClicked();
 
     Ui::WRobotChatClass     ui;
     QShortcut*              _shortCut = nullptr;

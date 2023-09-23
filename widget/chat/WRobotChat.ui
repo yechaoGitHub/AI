@@ -209,6 +209,9 @@ border:none
           <height>36</height>
          </size>
         </property>
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
         <property name="styleSheet">
          <string notr="true">background-image: url(:/QtTest/icon/chat/save.png);
 background-repeat: no-repeat;

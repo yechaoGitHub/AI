@@ -1,5 +1,7 @@
 #include "WRobotChatMainUI.h"
 #include "AiSound.h"
+#include "WName.h"
+
 #include <QPainter>
 #include <QPainterPath>
 #include <QDesktopWidget>
@@ -13,6 +15,8 @@ RobotChatMainUI::RobotChatMainUI(QWidget *parent)
     this->setLimit(60);
     ui.stackedWidget->setCurrentWidget(ui.chat_widget);
     ui.lb_title->setText(tr("Chat"));
+
+    connect(ui.chat_widget->SaveBtn(), &QPushButton::clicked, this, &RobotChatMainUI::SaveBtnClicked);
 
     //ui.stackedWidget->setCurrentWidget(ui.chat_desc_wgt);
     //connect(ui.chat_desc_wgt, &WChatDesc::sig_startClick, this, &RobotChatMainUI::StartBtnClicked);
@@ -40,6 +44,38 @@ void RobotChatMainUI::on_pb_min_clicked()
 void RobotChatMainUI::on_pb_close_clicked()
 {
     this->close();
+}
+
+void RobotChatMainUI::SaveBtnClicked()
+{
+    auto pt = this->rect().center();
+    int x = pt.x() - 476 / 2;
+    int y = pt.y() - 116 / 2;
+
+    WName nameDlg{ this };
+    nameDlg.setModal(true);
+    nameDlg.resize(QSize{ 476, 116 });
+    nameDlg.move(x, y);
+    nameDlg.show();
+    nameDlg.exec();
+
+    if (nameDlg.Confirmed())
+    {
+        auto name = nameDlg.Name();
+
+        auto& ins = AiSound::GetInstance();
+
+        auto callback = [this](int code, const QString& msg, int32_t current, int32_t pages, int32_t records, int32_t size, int32_t total)
+        {
+            if (code != 200)
+            {
+                auto& ins = AiSound::GetInstance();
+                ins.ShowTip(this, msg);
+            }
+        };
+
+        ins.SaveChat(name, callback);
+    }
 }
 
 //void RobotChatMainUI::StartBtnClicked()
