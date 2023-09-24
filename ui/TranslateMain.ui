@@ -20,7 +20,16 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QComboBox QAbstractItemView {
+   <string notr="true">QWidget{
+	font: 14px &quot;微软雅黑&quot;;
+}
+
+QFrame#frame{
+	color: rgba(0,0,0,0);
+	border:none;
+}
+
+QComboBox QAbstractItemView {
     outline: 1px solid rgba(0,0,0,10);
     border: 1px solid rgba(0,0,0,10);
     color: #000000;
@@ -96,15 +105,7 @@ QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
    <item>
     <widget class="QFrame" name="frame">
      <property name="styleSheet">
-      <string notr="true">QWidget[transparent=false]
-{
-	background-color:rgba(0, 255, 0, 204);
-}
-
-QWidget[transparent=true]
-{
-	background-color:rgba(0, 0, 255, 1);
-}
+      <string notr="true">
 </string>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -119,7 +120,10 @@ QWidget[transparent=true]
         <property name="font">
          <font>
           <family>微软雅黑</family>
-          <pointsize>16</pointsize>
+          <pointsize>-1</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
          </font>
         </property>
         <property name="styleSheet">
@@ -393,7 +397,6 @@ color:#FFFFFF;</string>
          <string notr="true">QPushButton[lock=false]
 {
 background-image:url(:/QtTest/icon/lock-white.png);
-background-color:rgb(0,0,0);
 background-position:center;
 background-repeat:no-repeat;
 border:1px solid;
@@ -404,7 +407,6 @@ border-color:rgba(255,255,255,50%);
 QPushButton[lock=true]
 {
 background-image:url(:/QtTest/icon/lock-color.png);
-background-color:rgb(0,0,0);
 background-position:center;
 background-repeat:no-repeat;
 border:1px solid;
@@ -484,7 +486,6 @@ border-color:rgba(255,255,255,50%);
         </property>
         <property name="styleSheet">
          <string notr="true">background-image: url(:/QtTest/icon/min_btn_white.png);
-background-color:rgb(0,0,0);
 background-position:center;
 background-repeat:no-repeat;
 border:1px solid;
@@ -546,7 +547,6 @@ border-color:rgba(255,255,255,50%);</string>
         </property>
         <property name="styleSheet">
          <string notr="true">background-image: url(:/QtTest/icon/close_btn_white.png);
-background-color:rgb(0,0,0);
 background-position:center;
 background-repeat:no-repeat;
 border:1px solid;
@@ -581,7 +581,10 @@ border-color:rgba(255,255,255,50%);</string>
      <property name="font">
       <font>
        <family>微软雅黑</family>
-       <pointsize>16</pointsize>
+       <pointsize>-1</pointsize>
+       <weight>50</weight>
+       <italic>false</italic>
+       <bold>false</bold>
       </font>
      </property>
     </widget>

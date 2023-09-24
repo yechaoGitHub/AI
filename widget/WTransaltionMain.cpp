@@ -69,6 +69,9 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
     ui.lockButton->setProperty("lock", false);
     ui.lockButton->style()->unpolish(ui.lockButton);
 
+    ui.frame->setProperty("transparent", false);
+    ui.frame->style()->unpolish(ui.frame);
+
     setMouseTracking(true);
 }
 
@@ -158,8 +161,8 @@ void WTransaltionMain::enterEvent(QEvent* event)
 {
     _mouseHold = true;
 
-    ui.frame->setProperty("transparent", false);
-    ui.frame->style()->unpolish(ui.frame);
+   /* ui.frame->setProperty("transparent", false);
+    ui.frame->style()->unpolish(ui.frame);*/
 
     repaint();
 }
@@ -168,8 +171,8 @@ void WTransaltionMain::leaveEvent(QEvent* event)
 {
     _mouseHold = false;
 
-    ui.frame->setProperty("transparent", true);
-    ui.frame->style()->unpolish(ui.frame);
+   /* ui.frame->setProperty("transparent", true);
+    ui.frame->style()->unpolish(ui.frame);*/
 
     repaint();
 }
@@ -178,8 +181,8 @@ void WTransaltionMain::focusInEvent(QFocusEvent* event)
 {
     _mouseHold = true;
 
-    ui.frame->setProperty("transparent", false);
-    ui.frame->style()->unpolish(ui.frame);
+   /* ui.frame->setProperty("transparent", false);
+    ui.frame->style()->unpolish(ui.frame);*/
 
     repaint();
 }
@@ -188,8 +191,8 @@ void WTransaltionMain::focusOutEvent(QFocusEvent* event)
 {
     _mouseHold = false;
 
-    ui.frame->setProperty("transparent", true);
-    ui.frame->style()->unpolish(ui.frame);
+  /*  ui.frame->setProperty("transparent", true);
+    ui.frame->style()->unpolish(ui.frame);*/
 
     repaint();
 }
