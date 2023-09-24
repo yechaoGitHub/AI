@@ -1,8 +1,11 @@
 #pragma once
 
+#include "AudioInput.h"
+
 #include <QWidget>
 #include <QAudioDeviceInfo>
 #include "ui_WSoundSourcePage.h"
+
 
 class WSoundSourcePage : public QWidget
 {
@@ -21,7 +24,12 @@ private:
     void SpeakerIndexChanged(int index);
     void MonitorIndexChanged(int index);
 
+    void MicVolumeLevel(int level);
+    void MonitorVolumeLevel(int level);
+
     Ui::WSoundSourcePageClass           ui;
+    AudioInput                          _aoMic;
+    AudioInput                          _aoMonitor;
     std::vector<QAudioDeviceInfo>       _inList;
     std::vector<QAudioDeviceInfo>       _outList;
     std::vector<QAudioDeviceInfo>       _monitorList;

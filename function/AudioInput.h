@@ -28,6 +28,7 @@ public:
 Q_SIGNALS:
     void audioInput(QByteArray data);
     void soundPlay(bool play);
+    void volumeLevel(int level);
 
 protected:
     void timerEvent(QTimerEvent* event) override;

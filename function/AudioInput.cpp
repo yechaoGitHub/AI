@@ -15,10 +15,7 @@ AudioInput::~AudioInput()
 
 void AudioInput::Initialize()
 {
-    _devInfo = QAudioDeviceInfo::defaultInputDevice();
-
-    connect(this, &AudioInput::start_mic, this, &AudioInput::StartMicInternal);
-    connect(this, &AudioInput::end_mic, this, &AudioInput::EndMicInternal);
+    //_devInfo = QAudioDeviceInfo::defaultInputDevice();
     this->moveToThread(&_workThread);
 #ifdef MONITOR_MIC
     _audioOutput.Initialize();
@@ -53,17 +50,28 @@ void AudioInput::StartMic(const QAudioDeviceInfo& info)
 
     _devInfo = info;
     _workThread.start();
+
+    connect(this, &AudioInput::start_mic, this, &AudioInput::StartMicInternal);
+    connect(this, &AudioInput::end_mic, this, &AudioInput::EndMicInternal);
+
     emit start_mic();
 }
 
 void AudioInput::EndMic()
 {
-    emit end_mic();
-    if (!_workThread.wait(1000))
+    if (_workThread.isRunning())
     {
-        _workThread.quit();
+        emit end_mic();
+        if (!_workThread.wait(1000))
+        {
+            _workThread.quit();
+        }
+
+        disconnect(this, &AudioInput::start_mic, this, &AudioInput::StartMicInternal);
+        disconnect(this, &AudioInput::end_mic, this, &AudioInput::EndMicInternal);
+
+        emit soundPlay(false);
     }
-    emit soundPlay(false);
 }
 
 bool AudioInput::IsRunning()
@@ -82,6 +90,11 @@ void AudioInput::timerEvent(QTimerEvent* event)
 
 void AudioInput::StartMicInternal()
 {
+    if (_audioInput)
+    {
+        return;
+    }
+
     QAudioFormat auidoFormat;
     auidoFormat.setSampleRate(16000);
     auidoFormat.setChannelCount(1);
@@ -108,12 +121,14 @@ void AudioInput::StartMicInternal()
 
 void AudioInput::EndMicInternal()
 {
-    killTimer(_inTimer);
-
-    _audioInput->stop();
-    delete _audioInput;
-    _audioInput = nullptr;
-    _ioInput = nullptr;
+    if (_audioInput)
+    {
+        killTimer(_inTimer);
+        _audioInput->stop();
+        delete _audioInput;
+        _audioInput = nullptr;
+        _ioInput = nullptr;
+    }
 
     _workThread.quit();
 
@@ -150,7 +165,9 @@ void AudioInput::ReadAudioData(QIODevice* dev, int& readLen, QByteArray& bufferD
     {
         if (readLen == 1280)
         {
-            if (AvgDb(bufferData) > -13)
+            auto db = AvgDb(bufferData);
+            emit volumeLevel(db);
+            if (db > -13)
             {
 #ifdef MONITOR_MIC
                 _audioOutput.WriteOutputData(bufferData);
