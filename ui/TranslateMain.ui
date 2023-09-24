@@ -52,7 +52,6 @@ QComboBox QAbstractScrollArea QScrollBar::handle:vertical:hover {
     background: #505050;
 }
 
-
 QScrollBar:vertical
 {
     width:6px;
@@ -166,12 +165,13 @@ QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
 {
 	color:rgb(255,255,255);
 	border:none;
-	background-color:transparent;
+	background-color: transparent;
 }
 
 QComboBox::drop-down {
     subcontrol-origin: padding;
     subcontrol-position: top right;
+	background-color:transparent;
     width: 20px;
 }
 
@@ -254,7 +254,7 @@ background-repeat:no-repeat;</string>
 {
 	color:#00D7F4;
 	border:none;
-	background-color:transparent;
+	background-color: transparent;
 }
 
 QComboBox QAbstractItemView::item { 
@@ -586,6 +586,11 @@ border-color:rgba(255,255,255,50%);</string>
        <italic>false</italic>
        <bold>false</bold>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">Widget{
+	background-color: transparent;
+}</string>
      </property>
     </widget>
    </item>

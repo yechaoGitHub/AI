@@ -69,9 +69,6 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
     ui.lockButton->setProperty("lock", false);
     ui.lockButton->style()->unpolish(ui.lockButton);
 
-    ui.frame->setProperty("transparent", false);
-    ui.frame->style()->unpolish(ui.frame);
-
     setMouseTracking(true);
 }
 
@@ -105,7 +102,7 @@ void WTransaltionMain::mousePressEvent(QMouseEvent* event)
         _clickPos.setY(event->pos().y());
         _mouseHold = true;
 
-        ::SetCapture((HWND)winId());
+        //::SetCapture((HWND)winId());
     }
 }
 
@@ -120,7 +117,7 @@ void WTransaltionMain::mouseMoveEvent(QMouseEvent* event)
 void WTransaltionMain::mouseReleaseEvent(QMouseEvent* event)
 {
     _mouseHold = false;
-    ::ReleaseCapture();
+    //::ReleaseCapture();
 }
 
 void WTransaltionMain::paintEvent(QPaintEvent* event)
@@ -163,8 +160,7 @@ void WTransaltionMain::enterEvent(QEvent* event)
 
    /* ui.frame->setProperty("transparent", false);
     ui.frame->style()->unpolish(ui.frame);*/
-
-    repaint();
+    update();
 }
 
 void WTransaltionMain::leaveEvent(QEvent* event)
@@ -173,8 +169,7 @@ void WTransaltionMain::leaveEvent(QEvent* event)
 
    /* ui.frame->setProperty("transparent", true);
     ui.frame->style()->unpolish(ui.frame);*/
-
-    repaint();
+    update();
 }
 
 void WTransaltionMain::focusInEvent(QFocusEvent* event)
@@ -184,7 +179,7 @@ void WTransaltionMain::focusInEvent(QFocusEvent* event)
    /* ui.frame->setProperty("transparent", false);
     ui.frame->style()->unpolish(ui.frame);*/
 
-    repaint();
+    update();
 }
 
 void WTransaltionMain::focusOutEvent(QFocusEvent* event)
@@ -194,7 +189,7 @@ void WTransaltionMain::focusOutEvent(QFocusEvent* event)
   /*  ui.frame->setProperty("transparent", true);
     ui.frame->style()->unpolish(ui.frame);*/
 
-    repaint();
+    update();
 }
 
 void WTransaltionMain::MinClicked()
