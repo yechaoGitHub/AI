@@ -21,6 +21,8 @@ signals:
 	void	sig_transHistoryReplay(bool, int, const strc_PageInfo& page, const  QVector<strc_transHistory>& chat_info);
 	void	sig_chatBotListReplay(bool, int,const QMap<int,QString>&);
 
+	void	sig_chatRecordReplay(bool, int, const strc_PageInfo& page, const  QVector<strc_chatRecord>& chat_list);
+
 	void	sig_common_replay(int type,bool success,const QString& msg);
 
 public:
@@ -77,6 +79,9 @@ public:
 
 	void getTransHistory(int page_size,int pageNo,const QString& text);
 	void delTransId(int id);
+
+	void getChatRecord(int page_size, int pageNo, const QString& chatId);
+	Q_INVOKABLE void _getChatRecord(int page_size, int pageNo, const QString& chatId);
 private:
 	void paraseHttpResponse(httpReqType req_type,const QString& response);
 

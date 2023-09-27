@@ -248,6 +248,14 @@
         <source>delete trans timeout</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>get chatbot record timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>get chatbot record fail</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Translation</name>
@@ -703,10 +711,6 @@
         <source>Float Window</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <source>Quite Floating Window</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>WRobotNavigationClass</name>
@@ -788,7 +792,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>√Quite Floating Window</source>
+        <source>Quite Floating Window</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

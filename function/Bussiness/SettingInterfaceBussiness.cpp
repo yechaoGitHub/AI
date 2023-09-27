@@ -306,6 +306,30 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
             emit sig_common_replay(httpReqType::TransHistory_Req, false, json["msg"].toString());
         }
     }
+    else if (req_type == ChatRecord_Req) {
+        if (json["code"].toInt() == 200) {
+            QVector<strc_chatRecord>   chat_record_list;
+            if (json["data"]["records"].isArray()) {
+                for (auto it : json["data"]["records"].toArray()) {
+                    strc_chatRecord chat_record;
+                    QJsonObject json_recode = it.toObject();
+                    chat_record.role = json_recode["role"].toString();
+                    chat_record.content = json_recode["content"].toString();
+                }
+            }
+
+            strc_PageInfo page_info;
+            page_info.total_size = json["data"]["total"].toInt();
+            page_info.cur_page = json["data"]["current"].toInt();
+            page_info.page_size = json["data"]["size"].toInt();
+            page_info.total_pages = json["data"]["pages"].toInt();
+
+            emit sig_chatRecordReplay(true, 200, page_info, chat_record_list);
+        }
+        else {
+            emit sig_common_replay(httpReqType::TransHistory_Req, false, json["msg"].toString());
+        }
+    }
 }
 
 void SettingInterfaceBussiness::getUserInfoReq()
@@ -1021,6 +1045,42 @@ void SettingInterfaceBussiness::delTransId(int id)
     client.fail([=](const QString& response, int code) {
         qDebug() << "delVoiceReq error code=" << code;
         emit sig_common_replay(httpReqType::DelTrans_Req, false, tr("delete voice fail"));
+        });
+    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+}
+
+void SettingInterfaceBussiness::getChatRecord(int page_size, int pageNo, const QString& chatId)
+{
+    QMetaObject::invokeMethod(this, "_getChatRecord", Q_ARG(int, page_size), Q_ARG(int, pageNo), Q_ARG(QString, chatId));
+}
+
+void SettingInterfaceBussiness::_getChatRecord(int page_size, int pageNo, const QString& chatId)
+{
+    QString token = SETTING.getToken();
+    QString url = SETTING.getHostAddress();
+    if (token.isEmpty() || url.isEmpty()) {
+        return;
+    }
+
+    QJsonObject dataobj;
+    dataobj.insert("pageNo", pageNo);
+    dataobj.insert("pageSize", page_size);
+    dataobj.insert("conversationId", chatId);
+    QJsonDocument document;
+    document.setObject(dataobj);
+    QByteArray jsonValue = document.toJson(QJsonDocument::Compact);
+
+    HttpClient client(QString("%1/api/chatbot/load").arg(url));
+    client.success([=](const QString& response) {
+        paraseHttpResponse(httpReqType::ChatRecord_Req, response);
+        });
+    client.timeout([=]() {
+        qDebug() << "_getChatRecord timeout";
+        emit sig_common_replay(httpReqType::ChatRecord_Req, false, tr("get chatbot record timeout"));
+        });
+    client.fail([=](const QString& response, int code) {
+        qDebug() << "_getChatRecord error code=" << code;
+        emit sig_common_replay(httpReqType::ChatRecord_Req, false, tr("get chatbot record fail"));
         });
     client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
 }

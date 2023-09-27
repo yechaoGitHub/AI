@@ -24,6 +24,8 @@ private slots:
 	void	slot_comboxIndexChange(int index);
 	void	slot_comboxTextChange(const QString& index);
 
+	void    slot_page_change(int index);
+
 	void	slot_addVoice(int voiceID,const QString& name);
 private:
 	void	bindCombox(bool bind);

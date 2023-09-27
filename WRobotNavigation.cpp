@@ -63,12 +63,10 @@ void WRobotNavigation::initTrayIcon()
         if (this->isHidden()) {
             this->show();
             exitAction2_->setText(QString::fromLocal8Bit("¡ÌFloat Window"));
-            _setting_menu->setFloatText(QString::fromLocal8Bit("¡ÌQuite Floating Window"));
         }
         else {
             this->hide();
             exitAction2_->setText(tr("Float Window"));
-            _setting_menu->setFloatText(tr("Quite Floating Window"));
         }
         });
     trayMenu_->addAction(exitAction2_.data());

@@ -69,6 +69,8 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
     ui.lockButton->setProperty("lock", false);
     ui.lockButton->style()->unpolish(ui.lockButton);
 
+    //ui.cbDest->setAttribute(Qt::WA_Hover, false);
+
     setMouseTracking(true);
 }
 

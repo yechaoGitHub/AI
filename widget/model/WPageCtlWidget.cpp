@@ -61,7 +61,7 @@ void WPageCtlWidget::initCtl(int total_page, int total_size, int cur_page)
 			ui.pb_2->setText(QString::number(_total_pages-1));
 		}
 	}
-	QTimer::singleShot(200, this, [=] {
+	QTimer::singleShot(100, this, [=] {
 		selCurIndex(_cur_page);
 		});
 

@@ -18,6 +18,9 @@ public:
 
     // 机器人说话调用
     void addRobotChatItem(const QString& msg);
+
+    // 插入历史记录
+    void insertChatRecord(const QString& msg);
 protected:
     void resizeEvent(QResizeEvent* event) override;
     void showEvent(QShowEvent* event) override;

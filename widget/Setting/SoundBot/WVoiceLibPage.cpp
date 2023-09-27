@@ -47,6 +47,8 @@ WVoiceLibPage::WVoiceLibPage(QWidget *parent)
 			_cur_lib_wgt = nullptr;
 		}
 		});
+
+	connect(ui.widget,&WPageCtlWidget::sig_changePage,this,&WVoiceLibPage::slot_page_change);
 }
 
 WVoiceLibPage::~WVoiceLibPage()
@@ -55,6 +57,11 @@ WVoiceLibPage::~WVoiceLibPage()
 		delete _addVoiceDlg;
 		_addVoiceDlg = nullptr;
 	}
+}
+
+void WVoiceLibPage::slot_page_change(int index)
+{
+	SettingInterfaceBussiness::getInstance()->getSoundLIbReq(index, _page_size, _sound_type);
 }
 
 void WVoiceLibPage::setSel()

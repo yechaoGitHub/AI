@@ -2,6 +2,7 @@
 #include <QListView>
 #include "function/AiSound.h"
 #include "Bussiness/SettingInterfaceBussiness.h"
+#include "base/GlobalSetting.h"
 
 
 WGerenalPage::WGerenalPage(QWidget *parent)
@@ -12,6 +13,10 @@ WGerenalPage::WGerenalPage(QWidget *parent)
 	ui.comboBox->setView(new  QListView());
 	ui.comboBox->addItem(tr("English"));
 	ui.comboBox->addItem(tr("Chinese"));
+
+	if (SETTING.getCurLanguage() != 0) {
+		ui.comboBox->setCurrentIndex(1);
+	}
 
 	connect(ui.comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(slot_comboxIndexChange(int)));
 	connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_common_replay,this,&WGerenalPage::slot_common_replay);
@@ -34,7 +39,7 @@ void WGerenalPage::slot_common_replay(int type, bool success, const QString& msg
 
 void WGerenalPage::slot_comboxIndexChange(int index)
 {
-
+	SETTING.setCurLanguage(index);
 }
 
 void WGerenalPage::on_pb_send_clicked()

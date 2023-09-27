@@ -31,14 +31,15 @@ void WSoundLine::startMovice(int volume)
 		_timer->start(100);
 	}
 	_movice = true;
+	update();
 }
 
 void WSoundLine::stopMovice()
 {
 	if (_timer->isActive()) {
-		_movice = false;
 		_timer->stop();
 	}
+	_movice = false;
 }
 
 void WSoundLine::paintEvent(QPaintEvent* event)
@@ -72,17 +73,17 @@ void WSoundLine::paintEvent(QPaintEvent* event)
 				break;
 			}
 
-			if (i >= _cur_line) {
+			if (i >= _volume) {
 				break;
 			}
 
 			path_tick.addRoundedRect(QRectF(i * range + 2 + start, 1, 3, frame_rect.height() - 2), 4, 4);
 			p.drawPath(path_tick);
 		}
-		_cur_line++;
+		/*_cur_line++;
 		if (_cur_line > _volume) {
 			_cur_line = 0;
-		}
+		}*/
 	}
 
 	//pen.setColor("qlineargradient(spread:pad, x1:0, y1:0, x2:111, y2:20, stop:0 #0066FF, stop:1 #BD00FF)");

@@ -28,6 +28,7 @@ enum httpReqType {
 	GetVoiceLib_Req,
 	TransHistory_Req,
 	DelTrans_Req,
+	ChatRecord_Req
 };
 Q_DECLARE_METATYPE(httpReqType)
 
@@ -124,3 +125,9 @@ struct strc_transHistory {
 	QString updateTime;
 };
 Q_DECLARE_METATYPE(strc_transHistory)
+
+struct strc_chatRecord {
+	QString role;
+	QString content;
+};
+Q_DECLARE_METATYPE(strc_chatRecord)

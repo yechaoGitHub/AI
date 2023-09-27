@@ -107,7 +107,7 @@ QPushButton{
          </size>
         </property>
         <property name="text">
-         <string>√Quite Floating Window</string>
+         <string>Quite Floating Window</string>
         </property>
        </widget>
       </item>

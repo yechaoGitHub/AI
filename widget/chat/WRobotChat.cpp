@@ -6,6 +6,8 @@
 #include <QDateTime>
 #include <QKeyEvent>
 #include <qdebug.h>
+#include <QScrollBar>
+
 
 WRobotChat::WRobotChat(QWidget *parent)
     : QWidget(parent)
@@ -19,6 +21,16 @@ WRobotChat::WRobotChat(QWidget *parent)
     //connect(ui.pbSave, &QPushButton::clicked, this, &WRobotChat::SaveBtnClicked);
 
     ui.textEdit->installEventFilter(this);
+    ui.listWidget->verticalScrollBar()->setMaximum(20);
+    ui.listWidget->verticalScrollBar()->setSingleStep(2);
+    connect(ui.listWidget->verticalScrollBar(), &QScrollBar::valueChanged, this, [=](int value) {
+        if (value <= 2) {
+            int i = 1;
+        }
+        else if (ui.listWidget->verticalScrollBar()->maximum() == value) {
+            int i = 2;
+        }
+        });
 }
 
 WRobotChat::~WRobotChat()
@@ -36,7 +48,6 @@ void WRobotChat::on_pb_voice_clicked()
     addRobotChatItem(msg);
 }
 
-
 void WRobotChat::addRobotChatItem(const QString& msg)
 {
     if (msg.isEmpty()) {
@@ -52,13 +63,21 @@ void WRobotChat::addRobotChatItem(const QString& msg)
     _curMessage = messageW;
     _curItem = item;
 
-   /* messageW->setFixedWidth(this->width());
-    QSize size = messageW->fontRect(msg);
-    size.setHeight(1000);
-    item->setSizeHint(size);*/
-
     chatMessage(messageW, item, msg, time, WChatItem::User_Robot);
     ui.listWidget->setCurrentRow(ui.listWidget->count() - 1);
+}
+
+void WRobotChat::insertChatRecord(const QString& msg)
+{
+    if (msg.isEmpty()) {
+        return;
+    }
+
+    WChatItem* messageW = new WChatItem(ui.listWidget->parentWidget());
+    QListWidgetItem* item = new QListWidgetItem();
+    chatMessage(messageW, item, msg, "", WChatItem::User_Robot);
+    ui.listWidget->insertItem(0, item);
+    ui.listWidget->setItemWidget(item, messageW);
 }
 
 void WRobotChat::on_pb_send_clicked()
@@ -221,6 +240,7 @@ void WRobotChat::chatMessage(WChatItem* messageW, QListWidgetItem* item, QString
     item->setSizeHint(size);
     messageW->setText(text, time, size, type);
     ui.listWidget->setItemWidget(item, messageW);
+    ui.listWidget->insertItem(0,item);
 }
 
 void WRobotChat::resizeEvent(QResizeEvent* event)
