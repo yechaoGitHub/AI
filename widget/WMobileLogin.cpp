@@ -19,6 +19,8 @@ WMobileLogin::WMobileLogin(QWidget* parent) :
     connect(ui.getCodeBtn, &QPushButton::clicked, this, &WMobileLogin::GetCodeCallback);
 
     ui.lbEstimated->setVisible(false);
+
+    ui.verificationCodePic->SetModuleType("login");
 }
 
 WMobileLogin::~WMobileLogin()

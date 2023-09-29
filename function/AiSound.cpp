@@ -173,8 +173,11 @@ void AiSound::EmailLogin(const QString& mailAddress, const QString& verifyCode, 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/loginByMail", dataObj, headers, userParam);
 }
 
-void AiSound::GetVerifyCode(GetVerifyCodeCallback callback)
+void AiSound::GetVerifyCode(const QString& moduleType, GetVerifyCodeCallback callback)
 {
+    QJsonObject dataObj;
+    dataObj.insert("moduleType", moduleType);
+
     auto packet = new HttpCallbackPacket<GetVerifyCodeCallbackType>();
     packet->type = httpGetVerifyCode;
     packet->callback = callback;
@@ -183,7 +186,7 @@ void AiSound::GetVerifyCode(GetVerifyCodeCallback callback)
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
 
-    _httpAsync.Post("http://47.106.253.9:9101/api/common/getImgVerifyCode", {}, headers, userParam);
+    _httpAsync.Post("http://47.106.253.9:9101/api/common/getImgVerifyCode", dataObj, headers, userParam);
 }
 
 void AiSound::SendVerifyCode(const QString& dCode, const QString& mobileNumber, const QString& verifyCode, const QString& uuid, const QString& moduleType, SendVerifyCodeCallback callback)

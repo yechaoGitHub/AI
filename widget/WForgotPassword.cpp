@@ -20,7 +20,9 @@ WForgotPassword::WForgotPassword(QWidget* parent) :
     ui.edPassword2->SetImage(":/QtTest/icon/lock.png");
     ui.edPassword2->textEdit->setPlaceholderText("Enter password again");
 
-    connect(ui.getCodeBtn, QPushButton::clicked, this, &WForgotPassword::GetVCodeClicked);
+    ui.verificationCodePic->SetModuleType("modifyPwd");
+
+    connect(ui.getCodeBtn, &QPushButton::clicked, this, &WForgotPassword::GetVCodeClicked);
 
     verifyBtn = ui.pbVerfy;
 }
@@ -68,6 +70,13 @@ QString WForgotPassword::VerifyCode()
 
 void WForgotPassword::showEvent(QShowEvent* event)
 {
+    static bool firstShow = true;
+    if (firstShow)
+    {
+        ui.verificationCodePic->FlushVCode();
+        firstShow = false;
+    }
+
     if (ui.cbPhone->count() == 0)
     {
         auto& ai = AiSound::GetInstance();

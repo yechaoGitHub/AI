@@ -107,7 +107,7 @@ public:
     void SaveChat(const QString& name, SaveChatCallback callback);
     void ForgetPassword(const QString& dialingCode, const QString& phoneEmail, const QString& password, const QString& rePassword, const QString& verifyCode, CommomCallback callback);
     void Register(const QString& dialingCode, const QString& phoneEmail, const QString& password, const QString& rePassword, const QString& recommendCode, const QString& verifyCode, CommomCallback callback);
-    void GetVerifyCode(GetVerifyCodeCallback callback);
+    void GetVerifyCode(const QString& moduleType, GetVerifyCodeCallback callback);
     void SendVerifyCode(const QString& dCode, const QString& mobileNumber, const QString& verifyCode, const QString& uuid, const QString& moduleType, SendVerifyCodeCallback callback);
     void SendMailVerfyCode(const QString& emailAddress, const QString& verifyCode, const QString& uuid, const QString& moduleType, SendVerifyCodeCallback callback);
     void GetTranslationSrourceList(GetTranslationSourceListCallback callback);

@@ -8,6 +8,8 @@ public:
     WVerificationCode(QWidget* parent = nullptr);
     ~WVerificationCode();
 
+    void SetModuleType(const QString& type);
+
     void FlushVCode();
     QString Uuid();
 
@@ -19,6 +21,8 @@ protected:
 
 private:
     void GetVertifyCodeCallback(int code, const QString& msg, const QString& img, const QString& uuid);
+
+    QString _moduleType;
 
     QImage _vImg;
     QImage _refreshImg;

@@ -24,6 +24,8 @@ WRegister::WRegister(QWidget* parent) :
 
     signBtn = ui.pbSignUp;
 
+    ui.verificationCodePic->SetModuleType("register");
+
     connect(ui.getCodeBtn, &QPushButton::clicked, this, &WRegister::GetCodeCallback);
 }
 

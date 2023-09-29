@@ -9,8 +9,8 @@ WVerificationCode::WVerificationCode(QWidget* parent):
     _vImg.load(":/QtTest/icon/image.png");
     _refreshImg.load(":/QtTest/icon/refresh.png");
 
-    auto& i = AiSound::GetInstance();
-    i.GetVerifyCode(std::bind(&WVerificationCode::GetVertifyCodeCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
+    //auto& i = AiSound::GetInstance();
+    //i.GetVerifyCode(std::bind(&WVerificationCode::GetVertifyCodeCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
 
     this->setMouseTracking(true);
 }
@@ -19,10 +19,15 @@ WVerificationCode::~WVerificationCode()
 {
 }
 
+void WVerificationCode::SetModuleType(const QString& type)
+{
+    _moduleType = type;
+}
+
 void WVerificationCode::FlushVCode()
 {
     auto& i = AiSound::GetInstance();
-    i.GetVerifyCode(std::bind(&WVerificationCode::GetVertifyCodeCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
+    i.GetVerifyCode(_moduleType, std::bind(&WVerificationCode::GetVertifyCodeCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
 }
 
 QString WVerificationCode::Uuid()
@@ -48,7 +53,7 @@ void WVerificationCode::mouseReleaseEvent(QMouseEvent* event)
     if (_refreshRt.contains(event->pos()))
     {
         auto& i = AiSound::GetInstance();
-        i.GetVerifyCode(std::bind(&WVerificationCode::GetVertifyCodeCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
+        i.GetVerifyCode(_moduleType, std::bind(&WVerificationCode::GetVertifyCodeCallback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3, std::placeholders::_4));
     }
     //else if (_speakerRt.contains(event->pos()))
     //{
