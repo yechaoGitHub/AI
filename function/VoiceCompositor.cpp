@@ -55,10 +55,10 @@ void VoiceCompositor::Uninitialize()
     _transformMp3.Clear();
 }
 
-void VoiceCompositor::Connect(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev)
+void VoiceCompositor::Connect(const QString& token, const QString& srcLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev)
 {
     _workThread.start();
-    emit connect(token, srcLan, destLan, speaker, autoSender, micDev, speakerDev);
+    emit connect(token, srcLan, speaker, autoSender, micDev, speakerDev);
 }
 
 void VoiceCompositor::SendMessage(const QString& msg)
@@ -109,7 +109,6 @@ void VoiceCompositor::SendParam()
     QJsonObject dataobj;
     dataobj.insert("type", "START");
     dataobj.insert("from", _srcLan);
-    dataobj.insert("to", _destLan);
     dataobj.insert("tts_speaker", _speaker);
     dataobj.insert("isAutoSend", _autoSender);
 
@@ -193,12 +192,11 @@ void VoiceCompositor::ReceiveAudioInput(QByteArray data)
     _webSocket.sendTextMessage(byteArray);
 }
 
-void VoiceCompositor::ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev)
+void VoiceCompositor::ConnectInternal(const QString& token, const QString& srcLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev)
 {
     _micDev = micDev;
     _speakerDev = speakerDev;
     _srcLan = srcLan;
-    _destLan = destLan;
     _speaker = speaker;
     _autoSender = autoSender;
 

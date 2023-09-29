@@ -11,8 +11,8 @@ WSpeechTimer::WSpeechTimer(QWidget* parent) :
 
     _effect = new QLabel{ this };
     _effect->setStyleSheet("border:1px solid;border-radius:8px;border-color:rgba(255,255,255,50%);");
-    _effect->setMaximumSize(QSize{425, 44});
-    _effect->setMinimumSize(QSize{ 425, 44});
+    _effect->setMaximumSize(QSize{ 300, 44 });
+    _effect->setMinimumSize(QSize{ 300, 44 });
 
     _movie = new QMovie(":/QtTest/icon/color_sound.apng", "apng", this);
     _effect->setMovie(_movie);

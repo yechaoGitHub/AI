@@ -84,7 +84,8 @@ void WMobileLogin::showEvent(QShowEvent* event)
         {
             QString iconPath = ":/QtTest/icon/country/" + data.abb + ".png";
             ui.comboBox->setIconSize(QSize{32, 16});
-            ui.comboBox->addItem(QIcon{ iconPath }, data.name, data.dialingCode);
+            QString itemName = data.name + " " + data.dialingCode;
+            ui.comboBox->addItem(QIcon{ iconPath }, itemName, data.dialingCode);
         }
     }
 }
@@ -119,5 +120,12 @@ void WMobileLogin::GetCodeCallback()
         }
     };
 
-    ins.SendVerifyCode(dialingCode, phoneNumber, verifyCode, uuid, callback);
+    if (DialingCode() == "+86")
+    {
+        ins.SendVerifyCode(dialingCode, phoneNumber, verifyCode, uuid, "login", callback);
+    }
+    else
+    {
+        ins.SendMailVerfyCode(phoneNumber, verifyCode, uuid, "login", callback);
+    }
 }

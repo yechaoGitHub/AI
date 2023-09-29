@@ -258,17 +258,6 @@
     </message>
 </context>
 <context>
-    <name>Translation</name>
-    <message>
-        <source>Voice Translation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>WAccountPage</name>
     <message>
         <source>(Expires on %1)</source>

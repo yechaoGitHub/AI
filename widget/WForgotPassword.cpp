@@ -20,6 +20,8 @@ WForgotPassword::WForgotPassword(QWidget* parent) :
     ui.edPassword2->SetImage(":/QtTest/icon/lock.png");
     ui.edPassword2->textEdit->setPlaceholderText("Enter password again");
 
+    connect(ui.getCodeBtn, QPushButton::clicked, this, &WForgotPassword::GetVCodeClicked);
+
     verifyBtn = ui.pbVerfy;
 }
 
@@ -74,7 +76,37 @@ void WForgotPassword::showEvent(QShowEvent* event)
         {
             QString iconPath = ":/QtTest/icon/country/" + data.abb + ".png";
             ui.cbPhone->setIconSize(QSize{ 32, 16 });
-            ui.cbPhone->addItem(QIcon{ iconPath }, data.name, data.dialingCode);
+            QString itemName = data.name + " " + data.dialingCode;
+            ui.cbPhone->addItem(QIcon{ iconPath }, itemName, data.dialingCode);
         }
     }
+}
+
+void WForgotPassword::GetVCodeClicked()
+{
+    auto& ins = AiSound::GetInstance();
+
+    QString phoneNumber = ui.edUser->textEdit->text();
+    auto verifyCode = ui.verificationCodeEdit->textEdit->text();
+    auto uuid = ui.verificationCodePic->Uuid();
+    auto dialingCode = DialingCode();
+
+    auto callback = [this](int code, const QString& msg)
+    {
+        if (code != 200)
+        {
+            auto& ins = AiSound::GetInstance();
+            ins.ShowTip(this, msg);
+        }
+    };
+
+    if (dialingCode == "+86")
+    {
+        ins.SendVerifyCode(dialingCode, phoneNumber, verifyCode, uuid, "modifyPwd", callback);
+    }
+    else
+    {
+        ins.SendMailVerfyCode(phoneNumber, verifyCode, uuid, "modifyPwd", callback);
+    }
+
 }

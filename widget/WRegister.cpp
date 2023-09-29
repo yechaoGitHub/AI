@@ -91,7 +91,8 @@ void WRegister::showEvent(QShowEvent* event)
         {
             QString iconPath = ":/QtTest/icon/country/" + data.abb + ".png";
             ui.cbPhone->setIconSize(QSize{ 32, 16 });
-            ui.cbPhone->addItem(QIcon{ iconPath }, data.name, data.dialingCode);
+            QString itemName = data.name + " " + data.dialingCode;
+            ui.cbPhone->addItem(QIcon{ iconPath }, itemName, data.dialingCode);
         }
     }
 }
@@ -119,5 +120,12 @@ void WRegister::GetCodeCallback()
         }
     };
 
-    ins.SendVerifyCode(dialingCode, phoneNumber, verifyCode, uuid, callback);
+    if (DialingCode() == "+86")
+    {
+        ins.SendVerifyCode(dialingCode, phoneNumber, verifyCode, uuid, "register", callback);
+    }
+    else
+    {
+        ins.SendMailVerfyCode(phoneNumber, verifyCode, uuid, "register", callback);
+    }
 }

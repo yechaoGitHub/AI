@@ -26,7 +26,6 @@
 #include <functional>
 #include <list>
 
-class WTranslationSelect;
 class WTransaltionMain;
 class QAudioPlayer;
 
@@ -109,7 +108,8 @@ public:
     void ForgetPassword(const QString& dialingCode, const QString& phoneEmail, const QString& password, const QString& rePassword, const QString& verifyCode, CommomCallback callback);
     void Register(const QString& dialingCode, const QString& phoneEmail, const QString& password, const QString& rePassword, const QString& recommendCode, const QString& verifyCode, CommomCallback callback);
     void GetVerifyCode(GetVerifyCodeCallback callback);
-    void SendVerifyCode(const QString& dCode, const QString& mobileNumber, const QString& verifyCode, const QString& uuid, SendVerifyCodeCallback callback);
+    void SendVerifyCode(const QString& dCode, const QString& mobileNumber, const QString& verifyCode, const QString& uuid, const QString& moduleType, SendVerifyCodeCallback callback);
+    void SendMailVerfyCode(const QString& emailAddress, const QString& verifyCode, const QString& uuid, const QString& moduleType, SendVerifyCodeCallback callback);
     void GetTranslationSrourceList(GetTranslationSourceListCallback callback);
     void GetTranslationDestList(GetTranslationDestListCallback callback);
     void GetVoiceSpeaker(GetVoiceSpeakerCallback callback);
@@ -120,7 +120,7 @@ public:
     void ShowLoginFrame();
     void ShowRobotNavigation();
     void ShowTranslationMainWindow();
-    void ShowVoiceCompositorMainWindow(const TranslationLanguage& srcLan, const TranslationLanguage& destLan);
+    void ShowVoiceCompositorMainWindow();
     void ShowConversationSuggestion(bool show);
     bool IsConversationSuggestionShow();
     void ShowRobotChat(int type ,const QString& msg);
@@ -167,9 +167,7 @@ private:
 
     static AiSound                      INSTANCE;
     LanguageType                        _sysLanguage;
-
     QString                             _token;
-
     HttpAsync                           _httpAsync;
 
 #pragma region ¹¦ÄÜ
@@ -188,7 +186,6 @@ private:
 
 #pragma region ´°¿Ú
     WLoginUI*                           _wLoginFrame = nullptr;
-    WTranslationSelect*                 _wTranslationSelect = nullptr;
     WTransaltionMain*                   _wTranslationMain = nullptr;
     WConversationSuggestion*            _wConversationSuggestion = nullptr;
 

@@ -14,8 +14,6 @@ public:
     WSpeechGenerationUi(QWidget *parent = nullptr);
     ~WSpeechGenerationUi();
 
-    void SetLanguage(const TranslationLanguage& srcLan, const TranslationLanguage& destLan);
-
 protected:
     void paintEvent(QPaintEvent* event) override;
     void showEvent(QShowEvent* event) override;
@@ -28,6 +26,7 @@ private:
     void LanguageIndexChanged(int index);
     void SexIndexChanged(int index);
     void NameIndexChanged(int index);
+    QString GetSelectSrcLanguage();
 
     void CloseClicked();
     void StartClicked();
@@ -37,10 +36,6 @@ private:
     QString GetSelectSpeaker();
 
     Ui::WSpeechGenerationUiClass    ui;
-
-    TranslationLanguage             _srcLan;
-    TranslationLanguage             _destLan;
-
     QPoint                          _clickPos;
     bool                            _mouseHold = false;
     bool                            _lock = false;

@@ -96,6 +96,8 @@ void ChatBot::ConnectInternal(const QString& token, int id)
     quurl.addQueryItem("access_token", token);
     url.setQuery(quurl);
 
+    _id = id;
+
     auto str = url.toString();
     _webSocket.open(url);
 }
@@ -205,10 +207,10 @@ void ChatBot::TranslateTextMessageReceived(const QString& message)
             }
         }
 
-        auto resultObj = document["data"]["result"].toObject();
-        if (!resultObj.isEmpty())
+        auto conversationId = document["data"]["result"]["conversationId"].toString();
+        if (!conversationId.isEmpty())
         {
-            _conversationId = resultObj["conversationId"].toString();
+            _conversationId = conversationId;
         }
     }
 }

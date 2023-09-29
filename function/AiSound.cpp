@@ -1,6 +1,5 @@
 #include "AiSound.h"
 
-#include "WTranslationSelect.h"
 #include "WTransaltionMain.h"
 #include "base/GlobalSetting.h"
 #include "function/QAudioPlayer.h"
@@ -68,7 +67,6 @@ void AiSound::Initialize()
     connect(&_httpAsync, &HttpAsync::httpRespond, this, &AiSound::HttpCallbackDispatch);
 
     _wLoginFrame = new WLoginUI{};
-    _wTranslationSelect = new WTranslationSelect{};
     _wTranslationMain = new WTransaltionMain{};
     _robotNaviga = new WRobotNavigation(nullptr);
     _wConversationSuggestion = new WConversationSuggestion{};
@@ -188,10 +186,10 @@ void AiSound::GetVerifyCode(GetVerifyCodeCallback callback)
     _httpAsync.Post("http://47.106.253.9:9101/api/common/getImgVerifyCode", {}, headers, userParam);
 }
 
-void AiSound::SendVerifyCode(const QString& dCode, const QString& mobileNumber, const QString& verifyCode, const QString& uuid, SendVerifyCodeCallback callback)
+void AiSound::SendVerifyCode(const QString& dCode, const QString& mobileNumber, const QString& verifyCode, const QString& uuid, const QString& moduleType, SendVerifyCodeCallback callback)
 {
     QJsonObject dataObj;
-    dataObj.insert("moduleType", "login");
+    dataObj.insert("moduleType", moduleType);
     dataObj.insert("mobileNumber", mobileNumber);
     dataObj.insert("dialingCode", dCode);
     dataObj.insert("imgVerifyCode", verifyCode);
@@ -206,6 +204,25 @@ void AiSound::SendVerifyCode(const QString& dCode, const QString& mobileNumber, 
     headers.insert("Content-Type", "application/json;charset=utf-8");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/sendSmsVerifyCode", dataObj, headers, userParam);
+}
+
+void AiSound::SendMailVerfyCode(const QString& mailAddress, const QString& verifyCode, const QString& uuid, const QString& moduleType, SendVerifyCodeCallback callback)
+{
+    QJsonObject dataObj;
+    dataObj.insert("moduleType", moduleType);
+    dataObj.insert("mailAddress", mailAddress);
+    dataObj.insert("imgVerifyCode", verifyCode);
+    dataObj.insert("uuid", uuid);
+
+    auto packet = new HttpCallbackPacket<SendVerifyCodeCallbackType>();
+    packet->type = httpSendVerifyCode;
+    packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
+
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/user/sendMailVerifyCode", dataObj, headers, userParam);
 }
 
 void AiSound::GetTranslationSrourceList(GetTranslationSourceListCallback callback)
@@ -378,10 +395,9 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
         }
     }
     else if (type == Navig_Type::Speech) {
-        if (_wTranslationSelect->isHidden())
+        if (_speech_ui->isHidden())
         {
-            //_wTranslationSelect->SetFunctionType(FunctionType::VoiceCompositor);
-            _wTranslationSelect->show();
+            _speech_ui->show();
         }
     }
     else if (type == Navig_Type::System_Set) {
@@ -417,9 +433,9 @@ void AiSound::ShowTranslationMainWindow()
     _wTranslationMain->show();
 }
 
-void AiSound::ShowVoiceCompositorMainWindow(const TranslationLanguage& srcLan, const TranslationLanguage& destLan)
+void AiSound::ShowVoiceCompositorMainWindow()
 {
-    _speech_ui->SetLanguage(srcLan, destLan);
+    //_speech_ui->SetLanguage(srcLan, destLan);
     _speech_ui->show();
 }
 

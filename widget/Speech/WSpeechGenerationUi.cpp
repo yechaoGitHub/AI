@@ -47,13 +47,15 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
     setAttribute(Qt::WA_TranslucentBackground);
     this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint);
 
-    ui.comboBox_lang->setView(new QListView());
+    ui.comboBox_lang->setView(new QListView{});
     ui.comboBox_lang->addItem("English");
     ui.comboBox_lang->addItem("Chinese");
 
-    ui.comboBox_sex->setView(new QListView());
+    ui.comboBox_sex->setView(new QListView{});
     ui.comboBox_sex->addItem("Male");
     ui.comboBox_sex->addItem("Woman");
+
+    ui.cbFrom->setView(new QListView{});
 
     ui.comboBox_vector->setView(new QListView());
 
@@ -94,12 +96,6 @@ void WSpeechGenerationUi::on_pb_lock_clicked()
         this->setWindowFlags(flags ^ Qt::WindowStaysOnTopHint); // È¡ÏûÖÃ¶¥
     }
     show();
-}
-
-void WSpeechGenerationUi::SetLanguage(const TranslationLanguage &srcLan, const TranslationLanguage &destLan)
-{
-    _srcLan = srcLan;
-    _destLan = destLan;
 }
 
 void WSpeechGenerationUi::paintEvent(QPaintEvent* event)
@@ -163,6 +159,15 @@ void WSpeechGenerationUi::showEvent(QShowEvent* event)
     }
 
     ui.vcEffectTimer->Clear();
+
+    if (ui.cbFrom->count() == 0)
+    {
+        auto&& listData = ins.GetTranslationDestListData();
+        for (auto data : listData)
+        {
+            ui.cbFrom->addItem(data.name);
+        }
+    }
 }
 
 void WSpeechGenerationUi::closeEvent(QCloseEvent* event)
@@ -265,6 +270,27 @@ void WSpeechGenerationUi::NameIndexChanged(int index)
     }
 }
 
+QString WSpeechGenerationUi::GetSelectSrcLanguage()
+{
+    auto index = ui.cbFrom->currentIndex();
+    if (index < 0)
+    {
+        return "";
+    }
+
+    auto& ins = AiSound::GetInstance();
+    auto&& listData = ins.GetTranslationDestListData();
+
+    if (index >= listData.size())
+    {
+        return listData[index].language;
+    }
+    else
+    {
+        return "";
+    }
+}
+
 void WSpeechGenerationUi::CloseClicked()
 {
     hide();
@@ -292,7 +318,13 @@ void WSpeechGenerationUi::StartClicked()
             return;
         }
 
-        vc.Connect(token, _srcLan.language, _destLan.language, name, isSend, SETTING.MicDeviceInfo(), SETTING.SpeakerDeviceInfo());
+        auto srcLanguage = GetSelectSrcLanguage();
+        if (srcLanguage.isEmpty())
+        {
+            return;
+        }
+
+        vc.Connect(token, srcLanguage, name, isSend, SETTING.MicDeviceInfo(), SETTING.SpeakerDeviceInfo());
         ui.vcEffectTimer->StartTimer(true);
         ui.pb_start->setStyleSheet(stopStyle);
         ui.pb_start->setText(QString::fromLocal8Bit("Stop"));
@@ -330,7 +362,7 @@ QString WSpeechGenerationUi::GetSelectSpeaker()
         VoiceData data;
         if (ins.GetVoiceData(id, data))
         {
-            return data.name;
+            return data.voiceCode;
         }
         else
         {

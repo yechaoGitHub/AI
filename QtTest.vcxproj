@@ -177,7 +177,6 @@
     <ClCompile Include="widget\WTip.cpp" />
     <ClCompile Include="widget\WTransaltionMain.cpp" />
     <ClCompile Include="widget\WTranslationPlayBtn.cpp" />
-    <ClCompile Include="widget\WTranslationSelect.cpp" />
     <ClCompile Include="widget\WTranslationTimer.cpp" />
     <ClCompile Include="widget\WUserNameLogin.cpp" />
     <ClCompile Include="widget\WVerificationCode.cpp" />
@@ -193,7 +192,6 @@
     <QtUic Include="ui\name.ui" />
     <QtUic Include="ui\signUp.ui" />
     <QtUic Include="ui\TranslateMain.ui" />
-    <QtUic Include="ui\translateSelect.ui" />
     <QtUic Include="ui\userNameLogin.ui" />
     <QtUic Include="ui\verifyCode.ui" />
     <QtUic Include="ui\verifyPhone.ui" />
@@ -233,7 +231,6 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="widget\WForgotPassword.h" />
     <ClInclude Include="widget\WName.h" />
-    <QtMoc Include="widget\WTranslationSelect.h" />
     <QtMoc Include="widget\Setting\WConformWidget.h" />
     <QtMoc Include="widget\Setting\SoundBot\WAddVoiceModel.h" />
     <QtMoc Include="widget\Setting\SoundBot\WEditVoiceDlg.h" />
