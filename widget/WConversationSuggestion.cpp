@@ -31,6 +31,11 @@ WConversationSuggestion::~WConversationSuggestion()
 {
 }
 
+void WConversationSuggestion::Clear()
+{
+    ui.plainTextEdit->clear();
+}
+
 void WConversationSuggestion::mousePressEvent(QMouseEvent* event)
 {
     if (event->button() == Qt::LeftButton)

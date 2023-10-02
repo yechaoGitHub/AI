@@ -9,6 +9,8 @@ public:
     WConversationSuggestion(QWidget* parent = nullptr);
     ~WConversationSuggestion();
 
+    void Clear();
+
 protected:
     void mousePressEvent(QMouseEvent* event) override;
     void mouseMoveEvent(QMouseEvent* event) override;

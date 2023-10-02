@@ -1,6 +1,7 @@
 ﻿#include "HttpClient.h"
 
 #include <QDebug>
+#include <QDataStream>
 #include <QFile>
 #include <QHash>
 #include <QUrlQuery>
@@ -26,7 +27,7 @@ enum class HttpClientRequestMethod {
 */
 class HttpClientPrivateCache {
 public:
-    std::function<void(const QString&)>      successHandler = nullptr;
+    std::function<void(const QByteArray&)>      successHandler = nullptr;
     std::function<void(const QString&, int)>    failHandler = nullptr;
     std::function<void()>                    timeoutHandler = nullptr;
     std::function<void()>                    completeHandler = nullptr;
@@ -109,7 +110,7 @@ class HttpClientPrivate {
     * @param charset 请求响应的字符集，默认使用 UTF-8
     * @return 返回服务器端响应的字符串
     */
-    static QString readReply(QNetworkReply* reply, const QString& charset = "UTF-8");
+    static QByteArray readReply(QNetworkReply* reply, const QString& charset = "UTF-8");
 
     /**
     * @brief 请求结束的处理函数
@@ -119,7 +120,7 @@ class HttpClientPrivate {
     * @param successMessage 请求成功的消息
     * @param failMessage    请求失败的消息
     */
-    static void handleFinish(HttpClientPrivateCache cache, QNetworkReply* reply, const QString& successMessage, const QString& failMessage);
+    static void handleFinish(HttpClientPrivateCache cache, QNetworkReply* reply, const QByteArray& successMessage, const QString& failMessage);
 
     /// 成员变量 //
     QString   url;                            // 请求的 URL
@@ -133,7 +134,7 @@ class HttpClientPrivate {
     bool internal = true;                     // 是否使用自动创建的 manager
     int  timeout = 5;                       //默认超时时间
 
-    std::function<void(const QString&)>   successHandler = nullptr; // 成功的回调函数，参数为响应的字符串
+    std::function<void(const QByteArray&)>   successHandler = nullptr; // 成功的回调函数，参数为响应的字符串
     std::function<void(const QString&, int)> failHandler = nullptr; // 失败的回调函数，参数为失败原因和 HTTP status code
     std::function<void()>                 timeoutHandler = nullptr; // 超时的回调函数，无参数
     std::function<void()>                 completeHandler = nullptr; // 结束的回调函数，无参数
@@ -217,7 +218,7 @@ void HttpClientPrivate::executeQuery(HttpClientPrivate* d, HttpClientRequestMeth
         }
         timeOut = true;
         loop.quit();
-        QString successMessage = HttpClientPrivate::readReply(reply, cache.charset.toUtf8());
+        QByteArray successMessage = HttpClientPrivate::readReply(reply, cache.charset.toUtf8());
         QString failMessage = reply->errorString();
         HttpClientPrivate::handleFinish(cache, reply, successMessage, failMessage);
         });
@@ -319,7 +320,7 @@ void HttpClientPrivate::download(HttpClientPrivate* d, std::function<void(const 
 
     // [4] 请求结束时获取响应数据，在 handleFinish 中执行回调函数
     QObject::connect(reply, &QNetworkReply::finished, [=] {
-        QString successMessage = "下载完成"; // 请求结束时一次性读取所有响应数据
+        QByteArray successMessage = "下载完成"; // 请求结束时一次性读取所有响应数据
         QString failMessage = reply->errorString();
         HttpClientPrivate::handleFinish(cache, reply, successMessage, failMessage);
         });
@@ -408,7 +409,7 @@ void HttpClientPrivate::upload(HttpClientPrivate* d, const QStringList& paths, c
     QObject::connect(reply, &QNetworkReply::finished, [=] {
         multiPart->deleteLater(); // 释放资源: multiPart + file
 
-        QString successMessage = HttpClientPrivate::readReply(reply, cache.charset); // 请求结束时一次性读取所有响应数据
+        QByteArray successMessage = HttpClientPrivate::readReply(reply, cache.charset); // 请求结束时一次性读取所有响应数据
         QString failMessage = reply->errorString();
         HttpClientPrivate::handleFinish(cache, reply, successMessage, failMessage);
         });
@@ -485,20 +486,25 @@ QNetworkRequest HttpClientPrivate::createRequest(HttpClientPrivate* d, HttpClien
 }
 
 // 读取服务器响应的数据
-QString HttpClientPrivate::readReply(QNetworkReply* reply, const QString& charset) {
-    QTextStream in(reply);
-    QString result;
-    in.setCodec(charset.toUtf8());
+QByteArray HttpClientPrivate::readReply(QNetworkReply* reply, const QString& charset) {
+    QDataStream in(reply);
+    QByteArray result;
+    //in.setCodec(charset.toUtf8());
 
     while (!in.atEnd()) {
-        result += in.readLine();
+        char buffer[1024];
+        auto len = in.readRawData(buffer, 1024);
+        if (len > 0)
+        {
+            result.append(buffer, len);
+        }
     }
 
     return result;
 }
 
 // 请求结束的处理函数
-void HttpClientPrivate::handleFinish(HttpClientPrivateCache cache, QNetworkReply* reply, const QString& successMessage, const QString& failMessage) {
+void HttpClientPrivate::handleFinish(HttpClientPrivateCache cache, QNetworkReply* reply, const QByteArray& successMessage, const QString& failMessage) {
     // 1. 执行请求成功的回调函数
     // 2. 执行请求失败的回调函数
     // 3. 执行请求结束的回调函数
@@ -506,7 +512,7 @@ void HttpClientPrivate::handleFinish(HttpClientPrivateCache cache, QNetworkReply
 
     if (reply->error() == QNetworkReply::NoError) {
         if (cache.debug) {
-            qDebug().noquote() << QString("[结束] 成功: %1").arg(successMessage);
+            qDebug().noquote() << QString("[结束] 成功: %1").arg(QString{ successMessage });
         }
 
         // [1] 执行请求成功的回调函数
@@ -619,7 +625,7 @@ HttpClient& HttpClient::headers(const QMap<QString, QString> nameValues) {
 }
 
 // 注册请求成功的回调函数
-HttpClient& HttpClient::success(std::function<void(const QString&)> successHandler) {
+HttpClient& HttpClient::success(std::function<void(const QByteArray&)> successHandler) {
     d->successHandler = successHandler;
 
     return *this;

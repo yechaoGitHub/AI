@@ -80,6 +80,15 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
 WSpeechGenerationUi::~WSpeechGenerationUi()
 {}
 
+void WSpeechGenerationUi::Clear()
+{
+    ui.comboBox_lang->clear();
+    ui.comboBox_sex->clear();
+    ui.comboBox_vector->clear();
+    ui.cbFrom->clear();
+    ui.textEdit->clear();
+}
+
 void WSpeechGenerationUi::on_pb_lock_clicked()
 {
     _lock = !_lock;
@@ -87,9 +96,6 @@ void WSpeechGenerationUi::on_pb_lock_clicked()
     ui.pb_lock->style()->unpolish(ui.pb_lock);
     Qt::WindowFlags flags = windowFlags();
     if (_lock) {
-        //QT 方式存在闪烁，如果后面说闪烁问题，就改windows的
-        //::SetWindowPos((HWND)(this->winId()), HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
-        //::SetWindowPos((HWND)(this->winId()), HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_SHOWWINDOW);
         this->setWindowFlags(flags | Qt::WindowStaysOnTopHint);
     }
     else {
@@ -283,11 +289,11 @@ QString WSpeechGenerationUi::GetSelectSrcLanguage()
 
     if (index >= listData.size())
     {
-        return listData[index].language;
+        return "";
     }
     else
     {
-        return "";
+        return listData[index].language;
     }
 }
 
@@ -312,8 +318,8 @@ void WSpeechGenerationUi::StartClicked()
     }
     else
     {
-        auto name = GetSelectSpeaker();
-        if (name.isEmpty())
+        auto id = GetSelectSpeaker();
+        if (id == -1)
         {
             return;
         }
@@ -324,7 +330,7 @@ void WSpeechGenerationUi::StartClicked()
             return;
         }
 
-        vc.Connect(token, srcLanguage, name, isSend, SETTING.MicDeviceInfo(), SETTING.SpeakerDeviceInfo());
+        vc.Connect(token, srcLanguage, id, isSend, SETTING.MicDeviceInfo(), SETTING.SpeakerDeviceInfo());
         ui.vcEffectTimer->StartTimer(true);
         ui.pb_start->setStyleSheet(stopStyle);
         ui.pb_start->setText(QString::fromLocal8Bit("Stop"));
@@ -339,10 +345,24 @@ void WSpeechGenerationUi::SendClicked()
 
 void WSpeechGenerationUi::ExportClicked()
 {
+    auto& ins = AiSound::GetInstance();
+    int id = GetSelectSpeaker();
+    auto&& text = ui.textEdit->toPlainText();
+
     QString homeLocation = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     auto savePath = QFileDialog::getSaveFileName(this, QString::fromLocal8Bit("Save Mp3 File"), homeLocation, "mp3(*.mp3)");
-    auto& vc = AiSound::GetInstance().GetVoiceCompositor();
-    vc.SaveMp3(savePath);
+
+    auto callback = [savePath](const QByteArray& content)
+    {
+        QFile file{ savePath, };
+        if (file.open(QIODevice::WriteOnly | QIODevice::Truncate))
+        {
+            file.write(content);
+            file.close();
+        }
+    };
+
+    ins.ExportSound(text, id, callback);
 }
 
 void WSpeechGenerationUi::TranslationReceived(const QString& src, const QString& dst, int type)
@@ -353,7 +373,7 @@ void WSpeechGenerationUi::TranslationReceived(const QString& src, const QString&
     }
 }
 
-QString WSpeechGenerationUi::GetSelectSpeaker()
+int WSpeechGenerationUi::GetSelectSpeaker()
 {
     auto id = ui.comboBox_vector->currentData().toInt();
     if (id != -1)
@@ -366,12 +386,12 @@ QString WSpeechGenerationUi::GetSelectSpeaker()
         }
         else
         {
-            return "";
+            return -1;
         }
     }
     else
     {
-        return "";
+        return -1;
     }
 }
 

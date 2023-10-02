@@ -17,7 +17,7 @@ struct TranslationLanguage
 struct VoiceData
 {
     int     id;
-    QString voiceCode;
+    int     voiceCode;
     QString name;
     int     language;
     int     gender;

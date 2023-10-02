@@ -11,13 +11,12 @@ public:
     WSubtitle(QWidget* parent = nullptr);
     ~WSubtitle();
 
+    void Clear();
     void SetTranslate(const QString& srcLanguage, const QString& destLanguage);
     void AddSubtitle(const QString& src, const QString& dest);
     void UpdateSubtitle(const QString& src, const QString& dest);
-
     QSize sizeHint() const override;
 
-    //QSize PerferredSize();
 Q_SIGNALS:
     void subtitleAdd();
 

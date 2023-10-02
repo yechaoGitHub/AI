@@ -17,6 +17,7 @@
 #include <QTranslator>
 #include <QDir>
 #include <QDebug>
+#include <QTimerEvent>
 
 #include <Windows.h>
 #include <thread>
@@ -134,6 +135,7 @@ void AiSound::PasswordLogin(const QString& userName, const QString& password, Lo
 
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("client_type", "PC");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/loginByPwd", dataObj, headers, userParam);
 }
@@ -152,6 +154,7 @@ void AiSound::PhoneLogin(const QString& dialingCode, const QString& mobileNumber
 
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("client_type", "PC");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/loginByMobile", dataObj, headers, userParam);
 }
@@ -169,6 +172,7 @@ void AiSound::EmailLogin(const QString& mailAddress, const QString& verifyCode, 
 
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("client_type", "PC");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/loginByMail", dataObj, headers, userParam);
 }
@@ -185,6 +189,7 @@ void AiSound::GetVerifyCode(const QString& moduleType, GetVerifyCodeCallback cal
 
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("client_type", "PC");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/common/getImgVerifyCode", dataObj, headers, userParam);
 }
@@ -205,6 +210,7 @@ void AiSound::SendVerifyCode(const QString& dCode, const QString& mobileNumber, 
 
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("client_type", "PC");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/sendSmsVerifyCode", dataObj, headers, userParam);
 }
@@ -224,6 +230,7 @@ void AiSound::SendMailVerfyCode(const QString& mailAddress, const QString& verif
 
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("client_type", "PC");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/sendMailVerifyCode", dataObj, headers, userParam);
 }
@@ -238,6 +245,7 @@ void AiSound::GetTranslationSrourceList(GetTranslationSourceListCallback callbac
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
+    headers.insert("client_type", "PC");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/config/getSourceLanguaueList", {}, headers, userParam);
 }
@@ -252,6 +260,7 @@ void AiSound::GetTranslationDestList(GetTranslationDestListCallback callback)
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
+    headers.insert("client_type", "PC");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/config/getTargetLanguaueList", {}, headers, userParam);
 }
@@ -266,6 +275,7 @@ void AiSound::GetVoiceSpeaker(GetVoiceSpeakerCallback callback)
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
+    headers.insert("client_type", "PC");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/config/getSpeakers", {}, headers, userParam);
 }
@@ -280,6 +290,7 @@ void AiSound::GetPhoneRegionNumber(GetPhoneRegionNumberCallback callback)
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
+    headers.insert("client_type", "PC");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/common/getMobileDialingList", {}, headers, userParam);
 }
@@ -309,6 +320,7 @@ void AiSound::ForgetPassword(const QString& dialingCode, const QString& phoneEma
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
+    headers.insert("client_type", "PC");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/modify/password", dataObj, headers, userParam);
 }
@@ -339,6 +351,7 @@ void AiSound::Register(const QString& dialingCode, const QString& phoneEmail, co
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
+    headers.insert("client_type", "PC");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/register", dataObj, headers, userParam);
 }
@@ -358,8 +371,28 @@ void AiSound::SaveChat(const QString& name, SaveChatCallback callback)
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
+    headers.insert("client_type", "PC");
 
     _httpAsync.Post("http://47.106.253.9:9101/api/chatbot/saveConversation", dataObj, headers, userParam);
+}
+
+void AiSound::ExportSound(const QString& msg, int ttsSpeaker, ExportSoundCallback callback)
+{
+    QJsonObject dataObj;
+    dataObj.insert("message", msg);
+    dataObj.insert("ttsSpeaker", ttsSpeaker);
+
+    auto packet = new HttpCallbackPacket<ExportSoundCallbackType>();
+    packet->type = httpExportSound;
+    packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
+
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/octet-stream");
+    headers.insert("access_token", _token.toUtf8());
+    headers.insert("client_type", "PC");
+
+    _httpAsync.Post("http://47.106.253.9:9102/business/voiceGen/export", dataObj, headers, userParam);
 }
 
 void AiSound::ShowLoginFrame()
@@ -698,13 +731,12 @@ void AiSound::playVoiceMp3(const QString& url)
     _audio_play->playUrl(url);
 }
 
-void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const QString& content, QVariant userParam)
+void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const QByteArray& content, QVariant userParam)
 {
     HttpCallbackPacketRaw* packetRaw = userParam.value<HttpCallbackPacketRaw*>();
 
-    auto data = content.toUtf8();
     QJsonParseError err_rpt;
-    auto document = QJsonDocument::fromJson(data, &err_rpt);
+    auto document = QJsonDocument::fromJson(content, &err_rpt);
 
     switch (packetRaw->type)
     {
@@ -722,8 +754,6 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
 
         case httpGetVerifyCode:
         {
-            QJsonParseError err_rpt;
-            auto document = QJsonDocument::fromJson(data, &err_rpt);
             int code = document["code"].toInt();
             QString msg = document["msg"].toString();
             QString img = document["data"]["img"].toString();
@@ -810,7 +840,7 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
                 VoiceData data;
                 auto obj = it.toObject();
                 data.id = obj["id"].toInt();
-                data.voiceCode = obj["voiceCode"].toString();
+                data.voiceCode = obj["voiceCode"].toInt();
                 data.name = obj["name"].toString();
                 data.language = obj["language"].toInt();
                 data.gender = obj["gender"].toInt();
@@ -870,6 +900,13 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
         }
         break;
 
+        case httpExportSound:
+        {
+            auto packet = dynamic_cast<HttpCallbackPacket<ExportSoundCallbackType>*>(packetRaw);
+            packet->callback(content);
+        }
+        break;
+
         default:
         break;
     }
@@ -911,10 +948,69 @@ void AiSound::UserLoginCallbackInternal(int code, const QString& msg, const QStr
         _token = token;
         SETTING.setToken(token);
         FetchAppData();
+        _heartBeatId = startTimer(5000);
     }
 }
 
 bool AiSound::AiFunctionRunning()
 {
     return _translation.IsRunning() | _voiceCompositor.IsRunning() | _chatBot.IsRunning();
+}
+
+void AiSound::timerEvent(QTimerEvent* event)
+{
+    auto id = event->timerId();
+    if (id == _heartBeatId)
+    {
+        HeartBeat();
+    }
+}
+
+void AiSound::HeartBeat()
+{
+    auto packet = new HttpCallbackPacket<CommomCallbackType>();
+    packet->type = httpCommonCallback;
+    packet->callback = std::bind(&AiSound::HeartBeatCallback, this, std::placeholders::_1, std::placeholders::_2);
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
+
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("access_token", _token.toUtf8());
+    headers.insert("client_type", "PC");
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/user/modify/password", {}, headers, userParam);
+}
+
+void AiSound::HeartBeatCallback(int code, const QString& msg)
+{
+    if (code == 20011)
+    {
+        QuitApp();
+    }
+
+    static int i{};
+    if (i == 20)
+    {
+        QuitApp();
+    }
+}
+
+void AiSound::QuitApp()
+{
+    killTimer(_heartBeatId);
+    _heartBeatId = -1;
+    _wLoginFrame->show();
+    _robotNaviga->hide();
+
+    _wTranslationMain->close();
+    _wTranslationMain->Clear();
+    _robot_chat->close();
+    _robot_chat->Clear();
+    _speech_ui->close();
+    _speech_ui->Clear();
+
+    _wConversationSuggestion->hide();
+    _wConversationSuggestion->Clear();
+    _robotNaviga->hide();
+    _set_main->hide();
 }

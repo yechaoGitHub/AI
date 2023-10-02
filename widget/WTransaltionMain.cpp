@@ -69,8 +69,6 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
     ui.lockButton->setProperty("lock", false);
     ui.lockButton->style()->unpolish(ui.lockButton);
 
-    //ui.cbDest->setAttribute(Qt::WA_Hover, false);
-
     setMouseTracking(true);
 }
 
@@ -96,6 +94,11 @@ void WTransaltionMain::SetLanguage(const std::vector<TranslationLanguage>& srcLa
     }
 }
 
+void WTransaltionMain::Clear()
+{
+    ui.subtitleWidget->Subtitle()->Clear();
+}
+
 void WTransaltionMain::mousePressEvent(QMouseEvent* event)
 {
     if (event->button() == Qt::LeftButton)
@@ -103,8 +106,6 @@ void WTransaltionMain::mousePressEvent(QMouseEvent* event)
         _clickPos.setX(event->pos().x());
         _clickPos.setY(event->pos().y());
         _mouseHold = true;
-
-        //::SetCapture((HWND)winId());
     }
 }
 
@@ -119,7 +120,6 @@ void WTransaltionMain::mouseMoveEvent(QMouseEvent* event)
 void WTransaltionMain::mouseReleaseEvent(QMouseEvent* event)
 {
     _mouseHold = false;
-    //::ReleaseCapture();
 }
 
 void WTransaltionMain::paintEvent(QPaintEvent* event)
@@ -145,6 +145,7 @@ void WTransaltionMain::showEvent(QShowEvent* event)
     ui.timerWidget->Clear();
     ui.cbSrc->setEnabled(true);
     ui.cbDest->setEnabled(true);
+    Clear();
 }
 
 void WTransaltionMain::closeEvent(QCloseEvent* event)
@@ -159,38 +160,24 @@ void WTransaltionMain::closeEvent(QCloseEvent* event)
 void WTransaltionMain::enterEvent(QEvent* event)
 {
     _mouseHold = true;
-
-   /* ui.frame->setProperty("transparent", false);
-    ui.frame->style()->unpolish(ui.frame);*/
     update();
 }
 
 void WTransaltionMain::leaveEvent(QEvent* event)
 {
     _mouseHold = false;
-
-   /* ui.frame->setProperty("transparent", true);
-    ui.frame->style()->unpolish(ui.frame);*/
     update();
 }
 
 void WTransaltionMain::focusInEvent(QFocusEvent* event)
 {
     _mouseHold = true;
-
-   /* ui.frame->setProperty("transparent", false);
-    ui.frame->style()->unpolish(ui.frame);*/
-
     update();
 }
 
 void WTransaltionMain::focusOutEvent(QFocusEvent* event)
 {
     _mouseHold = false;
-
-  /*  ui.frame->setProperty("transparent", true);
-    ui.frame->style()->unpolish(ui.frame);*/
-
     update();
 }
 

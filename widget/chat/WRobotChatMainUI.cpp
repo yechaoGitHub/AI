@@ -18,14 +18,18 @@ RobotChatMainUI::RobotChatMainUI(QWidget *parent)
 
     connect(ui.chat_widget->SaveBtn(), &QPushButton::clicked, this, &RobotChatMainUI::SaveBtnClicked);
 
-    //ui.stackedWidget->setCurrentWidget(ui.chat_desc_wgt);
-    //connect(ui.chat_desc_wgt, &WChatDesc::sig_startClick, this, &RobotChatMainUI::StartBtnClicked);
-
     this->setAttribute(Qt::WA_TranslucentBackground, true);
 }
 
 RobotChatMainUI::~RobotChatMainUI()
-{}
+{
+
+}
+
+void RobotChatMainUI::Clear()
+{
+
+}
 
 void RobotChatMainUI::Show()
 {
@@ -77,12 +81,6 @@ void RobotChatMainUI::SaveBtnClicked()
         ins.SaveChat(name, callback);
     }
 }
-
-//void RobotChatMainUI::StartBtnClicked()
-//{
-//    ui.stackedWidget->setCurrentWidget(ui.chat_widget);
-//    ui.lb_title->setText("Chat");
-//}
 
 void RobotChatMainUI::paintEvent(QPaintEvent* event)
 {

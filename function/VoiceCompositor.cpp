@@ -55,7 +55,7 @@ void VoiceCompositor::Uninitialize()
     _transformMp3.Clear();
 }
 
-void VoiceCompositor::Connect(const QString& token, const QString& srcLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev)
+void VoiceCompositor::Connect(const QString& token, const QString& srcLan, int speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev)
 {
     _workThread.start();
     emit connect(token, srcLan, speaker, autoSender, micDev, speakerDev);
@@ -192,7 +192,7 @@ void VoiceCompositor::ReceiveAudioInput(QByteArray data)
     _webSocket.sendTextMessage(byteArray);
 }
 
-void VoiceCompositor::ConnectInternal(const QString& token, const QString& srcLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev)
+void VoiceCompositor::ConnectInternal(const QString& token, const QString& srcLan, int speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev)
 {
     _micDev = micDev;
     _speakerDev = speakerDev;

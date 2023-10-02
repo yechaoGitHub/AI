@@ -18,7 +18,6 @@ WSpeechTimer::WSpeechTimer(QWidget* parent) :
     _effect->setMovie(_movie);
     horizontalLayout->addWidget(_effect);
 
-
     _counter = new QLabel{ this };
     _counter->setText("00:00");
     _counter->setStyleSheet("color:#FFFFFF; font:14px; background-color:transparent");

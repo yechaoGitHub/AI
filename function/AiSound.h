@@ -32,6 +32,9 @@ class QAudioPlayer;
 using LoginCallbackType = void(int code, const QString& msg, const QString& token);
 using LoginCallback = std::function<LoginCallbackType>;
 
+using ExportSoundCallbackType = void(QByteArray msg);
+using ExportSoundCallback = std::function<ExportSoundCallbackType>;
+
 using GetVerifyCodeCallbackType = void(int code, const QString& msg, const QString& img, const QString& uuid);
 using GetVerifyCodeCallback = std::function<GetVerifyCodeCallbackType>;
 
@@ -70,7 +73,8 @@ enum HttpCallEnum
     httpGetVoiceSpeakerCallback = 7,
     httpGetPhoneRegionNumberCallback = 8,
     httpCommonCallback,
-    httpSaveChat
+    httpSaveChat,
+    httpExportSound
 };
 
 struct HttpCallbackPacketRaw
@@ -110,6 +114,7 @@ public:
     void GetVerifyCode(const QString& moduleType, GetVerifyCodeCallback callback);
     void SendVerifyCode(const QString& dCode, const QString& mobileNumber, const QString& verifyCode, const QString& uuid, const QString& moduleType, SendVerifyCodeCallback callback);
     void SendMailVerfyCode(const QString& emailAddress, const QString& verifyCode, const QString& uuid, const QString& moduleType, SendVerifyCodeCallback callback);
+    void ExportSound(const QString& msg, int ttsSpeaker, ExportSoundCallback callback);
     void GetTranslationSrourceList(GetTranslationSourceListCallback callback);
     void GetTranslationDestList(GetTranslationDestListCallback callback);
     void GetVoiceSpeaker(GetVoiceSpeakerCallback callback);
@@ -160,10 +165,14 @@ private slots:
 
 private:
     AiSound();
-    void HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const QString& content, QVariant userParam);
+    void HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const QByteArray& content, QVariant userParam);
     void FetchAppData();
     void UserLoginCallbackInternal(int code, const QString& msg, const QString& token);
     bool AiFunctionRunning();
+    void timerEvent(QTimerEvent* event) override;
+    void HeartBeat();
+    void HeartBeatCallback(int code, const QString& msg);
+    void QuitApp();
 
     static AiSound                      INSTANCE;
     LanguageType                        _sysLanguage;
@@ -195,5 +204,7 @@ private:
     WSettingMainUi*                     _set_main = nullptr;
 #pragma endregion
     Hook hook;
+
+    int                                 _heartBeatId = -1;
 };
 

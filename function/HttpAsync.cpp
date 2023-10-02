@@ -83,7 +83,7 @@ void HttpAsync::PostInternal(const QString& url, const QJsonObject& param, QMap<
     AiDebug::Output(debugText);
 #endif
 
-    client->success([this, url, client, userParam](const QString& response) {
+    client->success([this, url, client, userParam](const QByteArray& response) {
         emit httpRespond(HttpResult::SUCCESS, -1, response, userParam);
         delete client;
 #ifdef _AI_DEBUG
@@ -107,7 +107,7 @@ void HttpAsync::PostInternal(const QString& url, const QJsonObject& param, QMap<
 #endif
         });
     client->fail([this, url, client, userParam](const QString& response, int code) {
-        emit httpRespond(HttpResult::FAIL, -1, response, userParam);
+        emit httpRespond(HttpResult::FAIL, -1, response.toUtf8(), userParam);
         delete client;
 #ifdef _AI_DEBUG
         QString debugText;

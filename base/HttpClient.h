@@ -106,7 +106,7 @@ public:
     * @param successHandler 成功的回调函数，参数为响应的字符串
     * @return 返回 HttpClient 的引用，可以用于链式调用
     */
-    HttpClient& success(std::function<void(const QString&)> successHandler);
+    HttpClient& success(std::function<void(const QByteArray&)> successHandler);
 
     /**
     * @brief 注册请求失败的回调函数

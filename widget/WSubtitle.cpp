@@ -24,6 +24,12 @@ WSubtitle::~WSubtitle()
 {
 }
 
+void WSubtitle::Clear()
+{
+    _subtitle.clear();
+    resize(QSize{ 1078, 176 });
+}
+
 void WSubtitle::SetTranslate(const QString& srcLanguage, const QString& destLanguage)
 {
     _srcLanguage = srcLanguage;

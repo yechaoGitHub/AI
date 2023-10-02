@@ -16,7 +16,7 @@ public:
 
     void Initialize();
     void Uninitialize();
-    void Connect(const QString& token, const QString& srcLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev = {}, const QAudioDeviceInfo& speakerDev = {});
+    void Connect(const QString& token, const QString& srcLan, int speaker, bool autoSender, const QAudioDeviceInfo& micDev = {}, const QAudioDeviceInfo& speakerDev = {});
     void SendMessage(const QString& msg);
     bool SaveMp3(const QString& savePath);
     void Disconnect();
@@ -35,13 +35,13 @@ Q_SIGNALS:
 
 private:
 Q_SIGNALS:
-    void connect(const QString& token, const QString& srcLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev);
+    void connect(const QString& token, const QString& srcLan, int speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev);
     void disconnect();
     void receiveAudio(const QByteArray& data);
     void sendMessage(const QString& msg);
 
 private:
-    void ConnectInternal(const QString& token, const QString& srcLan, const QString& speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev);
+    void ConnectInternal(const QString& token, const QString& srcLan, int speaker, bool autoSender, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& speakerDev);
     void DisconnectInternal();
     void SendMessageInternal(const QString& msg);
     void SoundPlayInternal(bool play);

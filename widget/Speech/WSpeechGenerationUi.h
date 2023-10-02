@@ -14,6 +14,8 @@ public:
     WSpeechGenerationUi(QWidget *parent = nullptr);
     ~WSpeechGenerationUi();
 
+    void Clear();
+
 protected:
     void paintEvent(QPaintEvent* event) override;
     void showEvent(QShowEvent* event) override;
@@ -33,7 +35,7 @@ private:
     void SendClicked();
     void ExportClicked();
     void TranslationReceived(const QString& src, const QString& dst, int type);
-    QString GetSelectSpeaker();
+    int GetSelectSpeaker();
 
     Ui::WSpeechGenerationUiClass    ui;
     QPoint                          _clickPos;

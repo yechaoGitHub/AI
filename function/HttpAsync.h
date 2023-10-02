@@ -21,7 +21,7 @@ public:
     void Download(const QString& url, const QString& savePath);
 
 Q_SIGNALS:
-    void httpRespond(HttpResult result, int code, const QString& content, const QVariant& userParam);
+    void httpRespond(HttpResult result, int code, const QByteArray& content, const QVariant& userParam);
     void downloadRespond(HttpResult result, const QString& url, const QString& savePath);
 
     void post(const QString& url, const QJsonObject& param, QMap<QString, QString> headers, QVariant userParam);
