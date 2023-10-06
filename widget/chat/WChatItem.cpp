@@ -73,11 +73,12 @@ void WChatItem::setText(QString text, QString time, QSize allSize, WChatItem::Us
     m_curTime = QDateTime::fromTime_t(time.toInt()).toString("hh:mm");
     m_allSize = allSize;
     if (userType == User_Self) {
-        if (!m_isSending) {
+        m_loading->hide();
+        /*if (!m_isSending) {
             m_loading->move(m_kuangRightRect.x() - m_loading->width() - 10, m_kuangRightRect.y() + m_kuangRightRect.height() / 2 - m_loading->height() / 2);
             m_loading->show();
             m_loadingMovie->start();
-        }
+        }*/
     }
     else {
         m_loading->hide();

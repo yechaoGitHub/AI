@@ -28,7 +28,7 @@ RobotChatMainUI::~RobotChatMainUI()
 
 void RobotChatMainUI::Clear()
 {
-
+    ui.chat_widget->clearAll();
 }
 
 void RobotChatMainUI::Show()
@@ -38,6 +38,12 @@ void RobotChatMainUI::Show()
     QRect screenRect = desktopWidget->screenGeometry();
     this->move(screenRect.width()-this->width()-20, screenRect.height()-this->height()-300);
     show();
+}
+
+void RobotChatMainUI::ShowRecord(const QString& chatId)
+{
+    Show();
+    ui.chat_widget->ShowRecord(chatId);
 }
 
 void RobotChatMainUI::on_pb_min_clicked()

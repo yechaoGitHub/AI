@@ -128,7 +128,7 @@ public:
     void ShowVoiceCompositorMainWindow();
     void ShowConversationSuggestion(bool show);
     bool IsConversationSuggestionShow();
-    void ShowRobotChat(int type ,const QString& msg);
+    void ShowRobotChat(const QString& chatId);
 #pragma endregion
 
 #pragma region ¹¦ÄÜ

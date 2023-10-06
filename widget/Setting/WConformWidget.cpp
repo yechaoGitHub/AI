@@ -3,9 +3,9 @@
 
 
 WConformWidget::WConformWidget(QWidget *parent)
-	: QWidget(parent)
+    : QWidget(parent)
 {
-	ui.setupUi(this);
+    ui.setupUi(this);
     this->setWindowFlags(Qt::WindowStaysOnTopHint | Qt::FramelessWindowHint | Qt::SubWindow);
     this->setAttribute(Qt::WA_TranslucentBackground, true);
     ui.lb_content->setWordWrap(true);
@@ -22,8 +22,8 @@ void WConformWidget::ShowConform(const QString& msg)
 
 void WConformWidget::on_pb_sure_clicked()
 {
-    emit sig_conform();
     this->close();
+    emit sig_conform();
 }
 
 void WConformWidget::on_pb_cancel_clicked()

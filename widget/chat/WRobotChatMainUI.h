@@ -15,7 +15,7 @@ public:
 
     void Clear();
     void Show();
-
+    void ShowRecord(const QString& chatId);
 protected:
     void paintEvent(QPaintEvent* event) override;
 

@@ -24,13 +24,17 @@ WRobotChat::WRobotChat(QWidget *parent)
     ui.listWidget->verticalScrollBar()->setMaximum(20);
     ui.listWidget->verticalScrollBar()->setSingleStep(2);
     connect(ui.listWidget->verticalScrollBar(), &QScrollBar::valueChanged, this, [=](int value) {
-        if (value <= 2) {
-            int i = 1;
+        if (value <= 2 && !_cur_chatId.isEmpty()) {
+            loadPre();
         }
         else if (ui.listWidget->verticalScrollBar()->maximum() == value) {
-            int i = 2;
+            //int i = 2;
         }
         });
+
+    qRegisterMetaType<strc_PageInfo>("strc_PageInfo");
+    qRegisterMetaType<QVector<strc_chatRecord>>("QVector<strc_chatRecord>");
+    connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_chatRecordReplay, this, &WRobotChat::slot_chatRecordReplay);
 }
 
 WRobotChat::~WRobotChat()
@@ -39,6 +43,66 @@ WRobotChat::~WRobotChat()
 QPushButton* WRobotChat::SaveBtn()
 {
     return ui.pbSave;
+}
+
+void WRobotChat::loadPre()
+{
+    if (_cur_page + 1 <= _total_page) {
+        SettingInterfaceBussiness::getInstance()->getChatRecord(_page_size, _cur_page+1, _cur_chatId);
+    }
+}
+
+void WRobotChat::ShowRecord(const QString& chatId)
+{
+    if (_cur_chatId != chatId) {
+        clearAll();
+        _cur_chatId = chatId;
+
+        _cur_page = 1;
+        _total_page = 1;
+        _total_size = 0;
+
+        SettingInterfaceBussiness::getInstance()->getChatRecord(_page_size, _cur_page, _cur_chatId);
+    }
+}
+
+void WRobotChat::slot_chatRecordReplay(bool success, int code, const strc_PageInfo& page, const  QVector<strc_chatRecord>& chat_list)
+{
+    if (success && code) {
+        _cur_page = page.cur_page;
+        _total_page = page.total_pages;
+        _total_size = page.total_size;
+
+        for (auto it : chat_list) {
+            WChatItem::User_Type type = WChatItem::User_Robot;
+            if ((it).role == "user") {
+                type = WChatItem::User_Self;
+            }
+
+            insertChatRecord(type,it.content);
+        }
+
+        ui.listWidget->verticalScrollBar()->setValue(ui.listWidget->verticalScrollBar()->maximum());
+    }
+}
+
+void WRobotChat::clearAll()
+{
+    QMutexLocker lk(&_mutex);
+    _cur_chatId.clear();
+    int count = ui.listWidget->count();
+    if (count > 0) {
+        for (int i = 0; i < ui.listWidget->count();)
+        {
+            if (ui.listWidget->itemWidget(ui.listWidget->item(i)))
+            {
+                QListWidgetItem* cur_item = ui.listWidget->item(i);
+                this->update();
+                delete cur_item;
+            }
+        }
+        ui.listWidget->clear();
+    }
 }
 
 void WRobotChat::on_pb_voice_clicked()
@@ -53,7 +117,7 @@ void WRobotChat::addRobotChatItem(const QString& msg)
     if (msg.isEmpty()) {
         return;
     }
-
+    QMutexLocker lk(&_mutex);
     QString time = QString::number(QDateTime::currentDateTime().toTime_t());
     chatMessageTime(time);
 
@@ -67,15 +131,15 @@ void WRobotChat::addRobotChatItem(const QString& msg)
     ui.listWidget->setCurrentRow(ui.listWidget->count() - 1);
 }
 
-void WRobotChat::insertChatRecord(const QString& msg)
+void WRobotChat::insertChatRecord(WChatItem::User_Type type,const QString& msg)
 {
     if (msg.isEmpty()) {
         return;
     }
-
+    QMutexLocker lk(&_mutex);
     WChatItem* messageW = new WChatItem(ui.listWidget->parentWidget());
     QListWidgetItem* item = new QListWidgetItem();
-    chatMessage(messageW, item, msg, "", WChatItem::User_Robot);
+    chatMessage(messageW, item, msg, "", type/*WChatItem::User_Robot*/);
     ui.listWidget->insertItem(0, item);
     ui.listWidget->setItemWidget(item, messageW);
 }

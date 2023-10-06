@@ -93,7 +93,7 @@ void WHistoryPage::userOpe(int type,int index)
     if (index < chat_list_.size()) {
         strc_ChatHistory chat_history = chat_list_.at(index);
         if (type == 0) {
-            AiSound::GetInstance().ShowRobotChat(type,"");
+            AiSound::GetInstance().ShowRobotChat(chat_history.conversationId);
         }
         else {
             _select_id.clear();

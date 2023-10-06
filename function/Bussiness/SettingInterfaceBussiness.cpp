@@ -148,6 +148,7 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
                     strc_ChatHistory chat_history;
                     QJsonObject json_recode = it.toObject();
                     chat_history.chatHistoryId = json_recode["id"].toInt();
+                    chat_history.conversationId = json_recode["conversationId"].toString();
                     chat_history.chatType = json_recode["chatType"].toInt();
                     chat_history.content = json_recode["content"].toString();
                     QDateTime date = QDateTime::fromMSecsSinceEpoch((qint64)(json_recode["updateTime"].toDouble()));
@@ -315,6 +316,7 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
                     QJsonObject json_recode = it.toObject();
                     chat_record.role = json_recode["role"].toString();
                     chat_record.content = json_recode["content"].toString();
+                    chat_record_list.push_back(std::move(chat_record));
                 }
             }
 

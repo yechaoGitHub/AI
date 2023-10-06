@@ -480,9 +480,9 @@ bool AiSound::IsConversationSuggestionShow()
     return !_wConversationSuggestion->isHidden();
 }
 
-void AiSound::ShowRobotChat(int type, const QString& msg)
+void AiSound::ShowRobotChat(const QString& chatId)
 {
-    _robot_chat->show();
+    _robot_chat->ShowRecord(chatId);
 }
 
 void AiSound::ShowConversationSuggestion(bool show)

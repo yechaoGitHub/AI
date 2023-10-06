@@ -63,6 +63,7 @@ Q_DECLARE_METATYPE(strc_ChatbotInfo)
 struct strc_ChatHistory {
 	int		chatHistoryId = 0;
 	int		chatType = 1;
+	QString conversationId;
 	QString content;
 	QString initTime;
 	qint32  receiverId = 0;
