@@ -311,24 +311,18 @@
     <ClInclude Include="base\HttpClient.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtTranslation Include="ts\zh_CN.ts">
-      <BuildAction Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">lupdate_lrelease</BuildAction>
-      <QmOutputDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)</QmOutputDir>
-    </QtTranslation>
-    <QtTranslation Include="ts\en.ts">
-      <BuildAction Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">lupdate_lrelease</BuildAction>
-      <QmOutputDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)</QmOutputDir>
-    </QtTranslation>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="en.qm" />
-    <None Include="zh_CN.qm" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="AiSound.rc" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="icon\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtTranslation Include="zh_Hans.ts" />
+    <QtTranslation Include="en.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="en.qm" />
+    <None Include="zh_Hans.qm" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

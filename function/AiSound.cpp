@@ -64,6 +64,9 @@ AiSound::~AiSound()
 
 void AiSound::Initialize()
 {
+    _enTs.load("en.qm");
+    _chsTs.load("zh_Hans.qm");
+
     _httpAsync.Initialize();
     connect(&_httpAsync, &HttpAsync::httpRespond, this, &AiSound::HttpCallbackDispatch);
 
@@ -707,18 +710,16 @@ void AiSound::SwitchLanguage(LanguageType type)
     _sysLanguage = type;
 
     auto app = static_cast<QApplication*>(QCoreApplication::instance());
-    QTranslator translator;
     switch (type)
     {
         case LanguageType::EN:
-            translator.load("en.qm");
+            app->installTranslator(&_enTs);
         break;
 
         case LanguageType::CHS:
-            translator.load("zh_CN.qm");
+            app->installTranslator(&_chsTs);
         break;
     }
-    app->installTranslator(&translator);
 }
 
 LanguageType AiSound::GetSystemLanguage()

@@ -17,6 +17,7 @@
 #include "widget/Setting/WSettingMainUi.h"
 #include "WConversationSuggestion.h"
 
+#include <QTranslator>
 #include <QString>
 #include <QObject>
 #include <QNetworkAccessManager>
@@ -178,6 +179,9 @@ private:
     LanguageType                        _sysLanguage;
     QString                             _token;
     HttpAsync                           _httpAsync;
+
+    QTranslator                         _enTs;
+    QTranslator                         _chsTs;
 
 #pragma region ¹¦ÄÜ
     Translation                         _translation;
