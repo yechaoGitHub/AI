@@ -154,7 +154,7 @@
     <ClCompile Include="function\Translation.cpp">
       <Filter>function</Filter>
     </ClCompile>
-    <ClCompile Include="widget\WTransaltionMain.cpp">
+    <ClCompile Include="widget\WTranslationMain.cpp">
       <Filter>widget\Tanslation</Filter>
     </ClCompile>
     <ClCompile Include="function\ChatBot.cpp">
@@ -518,7 +518,7 @@
     <QtMoc Include="function\ChatBot.h">
       <Filter>function</Filter>
     </QtMoc>
-    <QtMoc Include="widget\WTransaltionMain.h">
+    <QtMoc Include="widget\WTranslationMain.h">
       <Filter>widget\Tanslation</Filter>
     </QtMoc>
     <QtMoc Include="function\ChatBot.h">

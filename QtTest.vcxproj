@@ -175,7 +175,7 @@
     <ClCompile Include="widget\WScrollBar.cpp" />
     <ClCompile Include="widget\WSubtitle.cpp" />
     <ClCompile Include="widget\WTip.cpp" />
-    <ClCompile Include="widget\WTransaltionMain.cpp" />
+    <ClCompile Include="widget\WTranslationMain.cpp" />
     <ClCompile Include="widget\WTranslationPlayBtn.cpp" />
     <ClCompile Include="widget\WTranslationTimer.cpp" />
     <ClCompile Include="widget\WUserNameLogin.cpp" />
@@ -292,7 +292,7 @@
     <QtMoc Include="function\AiSound.h" />
     <QtMoc Include="widget\WVerificationCode.h" />
     <QtMoc Include="widget\WUserNameLogin.h" />
-    <QtMoc Include="widget\WTransaltionMain.h" />
+    <QtMoc Include="widget\WTranslationMain.h" />
     <QtMoc Include="widget\WTip.h" />
     <QtMoc Include="widget\WSubtitle.h" />
     <QtMoc Include="widget\WScrollBar.h" />

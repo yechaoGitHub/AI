@@ -59,9 +59,6 @@ public:
     void setTransOg(int bk);
     int  getTransOg();
 
-    QColor getTransBkColor();
-    QColor getTransOgColor();
-
     void setTransTl(int bk);
     int  getTransTl();
 
@@ -70,6 +67,10 @@ public:
 
     void setTransSD(int bk);
     int  getTransSD();
+
+    QColor getTransBkColor();
+    QColor getTransOgColor();
+    QColor getTransColor();
 
     QAudioDeviceInfo& MicDeviceInfo();
     QAudioDeviceInfo& SpeakerDeviceInfo();

@@ -1,4 +1,4 @@
-#include "WTransaltionMain.h"
+#include "WTranslationMain.h"
 #include "base/GlobalSetting.h"
 
 #include <Windows.h>
@@ -24,7 +24,7 @@ padding-left:20px;\
 font-size:14px;\
 color:#FFFFFF;";
 
-WTransaltionMain::WTransaltionMain(QWidget* parent) :
+WTranslationMain::WTranslationMain(QWidget* parent) :
     QWidget{ parent }
 {
     ui.setupUi(this);
@@ -39,15 +39,15 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
 
     this->resize(1078, 252);
 
-    connect(ui.minBtn, &QPushButton::clicked, this, &WTransaltionMain::MinClicked);
-    connect(ui.closeBtn, &QPushButton::clicked, this, &WTransaltionMain::CloseClicked);
-    connect(ui.lockButton, &QPushButton::clicked, this, &WTransaltionMain::LockClicked);
-    connect(ui.stopBtn, &QPushButton::clicked, this, &WTransaltionMain::StopClicked);
+    connect(ui.minBtn, &QPushButton::clicked, this, &WTranslationMain::MinClicked);
+    connect(ui.closeBtn, &QPushButton::clicked, this, &WTranslationMain::CloseClicked);
+    connect(ui.lockButton, &QPushButton::clicked, this, &WTranslationMain::LockClicked);
+    connect(ui.stopBtn, &QPushButton::clicked, this, &WTranslationMain::StopClicked);
 
     auto& translation = AiSound::GetInstance().GetTranslation();
-    connect(&translation, &Translation::translationReceived, this, &WTransaltionMain::TranslationReceived);
-    connect(&translation, &Translation::soundPlay, this, &WTransaltionMain::PlayInternal);
-    connect(&translation, &Translation::stateChanged, this, &WTransaltionMain::TransStateChanged);
+    connect(&translation, &Translation::translationReceived, this, &WTranslationMain::TranslationReceived);
+    connect(&translation, &Translation::soundPlay, this, &WTranslationMain::PlayInternal);
+    connect(&translation, &Translation::stateChanged, this, &WTranslationMain::TransStateChanged);
 
     ui.lockButton->setProperty("lock", false);
     ui.lockButton->style()->unpolish(ui.lockButton);
@@ -55,11 +55,11 @@ WTransaltionMain::WTransaltionMain(QWidget* parent) :
     setMouseTracking(true);
 }
 
-WTransaltionMain::~WTransaltionMain()
+WTranslationMain::~WTranslationMain()
 {
 }
 
-void WTransaltionMain::SetLanguage(const std::vector<TranslationLanguage>& srcLan, const std::vector<TranslationLanguage>& destLan)
+void WTranslationMain::SetLanguage(const std::vector<TranslationLanguage>& srcLan, const std::vector<TranslationLanguage>& destLan)
 {
     _srcLan = srcLan;
     _destLan = destLan;
@@ -77,12 +77,12 @@ void WTransaltionMain::SetLanguage(const std::vector<TranslationLanguage>& srcLa
     }
 }
 
-void WTransaltionMain::Clear()
+void WTranslationMain::Clear()
 {
     ui.subtitleWidget->Subtitle()->Clear();
 }
 
-void WTransaltionMain::mousePressEvent(QMouseEvent* event)
+void WTranslationMain::mousePressEvent(QMouseEvent* event)
 {
     if (event->button() == Qt::LeftButton)
     {
@@ -92,7 +92,7 @@ void WTransaltionMain::mousePressEvent(QMouseEvent* event)
     }
 }
 
-void WTransaltionMain::mouseMoveEvent(QMouseEvent* event)
+void WTranslationMain::mouseMoveEvent(QMouseEvent* event)
 {
     if (_mouseHold && event->buttons() == Qt::LeftButton)
     {
@@ -100,22 +100,24 @@ void WTransaltionMain::mouseMoveEvent(QMouseEvent* event)
     }
 }
 
-void WTransaltionMain::mouseReleaseEvent(QMouseEvent* event)
+void WTranslationMain::mouseReleaseEvent(QMouseEvent* event)
 {
     _mouseHold = false;
 }
 
-void WTransaltionMain::paintEvent(QPaintEvent* event)
+void WTranslationMain::paintEvent(QPaintEvent* event)
 {
     QPainter painter{ this };
     painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
+
+    auto color = SETTING.getTransBkColor();
 
     QPainterPath path;
     path.setFillRule(Qt::WindingFill);
     path.addRoundedRect(this->rect(), 16, 16);
     if (_mouseHold)
     {
-        painter.fillPath(path, QBrush(QColor(0, 0, 0, 204)));
+        painter.fillPath(path, QBrush({color}));
     }
     else
     {
@@ -123,7 +125,7 @@ void WTransaltionMain::paintEvent(QPaintEvent* event)
     }
 }
 
-void WTransaltionMain::showEvent(QShowEvent* event)
+void WTranslationMain::showEvent(QShowEvent* event)
 {
     ui.timerWidget->Clear();
     ui.cbSrc->setEnabled(true);
@@ -131,7 +133,7 @@ void WTransaltionMain::showEvent(QShowEvent* event)
     Clear();
 }
 
-void WTransaltionMain::closeEvent(QCloseEvent* event)
+void WTranslationMain::closeEvent(QCloseEvent* event)
 {
     auto& trans = AiSound::GetInstance().GetTranslation();
     if (trans.IsRunning())
@@ -140,41 +142,41 @@ void WTransaltionMain::closeEvent(QCloseEvent* event)
     }
 }
 
-void WTransaltionMain::enterEvent(QEvent* event)
+void WTranslationMain::enterEvent(QEvent* event)
 {
     _mouseHold = true;
     update();
 }
 
-void WTransaltionMain::leaveEvent(QEvent* event)
+void WTranslationMain::leaveEvent(QEvent* event)
 {
     _mouseHold = false;
     update();
 }
 
-void WTransaltionMain::focusInEvent(QFocusEvent* event)
+void WTranslationMain::focusInEvent(QFocusEvent* event)
 {
     _mouseHold = true;
     update();
 }
 
-void WTransaltionMain::focusOutEvent(QFocusEvent* event)
+void WTranslationMain::focusOutEvent(QFocusEvent* event)
 {
     _mouseHold = false;
     update();
 }
 
-void WTransaltionMain::MinClicked()
+void WTranslationMain::MinClicked()
 {
     setWindowState(Qt::WindowMinimized);
 }
 
-void WTransaltionMain::CloseClicked()
+void WTranslationMain::CloseClicked()
 {
     hide();
 }
 
-void WTransaltionMain::LockClicked()
+void WTranslationMain::LockClicked()
 {
     if (this->windowFlags() & Qt::WindowStaysOnTopHint)
     {
@@ -191,7 +193,7 @@ void WTransaltionMain::LockClicked()
     show();
 }
 
-void WTransaltionMain::StopClicked()
+void WTranslationMain::StopClicked()
 {
     auto& ins = AiSound::GetInstance();
     auto& trans = AiSound::GetInstance().GetTranslation();
@@ -203,7 +205,6 @@ void WTransaltionMain::StopClicked()
         auto& translation = AiSound::GetInstance().GetTranslation();
         translation.Disconnect();
 
-        trans.StopMic();
         ui.timerWidget->StartTimer(false);
         SetPlayBtnState(true);
 
@@ -223,8 +224,6 @@ void WTransaltionMain::StopClicked()
         ui.subtitleWidget->Subtitle()->SetTranslate(srcLan.name, destLan.name);
 
         trans.Connect(token, srcLan.language, destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo(), SETTING.getTransTT());
-
-        trans.StartMic();
         ui.timerWidget->StartTimer(true);
         SetPlayBtnState(false);
 
@@ -238,30 +237,27 @@ void WTransaltionMain::StopClicked()
     }
 }
 
-void WTransaltionMain::PlayInternal(bool play)
+void WTranslationMain::PlayInternal(bool play)
 {
     ui.timerWidget->Play(play);
 }
 
-void WTransaltionMain::TransStateChanged()
+void WTranslationMain::TransStateChanged()
 {
     auto& trans = AiSound::GetInstance().GetTranslation();
     if (trans.IsRunning())
     {
-        if (trans.IsMicWorking())
-        {
-            ui.timerWidget->StartTimer(true);
-            SetPlayBtnState(false);
-        }
-        else
-        {
-            ui.timerWidget->StartTimer(false);
-            SetPlayBtnState(true);
-        }
+        ui.timerWidget->StartTimer(true);
+        SetPlayBtnState(false);
+    }
+    else
+    {
+        ui.timerWidget->StartTimer(false);
+        SetPlayBtnState(true);
     }
 }
 
-void WTransaltionMain::TranslationReceived(const QString& src, const QString& dst, int type)
+void WTranslationMain::TranslationReceived(const QString& src, const QString& dst, int type)
 {
     if (_newSubtitle)
     {
@@ -282,7 +278,7 @@ void WTransaltionMain::TranslationReceived(const QString& src, const QString& ds
     }
 }
 
-void WTransaltionMain::SetPlayBtnState(bool play)
+void WTranslationMain::SetPlayBtnState(bool play)
 {
     if (play)
     {
@@ -296,7 +292,7 @@ void WTransaltionMain::SetPlayBtnState(bool play)
     }
 }
 
-bool WTransaltionMain::GetSelectSrcLanguage(TranslationLanguage& language)
+bool WTranslationMain::GetSelectSrcLanguage(TranslationLanguage& language)
 {
     auto index = ui.cbSrc->currentIndex();
     if (index < 0)
@@ -314,7 +310,7 @@ bool WTransaltionMain::GetSelectSrcLanguage(TranslationLanguage& language)
     return true;
 }
 
-bool WTransaltionMain::GetSelectDestLanguage(TranslationLanguage& language)
+bool WTranslationMain::GetSelectDestLanguage(TranslationLanguage& language)
 {
     auto index = ui.cbDest->currentIndex();
     if (index < 0)

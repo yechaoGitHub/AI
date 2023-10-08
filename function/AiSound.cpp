@@ -1,6 +1,6 @@
 #include "AiSound.h"
 
-#include "WTransaltionMain.h"
+#include "WTranslationMain.h"
 #include "base/GlobalSetting.h"
 #include "function/QAudioPlayer.h"
 
@@ -71,7 +71,7 @@ void AiSound::Initialize()
     connect(&_httpAsync, &HttpAsync::httpRespond, this, &AiSound::HttpCallbackDispatch);
 
     _wLoginFrame = new WLoginUI{};
-    _wTranslationMain = new WTransaltionMain{};
+    _wTranslationMain = new WTranslationMain{};
     _robotNaviga = new WRobotNavigation(nullptr);
     _wConversationSuggestion = new WConversationSuggestion{};
     connect(_robotNaviga,&WRobotNavigation::sig_robot_clicked,this, &AiSound::slot_robot_nv_clicked);
@@ -498,6 +498,11 @@ void AiSound::ShowConversationSuggestion(bool show)
     {
         _wConversationSuggestion->hide();
     }
+}
+
+WTranslationMain* AiSound::GetTranslationMainView()
+{
+    return _wTranslationMain;
 }
 
 void AiSound::ShowTip(QWidget* parent, const QString& msg)

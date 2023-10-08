@@ -252,22 +252,54 @@ QColor GlobalSetting::getTransBkColor()
 {
     switch (getTransBk())
     {
-    default:
-        break;
+    case 1:
+        return QColor{ 19, 19, 19, 204 };
+
+    case 2:
+        return QColor{ 155, 155, 155, 204 };
     }
 
-    return {};
+    return QColor{ 19, 19, 19, 204 };
 }
 
 QColor GlobalSetting::getTransOgColor()
 {
-    switch (getTransOg())
+    switch (getTransTl())
     {
-    default:
-        break;
+    case 1:
+        return QColor{ 19, 19, 19, 255 };
+
+    case 2:
+        return QColor{ 0, 215, 244, 255 };
+
+    case 3:
+        return QColor{ 0, 169, 255, 255 };
+
+    case 4:
+        return QColor{ 107, 251, 206, 255 };
     }
 
-    return {};
+    return QColor{ 19, 19, 19, 255 };
+}
+
+QColor GlobalSetting::getTransColor()
+{
+    switch (getTransTl())
+    {
+    case 1:
+        return QColor{ 19, 19, 19, 255 };
+
+    case 2:
+        return QColor{ 0, 215, 244, 255 };
+
+    case 3:
+        return QColor{ 0, 169, 255, 255 };
+
+    case 4:
+        return QColor{ 107, 251, 206, 255 };
+    }
+
+    return QColor{ 19, 19, 19, 255 };
 }
 
 void GlobalSetting::setTransTl(int bk)

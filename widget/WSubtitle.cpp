@@ -1,11 +1,13 @@
 #include "WSubtitle.h"
 #include "WScrollBar.h"
+#include "base/GlobalSetting.h"
 
 #include <QPainter>
 #include <QFontMetrics>
 #include <QResizeEvent>
 #include <QTimerEvent>
 #include <cmath>
+
 
 
 #pragma region WSubtitle
@@ -97,11 +99,15 @@ void WSubtitle::paintEvent(QPaintEvent* event)
         painter.setPen(QColor{ 255, 255, 255, 127 });
         painter.drawLine(QLine{ subtitle.rect.topLeft(), subtitle.rect.topRight() });
 
-        painter.setPen(QColor{ 255, 255, 255, 255 });
+        auto srcColor = SETTING.getTransOgColor();
+
+        painter.setPen(srcColor);
         auto text = _srcLanguage + ":" + subtitle.src.text;
         painter.drawText(subtitle.src.rect, text, toption);
 
-        painter.setPen(QColor{ 0, 215, 244, 255 });
+        auto destColor = SETTING.getTransColor();
+
+        painter.setPen(destColor);
         text = _destLanguage + ":" + subtitle.dest.text;
         painter.drawText(subtitle.dest.rect, text, toption);
     }

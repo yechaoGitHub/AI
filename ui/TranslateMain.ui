@@ -20,11 +20,7 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget{
-	font: 14px &quot;微软雅黑&quot;;
-}
-
-QFrame#frame{
+   <string notr="true">QFrame#frame{
 	color: rgba(0,0,0,0);
 	border:none;
 }
@@ -104,8 +100,7 @@ QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
    <item>
     <widget class="QFrame" name="frame">
      <property name="styleSheet">
-      <string notr="true">
-</string>
+      <string notr="true"/>
      </property>
      <layout class="QHBoxLayout" name="horizontalLayout_2">
       <property name="spacing">
@@ -119,8 +114,7 @@ QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
         <property name="font">
          <font>
           <family>微软雅黑</family>
-          <pointsize>-1</pointsize>
-          <weight>50</weight>
+          <pointsize>16</pointsize>
           <italic>false</italic>
           <bold>false</bold>
          </font>
@@ -163,22 +157,23 @@ QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
         <property name="styleSheet">
          <string notr="true">QComboBox
 {
-	color:rgb(255,255,255);
+	color:#FFFFFF;
 	border:none;
 	background-color: transparent;
-}
-
-QComboBox::drop-down {
-    subcontrol-origin: padding;
-    subcontrol-position: top right;
-	background-color:transparent;
-    width: 20px;
 }
 
 QComboBox QAbstractItemView::item { 
 	min-height: 40px;
 }
-</string>
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+}
+
+QComboBox QAbstractItemView::item { 
+	min-height: 40px;
+}</string>
         </property>
        </widget>
       </item>
@@ -446,22 +441,6 @@ border-color:rgba(255,255,255,50%);
        </spacer>
       </item>
       <item>
-       <spacer name="horizontalSpacer_9">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType">
-         <enum>QSizePolicy::Fixed</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>5</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
        <widget class="QPushButton" name="minBtn">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -581,8 +560,6 @@ border-color:rgba(255,255,255,50%);</string>
      <property name="font">
       <font>
        <family>微软雅黑</family>
-       <pointsize>-1</pointsize>
-       <weight>50</weight>
        <italic>false</italic>
        <bold>false</bold>
       </font>

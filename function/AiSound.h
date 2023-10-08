@@ -27,7 +27,7 @@
 #include <functional>
 #include <list>
 
-class WTransaltionMain;
+class WTranslationMain;
 class QAudioPlayer;
 
 using LoginCallbackType = void(int code, const QString& msg, const QString& token);
@@ -130,6 +130,7 @@ public:
     void ShowConversationSuggestion(bool show);
     bool IsConversationSuggestionShow();
     void ShowRobotChat(const QString& chatId);
+    WTranslationMain* GetTranslationMainView();
 #pragma endregion
 
 #pragma region ¹¦ÄÜ
@@ -199,7 +200,7 @@ private:
 
 #pragma region ´°¿Ú
     WLoginUI*                           _wLoginFrame = nullptr;
-    WTransaltionMain*                   _wTranslationMain = nullptr;
+    WTranslationMain*                   _wTranslationMain = nullptr;
     WConversationSuggestion*            _wConversationSuggestion = nullptr;
 
     WRobotNavigation*                   _robotNaviga = nullptr;

@@ -6,12 +6,12 @@
 #include <QEvent>
 #include <vector>
 
-class WTransaltionMain : public QWidget
+class WTranslationMain : public QWidget
 {
     Q_OBJECT
 public:
-    WTransaltionMain(QWidget* parent = nullptr);
-    ~WTransaltionMain();
+    WTranslationMain(QWidget* parent = nullptr);
+    ~WTranslationMain();
 
     void SetLanguage(const std::vector<TranslationLanguage>& srcLan, const std::vector<TranslationLanguage>& destLan);
 
