@@ -168,7 +168,7 @@ void WSpeechGenerationUi::showEvent(QShowEvent* event)
 
     if (ui.cbFrom->count() == 0)
     {
-        auto&& listData = ins.GetTranslationDestListData();
+        auto&& listData = ins.GetTranslationSrourceListData();
         for (auto data : listData)
         {
             ui.cbFrom->addItem(data.name);
@@ -285,7 +285,7 @@ QString WSpeechGenerationUi::GetSelectSrcLanguage()
     }
 
     auto& ins = AiSound::GetInstance();
-    auto&& listData = ins.GetTranslationDestListData();
+    auto&& listData = ins.GetTranslationSrourceListData();
 
     if (index >= listData.size())
     {
@@ -348,6 +348,10 @@ void WSpeechGenerationUi::ExportClicked()
     auto& ins = AiSound::GetInstance();
     int id = GetSelectSpeaker();
     auto&& text = ui.textEdit->toPlainText();
+    if (text.isEmpty())
+    {
+        return;
+    }
 
     QString homeLocation = QStandardPaths::writableLocation(QStandardPaths::HomeLocation);
     auto savePath = QFileDialog::getSaveFileName(this, QString::fromLocal8Bit("Save Mp3 File"), homeLocation, "mp3(*.mp3)");

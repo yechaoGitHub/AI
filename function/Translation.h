@@ -8,7 +8,7 @@
 #include <QWebsocket>
 #include <QThread>
 
-enum TransType { TRANSTYPE_NORMAL, TRANSTYPE_HIGH_PRECISION };
+enum TransType { TRANSTYPE_NORMAL = 2, TRANSTYPE_HIGH_PRECISION = 1 };
 Q_DECLARE_METATYPE(TransType);
 enum SystemLanguage{ SYSTEM_LANGUAGE_CHS, SYSTEM_LANGUAGE_EN };
 Q_DECLARE_METATYPE(SystemLanguage);
@@ -22,7 +22,7 @@ public:
 
     void Initialize();
     void Uninitialize();
-    void Connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide = false, const QAudioDeviceInfo& micDev = {}, const QAudioDeviceInfo& momitorDev = {}, TransType type = TRANSTYPE_NORMAL, SystemLanguage language = SYSTEM_LANGUAGE_CHS);
+    void Connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide = false, const QAudioDeviceInfo& micDev = {}, const QAudioDeviceInfo& momitorDev = {}, int type = TRANSTYPE_NORMAL, SystemLanguage language = SYSTEM_LANGUAGE_CHS);
 
     void StartMic();
     void StopMic();
@@ -33,7 +33,7 @@ public:
     bool IsMicWorking();
 
 Q_SIGNALS:
-    void connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, SystemLanguage language);
+    void connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, int type, SystemLanguage language);
     void disconnect();
     void soundPlay(bool play);
     void stateChanged();
@@ -44,7 +44,7 @@ Q_SIGNALS:
     void conversationGuideReceived(const QString& message, int type);
 
 private:
-    void ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, SystemLanguage language);
+    void ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, int type, SystemLanguage language);
     void DisconnectInternal();
 
     void EnableAudio(bool enable);
@@ -71,7 +71,7 @@ private:
     QThread                 _workThread;
     QString                 _srcLan;
     QString                 _destLan;
-    TransType               _transType;
+    int                     _transType;
     QString                 _speaker;
     bool                    _isConvGuide;
     SystemLanguage          _language;

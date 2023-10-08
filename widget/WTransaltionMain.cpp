@@ -8,23 +8,6 @@
 #include <QPainterPath>
 #include <QListView>
 
-//QString lockStyle = "background-image:url(:/QtTest/icon/Speech/lock.png);\
-//background-color:rgb(0,0,0);\
-//background-position:center;\
-//background-repeat:no-repeat;\
-//border:1px solid;\
-//border-radius:4px;\
-//border-color:rgba(255, 255, 255, 50 %);";
-//
-//QString lockActStyle = "background-image:url(:/QtTest/icon/Speech/lock_act.png);\
-//background-color:rgb(0,0,0);\
-//background-position:center;\
-//background-repeat:no-repeat;\
-//border:1px solid;\
-//border-radius:4px;\
-//border-color:rgba(255, 255, 255, 50 %);";
-
-
 QString stopStyle = "background-image:url(:/QtTest/icon/stop.png);\
 background-position:left;\
 background-repeat:no-repeat;\
@@ -239,7 +222,7 @@ void WTransaltionMain::StopClicked()
 
         ui.subtitleWidget->Subtitle()->SetTranslate(srcLan.name, destLan.name);
 
-        trans.Connect(token, srcLan.language, destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo());
+        trans.Connect(token, srcLan.language, destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo(), SETTING.getTransTT());
 
         trans.StartMic();
         ui.timerWidget->StartTimer(true);

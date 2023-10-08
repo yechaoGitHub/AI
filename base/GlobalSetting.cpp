@@ -248,6 +248,28 @@ int GlobalSetting::getTransOg()
     return m_pSettings->value("Color/TransOg", 1).toInt();
 }
 
+QColor GlobalSetting::getTransBkColor()
+{
+    switch (getTransBk())
+    {
+    default:
+        break;
+    }
+
+    return {};
+}
+
+QColor GlobalSetting::getTransOgColor()
+{
+    switch (getTransOg())
+    {
+    default:
+        break;
+    }
+
+    return {};
+}
+
 void GlobalSetting::setTransTl(int bk)
 {
     if (m_pSettings)

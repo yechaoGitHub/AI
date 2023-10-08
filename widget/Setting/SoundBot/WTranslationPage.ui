@@ -101,7 +101,7 @@ color:#131313;</string>
          <string>Translation type</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="ck_tr_1">
+       <widget class="QCheckBox" name="ck_tr_2">
         <property name="geometry">
          <rect>
           <x>0</x>
@@ -134,7 +134,7 @@ QCheckBox::indicator:checked {border-image: url(:/QtTest/icon/Setting/soundbot/s
          <string>General translation</string>
         </property>
        </widget>
-       <widget class="QCheckBox" name="ck_tr_2">
+       <widget class="QCheckBox" name="ck_tr_1">
         <property name="geometry">
          <rect>
           <x>190</x>

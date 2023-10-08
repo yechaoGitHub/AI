@@ -53,7 +53,7 @@ void Translation::Uninitialize()
     _audioInput.Uninitialize();
 }
 
-void Translation::Connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, SystemLanguage language)
+void Translation::Connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, int type, SystemLanguage language)
 {
     _workThread.start();
     emit connect(token, srcLan, destLan, enableConvGuide, micDev, momitorDev, type, language);
@@ -82,7 +82,7 @@ void Translation::Disconnect()
     }
 }
 
-void Translation::ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, TransType type, SystemLanguage language)
+void Translation::ConnectInternal(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, int type, SystemLanguage language)
 {
     QUrl url{ "ws://47.106.253.9:9501/service/v1/st" };
     QUrlQuery quurl;
@@ -146,17 +146,7 @@ void Translation::SendParam()
     dataobj.insert("type", "START");
     dataobj.insert("from", _srcLan);
     dataobj.insert("to", _destLan);
-    switch (_transType)
-    {
-        case TRANSTYPE_NORMAL:
-            dataobj.insert("transType", "2");
-        break;
-
-        case TRANSTYPE_HIGH_PRECISION:
-            dataobj.insert("transType", "1");
-        break;
-    }
-
+    dataobj.insert("transType", _transType);
     dataobj.insert("guideFlag", _isConvGuide ? 1 : 0);
 
     switch (_language)

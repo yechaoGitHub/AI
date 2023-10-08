@@ -796,7 +796,7 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
             {
                 TranslationLanguage lan;
                 auto obj = it.toObject();
-                lan.language = obj["languaue"].toString();
+                lan.language = obj["language"].toString();
                 lan.name = obj["name"].toString();
                 lan.nameEn = obj["nameEn"].toString();
                 vecLan.push_back(lan);
@@ -985,12 +985,6 @@ void AiSound::HeartBeat()
 void AiSound::HeartBeatCallback(int code, const QString& msg)
 {
     if (code == 20011)
-    {
-        QuitApp();
-    }
-
-    static int i{};
-    if (i == 20)
     {
         QuitApp();
     }

@@ -59,6 +59,9 @@ public:
     void setTransOg(int bk);
     int  getTransOg();
 
+    QColor getTransBkColor();
+    QColor getTransOgColor();
+
     void setTransTl(int bk);
     int  getTransTl();
 
