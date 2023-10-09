@@ -86,7 +86,7 @@
     </message>
     <message>
         <source>English</source>
-        <translation type="unfinished">中文</translation>
+        <translation type="unfinished">英文</translation>
     </message>
 </context>
 <context>
