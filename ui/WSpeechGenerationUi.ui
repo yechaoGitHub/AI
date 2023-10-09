@@ -184,43 +184,6 @@ color:#FFFFFFFF
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pb_convGuide">
-        <property name="minimumSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>32</width>
-          <height>32</height>
-         </size>
-        </property>
-        <property name="cursor">
-         <cursorShape>PointingHandCursor</cursorShape>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-image:url(:/QtTest/icon/btn_robot.png);
-background-color:rgb(0,0,0);
-background-position: center;
-background-repeat: no-repeat;
-border:1px solid;
-border-radius:4px;
-border-color:rgba(255,255,255,50%);</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="autoDefault">
-         <bool>true</bool>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
        <widget class="QPushButton" name="pb_lock">
         <property name="minimumSize">
          <size>
@@ -239,7 +202,7 @@ border-color:rgba(255,255,255,50%);</string>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton#pb_lock[lock=false]{
-	background-image:url(:/QtTest/icon/Speech/lock.png);
+background-image:url(:/QtTest/icon/Speech/lock-white.png);
 background-color:rgb(0,0,0);
 background-position:center;
 background-repeat:no-repeat;
@@ -249,7 +212,7 @@ border-color:rgba(255,255,255,50%);
 }
 
 QPushButton#pb_lock[lock=true]{
-	background-image:url(:/QtTest/icon/Speech/lock_ok.png);
+background-image:url(:/QtTest/icon/Speech/lock-color.png);
 background-color:rgb(0,0,0);
 background-position:center;
 background-repeat:no-repeat;

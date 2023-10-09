@@ -10,8 +10,8 @@ public:
     ~WMobileLogin();
 
     QString PhoneNumber();
-    QString VerifyCode();
     QString DialingCode();
+    QString PhoneCode();
 
 protected:
     void timerEvent(QTimerEvent* event) override;

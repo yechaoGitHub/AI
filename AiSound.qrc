@@ -380,5 +380,7 @@
         <file>icon/lock-color.png</file>
         <file>icon/lock-white.png</file>
         <file>icon/lock.png</file>
+        <file>icon/Speech/lock-color.png</file>
+        <file>icon/Speech/lock-white.png</file>
     </qresource>
 </RCC>

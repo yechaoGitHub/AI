@@ -32,11 +32,6 @@ QString WMobileLogin::PhoneNumber()
     return ui.codeEdit->textEdit->text();
 }
 
-QString WMobileLogin::VerifyCode()
-{
-    return ui.verificationCodeEdit->textEdit->text();
-}
-
 QString WMobileLogin::DialingCode()
 {
     auto index = ui.comboBox->currentIndex();
@@ -52,6 +47,11 @@ QString WMobileLogin::DialingCode()
     }
 
     return "";
+}
+
+QString WMobileLogin::PhoneCode()
+{
+    return ui.lineEdit->text();
 }
 
 void WMobileLogin::timerEvent(QTimerEvent* event)

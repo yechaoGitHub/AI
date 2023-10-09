@@ -11,16 +11,21 @@ WRegister::WRegister(QWidget* parent) :
 
     ui.cbPhone->setView(new QListView{});
 
-    ui.edRecommend->textEdit->setPlaceholderText("(Optional) Enter the invitation code. If not please leave blank");
-
     ui.edUser->SetImage(":/QtTest/icon/user_active.png");
-    ui.edUser->textEdit->setPlaceholderText("Enter user name");
+    ui.edUser->textEdit->setPlaceholderText(tr("Enter email address"));
+
+    ui.verificationCodeEdit->SetImage(":/QtTest/icon/lock.png");
+    ui.verificationCodeEdit->textEdit->setPlaceholderText(tr("Enter the code in picture"));
+    ui.edVCode->setPlaceholderText(tr("Enter the verification code"));
 
     ui.edPassword->SetImage(":/QtTest/icon/lock.png");
     ui.edPassword->textEdit->setPlaceholderText("Enter password");
 
     ui.edPassword2->SetImage(":/QtTest/icon/lock.png");
     ui.edPassword2->textEdit->setPlaceholderText("Enter password again");
+
+    ui.edRecommend->SetImage(":/QtTest/icon/lock.png");
+    ui.edRecommend->textEdit->setPlaceholderText("(Optional) Enter the invitation code");
 
     signBtn = ui.pbSignUp;
 

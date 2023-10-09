@@ -74,7 +74,6 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
 
     ui.pb_lock->setProperty("lock", false);
     ui.pb_lock->style()->unpolish(ui.pb_lock);
-    ui.pb_convGuide->hide();
 }
 
 WSpeechGenerationUi::~WSpeechGenerationUi()

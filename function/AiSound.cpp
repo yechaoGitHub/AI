@@ -984,7 +984,7 @@ void AiSound::HeartBeat()
     headers.insert("access_token", _token.toUtf8());
     headers.insert("client_type", "PC");
 
-    _httpAsync.Post("http://47.106.253.9:9101/api/user/modify/password", {}, headers, userParam);
+    _httpAsync.Post("http://47.106.253.9:9101/api/user/heartbeat", {}, headers, userParam);
 }
 
 void AiSound::HeartBeatCallback(int code, const QString& msg)

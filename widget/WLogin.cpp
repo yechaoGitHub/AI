@@ -8,6 +8,9 @@ WLogin::WLogin(QWidget* parent) :
     ui.setupUi(this);
     TitleChanged(WLoginSwitch::ETitle::userName);
 
+    ui.userLogin->userNameEdit->setPlaceholderText(tr("Enter the username"));
+    ui.userLogin->passwordEdit->setPlaceholderText(tr("Enter the password"));
+
     registerLabel = ui.registerBtn;
     loginBtn = ui.loginBtn;
     cbRemeber = ui.cbKeepLogin;
@@ -152,7 +155,7 @@ void WLogin::EmailLogin()
     auto& ins = AiSound::GetInstance();
 
     auto&& phoneNum = ui.mobileLogin->PhoneNumber();
-    auto&& vCode = ui.mobileLogin->VerifyCode();
+    auto&& vCode = ui.mobileLogin->PhoneCode();
 
     auto callback = [this](int code, const QString& msg, const QString& token)->void
     {
@@ -177,7 +180,7 @@ void WLogin::PhoneLogin()
 
     auto&& dCode = ui.mobileLogin->DialingCode();
     auto&& phoneNum = ui.mobileLogin->PhoneNumber();
-    auto&& vCode = ui.mobileLogin->VerifyCode();
+    auto&& vCode = ui.mobileLogin->PhoneCode();
 
     auto callback = [this](int code, const QString& msg, const QString& token)->void
     {
