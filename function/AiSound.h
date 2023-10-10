@@ -1,5 +1,6 @@
 #pragma once
 
+#include "WRobotNavigation.h"
 #include "VoiceType.h"
 #include "VoiceCompositor.h"
 #include "ChatBot.h"
@@ -11,11 +12,6 @@
 #include "QHook.h"
 
 #include "WTip.h"
-#include "WRobotNavigation.h"
-#include "widget/chat/WRobotChatMainUI.h"
-#include "widget/Speech/WSpeechGenerationUi.h"
-#include "widget/Setting/WSettingMainUi.h"
-#include "WConversationSuggestion.h"
 
 #include <QTranslator>
 #include <QString>
@@ -27,7 +23,14 @@
 #include <functional>
 #include <list>
 
+class WLoginUI;
 class WTranslationMain;
+class WConversationSuggestion;
+class WRobotNavigation;
+class RobotChatMainUI;
+class WSpeechGenerationUi;
+class WSettingMainUi;
+
 class QAudioPlayer;
 
 using LoginCallbackType = void(int code, const QString& msg, const QString& token);
@@ -131,6 +134,7 @@ public:
     bool IsConversationSuggestionShow();
     void ShowRobotChat(const QString& chatId);
     WTranslationMain* GetTranslationMainView();
+    WSpeechGenerationUi* GetSpeechGenerationView();
 #pragma endregion
 
 #pragma region ¹¦ÄÜ

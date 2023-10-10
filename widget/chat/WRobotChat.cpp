@@ -1,5 +1,6 @@
 #include "WRobotChat.h"
 #include "WName.h"
+#include "Bussiness/SettingInterfaceBussiness.h"
 
 #include "base/GlobalSetting.h"
 #include "AiSound.h"

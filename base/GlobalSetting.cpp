@@ -222,6 +222,40 @@ int GlobalSetting::getSpeechOg()
     return m_pSettings->value("Color/SpeechOg", 1).toInt();
 }
 
+QColor GlobalSetting::getSpeechBkColor()
+{
+    switch (getSpeechBk())
+    {
+        case 1:
+            return QColor{ 19, 19, 19, 204 };
+
+        case 2:
+            return QColor{ 155, 155, 155, 204 };
+    }
+
+    return QColor{ 19, 19, 19, 204 };
+}
+
+QColor GlobalSetting::getSpeechOgColor()
+{
+    switch (getSpeechOg())
+    {
+        case 1:
+            return QColor{ 19, 19, 19, 255 };
+
+        case 2:
+            return QColor{ 0, 215, 244, 255 };
+
+        case 3:
+            return QColor{ 0, 169, 255, 255 };
+
+        case 4:
+            return QColor{ 107, 251, 206, 255 };
+    }
+
+    return QColor{ 19, 19, 19, 255 };
+}
+
 void GlobalSetting::setTransBk(int bk)
 {
     if (m_pSettings)

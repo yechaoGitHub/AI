@@ -53,6 +53,9 @@ public:
     void setSpeechOg(int bk);
     int  getSpeechOg();
 
+    QColor getSpeechBkColor();
+    QColor getSpeechOgColor();
+
     void setTransBk(int bk);
     int  getTransBk();
 

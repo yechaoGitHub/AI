@@ -1,5 +1,6 @@
 #include "WVoicelibWidget.h"
 #include <qstyle.h>
+#include <QMovie>
 #include "function/Bussiness/SettingInterfaceBussiness.h"
 #include "function/AiSound.h"
 

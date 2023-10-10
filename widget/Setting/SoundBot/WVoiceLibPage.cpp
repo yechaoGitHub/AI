@@ -3,6 +3,8 @@
 #include "function/AiSound.h"
 #include "function/QAudioPlayer.h"
 
+#include <QListView>
+
 
 WVoiceLibPage::WVoiceLibPage(QWidget *parent)
 	: QWidget(parent)

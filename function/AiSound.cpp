@@ -1,6 +1,12 @@
 #include "AiSound.h"
 
 #include "WTranslationMain.h"
+#include "WRobotNavigation.h"
+#include "widget/chat/WRobotChatMainUI.h"
+#include "widget/Speech/WSpeechGenerationUi.h"
+#include "widget/Setting/WSettingMainUi.h"
+#include "widget/login/WLoginUI.h"
+#include "WConversationSuggestion.h"
 #include "base/GlobalSetting.h"
 #include "function/QAudioPlayer.h"
 
@@ -503,6 +509,11 @@ void AiSound::ShowConversationSuggestion(bool show)
 WTranslationMain* AiSound::GetTranslationMainView()
 {
     return _wTranslationMain;
+}
+
+WSpeechGenerationUi* AiSound::GetSpeechGenerationView()
+{
+    return _speech_ui;
 }
 
 void AiSound::ShowTip(QWidget* parent, const QString& msg)

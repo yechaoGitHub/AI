@@ -105,13 +105,15 @@ void WSpeechGenerationUi::on_pb_lock_clicked()
 
 void WSpeechGenerationUi::paintEvent(QPaintEvent* event)
 {
+    auto bkColor = SETTING.getSpeechBkColor();
+
     QPainter painter{ this };
     painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
 
     QPainterPath path;
     path.setFillRule(Qt::WindingFill);
     path.addRoundedRect(this->rect(), 16, 16);
-    painter.fillPath(path, QBrush(QColor(0, 0, 0, 204)));
+    painter.fillPath(path, QBrush{ bkColor });
 }
 
 void WSpeechGenerationUi::showEvent(QShowEvent* event)
