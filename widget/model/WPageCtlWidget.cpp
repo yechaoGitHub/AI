@@ -17,9 +17,8 @@ WPageCtlWidget::~WPageCtlWidget()
 
 void WPageCtlWidget::initCtl(int total_page, int total_size, int cur_page)
 {
-	_total_pages = total_page;
 	_cur_page = cur_page;
-
+	_total_pages = total_page;
 	ui.lb_total_size->setText(tr("entries of %1").arg(total_size));
 	QStringList list;
 	for (int i = 1; i <= total_page; i++) {
@@ -32,12 +31,33 @@ void WPageCtlWidget::initCtl(int total_page, int total_size, int cur_page)
 	ui.comboBox->setCurrentIndex(cur_page-1);
 	connect(ui.comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(onComboxSelect(int)));
 
-	if (total_page < 3) {
+	if (total_page == 0) {
+		ui.frame_3->hide();
 		ui.pb_next->hide();
 		ui.pb_pre->hide();
-		ui.frame_3->hide();
+		ui.pb_1->hide();
+		ui.pb_2->hide();
+		ui.pb_last->hide();
 	}
-	else if (total_page < 4) {
+	else if (total_page == 1) {
+		ui.pb_next->show();
+		ui.pb_pre->show();
+		ui.frame_3->show();
+		ui.pb_2->hide();
+		ui.pb_last->hide();
+		ui.pb_about->hide();
+		ui.pb_1->setText("1");
+	}
+	else if (total_page == 2) {
+		ui.pb_next->show();
+		ui.pb_pre->show();
+		ui.frame_3->show();
+		ui.pb_about->hide();
+		ui.pb_last->hide();
+		ui.pb_1->setText("1");
+		ui.pb_2->setText("2");
+	}
+	else if (total_page == 3) {
 		ui.pb_next->show();
 		ui.pb_pre->show();
 		ui.frame_3->show();
@@ -108,15 +128,24 @@ void WPageCtlWidget::on_pb_last_clicked()
 
 void WPageCtlWidget::selCurIndex(int index)
 {
-	int num_1 = ui.pb_1->text().toInt();
-	ui.pb_1->setProperty("sel", num_1 == index);
-	ui.pb_1->style()->unpolish(ui.pb_1);
-	int num_2 = ui.pb_2->text().toInt();
-	ui.pb_2->setProperty("sel", num_2 == index);
-	ui.pb_2->style()->unpolish(ui.pb_2);
-	int num_3 = ui.pb_last->text().toInt();
-	ui.pb_last->setProperty("sel", num_3 == index);
-	ui.pb_last->style()->unpolish(ui.pb_last);
+	int num_1=0, num_2=0, num_3 = 0;
+	if (!ui.pb_1->isHidden()) {
+		num_1 = ui.pb_1->text().toInt();
+		ui.pb_1->setProperty("sel", num_1 == index);
+		ui.pb_1->style()->unpolish(ui.pb_1);
+	}
+
+	if (!ui.pb_2->isHidden()) {
+		num_2 = ui.pb_2->text().toInt();
+		ui.pb_2->setProperty("sel", num_2 == index);
+		ui.pb_2->style()->unpolish(ui.pb_2);
+	}
+	if (!ui.pb_last->isHidden()) {
+		num_3 = ui.pb_last->text().toInt();
+		ui.pb_last->setProperty("sel", num_3 == index);
+		ui.pb_last->style()->unpolish(ui.pb_last);
+	}
+
 
 	if (num_3 > num_2 + 1) {
 		ui.pb_about->setVisible(true);
