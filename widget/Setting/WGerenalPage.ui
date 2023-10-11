@@ -25,7 +25,7 @@
 }
 QFrame#frame_language,#frame_key1,#frame_key2{
 	border-radius:8px;
-	border:1px solid #000000;
+	border:1px solid #c9c9c9;
 }
 
 QLabel#label_4,#label_6{
@@ -34,7 +34,7 @@ QLabel#label_4,#label_6{
 
 QPushButton{
 	border-radius:8px;
-	border:1px solid #000000;
+	border:1px solid #c9c9c9;
 }
 
 QPushButton#pb_tip{
@@ -64,7 +64,7 @@ QPushButton#pb_tip{
 
 QTextEdit{
 	background-color: transparent;
-	border:1px solid #000000;
+	border:1px solid #c9c9c9;
 	border-radius:8px;
 }
 

@@ -17,7 +17,7 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Voice Translate</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QFrame#frame{
@@ -115,6 +115,7 @@ QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
          <font>
           <family>微软雅黑</family>
           <pointsize>16</pointsize>
+          <weight>50</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
@@ -560,6 +561,7 @@ border-color:rgba(255,255,255,50%);</string>
      <property name="font">
       <font>
        <family>微软雅黑</family>
+       <weight>50</weight>
        <italic>false</italic>
        <bold>false</bold>
       </font>

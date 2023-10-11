@@ -122,9 +122,6 @@ void WInvitePage::on_pb_invite_clicked()
 void WInvitePage::on_pb_search_clicked()
 {
     QString content = ui.le_search->text();
-    if (content.isEmpty()) {
-        return;
-    }
 
     SettingInterfaceBussiness::getInstance()->getTeamRecordReq(1, _page_size, content);
 }
