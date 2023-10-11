@@ -53,7 +53,7 @@ void RobotChatMainUI::on_pb_min_clicked()
 
 void RobotChatMainUI::on_pb_close_clicked()
 {
-    this->close();
+    this->hide();
 }
 
 void RobotChatMainUI::SaveBtnClicked()

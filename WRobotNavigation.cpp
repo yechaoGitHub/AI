@@ -9,8 +9,8 @@ WRobotNavigation::WRobotNavigation(QWidget *parent)
     this->setWidgetType(true, DragType::Drag_Null, false);
     setAttribute(Qt::WA_TranslucentBackground);
     this->installEventFilter(this);
-    //
-    this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint /*| Qt::SubWindow*/);
+    //setWindowFlags();
+    this->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool/*| Qt::SubWindow*/);
     _setting_menu = new WRobotSettingMenu(this);
     _setting_menu->hide();
     _setting_menu->move(9,9);
