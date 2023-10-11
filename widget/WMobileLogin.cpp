@@ -9,18 +9,22 @@ WMobileLogin::WMobileLogin(QWidget* parent) :
 
     ui.comboBox->setView(new QListView{});
 
-    ui.codeEdit->textEdit->setPlaceholderText("Enter the email address");
+    ui.codeEdit->SetImage(":/QtTest/icon/lock.png");
+    ui.codeEdit->textEdit->setPlaceholderText(tr("Enter the email address"));
 
     ui.verificationCodeEdit->SetImage(":/QtTest/icon/lock.png");
-    ui.verificationCodeEdit->textEdit->setPlaceholderText("Enter the code in picture");
+    ui.verificationCodeEdit->textEdit->setPlaceholderText(tr("Enter the code in picture"));
 
     ui.lineEdit->setPlaceholderText(tr("Enter the code send on your email"));
 
     connect(ui.getCodeBtn, &QPushButton::clicked, this, &WMobileLogin::GetCodeCallback);
+    connect(ui.comboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WMobileLogin::CountryChanged);
 
     ui.lbEstimated->setVisible(false);
 
     ui.verificationCodePic->SetModuleType("login");
+
+    CountryChanged(0);
 }
 
 WMobileLogin::~WMobileLogin()
@@ -129,5 +133,19 @@ void WMobileLogin::GetCodeCallback()
     else
     {
         ins.SendMailVerfyCode(phoneNumber, verifyCode, uuid, "login", callback);
+    }
+}
+
+void WMobileLogin::CountryChanged(int index)
+{
+    if (DialingCode() == "+86")
+    {
+        ui.codeEdit->textEdit->setPlaceholderText(tr("Enter the mobile phone"));
+
+    }
+    else
+    {
+        ui.codeEdit->textEdit->setPlaceholderText(tr("Enter the email address"));
+
     }
 }

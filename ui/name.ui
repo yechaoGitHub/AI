@@ -7,15 +7,49 @@
     <x>0</x>
     <y>0</y>
     <width>476</width>
-    <height>116</height>
+    <height>145</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>476</width>
+    <height>145</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>476</width>
+    <height>145</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="spacing">
+    <number>8</number>
+   </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>-1</pointsize>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font-size:18px;
+color:rgb(255,255,255);
+font-weight:700;</string>
+       </property>
+       <property name="text">
+        <string>Save Chat History</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <spacer name="horizontalSpacer">
        <property name="orientation">
@@ -69,7 +103,22 @@ border-color:rgba(255,255,255,50%);</string>
     </layout>
    </item>
    <item>
+    <widget class="QLabel" name="label_2">
+     <property name="styleSheet">
+      <string notr="true">font-size:14px;
+color:rgb(255,255,255);
+font-weight:700;</string>
+     </property>
+     <property name="text">
+      <string>New chat  name</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
+     <property name="spacing">
+      <number>30</number>
+     </property>
      <item>
       <widget class="QLineEdit" name="edName">
        <property name="minimumSize">
@@ -83,6 +132,11 @@ border-color:rgba(255,255,255,50%);</string>
          <width>16777215</width>
          <height>56</height>
         </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border:1px solid;
+border-radius:8px;
+border-color:rgba(255,255,255,50%);</string>
        </property>
       </widget>
      </item>
@@ -108,7 +162,7 @@ font-weight: 700;
 border-radius:8px;</string>
        </property>
        <property name="text">
-        <string>Confirm</string>
+        <string>Save</string>
        </property>
       </widget>
      </item>

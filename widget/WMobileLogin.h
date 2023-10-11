@@ -19,6 +19,7 @@ protected:
 
 private:
     void GetCodeCallback();
+    void CountryChanged(int index);
 
     Ui::mobileLogin ui;
     bool _canResend = true;
