@@ -349,7 +349,10 @@ void AiSound::Register(const QString& dialingCode, const QString& phoneEmail, co
     dataObj.insert("password", password);
     dataObj.insert("rePassword", rePassword);
     dataObj.insert("rePassword", password);
-    dataObj.insert("recommendCode", recommendCode);
+    if (!recommendCode.isEmpty())
+    {
+        dataObj.insert("recommendCode", recommendCode);
+    }
     dataObj.insert("verifyCode", verifyCode);
 
     auto packet = new HttpCallbackPacket<CommomCallbackType>();

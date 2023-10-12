@@ -37,12 +37,11 @@ void WLoginUI::BackClicked()
 void WLoginUI::ForgetPasswordClicked()
 {
     auto& ins = AiSound::GetInstance();
-    auto&& phoneCode = ui.pageRegister->DialingCode();
-    auto&& userName = ui.pageRegister->UserName();
-    auto&& password = ui.pageRegister->Password();
-    auto&& rePassword = ui.pageRegister->Repassword();
-    auto&& vCode = ui.pageRegister->VerifyCode();
-    auto&& recommondCode = ui.pageRegister->RecommondCode();
+    auto&& phoneCode = ui.pageForgetPassword->DialingCode();
+    auto&& userName = ui.pageForgetPassword->UserName();
+    auto&& password = ui.pageForgetPassword->Password();
+    auto&& rePassword = ui.pageForgetPassword->Repassword();
+    auto&& vCode = ui.pageForgetPassword->VerifyCode();
 
     auto callback = [this](int code, const QString& msg)
     {
@@ -58,7 +57,7 @@ void WLoginUI::ForgetPasswordClicked()
         }
     };
 
-    ins.ForgetPassword(userName, password, rePassword, phoneCode, vCode, callback);
+    ins.ForgetPassword(phoneCode, userName, password, rePassword, vCode, callback);
 }
 
 void WLoginUI::SignUpClicked()
@@ -85,7 +84,7 @@ void WLoginUI::SignUpClicked()
         }
     };
 
-    ins.Register(userName, password, rePassword, phoneCode, recommondCode, vCode, callback);
+    ins.Register(phoneCode, userName, password, rePassword, recommondCode, vCode, callback);
 }
 
 void WLoginUI::RegisterClicked()
