@@ -4,6 +4,7 @@
 #include "ui_WLibarary.h"
 #include "function/Bussiness/Define.h"
 #include "model/WLibModelWidget.h"
+#include "model/WConformDlg.h"
 
 
 class WLibarary : public QWidget
@@ -26,6 +27,7 @@ private:
 	void opeModelswitch(bool open,int id);
 private:
 	Ui::WLibararyClass ui;
+	WConformDlg* _conform_dlg = nullptr;
 
 	QVector<WLibModelWidget*>		_lib_model_list;
 	int		_cur_type = -1;

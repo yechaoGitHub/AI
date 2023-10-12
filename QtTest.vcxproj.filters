@@ -307,6 +307,9 @@
     <ClCompile Include="widget\WName.cpp">
       <Filter>widget</Filter>
     </ClCompile>
+    <ClCompile Include="widget\model\WConformDlg.cpp">
+      <Filter>widget\model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -431,6 +434,9 @@
     </QtUic>
     <QtUic Include="ui\WSpeechGenerationUi.ui">
       <Filter>ui</Filter>
+    </QtUic>
+    <QtUic Include="widget\model\WConformDlg.ui">
+      <Filter>widget\model</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -658,6 +664,9 @@
     </QtMoc>
     <QtMoc Include="widget\WVerificationCode.h">
       <Filter>widget\login</Filter>
+    </QtMoc>
+    <QtMoc Include="widget\model\WConformDlg.h">
+      <Filter>widget\model</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

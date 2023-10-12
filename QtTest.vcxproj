@@ -125,6 +125,7 @@
     <ClCompile Include="widget\chat\WRobotChat.cpp" />
     <ClCompile Include="widget\chat\WRobotChatMainUI.cpp" />
     <ClCompile Include="widget\login\WLoginUI.cpp" />
+    <ClCompile Include="widget\model\WConformDlg.cpp" />
     <ClCompile Include="widget\model\WLabelButton.cpp" />
     <ClCompile Include="widget\model\WLibModelWidget.cpp" />
     <ClCompile Include="widget\model\WNavbarButton.cpp" />
@@ -199,6 +200,7 @@
     <QtUic Include="widget\chat\WRobotChat.ui" />
     <QtUic Include="widget\chat\WRobotChatMainUI.ui" />
     <QtUic Include="widget\login\WLoginUI.ui" />
+    <QtUic Include="widget\model\WConformDlg.ui" />
     <QtUic Include="widget\model\WLibModelWidget.ui" />
     <QtUic Include="widget\model\WPageCtlWidget.ui" />
     <QtUic Include="widget\Setting\ChatBot\WChatBotMainUI.ui" />
@@ -229,6 +231,7 @@
   <ItemGroup>
     <ClInclude Include="function\QPcmToMp3.h" />
     <ClInclude Include="resource.h" />
+    <QtMoc Include="widget\model\WConformDlg.h" />
     <ClInclude Include="widget\WForgotPassword.h" />
     <ClInclude Include="widget\WName.h" />
     <QtMoc Include="widget\Setting\WConformWidget.h" />

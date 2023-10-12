@@ -7,6 +7,8 @@ WLibarary::WLibarary(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
+	_conform_dlg = new WConformDlg(nullptr);
+
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 2; j++) {
 			WLibModelWidget* lib = new WLibModelWidget(this);
@@ -27,7 +29,12 @@ WLibarary::WLibarary(QWidget *parent)
 }
 
 WLibarary::~WLibarary()
-{}
+{
+	if (_conform_dlg) {
+		delete _conform_dlg;
+		_conform_dlg = nullptr;
+	}
+}
 
 void WLibarary::getChatBotTemplate()
 {
@@ -42,18 +49,23 @@ void WLibarary::updateLibBySelType(int type)
 
 void WLibarary::slot_model_clicked()
 {
-	WLibModelWidget* btn = static_cast<WLibModelWidget*>(QObject::sender());
-	if (btn == _select_model && _select_model) {
+	int ret = _conform_dlg->exec();
+	if (ret == QDialog::Accepted) {
+		WLibModelWidget* btn = static_cast<WLibModelWidget*>(QObject::sender());
+		if (btn == _select_model && _select_model) {
+			_select_model->setSel(true);
+			SETTING.setRebotModel(_select_model->getModelId());
+			return;
+		}
+		if (_select_model) {
+			_select_model->setSel(false);
+		}
+		_select_model = btn;
 		_select_model->setSel(true);
 		SETTING.setRebotModel(_select_model->getModelId());
-		return;
+
+
 	}
-	if (_select_model) {
-		_select_model->setSel(false);
-	}
-	_select_model = btn;
-	_select_model->setSel(true);
-	SETTING.setRebotModel(_select_model->getModelId());
 }
 
 void WLibarary::slot_page_change(int index)
@@ -101,6 +113,7 @@ void WLibarary::slot_getChatBotListReplay(bool success, int, const strc_PageInfo
 			}
 			else if (cur_model == it.id && cur_model != 0) {
 				_lib_model_list.at(list_index)->setSel(true);
+				_select_model = _lib_model_list.at(list_index);
 			}
 			else {
 				_lib_model_list.at(list_index)->setSel(false);

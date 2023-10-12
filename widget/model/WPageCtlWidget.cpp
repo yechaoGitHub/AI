@@ -35,9 +35,6 @@ void WPageCtlWidget::initCtl(int total_page, int total_size, int cur_page)
 		ui.frame_3->hide();
 		ui.pb_next->hide();
 		ui.pb_pre->hide();
-		ui.pb_1->hide();
-		ui.pb_2->hide();
-		ui.pb_last->hide();
 	}
 	else if (total_page == 1) {
 		ui.pb_next->show();
@@ -46,6 +43,7 @@ void WPageCtlWidget::initCtl(int total_page, int total_size, int cur_page)
 		ui.pb_2->hide();
 		ui.pb_last->hide();
 		ui.pb_about->hide();
+		ui.pb_1->show();
 		ui.pb_1->setText("1");
 	}
 	else if (total_page == 2) {
@@ -54,12 +52,17 @@ void WPageCtlWidget::initCtl(int total_page, int total_size, int cur_page)
 		ui.frame_3->show();
 		ui.pb_about->hide();
 		ui.pb_last->hide();
+		ui.pb_1->show();
+		ui.pb_2->show();
 		ui.pb_1->setText("1");
 		ui.pb_2->setText("2");
 	}
 	else if (total_page == 3) {
 		ui.pb_next->show();
 		ui.pb_pre->show();
+		ui.pb_1->show();
+		ui.pb_2->show();
+		ui.pb_last->show();
 		ui.frame_3->show();
 		ui.pb_about->hide();
 		ui.pb_1->setText("1");
@@ -67,6 +70,10 @@ void WPageCtlWidget::initCtl(int total_page, int total_size, int cur_page)
 		ui.pb_last->setText("3");
 	}
 	else {
+		ui.pb_1->show();
+		ui.pb_2->show();
+		ui.pb_last->show();
+		ui.pb_about->show();
 		ui.pb_next->show();
 		ui.pb_pre->show();
 		ui.frame_3->show();
