@@ -27,8 +27,11 @@ WForgotPassword::WForgotPassword(QWidget* parent) :
     ui.verificationCodePic->SetModuleType("modifyPwd");
 
     connect(ui.getCodeBtn, &QPushButton::clicked, this, &WForgotPassword::GetVCodeClicked);
+    connect(ui.cbPhone, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WForgotPassword::CountryChanged);
 
     verifyBtn = ui.pbVerfy;
+
+    CountryChanged(0);
 }
 
 WForgotPassword::~WForgotPassword()
@@ -122,4 +125,16 @@ void WForgotPassword::GetVCodeClicked()
         ins.SendMailVerfyCode(phoneNumber, verifyCode, uuid, "modifyPwd", callback);
     }
 
+}
+
+void WForgotPassword::CountryChanged(int index)
+{
+    if (DialingCode() == "+86")
+    {
+        ui.edUser->textEdit->setPlaceholderText(tr("Enter the mobile phone"));
+    }
+    else
+    {
+        ui.edUser->textEdit->setPlaceholderText(tr("Enter the email address"));
+    }
 }

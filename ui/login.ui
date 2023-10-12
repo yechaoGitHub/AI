@@ -39,7 +39,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="spacing">
-    <number>16</number>
+    <number>8</number>
    </property>
    <property name="leftMargin">
     <number>24</number>
@@ -154,13 +154,13 @@
      <property name="minimumSize">
       <size>
        <width>352</width>
-       <height>272</height>
+       <height>276</height>
       </size>
      </property>
      <property name="maximumSize">
       <size>
        <width>352</width>
-       <height>272</height>
+       <height>276</height>
       </size>
      </property>
      <widget class="WUserNameLogin" name="userLogin"/>

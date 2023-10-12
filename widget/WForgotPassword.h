@@ -22,6 +22,7 @@ protected:
 
 private:
     void GetVCodeClicked();
+    void CountryChanged(int index);
 
     Ui::ForgotPassword ui;
 };

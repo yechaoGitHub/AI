@@ -141,11 +141,9 @@ void WMobileLogin::CountryChanged(int index)
     if (DialingCode() == "+86")
     {
         ui.codeEdit->textEdit->setPlaceholderText(tr("Enter the mobile phone"));
-
     }
     else
     {
         ui.codeEdit->textEdit->setPlaceholderText(tr("Enter the email address"));
-
     }
 }

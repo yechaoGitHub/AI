@@ -27,11 +27,14 @@ WRegister::WRegister(QWidget* parent) :
     ui.edRecommend->SetImage(":/QtTest/icon/lock.png");
     ui.edRecommend->textEdit->setPlaceholderText("(Optional) Enter the invitation code");
 
-    signBtn = ui.pbSignUp;
-
     ui.verificationCodePic->SetModuleType("register");
 
     connect(ui.getCodeBtn, &QPushButton::clicked, this, &WRegister::GetCodeCallback);
+    connect(ui.cbPhone, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WRegister::CountryChanged);
+
+    signBtn = ui.pbSignUp;
+
+    CountryChanged(0);
 }
 
 WRegister::~WRegister()
@@ -134,5 +137,17 @@ void WRegister::GetCodeCallback()
     else
     {
         ins.SendMailVerfyCode(phoneNumber, verifyCode, uuid, "register", callback);
+    }
+}
+
+void WRegister::CountryChanged(int index)
+{
+    if (DialingCode() == "+86")
+    {
+        ui.edUser->textEdit->setPlaceholderText(tr("Enter the mobile phone"));
+    }
+    else
+    {
+        ui.edUser->textEdit->setPlaceholderText(tr("Enter the email address"));
     }
 }

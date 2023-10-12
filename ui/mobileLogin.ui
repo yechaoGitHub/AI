@@ -302,16 +302,32 @@ border-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF,
          <number>0</number>
         </property>
         <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>15</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
          <widget class="QLabel" name="label">
           <property name="minimumSize">
            <size>
-            <width>32</width>
+            <width>16</width>
             <height>16</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>32</width>
+            <width>16</width>
             <height>16</height>
            </size>
           </property>
@@ -327,6 +343,22 @@ border-color:rgba(255,255,255,50%);</string>
            <string/>
           </property>
          </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_3">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>7</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
         <item>
          <widget class="QLineEdit" name="lineEdit">

@@ -24,6 +24,7 @@ protected:
 
 private:
     void GetCodeCallback();
+    void CountryChanged(int index);
 
     Ui::signUp ui;
 };
