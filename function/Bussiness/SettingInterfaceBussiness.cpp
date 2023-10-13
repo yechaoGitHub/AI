@@ -481,18 +481,18 @@ void SettingInterfaceBussiness::_removeTeamReq(qint64 userId)
         });
     client.timeout([=]() {
         qDebug() << "removeTeamReq timeout";
-        emit sig_common_replay(httpReqType::Remove_Team, false, "移除用户超时");
+        emit sig_common_replay(httpReqType::Remove_Team, false, tr("remove user timeout"));
         });
     client.fail([=](const QString& response, int code) {
         qDebug() << "removeTeamReq error code=" << code;
-        emit sig_common_replay(httpReqType::Remove_Team, false, "移除用户请求失败");
+        emit sig_common_replay(httpReqType::Remove_Team, false, tr("remove user fail"));
         });
     client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::removeTeamReq(qint64 userId)
 {
-    QMetaObject::invokeMethod(this, "_getUserInfoReq", Q_ARG(qint64, userId));
+    QMetaObject::invokeMethod(this, "_removeTeamReq", Q_ARG(qint64, userId));
 }
 
 void SettingInterfaceBussiness::feedBackReq(const QString& msg)

@@ -90,9 +90,14 @@ void WInvitePage::slot_inviteReplay(int type, bool success, const QString& msg)
 
     }
     else if (type == httpReqType::Remove_Team) {
-        QTimer::singleShot(400, this, [=]() {
-            reqTeamData();
-            });
+        if (success) {
+            QTimer::singleShot(200, this, [=]() {
+                reqTeamData();
+                });
+        }
+        else {
+            AiSound::GetInstance().ShowTip(this, msg);
+        }
     }
 }
 

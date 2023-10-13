@@ -58,8 +58,6 @@ Section "MainSection" SEC01
 	File /r "Bin\*.*"
 	CreateShortCut "$DESKTOP\AiSound.lnk" "$INSTDIR\AiSound.exe"
 	
-	;SetShellVarContext all
-        ;CreateShortCut "$SMSTARTUP\AiSound.lnk" "$INSTDIR\AiSound.exe"
 	SetAutoClose true
 SectionEnd
 
