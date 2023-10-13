@@ -1,7 +1,7 @@
 ; 该脚本使用 HM VNISEdit 脚本编辑器向导产生
 
 ; 安装程序初始定义常量
-!define PRODUCT_NAME "AiSound"
+!define PRODUCT_NAME "SoundaAI"
 !define PRODUCT_VERSION "1.0.1"
 !define PRODUCT_PUBLISHER "AiSound"
 !define PRODUCT_WEB_SITE "http://www.aisound.com"
@@ -23,6 +23,9 @@ SetCompressor lzma
 ; 欢迎页面
 !insertmacro MUI_PAGE_WELCOME
 ; 许可协议页面
+
+!insertmacro MUI_PAGE_DIRECTORY
+
 ; 安装过程页面
 !insertmacro MUI_PAGE_INSTFILES
 
@@ -43,8 +46,8 @@ SetCompressor lzma
 ; ------ MUI 现代界面定义结束 ------
 
 Name "${PRODUCT_NAME} ${PRODUCT_VERSION}"
-OutFile "AiSoundSetup-v${PRODUCT_VERSION}.exe"
-InstallDir "$PROGRAMFILES\AiSound"
+OutFile "SoundaAISetup-v${PRODUCT_VERSION}.exe"
+InstallDir "$PROGRAMFILES\SoundaAI"
 InstallDirRegKey HKLM "${PRODUCT_UNINST_KEY}" "UninstallString"
 ShowInstDetails show
 ShowUnInstDetails show
@@ -56,7 +59,7 @@ Section "MainSection" SEC01
   CreateDirectory "$SMPROGRAMS\AiSound"
 
 	File /r "Bin\*.*"
-	CreateShortCut "$DESKTOP\AiSound.lnk" "$INSTDIR\AiSound.exe"
+	CreateShortCut "$DESKTOP\SoundaAI.lnk" "$INSTDIR\AiSound.exe"
 	
 	SetAutoClose true
 SectionEnd
