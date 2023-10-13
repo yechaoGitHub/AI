@@ -127,7 +127,6 @@ QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
          <font>
           <family>微软雅黑</family>
           <pointsize>16</pointsize>
-          <weight>50</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
@@ -166,6 +165,18 @@ QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>89</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>89</width>
+          <height>36</height>
+         </size>
         </property>
         <property name="styleSheet">
          <string notr="true">QComboBox
@@ -256,6 +267,18 @@ background-repeat:no-repeat;</string>
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>89</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>89</width>
+          <height>36</height>
+         </size>
         </property>
         <property name="styleSheet">
          <string notr="true">QComboBox
@@ -573,7 +596,6 @@ border-color:rgba(255,255,255,50%);</string>
      <property name="font">
       <font>
        <family>微软雅黑</family>
-       <weight>50</weight>
        <italic>false</italic>
        <bold>false</bold>
       </font>

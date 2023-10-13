@@ -67,7 +67,7 @@ private:
     QWebSocket              _webSocket;
     QThread                 _workThread;
     QString                 _srcLan;
-    QString                 _speaker;
+    int                     _speaker;
     bool                    _autoSender = false;
 
     QByteArray              _voiceBuffer;

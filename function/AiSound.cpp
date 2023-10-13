@@ -53,7 +53,7 @@ const std::map<int, std::pair<QString, QString>> MP_ID_TO_SEX =
 {
     {0, {QString::fromLocal8Bit("其他"), QString::fromLocal8Bit("Other")}},
     {1, {QString::fromLocal8Bit("男"), QString::fromLocal8Bit("Man")}},
-    {1, {QString::fromLocal8Bit("女"), QString::fromLocal8Bit("Woman")}},
+    {2, {QString::fromLocal8Bit("女"), QString::fromLocal8Bit("Woman")}},
 };
 
 AiSound AiSound::INSTANCE;
