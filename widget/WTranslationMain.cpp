@@ -283,7 +283,7 @@ void WTranslationMain::SetPlayBtnState(bool play)
     else
     {
         ui.stopBtn->setStyleSheet(stopStyle);
-        ui.stopBtn->setText(QString::fromLocal8Bit("Stpp"));
+        ui.stopBtn->setText(QString::fromLocal8Bit("Stop"));
     }
 }
 

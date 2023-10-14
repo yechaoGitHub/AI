@@ -163,7 +163,7 @@ QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
           </property>
           <property name="styleSheet">
            <string notr="true">color:rgb(255,255,255);
-font: 18px &quot;微软雅黑&quot;;
+font: 20px &quot;微软雅黑&quot;;
 </string>
           </property>
           <property name="text">
