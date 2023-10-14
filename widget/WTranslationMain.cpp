@@ -14,6 +14,7 @@ background-repeat:no-repeat;\
 text-align:left;\
 padding-left:20px;\
 font-size:14px;\
+background-color: rgba(255, 255, 255,0);\
 color:#FFFFFF;";
 
 QString playStyle = "background-image:url(:/QtTest/icon/Speech/pause.png);\
@@ -22,18 +23,20 @@ background-repeat:no-repeat;\
 text-align:left;\
 padding-left:20px;\
 font-size:14px;\
+background-color: rgba(255, 255, 255,0);\
 color:#FFFFFF;";
 
 WTranslationMain::WTranslationMain(QWidget* parent) :
     QWidget{ parent }
 {
     ui.setupUi(this);
+    setAttribute(Qt::WA_TranslucentBackground);
+
+    setWindowFlags(Qt::FramelessWindowHint);
+
 
     ui.cbSrc->setView(new QListView{});
     ui.cbDest->setView(new QListView{});
-
-    this->setWindowFlags(Qt::FramelessWindowHint);
-    this->setAttribute(Qt::WA_TranslucentBackground, true);
 
     SetPlayBtnState(true);
 
@@ -107,22 +110,6 @@ void WTranslationMain::mouseReleaseEvent(QMouseEvent* event)
 
 void WTranslationMain::paintEvent(QPaintEvent* event)
 {
-    QPainter painter{ this };
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
-
-    auto color = SETTING.getTransBkColor();
-
-    QPainterPath path;
-    path.setFillRule(Qt::WindingFill);
-    path.addRoundedRect(this->rect(), 16, 16);
-    if (_mouseHold)
-    {
-        painter.fillPath(path, QBrush({color}));
-    }
-    else
-    {
-        painter.fillPath(path, QBrush(QColor(0, 0, 0, 1)));
-    }
 }
 
 void WTranslationMain::showEvent(QShowEvent* event)
@@ -144,25 +131,33 @@ void WTranslationMain::closeEvent(QCloseEvent* event)
 
 void WTranslationMain::enterEvent(QEvent* event)
 {
+    int ret = SETTING.getTransBk();
+    if (ret == 2) {
+        ui.frame->setStyleSheet("QFrame#frame{background-color: rgba(155, 155, 155, 204);border:none;border-radius:15px;}");
+    }
+    else {
+        ui.frame->setStyleSheet("QFrame#frame{background-color: rgba(19, 19, 19,204);border:none;border-radius:15px;}");
+    }
     _mouseHold = true;
     update();
 }
 
 void WTranslationMain::leaveEvent(QEvent* event)
 {
+    ui.frame->setStyleSheet("QFrame#frame{background-color: rgba(0, 0, 0,2);border:none;border-radius:15px;}");
     _mouseHold = false;
     update();
 }
 
 void WTranslationMain::focusInEvent(QFocusEvent* event)
 {
-    _mouseHold = true;
+    //_mouseHold = true;
     update();
 }
 
 void WTranslationMain::focusOutEvent(QFocusEvent* event)
 {
-    _mouseHold = false;
+    //_mouseHold = false;
     update();
 }
 

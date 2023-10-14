@@ -409,11 +409,18 @@ void AiSound::ExportSound(const QString& msg, int ttsSpeaker, ExportSoundCallbac
 
 void AiSound::ShowLoginFrame()
 {
+    if (_login_ok) {
+        return;
+    }
     _wLoginFrame->show();
 }
 
 void AiSound::ShowRobotNavigation()
 {
+    if (_login_ok) {
+        return;
+    }
+    _login_ok = true;
     //_wTranslationSelect->show();
     _wLoginFrame->close();
     QDesktopWidget* deskWgt = QApplication::desktop();
@@ -424,8 +431,11 @@ void AiSound::ShowRobotNavigation()
 
 void AiSound::slot_robot_nv_clicked(Navig_Type type)
 {
-    if (AiFunctionRunning())
+    /*if (AiFunctionRunning())
     {
+        return;
+    }*/
+    if (!_login_ok) {
         return;
     }
 
@@ -455,6 +465,8 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
         _set_main->Show(1);
     }
     else if (type == Navig_Type::Quite) {
+        _login_ok = false;
+
         if (_robotNaviga) {
             delete _robotNaviga;
             _robotNaviga = nullptr;
@@ -472,6 +484,7 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
             _set_main = nullptr;
         }
 
+        Uninitialize();
         qApp->exit();
     }
 }

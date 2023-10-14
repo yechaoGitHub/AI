@@ -10,7 +10,6 @@
 
 #include "HttpAsync.h"
 #include "QHook.h"
-
 #include "WTip.h"
 
 #include <QTranslator>
@@ -215,5 +214,6 @@ private:
     Hook hook;
 
     int                                 _heartBeatId = -1;
+    bool                                _login_ok = false;
 };
 
