@@ -166,33 +166,6 @@ void WRobotChat::on_pb_send_clicked()
 
         auto& bot = AiSound::GetInstance().GetChatBot();
         bot.SendMessage(msg);
-
-        /*if (isSending) {
-            chatMessageTime(time);
-
-            WChatItem* messageW = new WChatItem(ui.listWidget->parentWidget());
-            QListWidgetItem* item = new QListWidgetItem(ui.listWidget);
-            chatMessage(messageW, item, msg, time, WChatItem::User_Self);
-            messageW->setTextSuccess();
-        }
-        else {
-            bool isOver = true;
-            for (int i = ui.listWidget->count() - 1; i > 0; i--) {
-                WChatItem* messageW = (WChatItem*)ui.listWidget->itemWidget(ui.listWidget->item(i));
-                if (messageW->text() == msg) {
-                    isOver = false;
-                    messageW->setTextSuccess();
-                }
-            }
-            if (isOver) {
-                chatMessageTime(time);
-
-                WChatItem* messageW = new WChatItem(ui.listWidget->parentWidget());
-                QListWidgetItem* item = new QListWidgetItem(ui.listWidget);
-                chatMessage(messageW, item, msg, time, WChatItem::User_Self);
-                messageW->setTextSuccess();
-            }
-        }*/
     }
 
     ui.listWidget->setCurrentRow(ui.listWidget->count() - 1);

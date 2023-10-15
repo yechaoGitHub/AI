@@ -17,6 +17,7 @@ public:
     bool Connected();
     void SendMessage(const QString& msg);
     bool IsRunning();
+    int SendMessageCount();
 
     int TemplateID();
     QString ConversationID();
@@ -50,6 +51,7 @@ private:
     QWebSocket              _webSocket;
     QThread                 _workThread;
     int                     _id = 0;
+    int                     _counter = 0;
     bool                    _connected = false;
     int                     _heartBeatTimer = 0;
     QString                 _receiveText;

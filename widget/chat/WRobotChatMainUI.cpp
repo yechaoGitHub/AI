@@ -82,6 +82,10 @@ void RobotChatMainUI::SaveBtnClicked()
                 auto& ins = AiSound::GetInstance();
                 ins.ShowTip(this, msg);
             }
+            else
+            {
+                _saveCounter++;
+            }
         };
 
         ins.SaveChat(name, callback);

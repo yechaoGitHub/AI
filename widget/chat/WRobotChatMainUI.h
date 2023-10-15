@@ -26,5 +26,6 @@ private slots:
 private:
     void SaveBtnClicked();
 
-    Ui::RobotChatMainUIClass ui;
+    Ui::RobotChatMainUIClass    ui;
+    int                         _saveCounter = 0;
 };

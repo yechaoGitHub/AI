@@ -71,6 +71,11 @@ bool ChatBot::IsRunning()
     return _workThread.isRunning();
 }
 
+int ChatBot::SendMessageCount()
+{
+    return _counter;
+}
+
 int ChatBot::TemplateID()
 {
     return _id;
@@ -121,6 +126,8 @@ void ChatBot::SendMessageInternal(const QString& msg)
     QByteArray byteArray = document.toJson(QJsonDocument::Compact);
 
     _webSocket.sendTextMessage(byteArray);
+
+    _counter++;
 }
 
 void ChatBot::SendParam()
