@@ -8,24 +8,6 @@
 #include <QPainterPath>
 #include <QListView>
 
-QString stopStyle = "background-image:url(:/QtTest/icon/stop.png);\
-background-position:left;\
-background-repeat:no-repeat;\
-text-align:left;\
-padding-left:20px;\
-font-size:14px;\
-background-color: rgba(255, 255, 255,0);\
-color:#FFFFFF;";
-
-QString playStyle = "background-image:url(:/QtTest/icon/Speech/pause.png);\
-background-position:left;\
-background-repeat:no-repeat;\
-text-align:left;\
-padding-left:20px;\
-font-size:14px;\
-background-color: rgba(255, 255, 255,0);\
-color:#FFFFFF;";
-
 WTranslationMain::WTranslationMain(QWidget* parent) :
     QWidget{ parent }
 {
@@ -33,12 +15,8 @@ WTranslationMain::WTranslationMain(QWidget* parent) :
     setAttribute(Qt::WA_TranslucentBackground);
 
     setWindowFlags(Qt::FramelessWindowHint);
-
-
     ui.cbSrc->setView(new QListView{});
     ui.cbDest->setView(new QListView{});
-
-    SetPlayBtnState(true);
 
     this->resize(1078, 252);
 
@@ -56,6 +34,8 @@ WTranslationMain::WTranslationMain(QWidget* parent) :
     ui.lockButton->style()->unpolish(ui.lockButton);
 
     setMouseTracking(true);
+
+    SyncUI();
 }
 
 WTranslationMain::~WTranslationMain()
@@ -199,12 +179,6 @@ void WTranslationMain::StopClicked()
     {
         auto& translation = AiSound::GetInstance().GetTranslation();
         translation.Disconnect();
-
-        ui.timerWidget->StartTimer(false);
-        SetPlayBtnState(true);
-
-        ui.cbSrc->setEnabled(true);
-        ui.cbDest->setEnabled(true);
     }
     else
     {
@@ -216,19 +190,12 @@ void WTranslationMain::StopClicked()
             return;
         }
 
-        ui.subtitleWidget->Subtitle()->SetTranslate(srcLan.name, destLan.name);
-
-        trans.Connect(token, srcLan.language, destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo(), SETTING.getTransTT());
-        ui.timerWidget->StartTimer(true);
-        SetPlayBtnState(false);
-
         auto& ins = AiSound::GetInstance();
+
         bool enableConversation = ins.IsConversationSuggestionShow();
         auto& token = ins.Token();
-        ui.timerWidget->Clear();
-
-        ui.cbSrc->setEnabled(false);
-        ui.cbDest->setEnabled(false);
+        trans.Connect(token, srcLan.language, destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo(), SETTING.getTransTT());
+        ui.subtitleWidget->Subtitle()->SetTranslate(srcLan.name, destLan.name);
     }
 }
 
@@ -237,18 +204,29 @@ void WTranslationMain::PlayInternal(bool play)
     ui.timerWidget->Play(play);
 }
 
-void WTranslationMain::TransStateChanged()
+void WTranslationMain::TransStateChanged(int state)
 {
-    auto& trans = AiSound::GetInstance().GetTranslation();
-    if (trans.IsRunning())
+    switch (state)
     {
-        ui.timerWidget->StartTimer(true);
-        SetPlayBtnState(false);
-    }
-    else
-    {
-        ui.timerWidget->StartTimer(false);
-        SetPlayBtnState(true);
+        case TR_RUNING:
+            ui.timerWidget->StartTimer(true);
+            ui.timerWidget->Clear();
+            ui.cbSrc->setEnabled(false);
+            ui.cbDest->setEnabled(false);
+
+            ui.stopBtn->setProperty("play", true);
+            ui.stopBtn->style()->unpolish(ui.stopBtn);
+
+        break;
+
+        case TR_STOP:
+            ui.timerWidget->StartTimer(false);
+            ui.cbSrc->setEnabled(true);
+            ui.cbDest->setEnabled(true);
+
+            ui.stopBtn->setProperty("play", false);
+            ui.stopBtn->style()->unpolish(ui.stopBtn);
+        break;
     }
 }
 
@@ -270,20 +248,6 @@ void WTranslationMain::TranslationReceived(const QString& src, const QString& ds
     else
     {
         _newSubtitle = true;
-    }
-}
-
-void WTranslationMain::SetPlayBtnState(bool play)
-{
-    if (play)
-    {
-        ui.stopBtn->setStyleSheet(playStyle);
-        ui.stopBtn->setText(QString::fromLocal8Bit("Play"));
-    }
-    else
-    {
-        ui.stopBtn->setStyleSheet(stopStyle);
-        ui.stopBtn->setText(QString::fromLocal8Bit("Stop"));
     }
 }
 
@@ -321,4 +285,19 @@ bool WTranslationMain::GetSelectDestLanguage(TranslationLanguage& language)
     language = _srcLan[index];
 
     return true;
+}
+
+void WTranslationMain::SyncUI()
+{
+    auto& trans = AiSound::GetInstance().GetTranslation();
+    if (trans.IsRunning())
+    {
+        ui.stopBtn->setProperty("play", true);
+        ui.stopBtn->style()->unpolish(ui.stopBtn);
+    }
+    else
+    {
+        ui.stopBtn->setProperty("play", false);
+        ui.stopBtn->style()->unpolish(ui.stopBtn);
+    }
 }

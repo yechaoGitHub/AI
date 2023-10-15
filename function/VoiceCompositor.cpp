@@ -105,7 +105,7 @@ void VoiceCompositor::SendParam()
     QJsonObject dataobj;
     dataobj.insert("type", "START");
     dataobj.insert("from", _srcLan);
-    dataobj.insert("tts_speaker", _speaker);
+    dataobj.insert("ttsSpeaker", _speaker);
     dataobj.insert("isAutoSend", _autoSender);
 
     QJsonDocument document;

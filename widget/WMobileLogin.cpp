@@ -22,6 +22,9 @@ WMobileLogin::WMobileLogin(QWidget* parent) :
 
     ui.lbEstimated->setVisible(false);
 
+    ui.getCodeBtn->setProperty("enable", true);
+    ui.getCodeBtn->style()->unpolish(ui.getCodeBtn);
+
     ui.verificationCodePic->SetModuleType("login");
 
     CountryChanged(0);
@@ -61,7 +64,8 @@ QString WMobileLogin::PhoneCode()
 void WMobileLogin::timerEvent(QTimerEvent* event)
 {
     ui.lbEstimated->setVisible(true);
-    QString text = QString::fromLocal8Bit("Estimated time of code in %1 seconds").arg(_downCount);
+    QString text{ tr("Estimated time of code in %1 seconds") };
+    text = text.arg(_downCount);
     ui.lbEstimated->setText(text);
 
     _downCount--;
@@ -70,6 +74,8 @@ void WMobileLogin::timerEvent(QTimerEvent* event)
         killTimer(_timer);
         ui.lbEstimated->setVisible(false);
         ui.getCodeBtn->setEnabled(true);
+        ui.getCodeBtn->setProperty("enable", true);
+        ui.getCodeBtn->style()->unpolish(ui.getCodeBtn);
     }
 }
 
@@ -123,6 +129,8 @@ void WMobileLogin::GetCodeCallback()
             _downCount = 60;
             _timer = startTimer(1000);
             ui.getCodeBtn->setEnabled(false);
+            ui.getCodeBtn->setProperty("enable", false);
+            ui.getCodeBtn->style()->unpolish(ui.getCodeBtn);
         }
     };
 

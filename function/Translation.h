@@ -13,6 +13,8 @@ Q_DECLARE_METATYPE(TransType);
 enum SystemLanguage{ SYSTEM_LANGUAGE_CHS, SYSTEM_LANGUAGE_EN };
 Q_DECLARE_METATYPE(SystemLanguage);
 
+enum TrState { TR_RUNING, TR_STOP };
+
 class Translation : public QObject
 {
     Q_OBJECT
@@ -36,7 +38,7 @@ Q_SIGNALS:
     void connect(const QString& token, const QString& srcLan, const QString& destLan, bool enableConvGuide, const QAudioDeviceInfo& micDev, const QAudioDeviceInfo& momitorDev, int type, SystemLanguage language);
     void disconnect();
     void soundPlay(bool play);
-    void stateChanged();
+    void stateChanged(int state);
 
     void connected();
     void disconnected();

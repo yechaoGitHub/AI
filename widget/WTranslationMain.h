@@ -35,11 +35,11 @@ private:
     void LockClicked();
     void StopClicked();
     void PlayInternal(bool play);
-    void TransStateChanged();
+    void TransStateChanged(int state);
     void TranslationReceived(const QString& src, const QString& dst, int type);
-    void SetPlayBtnState(bool play);
     bool GetSelectSrcLanguage(TranslationLanguage& language);
     bool GetSelectDestLanguage(TranslationLanguage& language);
+    void SyncUI();
 
     Ui::translateMain                   ui;
 

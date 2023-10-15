@@ -21,11 +21,14 @@ public:
 
 protected:
     void showEvent(QShowEvent* event) override;
+    void timerEvent(QTimerEvent* event) override;
 
 private:
     void GetCodeCallback();
     void CountryChanged(int index);
 
-    Ui::signUp ui;
+    Ui::signUp      ui;
+    int             _timer = 0;
+    int             _downCount = 0;
 };
 

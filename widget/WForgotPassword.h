@@ -19,10 +19,13 @@ public:
 
 protected:
     void showEvent(QShowEvent* event) override;
+    void timerEvent(QTimerEvent* event) override;
 
 private:
     void GetVCodeClicked();
     void CountryChanged(int index);
 
-    Ui::ForgotPassword ui;
+    Ui::ForgotPassword  ui;
+    int                 _timer = 0;
+    int                 _downCount = 0;
 };

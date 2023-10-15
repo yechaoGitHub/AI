@@ -32,6 +32,11 @@ WForgotPassword::WForgotPassword(QWidget* parent) :
     verifyBtn = ui.pbVerfy;
 
     CountryChanged(0);
+
+    ui.getCodeBtn->setProperty("enable", true);
+    ui.getCodeBtn->style()->unpolish(ui.getCodeBtn);
+
+    ui.lbEstimated->setVisible(false);
 }
 
 WForgotPassword::~WForgotPassword()
@@ -98,6 +103,24 @@ void WForgotPassword::showEvent(QShowEvent* event)
     }
 }
 
+void WForgotPassword::timerEvent(QTimerEvent* event)
+{
+    ui.lbEstimated->setVisible(true);
+    QString text{ tr("Estimated time of code in %1 seconds") };
+    text = text.arg(_downCount);
+    ui.lbEstimated->setText(text);
+
+    _downCount--;
+    if (_downCount == 0)
+    {
+        killTimer(_timer);
+        ui.lbEstimated->setVisible(false);
+        ui.getCodeBtn->setEnabled(true);
+        ui.getCodeBtn->setProperty("enable", true);
+        ui.getCodeBtn->style()->unpolish(ui.getCodeBtn);
+    }
+}
+
 void WForgotPassword::GetVCodeClicked()
 {
     auto& ins = AiSound::GetInstance();
@@ -113,6 +136,14 @@ void WForgotPassword::GetVCodeClicked()
         {
             auto& ins = AiSound::GetInstance();
             ins.ShowTip(this, msg);
+        }
+        else
+        {
+            _downCount = 60;
+            _timer = startTimer(1000);
+            ui.getCodeBtn->setEnabled(false);
+            ui.getCodeBtn->setProperty("enable", false);
+            ui.getCodeBtn->style()->unpolish(ui.getCodeBtn);
         }
     };
 

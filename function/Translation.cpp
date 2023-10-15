@@ -62,15 +62,11 @@ void Translation::Connect(const QString& token, const QString& srcLan, const QSt
 void Translation::StartMic()
 {
     _audioInput.StartMic();
-
-    emit stateChanged();
 }
 
 void Translation::StopMic()
 {
     _audioInput.EndMic();
-
-    emit stateChanged();
 }
 
 void Translation::Disconnect()
@@ -215,13 +211,14 @@ void Translation::WebsocketConnected()
     _connected = true;
     _heartBeatTimer = startTimer(5000);
     emit connected();
-    emit stateChanged();
+    emit stateChanged(TR_RUNING);
 }
 
 void Translation::WebsocketDisconnected()
 {
     _connected = false;
     emit disconnected();
+    emit stateChanged(TR_STOP);
     _workThread.quit();
 }
 

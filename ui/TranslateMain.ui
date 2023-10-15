@@ -156,7 +156,6 @@ QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
            <font>
             <family>微软雅黑</family>
             <pointsize>-1</pointsize>
-            <weight>50</weight>
             <italic>false</italic>
             <bold>false</bold>
            </font>
@@ -197,6 +196,18 @@ font: 20px &quot;微软雅黑&quot;;
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>36</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>80</width>
+            <height>36</height>
+           </size>
           </property>
           <property name="styleSheet">
            <string notr="true">
@@ -266,6 +277,18 @@ background-repeat:no-repeat;</string>
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>80</width>
+            <height>36</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>80</width>
+            <height>36</height>
+           </size>
           </property>
           <property name="styleSheet">
            <string notr="true">QComboBox
@@ -356,14 +379,31 @@ QComboBox QAbstractItemView::item {
            <cursorShape>PointingHandCursor</cursorShape>
           </property>
           <property name="styleSheet">
-           <string notr="true">background-image:url(:/QtTest/icon/stop.png);
+           <string notr="true">QPushButton[play=true]
+{
+background-image:url(:/QtTest/icon/stop.png);
 background-position:left;
 background-repeat: no-repeat;
 text-align:left;
 padding-left:20px;
 font-size:14px;
 color:#FFFFFF;
-background-color: rgba(255, 255, 255,0);</string>
+background-color: rgba(255, 255, 255,0);
+}
+
+QPushButton[play=false]
+{
+background-image:url(:/QtTest/icon/Speech/pause.png);
+background-position:left;
+background-repeat: no-repeat;
+text-align:left;
+padding-left:20px;
+font-size:14px;
+color:#FFFFFF;
+background-color: rgba(255, 255, 255,0);
+}
+
+</string>
           </property>
           <property name="text">
            <string>Stop</string>
@@ -562,7 +602,6 @@ border-color:rgba(255,255,255,50%);</string>
         <property name="font">
          <font>
           <family>微软雅黑</family>
-          <weight>50</weight>
           <italic>false</italic>
           <bold>false</bold>
          </font>
