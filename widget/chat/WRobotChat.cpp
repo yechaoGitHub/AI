@@ -270,34 +270,6 @@ void WRobotChat::CurItemStopAnimation()
     }
 }
 
-//void WRobotChat::SaveBtnClicked()
-//{
-//    WName nameDlg{ parentWidget() };
-//    nameDlg.resize(QSize{ 476, 116 });
-//    nameDlg.move(0, 0);
-//    nameDlg.show();
-//
-//    nameDlg.exec();
-//
-//    if (nameDlg.Confirmed())
-//    {
-//        auto name = nameDlg.Name();
-//
-//        auto& ins = AiSound::GetInstance();
-//
-//        auto callback = [this](int code, const QString& msg, int32_t current, int32_t pages, int32_t records, int32_t size, int32_t total)
-//        {
-//            if (code != 200)
-//            {
-//                auto& ins = AiSound::GetInstance();
-//                ins.ShowTip(this, msg);
-//            }
-//        };
-//
-//        ins.SaveChat(name, callback);
-//    }
-//}
-
 void WRobotChat::chatMessage(WChatItem* messageW, QListWidgetItem* item, QString text, QString time, WChatItem::User_Type type)
 {
     messageW->setFixedWidth(this->width());
