@@ -423,7 +423,6 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
     else if (type == Navig_Type::Voice) {
         if (_wTranslationMain->isHidden())
         {
-            _wTranslationMain->SetLanguage(GetTranslationSrourceListData(), GetTranslationDestListData());
             _wTranslationMain->show();
         }
     }
@@ -806,11 +805,12 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
 
         case httpGetTranslationSource:
         {
+            _srcTranslationLanguage.clear();
+
             int code = document["code"].toInt();
             QString msg = document["msg"].toString();
             auto data = document["data"].toArray();
 
-            std::vector<TranslationLanguage> vecLan;
             for (const auto& it : data)
             {
                 TranslationLanguage lan;
@@ -818,11 +818,11 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
                 lan.language = obj["language"].toString();
                 lan.name = obj["name"].toString();
                 lan.nameEn = obj["nameEn"].toString();
-                vecLan.push_back(lan);
+                _srcTranslationLanguage.push_back(lan);
             }
 
             auto packet = dynamic_cast<HttpCallbackPacket<GetTranslationSourceListCallbackType>*>(packetRaw);
-            packet->callback(code, msg, std::move(vecLan));
+            packet->callback(code, msg, _srcTranslationLanguage);
         }
         break;
 
@@ -832,7 +832,7 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
             QString msg = document["msg"].toString();
             auto data = document["data"].toArray();
 
-            std::vector<TranslationLanguage> vecLan;
+            _destTranslationLanguage.clear();
             for (const auto& it : data)
             {
                 TranslationLanguage lan;
@@ -840,20 +840,21 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
                 lan.language = obj["languaue"].toString();
                 lan.name = obj["name"].toString();
                 lan.nameEn = obj["nameEn"].toString();
-                vecLan.push_back(lan);
+                _destTranslationLanguage.push_back(lan);
             }
 
             auto packet = dynamic_cast<HttpCallbackPacket<GetTranslationDestListCallbackType>*>(packetRaw);
-            packet->callback(code, msg, std::move(vecLan));
+            packet->callback(code, msg, _destTranslationLanguage);
         }
         break;
 
         case httpGetVoiceSpeakerCallback:
         {
+            _voiceData.clear();
+
             int code = document["code"].toInt();
             QString msg = document["msg"].toString();
 
-            std::vector<VoiceData> vecVoiceData;
             auto data = document["data"].toArray();
             for (const auto& it : data)
             {
@@ -867,11 +868,11 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
                 data.gender = obj["gender"].toInt();
                 data.genderName = obj["genderName"].toString();
 
-                vecVoiceData.push_back(data);
+                _voiceData.push_back(data);
             }
 
             auto packet = dynamic_cast<HttpCallbackPacket<GetVoiceSpeakerCallbackType>*>(packetRaw);
-            packet->callback(code, msg, std::move(vecVoiceData));
+            packet->callback(code, msg, _voiceData);
         }
         break;
 
@@ -937,40 +938,12 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
     delete packetRaw;
 }
 
-void AiSound::FetchAppData()
-{
-    GetTranslationSrourceList([this](int code, const QString& msg, std::vector<TranslationLanguage> languageList)
-        {
-            if (code == 200)
-            {
-                _srcTranslationLanguage = std::move(languageList);
-            }
-        });
-
-    GetTranslationDestList([this](int code, const QString& msg, std::vector<TranslationLanguage> languageList)
-        {
-            if (code == 200)
-            {
-                _destTranslationLanguage = std::move(languageList);
-            }
-        });
-
-    GetVoiceSpeaker([this](int code, const QString& msg, std::vector<VoiceData> vecVoiceData)
-        {
-            if (code == 200)
-            {
-                _voiceData = std::move(vecVoiceData);
-            }
-        });
-}
-
 void AiSound::UserLoginCallbackInternal(int code, const QString& msg, const QString& token)
 {
     if (code == 200)
     {
         _token = token;
         SETTING.setToken(token);
-        FetchAppData();
         _heartBeatId = startTimer(5000);
     }
 }

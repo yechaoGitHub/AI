@@ -13,8 +13,6 @@ public:
     WTranslationMain(QWidget* parent = nullptr);
     ~WTranslationMain();
 
-    void SetLanguage(const std::vector<TranslationLanguage>& srcLan, const std::vector<TranslationLanguage>& destLan);
-
     void Clear();
 
 protected:
@@ -43,8 +41,6 @@ private:
 
     Ui::translateMain                   ui;
 
-    std::vector<TranslationLanguage>    _srcLan;
-    std::vector<TranslationLanguage>    _destLan;
     QPoint                              _clickPos;
     bool                                _mouseHold = false;
     bool                                _mouseIn = false;

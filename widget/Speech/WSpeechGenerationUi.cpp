@@ -1,4 +1,5 @@
 #include "WSpeechGenerationUi.h"
+#include "VoiceType.h"
 #include "AiSound.h"
 #include "base/GlobalSetting.h"
 
@@ -97,58 +98,70 @@ void WSpeechGenerationUi::showEvent(QShowEvent* event)
     ui.comboBox_sex->clear();
     ui.comboBox_vector->clear();
 
-    auto&& lanData = ins.GetVoiceLanguage();
-    for (auto& data : lanData)
-    {
-        auto name = ins.GetVoiceLanguageName(data);
-        if (!name.isEmpty())
-        {
-            ui.comboBox_lang->addItem(name, data);
-        }
-    }
-
-    auto&& sexData = ins.GetVoiceSex(-1);
-    for (auto& data : sexData)
-    {
-        if (ui.comboBox_sex->findData(data) == -1)
-        {
-            auto name = ins.GetVoiceSexName(data);
-            if (!name.isEmpty())
-            {
-                ui.comboBox_sex->addItem(name, data);
-            }
-        }
-    }
-
-    auto langId = ui.comboBox_lang->currentData().toInt();
-    auto sexId = ui.comboBox_sex->currentData().toInt();
-    if (langId == -1 && sexId == -1)
-    {
-        return;
-    }
-    auto&& userData = ins.GetVoiceName(langId, sexId);
-    for (auto data : userData)
-    {
-        VoiceData voiceData;
-        if (ins.GetVoiceData(data, voiceData))
-        {
-            if (ui.comboBox_vector->findData(voiceData.id) == -1)
-            {
-                ui.comboBox_vector->addItem(voiceData.name, voiceData.id);
-            }
-        }
-    }
-
     ui.vcEffectTimer->Clear();
 
-    if (ui.cbFrom->count() == 0)
+    auto callback = [this](int code, const QString& msg, std::vector<VoiceData> vecVoiceData)
     {
-        auto&& listData = ins.GetTranslationSrourceListData();
-        for (auto data : listData)
+        if (code != 200)
         {
-            ui.cbFrom->addItem(data.name);
+            return;
         }
-    }
+
+        auto& ins = AiSound::GetInstance();
+
+        auto&& lanData = ins.GetVoiceLanguage();
+        for (auto& data : lanData)
+        {
+            auto name = ins.GetVoiceLanguageName(data);
+            if (!name.isEmpty())
+            {
+                ui.comboBox_lang->addItem(name, data);
+            }
+        }
+
+        auto&& sexData = ins.GetVoiceSex(-1);
+        for (auto& data : sexData)
+        {
+            if (ui.comboBox_sex->findData(data) == -1)
+            {
+                auto name = ins.GetVoiceSexName(data);
+                if (!name.isEmpty())
+                {
+                    ui.comboBox_sex->addItem(name, data);
+                }
+            }
+        }
+
+        auto langId = ui.comboBox_lang->currentData().toInt();
+        auto sexId = ui.comboBox_sex->currentData().toInt();
+        if (langId == -1 && sexId == -1)
+        {
+            return;
+        }
+        auto&& userData = ins.GetVoiceName(langId, sexId);
+        for (auto data : userData)
+        {
+            VoiceData voiceData;
+            if (ins.GetVoiceData(data, voiceData))
+            {
+                if (ui.comboBox_vector->findData(voiceData.id) == -1)
+                {
+                    ui.comboBox_vector->addItem(voiceData.name, voiceData.id);
+                }
+            }
+        }
+
+        if (ui.cbFrom->count() == 0)
+        {
+            auto&& listData = ins.GetTranslationSrourceListData();
+            for (auto data : listData)
+            {
+                ui.cbFrom->addItem(data.name);
+            }
+        }
+    };
+
+    ins.GetVoiceSpeaker(callback);
 
     SyncUI();
 }

@@ -42,24 +42,6 @@ WTranslationMain::~WTranslationMain()
 {
 }
 
-void WTranslationMain::SetLanguage(const std::vector<TranslationLanguage>& srcLan, const std::vector<TranslationLanguage>& destLan)
-{
-    _srcLan = srcLan;
-    _destLan = destLan;
-
-    ui.cbSrc->clear();
-    for (auto item : _srcLan)
-    {
-        ui.cbSrc->addItem(item.name);
-    }
-
-    ui.cbDest->clear();
-    for (auto item : _destLan)
-    {
-        ui.cbDest->addItem(item.name);
-    }
-}
-
 void WTranslationMain::Clear()
 {
     ui.subtitleWidget->Subtitle()->Clear();
@@ -98,6 +80,32 @@ void WTranslationMain::showEvent(QShowEvent* event)
     ui.cbSrc->setEnabled(true);
     ui.cbDest->setEnabled(true);
     Clear();
+    SyncUI();
+
+    auto& ins = AiSound::GetInstance();
+
+    ins.GetTranslationSrourceList([this](int code, const QString& msg, std::vector<TranslationLanguage> languageList)
+        {
+            if (code == 200)
+            {
+                for (auto item : languageList)
+                {
+                    ui.cbSrc->addItem(item.name);
+                }
+            }
+        });
+
+    ins.GetTranslationDestList([this](int code, const QString& msg, std::vector<TranslationLanguage> languageList)
+        {
+            if (code == 200)
+            {
+                for (auto item : languageList)
+                {
+                    ui.cbDest->addItem(item.name);
+                }
+            }
+        });
+
 }
 
 void WTranslationMain::closeEvent(QCloseEvent* event)
@@ -259,12 +267,15 @@ bool WTranslationMain::GetSelectSrcLanguage(TranslationLanguage& language)
         return false;
     }
 
-    if (index >= _srcLan.size())
+    auto& ins = AiSound::GetInstance();
+    const auto& data = ins.GetTranslationSrourceListData();
+
+    if (index >= data.size())
     {
         return false;
     }
 
-    language = _srcLan[index];
+    language = data[index];
 
     return true;
 }
@@ -277,12 +288,15 @@ bool WTranslationMain::GetSelectDestLanguage(TranslationLanguage& language)
         return false;
     }
 
-    if (index >= _srcLan.size())
+    auto& ins = AiSound::GetInstance();
+    const auto& data = ins.GetTranslationDestListData();
+
+    if (index >= data.size())
     {
         return false;
     }
 
-    language = _srcLan[index];
+    language = data[index];
 
     return true;
 }
@@ -294,10 +308,12 @@ void WTranslationMain::SyncUI()
     {
         ui.stopBtn->setProperty("play", true);
         ui.stopBtn->style()->unpolish(ui.stopBtn);
+        ui.stopBtn->setText(tr("Stop"));
     }
     else
     {
         ui.stopBtn->setProperty("play", false);
         ui.stopBtn->style()->unpolish(ui.stopBtn);
+        ui.stopBtn->setText(tr("Play"));
     }
 }

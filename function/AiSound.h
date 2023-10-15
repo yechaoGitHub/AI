@@ -171,7 +171,6 @@ private slots:
 private:
     AiSound();
     void HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const QByteArray& content, QVariant userParam);
-    void FetchAppData();
     void UserLoginCallbackInternal(int code, const QString& msg, const QString& token);
     bool AiFunctionRunning();
     void timerEvent(QTimerEvent* event) override;
