@@ -7,6 +7,8 @@
 #include <QWebsocket>
 #include <QThread>
 
+enum VCState { VC_RUNING, VC_STOP };
+
 class VoiceCompositor : public QObject
 {
     Q_OBJECT
@@ -31,7 +33,7 @@ Q_SIGNALS:
     void disconnected();
     void translationReceived(const QString& src, const QString& dst, int type);
     void soundPlay(bool play);
-    void stateChanged();
+    void stateChanged(int state);
 
 private:
 Q_SIGNALS:

@@ -31,31 +31,6 @@
 
 #include "base/HttpClient.h"
 
-const std::map<int, std::pair<QString, QString>> MP_ID_TO_LANG =
-{
-    {1, {QString::fromLocal8Bit("普通话"), QString::fromLocal8Bit("Mandarin")}},
-    {2, {QString::fromLocal8Bit("英话"), QString::fromLocal8Bit("English")}},
-    {3, {QString::fromLocal8Bit("日话"), QString::fromLocal8Bit("Japanese")}},
-    {4, {QString::fromLocal8Bit("阿拉伯话"), QString::fromLocal8Bit("Arabic")}},
-    {5, {QString::fromLocal8Bit("法话"), QString::fromLocal8Bit("French")}},
-    {6, {QString::fromLocal8Bit("俄话"), QString::fromLocal8Bit("Russian")}},
-    {7, {QString::fromLocal8Bit("西班牙话"), QString::fromLocal8Bit("Spanish")}},
-    {8, {QString::fromLocal8Bit("越南话"), QString::fromLocal8Bit("Vietnamese")}},
-    {9, {QString::fromLocal8Bit("泰话"), QString::fromLocal8Bit("Thai")}},
-    {10, {QString::fromLocal8Bit("马来话"), QString::fromLocal8Bit("Malay")}},
-    {11, {QString::fromLocal8Bit("德话"), QString::fromLocal8Bit("German")}},
-    {12, {QString::fromLocal8Bit("土耳其话"), QString::fromLocal8Bit("Turkish")}},
-    {13, {QString::fromLocal8Bit("韩语话"), QString::fromLocal8Bit("Korean")}},
-    {14, {QString::fromLocal8Bit("葡萄牙话"), QString::fromLocal8Bit("Portuguese")}},
-};
-
-const std::map<int, std::pair<QString, QString>> MP_ID_TO_SEX =
-{
-    {0, {QString::fromLocal8Bit("其他"), QString::fromLocal8Bit("Other")}},
-    {1, {QString::fromLocal8Bit("男"), QString::fromLocal8Bit("Man")}},
-    {2, {QString::fromLocal8Bit("女"), QString::fromLocal8Bit("Woman")}},
-};
-
 AiSound AiSound::INSTANCE;
 
 AiSound::AiSound() :
@@ -591,22 +566,23 @@ std::vector<QAudioDeviceInfo> AiSound::GetOutputDeviceList()
     return list.toVector().toStdVector();
 }
 
-const std::map<int, std::pair<QString, QString>>& AiSound::GetIDLanguageMap()
-{
-    return MP_ID_TO_LANG;
-}
-
-const std::map<int, std::pair<QString, QString>>& AiSound::GetIDSexMap()
-{
-    return MP_ID_TO_SEX;
-}
-
 QString AiSound::GetVoiceLanguageName(int id)
 {
-    auto it = MP_ID_TO_LANG.find(id);
-    if (it != MP_ID_TO_LANG.end())
+    auto it = std::find_if(_voiceData.begin(), _voiceData.end(), [id](const VoiceData& data)
+        {
+            if (data.language == id)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        });
+
+    if (it != _voiceData.end())
     {
-        return it->second.first;
+        return it->languageName;
     }
     else
     {
@@ -616,10 +592,21 @@ QString AiSound::GetVoiceLanguageName(int id)
 
 QString AiSound::GetVoiceSexName(int id)
 {
-    auto it = MP_ID_TO_SEX.find(id);
-    if (it != MP_ID_TO_SEX.end())
+    auto it = std::find_if(_voiceData.begin(), _voiceData.end(), [id](const VoiceData& data)
+        {
+            if (data.gender == id)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        });
+
+    if (it != _voiceData.end())
     {
-        return it->second.first;
+        return it->genderName;
     }
     else
     {
@@ -876,7 +863,10 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
                 data.voiceCode = obj["voiceCode"].toInt();
                 data.name = obj["name"].toString();
                 data.language = obj["language"].toInt();
+                data.languageName = obj["languageName"].toString();
                 data.gender = obj["gender"].toInt();
+                data.genderName = obj["genderName"].toString();
+
                 vecVoiceData.push_back(data);
             }
 

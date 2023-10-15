@@ -20,7 +20,9 @@ struct VoiceData
     int     voiceCode;
     QString name;
     int     language;
+    QString languageName;
     int     gender;
+    QString genderName;
 };
 
 struct PhoneRegionInfo

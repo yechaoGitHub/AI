@@ -93,15 +93,11 @@ bool VoiceCompositor::IsMicWorking()
 void VoiceCompositor::StartMic()
 {
     _audioInput.StartMic();
-
-    emit stateChanged();
 }
 
 void VoiceCompositor::StopMic()
 {
     _audioInput.EndMic();
-
-    emit stateChanged();
 }
 
 void VoiceCompositor::SendParam()
@@ -262,7 +258,7 @@ void VoiceCompositor::SocketConnected()
     _heartBeatTimer = startTimer(5000);
     _connected = true;
     emit connected();
-    emit stateChanged();
+    emit stateChanged(VC_RUNING);
 }
 
 void VoiceCompositor::SocketError(QAbstractSocket::SocketError)
@@ -274,6 +270,7 @@ void VoiceCompositor::SocketDisconnected()
     AudioStart(false);
     _connected = false;
     emit disconnected();
+    emit stateChanged(VC_STOP);
     _workThread.quit();
 }
 

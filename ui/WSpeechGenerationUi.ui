@@ -1018,19 +1018,40 @@ QCheckBox{font:20px;color:rgb(255, 255, 255);font-weight:700;}
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-origin: content;
-background-image: url(:/QtTest/icon/Speech/pause.png);
+         <string notr="true">QPushButton[play=true]
+{
+background-origin:content;
+background-image:url(:/QtTest/icon/stop.png);
 background-position:left;
-background-repeat: no-repeat;
+background-repeat:no-repeat;
 padding-left:39px;
 padding-right:25px;
 text-align:center;
 font-size:14px;
-font-weight: 700;
+font-weight:700;
 color:#FFFFFF;
 border:1px solid;
 border-radius:8px;
-border-color:#FFFFFF;</string>
+border-color:#FFFFFF;
+}
+
+QPushButton[play=false]
+{
+background-origin:content;
+background-image:url(:/QtTest/icon/Speech/pause.png);
+background-position:left;
+background-repeat:no-repeat;
+padding-left:39px;
+padding-right:25px;
+text-align:center;
+font-size:14px;
+font-weight:700;
+color:#FFFFFF;
+border:1px solid;
+border-radius:8px;
+border-color:#FFFFFF;
+}
+</string>
         </property>
         <property name="text">
          <string>Start</string>

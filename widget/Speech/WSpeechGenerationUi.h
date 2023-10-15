@@ -29,11 +29,13 @@ private:
     void SexIndexChanged(int index);
     void NameIndexChanged(int index);
     QString GetSelectSrcLanguage();
+    void SyncUI();
 
     void CloseClicked();
     void StartClicked();
     void SendClicked();
     void ExportClicked();
+    void VCStateChanged(int state);
     void TranslationReceived(const QString& src, const QString& dst, int type);
     int GetSelectSpeaker();
 

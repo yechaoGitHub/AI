@@ -11,34 +11,6 @@
 #include <QStandardPaths>
 #include <QListView>
 
-const QString playStyle = "background-origin:content;\
-background-image:url(:/QtTest/icon/Speech/pause.png);\
-background-position:left;\
-background-repeat:no-repeat;\
-padding-left:39px;\
-padding-right:25px;\
-text-align:center;\
-font-size:14px;\
-font-weight:700;\
-color:#FFFFFF;\
-border:1px solid;\
-border-radius:8px;\
-border-color:#FFFFFF;";
-
-const QString stopStyle = "background-origin:content;\
-background-image:url(:/QtTest/icon/stop.png);\
-background-position:left;\
-background-repeat:no-repeat;\
-padding-left:39px;\
-padding-right:25px;\
-text-align:center;\
-font-size:14px;\
-font-weight:700;\
-color:#FFFFFF;\
-border:1px solid;\
-border-radius:8px;\
-border-color:#FFFFFF;";
-
 WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
     : FrameLessWidget(parent)
 {
@@ -69,11 +41,13 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
     connect(ui.comboBox_lang, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WSpeechGenerationUi::LanguageIndexChanged);
     connect(ui.comboBox_sex, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WSpeechGenerationUi::SexIndexChanged);
     connect(ui.comboBox_vector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WSpeechGenerationUi::NameIndexChanged);
-
+    connect(&voiceCompositor, &VoiceCompositor::stateChanged, this, &WSpeechGenerationUi::VCStateChanged);
     connect(&voiceCompositor, &VoiceCompositor::translationReceived, this, &WSpeechGenerationUi::TranslationReceived);
 
     ui.pb_lock->setProperty("lock", false);
     ui.pb_lock->style()->unpolish(ui.pb_lock);
+
+    SyncUI();
 }
 
 WSpeechGenerationUi::~WSpeechGenerationUi()
@@ -175,6 +149,8 @@ void WSpeechGenerationUi::showEvent(QShowEvent* event)
             ui.cbFrom->addItem(data.name);
         }
     }
+
+    SyncUI();
 }
 
 void WSpeechGenerationUi::closeEvent(QCloseEvent* event)
@@ -298,6 +274,26 @@ QString WSpeechGenerationUi::GetSelectSrcLanguage()
     }
 }
 
+void WSpeechGenerationUi::SyncUI()
+{
+    auto& ins = AiSound::GetInstance();
+    auto& vc = AiSound::GetInstance().GetVoiceCompositor();
+    if (vc.IsRunning())
+    {
+        ui.vcEffectTimer->StartTimer(true);
+        ui.pb_start->setProperty("play", true);
+        ui.pb_start->style()->unpolish(ui.pb_start);
+        ui.pb_start->setText(tr("Stop"));
+    }
+    else
+    {
+        ui.vcEffectTimer->StartTimer(false);
+        ui.pb_start->setProperty("play", false);
+        ui.pb_start->style()->unpolish(ui.pb_start);
+        ui.pb_start->setText(tr("Start"));
+    }
+}
+
 void WSpeechGenerationUi::CloseClicked()
 {
     hide();
@@ -313,9 +309,6 @@ void WSpeechGenerationUi::StartClicked()
     if (vc.IsRunning())
     {
         vc.Disconnect();
-        ui.vcEffectTimer->StartTimer(false);
-        ui.pb_start->setStyleSheet(playStyle);
-        ui.pb_start->setText(QString::fromLocal8Bit("Start"));
     }
     else
     {
@@ -332,9 +325,6 @@ void WSpeechGenerationUi::StartClicked()
         }
 
         vc.Connect(token, srcLanguage, id, isSend, SETTING.MicDeviceInfo(), SETTING.SpeakerDeviceInfo());
-        ui.vcEffectTimer->StartTimer(true);
-        ui.pb_start->setStyleSheet(stopStyle);
-        ui.pb_start->setText(QString::fromLocal8Bit("Stop"));
     }
 }
 
@@ -368,6 +358,26 @@ void WSpeechGenerationUi::ExportClicked()
     };
 
     ins.ExportSound(text, id, callback);
+}
+
+void WSpeechGenerationUi::VCStateChanged(int state)
+{
+    switch (state)
+    {
+        case VC_RUNING:
+            ui.vcEffectTimer->StartTimer(true);
+            ui.pb_start->setProperty("play", true);
+            ui.pb_start->style()->unpolish(ui.pb_start);
+            ui.pb_start->setText(tr("Stop"));
+        break;
+
+        case VC_STOP:
+            ui.vcEffectTimer->StartTimer(false);
+            ui.pb_start->setProperty("play", false);
+            ui.pb_start->style()->unpolish(ui.pb_start);
+            ui.pb_start->setText(tr("Start"));
+        break;
+    }
 }
 
 void WSpeechGenerationUi::TranslationReceived(const QString& src, const QString& dst, int type)
