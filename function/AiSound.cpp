@@ -986,6 +986,7 @@ void AiSound::HeartBeatCallback(int code, const QString& msg)
 
 void AiSound::QuitApp()
 {
+    _token.clear();
     killTimer(_heartBeatId);
     _heartBeatId = -1;
     _wLoginFrame->show();
