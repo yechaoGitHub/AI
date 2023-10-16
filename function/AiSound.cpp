@@ -93,8 +93,7 @@ AiSound& AiSound::GetInstance()
 
 void AiSound::slot_keyType(int type)
 {
-    QString token = SETTING.getToken();
-    if (token.isEmpty()) {
+    if (!_login_ok) {
         return;
     }
     if (type == 1) {
