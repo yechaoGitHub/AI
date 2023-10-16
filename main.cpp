@@ -69,5 +69,4 @@ int main(int argc, char *argv[])
     AiSound::GetInstance().ShowLoginFrame();
 
     return a.exec();
-    //return r;
 }
