@@ -15,6 +15,9 @@ public:
 
     QString UserName();
     QString Password();
+    QString DialingCode();
+    QString VerfyCode();
+
     bool remberPwd();
 
     QPushButton*        registerLabel = nullptr;

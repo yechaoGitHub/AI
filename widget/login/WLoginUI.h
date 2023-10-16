@@ -19,6 +19,7 @@ private:
     void SignUpClicked();
     void RegisterClicked();
     void ForgotClicked();
+    void ClearPage();
 
     Ui::WLoginUIClass ui;
 };

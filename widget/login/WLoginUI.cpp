@@ -49,6 +49,7 @@ void WLoginUI::ForgetPasswordClicked()
         {
             ui.stackedWidget->setCurrentIndex(0);
             ui.pbBack->setVisible(false);
+            ClearPage();
         }
         else
         {
@@ -76,6 +77,7 @@ void WLoginUI::SignUpClicked()
         {
             ui.stackedWidget->setCurrentIndex(0);
             ui.pbBack->setVisible(false);
+            ClearPage();
         }
         else
         {
@@ -97,4 +99,10 @@ void WLoginUI::ForgotClicked()
 {
     ui.stackedWidget->setCurrentIndex(2);
     ui.pbBack->setVisible(true);
+}
+
+void WLoginUI::ClearPage()
+{
+    ui.pageForgetPassword->Clear();
+    ui.pageRegister->Clear();
 }

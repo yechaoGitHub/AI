@@ -97,6 +97,7 @@ void WSpeechGenerationUi::showEvent(QShowEvent* event)
     ui.comboBox_lang->clear();
     ui.comboBox_sex->clear();
     ui.comboBox_vector->clear();
+    ui.cbFrom->clear();
 
     ui.vcEffectTimer->Clear();
 
@@ -150,18 +151,24 @@ void WSpeechGenerationUi::showEvent(QShowEvent* event)
                 }
             }
         }
-
-        if (ui.cbFrom->count() == 0)
-        {
-            auto&& listData = ins.GetTranslationSrourceListData();
-            for (auto data : listData)
-            {
-                ui.cbFrom->addItem(data.name);
-            }
-        }
     };
 
     ins.GetVoiceSpeaker(callback);
+
+    auto srcCallback = [this](int code, const QString& msg, std::vector<TranslationLanguage> languageList)
+    {
+        if (code != 200)
+        {
+            return;
+        }
+
+        for (auto data : languageList)
+        {
+            ui.cbFrom->addItem(data.name);
+        }
+    };
+
+    ins.GetTranslationSrourceList(srcCallback);
 
     SyncUI();
 }

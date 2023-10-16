@@ -14,6 +14,7 @@ public:
     QString Password();
     QString Repassword();
     QString VerifyCode();
+    void Clear();
 
     QPushButton* verifyBtn;
 

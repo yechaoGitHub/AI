@@ -53,6 +53,16 @@ QString WLogin::Password()
     return ui.userLogin->passwordEdit->text();
 }
 
+QString WLogin::DialingCode()
+{
+    return ui.mobileLogin->DialingCode();
+}
+
+QString WLogin::VerfyCode()
+{
+    return ui.mobileLogin->PhoneCode();
+}
+
 void WLogin::changeEvent(QEvent* event)
 {
     if (event->type() == QEvent::LanguageChange)
@@ -198,4 +208,3 @@ void WLogin::PhoneLogin()
 
     ins.PhoneLogin(dCode, phoneNum, vCode, callback);
 }
-

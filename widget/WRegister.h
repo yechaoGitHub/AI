@@ -16,6 +16,7 @@ public:
     QString DialingCode();
     QString VerfyCode();
     QString RecommondCode();
+    void Clear();
 
     QPushButton* signBtn;
 

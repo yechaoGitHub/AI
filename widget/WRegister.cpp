@@ -89,6 +89,16 @@ QString WRegister::RecommondCode()
     return ui.edRecommend->textEdit->text();
 }
 
+void WRegister::Clear()
+{
+    ui.edUser->textEdit->clear();
+    ui.verificationCodeEdit->textEdit->clear();
+    ui.edVCode->clear();
+    ui.edPassword->textEdit->clear();
+    ui.edPassword2->textEdit->clear();
+    ui.edRecommend->textEdit->clear();
+}
+
 void WRegister::showEvent(QShowEvent* event)
 {
     static bool firstShow = true;

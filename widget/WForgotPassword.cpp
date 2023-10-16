@@ -80,6 +80,15 @@ QString WForgotPassword::VerifyCode()
     return ui.edVCode->text();
 }
 
+void WForgotPassword::Clear()
+{
+    ui.edUser->textEdit->clear();
+    ui.verificationCodeEdit->textEdit->clear();
+    ui.edVCode->clear();
+    ui.edPassword->textEdit->clear();
+    ui.edPassword2->textEdit->clear();
+}
+
 void WForgotPassword::showEvent(QShowEvent* event)
 {
     static bool firstShow = true;
