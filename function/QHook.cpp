@@ -5,13 +5,14 @@
 
 static HHOOK keyHook = nullptr;
 static Hook* hook;
+#define KEY_DOWN(vKey) ((GetAsyncKeyState(vKey) & 0x8000) ? 1:0)
 LRESULT CALLBACK keyProc(int nCode, WPARAM wParam, LPARAM lParam) {
     KBDLLHOOKSTRUCT* pkbhs = (KBDLLHOOKSTRUCT*)lParam;
     if (wParam == WM_KEYDOWN) {
-        if (pkbhs->vkCode == 0x47 && GetAsyncKeyState(VK_CONTROL) && GetAsyncKeyState(VK_MENU)) {
+        if (pkbhs->vkCode == 0x47 && KEY_DOWN(VK_CONTROL) && KEY_DOWN(VK_MENU)) {
             hook->sendSignal(1);
         }
-        if (pkbhs->vkCode == 0x54 && GetAsyncKeyState(VK_CONTROL) && GetAsyncKeyState(VK_MENU)) {
+        if (pkbhs->vkCode == 0x54 && KEY_DOWN(VK_CONTROL) /*&& KEY_DOWN(VK_MENU)*/) {
             hook->sendSignal(2);
         }
     }
