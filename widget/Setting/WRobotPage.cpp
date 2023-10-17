@@ -20,6 +20,10 @@ WRobotPage::WRobotPage(QWidget *parent)
 	initUI();
 	connect(ui.pushButton_robot,&QPushButton::clicked,this,&WRobotPage::on_pb_robot_setting_clicked);
 	connect(ui.pushButton__set, &QPushButton::clicked, this, &WRobotPage::on_pb_sound_set_clicked);
+	ui.pb_robot_lock->setVisible(false);
+	ui.pb_sound_lock->setVisible(false);
+	ui.label_10->setVisible(false);
+	ui.label_5->setVisible(false);
 }
 
 WRobotPage::~WRobotPage()

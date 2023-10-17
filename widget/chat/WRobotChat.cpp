@@ -1,7 +1,7 @@
 #include "WRobotChat.h"
 #include "WName.h"
 #include "Bussiness/SettingInterfaceBussiness.h"
-
+#include "model/WConformDlg.h"
 #include "base/GlobalSetting.h"
 #include "AiSound.h"
 #include <QDateTime>
@@ -19,6 +19,8 @@ WRobotChat::WRobotChat(QWidget *parent)
     auto& bot = AiSound::GetInstance().GetChatBot();
     connect(&bot, &ChatBot::receiveText, this, &WRobotChat::ReceiveBotText);
 
+    _conformDlg = new WConformDlg(nullptr);
+    _conformDlg->hide();
     //connect(ui.pbSave, &QPushButton::clicked, this, &WRobotChat::SaveBtnClicked);
 
     ui.textEdit->installEventFilter(this);
@@ -39,7 +41,16 @@ WRobotChat::WRobotChat(QWidget *parent)
 }
 
 WRobotChat::~WRobotChat()
-{}
+{
+    if (_conformDlg) {
+        delete _conformDlg;
+    }
+}
+
+void WRobotChat::reqTemplate()
+{
+
+}
 
 QPushButton* WRobotChat::SaveBtn()
 {
@@ -50,6 +61,26 @@ void WRobotChat::loadPre()
 {
     if (_cur_page + 1 <= _total_page) {
         SettingInterfaceBussiness::getInstance()->getChatRecord(_page_size, _cur_page+1, _cur_chatId);
+    }
+}
+
+bool WRobotChat::notifyClose(int px,int py)
+{
+    if (_upload_chat) {
+        if (this->parentWidget()) {
+            _conformDlg->move(px + (this->parentWidget()->width() - _conformDlg->width()) / 2, py + (this->parentWidget()->height() - _conformDlg->height()) / 2);
+        }
+        int ret = _conformDlg->Show(tr("Confirmation"), tr("Chat record not saved, exiting will lose the record"));
+        if (ret == QDialog::Accepted) {
+            _upload_chat = false;
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        return true;
     }
 }
 
@@ -130,6 +161,7 @@ void WRobotChat::addRobotChatItem(const QString& msg)
 
     chatMessage(messageW, item, msg, time, WChatItem::User_Robot);
     ui.listWidget->setCurrentRow(ui.listWidget->count() - 1);
+    _upload_chat = true;
 }
 
 void WRobotChat::insertChatRecord(WChatItem::User_Type type,const QString& msg)

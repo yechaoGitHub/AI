@@ -30,6 +30,9 @@ WChatBotMainUI::WChatBotMainUI(QWidget *parent)
 			SETTING.setRobotBot(false);
 		}
 		});
+
+	ui.label->setVisible(false);
+	ui.pb_open->setVisible(false);
 }
 
 WChatBotMainUI::~WChatBotMainUI()

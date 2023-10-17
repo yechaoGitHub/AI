@@ -8,6 +8,7 @@
 #include "function/Bussiness/Define.h"
 
 
+class WConformDlg;
 class WRobotChat : public QWidget
 {
     Q_OBJECT
@@ -24,8 +25,15 @@ public:
     // 插入历史记录
     void insertChatRecord(WChatItem::User_Type type,const QString& msg);
 
+    void reqTemplate();
+
     void ShowRecord(const QString& chatId);
     void clearAll();
+
+    bool notifyClose(int px,int py);
+    void setSave() {
+        _upload_chat = false;
+    }
 protected:
     void resizeEvent(QResizeEvent* event) override;
     void showEvent(QShowEvent* event) override;
@@ -47,12 +55,15 @@ private:
     void loadPre();
     //void SaveBtnClicked();
 
+private:
     Ui::WRobotChatClass     ui;
+    WConformDlg*            _conformDlg = nullptr;
     QShortcut*              _shortCut = nullptr;
     WChatItem*              _curMessage = nullptr;
     QListWidgetItem*        _curItem = nullptr;
     bool                    _newMsg = true;
 
+    bool                    _upload_chat = false;
     QMutex                  _mutex;
     QString                 _cur_chatId = 0;
 

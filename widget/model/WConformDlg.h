@@ -13,7 +13,7 @@ public:
 	WConformDlg(QWidget *parent = nullptr);
 	~WConformDlg();
 
-	void Show(int voiceId,const QString& name);
+	int Show(const QString& title,const QString& name);
 
 private slots:
 	void on_btn_close_clicked();

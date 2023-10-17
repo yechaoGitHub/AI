@@ -31,18 +31,22 @@ void RobotChatMainUI::Clear()
     ui.chat_widget->clearAll();
 }
 
-void RobotChatMainUI::Show()
+void RobotChatMainUI::Show(bool record)
 {
     QDesktopWidget* desktopWidget = QApplication::desktop();
     //QRect deskRect = desktopWidget->availableGeometry();
     QRect screenRect = desktopWidget->screenGeometry();
     this->move(screenRect.width()-this->width()-20, screenRect.height()-this->height()-300);
+    Clear();
     show();
+    if (record) {
+        ui.chat_widget->reqTemplate();
+    }
 }
 
 void RobotChatMainUI::ShowRecord(const QString& chatId)
 {
-    Show();
+    Show(true);
     ui.chat_widget->ShowRecord(chatId);
 }
 
@@ -53,7 +57,11 @@ void RobotChatMainUI::on_pb_min_clicked()
 
 void RobotChatMainUI::on_pb_close_clicked()
 {
-    this->hide();
+    auto pos = this->pos();
+    bool ret = ui.chat_widget->notifyClose(pos.x(),pos.y());
+    if (ret) {
+        this->hide();
+    }
 }
 
 void RobotChatMainUI::SaveBtnClicked()
@@ -84,6 +92,7 @@ void RobotChatMainUI::SaveBtnClicked()
             }
             else
             {
+                ui.chat_widget->setSave();
                 _saveCounter++;
             }
         };

@@ -22,6 +22,7 @@ WSoundBotMainUi::WSoundBotMainUi(QWidget *parent)
 			SETTING.setSoundBot(false);
 		}
 		});
+	ui.checkBox->setVisible(false);
 }
 
 WSoundBotMainUi::~WSoundBotMainUi()

@@ -13,9 +13,12 @@ WConformDlg::WConformDlg(QWidget *parent)
 WConformDlg::~WConformDlg()
 {}
 
-void WConformDlg::Show(int voiceId, const QString& name)
+int WConformDlg::Show(const QString& title, const QString& name)
 {
-    exec();
+    ui.lb_title->setText(title);
+    ui.lb_content->setText(name);
+
+    return exec();
 }
 
 void WConformDlg::on_btn_close_clicked()

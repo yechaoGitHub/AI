@@ -14,7 +14,7 @@ public:
     ~RobotChatMainUI();
 
     void Clear();
-    void Show();
+    void Show(bool record = false);
     void ShowRecord(const QString& chatId);
 protected:
     void paintEvent(QPaintEvent* event) override;
