@@ -33,6 +33,7 @@ private:
 
     void CloseClicked();
     void StartClicked();
+    void MinClicked();
     void SendClicked();
     void ExportClicked();
     void VCStateChanged(int state);

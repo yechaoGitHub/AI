@@ -21,7 +21,7 @@ protected:
     void mouseReleaseEvent(QMouseEvent* event) override;
     void paintEvent(QPaintEvent* event) override;
     void showEvent(QShowEvent* event) override;
-    void closeEvent(QCloseEvent* event);
+    void hideEvent(QHideEvent* event);
     void enterEvent(QEvent* event) override;
     void leaveEvent(QEvent* event) override;
     void focusInEvent(QFocusEvent* event) override;

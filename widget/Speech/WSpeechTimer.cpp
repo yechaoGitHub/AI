@@ -49,13 +49,19 @@ void WSpeechTimer::StartTimer(bool start)
             _time.start();
         }
         _runCounter = true;
+
+        _effect->setMovie(_movie);
     }
     else
     {
         _runCounter = false;
         Play(false);
         _counter->setText("00:00");
+
+        _effect->setMovie(nullptr);
     }
+
+    _effect->update();
 }
 
 void WSpeechTimer::Play(bool play)

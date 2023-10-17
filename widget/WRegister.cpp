@@ -91,6 +91,7 @@ QString WRegister::RecommondCode()
 
 void WRegister::Clear()
 {
+    ui.cbPhone->setCurrentIndex(0);
     ui.edUser->textEdit->clear();
     ui.verificationCodeEdit->textEdit->clear();
     ui.edVCode->clear();

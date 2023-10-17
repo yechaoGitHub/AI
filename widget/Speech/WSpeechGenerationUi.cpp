@@ -36,6 +36,7 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
     auto& voiceCompositor = ins.GetVoiceCompositor();
 
     connect(ui.pb_start, &QPushButton::clicked, this, &WSpeechGenerationUi::StartClicked);
+    connect(ui.pb_min, &QPushButton::clicked, this, &WSpeechGenerationUi::MinClicked);
     connect(ui.pb_close, &QPushButton::clicked, this, &WSpeechGenerationUi::CloseClicked);
     connect(ui.pb_send, &QPushButton::clicked, this, &WSpeechGenerationUi::SendClicked);
     connect(ui.pb_export, &QPushButton::clicked, this, &WSpeechGenerationUi::ExportClicked);
@@ -348,6 +349,11 @@ void WSpeechGenerationUi::StartClicked()
     }
 }
 
+void WSpeechGenerationUi::MinClicked()
+{
+    showMinimized();
+}
+
 void WSpeechGenerationUi::SendClicked()
 {
     auto&& text = ui.textEdit->toPlainText();
@@ -404,7 +410,7 @@ void WSpeechGenerationUi::TranslationReceived(const QString& src, const QString&
 {
     if (type == FIN)
     {
-        ui.textEdit->setText(dst);
+        ui.textEdit->setText(src);
     }
 }
 

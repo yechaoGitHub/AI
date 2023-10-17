@@ -391,9 +391,9 @@ void AiSound::ShowLoginFrame()
 
 void AiSound::ShowRobotNavigation()
 {
-    if (_login_ok) {
-        return;
-    }
+    //if (_login_ok) {
+    //    return;
+    //}
     _login_ok = true;
     //_wTranslationSelect->show();
     _wLoginFrame->close();

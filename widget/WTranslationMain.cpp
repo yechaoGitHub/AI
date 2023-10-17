@@ -108,7 +108,7 @@ void WTranslationMain::showEvent(QShowEvent* event)
 
 }
 
-void WTranslationMain::closeEvent(QCloseEvent* event)
+void WTranslationMain::hideEvent(QHideEvent* event)
 {
     auto& trans = AiSound::GetInstance().GetTranslation();
     if (trans.IsRunning())
@@ -151,7 +151,7 @@ void WTranslationMain::focusOutEvent(QFocusEvent* event)
 
 void WTranslationMain::MinClicked()
 {
-    setWindowState(Qt::WindowMinimized);
+    showMinimized();
 }
 
 void WTranslationMain::CloseClicked()
