@@ -34,7 +34,11 @@ WRobotNavigation::WRobotNavigation(QWidget *parent)
 }
 
 WRobotNavigation::~WRobotNavigation()
-{}
+{
+    this->removeEventFilter(this);
+    delete _setting_menu;
+    _setting_menu = nullptr;
+}
 
 void WRobotNavigation::initTrayIcon()
 {

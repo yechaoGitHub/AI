@@ -85,10 +85,6 @@ void AudioOutput::timerEvent(QTimerEvent* event)
                 _ioOutput->write(data.data() + writePos, writeSize);
                 writePos += writeSize;
             }
-            else
-            {
-                std::this_thread::yield();
-            }
         }
     }
 

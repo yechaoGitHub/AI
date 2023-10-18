@@ -213,6 +213,6 @@ private:
     Hook hook;
 
     int                                 _heartBeatId = -1;
-    bool                                _login_ok = false;
+    bool                                _logined = false;
 };
 

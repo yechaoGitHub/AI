@@ -1,8 +1,10 @@
 #include "WAccountPage.h"
+#include "AiSound.h"
 #include <QDate>
 #include <QDesktopServices>
 #include <QUrl>
 #include "base/GlobalSetting.h"
+
 
 
 WAccountPage::WAccountPage(QWidget *parent)
@@ -32,6 +34,6 @@ void WAccountPage::on_pb_charge_clicked()
 	if (url.isEmpty()) {
 		url = "https://aisounda.cn/#/account/package";
 	}
-	url.append("?").append("access_token=").append(SETTING.getToken());
+	url.append("?").append("access_token=").append(AiSound::GetInstance().Token());
 	QDesktopServices::openUrl(QUrl(url));
 }

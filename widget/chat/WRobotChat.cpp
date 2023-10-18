@@ -45,6 +45,8 @@ WRobotChat::~WRobotChat()
     if (_conformDlg) {
         delete _conformDlg;
     }
+
+    ui.textEdit->removeEventFilter(this);
 }
 
 void WRobotChat::reqTemplate()

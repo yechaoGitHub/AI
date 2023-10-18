@@ -341,7 +341,7 @@ void SettingInterfaceBussiness::getUserInfoReq()
 
 void SettingInterfaceBussiness::_getUserInfoReq()
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -369,7 +369,7 @@ void SettingInterfaceBussiness::getGlobalInfo()
 
 void SettingInterfaceBussiness::_getGlobalInfo()
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -398,7 +398,7 @@ void SettingInterfaceBussiness::_getGlobalInfo()
 
 void SettingInterfaceBussiness::inviteUserJoinReq(const QString& username)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -432,7 +432,7 @@ void SettingInterfaceBussiness::getTeamRecordReq(int page, int pageSize, const Q
 
 void SettingInterfaceBussiness::_getTeamRecordReq(int page, int pageSize, const QString& search)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -463,7 +463,7 @@ void SettingInterfaceBussiness::_getTeamRecordReq(int page, int pageSize, const 
 
 void SettingInterfaceBussiness::_removeTeamReq(qint64 userId)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -497,7 +497,7 @@ void SettingInterfaceBussiness::removeTeamReq(qint64 userId)
 
 void SettingInterfaceBussiness::feedBackReq(const QString& msg)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -526,7 +526,7 @@ void SettingInterfaceBussiness::feedBackReq(const QString& msg)
 
 void SettingInterfaceBussiness::getChatBotType()
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -554,7 +554,7 @@ void SettingInterfaceBussiness::getCharBotListReq(int page, int page_size,int ty
 
 void SettingInterfaceBussiness::_getCharBotListReq(int page, int page_size,int type)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -587,7 +587,7 @@ void SettingInterfaceBussiness::_getCharBotListReq(int page, int page_size,int t
 
 void SettingInterfaceBussiness::getChatHistoryReq(int page, const QString& search, int pageSize)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -618,7 +618,7 @@ void SettingInterfaceBussiness::getChatHistoryReq(int page, const QString& searc
 
 void SettingInterfaceBussiness::delChatHsitory(const QStringList& chatId_list)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -661,7 +661,7 @@ void SettingInterfaceBussiness::delChatHsitory(const QStringList& chatId_list)
 
 void SettingInterfaceBussiness::getFilterListReq()
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -689,7 +689,7 @@ void SettingInterfaceBussiness::getSoundLIbReq(int pageNo, int pageSize, strc_So
 
 void SettingInterfaceBussiness::_getSoundLIbReq(int pageNo, int pageSize, strc_SoundType sound_type)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -732,7 +732,7 @@ void SettingInterfaceBussiness::_getSoundLIbReq(int pageNo, int pageSize, strc_S
 
 void SettingInterfaceBussiness::addMyVoice(int libId, const QString& voiceName)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -778,7 +778,7 @@ void SettingInterfaceBussiness::getVoiceListReq(int cur_page, int page_size)
 
 void SettingInterfaceBussiness::_getVoiceListReq(int cur_page, int page_size)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -808,7 +808,7 @@ void SettingInterfaceBussiness::_getVoiceListReq(int cur_page, int page_size)
 
 void SettingInterfaceBussiness::delVoiceReq(int voiceId)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -858,7 +858,7 @@ void SettingInterfaceBussiness::getVoiceUrlReq(int voiceId,bool my_voice)
 
 void SettingInterfaceBussiness::_getVoiceUrlReq(int voiceId)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -898,7 +898,7 @@ void SettingInterfaceBussiness::_getVoiceUrlReq(int voiceId)
 
 void SettingInterfaceBussiness::_getVoiceLibUrlReq(int voiceId)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -938,7 +938,7 @@ void SettingInterfaceBussiness::_getVoiceLibUrlReq(int voiceId)
 
 void SettingInterfaceBussiness::editMyVoice(int libId, const QString& voiceName, const QString& desc)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -980,7 +980,7 @@ void SettingInterfaceBussiness::editMyVoice(int libId, const QString& voiceName,
 
 void SettingInterfaceBussiness::getTransHistory(int page_size, int pageNo, const QString& search)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -1011,7 +1011,7 @@ void SettingInterfaceBussiness::getTransHistory(int page_size, int pageNo, const
 
 void SettingInterfaceBussiness::delTransId(int id)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;
@@ -1058,7 +1058,7 @@ void SettingInterfaceBussiness::getChatRecord(int page_size, int pageNo, const Q
 
 void SettingInterfaceBussiness::_getChatRecord(int page_size, int pageNo, const QString& chatId)
 {
-    QString token = SETTING.getToken();
+    QString token = AiSound::GetInstance().Token();
     QString url = SETTING.getHostAddress();
     if (token.isEmpty() || url.isEmpty()) {
         return;

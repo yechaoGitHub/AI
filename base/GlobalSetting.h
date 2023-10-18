@@ -35,9 +35,6 @@ public:
     bool getAutoLogin();
     void setAutoLogin(bool b);
 
-    void setToken(const QString& token);
-    QString getToken();
-
     void setCurLanguage(int language);
     int  getCurLanguage();
 
@@ -82,7 +79,6 @@ public:
 private:
     QSettings           *m_pSettings = nullptr;
     QMutex              m_mutex;
-    QString             m_strToken;
     QString             m_strCurPwd;
     QAudioDeviceInfo    m_micDeviceInfo;
     QAudioDeviceInfo    m_speakerDeviceInfo;

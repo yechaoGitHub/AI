@@ -40,7 +40,9 @@ WChatItem::WChatItem(QWidget*parent)
 }
 
 WChatItem::~WChatItem()
-{}
+{
+    this->removeEventFilter(this);
+}
 
 void WChatItem::setTextSuccess()
 {

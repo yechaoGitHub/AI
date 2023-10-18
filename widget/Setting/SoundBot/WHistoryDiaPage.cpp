@@ -63,6 +63,9 @@ WHistoryDiaPage::~WHistoryDiaPage()
         delete _conform_widget;
         _conform_widget = nullptr;
     }
+
+    this->removeEventFilter(this);
+    ui.tableView->viewport()->removeEventFilter(this);
 }
 
 void WHistoryDiaPage::on_pb_search_clicked()

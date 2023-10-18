@@ -45,7 +45,9 @@ WSettingMainUi::WSettingMainUi(QWidget *parent)
 }
 
 WSettingMainUi::~WSettingMainUi()
-{}
+{
+    this->removeEventFilter(this);
+}
 
 void WSettingMainUi::Show(int type)
 {

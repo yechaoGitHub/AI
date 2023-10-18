@@ -92,16 +92,6 @@ QString GlobalSetting::getHostAddress()
     return m_pSettings->value("Login/hostAddress", "http://47.106.253.9:9101").toString();
 }
 
-void GlobalSetting::setToken(const QString& token)
-{
-    m_strToken = token;
-}
-
-QString GlobalSetting::getToken()
-{
-    return m_strToken;
-}
-
 void GlobalSetting::setCurLanguage(int language)
 {
     if (m_pSettings)
