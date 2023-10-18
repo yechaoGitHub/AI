@@ -115,7 +115,7 @@ color:#131313;</string>
 color:#525252;</string>
          </property>
          <property name="text">
-          <string>Sound Device</string>
+          <string>Translation Output Device</string>
          </property>
         </widget>
        </item>
@@ -231,7 +231,7 @@ color:#525252;</string>
 color:#525252;</string>
          </property>
          <property name="text">
-          <string>Microphone Device</string>
+          <string>Physical Microphone </string>
          </property>
         </widget>
        </item>
