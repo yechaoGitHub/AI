@@ -440,10 +440,6 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
     else if (type == Navig_Type::Quite) {
         _login_ok = false;
 
-        /*if (_robotNaviga) {
-            delete _robotNaviga;
-            _robotNaviga = nullptr;
-        }*/
         if (_robot_chat) {
             delete _robot_chat;
             _robot_chat = nullptr;

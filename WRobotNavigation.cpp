@@ -8,6 +8,7 @@ WRobotNavigation::WRobotNavigation(QWidget *parent)
     ui.setupUi(this);
     this->setWidgetType(true, DragType::Drag_Null, false);
     setAttribute(Qt::WA_TranslucentBackground);
+    setAttribute(Qt::WA_DeleteOnClose);
     this->installEventFilter(this);
     //setWindowFlags();
     this->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::Tool/*| Qt::SubWindow*/);
