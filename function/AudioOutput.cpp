@@ -81,7 +81,8 @@ void AudioOutput::timerEvent(QTimerEvent* event)
     while (writePos < _audioData.size())
     {
         auto free = _audioOutput->bytesFree();
-        if (free > 0)
+        auto size = _audioOutput->periodSize();
+        if (free >= size)
         {
             auto remain = _audioData.size() - writePos;
             auto writeSize = std::min(free, remain);
