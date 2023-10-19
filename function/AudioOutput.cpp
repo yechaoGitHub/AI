@@ -72,23 +72,25 @@ void AudioOutput::WriteOutputData(QByteArray data)
 
 void AudioOutput::timerEvent(QTimerEvent* event)
 {
-    for (auto& data : _audioQueue)
+    if (_audioData.size() < 1280)
     {
-        int writePos = 0;
-        while (writePos < data.size())
+        return;
+    }
+
+    int writePos = 0;
+    while (writePos < _audioData.size())
+    {
+        auto free = _audioOutput->bytesFree();
+        if (free > 0)
         {
-            auto free = _audioOutput->bytesFree();
-            if (free > 0)
-            {
-                auto remain = data.size() - writePos;
-                auto writeSize = std::min(free, remain);
-                _ioOutput->write(data.data() + writePos, writeSize);
-                writePos += writeSize;
-            }
+            auto remain = _audioData.size() - writePos;
+            auto writeSize = std::min(free, remain);
+            _ioOutput->write(_audioData.data() + writePos, writeSize);
+            writePos += writeSize;
         }
     }
 
-    _audioQueue.clear();
+    _audioData.clear();
 }
 
 void AudioOutput::StartSpeakerInternal()
@@ -125,5 +127,5 @@ void AudioOutput::EndSpeakerInternal()
 
 void AudioOutput::WriteOutputDataInternal(QByteArray data)
 {
-    _audioQueue.push_back(std::move(data));
+    _audioData.push_back(std::move(data));
 }

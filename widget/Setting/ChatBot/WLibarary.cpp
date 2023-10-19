@@ -73,8 +73,10 @@ void WLibarary::slot_model_clicked()
             bot.Disconnect();
             auto& token = AiSound::GetInstance().Token();
 
+            auto conversation = bot.ConversationID();
+
             auto modelID = SETTING.getRebotModel();
-            bot.Connect(token, modelID);
+            bot.Connect(token, modelID, conversation);
         }
     }
 }

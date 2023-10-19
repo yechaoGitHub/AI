@@ -19,7 +19,7 @@ public:
 protected:
     void paintEvent(QPaintEvent* event) override;
     void showEvent(QShowEvent* event) override;
-    void closeEvent(QCloseEvent* event) override;
+    void hideEvent(QHideEvent* event) override;
 
 private slots:
     void on_pb_lock_clicked();

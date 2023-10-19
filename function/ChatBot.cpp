@@ -41,10 +41,10 @@ void ChatBot::Uninitialize()
     }
 }
 
-void ChatBot::Connect(const QString& token, int id)
+void ChatBot::Connect(const QString& token, int id, const QString& conversationID)
 {
     _workThread.start();
-    emit connect(token, id);
+    emit connect(token, id, conversationID);
 }
 
 void ChatBot::Disconnect()
@@ -94,7 +94,7 @@ void ChatBot::timerEvent(QTimerEvent* event)
     }
 }
 
-void ChatBot::ConnectInternal(const QString& token, int id)
+void ChatBot::ConnectInternal(const QString& token, int id, const QString& conversationID)
 {
     QUrl url{ "ws://47.106.253.9:9501/service/v1/chat" };
     QUrlQuery quurl;
@@ -102,6 +102,7 @@ void ChatBot::ConnectInternal(const QString& token, int id)
     url.setQuery(quurl);
 
     _id = id;
+    _conversationId = conversationID;
 
     auto str = url.toString();
     _webSocket.open(url);
@@ -135,7 +136,10 @@ void ChatBot::SendParam()
     QJsonObject msgObj;
     msgObj.insert("type", "START");
     msgObj.insert("templateId", _id);
-    //msgObj.insert("conversationId", _conversationId);
+    if (_conversationId.size() > 0)
+    {
+        msgObj.insert("conversationId", _conversationId);
+    }
 
     QJsonDocument document;
     document.setObject(msgObj);

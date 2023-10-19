@@ -41,5 +41,5 @@ private:
     QIODevice*              _ioOutput = nullptr;
     QThread                 _workThread;
     int                     _timer = 0;
-    std::list<QByteArray>   _audioQueue;
+    QByteArray              _audioData;
 };

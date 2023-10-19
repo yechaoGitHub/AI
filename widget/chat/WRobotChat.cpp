@@ -8,6 +8,7 @@
 #include <QKeyEvent>
 #include <qdebug.h>
 #include <QScrollBar>
+#include "AiSound.h"
 
 
 WRobotChat::WRobotChat(QWidget *parent)
@@ -97,6 +98,15 @@ void WRobotChat::ShowRecord(const QString& chatId)
         _total_size = 0;
 
         SettingInterfaceBussiness::getInstance()->getChatRecord(_page_size, _cur_page, _cur_chatId);
+
+        auto& chatBot = AiSound::GetInstance().GetChatBot();
+        if (chatBot.IsRunning())
+        {
+            auto id = chatBot.TemplateID();
+            chatBot.Disconnect();
+            auto& token = AiSound::GetInstance().Token();
+            chatBot.Connect(token, id, chatId);
+        }
     }
 }
 
@@ -299,7 +309,7 @@ void WRobotChat::showEvent(QShowEvent* event)
 
     auto modelID = SETTING.getRebotModel();
 
-    bot.Connect(token, modelID);
+    bot.Connect(token, modelID, "");
 }
 
 void WRobotChat::hideEvent(QHideEvent* event)

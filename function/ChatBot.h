@@ -12,7 +12,7 @@ public:
 
     void Initialize();
     void Uninitialize();
-    void Connect(const QString& token, int id);
+    void Connect(const QString& token, int id, const QString& conversationID);
     void Disconnect();
     bool Connected();
     void SendMessage(const QString& msg);
@@ -23,7 +23,7 @@ public:
     QString ConversationID();
 
 Q_SIGNALS:
-    void connect(const QString& token, int id);
+    void connect(const QString& token, int id, const QString& conversationID);
     void disconnect();
     void receiveText(int type, QString text);
 
@@ -35,7 +35,7 @@ protected:
     void timerEvent(QTimerEvent* event) override;
 
 private:
-    void ConnectInternal(const QString& token, int id);
+    void ConnectInternal(const QString& token, int id, const QString& conversationID);
     void DisconnectInternal();
     void SendMessageInternal(const QString& msg);
 

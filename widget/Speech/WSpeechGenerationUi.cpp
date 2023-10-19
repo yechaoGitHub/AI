@@ -174,7 +174,7 @@ void WSpeechGenerationUi::showEvent(QShowEvent* event)
     SyncUI();
 }
 
-void WSpeechGenerationUi::closeEvent(QCloseEvent* event)
+void WSpeechGenerationUi::hideEvent(QHideEvent* event)
 {
     auto& vc = AiSound::GetInstance().GetVoiceCompositor();
     if (vc.IsRunning())

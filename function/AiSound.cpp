@@ -93,7 +93,7 @@ AiSound& AiSound::GetInstance()
 
 void AiSound::slot_keyType(int type)
 {
-    if (!_login_ok) {
+    if (!_logined) {
         return;
     }
     if (type == 1) {
@@ -383,9 +383,6 @@ void AiSound::ExportSound(const QString& msg, int ttsSpeaker, ExportSoundCallbac
 
 void AiSound::ShowLoginFrame()
 {
-    if (_login_ok) {
-        return;
-    }
     _wLoginFrame->show();
 }
 
@@ -394,7 +391,6 @@ void AiSound::ShowRobotNavigation()
     //if (_login_ok) {
     //    return;
     //}
-    _login_ok = true;
     //_wTranslationSelect->show();
     _wLoginFrame->close();
     QDesktopWidget* deskWgt = QApplication::desktop();
@@ -405,14 +401,6 @@ void AiSound::ShowRobotNavigation()
 
 void AiSound::slot_robot_nv_clicked(Navig_Type type)
 {
-    /*if (AiFunctionRunning())
-    {
-        return;
-    }*/
-    if (!_login_ok) {
-        return;
-    }
-
     if (type == Navig_Type::Chat) {
         if (_robot_chat->isHidden())
         {
@@ -438,7 +426,24 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
         _set_main->Show(1);
     }
     else if (type == Navig_Type::Quite) {
-        _login_ok = false;
+
+        if (_wLoginFrame)
+        {
+            delete _wLoginFrame;
+            _wLoginFrame = nullptr;
+        }
+
+        if (_wTranslationMain)
+        {
+            delete _wTranslationMain;
+            _wTranslationMain = nullptr;
+        }
+
+        if (_wConversationSuggestion)
+        {
+            delete _wConversationSuggestion;
+            _wConversationSuggestion = nullptr;
+        }
 
         if (_robot_chat) {
             delete _robot_chat;
@@ -832,7 +837,7 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
             {
                 TranslationLanguage lan;
                 auto obj = it.toObject();
-                lan.language = obj["languaue"].toString();
+                lan.language = obj["language"].toString();
                 lan.name = obj["name"].toString();
                 lan.nameEn = obj["nameEn"].toString();
                 _destTranslationLanguage.push_back(lan);
@@ -938,7 +943,6 @@ void AiSound::UserLoginCallbackInternal(int code, const QString& msg, const QStr
     if (code == 200)
     {
         _token = token;
-        SETTING.setToken(token);
         _heartBeatId = startTimer(5000);
     }
 }
