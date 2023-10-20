@@ -53,6 +53,11 @@ void AudioOutput::StartSpeaker(const QAudioDeviceInfo& info)
 
 void AudioOutput::EndSpeaker()
 {
+    if (!_workThread.isRunning())
+    {
+        return;
+    }
+
     emit end_speaker();
     if (!_workThread.wait(1000))
     {
@@ -105,10 +110,9 @@ void AudioOutput::StartSpeakerInternal()
     auidoFormat.setSampleType(QAudioFormat::SignedInt);
 
     _audioOutput = new QAudioOutput{ _devInfo, auidoFormat, this };
-    _audioOutput->setBufferSize(1280);
 
     _ioOutput = _audioOutput->start();
-    _timer = startTimer(1, Qt::PreciseTimer);
+    _timer = startTimer(0, Qt::PreciseTimer);
 
     if (!_ioOutput)
     {
@@ -118,10 +122,15 @@ void AudioOutput::StartSpeakerInternal()
 
 void AudioOutput::EndSpeakerInternal()
 {
+
     killTimer(_timer);
-    _audioOutput->stop();
-    delete _audioOutput;
-    _audioOutput = nullptr;
+    if (_audioOutput)
+    {
+        _audioOutput->stop();
+        delete _audioOutput;
+        _audioOutput = nullptr;
+    }
+
     _ioOutput = nullptr;
     _workThread.quit();
 }
