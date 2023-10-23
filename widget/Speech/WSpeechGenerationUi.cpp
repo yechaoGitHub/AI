@@ -49,6 +49,9 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
     ui.pb_lock->setProperty("lock", false);
     ui.pb_lock->style()->unpolish(ui.pb_lock);
 
+    ui.pb_send->setProperty("enable", true);
+    ui.pb_send->style()->unpolish(ui.pb_send);
+
     SyncUI();
 }
 
@@ -181,6 +184,16 @@ void WSpeechGenerationUi::hideEvent(QHideEvent* event)
     {
         vc.Disconnect();
     }
+}
+
+void WSpeechGenerationUi::timerEvent(QTimerEvent* event)
+{
+    ui.pb_send->setEnabled(true);
+    killTimer(_time);
+    _time = 0;
+
+    ui.pb_send->setProperty("enable", true);
+    ui.pb_send->style()->unpolish(ui.pb_send);
 }
 
 void WSpeechGenerationUi::LanguageIndexChanged(int index)
@@ -351,13 +364,23 @@ void WSpeechGenerationUi::StartClicked()
 
 void WSpeechGenerationUi::MinClicked()
 {
-    showMinimized();
+    //showMinimized();
 }
 
 void WSpeechGenerationUi::SendClicked()
 {
-    auto&& text = ui.textEdit->toPlainText();
-    AiSound::GetInstance().GetVoiceCompositor().SendMessage(text);
+    if (AiSound::GetInstance().GetVoiceCompositor().IsRunning())
+    {
+        auto&& text = ui.textEdit->toPlainText();
+        AiSound::GetInstance().GetVoiceCompositor().SendMessage(text);
+
+        _time = startTimer(3000);
+
+        ui.pb_send->setEnabled(false);
+
+        ui.pb_send->setProperty("enable", false);
+        ui.pb_send->style()->unpolish(ui.pb_send);
+    }
 }
 
 void WSpeechGenerationUi::ExportClicked()
@@ -402,6 +425,7 @@ void WSpeechGenerationUi::VCStateChanged(int state)
             ui.pb_start->setProperty("play", false);
             ui.pb_start->style()->unpolish(ui.pb_start);
             ui.pb_start->setText(tr("Start"));
+            ui.textEdit->clear();
         break;
     }
 }

@@ -1076,7 +1076,9 @@ border-color:#FFFFFF;
          <cursorShape>PointingHandCursor</cursorShape>
         </property>
         <property name="styleSheet">
-         <string notr="true">background-image: url(:/QtTest/icon/Speech/send.png);
+         <string notr="true">QPushButton[enable=true]
+{
+background-image: url(:/QtTest/icon/Speech/send.png);
 background-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
 background-origin: content;
 background-position:left;
@@ -1088,6 +1090,24 @@ font-size:14px;
 font-weight: 700;
 color:#FFFFFF;
 border-radius:8px;
+}
+
+QPushButton[enable=false]
+{
+background-image: url(:/QtTest/icon/Speech/send.png);
+background-color:rgba(156, 163, 175, 255);
+background-origin: content;
+background-position:left;
+background-repeat: no-repeat;
+padding-left:39px;
+padding-right:25px;
+text-align:center;
+font-size:14px;
+font-weight: 700;
+color:#FFFFFF;
+border-radius:8px;
+}
+
 </string>
         </property>
         <property name="text">

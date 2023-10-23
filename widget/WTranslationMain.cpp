@@ -151,7 +151,7 @@ void WTranslationMain::focusOutEvent(QFocusEvent* event)
 
 void WTranslationMain::MinClicked()
 {
-    showMinimized();
+    //showMinimized();
 }
 
 void WTranslationMain::CloseClicked()
@@ -173,7 +173,7 @@ void WTranslationMain::LockClicked()
         ui.lockButton->setProperty("lock", true);
         ui.lockButton->style()->unpolish(ui.lockButton);
     }
-    show();
+    //show();
 }
 
 void WTranslationMain::StopClicked()
@@ -224,7 +224,7 @@ void WTranslationMain::TransStateChanged(int state)
 
             ui.stopBtn->setProperty("play", true);
             ui.stopBtn->style()->unpolish(ui.stopBtn);
-
+            ui.stopBtn->setText(tr("Stop"));
         break;
 
         case TR_STOP:
@@ -234,6 +234,7 @@ void WTranslationMain::TransStateChanged(int state)
 
             ui.stopBtn->setProperty("play", false);
             ui.stopBtn->style()->unpolish(ui.stopBtn);
+            ui.stopBtn->setText(tr("Play"));
         break;
     }
 }

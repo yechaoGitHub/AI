@@ -15,7 +15,6 @@ AudioInput::~AudioInput()
 
 void AudioInput::Initialize()
 {
-    //_devInfo = QAudioDeviceInfo::defaultInputDevice();
     this->moveToThread(&_workThread);
 #ifdef MONITOR_MIC
     _audioOutput.Initialize();

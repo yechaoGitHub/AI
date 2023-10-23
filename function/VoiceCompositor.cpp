@@ -317,6 +317,8 @@ void VoiceCompositor::SocketTextMessageReceived(const QString& message)
                 _audioOutput.WriteOutputData(_buffer);
                 _voiceBuffer = std::move(_buffer);
                 _buffer.clear();
+
+                emit soundRecive();
             }
         }
     }

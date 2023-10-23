@@ -20,6 +20,7 @@ protected:
     void paintEvent(QPaintEvent* event) override;
     void showEvent(QShowEvent* event) override;
     void hideEvent(QHideEvent* event) override;
+    void timerEvent(QTimerEvent* event) override;
 
 private slots:
     void on_pb_lock_clicked();
@@ -42,6 +43,7 @@ private:
 
     Ui::WSpeechGenerationUiClass    ui;
     QPoint                          _clickPos;
+    int                             _time = 0;
     bool                            _mouseHold = false;
     bool                            _lock = false;
 };

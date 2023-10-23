@@ -34,6 +34,7 @@ Q_SIGNALS:
     void translationReceived(const QString& src, const QString& dst, int type);
     void soundPlay(bool play);
     void stateChanged(int state);
+    void soundRecive();
 
 private:
 Q_SIGNALS:
