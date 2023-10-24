@@ -65,6 +65,9 @@ using GetPhoneRegionNumberCallback = std::function<GetPhoneRegionNumberCallbackT
 using SaveChatCallbackType = void(int code, const QString& msg, int32_t current, int32_t pages, int32_t records, int32_t size, int32_t total);
 using SaveChatCallback = std::function<SaveChatCallbackType>;
 
+using GetTmeplateMessageCallbackType = void(int code, const QString& msg, const QString& description, int id, const QString& initMessage, bool isRecommend, const QString& name, int type);
+using GetTmeplateMessageCallback = std::function<GetTmeplateMessageCallbackType>;
+
 enum HttpCallEnum
 {
     httpPasswordLogin = 1,
@@ -77,7 +80,8 @@ enum HttpCallEnum
     httpGetPhoneRegionNumberCallback = 8,
     httpCommonCallback,
     httpSaveChat,
-    httpExportSound
+    httpExportSound,
+    httpGetTemplateMessage,
 };
 
 struct HttpCallbackPacketRaw
@@ -122,6 +126,7 @@ public:
     void GetTranslationDestList(GetTranslationDestListCallback callback);
     void GetVoiceSpeaker(GetVoiceSpeakerCallback callback);
     void GetPhoneRegionNumber(GetPhoneRegionNumberCallback callback);
+    void GetTemplateMessage(int templateID, GetTmeplateMessageCallback callback);
 #pragma endregion
 
 #pragma region ´°¿Ú

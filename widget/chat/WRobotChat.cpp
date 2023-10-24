@@ -39,6 +39,9 @@ WRobotChat::WRobotChat(QWidget *parent)
     qRegisterMetaType<strc_PageInfo>("strc_PageInfo");
     qRegisterMetaType<QVector<strc_chatRecord>>("QVector<strc_chatRecord>");
     connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_chatRecordReplay, this, &WRobotChat::slot_chatRecordReplay);
+
+    auto& chatBot = AiSound::GetInstance().GetChatBot();
+    connect(&chatBot, &ChatBot::newConnect, this, &WRobotChat::NewConnect);
 }
 
 WRobotChat::~WRobotChat()
@@ -65,6 +68,20 @@ void WRobotChat::loadPre()
     if (_cur_page + 1 <= _total_page) {
         SettingInterfaceBussiness::getInstance()->getChatRecord(_page_size, _cur_page+1, _cur_chatId);
     }
+}
+
+void WRobotChat::NewConnect()
+{
+    auto callback = [this](int code, const QString& msg, const QString& description, int id, const QString& initMessage, bool isRecommend, const QString& name, int type)
+    {
+        if (code == 200)
+        {
+            addRobotChatItem(initMessage);
+        }
+    };
+
+    auto modelID = AiSound::GetInstance().GetChatBot().TemplateID();
+    AiSound::GetInstance().GetTemplateMessage(modelID, callback);
 }
 
 bool WRobotChat::notifyClose(int px,int py)

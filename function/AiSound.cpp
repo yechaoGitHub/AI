@@ -248,6 +248,24 @@ void AiSound::GetTranslationDestList(GetTranslationDestListCallback callback)
     _httpAsync.Post("http://47.106.253.9:9101/api/config/getTargetLanguaueList", {}, headers, userParam);
 }
 
+void AiSound::GetTemplateMessage(int templateID, GetTmeplateMessageCallback callback)
+{
+    QJsonObject dataObj;
+    dataObj.insert("templateId", templateID);
+
+    auto packet = new HttpCallbackPacket<GetTmeplateMessageCallbackType>();
+    packet->type = httpGetTemplateMessage;
+    packet->callback = callback;
+    QVariant userParam = QVariant::fromValue(static_cast<HttpCallbackPacketRaw*>(packet));
+
+    QMap<QString, QString> headers;
+    headers.insert("Content-Type", "application/json;charset=utf-8");
+    headers.insert("access_token", _token.toUtf8());
+    headers.insert("client_type", "PC");
+
+    _httpAsync.Post("http://47.106.253.9:9101/api/config/getChatbotTemplate", dataObj, headers, userParam);
+}
+
 void AiSound::GetVoiceSpeaker(GetVoiceSpeakerCallback callback)
 {
     auto packet = new HttpCallbackPacket<GetVoiceSpeakerCallbackType>();
@@ -928,6 +946,23 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
         {
             auto packet = dynamic_cast<HttpCallbackPacket<ExportSoundCallbackType>*>(packetRaw);
             packet->callback(content);
+        }
+        break;
+
+        case httpGetTemplateMessage:
+        {
+            int code = document["code"].toInt();
+            QString msg = document["msg"].toString();
+
+            auto description = document["data"]["description"].toString();
+            auto id = document["data"]["id"].toInt();
+            auto initialMessage = document["data"]["initialMessage"].toString();
+            auto isRecommend = document["data"]["isRecommend"].toInt() == 1;
+            auto name = document["data"]["name"].toString();
+            auto type = document["data"]["type"].toInt();
+
+            auto packet = dynamic_cast<HttpCallbackPacket<GetTmeplateMessageCallbackType>*>(packetRaw);
+            packet->callback(code, msg, description, id, initialMessage, isRecommend, name, type);
         }
         break;
 

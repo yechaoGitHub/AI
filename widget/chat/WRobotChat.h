@@ -53,6 +53,7 @@ private:
     void CurItemAppendText(const QString& text);
     void CurItemStopAnimation();
     void loadPre();
+    void NewConnect();
     //void SaveBtnClicked();
 
 private:

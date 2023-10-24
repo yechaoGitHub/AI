@@ -106,6 +106,8 @@ void ChatBot::ConnectInternal(const QString& token, int id, const QString& conve
 
     auto str = url.toString();
     _webSocket.open(url);
+
+    emit newConnect();
 }
 
 void ChatBot::DisconnectInternal()

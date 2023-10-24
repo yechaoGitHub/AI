@@ -26,6 +26,7 @@ Q_SIGNALS:
     void connect(const QString& token, int id, const QString& conversationID);
     void disconnect();
     void receiveText(int type, QString text);
+    void newConnect();
 
     void connected();
     void disconnected();
