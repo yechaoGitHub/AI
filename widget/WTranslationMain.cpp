@@ -47,34 +47,7 @@ void WTranslationMain::Clear()
     ui.subtitleWidget->Subtitle()->Clear();
 }
 
-void WTranslationMain::mousePressEvent(QMouseEvent* event)
-{
-    if (event->button() == Qt::LeftButton)
-    {
-        _clickPos.setX(event->pos().x());
-        _clickPos.setY(event->pos().y());
-        _mouseHold = true;
-    }
-}
-
-void WTranslationMain::mouseMoveEvent(QMouseEvent* event)
-{
-    if (_mouseHold && event->buttons() == Qt::LeftButton)
-    {
-        this->move(this->pos() + event->pos() - this->_clickPos);
-    }
-}
-
-void WTranslationMain::mouseReleaseEvent(QMouseEvent* event)
-{
-    _mouseHold = false;
-}
-
-void WTranslationMain::paintEvent(QPaintEvent* event)
-{
-}
-
-void WTranslationMain::showEvent(QShowEvent* event)
+void WTranslationMain::Flush()
 {
     ui.timerWidget->Clear();
     ui.cbSrc->setEnabled(true);
@@ -105,16 +78,46 @@ void WTranslationMain::showEvent(QShowEvent* event)
                 }
             }
         });
-
 }
 
-void WTranslationMain::hideEvent(QHideEvent* event)
+void WTranslationMain::mousePressEvent(QMouseEvent* event)
 {
+    if (event->button() == Qt::LeftButton)
+    {
+        _clickPos.setX(event->pos().x());
+        _clickPos.setY(event->pos().y());
+        _mouseHold = true;
+    }
+}
+
+void WTranslationMain::mouseMoveEvent(QMouseEvent* event)
+{
+    if (_mouseHold && event->buttons() == Qt::LeftButton)
+    {
+        this->move(this->pos() + event->pos() - this->_clickPos);
+    }
+}
+
+void WTranslationMain::mouseReleaseEvent(QMouseEvent* event)
+{
+    _mouseHold = false;
+}
+
+void WTranslationMain::paintEvent(QPaintEvent* event)
+{
+}
+
+void WTranslationMain::closeEvent(QCloseEvent* event)
+{
+    event->setAccepted(false);
+
     auto& trans = AiSound::GetInstance().GetTranslation();
     if (trans.IsRunning())
     {
         trans.Disconnect();
     }
+
+    hide();
 }
 
 void WTranslationMain::enterEvent(QEvent* event)
@@ -152,11 +155,13 @@ void WTranslationMain::focusOutEvent(QFocusEvent* event)
 void WTranslationMain::MinClicked()
 {
     //showMinimized();
+
+    ::ShowWindow((HWND)this->winId(), SW_SHOWMINIMIZED);
 }
 
 void WTranslationMain::CloseClicked()
 {
-    hide();
+    close();
 }
 
 void WTranslationMain::LockClicked()

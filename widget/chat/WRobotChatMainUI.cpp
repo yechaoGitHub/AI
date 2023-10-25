@@ -1,11 +1,12 @@
 #include "WRobotChatMainUI.h"
 #include "AiSound.h"
+#include "WSaveTip.h"
 #include "WName.h"
+#include "base/GlobalSetting.h"
 
 #include <QPainter>
 #include <QPainterPath>
 #include <QDesktopWidget>
-
 
 RobotChatMainUI::RobotChatMainUI(QWidget *parent)
     : FrameLessWidget(parent)
@@ -29,6 +30,16 @@ RobotChatMainUI::~RobotChatMainUI()
 void RobotChatMainUI::Clear()
 {
     ui.chat_widget->clearAll();
+}
+
+void RobotChatMainUI::Flush()
+{
+    auto& token = AiSound::GetInstance().Token();
+    auto& bot = AiSound::GetInstance().GetChatBot();
+
+    auto modelID = SETTING.getRebotModel();
+
+    bot.Connect(token, modelID, "");
 }
 
 void RobotChatMainUI::Show(bool record)
@@ -60,7 +71,7 @@ void RobotChatMainUI::on_pb_close_clicked()
     auto pos = this->pos();
     bool ret = ui.chat_widget->notifyClose(pos.x(),pos.y());
     if (ret) {
-        this->hide();
+        this->close();
     }
 }
 
@@ -110,4 +121,17 @@ void RobotChatMainUI::paintEvent(QPaintEvent* event)
     path.setFillRule(Qt::WindingFill);
     path.addRoundedRect(this->rect(), 16, 16);
     painter.fillPath(path, QBrush(QColor(0, 0, 0, 204)));
+}
+
+void RobotChatMainUI::closeEvent(QCloseEvent* event)
+{
+    event->setAccepted(false);
+
+    auto& bot = AiSound::GetInstance().GetChatBot();
+    if (bot.IsRunning())
+    {
+        bot.Disconnect();
+    }
+
+    hide();
 }

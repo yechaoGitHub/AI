@@ -422,18 +422,21 @@ void AiSound::slot_robot_nv_clicked(Navig_Type type)
     if (type == Navig_Type::Chat) {
         if (_robot_chat->isHidden())
         {
+            _robot_chat->Flush();
             _robot_chat->Show();
         }
     }
     else if (type == Navig_Type::Voice) {
         if (_wTranslationMain->isHidden())
         {
+            _wTranslationMain->Flush();
             _wTranslationMain->show();
         }
     }
     else if (type == Navig_Type::Speech) {
         if (_speech_ui->isHidden())
         {
+            _speech_ui->Flush();
             _speech_ui->show();
         }
     }

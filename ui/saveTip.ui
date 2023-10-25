@@ -1,34 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SaveChatHistory</class>
- <widget class="QWidget" name="SaveChatHistory">
+ <class>saveTip</class>
+ <widget class="QWidget" name="saveTip">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>476</width>
-    <height>145</height>
+    <width>400</width>
+    <height>300</height>
    </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>476</width>
-    <height>145</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>476</width>
-    <height>145</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="spacing">
-    <number>8</number>
-   </property>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
@@ -46,7 +31,7 @@ color:rgb(255,255,255);
 font-weight:700;</string>
        </property>
        <property name="text">
-        <string>Save Chat History</string>
+        <string>Tip</string>
        </property>
       </widget>
      </item>
@@ -110,38 +95,49 @@ color:rgb(255,255,255);
 font-weight:700;</string>
      </property>
      <property name="text">
-      <string>New chat  name</string>
+      <string>聊天记录未保存，退出将丢失记录</string>
      </property>
     </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <property name="spacing">
-      <number>30</number>
-     </property>
      <item>
-      <widget class="QLineEdit" name="edName">
+      <widget class="QPushButton" name="pbConfirm">
        <property name="minimumSize">
         <size>
-         <width>0</width>
+         <width>100</width>
          <height>56</height>
         </size>
        </property>
        <property name="maximumSize">
         <size>
-         <width>16777215</width>
+         <width>100</width>
          <height>56</height>
         </size>
        </property>
        <property name="styleSheet">
-        <string notr="true">border:1px solid;
+        <string notr="true">color:rgb(255,255,255);
+font-size:14px;
+font-weight: 700;
 border-radius:8px;
-border-color:rgba(255,255,255,50%);</string>
+
+background-origin: content;
+background-position:left;
+background-repeat: no-repeat;
+text-align:center;
+color:#FFFFFF;
+border:1px solid;
+border-radius:8px;
+border-color:#FFFFFF;
+</string>
+       </property>
+       <property name="text">
+        <string>Sure</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pbConfirm">
+      <widget class="QPushButton" name="pbCancel">
        <property name="minimumSize">
         <size>
          <width>100</width>
@@ -162,7 +158,7 @@ font-weight: 700;
 border-radius:8px;</string>
        </property>
        <property name="text">
-        <string>Save</string>
+        <string>Cancel</string>
        </property>
       </widget>
      </item>

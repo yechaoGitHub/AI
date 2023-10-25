@@ -18,7 +18,7 @@ private:
     void CloseClicked();
     void ConfirmClicked();
 
-    Ui::name            ui;
-    bool                _confirmed = false;
-    QString             _name;
+    Ui::SaveChatHistory             ui;
+    bool                            _confirmed = false;
+    QString                         _name;
 };

@@ -14,10 +14,12 @@ public:
     ~RobotChatMainUI();
 
     void Clear();
+    void Flush();
     void Show(bool record = false);
     void ShowRecord(const QString& chatId);
 protected:
     void paintEvent(QPaintEvent* event) override;
+    void closeEvent(QCloseEvent* event) override;
 
 private slots:
     void on_pb_min_clicked();

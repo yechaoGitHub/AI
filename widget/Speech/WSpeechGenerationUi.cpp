@@ -21,13 +21,7 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
     this->setWindowFlags(Qt::X11BypassWindowManagerHint | Qt::FramelessWindowHint);
 
     ui.comboBox_lang->setView(new QListView{});
-    ui.comboBox_lang->addItem("English");
-    ui.comboBox_lang->addItem("Chinese");
-
     ui.comboBox_sex->setView(new QListView{});
-    ui.comboBox_sex->addItem("Male");
-    ui.comboBox_sex->addItem("Woman");
-
     ui.cbFrom->setView(new QListView{});
 
     ui.comboBox_vector->setView(new QListView());
@@ -67,35 +61,7 @@ void WSpeechGenerationUi::Clear()
     ui.textEdit->clear();
 }
 
-void WSpeechGenerationUi::on_pb_lock_clicked()
-{
-    _lock = !_lock;
-    ui.pb_lock->setProperty("lock", _lock);
-    ui.pb_lock->style()->unpolish(ui.pb_lock);
-    Qt::WindowFlags flags = windowFlags();
-    if (_lock) {
-        this->setWindowFlags(flags | Qt::WindowStaysOnTopHint);
-    }
-    else {
-        this->setWindowFlags(flags ^ Qt::WindowStaysOnTopHint); // 取消置顶
-    }
-    show();
-}
-
-void WSpeechGenerationUi::paintEvent(QPaintEvent* event)
-{
-    auto bkColor = SETTING.getSpeechBkColor();
-
-    QPainter painter{ this };
-    painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
-
-    QPainterPath path;
-    path.setFillRule(Qt::WindingFill);
-    path.addRoundedRect(this->rect(), 16, 16);
-    painter.fillPath(path, QBrush{ bkColor });
-}
-
-void WSpeechGenerationUi::showEvent(QShowEvent* event)
+void WSpeechGenerationUi::Flush()
 {
     auto& ins = AiSound::GetInstance();
     ui.comboBox_lang->clear();
@@ -177,13 +143,45 @@ void WSpeechGenerationUi::showEvent(QShowEvent* event)
     SyncUI();
 }
 
-void WSpeechGenerationUi::hideEvent(QHideEvent* event)
+void WSpeechGenerationUi::on_pb_lock_clicked()
 {
+    _lock = !_lock;
+    ui.pb_lock->setProperty("lock", _lock);
+    ui.pb_lock->style()->unpolish(ui.pb_lock);
+    Qt::WindowFlags flags = windowFlags();
+    if (_lock) {
+        this->setWindowFlags(flags | Qt::WindowStaysOnTopHint);
+    }
+    else {
+        this->setWindowFlags(flags ^ Qt::WindowStaysOnTopHint); // 取消置顶
+    }
+    show();
+}
+
+void WSpeechGenerationUi::paintEvent(QPaintEvent* event)
+{
+    auto bkColor = SETTING.getSpeechBkColor();
+
+    QPainter painter{ this };
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
+
+    QPainterPath path;
+    path.setFillRule(Qt::WindingFill);
+    path.addRoundedRect(this->rect(), 16, 16);
+    painter.fillPath(path, QBrush{ bkColor });
+}
+
+void WSpeechGenerationUi::closeEvent(QCloseEvent* event)
+{
+    event->setAccepted(false);
+
     auto& vc = AiSound::GetInstance().GetVoiceCompositor();
     if (vc.IsRunning())
     {
         vc.Disconnect();
     }
+
+    hide();
 }
 
 void WSpeechGenerationUi::timerEvent(QTimerEvent* event)
@@ -330,7 +328,7 @@ void WSpeechGenerationUi::SyncUI()
 
 void WSpeechGenerationUi::CloseClicked()
 {
-    hide();
+    close();
 }
 
 void WSpeechGenerationUi::StartClicked()
@@ -364,7 +362,7 @@ void WSpeechGenerationUi::StartClicked()
 
 void WSpeechGenerationUi::MinClicked()
 {
-    //showMinimized();
+    showMinimized();
 }
 
 void WSpeechGenerationUi::SendClicked()

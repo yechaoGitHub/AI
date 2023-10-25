@@ -1,5 +1,4 @@
 #include "WRobotChat.h"
-#include "WName.h"
 #include "Bussiness/SettingInterfaceBussiness.h"
 #include "model/WConformDlg.h"
 #include "base/GlobalSetting.h"
@@ -317,27 +316,6 @@ void WRobotChat::chatMessage(WChatItem* messageW, QListWidgetItem* item, QString
 void WRobotChat::resizeEvent(QResizeEvent* event)
 {
     Q_UNUSED(event);
-}
-
-void WRobotChat::showEvent(QShowEvent* event)
-{
-    auto& token = AiSound::GetInstance().Token();
-    auto& bot = AiSound::GetInstance().GetChatBot();
-
-    auto modelID = SETTING.getRebotModel();
-
-    bot.Connect(token, modelID, "");
-}
-
-void WRobotChat::hideEvent(QHideEvent* event)
-{
-    auto& bot = AiSound::GetInstance().GetChatBot();
-    bot.Disconnect();
-}
-
-void WRobotChat::closeEvent(QCloseEvent* event)
-{
-
 }
 
 bool WRobotChat::eventFilter(QObject* watched, QEvent* event)

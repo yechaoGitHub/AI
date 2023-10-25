@@ -121,6 +121,7 @@
     <ClCompile Include="function\Translation.cpp" />
     <ClCompile Include="function\VoiceCompositor.cpp" />
     <ClCompile Include="model\FrameLessWidget.cpp" />
+    <ClCompile Include="WSaveTip.cpp" />
     <ClCompile Include="widget\chat\WChatItem.cpp" />
     <ClCompile Include="widget\chat\WRobotChat.cpp" />
     <ClCompile Include="widget\chat\WRobotChatMainUI.cpp" />
@@ -191,6 +192,7 @@
     <QtUic Include="ui\login.ui" />
     <QtUic Include="ui\mobileLogin.ui" />
     <QtUic Include="ui\name.ui" />
+    <QtUic Include="ui\saveTip.ui" />
     <QtUic Include="ui\signUp.ui" />
     <QtUic Include="ui\TranslateMain.ui" />
     <QtUic Include="ui\userNameLogin.ui" />
@@ -232,6 +234,7 @@
     <ClInclude Include="function\QPcmToMp3.h" />
     <ClInclude Include="resource.h" />
     <QtMoc Include="widget\model\WConformDlg.h" />
+    <ClInclude Include="WSaveTip.h" />
     <ClInclude Include="widget\WForgotPassword.h" />
     <ClInclude Include="widget\WName.h" />
     <QtMoc Include="widget\Setting\WConformWidget.h" />

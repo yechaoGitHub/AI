@@ -310,6 +310,9 @@
     <ClCompile Include="widget\model\WConformDlg.cpp">
       <Filter>widget\model</Filter>
     </ClCompile>
+    <ClCompile Include="WSaveTip.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -437,6 +440,9 @@
     </QtUic>
     <QtUic Include="widget\model\WConformDlg.ui">
       <Filter>widget\model</Filter>
+    </QtUic>
+    <QtUic Include="ui\saveTip.ui">
+      <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -693,6 +699,9 @@
     </ClInclude>
     <ClInclude Include="widget\WName.h">
       <Filter>widget</Filter>
+    </ClInclude>
+    <ClInclude Include="WSaveTip.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
