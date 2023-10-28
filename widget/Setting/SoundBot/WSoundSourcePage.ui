@@ -42,14 +42,6 @@ QPushButton#pb_2{
 	background-image: url(:/QtTest/icon/Setting/soundbot/mic.png);
 }
 
-QPushButton#pb_speak,#pb_monitor{
-	background-image: url(:/QtTest/icon/Setting/soundbot/speak_btn.png);
-}
-
-QPushButton#pb_mic{
-	background-image: url(:/QtTest/icon/Setting/soundbot/mic_btn.png);
-}
-
 QComboBox{
 	border:none;
 	background-color: rgba(255, 255, 255,0);
@@ -181,7 +173,7 @@ color:#525252;</string>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QPushButton" name="pb_speak">
+          <widget class="QPushButton" name="pb_output">
            <property name="minimumSize">
             <size>
              <width>32</width>
@@ -193,6 +185,35 @@ color:#525252;</string>
              <width>32</width>
              <height>32</height>
             </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton[open=true]
+{
+border:1px solid;
+border-radius:8px;
+border-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
+
+background-origin: content;
+background-position:center;
+background-repeat: no-repeat;
+background-image: url(:/QtTest/icon/Setting/soundbot/speaker.png);
+}
+
+QPushButton[open=false]
+{
+border:1px solid;
+border-radius:8px;
+border-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
+
+background-origin: content;
+background-position:center;
+background-repeat: no-repeat;
+background-image: url(:/QtTest/icon/Setting/soundbot/mute_speaker.png);
+}
+</string>
            </property>
            <property name="text">
             <string/>
@@ -297,7 +318,7 @@ color:#525252;</string>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
-          <widget class="QPushButton" name="pb_mic">
+          <widget class="QPushButton" name="pb_phyMic">
            <property name="minimumSize">
             <size>
              <width>32</width>
@@ -309,6 +330,37 @@ color:#525252;</string>
              <width>32</width>
              <height>32</height>
             </size>
+           </property>
+           <property name="cursor">
+            <cursorShape>PointingHandCursor</cursorShape>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton[open=true]
+{
+border:1px solid;
+border-radius:8px;
+border-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
+
+background-origin: content;
+background-position:center;
+background-repeat: no-repeat;
+background-image: url(:/QtTest/icon/Setting/soundbot/mic_color.png);
+}
+
+QPushButton[open=false]
+{
+border:1px solid;
+border-radius:8px;
+border-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
+
+background-origin: content;
+background-position:center;
+background-repeat: no-repeat;
+background-image: url(:/QtTest/icon/Setting/soundbot/mute_mic.png);
+}
+
+
+</string>
            </property>
            <property name="text">
             <string/>
@@ -442,7 +494,7 @@ color:#525252;</string>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_7">
           <item>
-           <widget class="QPushButton" name="pb_monitor">
+           <widget class="QPushButton" name="pb_virInput">
             <property name="minimumSize">
              <size>
               <width>32</width>
@@ -454,6 +506,36 @@ color:#525252;</string>
               <width>32</width>
               <height>32</height>
              </size>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton[open=true]
+{
+border:1px solid;
+border-radius:8px;
+border-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
+
+background-origin: content;
+background-position:center;
+background-repeat: no-repeat;
+
+background-image: url(:/QtTest/icon/Setting/soundbot/mic_color.png);
+}
+
+QPushButton[open=false]
+{
+border:1px solid;
+border-radius:8px;
+border-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF, stop:1 #BD00FF);
+
+background-origin: content;
+background-position:center;
+background-repeat: no-repeat;
+background-image: url(:/QtTest/icon/Setting/soundbot/mute_mic.png);
+}
+</string>
             </property>
             <property name="text">
              <string/>

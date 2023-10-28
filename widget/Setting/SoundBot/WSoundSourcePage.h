@@ -27,7 +27,12 @@ private:
     void MicVolumeLevel(int level);
     void MonitorVolumeLevel(int level);
 
+    void PbOutputClicked();
+    void PbPhyMicClicked();
+    void PbVirInputClicked();
+
     Ui::WSoundSourcePageClass           ui;
+    bool                                _avoid = false;
     AudioInput                          _aoMic;
     AudioInput                          _aoMonitor;
     std::vector<QAudioDeviceInfo>       _inList;

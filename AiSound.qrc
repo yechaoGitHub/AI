@@ -30,9 +30,7 @@
         <file>icon/Setting/soundbot/sel.png</file>
         <file>icon/Setting/soundbot/unsel.png</file>
         <file>icon/Setting/soundbot/mic.png</file>
-        <file>icon/Setting/soundbot/mic_btn.png</file>
         <file>icon/Setting/soundbot/speak.png</file>
-        <file>icon/Setting/soundbot/speak_btn.png</file>
         <file>icon/Setting/soundbot/historical.png</file>
         <file>icon/Setting/soundbot/my_voice.png</file>
         <file>icon/Setting/soundbot/source_icon.png</file>
@@ -382,5 +380,9 @@
         <file>icon/lock.png</file>
         <file>icon/Speech/lock-color.png</file>
         <file>icon/Speech/lock-white.png</file>
+        <file>icon/Setting/soundbot/mic_color.png</file>
+        <file>icon/Setting/soundbot/mute_mic.png</file>
+        <file>icon/Setting/soundbot/mute_speaker.png</file>
+        <file>icon/Setting/soundbot/speaker.png</file>
     </qresource>
 </RCC>

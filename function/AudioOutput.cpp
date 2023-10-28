@@ -94,6 +94,10 @@ void AudioOutput::timerEvent(QTimerEvent* event)
             _ioOutput->write(_audioData.data() + writePos, writeSize);
             writePos += writeSize;
         }
+        else
+        {
+            std::this_thread::yield();
+        }
     }
 
     _audioData.clear();
@@ -112,7 +116,7 @@ void AudioOutput::StartSpeakerInternal()
     _audioOutput = new QAudioOutput{ _devInfo, auidoFormat, this };
 
     _ioOutput = _audioOutput->start();
-    _timer = startTimer(0, Qt::PreciseTimer);
+    _timer = startTimer(1, Qt::PreciseTimer);
 
     if (!_ioOutput)
     {

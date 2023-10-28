@@ -586,6 +586,58 @@ std::vector<QAudioDeviceInfo> AiSound::GetOutputDeviceList()
     return list.toVector().toStdVector();
 }
 
+QAudioDeviceInfo AiSound::GetInputDeviceFormName(const QString& name, const QString& realm)
+{
+    auto list = QAudioDeviceInfo::availableDevices(QAudio::AudioInput);
+    auto it_find = std::find_if(list.begin(), list.end(), [&realm, &name](const QAudioDeviceInfo& info)
+        {
+            if (info.deviceName() == name &&
+                info.realm() == realm)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        });
+
+    if (it_find != list.end())
+    {
+        return *it_find;
+    }
+    else
+    {
+        return QAudioDeviceInfo::defaultInputDevice();
+    }
+}
+
+QAudioDeviceInfo AiSound::GetOutputDeviceFormName(const QString& name, const QString& realm)
+{
+    auto list = QAudioDeviceInfo::availableDevices(QAudio::AudioOutput);
+    auto it_find = std::find_if(list.begin(), list.end(), [&realm, &name](const QAudioDeviceInfo& info)
+        {
+            if (info.deviceName() == name &&
+                info.realm() == realm)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        });
+
+    if (it_find != list.end())
+    {
+        return *it_find;
+    }
+    else
+    {
+        return QAudioDeviceInfo::defaultOutputDevice();
+    }
+}
+
 QString AiSound::GetVoiceLanguageName(int id)
 {
     auto it = std::find_if(_voiceData.begin(), _voiceData.end(), [id](const VoiceData& data)
