@@ -178,7 +178,7 @@ void WTranslationMain::LockClicked()
         ui.lockButton->setProperty("lock", true);
         ui.lockButton->style()->unpolish(ui.lockButton);
     }
-    //show();
+    show();
 }
 
 void WTranslationMain::StopClicked()

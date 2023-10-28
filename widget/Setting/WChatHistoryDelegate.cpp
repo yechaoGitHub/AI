@@ -22,7 +22,7 @@ void WHistoryDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opti
 
     QStyledItemDelegate::paint(painter, viewOption, index);
 
-    int nCount = 2;
+    int nCount = 1;
     int w = option.rect.width() / nCount;
     w = 20;
     if (w < 0) {
@@ -51,8 +51,13 @@ void WHistoryDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opti
         button.state |= QStyle::State_Enabled;
         button.state |= QStyle::State_MouseOver;
         QPushButton pushBtn;
-        if (i == 0) {
-            pushBtn.setStyleSheet("QPushButton{border:none;background-position:center;background-repeat:no-repeat;background-image: url(:/QtTest/icon/Setting/chatbot/history.png);}");
+        if (nCount == 2) {
+            if (i == 0) {
+                pushBtn.setStyleSheet("QPushButton{border:none;background-position:center;background-repeat:no-repeat;background-image: url(:/QtTest/icon/Setting/chatbot/history.png);}");
+            }
+            else {
+                pushBtn.setStyleSheet("QPushButton{border:none;background-position:center;background-repeat:no-repeat;background-image: url(:/QtTest/icon/Setting/del.png);}");
+            }
         }
         else {
             pushBtn.setStyleSheet("QPushButton{border:none;background-position:center;background-repeat:no-repeat;background-image: url(:/QtTest/icon/Setting/del.png);}");
@@ -71,7 +76,7 @@ bool WHistoryDelegate::editorEvent(QEvent* event, QAbstractItemModel* model, con
 
     QApplication::restoreOverrideCursor();
 
-    int nCount = 2;
+    int nCount = 1;
     int w = option.rect.width() / nCount;
     if (w < 0) {
         return false;

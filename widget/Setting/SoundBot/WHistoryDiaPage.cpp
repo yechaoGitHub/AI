@@ -87,14 +87,17 @@ void WHistoryDiaPage::slot_commonReplay(int type, bool success, const QString& m
 
 void WHistoryDiaPage::opeHistoryItem(int type,int index)
 {
-    if (type == 0) {
+    _select_id = _trans_info_list.at(index).id;
+    _conform_widget->ShowConform(tr("Are you sure you want to delete the Translation History?"));
 
-    }
-    else {
-        _select_id = _trans_info_list.at(index).id;
-        _conform_widget->ShowConform(tr("Are you sure you want to delete the Translation History?"));
-        //SettingInterfaceBussiness::getInstance()->delTransId(_trans_info_list.at(index).id);
-    }
+    //if (type == 0) {
+
+    //}
+    //else {
+    //    _select_id = _trans_info_list.at(index).id;
+    //    _conform_widget->ShowConform(tr("Are you sure you want to delete the Translation History?"));
+    //    //SettingInterfaceBussiness::getInstance()->delTransId(_trans_info_list.at(index).id);
+    //}
 }
 
 void WHistoryDiaPage::getTransHistory()
