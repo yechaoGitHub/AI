@@ -81,15 +81,6 @@ public:
     QString getMonitorDeviceName();
     void setMonitorDeviceName(const QString& name);
 
-    QString getMicDeviceRealm();
-    void setMicDeviceRealm(const QString& realm);
-
-    QString getSpeakerDeviceRealm();
-    void setSpeakerDeviceRealm(const QString& realm);
-
-    QString getMonitorDeviceRealm();
-    void setMonitorDeviceRealm(const QString& realm);
-
     QAudioDeviceInfo& MicDeviceInfo();
     QAudioDeviceInfo& SpeakerDeviceInfo();
     QAudioDeviceInfo& MonitorDeviceInfo();

@@ -53,13 +53,9 @@ void WSoundSourcePage::showEvent(QShowEvent* event)
     int32_t index{ 0 };
     for (auto& in : _inList)
     {
-        auto realm = in.realm();
         auto name = in.deviceName();
-        auto itemName = name + '#' + realm;
-
-        ui.cbMic->addItem(in.deviceName(), itemName);
-        if (SETTING.getMicDeviceName() == name &&
-            SETTING.getMicDeviceRealm() == realm)
+        ui.cbMic->addItem(in.deviceName(), name);
+        if (SETTING.getMicDeviceName() == name)
         {
             ui.cbMic->setCurrentIndex(index);
         }
@@ -70,13 +66,9 @@ void WSoundSourcePage::showEvent(QShowEvent* event)
     _outList = ins.GetOutputDeviceList();
     for (auto& out : _outList)
     {
-        auto realm = out.realm();
         auto name = out.deviceName();
-        auto itemName = name + '#' + realm;
-
-        ui.cbSpeaker->addItem(out.deviceName(), itemName);
-        if (SETTING.getSpeakerDeviceName() == name &&
-            SETTING.getSpeakerDeviceRealm() == realm)
+        ui.cbSpeaker->addItem(out.deviceName(), name);
+        if (SETTING.getSpeakerDeviceName() == name)
         {
             ui.cbSpeaker->setCurrentIndex(index);
         }
@@ -86,13 +78,9 @@ void WSoundSourcePage::showEvent(QShowEvent* event)
     index = 0;
     for (auto& in : _inList)
     {
-        auto realm = in.realm();
         auto name = in.deviceName();
-        auto itemName = name + '#' + realm;
-
-        ui.cbMonitor->addItem(in.deviceName(), itemName);
-        if (SETTING.getMonitorDeviceName() == name &&
-            SETTING.getMonitorDeviceRealm() == realm)
+        ui.cbMonitor->addItem(in.deviceName(), name);
+        if (SETTING.getMonitorDeviceName() == name)
         {
             ui.cbMonitor->setCurrentIndex(index);
         }
@@ -126,18 +114,10 @@ void WSoundSourcePage::MicIndexChanged(int index)
     auto curIndex =  ui.cbMic->currentIndex();
     if (curIndex >= 0)
     {
-        auto str = ui.cbMic->itemData(curIndex).toString();
-        auto strList = str.split('#');
-
-        if (strList.size() > 1)
+        auto name = ui.cbMic->itemData(curIndex).toString();
+        if (!name.isEmpty())
         {
-            SETTING.setMicDeviceName(strList[0]);
-            SETTING.setMicDeviceRealm(strList[1]);
-        }
-        else
-        {
-            SETTING.setMicDeviceName("");
-            SETTING.setMicDeviceRealm("");
+            SETTING.setMicDeviceName(name);
         }
     }
 
@@ -145,8 +125,7 @@ void WSoundSourcePage::MicIndexChanged(int index)
     {
         _aoMic.EndMic();
         auto name = SETTING.getMicDeviceName();
-        auto realm = SETTING.getMicDeviceRealm();
-        auto devInfo = AiSound::GetInstance().GetInputDeviceFormName(name, realm);
+        auto devInfo = AiSound::GetInstance().GetInputDeviceFormName(name, "default");
         _aoMic.StartMic(devInfo);
     }
 }
@@ -161,8 +140,11 @@ void WSoundSourcePage::SpeakerIndexChanged(int index)
     auto curIndex = ui.cbSpeaker->currentIndex();
     if (curIndex >= 0)
     {
-        auto var = ui.cbSpeaker->itemData(curIndex);
-        SETTING.setSpeakerDeviceRealm(var.toString());
+        auto name = ui.cbSpeaker->itemData(curIndex).toString();
+        if (!name.isEmpty())
+        {
+            SETTING.setSpeakerDeviceName(name);
+        }
     }
 }
 
@@ -176,21 +158,10 @@ void WSoundSourcePage::MonitorIndexChanged(int index)
     auto curIndex = ui.cbMonitor->currentIndex();
     if (curIndex >= 0)
     {
-        auto var = ui.cbMonitor->itemData(curIndex);
-        SETTING.setMonitorDeviceRealm(var.toString());
-
-        auto str = ui.cbMonitor->itemData(curIndex).toString();
-        auto strList = str.split('#');
-
-        if (strList.size() > 1)
+        auto name = ui.cbMonitor->itemData(curIndex).toString();
+        if (!name.isEmpty())
         {
-            SETTING.setMonitorDeviceName(strList[0]);
-            SETTING.setMonitorDeviceRealm(strList[1]);
-        }
-        else
-        {
-            SETTING.setMonitorDeviceName("");
-            SETTING.setMonitorDeviceRealm("");
+            SETTING.setMonitorDeviceName(name);
         }
     }
 
@@ -198,8 +169,7 @@ void WSoundSourcePage::MonitorIndexChanged(int index)
     {
         _aoMonitor.EndMic();
         auto name = SETTING.getMonitorDeviceName();
-        auto realm = SETTING.getMonitorDeviceRealm();
-        auto devInfo = AiSound::GetInstance().GetInputDeviceFormName(name, realm);
+        auto devInfo = AiSound::GetInstance().GetInputDeviceFormName(name, "default");
         _aoMonitor.StartMic(devInfo);
     }
 }
@@ -247,8 +217,7 @@ void WSoundSourcePage::PbPhyMicClicked()
     else
     {
         auto name = SETTING.getMicDeviceName();
-        auto realm = SETTING.getMicDeviceRealm();
-        auto devInfo = AiSound::GetInstance().GetInputDeviceFormName(name, realm);
+        auto devInfo = AiSound::GetInstance().GetInputDeviceFormName(name, "default");
         _aoMic.StartMic(devInfo);
     }
 
@@ -267,8 +236,7 @@ void WSoundSourcePage::PbVirInputClicked()
     else
     {
         auto name = SETTING.getMonitorDeviceName();
-        auto realm = SETTING.getMonitorDeviceRealm();
-        auto devInfo = AiSound::GetInstance().GetInputDeviceFormName(name, realm);
+        auto devInfo = AiSound::GetInstance().GetInputDeviceFormName(name, "default");
         _aoMonitor.StartMic(devInfo);
     }
 

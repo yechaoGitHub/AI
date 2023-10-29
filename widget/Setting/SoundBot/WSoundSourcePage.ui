@@ -199,7 +199,8 @@ border-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF,
 background-origin: content;
 background-position:center;
 background-repeat: no-repeat;
-background-image: url(:/QtTest/icon/Setting/soundbot/speaker.png);
+
+background-image: url(:/QtTest/icon/Setting/soundbot/mic_color.png);
 }
 
 QPushButton[open=false]
@@ -211,9 +212,8 @@ border-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF,
 background-origin: content;
 background-position:center;
 background-repeat: no-repeat;
-background-image: url(:/QtTest/icon/Setting/soundbot/mute_speaker.png);
-}
-</string>
+background-image: url(:/QtTest/icon/Setting/soundbot/mute_mic.png);
+}</string>
            </property>
            <property name="text">
             <string/>
@@ -520,8 +520,7 @@ border-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF,
 background-origin: content;
 background-position:center;
 background-repeat: no-repeat;
-
-background-image: url(:/QtTest/icon/Setting/soundbot/mic_color.png);
+background-image: url(:/QtTest/icon/Setting/soundbot/speaker.png);
 }
 
 QPushButton[open=false]
@@ -533,7 +532,7 @@ border-color:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 #0066FF,
 background-origin: content;
 background-position:center;
 background-repeat: no-repeat;
-background-image: url(:/QtTest/icon/Setting/soundbot/mute_mic.png);
+background-image: url(:/QtTest/icon/Setting/soundbot/mute_speaker.png);
 }
 </string>
             </property>

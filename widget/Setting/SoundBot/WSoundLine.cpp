@@ -5,30 +5,25 @@
 
 WSoundLine::WSoundLine(QWidget *parent)
     : QWidget(parent)
-{}
+{
+    connect(&_timer, &QTimer::timeout, this, [=] {
+        update();
+        });
+}
 
 WSoundLine::~WSoundLine()
 {
-    if (_timer) {
-        if (_timer->isActive()) {
-            _timer->stop();
-        }
-        delete _timer;
+    if (_timer.isActive()) {
+        _timer.stop();
     }
 }
 
 void WSoundLine::startMovice(int volume)
 {
     _volume = volume>16? 16: volume;
-    if (!_timer) {
-        _timer = new QTimer;
-        connect(_timer, &QTimer::timeout, this, [=] {
-            update();
-            });
-        _timer->start(100);
-    }
-    if (!_timer->isActive()) {
-        _timer->start(100);
+
+    if (!_timer.isActive()) {
+        _timer.start(100);
     }
     _movice = true;
     update();
@@ -37,8 +32,8 @@ void WSoundLine::startMovice(int volume)
 void WSoundLine::stopMovice()
 {
     _volume = 0;
-    if (_timer->isActive()) {
-        _timer->stop();
+    if (_timer.isActive()) {
+        _timer.stop();
     }
     _movice = false;
     update();

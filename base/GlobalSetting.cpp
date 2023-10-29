@@ -366,45 +366,6 @@ void GlobalSetting::setMonitorDeviceName(const QString& name)
         m_pSettings->setValue("Audio/MonitorName", name);
 }
 
-QString GlobalSetting::getMicDeviceRealm()
-{
-    if (!m_pSettings)
-        return "";
-    return m_pSettings->value("Audio/MicRealm", "").toString();
-}
-
-void GlobalSetting::setMicDeviceRealm(const QString& realm)
-{
-    if (m_pSettings)
-        m_pSettings->setValue("Audio/MicRealm", realm);
-}
-
-QString GlobalSetting::getSpeakerDeviceRealm()
-{
-    if (!m_pSettings)
-        return "";
-    return m_pSettings->value("Audio/SpeakerRealm", "").toString();
-}
-
-void GlobalSetting::setSpeakerDeviceRealm(const QString& realm)
-{
-    if (m_pSettings)
-        m_pSettings->setValue("Audio/SpeakerRealm", realm);
-}
-
-QString GlobalSetting::getMonitorDeviceRealm()
-{
-    if (!m_pSettings)
-        return "";
-    return m_pSettings->value("Audio/MonitorRealm", "").toString();
-}
-
-void GlobalSetting::setMonitorDeviceRealm(const QString& realm)
-{
-    if (m_pSettings)
-        m_pSettings->setValue("Audio/MonitorRealm", realm);
-}
-
 void GlobalSetting::setTransTl(int bk)
 {
     if (m_pSettings)

@@ -638,7 +638,7 @@ QAudioDeviceInfo AiSound::GetInputDeviceFormName(const QString& name, const QStr
     }
     else
     {
-        return QAudioDeviceInfo::defaultInputDevice();
+        return {};
     }
 }
 
@@ -664,7 +664,7 @@ QAudioDeviceInfo AiSound::GetOutputDeviceFormName(const QString& name, const QSt
     }
     else
     {
-        return QAudioDeviceInfo::defaultOutputDevice();
+        return {};
     }
 }
 
