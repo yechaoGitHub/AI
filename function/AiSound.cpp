@@ -577,12 +577,42 @@ const std::vector<PhoneRegionInfo>& AiSound::GetPhoneRegionInfo()
 std::vector<QAudioDeviceInfo> AiSound::GetInputDeviceList()
 {
     auto list = QAudioDeviceInfo::availableDevices(QAudio::AudioInput);
+
+    auto it = list.begin();
+    while (it != list.end())
+    {
+        auto& devInfo = *it;
+        if (devInfo.realm() != "default")
+        {
+            it = list.erase(it);
+        }
+        else
+        {
+            it++;
+        }
+    }
+
     return list.toVector().toStdVector();
 }
 
 std::vector<QAudioDeviceInfo> AiSound::GetOutputDeviceList()
 {
     auto list = QAudioDeviceInfo::availableDevices(QAudio::AudioOutput);
+
+    auto it = list.begin();
+    while (it != list.end())
+    {
+        auto& devInfo = *it;
+        if (devInfo.realm() != "default")
+        {
+            it = list.erase(it);
+        }
+        else
+        {
+            it++;
+        }
+    }
+
     return list.toVector().toStdVector();
 }
 

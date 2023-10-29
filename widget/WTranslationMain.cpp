@@ -207,7 +207,7 @@ void WTranslationMain::StopClicked()
 
         bool enableConversation = ins.IsConversationSuggestionShow();
         auto& token = ins.Token();
-        trans.Connect(token, srcLan.language, destLan.language, enableConversation, SETTING.MicDeviceInfo(), SETTING.MonitorDeviceInfo(), SETTING.getTransTT());
+        trans.Connect(token, srcLan.language, destLan.language, enableConversation, SETTING.MonitorDeviceInfo(), SETTING.MicDeviceInfo(), SETTING.getTransTT());
         ui.subtitleWidget->Subtitle()->SetTranslate(srcLan.name, destLan.name);
     }
 }

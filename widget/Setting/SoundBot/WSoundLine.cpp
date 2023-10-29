@@ -41,6 +41,7 @@ void WSoundLine::stopMovice()
         _timer->stop();
     }
     _movice = false;
+    update();
 }
 
 void WSoundLine::paintEvent(QPaintEvent* event)

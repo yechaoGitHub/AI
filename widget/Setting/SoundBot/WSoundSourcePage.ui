@@ -158,7 +158,7 @@ color:#525252;</string>
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="cbSpeaker">
+           <widget class="QComboBox" name="cbMonitor">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -173,7 +173,7 @@ color:#525252;</string>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QPushButton" name="pb_output">
+          <widget class="QPushButton" name="pb_virInput">
            <property name="minimumSize">
             <size>
              <width>32</width>
@@ -221,7 +221,7 @@ background-image: url(:/QtTest/icon/Setting/soundbot/mute_speaker.png);
           </widget>
          </item>
          <item>
-          <widget class="WSoundLine" name="slSpeaker" native="true">
+          <widget class="WSoundLine" name="slMonitor" native="true">
            <property name="minimumSize">
             <size>
              <width>0</width>
@@ -476,7 +476,7 @@ color:#525252;</string>
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="cbMonitor">
+            <widget class="QComboBox" name="cbSpeaker">
              <property name="minimumSize">
               <size>
                <width>0</width>
@@ -494,7 +494,7 @@ color:#525252;</string>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_7">
           <item>
-           <widget class="QPushButton" name="pb_virInput">
+           <widget class="QPushButton" name="pb_output">
             <property name="minimumSize">
              <size>
               <width>32</width>
@@ -543,7 +543,7 @@ background-image: url(:/QtTest/icon/Setting/soundbot/mute_mic.png);
            </widget>
           </item>
           <item>
-           <widget class="WSoundLine" name="slMonitor" native="true">
+           <widget class="WSoundLine" name="slSpeaker" native="true">
             <property name="minimumSize">
              <size>
               <width>0</width>
