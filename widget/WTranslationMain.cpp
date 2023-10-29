@@ -222,8 +222,8 @@ void WTranslationMain::TransStateChanged(int state)
     switch (state)
     {
         case TR_RUNING:
-            ui.timerWidget->StartTimer(true);
             ui.timerWidget->Clear();
+            ui.timerWidget->StartTimer(true);
             ui.cbSrc->setEnabled(false);
             ui.cbDest->setEnabled(false);
 
