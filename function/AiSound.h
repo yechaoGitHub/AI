@@ -156,6 +156,7 @@ public:
 
     QAudioDeviceInfo GetInputDeviceFormName(const QString& name, const QString& realm);
     QAudioDeviceInfo GetOutputDeviceFormName(const QString& name, const QString& realm);
+    bool IsDeviceVaild(bool input, const QString& name, const QString& realm);
 
     const std::map<int, std::pair<QString, QString>>& GetIDLanguageMap();
     const std::map<int, std::pair<QString, QString>>& GetIDSexMap();

@@ -24,32 +24,25 @@ GlobalSetting::~GlobalSetting()
 
 bool GlobalSetting::init(const QString& path)
 {
+    auto& ins = AiSound::GetInstance();
+
+    if (ins.IsDeviceVaild(true, getMonitorDeviceName(), "default"))
+    {
+        setMonitorDeviceName(QAudioDeviceInfo::defaultInputDevice().deviceName());
+    }
+
+    if (ins.IsDeviceVaild(true, getMicDeviceName(), "default"))
+    {
+        setMicDeviceName(QAudioDeviceInfo::defaultInputDevice().deviceName());
+    }
+
+    if (ins.IsDeviceVaild(false, getSpeakerDeviceName(), "default"))
+    {
+        setSpeakerDeviceName(QAudioDeviceInfo::defaultOutputDevice().deviceName());
+    }
+
     if (m_pSettings)
         return false;
-
-    auto& ins = AiSound::GetInstance();
-    auto&& list = ins.GetOutputDeviceList();
-    if (list.size())
-    {
-        m_speakerDeviceInfo = list[0];
-    }
-
-    list = ins.GetInputDeviceList();
-    if (list.size())
-    {
-        m_micDeviceInfo = list[0];
-    }
-
-    m_monitorDeviceInfo = m_micDeviceInfo;
-
-    for (auto& in : list)
-    {
-        if (in.deviceName().indexOf("VoiceMeeter Output") != -1)
-        {
-            m_monitorDeviceInfo = in;
-            break;
-        }
-    }
 
     m_pSettings = new QSettings(path, QSettings::IniFormat);
     if (m_pSettings)
@@ -288,7 +281,7 @@ QColor GlobalSetting::getTransBkColor()
 
 QColor GlobalSetting::getTransOgColor()
 {
-    switch (getTransTl())
+    switch (getTransOg())
     {
     case 1:
         return QColor{ 19, 19, 19, 255 };
@@ -405,21 +398,19 @@ int GlobalSetting::getTransSD()
     return m_pSettings->value("Color/TransSD", 1).toInt();
 }
 
-QAudioDeviceInfo& GlobalSetting::MicDeviceInfo()
-{
-
-
-    return m_micDeviceInfo;
-}
-
-QAudioDeviceInfo& GlobalSetting::SpeakerDeviceInfo()
-{
-    return m_speakerDeviceInfo;
-}
-
-QAudioDeviceInfo& GlobalSetting::MonitorDeviceInfo()
-{
-    return m_monitorDeviceInfo;
-}
+//QAudioDeviceInfo& GlobalSetting::MicDeviceInfo()
+//{
+//    return m_micDeviceInfo;
+//}
+//
+//QAudioDeviceInfo& GlobalSetting::SpeakerDeviceInfo()
+//{
+//    return m_speakerDeviceInfo;
+//}
+//
+//QAudioDeviceInfo& GlobalSetting::MonitorDeviceInfo()
+//{
+//    return m_monitorDeviceInfo;
+//}
 
 

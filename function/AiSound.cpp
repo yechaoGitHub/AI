@@ -638,7 +638,7 @@ QAudioDeviceInfo AiSound::GetInputDeviceFormName(const QString& name, const QStr
     }
     else
     {
-        return {};
+        return QAudioDeviceInfo::defaultInputDevice();
     }
 }
 
@@ -664,8 +664,42 @@ QAudioDeviceInfo AiSound::GetOutputDeviceFormName(const QString& name, const QSt
     }
     else
     {
-        return {};
+        return QAudioDeviceInfo::defaultOutputDevice();
     }
+}
+
+bool AiSound::IsDeviceVaild(bool input, const QString& name, const QString& realm)
+{
+    if (name.isEmpty())
+    {
+        return false;
+    }
+
+    QList<QAudioDeviceInfo> list;
+
+    if (input)
+    {
+        list = std::move(QAudioDeviceInfo::availableDevices(QAudio::AudioInput));
+    }
+    else
+    {
+        list = std::move(QAudioDeviceInfo::availableDevices(QAudio::AudioOutput));
+    }
+
+    auto it_find = std::find_if(list.begin(), list.end(), [&realm, &name](const QAudioDeviceInfo& info)
+        {
+            if (info.deviceName() == name &&
+                info.realm() == realm)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        });
+
+    return it_find != list.end();
 }
 
 QString AiSound::GetVoiceLanguageName(int id)

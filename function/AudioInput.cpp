@@ -166,7 +166,7 @@ void AudioInput::ReadAudioData(QIODevice* dev, int& readLen, QByteArray& bufferD
         {
             auto db = AvgDb(bufferData);
             emit volumeLevel(db);
-            if (db > -13)
+            if (db > -20)
             {
 #ifdef MONITOR_MIC
                 _audioOutput.WriteOutputData(bufferData);

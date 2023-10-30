@@ -81,17 +81,17 @@ public:
     QString getMonitorDeviceName();
     void setMonitorDeviceName(const QString& name);
 
-    QAudioDeviceInfo& MicDeviceInfo();
-    QAudioDeviceInfo& SpeakerDeviceInfo();
-    QAudioDeviceInfo& MonitorDeviceInfo();
+    //QAudioDeviceInfo& MicDeviceInfo();
+    //QAudioDeviceInfo& SpeakerDeviceInfo();
+    //QAudioDeviceInfo& MonitorDeviceInfo();
 
 private:
     QSettings           *m_pSettings = nullptr;
     QMutex              m_mutex;
     QString             m_strCurPwd;
-    QAudioDeviceInfo    m_micDeviceInfo;
-    QAudioDeviceInfo    m_speakerDeviceInfo;
-    QAudioDeviceInfo    m_monitorDeviceInfo;
+    //QAudioDeviceInfo    m_micDeviceInfo;
+    //QAudioDeviceInfo    m_speakerDeviceInfo;
+    //QAudioDeviceInfo    m_monitorDeviceInfo;
 
     QString             m_strRechargeUrl;
 };
