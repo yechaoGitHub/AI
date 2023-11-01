@@ -225,7 +225,7 @@ void WRobotChat::on_pb_send_clicked()
         messageW->setTextSuccess();
 
         auto& bot = AiSound::GetInstance().GetChatBot();
-        bot.SendMessage(msg);
+        bot.SendChatMessage(msg);
     }
 
     ui.listWidget->setCurrentRow(ui.listWidget->count() - 1);

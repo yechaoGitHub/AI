@@ -15,7 +15,7 @@ public:
     void Connect(const QString& token, int id, const QString& conversationID);
     void Disconnect();
     bool Connected();
-    void SendMessage(const QString& msg);
+    void SendChatMessage(const QString& msg);
     bool IsRunning();
     int SendMessageCount();
 

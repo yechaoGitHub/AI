@@ -28,7 +28,7 @@ bool GlobalSetting::init(const QString& path)
 
     if (ins.IsDeviceVaild(true, getMonitorDeviceName(), "default"))
     {
-        setMonitorDeviceName(QAudioDeviceInfo::defaultInputDevice().deviceName());
+        setMonitorDeviceName(QAudioDeviceInfo::defaultOutputDevice().deviceName());
     }
 
     if (ins.IsDeviceVaild(true, getMicDeviceName(), "default"))

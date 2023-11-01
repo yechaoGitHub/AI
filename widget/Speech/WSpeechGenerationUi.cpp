@@ -376,7 +376,7 @@ void WSpeechGenerationUi::SendClicked()
     if (AiSound::GetInstance().GetVoiceCompositor().IsRunning())
     {
         auto&& text = ui.textEdit->toPlainText();
-        AiSound::GetInstance().GetVoiceCompositor().SendMessage(text);
+        AiSound::GetInstance().GetVoiceCompositor().SendChatMessage(text);
 
         _time = startTimer(3000);
 

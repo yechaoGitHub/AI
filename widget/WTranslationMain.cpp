@@ -209,7 +209,7 @@ void WTranslationMain::StopClicked()
         auto& token = ins.Token();
 
         auto monitor = SETTING.getMonitorDeviceName();
-        auto moniotorDevInfo = ins.GetInputDeviceFormName(monitor, "default");
+        auto moniotorDevInfo = ins.GetOutputDeviceFormName(monitor, "default");
 
         auto mic = SETTING.getMicDeviceName();
         auto micDevInfo = ins.GetInputDeviceFormName(mic, "default");

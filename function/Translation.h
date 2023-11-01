@@ -2,6 +2,7 @@
 
 #include "VoiceType.h"
 #include "AudioInput.h"
+#include "AudioLoop.h"
 #include "AudioOutput.h"
 
 #include <QObject>
@@ -66,9 +67,8 @@ private:
 
     QAudioDeviceInfo        _micDev;
     QAudioDeviceInfo        _momitorDev;
-    AudioInput              _audioInput;
+    AudioLoop               _audioInput;
     AudioInput              _audioMonitor;
-    AudioOutput             _audioOutput;
     QWebSocket              _webSocket;
     QThread                 _workThread;
     QString                 _srcLan;

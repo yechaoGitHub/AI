@@ -108,6 +108,7 @@
     <ClCompile Include="function\AiDebug.cpp" />
     <ClCompile Include="function\AiSound.cpp" />
     <ClCompile Include="function\AudioInput.cpp" />
+    <ClCompile Include="function\AudioLoop.cpp" />
     <ClCompile Include="function\AudioOutput.cpp" />
     <ClCompile Include="function\Bussiness\historyListModel.cpp" />
     <ClCompile Include="function\Bussiness\SettingInterfaceBussiness.cpp" />
@@ -231,6 +232,7 @@
     <QtUic Include="WRobotSettingMenu.ui" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="function\AudioLoop.h" />
     <ClInclude Include="function\QPcmToMp3.h" />
     <ClInclude Include="resource.h" />
     <QtMoc Include="widget\model\WConformDlg.h" />

@@ -5,6 +5,7 @@
 #include "base/GlobalSetting.h"
 #include "AiDebug.h"
 #include <QSharedMemory>
+#include "AudioLoop.h"
 
 #include <Windows.h>
 #include <DbgHelp.h>
@@ -47,6 +48,8 @@ LONG __stdcall ApplicationCrashHandler(EXCEPTION_POINTERS* pException)
 
 int main(int argc, char *argv[])
 {
+    AudioLoop::InitCom();
+
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon(":QtTest/icon/icon.ico"));
 
@@ -69,6 +72,8 @@ int main(int argc, char *argv[])
     AiSound::GetInstance().ShowLoginFrame();
 
     auto r = a.exec();
+
+    AudioLoop::UnintCom();
 
     return 0;
 }

@@ -61,7 +61,7 @@ void VoiceCompositor::Connect(const QString& token, const QString& srcLan, int s
     emit connect(token, srcLan, speaker, autoSender, micDev, speakerDev);
 }
 
-void VoiceCompositor::SendMessage(const QString& msg)
+void VoiceCompositor::SendChatMessage(const QString& msg)
 {
     emit sendMessage(msg);
 }

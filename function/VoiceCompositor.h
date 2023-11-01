@@ -19,7 +19,7 @@ public:
     void Initialize();
     void Uninitialize();
     void Connect(const QString& token, const QString& srcLan, int speaker, bool autoSender, const QAudioDeviceInfo& micDev = {}, const QAudioDeviceInfo& speakerDev = {});
-    void SendMessage(const QString& msg);
+    void SendChatMessage(const QString& msg);
     bool SaveMp3(const QString& savePath);
     void Disconnect();
     bool IsRunning();

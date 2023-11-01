@@ -313,6 +313,9 @@
     <ClCompile Include="WSaveTip.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="function\AudioLoop.cpp">
+      <Filter>function</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="ui\frame.ui">
@@ -673,6 +676,9 @@
     </QtMoc>
     <QtMoc Include="widget\model\WConformDlg.h">
       <Filter>widget\model</Filter>
+    </QtMoc>
+    <QtMoc Include="function\AudioLoop.h">
+      <Filter>function</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

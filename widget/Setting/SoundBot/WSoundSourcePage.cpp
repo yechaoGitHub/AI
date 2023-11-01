@@ -76,7 +76,7 @@ void WSoundSourcePage::showEvent(QShowEvent* event)
     }
 
     index = 0;
-    for (auto& in : _inList)
+    for (auto& in : _outList)
     {
         auto name = in.deviceName();
         ui.cbMonitor->addItem(in.deviceName(), name);
@@ -177,13 +177,13 @@ void WSoundSourcePage::MonitorIndexChanged(int index)
 // (-15) - (-5)
 void WSoundSourcePage::MicVolumeLevel(int level)
 {
-    int v = std::max(level + 15, 0);
+    int v = (std::max)(level + 15, 0);
     ui.slMic->startMovice(v);
 }
 
 void WSoundSourcePage::MonitorVolumeLevel(int level)
 {
-    int v = std::max(level + 15, 0);
+    int v = (std::max)(level + 15, 0);
     ui.slMonitor->startMovice(v);
 }
 

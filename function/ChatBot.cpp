@@ -61,7 +61,7 @@ bool ChatBot::Connected()
     return _connected;
 }
 
-void ChatBot::SendMessage(const QString& msg)
+void ChatBot::SendChatMessage(const QString& msg)
 {
     emit sendMessage(msg);
 }

@@ -35,11 +35,10 @@ void Translation::Initialize()
 
     _audioInput.Initialize();
     _audioMonitor.Initialize();
-    _audioOutput.Initialize();
     QObject::connect(this, &Translation::connect, this, &Translation::ConnectInternal);
     QObject::connect(this, &Translation::disconnect, this, &Translation::DisconnectInternal);
-    QObject::connect(&_audioInput, &AudioInput::audioInput, this, &Translation::ReceiveAudioInput);
-    QObject::connect(&_audioInput, &AudioInput::soundPlay, this, &Translation::SoundPlayInternal);
+    QObject::connect(&_audioInput, &AudioLoop::audioInput, this, &Translation::ReceiveAudioInput);
+    QObject::connect(&_audioInput, &AudioLoop::soundPlay, this, &Translation::SoundPlayInternal);
     QObject::connect(&_audioMonitor, &AudioInput::audioInput, this, &Translation::ReceiveMonitorAudioInput);
 }
 
@@ -122,7 +121,6 @@ void Translation::EnableAudio(bool enable)
         if (_isConvGuide)
         {
             _audioMonitor.StartMic(_momitorDev);
-            _audioOutput.StartSpeaker();
         }
     }
     else
@@ -131,7 +129,6 @@ void Translation::EnableAudio(bool enable)
         if (_isConvGuide)
         {
             _audioMonitor.EndMic();
-            _audioOutput.EndSpeaker();
         }
     }
 }
