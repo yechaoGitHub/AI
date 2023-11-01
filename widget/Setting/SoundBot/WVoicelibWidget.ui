@@ -317,7 +317,7 @@ QPushButton#pb_add{
                 </size>
                </property>
                <property name="text">
-                <string>123532</string>
+                <string/>
                </property>
               </widget>
              </item>

@@ -10,7 +10,6 @@ WHistoryPage::WHistoryPage(QWidget *parent)
     : QWidget(parent)
 {
     ui.setupUi(this);
-    ui.lineEdit->setPlaceholderText(tr("Search any record"));
     connect(SettingInterfaceBussiness::getInstance(),&SettingInterfaceBussiness::sig_chatHistoryReplay,this, &WHistoryPage::slot_chatHistoryReplay);
     connect(SettingInterfaceBussiness::getInstance(),&SettingInterfaceBussiness::sig_common_replay,this,&WHistoryPage::slot_commonReplay);
 
@@ -135,4 +134,14 @@ void WHistoryPage::slot_changePage(int index)
 void WHistoryPage::on_pb_search_clicked()
 {
     reqChatHistory();
+}
+
+void WHistoryPage::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
 }

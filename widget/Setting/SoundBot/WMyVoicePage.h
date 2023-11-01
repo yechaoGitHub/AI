@@ -17,7 +17,8 @@ public:
 	~WMyVoicePage();
 
 	void initMyVoice();
-
+protected:
+	void changeEvent(QEvent* event) override;
 private slots:
 	void	slot_commonReplay(int type, bool, const QString& msg);
 	void	slot_myVoiceListReplay(bool, int, const strc_PageInfo page_info, const QVector<strc_MyVoice>& voice_list);

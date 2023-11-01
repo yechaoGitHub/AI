@@ -18,6 +18,9 @@ public:
 
 	void	setVoice(const strc_MyVoice& voice);
 	void	opeMoive(bool start);
+
+protected:
+	void changeEvent(QEvent* event) override;
 private slots:
 	void on_del_btn_clicked();
 	void on_pb_edit_clicked();

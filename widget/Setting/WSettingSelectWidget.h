@@ -27,6 +27,8 @@ private slots:
 private:
 	void changeSelectBtn(WNavbarButton::BarType type);
 
+protected:
+	void changeEvent(QEvent* event) override;
 private:
 	Ui::WSettingSelectWidgetClass ui;
 };

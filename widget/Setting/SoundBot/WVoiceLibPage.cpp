@@ -216,3 +216,13 @@ void WVoiceLibPage::slot_soundLibReplay(bool success, int, const strc_PageInfo p
 		}
 	}
 }
+
+void WVoiceLibPage::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		ui.retranslateUi(this);
+	}
+
+	QWidget::changeEvent(event);
+}

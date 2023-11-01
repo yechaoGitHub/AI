@@ -73,3 +73,13 @@ void WRobotPage::on_pb_sound_set_clicked()
 {
 	emit sig_robot_clicked(false);
 }
+
+void WRobotPage::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		ui.retranslateUi(this);
+	}
+
+	QWidget::changeEvent(event);
+}

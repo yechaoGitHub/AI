@@ -18,6 +18,9 @@ public:
 private slots:
 	void on_pb_charge_clicked();
 
+protected:
+	void changeEvent(QEvent* event) override;
+
 private:
 	Ui::WAccountPageClass ui;
 };

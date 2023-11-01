@@ -63,3 +63,13 @@ void WEditVoiceDlg::paintEvent(QPaintEvent*)
     p.setBrush(QColor("#ffffff"));
     p.drawRoundedRect(8, 8, width() - 12, height() - 12, 12, 12);
 }
+
+void WEditVoiceDlg::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
+}

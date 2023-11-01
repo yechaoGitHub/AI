@@ -20,7 +20,7 @@ public:
 protected:
     void paintEvent(QPaintEvent* event) override;
     void closeEvent(QCloseEvent* event) override;
-
+    void changeEvent(QEvent* event) override;
 private slots:
     void on_pb_min_clicked();
     void on_pb_close_clicked();

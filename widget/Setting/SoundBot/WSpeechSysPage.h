@@ -11,6 +11,9 @@ public:
 	WSpeechSysPage(QWidget *parent = nullptr);
 	~WSpeechSysPage();
 
+protected:
+	void changeEvent(QEvent* event) override;
+
 private slots:
 	void slot_color_change();
 	void slot_bk_change();

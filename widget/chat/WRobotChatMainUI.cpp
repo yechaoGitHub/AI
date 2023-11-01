@@ -15,7 +15,7 @@ RobotChatMainUI::RobotChatMainUI(QWidget *parent)
     this->setWidgetType(true, DragType::Drag_Null, false);
     this->setLimit(60);
     ui.stackedWidget->setCurrentWidget(ui.chat_widget);
-    ui.lb_title->setText(tr("Chat"));
+    //ui.lb_title->setText(tr("Chat"));
 
     connect(ui.chat_widget->SaveBtn(), &QPushButton::clicked, this, &RobotChatMainUI::SaveBtnClicked);
 
@@ -134,4 +134,14 @@ void RobotChatMainUI::closeEvent(QCloseEvent* event)
     }
 
     hide();
+}
+
+void RobotChatMainUI::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
 }

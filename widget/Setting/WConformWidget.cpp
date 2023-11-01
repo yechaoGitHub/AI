@@ -51,3 +51,13 @@ void WConformWidget::paintEvent(QPaintEvent*)
     p.setBrush(QColor("#ffffff"));
     p.drawRoundedRect(2, 2, width() - 6, height() - 6, 8, 8);
 }
+
+void WConformWidget::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
+}

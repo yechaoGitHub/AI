@@ -14,7 +14,8 @@ public:
 	~WEditVoiceDlg();
 
 	void Show(int voiceId, const QString& name, const QString& desc);
-
+protected:
+	void changeEvent(QEvent* event) override;
 private slots:
 	void on_btn_close_clicked();
 	void on_pb_cancel_clicked();

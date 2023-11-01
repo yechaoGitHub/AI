@@ -10,7 +10,6 @@ WHistoryDiaPage::WHistoryDiaPage(QWidget *parent)
     : QWidget(parent)
 {
     ui.setupUi(this);
-    ui.le_search->setPlaceholderText(tr("Search anr record"));
     this->installEventFilter(this);
     _sound_model = new soundHistoryModel(this);
 
@@ -119,10 +118,12 @@ void WHistoryDiaPage::slot_transHistoryReplay(bool success, int type, const strc
     ui.widget_page->initCtl(page.total_pages,page.total_size,page.cur_page);
 }
 
-//void WHistoryDiaPage::keyReleaseEvent(QKeyEvent* event)
-//{
-//    if (event->key() == Qt::Key_Return)
-//    {
-//        on_pb_search_clicked();
-//    }
-//}
+void WHistoryDiaPage::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
+}

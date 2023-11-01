@@ -43,7 +43,7 @@ color:#131313;</string>
    <item>
     <widget class="QLabel" name="lb_content">
      <property name="text">
-      <string>TextLabel</string>
+      <string/>
      </property>
      <property name="alignment">
       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

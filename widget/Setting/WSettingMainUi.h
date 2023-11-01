@@ -19,6 +19,7 @@ protected:
 	void paintEvent(QPaintEvent*) override;
 	void resizeEvent(QResizeEvent* re) override;
 	bool eventFilter(QObject* obj, QEvent* e);
+	void changeEvent(QEvent* event) override;
 private:
 	Ui::WSettingMainUiClass ui;
 

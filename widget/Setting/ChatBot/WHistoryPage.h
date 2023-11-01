@@ -18,6 +18,9 @@ public:
 
 	void  reqChatHistory();
 
+protected:
+	void changeEvent(QEvent* event) override;
+
 private slots:
 	void	on_pb_search_clicked();
 	void	slot_changePage(int index);

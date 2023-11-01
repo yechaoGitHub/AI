@@ -37,7 +37,7 @@ public:
 protected:
     void resizeEvent(QResizeEvent* event) override;
     bool eventFilter(QObject* watched, QEvent* event) override;
-
+    void changeEvent(QEvent* event) override;
 private slots:
     void on_pb_send_clicked();
     void on_pb_voice_clicked();

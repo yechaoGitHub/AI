@@ -243,3 +243,13 @@ void WSoundSourcePage::PbVirInputClicked()
     ui.pb_virInput->setProperty("open", !b);
     ui.pb_virInput->style()->unpolish(ui.pb_virInput);
 }
+
+void WSoundSourcePage::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
+}

@@ -170,3 +170,13 @@ void WTranslationPage::slot_og_clicked()
     auto view = AiSound::GetInstance().GetTranslationMainView();
     view->update();
 }
+
+void WTranslationPage::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
+}

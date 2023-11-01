@@ -16,6 +16,9 @@ public:
 private:
 	void changeSelectBtn(WNavbarButton::BarType type);
 
+protected:
+	void changeEvent(QEvent* event) override;
+
 private slots:
 	void on_pb_sound_page1_clicked();
 	void on_pb_sound_page2_clicked();

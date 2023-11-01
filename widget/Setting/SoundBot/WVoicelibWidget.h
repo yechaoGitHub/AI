@@ -17,6 +17,9 @@ public:
 
 	void updateVoiceLib(const strc_SoundLib& lib);
 	void opeMovie(bool start);
+protected:
+	void changeEvent(QEvent* event) override;
+
 private slots:
 	void on_pb_add_clicked();
 	void on_pb_sample_clicked();

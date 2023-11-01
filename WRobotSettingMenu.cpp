@@ -23,3 +23,13 @@ void WRobotSettingMenu::setFloatText(const QString& text)
 
 WRobotSettingMenu::~WRobotSettingMenu()
 {}
+
+void WRobotSettingMenu::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		ui.retranslateUi(this);
+	}
+
+	QWidget::changeEvent(event);
+}

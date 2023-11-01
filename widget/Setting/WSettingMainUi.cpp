@@ -116,3 +116,13 @@ bool WSettingMainUi::eventFilter(QObject* obj, QEvent* e)
     }
     return false;
 }
+
+void WSettingMainUi::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
+}

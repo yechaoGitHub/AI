@@ -14,10 +14,6 @@ WInvitePage::WInvitePage(QWidget *parent)
 {
     ui.setupUi(this);
 
-    ui.pb_invite->setText(tr("Invite member"));
-    ui.le_invite->setPlaceholderText(tr("Enter user name to add"));
-    ui.le_search->setPlaceholderText(tr("Search any record"));
-
     qRegisterMetaType< QVector<struc_teamInfo>>(" QVector<struc_teamInfo>");
     connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_common_replay,this, &WInvitePage::slot_inviteReplay);
     connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_searchTeam_replay, this, &WInvitePage::slot_searchTeam_replay);
@@ -129,4 +125,14 @@ void WInvitePage::on_pb_search_clicked()
     QString content = ui.le_search->text();
 
     SettingInterfaceBussiness::getInstance()->getTeamRecordReq(1, _page_size, content);
+}
+
+void WInvitePage::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
 }

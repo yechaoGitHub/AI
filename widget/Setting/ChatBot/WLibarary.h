@@ -17,6 +17,10 @@ public:
 	void	updateLibBySelType(int type);
 
 	void	getChatBotTemplate();
+
+protected:
+	void changeEvent(QEvent* event) override;
+
 private slots:
 	void	slot_model_clicked();
 	void    slot_page_change(int index);

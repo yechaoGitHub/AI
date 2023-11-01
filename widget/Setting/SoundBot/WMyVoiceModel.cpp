@@ -65,7 +65,16 @@ void WMyVoiceModel::opeMoive(bool start)
 
 void WMyVoiceModel::on_pb_use_clicked()
 {
-
 	emit sig_playVoice(_voiceId);
 	SettingInterfaceBussiness::getInstance()->getVoiceUrlReq(_voiceId);
+}
+
+void WMyVoiceModel::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		ui.retranslateUi(this);
+	}
+
+	QWidget::changeEvent(event);
 }

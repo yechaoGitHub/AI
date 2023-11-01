@@ -13,7 +13,8 @@ public:
 	~WRobotSettingMenu();
 
 	void	setFloatText(const QString& text);
-
+protected:
+	void changeEvent(QEvent* event) override;
 private:
 	Ui::WRobotSettingMenuClass ui;
 };

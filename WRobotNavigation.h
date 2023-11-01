@@ -31,6 +31,7 @@ public:
 protected:
 	void paintEvent(QPaintEvent* event) override;
 	bool eventFilter(QObject* obj, QEvent* e);
+	void changeEvent(QEvent* event) override;
 private slots:
 	void on_pb_chat_clicked();
 	void on_pb_voice_clicked();

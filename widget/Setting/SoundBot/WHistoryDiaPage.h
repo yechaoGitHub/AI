@@ -20,7 +20,8 @@ public:
 	void  opeHistoryItem(int type,int index);
 //protected:
 //	void keyReleaseEvent(QKeyEvent* event); //¼üÅÌËÉ¿ªÊÂ¼ş
-
+protected:
+	void changeEvent(QEvent* event) override;
 private slots:
 	void slot_changePage(int index);
 	void on_pb_search_clicked();

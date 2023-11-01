@@ -89,3 +89,13 @@ void WSoundBotMainUi::changeSelectBtn(WNavbarButton::BarType type)
 	ui.pb_sound_page5->setSelect(type == WNavbarButton::BarType::Sound_Page5);
 	ui.pb_sound_page6->setSelect(type == WNavbarButton::BarType::Sound_Page6);
 }
+
+void WSoundBotMainUi::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		ui.retranslateUi(this);
+	}
+
+	QWidget::changeEvent(event);
+}

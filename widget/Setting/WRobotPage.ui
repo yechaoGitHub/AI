@@ -279,7 +279,7 @@ color:505050</string>
 color:#505050;</string>
           </property>
           <property name="text">
-           <string>xxxxxxxxxxx</string>
+           <string/>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
@@ -595,7 +595,7 @@ color:#505050</string>
 color:505050;</string>
           </property>
           <property name="text">
-           <string>xxxxxxxxxxxxxxxxx</string>
+           <string/>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>

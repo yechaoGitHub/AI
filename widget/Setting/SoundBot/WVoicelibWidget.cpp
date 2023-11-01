@@ -64,3 +64,13 @@ void WVoicelibWidget::updateVoiceLib(const strc_SoundLib& lib)
 	_movie->start();
 	_movie->stop();
 }
+
+void WVoicelibWidget::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		ui.retranslateUi(this);
+	}
+
+	QWidget::changeEvent(event);
+}

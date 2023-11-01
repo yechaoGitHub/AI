@@ -12,6 +12,9 @@ public:
 	~WAddVoiceModel();
 
 	void setModelText(const QString& text);
+
+protected:
+	void changeEvent(QEvent* event) override;
 private slots:
 	void	on_pb_add_clicked();
 private:

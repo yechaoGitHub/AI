@@ -151,6 +151,9 @@ QHeaderView::section{
             <height>40</height>
            </size>
           </property>
+          <property name="placeholderText">
+           <string>Search anr record</string>
+          </property>
          </widget>
         </item>
         <item>

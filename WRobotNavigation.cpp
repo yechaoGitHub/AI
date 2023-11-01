@@ -120,6 +120,16 @@ void WRobotNavigation::paintEvent(QPaintEvent* event)
     p.drawPixmap(QRect(it.width()-ss.width(),it.height()-ss.height(),ss.width(),ss.height()), pixmap);
 }
 
+void WRobotNavigation::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
+}
+
 bool WRobotNavigation::eventFilter(QObject* obj, QEvent* e)
 {
     if (obj)

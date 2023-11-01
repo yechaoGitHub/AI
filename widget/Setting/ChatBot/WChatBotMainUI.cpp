@@ -105,3 +105,13 @@ void WChatBotMainUI::changeSelectBtn(WNavbarButton::BarType type)
 		ui.history_page->reqChatHistory();
 	}
 }
+
+void WChatBotMainUI::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		ui.retranslateUi(this);
+	}
+
+	QWidget::changeEvent(event);
+}

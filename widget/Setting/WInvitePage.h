@@ -24,6 +24,10 @@ private slots:
 
 	void slot_inviteReplay(int type, bool, const QString& msg);
 	void slot_searchTeam_replay(int, int total,int, const QVector<struc_teamInfo>& user_info);
+
+protected:
+	void changeEvent(QEvent* event) override;
+
 private:
 	Ui::WInvitePageClass ui;
 	teamListModel*	_team_model = nullptr;

@@ -158,7 +158,6 @@
     <ClCompile Include="widget\Setting\WSettingMainUi.cpp" />
     <ClCompile Include="widget\Setting\WSettingSelectWidget.cpp" />
     <ClCompile Include="widget\Setting\WTeamDelegate.cpp" />
-    <ClCompile Include="widget\Speech\ComboxItem.cpp" />
     <ClCompile Include="widget\Speech\WSpeechTimer.cpp" />
     <ClCompile Include="widget\Speech\WSpeechGenerationUi.cpp" />
     <ClCompile Include="widget\WButton.cpp" />
@@ -292,7 +291,6 @@
     <QtMoc Include="widget\chat\WRobotChatMainUI.h" />
     <QtMoc Include="widget\chat\WRobotChat.h" />
     <QtMoc Include="widget\chat\WChatItem.h" />
-    <QtMoc Include="widget\Speech\ComboxItem.h" />
     <QtMoc Include="widget\Speech\WSpeechGenerationUi.h" />
     <QtMoc Include="function\VoiceCompositor.h" />
     <QtMoc Include="function\Translation.h" />

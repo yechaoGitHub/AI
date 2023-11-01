@@ -7,11 +7,11 @@ WSettingSelectWidget::WSettingSelectWidget(QWidget *parent)
 {
 	ui.setupUi(this);
 
-	ui.pb_account->initBar("Account", WNavbarButton::Bar_Account);
+	ui.pb_account->initBar(tr("Account"), WNavbarButton::Bar_Account);
 	changeSelectBtn(WNavbarButton::Bar_Account);
-	ui.pb_help->initBar("Robot", WNavbarButton::Bar_Help);
-	ui.pb_team->initBar("Team", WNavbarButton::Bar_Team);
-	ui.pb_tools->initBar("General Settings", WNavbarButton::Bar_Tools);
+	ui.pb_help->initBar(tr("Robot"), WNavbarButton::Bar_Help);
+	ui.pb_team->initBar(tr("Team"), WNavbarButton::Bar_Team);
+	ui.pb_tools->initBar(tr("General Settings"), WNavbarButton::Bar_Tools);
 
 	connect(ui.robot_page, &WRobotPage::sig_robot_clicked, this, [=](int is_robot) {
 		emit sig_robot_clicked(is_robot);
@@ -77,4 +77,14 @@ void WSettingSelectWidget::changeSelectBtn(WNavbarButton::BarType type)
 	ui.pb_help->setSelect(type == WNavbarButton::BarType::Bar_Help);
 	ui.pb_team->setSelect(type == WNavbarButton::BarType::Bar_Team);
 	ui.pb_tools->setSelect(type == WNavbarButton::BarType::Bar_Tools);
+}
+
+void WSettingSelectWidget::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		ui.retranslateUi(this);
+	}
+
+	QWidget::changeEvent(event);
 }

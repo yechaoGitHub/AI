@@ -13,6 +13,9 @@ public:
 	WTranslationPage(QWidget *parent = nullptr);
 	~WTranslationPage();
 
+protected:
+	void changeEvent(QEvent* event) override;
+
 private slots:
 	void slot_bk_clicked();
 	void slot_tl_clicked();

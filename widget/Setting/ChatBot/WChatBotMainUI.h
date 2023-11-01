@@ -19,6 +19,9 @@ public:
 	void initCheck();
 	void changeSelectBtn(WNavbarButton::BarType type);
 
+protected:
+	void changeEvent(QEvent* event) override;
+
 private slots:
 	void on_pb_lib_clicked();
 	void on_pb_history_clicked();

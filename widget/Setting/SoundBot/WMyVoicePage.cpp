@@ -140,3 +140,13 @@ void WMyVoicePage::slot_myVoiceListReplay(bool success, int, const strc_PageInfo
 		ui.widget->initCtl(_total_page, _total_size, _cur_page);
 	}
 }
+
+void WMyVoicePage::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		ui.retranslateUi(this);
+	}
+
+	QWidget::changeEvent(event);
+}

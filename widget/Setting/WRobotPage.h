@@ -20,6 +20,10 @@ private slots:
 	void on_pb_sound_lock_clicked();
 	void on_pb_robot_setting_clicked();
 	void on_pb_sound_set_clicked();
+
+protected:
+	void changeEvent(QEvent* event) override;
+
 private:
 	Ui::WRobotPageClass ui;
 

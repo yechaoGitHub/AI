@@ -16,6 +16,8 @@ private slots:
 	void	slot_comboxIndexChange(int index);
 	void	slot_common_replay(int, bool, const QString& msg);
 
+protected:
+	void changeEvent(QEvent* event) override;
 private:
 	Ui::WGerenalPageClass ui;
 };

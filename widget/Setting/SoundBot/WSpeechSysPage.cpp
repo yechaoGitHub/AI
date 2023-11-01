@@ -96,3 +96,13 @@ void WSpeechSysPage::slot_bk_change()
     auto view = AiSound::GetInstance().GetSpeechGenerationView();
     view->update();
 }
+
+void WSpeechSysPage::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
+}

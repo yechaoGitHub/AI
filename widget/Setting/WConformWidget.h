@@ -19,6 +19,7 @@ private slots:
 
 protected:
 	void paintEvent(QPaintEvent*);
+	void changeEvent(QEvent* event) override;
 
 private:
 	Ui::WConformWidgetClass ui;

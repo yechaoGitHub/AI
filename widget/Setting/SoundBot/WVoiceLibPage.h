@@ -16,6 +16,9 @@ public:
 
 	void	setSel();
 
+protected:
+	void changeEvent(QEvent* event) override;
+
 private slots:
 	void	slot_common_replay(int type, bool success, const QString& msg);
 	void	slot_soundFilterReplay(bool, int, const QString& msg, const  QVector<strc_SoundFilter>& filter_list);

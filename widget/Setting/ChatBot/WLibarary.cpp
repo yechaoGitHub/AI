@@ -145,3 +145,13 @@ void WLibarary::slot_getChatBotListReplay(bool success, int, const strc_PageInfo
         ui.widget->initCtl(_pages, _total_size, _cur_page);
     }
 }
+
+void WLibarary::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+    }
+
+    QWidget::changeEvent(event);
+}

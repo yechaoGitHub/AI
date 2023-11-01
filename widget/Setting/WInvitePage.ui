@@ -200,6 +200,9 @@ QTableView::item:!alternate:!selected{
             <height>40</height>
            </size>
           </property>
+          <property name="placeholderText">
+           <string>Enter user name to add</string>
+          </property>
          </widget>
         </item>
        </layout>
@@ -220,7 +223,7 @@ QTableView::item:!alternate:!selected{
         </size>
        </property>
        <property name="text">
-        <string/>
+        <string>Invite member</string>
        </property>
       </widget>
      </item>
@@ -278,6 +281,9 @@ QTableView::item:!alternate:!selected{
             <width>0</width>
             <height>40</height>
            </size>
+          </property>
+          <property name="placeholderText">
+           <string>Search any record</string>
           </property>
          </widget>
         </item>

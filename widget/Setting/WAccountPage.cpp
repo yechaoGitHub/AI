@@ -37,3 +37,13 @@ void WAccountPage::on_pb_charge_clicked()
 	url.append("?").append("access_token=").append(AiSound::GetInstance().Token());
 	QDesktopServices::openUrl(QUrl(url));
 }
+
+void WAccountPage::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		ui.retranslateUi(this);
+	}
+
+	QWidget::changeEvent(event);
+}
