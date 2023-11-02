@@ -138,14 +138,14 @@ QLabel#lb_content[sel=true]{
          </size>
         </property>
         <property name="text">
-         <string>Chatbot(Like Chatgpt)</string>
+         <string/>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QLabel" name="lb_content">
         <property name="text">
-         <string>TextLabel</string>
+         <string/>
         </property>
        </widget>
       </item>

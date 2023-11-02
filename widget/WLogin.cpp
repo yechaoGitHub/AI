@@ -68,6 +68,8 @@ void WLogin::changeEvent(QEvent* event)
     if (event->type() == QEvent::LanguageChange)
     {
         ui.retranslateUi(this);
+        ui.userLogin->userNameEdit->setPlaceholderText(tr("Enter the username"));
+        ui.userLogin->passwordEdit->setPlaceholderText(tr("Enter the password"));
     }
 
     QWidget::changeEvent(event);

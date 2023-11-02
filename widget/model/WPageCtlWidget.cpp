@@ -19,6 +19,7 @@ void WPageCtlWidget::initCtl(int total_page, int total_size, int cur_page)
 {
 	_cur_page = cur_page;
 	_total_pages = total_page;
+	_total_size = total_size;
 	ui.lb_total_size->setText(tr("entries of %1").arg(total_size));
 	QStringList list;
 	for (int i = 1; i <= total_page; i++) {
@@ -160,4 +161,15 @@ void WPageCtlWidget::selCurIndex(int index)
 	else {
 		ui.pb_about->setVisible(false);
 	}
+}
+
+void WPageCtlWidget::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		ui.retranslateUi(this);
+		ui.lb_total_size->setText(tr("entries of %1").arg(_total_size));
+	}
+
+	QWidget::changeEvent(event);
 }

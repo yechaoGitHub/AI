@@ -13,7 +13,8 @@ public:
     QLineEdit*          passwordEdit = nullptr;
 
     //bool    isRember();
-
+protected:
+    void changeEvent(QEvent* event) override;
 private:
     Ui::userNameLogin ui;
 };

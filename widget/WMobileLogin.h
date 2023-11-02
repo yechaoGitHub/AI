@@ -16,7 +16,7 @@ public:
 protected:
     void timerEvent(QTimerEvent* event) override;
     void showEvent(QShowEvent* event) override;
-
+    void changeEvent(QEvent* event) override;
 private:
     void GetCodeCallback();
     void CountryChanged(int index);

@@ -30,7 +30,7 @@ public:
 	void setSelect(bool select);
 protected:
 	void paintEvent(QPaintEvent*) override;
-
+	void changeEvent(QEvent* event) override;
 private:
 
 

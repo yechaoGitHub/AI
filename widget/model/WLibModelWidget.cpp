@@ -37,3 +37,13 @@ void WLibModelWidget::setTitle(const QString& title, const QString& content,int 
 	ui.lb_title->setText(title);
 	ui.lb_content->setText(content);
 }
+
+void WLibModelWidget::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		ui.retranslateUi(this);
+	}
+
+	QWidget::changeEvent(event);
+}

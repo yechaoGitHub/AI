@@ -1,5 +1,6 @@
 #include "WNavbarButton.h"
 #include <QPainter>
+#include <QEvent>
 
 
 WNavbarButton::WNavbarButton(QWidget*parent)
@@ -16,58 +17,92 @@ WNavbarButton::~WNavbarButton()
 
 void WNavbarButton::initBar(const QString& text, BarType bar_type)
 {
+	QFont font = this->font();
+	font.setPixelSize(22);
+	QFontMetrics fm(font);
+	m_pLabel->setFont(font);
+
 	_button_type = bar_type;
 	switch (bar_type)
 	{
 	case WNavbarButton::Bar_Account:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/account.png");
+		m_pLabel->setText(tr("Account"));
+		_width = fm.width(tr("Account"));
 		break;
 	case WNavbarButton::Bar_Help:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/help.png");
+		m_pLabel->setText(tr("Robot"));
+		_width = fm.width(tr("Robot"));
 		break;
 	case WNavbarButton::Bar_Team:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/team.png");
+		m_pLabel->setText(tr("Team"));
+		_width = fm.width(tr("Team"));
 		break;
 	case WNavbarButton::Bar_Tools:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/tools.png");
+		m_pLabel->setText(tr("General Settings"));
+		_width = fm.width(tr("General Settings"));
 		break;
 	case WNavbarButton::Bar_Lib:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/chatbot/lib_icon.png");
+		m_pLabel->setText(tr("Library"));
+		_width = fm.width(tr("Library"));
 		break;
 	case WNavbarButton::Bar_History:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/chatbot/history_icon.png");
+		m_pLabel->setText(tr("History"));
+		_width = fm.width(tr("History"));
 		break;
 	case WNavbarButton::Sound_Page1:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/soundbot/source_icon.png");
+		m_pLabel->setText(tr("Sound Source"));
+		_width = fm.width(tr("Sound Source"));
 		break;
 	case WNavbarButton::Sound_Page2:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/soundbot/transl_icon.png");
+		m_pLabel->setText(tr("Translation"));
+		_width = fm.width(tr("Translation"));
 		break;
 	case WNavbarButton::Sound_Page3:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/soundbot/voice_icon.png");
+		m_pLabel->setText(tr("Voice Library"));
+		_width = fm.width(tr("Voice Library"));
 		break;
 	case WNavbarButton::Sound_Page4:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/soundbot/my_voice.png");
+		m_pLabel->setText(tr("My Voice"));
+		_width = fm.width(tr("My Voice"));
 		break;
 	case WNavbarButton::Sound_Page5:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/soundbot/speech_icon.png");
+		m_pLabel->setText(tr("Speech Synthesis"));
+		_width = fm.width(tr("Speech Synthesis"));
 		break;
 	case WNavbarButton::Sound_Page6:
 		m_iconPixmap = QPixmap(":/QtTest/icon/Setting/soundbot/historical.png");
+		m_pLabel->setText(tr("Translation History"));
+		_width = fm.width(tr("Translation History"));
 		break;
 	default:
 		break;
 	}
 
 	m_strText = text;
-
-	QFont font = this->font();
-	font.setPixelSize(22);
-	QFontMetrics fm(font);
-	m_pLabel->setFont(font);
-	m_pLabel->setText(text);
-	_width = fm.width(m_strText);
 	_height = fm.height();
+}
+
+void WNavbarButton::changeEvent(QEvent* event)
+{
+	if (event->type() == QEvent::LanguageChange)
+	{
+		//ui.retranslateUi(this);
+		initBar(m_strText, _button_type);
+		update();
+	}
+
+	QWidget::changeEvent(event);
 }
 
 void WNavbarButton::setSelect(bool select)

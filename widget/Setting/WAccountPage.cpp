@@ -43,6 +43,9 @@ void WAccountPage::changeEvent(QEvent* event)
 	if (event->type() == QEvent::LanguageChange)
 	{
 		ui.retranslateUi(this);
+		QDate qdate = QDate::currentDate();
+		QString cur_date = qdate.toString("dd/MM/yyyy");
+		ui.lb_time->setText(tr("(Expires on %1)").arg(cur_date));
 	}
 
 	QWidget::changeEvent(event);

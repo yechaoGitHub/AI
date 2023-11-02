@@ -13,7 +13,8 @@ public:
 	~WPageCtlWidget();
 
 	void initCtl(int total_page,int total_size,int cur_page);
-
+protected:
+	void changeEvent(QEvent* event) override;
 private slots:
 	void on_pb_next_clicked();
 	void on_pb_pre_clicked();
@@ -31,4 +32,5 @@ private:
 
 	int	_cur_page = 0;
 	int _total_pages = 0;
+	int _total_size = 0;
 };

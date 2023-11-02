@@ -84,6 +84,10 @@ void WSettingSelectWidget::changeEvent(QEvent* event)
 	if (event->type() == QEvent::LanguageChange)
 	{
 		ui.retranslateUi(this);
+		ui.pb_account->initBar(tr("Account"), WNavbarButton::Bar_Account);
+		ui.pb_help->initBar(tr("Robot"), WNavbarButton::Bar_Help);
+		ui.pb_team->initBar(tr("Team"), WNavbarButton::Bar_Team);
+		ui.pb_tools->initBar(tr("General Settings"), WNavbarButton::Bar_Tools);
 	}
 
 	QWidget::changeEvent(event);

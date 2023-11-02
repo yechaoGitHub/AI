@@ -24,7 +24,7 @@ public:
 	void setTitle(const QString& title,const QString& content,int id);
 protected:
 	void mouseReleaseEvent(QMouseEvent* event);
-
+	void changeEvent(QEvent* event) override;
 private:
 	Ui::WLibModelWidgetClass ui;
 	bool  _select = false;

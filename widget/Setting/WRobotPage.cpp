@@ -79,6 +79,8 @@ void WRobotPage::changeEvent(QEvent* event)
 	if (event->type() == QEvent::LanguageChange)
 	{
 		ui.retranslateUi(this);
+		ui.lb_robot_name->setText(tr("Integrate a variety of the latest and best large language models to achieve dialogue, question answering, copy generation and so on. The most efficient tool and encyclopedia assistant!"));
+		ui.lb_sound_tip->setText(tr("Support more than a dozen commonly used languages real-time translation, speech synthesis. Talk to the world in your own language!"));
 	}
 
 	QWidget::changeEvent(event);

@@ -155,3 +155,14 @@ void WMobileLogin::CountryChanged(int index)
         ui.codeEdit->textEdit->setPlaceholderText(tr("Enter the email address"));
     }
 }
+
+void WMobileLogin::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+        ui.lineEdit->setPlaceholderText(tr("Enter the code send on your email"));
+    }
+
+    QWidget::changeEvent(event);
+}

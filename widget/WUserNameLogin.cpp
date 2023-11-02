@@ -8,7 +8,7 @@ WUserNameLogin::WUserNameLogin(QWidget* parent) :
     passwordEdit{ nullptr }
 {
     ui.setupUi(this);
-    ui.userNameEdit->textEdit->setPlaceholderText("UserName");
+    ui.userNameEdit->textEdit->setPlaceholderText(tr("UserName"));
     ui.userNameEdit->SetImage(":QtTest/icon/user_active.png");
     ui.passWordEdit->SetImage(":QtTest/icon/lock.png");
 
@@ -27,4 +27,15 @@ WUserNameLogin::WUserNameLogin(QWidget* parent) :
 WUserNameLogin::~WUserNameLogin()
 {
 
+}
+
+void WUserNameLogin::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+        ui.userNameEdit->textEdit->setPlaceholderText(tr("UserName"));
+    }
+
+    QWidget::changeEvent(event);
 }
