@@ -5,7 +5,7 @@
     <name>ConversationSuggestion</name>
     <message>
         <source>WChatDesc</source>
-        <translation></translation>
+        <translation>WChatDesc</translation>
     </message>
     <message>
         <source>Conversation Suggestion</source>
@@ -16,7 +16,7 @@
     <name>ForgotPassword</name>
     <message>
         <source>Form</source>
-        <translation></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Forget Password</source>
@@ -35,7 +35,7 @@
     <name>Form</name>
     <message>
         <source>Form</source>
-        <translation></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Verify phone</source>
@@ -43,11 +43,11 @@
     </message>
     <message>
         <source>You have been redirected from Gmail login please enter your mobile number to verify.</source>
-        <translation></translation>
+        <translation>你已经被Gmail重定向,请输入手机号码验证</translation>
     </message>
     <message>
         <source>Estimated time of code in 43 seconds</source>
-        <translation></translation>
+        <translation>Estimated time of code in 43 seconds</translation>
     </message>
     <message>
         <source>Resend Code</source>
@@ -58,7 +58,7 @@
     <name>Login</name>
     <message>
         <source>Form</source>
-        <translation></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Welcome Back..!!</source>
@@ -97,7 +97,7 @@
     <name>QAddVoiceDlgClass</name>
     <message>
         <source>QAddVoiceDlg</source>
-        <translation></translation>
+        <translation>QAddVoiceDlg</translation>
     </message>
     <message>
         <source>Add Voice To My Voice</source>
@@ -142,7 +142,7 @@
     <name>SaveChatHistory</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Save Chat History</source>
@@ -150,160 +150,160 @@
     </message>
     <message>
         <source>New chat  name</source>
-        <translation type="unfinished">新的聊天</translation>
+        <translation>新的聊天</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>保存</translation>
     </message>
 </context>
 <context>
     <name>SettingInterfaceBussiness</name>
     <message>
         <source>invite Success</source>
-        <translation type="unfinished">邀请成功</translation>
+        <translation>邀请成功</translation>
     </message>
     <message>
         <source>get chatbot type timeout</source>
-        <translation type="unfinished">获取机器人类型超时</translation>
+        <translation>获取机器人类型超时</translation>
     </message>
     <message>
         <source>get chatbot type fail</source>
-        <translation type="unfinished">获取机器人类型失败</translation>
+        <translation>获取机器人类型失败</translation>
     </message>
     <message>
         <source>search chatbot history timeout</source>
-        <translation type="unfinished">获取机器人类型超时</translation>
+        <translation>获取机器人类型超时</translation>
     </message>
     <message>
         <source>search chatbot history fail</source>
-        <translation type="unfinished">获取机器人类型失败</translation>
+        <translation>获取机器人类型失败</translation>
     </message>
     <message>
         <source>del chat history</source>
-        <translation type="unfinished">删除聊天历史</translation>
+        <translation>删除聊天历史</translation>
     </message>
     <message>
         <source>del Success</source>
-        <translation type="unfinished">删除成功</translation>
+        <translation>删除成功</translation>
     </message>
     <message>
         <source>del chat history timeout</source>
-        <translation type="unfinished">删除聊天历史超时</translation>
+        <translation>删除聊天历史超时</translation>
     </message>
     <message>
         <source>del chat history fail</source>
-        <translation type="unfinished">删除聊天历史失败</translation>
+        <translation>删除聊天历史失败</translation>
     </message>
     <message>
         <source>��ȡ�����б���ʱ</source>
-        <translation type="unfinished"></translation>
+        <translation>��ȡ�����б���ʱ</translation>
     </message>
     <message>
         <source>��ѯ�����б�ʧ��</source>
-        <translation type="unfinished"></translation>
+        <translation>��ѯ�����б�ʧ��</translation>
     </message>
     <message>
         <source>add voice fail</source>
-        <translation type="unfinished">添加声音失败</translation>
+        <translation>添加声音失败</translation>
     </message>
     <message>
         <source>add Success</source>
-        <translation type="unfinished">添加声音成功</translation>
+        <translation>添加声音成功</translation>
     </message>
     <message>
         <source>add voice timeout</source>
-        <translation type="unfinished">添加声音超时</translation>
+        <translation>添加声音超时</translation>
     </message>
     <message>
         <source>get voice list timeout</source>
-        <translation type="unfinished">获取声音列表超时</translation>
+        <translation>获取声音列表超时</translation>
     </message>
     <message>
         <source>get voice list fail</source>
-        <translation type="unfinished">获取声音列表失败</translation>
+        <translation>获取声音列表失败</translation>
     </message>
     <message>
         <source>delete voice fail</source>
-        <translation type="unfinished">删除声音失败</translation>
+        <translation>删除声音失败</translation>
     </message>
     <message>
         <source>delete voice Success</source>
-        <translation type="unfinished">删除声音成功</translation>
+        <translation>删除声音成功</translation>
     </message>
     <message>
         <source>delete voice timeout</source>
-        <translation type="unfinished">删除声音超时</translation>
+        <translation>删除声音超时</translation>
     </message>
     <message>
         <source>get voice url timeout</source>
-        <translation type="unfinished">获取声音url超时</translation>
+        <translation>获取声音url超时</translation>
     </message>
     <message>
         <source>get voice url fail</source>
-        <translation type="unfinished">获取声音url失败</translation>
+        <translation>获取声音url失败</translation>
     </message>
     <message>
         <source>edit voice fail</source>
-        <translation type="unfinished">编辑声音失败</translation>
+        <translation>编辑声音失败</translation>
     </message>
     <message>
         <source>edit Success</source>
-        <translation type="unfinished">编辑声音成功</translation>
+        <translation>编辑声音成功</translation>
     </message>
     <message>
         <source>search Trans history timeout</source>
-        <translation type="unfinished">搜索翻译历史超时</translation>
+        <translation>搜索翻译历史超时</translation>
     </message>
     <message>
         <source>search Trans history fail</source>
-        <translation type="unfinished">搜索翻译历史失败</translation>
+        <translation>搜索翻译历史失败</translation>
     </message>
     <message>
         <source>delete trans fail</source>
-        <translation type="unfinished">删除翻译失败</translation>
+        <translation>删除翻译失败</translation>
     </message>
     <message>
         <source>delete trans Success</source>
-        <translation type="unfinished">删除翻译成功</translation>
+        <translation>删除翻译成功</translation>
     </message>
     <message>
         <source>delete trans timeout</source>
-        <translation type="unfinished">删除翻译超时</translation>
+        <translation>删除翻译超时</translation>
     </message>
     <message>
         <source>get chatbot record timeout</source>
-        <translation type="unfinished">获取机器人记录超时</translation>
+        <translation>获取机器人记录超时</translation>
     </message>
     <message>
         <source>get chatbot record fail</source>
-        <translation type="unfinished">获取机器人记录失败</translation>
+        <translation>获取机器人记录失败</translation>
     </message>
     <message>
         <source>remove user timeout</source>
-        <translation type="unfinished"></translation>
+        <translation>移除用户超时</translation>
     </message>
     <message>
         <source>remove user fail</source>
-        <translation type="unfinished"></translation>
+        <translation>移除用户失败</translation>
     </message>
 </context>
 <context>
     <name>WAccountPage</name>
     <message>
         <source>(Expires on %1)</source>
-        <translation type="unfinished"></translation>
+        <translation>（过期 %1）</translation>
     </message>
 </context>
 <context>
     <name>WAccountPageClass</name>
     <message>
         <source>WAccountPage</source>
-        <translation type="unfinished"></translation>
+        <translation>WAccountPage</translation>
     </message>
     <message>
         <source>Mobile Phone</source>
-        <translation type="unfinished">移动电话</translation>
+        <translation>移动电话</translation>
     </message>
     <message>
         <source>12345778</source>
@@ -311,229 +311,229 @@
     </message>
     <message>
         <source>UserName</source>
-        <translation type="unfinished">用户名</translation>
+        <translation>用户名</translation>
     </message>
     <message>
         <source>Total Points</source>
-        <translation type="unfinished"></translation>
+        <translation>全部点数</translation>
     </message>
     <message>
         <source>Account Number</source>
-        <translation type="unfinished"></translation>
+        <translation>账户号码</translation>
     </message>
     <message>
         <source>Package Status</source>
-        <translation type="unfinished"></translation>
+        <translation>包状态</translation>
     </message>
     <message>
         <source>Premium</source>
-        <translation type="unfinished"></translation>
+        <translation>额外费用</translation>
     </message>
     <message>
         <source>Recharge</source>
-        <translation type="unfinished"></translation>
+        <translation>充值</translation>
     </message>
     <message>
         <source>(Expires on </source>
-        <translation type="unfinished"></translation>
+        <translation>（过期</translation>
     </message>
 </context>
 <context>
     <name>WAddVoiceModelClass</name>
     <message>
         <source>WAddVoiceModel</source>
-        <translation type="unfinished"></translation>
+        <translation>WAddVoiceModel</translation>
     </message>
     <message>
         <source>Add Generative or Cloned Voice</source>
-        <translation type="unfinished"></translation>
+        <translation>添加自动生成或者克隆语音</translation>
     </message>
 </context>
 <context>
     <name>WChatBotMainUI</name>
     <message>
         <source>Library</source>
-        <translation type="unfinished"></translation>
+        <translation>Library</translation>
     </message>
     <message>
         <source>History</source>
-        <translation type="unfinished">历史</translation>
+        <translation>历史</translation>
     </message>
     <message>
         <source>All templates</source>
-        <translation type="unfinished">全部模板</translation>
+        <translation>全部模板</translation>
     </message>
 </context>
 <context>
     <name>WChatBotMainUIClass</name>
     <message>
         <source>WChatBotMainUI</source>
-        <translation type="unfinished"></translation>
+        <translation>WChatBotMainUI</translation>
     </message>
     <message>
         <source>ChatBot</source>
-        <translation type="unfinished">聊天机器人</translation>
+        <translation>聊天机器人</translation>
     </message>
     <message>
         <source>Activated</source>
-        <translation type="unfinished">激活</translation>
+        <translation>激活</translation>
     </message>
 </context>
 <context>
     <name>WChatItem</name>
     <message>
         <source>Content copied</source>
-        <translation type="unfinished">内容复制</translation>
+        <translation>内容已复制</translation>
     </message>
 </context>
 <context>
     <name>WConformDlgClass</name>
     <message>
         <source>Conform</source>
-        <translation type="unfinished"></translation>
+        <translation>Conform</translation>
     </message>
     <message>
         <source>Conform MessageBox</source>
-        <translation type="unfinished"></translation>
+        <translation>Conform MessageBox</translation>
     </message>
     <message>
         <source>Do you want to load this template? Unsaved conversations will be lost</source>
-        <translation type="unfinished"></translation>
+        <translation>你想要加载这模板吗？未保存的对话将会丢失</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>Sure</source>
-        <translation type="unfinished">确定</translation>
+        <translation>确定</translation>
     </message>
 </context>
 <context>
     <name>WConformWidgetClass</name>
     <message>
         <source>WConformWidget</source>
-        <translation type="unfinished"></translation>
+        <translation>WConformWidget</translation>
     </message>
     <message>
         <source>delete confirmation</source>
-        <translation type="unfinished">确认删除</translation>
+        <translation>确认删除</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>Sure</source>
-        <translation type="unfinished">确定</translation>
+        <translation>确定</translation>
     </message>
 </context>
 <context>
     <name>WEditVoiceDlgClass</name>
     <message>
         <source>WEditVoiceDlg</source>
-        <translation type="unfinished"></translation>
+        <translation>WEditVoiceDlg</translation>
     </message>
     <message>
         <source>Edit Voice</source>
-        <translation type="unfinished">编辑声音</translation>
+        <translation>编辑声音</translation>
     </message>
     <message>
         <source>New voice name</source>
-        <translation type="unfinished">新的声音名称</translation>
+        <translation>新的声音名称</translation>
     </message>
     <message>
         <source>description voice name</source>
-        <translation type="unfinished">声音描述</translation>
+        <translation>声音描述</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
 </context>
 <context>
     <name>WForgotPassword</name>
     <message>
         <source>Enter email address</source>
-        <translation type="unfinished"></translation>
+        <translation>输入电子邮箱地址</translation>
     </message>
     <message>
         <source>Enter the code in picture</source>
-        <translation type="unfinished"></translation>
+        <translation>输入图中的验证码</translation>
     </message>
     <message>
         <source>Enter the verification code</source>
-        <translation type="unfinished"></translation>
+        <translation>输入验证码</translation>
     </message>
     <message>
         <source>Estimated time of code in %1 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>预估剩余时间 %1 秒</translation>
     </message>
     <message>
         <source>Enter the mobile phone</source>
-        <translation type="unfinished"></translation>
+        <translation>输入手机号码</translation>
     </message>
     <message>
         <source>Enter the email address</source>
-        <translation type="unfinished"></translation>
+        <translation>输入电子邮箱</translation>
     </message>
 </context>
 <context>
     <name>WGerenalPage</name>
     <message>
         <source>English</source>
-        <translation type="unfinished">英文</translation>
+        <translation>中文</translation>
     </message>
     <message>
         <source>Chinese</source>
-        <translation type="unfinished">中文</translation>
+        <translation>中文</translation>
     </message>
     <message>
         <source>Send Ok</source>
-        <translation type="unfinished">成功发送</translation>
+        <translation>成功发送</translation>
     </message>
 </context>
 <context>
     <name>WGerenalPageClass</name>
     <message>
         <source>WGerenalPage</source>
-        <translation type="unfinished"></translation>
+        <translation>WGerenalPage</translation>
     </message>
     <message>
         <source>Language Settings</source>
-        <translation type="unfinished">语言设置</translation>
+        <translation>语言设置</translation>
     </message>
     <message>
         <source>Shortcut Keys</source>
-        <translation type="unfinished">快捷键</translation>
+        <translation>快捷键</translation>
     </message>
     <message>
         <source>Start voice translation</source>
-        <translation type="unfinished">开始语音翻译</translation>
+        <translation>开始语音翻译</translation>
     </message>
     <message>
         <source>ctrl+alt+t</source>
-        <translation type="unfinished">ctrl+alt+t</translation>
+        <translation>ctrl+alt+t</translation>
     </message>
     <message>
         <source>Start speech generation</source>
-        <translation type="unfinished">开始语音生成</translation>
+        <translation>开始语音生成</translation>
     </message>
     <message>
         <source>ctrl+g</source>
-        <translation type="unfinished">ctrl+g</translation>
+        <translation>ctrl+g</translation>
     </message>
     <message>
         <source>Question feedback</source>
-        <translation type="unfinished">问题反馈</translation>
+        <translation>问题反馈</translation>
     </message>
     <message>
         <source>Write to feedback here</source>
-        <translation type="unfinished">反馈写在这里</translation>
+        <translation>反馈写在这里</translation>
     </message>
     <message>
         <source>Send</source>
-        <translation type="unfinished">发送</translation>
+        <translation>发送</translation>
     </message>
 </context>
 <context>
@@ -544,22 +544,22 @@
     </message>
     <message>
         <source>Are you sure you want to delete the Translation History?</source>
-        <translation type="unfinished">确定删除这条翻译历史？</translation>
+        <translation>确定删除这条翻译历史？</translation>
     </message>
 </context>
 <context>
     <name>WHistoryDiaPageClass</name>
     <message>
         <source>WHistoryDiaPage</source>
-        <translation type="unfinished"></translation>
+        <translation>WHistoryDiaPage</translation>
     </message>
     <message>
         <source>All History</source>
-        <translation type="unfinished">全部历史</translation>
+        <translation>全部历史</translation>
     </message>
     <message>
         <source>Search anr record</source>
-        <translation type="unfinished">搜索和记录</translation>
+        <translation>搜索和记录</translation>
     </message>
 </context>
 <context>
@@ -570,22 +570,22 @@
     </message>
     <message>
         <source>Are you sure you want to delete the historical synopsis?</source>
-        <translation type="unfinished">确定删除这跳历史概要？</translation>
+        <translation>确定删除这跳历史概要？</translation>
     </message>
 </context>
 <context>
     <name>WHistoryPageClass</name>
     <message>
         <source>WHistoryPage</source>
-        <translation type="unfinished"></translation>
+        <translation>WHistoryPage</translation>
     </message>
     <message>
         <source>All History</source>
-        <translation type="unfinished">全部历史</translation>
+        <translation>全部历史</translation>
     </message>
     <message>
         <source>Search any record</source>
-        <translation type="unfinished">搜索和记录</translation>
+        <translation>搜索和记录</translation>
     </message>
 </context>
 <context>
@@ -599,610 +599,664 @@
     <name>WInvitePageClass</name>
     <message>
         <source>WInvitePage</source>
-        <translation type="unfinished"></translation>
+        <translation>WInvitePage</translation>
     </message>
     <message>
         <source>Invite users to your team by putting there usernames in below field</source>
-        <translation type="unfinished"></translation>
+        <translation>通过把用户名放在下方区域邀请用户加入你的团队</translation>
     </message>
     <message>
         <source>Member</source>
-        <translation type="unfinished"></translation>
+        <translation>成员</translation>
     </message>
     <message>
         <source>Enter user name to add</source>
-        <translation type="unfinished"></translation>
+        <translation>输入添加的用户名</translation>
     </message>
     <message>
         <source>Invite member</source>
-        <translation type="unfinished"></translation>
+        <translation>邀请成员</translation>
     </message>
     <message>
         <source>Search any record</source>
-        <translation type="unfinished">搜索和记录</translation>
+        <translation>搜索和记录</translation>
     </message>
 </context>
 <context>
     <name>WLibModelWidgetClass</name>
     <message>
         <source>WLibModelWidget</source>
-        <translation type="unfinished"></translation>
+        <translation>WLibModelWidget</translation>
     </message>
     <message>
         <source>Chatbot(Like Chatgpt)</source>
-        <translation type="unfinished">聊天机器人（类Chatgpt）</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">聊天机器人（类Chatgpt）</translation>
     </message>
 </context>
 <context>
     <name>WLibarary</name>
     <message>
         <source>Chatbot(%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>聊天机器人（%1）</translation>
     </message>
 </context>
 <context>
     <name>WLibararyClass</name>
     <message>
         <source>WLibarary</source>
-        <translation type="unfinished"></translation>
+        <translation>WLibarary</translation>
     </message>
 </context>
 <context>
     <name>WLogin</name>
     <message>
         <source>Enter the username</source>
-        <translation type="unfinished"></translation>
+        <translation>输入用户名</translation>
     </message>
     <message>
         <source>Enter the password</source>
-        <translation type="unfinished"></translation>
+        <translation>输入密码</translation>
     </message>
 </context>
 <context>
     <name>WLoginUIClass</name>
     <message>
         <source>WLoginUI</source>
-        <translation type="unfinished"></translation>
+        <translation>WLoginUI</translation>
     </message>
     <message>
         <source>Sounda</source>
-        <translation type="unfinished">Sounda</translation>
+        <translation>Sounda</translation>
     </message>
     <message>
         <source>Just talk to the world !</source>
-        <translation type="unfinished">Just talk to the world !</translation>
+        <translation>与世界对话交流！</translation>
     </message>
 </context>
 <context>
     <name>WMobileLogin</name>
     <message>
         <source>Enter the code send on your email</source>
-        <translation type="unfinished">输入邮件收到的验证码</translation>
+        <translation>输入邮件收到的验证码</translation>
     </message>
     <message>
         <source>Enter the email address</source>
-        <translation type="unfinished"></translation>
+        <translation>输入电子邮箱</translation>
     </message>
     <message>
         <source>Enter the code in picture</source>
-        <translation type="unfinished"></translation>
+        <translation>输入图中的验证码</translation>
     </message>
     <message>
         <source>Estimated time of code in %1 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>估计剩余时间 %1 秒</translation>
     </message>
     <message>
         <source>Enter the mobile phone</source>
-        <translation type="unfinished"></translation>
+        <translation>输入手机号码</translation>
     </message>
 </context>
 <context>
     <name>WMyVoiceModelClass</name>
     <message>
         <source>WVoicelibWidget</source>
-        <translation type="unfinished"></translation>
+        <translation>WVoicelibWidget</translation>
     </message>
     <message>
         <source>General translation</source>
-        <translation type="unfinished">主要翻译</translation>
+        <translation>主要翻译</translation>
     </message>
     <message>
         <source>This voice has been randomly generated</source>
-        <translation type="unfinished">这条声音是随机生成的</translation>
+        <translation>这条声音是随机生成的</translation>
     </message>
     <message>
         <source>Use</source>
-        <translation type="unfinished">使用</translation>
+        <translation>使用</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished">编辑</translation>
+        <translation>编辑</translation>
     </message>
 </context>
 <context>
     <name>WMyVoicePage</name>
     <message>
         <source>Address is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>地址为空</translation>
     </message>
 </context>
 <context>
     <name>WMyVoicePageClass</name>
     <message>
         <source>WMyVoicePage</source>
-        <translation type="unfinished"></translation>
+        <translation>WMyVoicePage</translation>
     </message>
     <message>
         <source>My Voice</source>
-        <translation type="unfinished">我的声音</translation>
+        <translation>我的声音</translation>
+    </message>
+</context>
+<context>
+    <name>WNavbarButton</name>
+    <message>
+        <source>Account</source>
+        <translation>账户</translation>
+    </message>
+    <message>
+        <source>Robot</source>
+        <translation>机器人</translation>
+    </message>
+    <message>
+        <source>Team</source>
+        <translation>团队</translation>
+    </message>
+    <message>
+        <source>General Settings</source>
+        <translation>主要设置</translation>
+    </message>
+    <message>
+        <source>Library</source>
+        <translation>库</translation>
+    </message>
+    <message>
+        <source>History</source>
+        <translation>历史</translation>
+    </message>
+    <message>
+        <source>Sound Source</source>
+        <translation>声音源</translation>
+    </message>
+    <message>
+        <source>Translation</source>
+        <translation>翻译</translation>
+    </message>
+    <message>
+        <source>Voice Library</source>
+        <translation>声音库</translation>
+    </message>
+    <message>
+        <source>My Voice</source>
+        <translation>我的声音</translation>
+    </message>
+    <message>
+        <source>Speech Synthesis</source>
+        <translation>对话分析</translation>
+    </message>
+    <message>
+        <source>Translation History</source>
+        <translation>翻译历史</translation>
     </message>
 </context>
 <context>
     <name>WPageCtlWidget</name>
     <message>
         <source>entries of %1</source>
-        <translation type="unfinished"></translation>
+        <translation>账目 %1</translation>
     </message>
 </context>
 <context>
     <name>WPageCtlWidgetClass</name>
     <message>
         <source>WPageCtlWidget</source>
-        <translation type="unfinished"></translation>
+        <translation>WPageCtlWidget</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished">展示</translation>
+        <translation>展示</translation>
     </message>
     <message>
         <source>entries of 430</source>
-        <translation type="unfinished"></translation>
+        <translation>账目 430</translation>
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished">1</translation>
+        <translation>1</translation>
     </message>
     <message>
         <source>2</source>
-        <translation type="unfinished">2</translation>
+        <translation>2</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>9</source>
-        <translation type="unfinished">9</translation>
+        <translation>9</translation>
     </message>
 </context>
 <context>
     <name>WRegister</name>
     <message>
         <source>Enter email address</source>
-        <translation type="unfinished"></translation>
+        <translation>输入电子邮箱</translation>
     </message>
     <message>
         <source>Enter the code in picture</source>
-        <translation type="unfinished"></translation>
+        <translation>输入图中的验证码</translation>
     </message>
     <message>
         <source>Enter the verification code</source>
-        <translation type="unfinished"></translation>
+        <translation>输入验证码</translation>
     </message>
     <message>
         <source>Estimated time of code in %1 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>估计剩余时间 %1 秒</translation>
     </message>
     <message>
         <source>Enter the mobile phone</source>
-        <translation type="unfinished"></translation>
+        <translation>输入手机号码</translation>
     </message>
     <message>
         <source>Enter the email address</source>
-        <translation type="unfinished"></translation>
+        <translation>输入电子邮箱</translation>
     </message>
 </context>
 <context>
     <name>WRobotChat</name>
     <message>
         <source>Confirmation</source>
-        <translation type="unfinished"></translation>
+        <translation>确认</translation>
     </message>
     <message>
         <source>Chat record not saved, exiting will lose the record</source>
-        <translation type="unfinished"></translation>
+        <translation>对话没有保存，退出将丢失记录</translation>
     </message>
 </context>
 <context>
     <name>WRobotChatClass</name>
     <message>
         <source>WRobotChat</source>
-        <translation type="unfinished"></translation>
+        <translation>WRobotChat</translation>
     </message>
 </context>
 <context>
     <name>WRobotNavigation</name>
     <message>
         <source>Float Window</source>
-        <translation type="unfinished"></translation>
+        <translation>悬浮窗</translation>
     </message>
     <message>
         <source>AiSound</source>
-        <translation type="unfinished"></translation>
+        <translation>AiSound</translation>
     </message>
     <message>
         <source>Setting</source>
-        <translation type="unfinished">设置</translation>
+        <translation>设置</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished">退出</translation>
+        <translation>退出</translation>
     </message>
 </context>
 <context>
     <name>WRobotNavigationClass</name>
     <message>
         <source>WRobotNavigation</source>
-        <translation type="unfinished"></translation>
+        <translation>WRobotNavigation</translation>
     </message>
     <message>
         <source>Voice Translate</source>
-        <translation type="unfinished">声音翻译</translation>
+        <translation>声音翻译</translation>
     </message>
     <message>
         <source>Speech Generation</source>
-        <translation type="unfinished">语音生成</translation>
+        <translation>语音生成</translation>
     </message>
     <message>
         <source>Chat</source>
-        <translation type="unfinished">机器人聊天</translation>
+        <translation>机器人聊天</translation>
     </message>
 </context>
 <context>
     <name>WRobotPage</name>
     <message>
         <source>Integrate a variety of the latest and best large language models to achieve dialogue, question answering, copy generation and so on. The most efficient tool and encyclopedia assistant!</source>
-        <translation type="unfinished">融合多种最新最好的大语言模型进行对话，问题回答，复制生成等。最有效的，最全面的协作工具！</translation>
+        <translation>融合多种最新最好的大语言模型进行对话，问题回答，复制生成等。最有效的，最全面的协作工具！</translation>
     </message>
     <message>
         <source>Support more than a dozen commonly used languages real-time translation, speech synthesis. Talk to the world in your own language!</source>
-        <translation type="unfinished">支持超过数十种语言实时翻译，对话分析。用你的母语与世界交流！</translation>
+        <translation>支持超过数十种语言实时翻译，对话分析。用你的母语与世界交流！</translation>
     </message>
 </context>
 <context>
     <name>WRobotPageClass</name>
     <message>
         <source>WRobotPage</source>
-        <translation type="unfinished"></translation>
+        <translation>WRobotPage</translation>
     </message>
     <message>
         <source>ChatBot</source>
-        <translation type="unfinished">聊天机器人</translation>
+        <translation>聊天机器人</translation>
     </message>
     <message>
         <source>(Activated)</source>
-        <translation type="unfinished">（激活）</translation>
+        <translation>（激活）</translation>
     </message>
     <message>
         <source>Setup</source>
-        <translation type="unfinished">安装</translation>
+        <translation>安装</translation>
     </message>
     <message>
         <source>Activate</source>
-        <translation type="unfinished">激活</translation>
+        <translation>激活</translation>
     </message>
     <message>
         <source>Sound Bot</source>
-        <translation type="unfinished">语音机器人</translation>
+        <translation>语音机器人</translation>
     </message>
 </context>
 <context>
     <name>WRobotSettingMenuClass</name>
     <message>
         <source>WRobotSettingMenu</source>
-        <translation type="unfinished"></translation>
+        <translation>WRobotSettingMenu</translation>
     </message>
     <message>
         <source>System Settings</source>
-        <translation type="unfinished">系统设置</translation>
+        <translation>系统设置</translation>
     </message>
     <message>
         <source>Chatbot Settings</source>
-        <translation type="unfinished">聊天机器人设置</translation>
+        <translation>聊天机器人设置</translation>
     </message>
     <message>
         <source>Quite Floating Window</source>
-        <translation type="unfinished">退出悬浮球</translation>
+        <translation>退出悬浮球</translation>
     </message>
 </context>
 <context>
     <name>WSettingMainUiClass</name>
     <message>
         <source>Settings</source>
-        <translation type="unfinished">设置</translation>
+        <translation>设置</translation>
     </message>
     <message>
         <source>System Settings</source>
-        <translation type="unfinished">系统设置</translation>
+        <translation>系统设置</translation>
     </message>
 </context>
 <context>
     <name>WSettingSelectWidget</name>
     <message>
         <source>Account</source>
-        <translation type="unfinished"></translation>
+        <translation>账户</translation>
     </message>
     <message>
         <source>Robot</source>
-        <translation type="unfinished"></translation>
+        <translation>机器人</translation>
     </message>
     <message>
         <source>Team</source>
-        <translation type="unfinished"></translation>
+        <translation>团队</translation>
     </message>
     <message>
         <source>General Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>主要设置</translation>
     </message>
 </context>
 <context>
     <name>WSettingSelectWidgetClass</name>
     <message>
         <source>WSettingSelectWidget</source>
-        <translation type="unfinished"></translation>
+        <translation>WSettingSelectWidget</translation>
     </message>
 </context>
 <context>
     <name>WSoundBotMainUi</name>
     <message>
         <source>Sound Source</source>
-        <translation type="unfinished"></translation>
+        <translation>声音源</translation>
     </message>
     <message>
         <source>Translation</source>
-        <translation type="unfinished">翻译</translation>
+        <translation>翻译</translation>
     </message>
     <message>
         <source>Voice Library</source>
-        <translation type="unfinished">声音库</translation>
+        <translation>声音库</translation>
     </message>
     <message>
         <source>My Voice</source>
-        <translation type="unfinished">我的声音</translation>
+        <translation>我的声音</translation>
     </message>
     <message>
         <source>Speech Synthesis</source>
-        <translation type="unfinished">对话分析</translation>
+        <translation>对话分析</translation>
     </message>
     <message>
         <source>Translation History</source>
-        <translation type="unfinished">翻译历史</translation>
+        <translation>翻译历史</translation>
     </message>
 </context>
 <context>
     <name>WSoundBotMainUiClass</name>
     <message>
         <source>WSoundBotMainUi</source>
-        <translation type="unfinished"></translation>
+        <translation>WSoundBotMainUi</translation>
     </message>
     <message>
         <source>Soundbot</source>
-        <translation type="unfinished"></translation>
+        <translation>语音机器人</translation>
     </message>
     <message>
         <source>Activated</source>
-        <translation type="unfinished">激活</translation>
+        <translation>激活</translation>
     </message>
 </context>
 <context>
     <name>WSoundSourcePageClass</name>
     <message>
         <source>WSoundSourcePage</source>
-        <translation type="unfinished"></translation>
+        <translation>WSoundSourcePage</translation>
     </message>
     <message>
         <source>Sound source</source>
-        <translation type="unfinished">声音源</translation>
+        <translation>声音源</translation>
     </message>
     <message>
         <source>Translation Output Device</source>
-        <translation type="unfinished">翻译扬声器设备</translation>
+        <translation>翻译扬声器设备</translation>
     </message>
     <message>
         <source>Physical Microphone </source>
-        <translation type="unfinished">物理麦克风</translation>
+        <translation>物理麦克风</translation>
     </message>
     <message>
         <source>Virtual Input Device</source>
-        <translation type="unfinished">虚拟音频输入</translation>
+        <translation>虚拟音频输入</translation>
     </message>
 </context>
 <context>
     <name>WSpeechGenerationUi</name>
     <message>
         <source>Stop</source>
-        <translation type="unfinished">停止</translation>
+        <translation>停止</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished">开始</translation>
+        <translation>开始</translation>
     </message>
 </context>
 <context>
     <name>WSpeechGenerationUiClass</name>
     <message>
         <source>Speech Generation</source>
-        <translation type="unfinished">对话生成</translation>
+        <translation>对话生成</translation>
     </message>
     <message>
         <source>Generated text will appear here</source>
-        <translation type="unfinished">生成文本在这里显示</translation>
+        <translation>生成文本在这里显示</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished">导出</translation>
+        <translation>导出</translation>
     </message>
     <message>
         <source>Sounda Speech</source>
-        <translation type="unfinished"></translation>
+        <translation>Sounda 语音</translation>
     </message>
     <message>
         <source>Auto Send</source>
-        <translation type="unfinished">自动发送</translation>
+        <translation>自动发送</translation>
     </message>
     <message>
         <source>Start</source>
-        <translation type="unfinished">开始</translation>
+        <translation>开始</translation>
     </message>
     <message>
         <source>Send</source>
-        <translation type="unfinished">发送</translation>
+        <translation>发送</translation>
     </message>
 </context>
 <context>
     <name>WSpeechSysPageClass</name>
     <message>
         <source>WSpeechSysPage</source>
-        <translation type="unfinished"></translation>
+        <translation>WSpeechSysPage</translation>
     </message>
     <message>
         <source>Speech Synthesis</source>
-        <translation type="unfinished">对话分析</translation>
+        <translation>对话分析</translation>
     </message>
     <message>
         <source>Background Color</source>
-        <translation type="unfinished">背景颜色</translation>
+        <translation>背景颜色</translation>
     </message>
     <message>
         <source>Original Color</source>
-        <translation type="unfinished">原生原色</translation>
+        <translation>原生原色</translation>
     </message>
 </context>
 <context>
     <name>WTranslationMain</name>
     <message>
         <source>Stop</source>
-        <translation type="unfinished">停止</translation>
+        <translation>停止</translation>
     </message>
     <message>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>播放</translation>
     </message>
 </context>
 <context>
     <name>WTranslationPageClass</name>
     <message>
         <source>WTranslationPage</source>
-        <translation type="unfinished"></translation>
+        <translation>WTranslationPage</translation>
     </message>
     <message>
         <source>Translation </source>
-        <translation type="unfinished">翻译</translation>
+        <translation>翻译</translation>
     </message>
     <message>
         <source>Translation type</source>
-        <translation type="unfinished">翻译类型</translation>
+        <translation>翻译类型</translation>
     </message>
     <message>
         <source>General translation</source>
-        <translation type="unfinished">主要翻译</translation>
+        <translation>主要翻译</translation>
     </message>
     <message>
         <source>High-precision translation</source>
-        <translation type="unfinished">搞精度翻译</translation>
+        <translation>搞精度翻译</translation>
     </message>
     <message>
         <source>Subtitle Display</source>
-        <translation type="unfinished">字幕显示</translation>
+        <translation>字幕显示</translation>
     </message>
     <message>
         <source>Translated subtitle</source>
-        <translation type="unfinished">翻译字幕</translation>
+        <translation>翻译字幕</translation>
     </message>
     <message>
         <source>Bilingual subtitle</source>
-        <translation type="unfinished">双语翻译</translation>
+        <translation>双语翻译</translation>
     </message>
     <message>
         <source>Background Color</source>
-        <translation type="unfinished">背景颜色</translation>
+        <translation>背景颜色</translation>
     </message>
     <message>
         <source>Translation Color</source>
-        <translation type="unfinished">翻译颜色</translation>
+        <translation>翻译颜色</translation>
     </message>
     <message>
         <source>Original Color</source>
-        <translation type="unfinished">原生颜色</translation>
+        <translation>原生颜色</translation>
+    </message>
+</context>
+<context>
+    <name>WUserNameLogin</name>
+    <message>
+        <source>UserName</source>
+        <translation>用户名</translation>
     </message>
 </context>
 <context>
     <name>WVoiceLibPage</name>
     <message>
         <source>gender</source>
-        <translation type="unfinished">性别</translation>
+        <translation>性别</translation>
     </message>
     <message>
         <source>man</source>
-        <translation type="unfinished">男</translation>
+        <translation>男</translation>
     </message>
     <message>
         <source>woman</source>
-        <translation type="unfinished">女</translation>
+        <translation>女</translation>
     </message>
     <message>
         <source>source</source>
-        <translation type="unfinished">源</translation>
+        <translation>源</translation>
     </message>
     <message>
         <source>SoundaAI</source>
-        <translation type="unfinished"></translation>
+        <translation>SoundaAI</translation>
     </message>
     <message>
         <source>User</source>
-        <translation type="unfinished">用户</translation>
+        <translation>用户</translation>
     </message>
     <message>
         <source>url is empty</source>
-        <translation type="unfinished">url地址为空</translation>
+        <translation>url地址为空</translation>
     </message>
     <message>
         <source>label</source>
-        <translation type="unfinished">标签</translation>
+        <translation>标签</translation>
     </message>
     <message>
         <source>language</source>
-        <translation type="unfinished">语言</translation>
+        <translation>语言</translation>
     </message>
 </context>
 <context>
     <name>WVoiceLibPageClass</name>
     <message>
         <source>WVoiceLibPage</source>
-        <translation type="unfinished"></translation>
+        <translation>WVoiceLibPage</translation>
     </message>
     <message>
         <source>Voice Library</source>
-        <translation type="unfinished">声音库</translation>
+        <translation>声音库</translation>
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished"></translation>
+        <translation>TextLabel</translation>
     </message>
 </context>
 <context>
     <name>WVoicelibWidgetClass</name>
     <message>
         <source>WVoicelibWidget</source>
-        <translation type="unfinished"></translation>
+        <translation>WVoicelibWidget</translation>
     </message>
     <message>
         <source>General translation</source>
-        <translation type="unfinished">主要翻译</translation>
+        <translation>主要翻译</translation>
     </message>
     <message>
         <source>123532</source>
@@ -1210,193 +1264,193 @@
     </message>
     <message>
         <source>This voice has been randomly generated</source>
-        <translation type="unfinished">这条声音是随机生成的</translation>
+        <translation>这条声音是随机生成的</translation>
     </message>
     <message>
         <source>Sample</source>
-        <translation type="unfinished">样例</translation>
+        <translation>样例</translation>
     </message>
     <message>
         <source>Add to my Voice</source>
-        <translation type="unfinished">添加到我的声音</translation>
+        <translation>添加到我的声音</translation>
     </message>
 </context>
 <context>
     <name>frame</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
 </context>
 <context>
     <name>historyListModel</name>
     <message>
         <source>     ID</source>
-        <translation type="unfinished"></translation>
+        <translation>     ID</translation>
     </message>
     <message>
         <source> Chat Name</source>
-        <translation type="unfinished">聊天名称</translation>
+        <translation>聊天名称</translation>
     </message>
     <message>
         <source> Bot Template</source>
-        <translation type="unfinished">机器人模板</translation>
+        <translation>机器人模板</translation>
     </message>
     <message>
         <source> Date and Time</source>
-        <translation type="unfinished">时间日期</translation>
+        <translation>时间日期</translation>
     </message>
     <message>
         <source> Synopsis</source>
-        <translation type="unfinished">概要</translation>
+        <translation>概要</translation>
     </message>
     <message>
         <source> Actions</source>
-        <translation type="unfinished">动作</translation>
+        <translation>动作</translation>
     </message>
 </context>
 <context>
     <name>mobileLogin</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Get Code</source>
-        <translation type="unfinished">获取验证码</translation>
+        <translation>获取验证码</translation>
     </message>
     <message>
         <source>Estimated time of code in 43 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation>估计剩余时间43秒</translation>
     </message>
 </context>
 <context>
     <name>saveTip</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Tip</source>
-        <translation type="unfinished"></translation>
+        <translation>提示</translation>
     </message>
     <message>
         <source>聊天记录未保存，退出将丢失记录</source>
-        <translation type="unfinished"></translation>
+        <translation>聊天记录未保存，退出将丢失记录</translation>
     </message>
     <message>
         <source>Sure</source>
-        <translation type="unfinished">确定</translation>
+        <translation>确定</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
 </context>
 <context>
     <name>signUp</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Let&apos;s sign up</source>
-        <translation type="unfinished">开始注册</translation>
+        <translation>开始注册</translation>
     </message>
     <message>
         <source>Get Code</source>
-        <translation type="unfinished">获取验证码</translation>
+        <translation>获取验证码</translation>
     </message>
     <message>
         <source>Sign Up</source>
-        <translation type="unfinished">注册</translation>
+        <translation>注册</translation>
     </message>
 </context>
 <context>
     <name>soundHistoryModel</name>
     <message>
         <source>    Id</source>
-        <translation type="unfinished"></translation>
+        <translation>    Id</translation>
     </message>
     <message>
         <source> Name</source>
-        <translation type="unfinished">名称</translation>
+        <translation>名称</translation>
     </message>
     <message>
         <source> Translation Type</source>
-        <translation type="unfinished">翻译类型</translation>
+        <translation>翻译类型</translation>
     </message>
     <message>
         <source> Actions</source>
-        <translation type="unfinished">动作</translation>
+        <translation>动作</translation>
     </message>
     <message>
         <source>     Id</source>
-        <translation type="unfinished">ID</translation>
+        <translation>     Id</translation>
     </message>
 </context>
 <context>
     <name>teamListModel</name>
     <message>
         <source> Name</source>
-        <translation type="unfinished">名称</translation>
+        <translation>名称</translation>
     </message>
     <message>
         <source> Status</source>
-        <translation type="unfinished">状态</translation>
+        <translation>状态</translation>
     </message>
     <message>
         <source> Credits Used</source>
-        <translation type="unfinished">已使用的信用额度</translation>
+        <translation>已使用的信用额度</translation>
     </message>
     <message>
         <source> Date and Time</source>
-        <translation type="unfinished">时间日期</translation>
+        <translation>时间日期</translation>
     </message>
     <message>
         <source> Actions</source>
-        <translation type="unfinished">动作</translation>
+        <translation>动作</translation>
     </message>
     <message>
         <source>In Team</source>
-        <translation type="unfinished">团队</translation>
+        <translation>团队</translation>
     </message>
 </context>
 <context>
     <name>translateMain</name>
     <message>
         <source>Voice Translation</source>
-        <translation type="unfinished">声音翻译</translation>
+        <translation>声音翻译</translation>
     </message>
     <message>
         <source>Stop</source>
-        <translation type="unfinished">停止</translation>
+        <translation>停止</translation>
     </message>
     <message>
         <source>Voice Translate</source>
-        <translation type="unfinished">声音翻译</translation>
+        <translation>声音翻译</translation>
     </message>
 </context>
 <context>
     <name>userNameLogin</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
 </context>
 <context>
     <name>verifyCode</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <source>Estimated time of code in 43 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Resend Code</source>
-        <translation type="unfinished">重新发送</translation>
+        <translation>重新发送</translation>
     </message>
 </context>
 </TS>
