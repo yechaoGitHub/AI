@@ -121,17 +121,10 @@
     </message>
 </context>
 <context>
-    <name>RobotChatMainUI</name>
-    <message>
-        <source>Chat</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>RobotChatMainUIClass</name>
     <message>
         <source>Conversation Suggestion</source>
-        <translation type="unfinished">Conversation Suggestion</translation>
+        <translation type="obsolete">Conversation Suggestion</translation>
     </message>
     <message>
         <source>Chat</source>
@@ -307,7 +300,7 @@
     </message>
     <message>
         <source>12345778</source>
-        <translation type="unfinished">12345778</translation>
+        <translation type="obsolete">12345778</translation>
     </message>
     <message>
         <source>UserName</source>
@@ -315,7 +308,7 @@
     </message>
     <message>
         <source>Jone joe</source>
-        <translation type="unfinished">Jone joe</translation>
+        <translation type="obsolete">Jone joe</translation>
     </message>
     <message>
         <source>Total Points</source>
@@ -323,7 +316,7 @@
     </message>
     <message>
         <source>23455</source>
-        <translation type="unfinished">23455</translation>
+        <translation type="obsolete">23455</translation>
     </message>
     <message>
         <source>Account Number</source>
@@ -331,7 +324,7 @@
     </message>
     <message>
         <source>#35666</source>
-        <translation type="unfinished">#35666</translation>
+        <translation type="obsolete">#35666</translation>
     </message>
     <message>
         <source>Package Status</source>
@@ -343,11 +336,15 @@
     </message>
     <message>
         <source>(Expires on 12/05/2023)</source>
-        <translation type="unfinished">(Expires on 12/05/2023)</translation>
+        <translation type="obsolete">(Expires on 12/05/2023)</translation>
     </message>
     <message>
         <source>Recharge</source>
         <translation type="unfinished">Recharge</translation>
+    </message>
+    <message>
+        <source>(Expires on </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -433,7 +430,7 @@
     </message>
     <message>
         <source>TextLabel</source>
-        <translation type="unfinished">TextLabel</translation>
+        <translation type="obsolete">TextLabel</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -555,10 +552,6 @@
 <context>
     <name>WHistoryDiaPage</name>
     <message>
-        <source>Search anr record</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Are you sure you want to delete the Translation History?</source>
         <translation type="unfinished">Are you sure you want to delete the Translation History?</translation>
     </message>
@@ -573,12 +566,16 @@
         <source>All History</source>
         <translation type="unfinished">All History</translation>
     </message>
+    <message>
+        <source>Search anr record</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WHistoryPage</name>
     <message>
         <source>Search any record</source>
-        <translation type="unfinished">Search any record</translation>
+        <translation type="obsolete">Search any record</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the historical synopsis?</source>
@@ -595,20 +592,24 @@
         <source>All History</source>
         <translation type="unfinished">All History</translation>
     </message>
+    <message>
+        <source>Search any record</source>
+        <translation type="unfinished">Search any record</translation>
+    </message>
 </context>
 <context>
     <name>WInvitePage</name>
     <message>
         <source>Invite member</source>
-        <translation type="unfinished">Invite member</translation>
+        <translation type="obsolete">Invite member</translation>
     </message>
     <message>
         <source>Enter user name to add</source>
-        <translation type="unfinished">Enter user name to add</translation>
+        <translation type="obsolete">Enter user name to add</translation>
     </message>
     <message>
         <source>Search any record</source>
-        <translation type="unfinished">Search any record</translation>
+        <translation type="obsolete">Search any record</translation>
     </message>
 </context>
 <context>
@@ -624,6 +625,18 @@
     <message>
         <source>Member</source>
         <translation type="unfinished">Member</translation>
+    </message>
+    <message>
+        <source>Enter user name to add</source>
+        <translation type="unfinished">Enter user name to add</translation>
+    </message>
+    <message>
+        <source>Invite member</source>
+        <translation type="unfinished">Invite member</translation>
+    </message>
+    <message>
+        <source>Search any record</source>
+        <translation type="unfinished">Search any record</translation>
     </message>
 </context>
 <context>
@@ -893,7 +906,7 @@
     </message>
     <message>
         <source>xxxxxxxxxxx</source>
-        <translation type="unfinished">xxxxxxxxxxx</translation>
+        <translation type="obsolete">xxxxxxxxxxx</translation>
     </message>
     <message>
         <source>Setup</source>
@@ -909,7 +922,7 @@
     </message>
     <message>
         <source>xxxxxxxxxxxxxxxxx</source>
-        <translation type="unfinished">xxxxxxxxxxxxxxxxx</translation>
+        <translation type="obsolete">xxxxxxxxxxxxxxxxx</translation>
     </message>
 </context>
 <context>
@@ -940,6 +953,25 @@
     <message>
         <source>System Settings</source>
         <translation type="unfinished">System Settings</translation>
+    </message>
+</context>
+<context>
+    <name>WSettingSelectWidget</name>
+    <message>
+        <source>Account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Robot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Team</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General Settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1199,7 +1231,7 @@
     </message>
     <message>
         <source>123532</source>
-        <translation type="unfinished">123532</translation>
+        <translation type="obsolete">123532</translation>
     </message>
     <message>
         <source>This voice has been randomly generated</source>

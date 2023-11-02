@@ -5,137 +5,137 @@
     <name>ConversationSuggestion</name>
     <message>
         <source>WChatDesc</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Conversation Suggestion</source>
-        <translation type="unfinished">对话指导</translation>
+        <translation>对话指导</translation>
     </message>
 </context>
 <context>
     <name>ForgotPassword</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Forget Password</source>
-        <translation type="unfinished">忘记密码</translation>
+        <translation>忘记密码</translation>
     </message>
     <message>
         <source>Get Code</source>
-        <translation type="unfinished">获取验证码</translation>
+        <translation>获取验证码</translation>
     </message>
     <message>
         <source>Verfy</source>
-        <translation type="unfinished">验证</translation>
+        <translation>验证</translation>
     </message>
 </context>
 <context>
     <name>Form</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Verify phone</source>
-        <translation type="unfinished">验证手机</translation>
+        <translation>验证手机</translation>
     </message>
     <message>
         <source>You have been redirected from Gmail login please enter your mobile number to verify.</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Estimated time of code in 43 seconds</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Resend Code</source>
-        <translation type="unfinished">重新发送</translation>
+        <translation>重新发送</translation>
     </message>
 </context>
 <context>
     <name>Login</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Welcome Back..!!</source>
-        <translation type="unfinished">欢迎回来</translation>
+        <translation>欢迎回来</translation>
     </message>
     <message>
         <source>Keep me logged in</source>
-        <translation type="unfinished">保持登录</translation>
+        <translation>保持登录</translation>
     </message>
     <message>
         <source>Forgot Password?</source>
-        <translation type="unfinished">忘记密码？</translation>
+        <translation>忘记密码？</translation>
     </message>
     <message>
         <source>login</source>
-        <translation type="unfinished">登录</translation>
+        <translation>登录</translation>
     </message>
     <message>
         <source>Not registered yet?</source>
-        <translation type="unfinished">注册账号</translation>
+        <translation>还没有注册？</translation>
     </message>
     <message>
         <source>Let’s Register</source>
-        <translation type="unfinished">开始注册</translation>
+        <translation>开始注册</translation>
     </message>
     <message>
         <source>English</source>
-        <translation type="unfinished">英文</translation>
+        <translation>英文</translation>
     </message>
     <message>
         <source>Login through mobile phone/email</source>
-        <translation type="unfinished"></translation>
+        <translation>通过手机/邮箱登录</translation>
     </message>
 </context>
 <context>
     <name>QAddVoiceDlgClass</name>
     <message>
         <source>QAddVoiceDlg</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Add Voice To My Voice</source>
-        <translation type="unfinished">添加到我的声音</translation>
+        <translation>添加到我的声音</translation>
     </message>
     <message>
         <source>New voice name</source>
-        <translation type="unfinished">新声音名字</translation>
+        <translation>新声音名字</translation>
     </message>
     <message>
         <source>Play voice preview</source>
-        <translation type="unfinished">预览声音</translation>
+        <translation>预览声音</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished">取消</translation>
+        <translation>取消</translation>
     </message>
     <message>
         <source>Add Voice</source>
-        <translation type="unfinished">添加声音</translation>
+        <translation>添加声音</translation>
     </message>
 </context>
 <context>
     <name>RobotChatMainUI</name>
     <message>
         <source>Chat</source>
-        <translation type="unfinished">机器人聊天</translation>
+        <translation type="obsolete">机器人聊天</translation>
     </message>
 </context>
 <context>
     <name>RobotChatMainUIClass</name>
     <message>
         <source>Conversation Suggestion</source>
-        <translation type="unfinished">对话指导</translation>
+        <translation type="obsolete">对话指导</translation>
     </message>
     <message>
         <source>Chat</source>
-        <translation type="unfinished">机器人聊天</translation>
+        <translation>机器人聊天</translation>
     </message>
 </context>
 <context>
@@ -146,11 +146,11 @@
     </message>
     <message>
         <source>Save Chat History</source>
-        <translation type="unfinished"></translation>
+        <translation>保存聊天历史</translation>
     </message>
     <message>
         <source>New chat  name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">新的聊天</translation>
     </message>
     <message>
         <source>Save</source>
@@ -307,30 +307,18 @@
     </message>
     <message>
         <source>12345778</source>
-        <translation type="unfinished">12345778</translation>
+        <translation type="obsolete">12345778</translation>
     </message>
     <message>
         <source>UserName</source>
         <translation type="unfinished">用户名</translation>
     </message>
     <message>
-        <source>Jone joe</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Total Points</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>23455</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Account Number</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>#35666</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -342,11 +330,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>(Expires on 12/05/2023)</source>
+        <source>Recharge</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Recharge</source>
+        <source>(Expires on </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -430,10 +418,6 @@
     <message>
         <source>delete confirmation</source>
         <translation type="unfinished">确认删除</translation>
-    </message>
-    <message>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -556,7 +540,7 @@
     <name>WHistoryDiaPage</name>
     <message>
         <source>Search anr record</source>
-        <translation type="unfinished">搜索和记录</translation>
+        <translation type="obsolete">搜索和记录</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the Translation History?</source>
@@ -573,12 +557,16 @@
         <source>All History</source>
         <translation type="unfinished">全部历史</translation>
     </message>
+    <message>
+        <source>Search anr record</source>
+        <translation type="unfinished">搜索和记录</translation>
+    </message>
 </context>
 <context>
     <name>WHistoryPage</name>
     <message>
         <source>Search any record</source>
-        <translation type="unfinished">搜索和记录</translation>
+        <translation type="obsolete">搜索和记录</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the historical synopsis?</source>
@@ -595,20 +583,16 @@
         <source>All History</source>
         <translation type="unfinished">全部历史</translation>
     </message>
+    <message>
+        <source>Search any record</source>
+        <translation type="unfinished">搜索和记录</translation>
+    </message>
 </context>
 <context>
     <name>WInvitePage</name>
     <message>
-        <source>Invite member</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Enter user name to add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Search any record</source>
-        <translation type="unfinished">搜索和记录</translation>
+        <translation type="obsolete">搜索和记录</translation>
     </message>
 </context>
 <context>
@@ -624,6 +608,18 @@
     <message>
         <source>Member</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter user name to add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Invite member</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search any record</source>
+        <translation type="unfinished">搜索和记录</translation>
     </message>
 </context>
 <context>
@@ -768,11 +764,11 @@
     </message>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">1</translation>
     </message>
     <message>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">2</translation>
     </message>
     <message>
         <source>...</source>
@@ -780,7 +776,7 @@
     </message>
     <message>
         <source>9</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">9</translation>
     </message>
 </context>
 <context>
@@ -892,10 +888,6 @@
         <translation type="unfinished">（激活）</translation>
     </message>
     <message>
-        <source>xxxxxxxxxxx</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Setup</source>
         <translation type="unfinished">安装</translation>
     </message>
@@ -906,10 +898,6 @@
     <message>
         <source>Sound Bot</source>
         <translation type="unfinished">语音机器人</translation>
-    </message>
-    <message>
-        <source>xxxxxxxxxxxxxxxxx</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -940,6 +928,25 @@
     <message>
         <source>System Settings</source>
         <translation type="unfinished">系统设置</translation>
+    </message>
+</context>
+<context>
+    <name>WSettingSelectWidget</name>
+    <message>
+        <source>Account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Robot</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Team</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General Settings</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1003,15 +1010,15 @@
     </message>
     <message>
         <source>Translation Output Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">翻译扬声器设备</translation>
     </message>
     <message>
         <source>Physical Microphone </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">物理麦克风</translation>
     </message>
     <message>
         <source>Virtual Input Device</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">虚拟音频输入</translation>
     </message>
 </context>
 <context>
@@ -1199,7 +1206,7 @@
     </message>
     <message>
         <source>123532</source>
-        <translation type="unfinished">123532</translation>
+        <translation type="obsolete">123532</translation>
     </message>
     <message>
         <source>This voice has been randomly generated</source>
