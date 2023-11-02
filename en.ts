@@ -88,6 +88,10 @@
         <source>English</source>
         <translation type="unfinished">English</translation>
     </message>
+    <message>
+        <source>Login through mobile phone/email</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QAddVoiceDlgClass</name>
@@ -126,12 +130,31 @@
 <context>
     <name>RobotChatMainUIClass</name>
     <message>
-        <source>RobotChatMainUI</source>
+        <source>Conversation Suggestion</source>
+        <translation type="unfinished">Conversation Suggestion</translation>
+    </message>
+    <message>
+        <source>Chat</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SaveChatHistory</name>
+    <message>
+        <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Conversation Suggestion</source>
-        <translation type="unfinished">Conversation Suggestion</translation>
+        <source>Save Chat History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New chat  name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -256,6 +279,14 @@
         <source>get chatbot record fail</source>
         <translation type="unfinished">get chatbot record fail</translation>
     </message>
+    <message>
+        <source>remove user timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove user fail</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WAccountPage</name>
@@ -368,6 +399,29 @@
     </message>
 </context>
 <context>
+    <name>WConformDlgClass</name>
+    <message>
+        <source>Conform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Conform MessageBox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you want to load this template? Unsaved conversations will be lost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancel</translation>
+    </message>
+    <message>
+        <source>Sure</source>
+        <translation type="unfinished">Sure</translation>
+    </message>
+</context>
+<context>
     <name>WConformWidgetClass</name>
     <message>
         <source>WConformWidget</source>
@@ -414,10 +468,37 @@
     </message>
 </context>
 <context>
+    <name>WForgotPassword</name>
+    <message>
+        <source>Enter email address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the code in picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the verification code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated time of code in %1 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the mobile phone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the email address</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WGerenalPage</name>
     <message>
         <source>English</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">English</translation>
     </message>
     <message>
         <source>Chinese</source>
@@ -497,7 +578,7 @@
     <name>WHistoryPage</name>
     <message>
         <source>Search any record</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Search any record</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the historical synopsis?</source>
@@ -575,6 +656,17 @@
     </message>
 </context>
 <context>
+    <name>WLogin</name>
+    <message>
+        <source>Enter the username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WLoginUIClass</name>
     <message>
         <source>WLoginUI</source>
@@ -594,6 +686,22 @@
     <message>
         <source>Enter the code send on your email</source>
         <translation type="unfinished">Enter the code send on your email</translation>
+    </message>
+    <message>
+        <source>Enter the email address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the code in picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated time of code in %1 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the mobile phone</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -676,6 +784,44 @@
     </message>
 </context>
 <context>
+    <name>WRegister</name>
+    <message>
+        <source>Enter email address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the code in picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the verification code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated time of code in %1 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the mobile phone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the email address</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WRobotChat</name>
+    <message>
+        <source>Confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chat record not saved, exiting will lose the record</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WRobotChatClass</name>
     <message>
         <source>WRobotChat</source>
@@ -713,7 +859,7 @@
     </message>
     <message>
         <source>Speech Generation</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Speech Generation</translation>
     </message>
     <message>
         <source>Chat</source>
@@ -788,12 +934,12 @@
 <context>
     <name>WSettingMainUiClass</name>
     <message>
-        <source>WSettingMainUi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Settings</source>
         <translation type="unfinished">Settings</translation>
+    </message>
+    <message>
+        <source>System Settings</source>
+        <translation type="unfinished">System Settings</translation>
     </message>
 </context>
 <context>
@@ -855,13 +1001,32 @@
         <source>Sound source</source>
         <translation type="unfinished">Sound source</translation>
     </message>
+    <message>
+        <source>Translation Output Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Physical Microphone </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Virtual Input Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WSpeechGenerationUi</name>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished">Stop</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished">Start</translation>
+    </message>
 </context>
 <context>
     <name>WSpeechGenerationUiClass</name>
-    <message>
-        <source>WSpeechGenerationUi</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Speech Generation</source>
         <translation type="unfinished">Speech Generation</translation>
@@ -908,6 +1073,17 @@
     <message>
         <source>Original Color</source>
         <translation type="unfinished">Original Color</translation>
+    </message>
+</context>
+<context>
+    <name>WTranslationMain</name>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished">Stop</translation>
+    </message>
+    <message>
+        <source>Play</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1090,12 +1266,31 @@
 <context>
     <name>name</name>
     <message>
+        <source>Confirm</source>
+        <translation type="obsolete">Confirm</translation>
+    </message>
+</context>
+<context>
+    <name>saveTip</name>
+    <message>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Confirm</source>
-        <translation type="unfinished">Confirm</translation>
+        <source>Tip</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>聊天记录未保存，退出将丢失记录</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sure</source>
+        <translation type="unfinished">Sure</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancel</translation>
     </message>
 </context>
 <context>
@@ -1170,16 +1365,16 @@
 <context>
     <name>translateMain</name>
     <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Voice Translation</source>
         <translation type="unfinished">Voice Translation</translation>
     </message>
     <message>
         <source>Stop</source>
         <translation type="unfinished">Stop</translation>
+    </message>
+    <message>
+        <source>Voice Translate</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

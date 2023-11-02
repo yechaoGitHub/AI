@@ -88,6 +88,10 @@
         <source>English</source>
         <translation type="unfinished">英文</translation>
     </message>
+    <message>
+        <source>Login through mobile phone/email</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>QAddVoiceDlgClass</name>
@@ -120,18 +124,37 @@
     <name>RobotChatMainUI</name>
     <message>
         <source>Chat</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">机器人聊天</translation>
     </message>
 </context>
 <context>
     <name>RobotChatMainUIClass</name>
     <message>
-        <source>RobotChatMainUI</source>
+        <source>Conversation Suggestion</source>
+        <translation type="unfinished">对话指导</translation>
+    </message>
+    <message>
+        <source>Chat</source>
+        <translation type="unfinished">机器人聊天</translation>
+    </message>
+</context>
+<context>
+    <name>SaveChatHistory</name>
+    <message>
+        <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Conversation Suggestion</source>
-        <translation type="unfinished">对话指导</translation>
+        <source>Save Chat History</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New chat  name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -256,6 +279,14 @@
         <source>get chatbot record fail</source>
         <translation type="unfinished">获取机器人记录失败</translation>
     </message>
+    <message>
+        <source>remove user timeout</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>remove user fail</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>WAccountPage</name>
@@ -368,6 +399,29 @@
     </message>
 </context>
 <context>
+    <name>WConformDlgClass</name>
+    <message>
+        <source>Conform</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Conform MessageBox</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you want to load this template? Unsaved conversations will be lost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <source>Sure</source>
+        <translation type="unfinished">确定</translation>
+    </message>
+</context>
+<context>
     <name>WConformWidgetClass</name>
     <message>
         <source>WConformWidget</source>
@@ -411,6 +465,33 @@
     <message>
         <source>Cancel</source>
         <translation type="unfinished">取消</translation>
+    </message>
+</context>
+<context>
+    <name>WForgotPassword</name>
+    <message>
+        <source>Enter email address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the code in picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the verification code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated time of code in %1 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the mobile phone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the email address</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -527,7 +608,7 @@
     </message>
     <message>
         <source>Search any record</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">搜索和记录</translation>
     </message>
 </context>
 <context>
@@ -575,6 +656,17 @@
     </message>
 </context>
 <context>
+    <name>WLogin</name>
+    <message>
+        <source>Enter the username</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the password</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>WLoginUIClass</name>
     <message>
         <source>WLoginUI</source>
@@ -594,6 +686,22 @@
     <message>
         <source>Enter the code send on your email</source>
         <translation type="unfinished">输入邮件收到的验证码</translation>
+    </message>
+    <message>
+        <source>Enter the email address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the code in picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated time of code in %1 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the mobile phone</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -672,6 +780,44 @@
     </message>
     <message>
         <source>9</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WRegister</name>
+    <message>
+        <source>Enter email address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the code in picture</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the verification code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Estimated time of code in %1 seconds</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the mobile phone</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enter the email address</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WRobotChat</name>
+    <message>
+        <source>Confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Chat record not saved, exiting will lose the record</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -788,12 +934,12 @@
 <context>
     <name>WSettingMainUiClass</name>
     <message>
-        <source>WSettingMainUi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Settings</source>
         <translation type="unfinished">设置</translation>
+    </message>
+    <message>
+        <source>System Settings</source>
+        <translation type="unfinished">系统设置</translation>
     </message>
 </context>
 <context>
@@ -855,13 +1001,32 @@
         <source>Sound source</source>
         <translation type="unfinished">声音源</translation>
     </message>
+    <message>
+        <source>Translation Output Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Physical Microphone </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Virtual Input Device</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WSpeechGenerationUi</name>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished">停止</translation>
+    </message>
+    <message>
+        <source>Start</source>
+        <translation type="unfinished">开始</translation>
+    </message>
 </context>
 <context>
     <name>WSpeechGenerationUiClass</name>
-    <message>
-        <source>WSpeechGenerationUi</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Speech Generation</source>
         <translation type="unfinished">对话生成</translation>
@@ -908,6 +1073,17 @@
     <message>
         <source>Original Color</source>
         <translation type="unfinished">原生原色</translation>
+    </message>
+</context>
+<context>
+    <name>WTranslationMain</name>
+    <message>
+        <source>Stop</source>
+        <translation type="unfinished">停止</translation>
+    </message>
+    <message>
+        <source>Play</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1088,14 +1264,26 @@
     </message>
 </context>
 <context>
-    <name>name</name>
+    <name>saveTip</name>
     <message>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Confirm</source>
+        <source>Tip</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>聊天记录未保存，退出将丢失记录</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sure</source>
+        <translation type="unfinished">确定</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
     </message>
 </context>
 <context>
@@ -1144,7 +1332,7 @@
     <name>teamListModel</name>
     <message>
         <source> Name</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">名称</translation>
     </message>
     <message>
         <source> Status</source>
@@ -1170,16 +1358,16 @@
 <context>
     <name>translateMain</name>
     <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Voice Translation</source>
         <translation type="unfinished">声音翻译</translation>
     </message>
     <message>
         <source>Stop</source>
         <translation type="unfinished">停止</translation>
+    </message>
+    <message>
+        <source>Voice Translate</source>
+        <translation type="unfinished">声音翻译</translation>
     </message>
 </context>
 <context>
