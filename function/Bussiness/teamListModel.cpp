@@ -60,10 +60,33 @@ QVariant teamListModel::headerData(int section, Qt::Orientation orientation,
     int role) const
 {
     if (role == Qt::DisplayRole) {
-        if (section < _headerList.count())
+        /*if (section < _headerList.count())
             return _headerList[section];
         else
-            return QVariant();
+            return QVariant();*/
+        //_headerList(QStringList() << tr(" Name") << tr(" Status") << tr(" Credits Used") << tr(" Date and Time") << tr(" Actions"))
+
+        if (section == 0) {
+            return tr(" Name");
+        }
+        else if (section == 1) {
+            return tr(" Status");
+        }
+        else if (section == 2) {
+            return tr(" Credits Used");
+        }
+        else if (section == 3) {
+            return tr(" Date and Time");
+        }
+        else if (section == 4) {
+            return tr(" Actions");
+        }
+        else {
+            if (section < _headerList.count())
+                return _headerList[section];
+            else
+                return QVariant();
+        }
     }
     else
         return QAbstractTableModel::headerData(section, orientation, role);

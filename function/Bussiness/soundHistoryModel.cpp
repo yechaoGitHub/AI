@@ -68,10 +68,10 @@ QVariant soundHistoryModel::headerData(int section, Qt::Orientation orientation,
         else if (section == 1) {
             return tr(" Name");
         }
-        else if (section == 1) {
+        else if (section == 2) {
             return tr(" Translation Type");
         }
-        else if (section == 1) {
+        else if (section == 3) {
             return tr(" Actions");
         }
         else {

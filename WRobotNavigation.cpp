@@ -1,7 +1,7 @@
 ﻿#include "WRobotNavigation.h"
 #include <QPainter>
 
-
+#pragma execution_character_set("utf-8")
 WRobotNavigation::WRobotNavigation(QWidget *parent)
     : FrameLessWidget(parent)
 {
@@ -63,11 +63,11 @@ void WRobotNavigation::initTrayIcon()
         });
     trayMenu_->addAction(exitAction_.data());
 
-    exitAction2_.reset(new QAction(QString::fromLocal8Bit("√Float Window")));
+    exitAction2_.reset(new QAction(tr("√Float Window")));
     connect(exitAction2_.data(), &QAction::triggered, this, [=] {
         if (this->isHidden()) {
             this->show();
-            exitAction2_->setText(QString::fromLocal8Bit("√Float Window"));
+            exitAction2_->setText(tr("√Float Window"));
         }
         else {
             this->hide();
@@ -125,6 +125,14 @@ void WRobotNavigation::changeEvent(QEvent* event)
     if (event->type() == QEvent::LanguageChange)
     {
         ui.retranslateUi(this);
+        exitAction_->setText(tr("Setting"));
+        exitAction1_->setText(tr("Exit"));
+        if (this->isHidden()) {
+            exitAction2_->setText(tr("Float Window"));
+        }
+        else {
+            exitAction2_->setText(tr("√Float Window"));
+        }
     }
 
     QWidget::changeEvent(event);

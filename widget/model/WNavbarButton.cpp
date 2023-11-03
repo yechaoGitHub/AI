@@ -21,7 +21,6 @@ void WNavbarButton::initBar(const QString& text, BarType bar_type)
 	font.setPixelSize(22);
 	QFontMetrics fm(font);
 	m_pLabel->setFont(font);
-
 	_button_type = bar_type;
 	switch (bar_type)
 	{
@@ -89,7 +88,7 @@ void WNavbarButton::initBar(const QString& text, BarType bar_type)
 		break;
 	}
 
-	m_strText = text;
+	m_strText = m_pLabel->text();
 	_height = fm.height();
 }
 
@@ -97,9 +96,8 @@ void WNavbarButton::changeEvent(QEvent* event)
 {
 	if (event->type() == QEvent::LanguageChange)
 	{
-		//ui.retranslateUi(this);
 		initBar(m_strText, _button_type);
-		update();
+		//update();
 	}
 
 	QWidget::changeEvent(event);

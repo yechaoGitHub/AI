@@ -18,7 +18,7 @@ WInvitePage::WInvitePage(QWidget *parent)
     connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_common_replay,this, &WInvitePage::slot_inviteReplay);
     connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_searchTeam_replay, this, &WInvitePage::slot_searchTeam_replay);
 
-    _team_model = new teamListModel(nullptr);
+    _team_model = new teamListModel(this);
 
     ui.tableView->setModel(_team_model);
     ui.tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
