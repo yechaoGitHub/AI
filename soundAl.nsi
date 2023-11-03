@@ -87,7 +87,7 @@ SectionEnd
  ******************************/
 
 Section Uninstall
-  Delete "$DESKTOP\AiSound.lnk"
+  Delete "$DESKTOP\SoundaAI.lnk"
   Delete "$INSTDIR\${PRODUCT_NAME}.url"
   Delete "$SMPROGRAMS\AiSound\Uninstall.lnk"
   Delete "$SMPROGRAMS\AiSound\Website.lnk"

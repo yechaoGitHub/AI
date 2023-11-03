@@ -1,4 +1,4 @@
-#include "WRobotNavigation.h"
+ï»¿#include "WRobotNavigation.h"
 #include <QPainter>
 
 
@@ -49,7 +49,7 @@ void WRobotNavigation::initTrayIcon()
         switch (reason)
         {
         case QSystemTrayIcon::DoubleClick:
-            //Ë«»÷»òÕßµ¥»÷ÍÐÅÌÍ¼±ê
+            //åŒå‡»æˆ–è€…å•å‡»æ‰˜ç›˜å›¾æ ‡
             showNormal();
             break;
         default:
@@ -63,11 +63,11 @@ void WRobotNavigation::initTrayIcon()
         });
     trayMenu_->addAction(exitAction_.data());
 
-    exitAction2_.reset(new QAction(QString::fromLocal8Bit("¡ÌFloat Window")));
+    exitAction2_.reset(new QAction(QString::fromLocal8Bit("âˆšFloat Window")));
     connect(exitAction2_.data(), &QAction::triggered, this, [=] {
         if (this->isHidden()) {
             this->show();
-            exitAction2_->setText(QString::fromLocal8Bit("¡ÌFloat Window"));
+            exitAction2_->setText(QString::fromLocal8Bit("âˆšFloat Window"));
         }
         else {
             this->hide();
