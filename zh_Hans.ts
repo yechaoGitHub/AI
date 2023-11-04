@@ -924,6 +924,10 @@
         <source>Exit</source>
         <translation>退出</translation>
     </message>
+    <message>
+        <source>√Float Window</source>
+        <translation>√悬浮窗</translation>
+    </message>
 </context>
 <context>
     <name>WRobotNavigationClass</name>

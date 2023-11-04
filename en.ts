@@ -945,6 +945,10 @@
         <source>Exit</source>
         <translation>Exit</translation>
     </message>
+    <message>
+        <source>√Float Window</source>
+        <translation>√Float Window</translation>
+    </message>
 </context>
 <context>
     <name>WRobotNavigationClass</name>
