@@ -86,11 +86,15 @@
     </message>
     <message>
         <source>English</source>
-        <translation>英文</translation>
+        <translation type="vanished">中文</translation>
     </message>
     <message>
         <source>Login through mobile phone/email</source>
         <translation>通过手机/邮箱登录</translation>
+    </message>
+    <message>
+        <source>Chinese</source>
+        <translation>英文</translation>
     </message>
 </context>
 <context>
@@ -477,6 +481,14 @@
         <source>Enter the email address</source>
         <translation>输入电子邮箱</translation>
     </message>
+    <message>
+        <source>Enter password</source>
+        <translation>输入密码</translation>
+    </message>
+    <message>
+        <source>Enter password again</source>
+        <translation>再次输入密码</translation>
+    </message>
 </context>
 <context>
     <name>WGerenalPage</name>
@@ -656,6 +668,17 @@
     <message>
         <source>Enter the password</source>
         <translation>输入密码</translation>
+    </message>
+</context>
+<context>
+    <name>WLoginSwitch</name>
+    <message>
+        <source>Password Login</source>
+        <translation>密码登录</translation>
+    </message>
+    <message>
+        <source>Verification Code Login</source>
+        <translation>验证码登录</translation>
     </message>
 </context>
 <context>
@@ -851,6 +874,18 @@
     <message>
         <source>Enter the email address</source>
         <translation>输入电子邮箱</translation>
+    </message>
+    <message>
+        <source>Enter password</source>
+        <translation>输入密码</translation>
+    </message>
+    <message>
+        <source>Enter password again</source>
+        <translation>再次输入密码</translation>
+    </message>
+    <message>
+        <source>(Optional) Enter the invitation code</source>
+        <translation>（可选）输入邀请码</translation>
     </message>
 </context>
 <context>

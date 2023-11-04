@@ -430,7 +430,7 @@ font-size:14px;
 </string>
        </property>
        <property name="text">
-        <string>English</string>
+        <string>Chinese</string>
        </property>
        <property name="flat">
         <bool>true</bool>

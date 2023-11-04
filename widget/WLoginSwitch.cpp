@@ -3,12 +3,16 @@
 #include <QLinearGradient>
 #include <QPainter>
 #include <QPainterPath>
+#include <QEvent>
 
 WLoginSwitch::WLoginSwitch(QWidget* parent) :
     QWidget{ parent },
     _title{ ETitle::userName }
 {
     setMouseTracking(true);
+
+    _passwordLogin = tr("Password Login");
+    _verificationCodeLogin = tr("Verification Code Login");
 }
 
 WLoginSwitch::~WLoginSwitch()
@@ -53,13 +57,10 @@ void WLoginSwitch::paintEvent(QPaintEvent* event)
     g.setColorAt(1, QColor{ 189, 0, 255 });
 
     QPen pen;
-    auto userNameStr = QString::fromLocal8Bit("Password Login");
-    auto mobileStr = QString::fromLocal8Bit("Verification Code Login");
-
     painter.setFont(this->font());
 
     QFontMetrics fm = painter.fontMetrics();
-    auto tW = fm.width(userNameStr);
+    auto tW = fm.width(_passwordLogin);
     auto tH = fm.height();
     auto outTextRt = GetTextRect(ETitle::userName);
     QRect inTextRt;
@@ -81,7 +82,7 @@ void WLoginSwitch::paintEvent(QPaintEvent* event)
     {
         painter.setPen(QColor{ 19, 19, 19 });
     }
-    painter.drawText(inTextRt, userNameStr, opt);
+    painter.drawText(inTextRt, _passwordLogin, opt);
 
 
     if (_title != ETitle::userName)
@@ -94,7 +95,7 @@ void WLoginSwitch::paintEvent(QPaintEvent* event)
     {
         painter.setPen(QColor{ 19, 19, 19 });
     }
-    painter.drawText(rtMobile, mobileStr, opt);
+    painter.drawText(rtMobile, _verificationCodeLogin, opt);
 
     g.setFinalStop((float)rt.width(), (float)rt.height());
     pen.setBrush(g);
@@ -152,3 +153,16 @@ QRect WLoginSwitch::GetTextRect(ETitle title)
         return QRect{ rt.width() / 2, 0, rt.width() / 2, rt.height() };
     }
 }
+
+void WLoginSwitch::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        _passwordLogin = tr("Password Login");
+        _verificationCodeLogin = tr("Verification Code Login");
+        update();
+    }
+
+    QWidget::changeEvent(event);
+}
+

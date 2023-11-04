@@ -13,6 +13,7 @@ public:
     WTranslationMain(QWidget* parent = nullptr);
     ~WTranslationMain();
 
+    void Play();
     void Clear();
     void Flush();
 

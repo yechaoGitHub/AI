@@ -131,6 +131,23 @@ void WForgotPassword::timerEvent(QTimerEvent* event)
     }
 }
 
+void WForgotPassword::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+        ui.edPassword->textEdit->setPlaceholderText(tr("Enter password"));
+        ui.edPassword2->textEdit->setPlaceholderText(tr("Enter password again"));
+        ui.verificationCodeEdit->textEdit->setPlaceholderText(tr("Enter the code in picture"));
+        ui.edVCode->setPlaceholderText(tr("Enter the verification code"));
+        ui.edPassword->textEdit->setPlaceholderText(tr("Enter password"));
+        ui.edPassword2->textEdit->setPlaceholderText(tr("Enter password again"));
+        update();
+    }
+
+    QWidget::changeEvent(event);
+}
+
 void WForgotPassword::GetVCodeClicked()
 {
     auto& ins = AiSound::GetInstance();

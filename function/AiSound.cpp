@@ -98,9 +98,11 @@ void AiSound::slot_keyType(int type)
     }
     if (type == 1) {
         _wTranslationMain->show();
+        _wTranslationMain->Play();
     }
     else if (type == 2) {
         _speech_ui->show();
+        _speech_ui->Play();
     }
 }
 

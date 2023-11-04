@@ -52,6 +52,11 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
 WSpeechGenerationUi::~WSpeechGenerationUi()
 {}
 
+void WSpeechGenerationUi::Play()
+{
+    StartClicked();
+}
+
 void WSpeechGenerationUi::Clear()
 {
     ui.comboBox_lang->clear();

@@ -86,11 +86,15 @@
     </message>
     <message>
         <source>English</source>
-        <translation>English</translation>
+        <translation type="vanished">English</translation>
     </message>
     <message>
         <source>Login through mobile phone/email</source>
         <translation>Login through mobile phone/email</translation>
+    </message>
+    <message>
+        <source>Chinese</source>
+        <translation>Chinese</translation>
     </message>
 </context>
 <context>
@@ -490,6 +494,14 @@
         <source>Enter the email address</source>
         <translation>Enter the email address</translation>
     </message>
+    <message>
+        <source>Enter password</source>
+        <translation>Enter password</translation>
+    </message>
+    <message>
+        <source>Enter password again</source>
+        <translation>Enter password again</translation>
+    </message>
 </context>
 <context>
     <name>WGerenalPage</name>
@@ -677,6 +689,17 @@
     <message>
         <source>Enter the password</source>
         <translation>Enter the password</translation>
+    </message>
+</context>
+<context>
+    <name>WLoginSwitch</name>
+    <message>
+        <source>Password Login</source>
+        <translation>Password Login</translation>
+    </message>
+    <message>
+        <source>Verification Code Login</source>
+        <translation>Verification Code Login</translation>
     </message>
 </context>
 <context>
@@ -872,6 +895,18 @@
     <message>
         <source>Enter the email address</source>
         <translation>Enter the email address</translation>
+    </message>
+    <message>
+        <source>Enter password</source>
+        <translation>Enter password</translation>
+    </message>
+    <message>
+        <source>Enter password again</source>
+        <translation>Enter password again</translation>
+    </message>
+    <message>
+        <source>(Optional) Enter the invitation code</source>
+        <translation>(Optional) Enter the invitation code</translation>
     </message>
 </context>
 <context>

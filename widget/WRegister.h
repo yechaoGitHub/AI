@@ -23,6 +23,7 @@ public:
 protected:
     void showEvent(QShowEvent* event) override;
     void timerEvent(QTimerEvent* event) override;
+    void changeEvent(QEvent* event) override;
 
 private:
     void GetCodeCallback();

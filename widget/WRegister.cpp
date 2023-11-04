@@ -19,13 +19,13 @@ WRegister::WRegister(QWidget* parent) :
     ui.edVCode->setPlaceholderText(tr("Enter the verification code"));
 
     ui.edPassword->SetImage(":/QtTest/icon/lock.png");
-    ui.edPassword->textEdit->setPlaceholderText("Enter password");
+    ui.edPassword->textEdit->setPlaceholderText(tr("Enter password"));
 
     ui.edPassword2->SetImage(":/QtTest/icon/lock.png");
-    ui.edPassword2->textEdit->setPlaceholderText("Enter password again");
+    ui.edPassword2->textEdit->setPlaceholderText(tr("Enter password again"));
 
     ui.edRecommend->SetImage(":/QtTest/icon/lock.png");
-    ui.edRecommend->textEdit->setPlaceholderText("(Optional) Enter the invitation code");
+    ui.edRecommend->textEdit->setPlaceholderText(tr("(Optional) Enter the invitation code"));
 
     ui.verificationCodePic->SetModuleType("register");
 
@@ -193,3 +193,22 @@ void WRegister::CountryChanged(int index)
         ui.edUser->textEdit->setPlaceholderText(tr("Enter the email address"));
     }
 }
+
+void WRegister::changeEvent(QEvent* event)
+{
+    if (event->type() == QEvent::LanguageChange)
+    {
+        ui.retranslateUi(this);
+        ui.edPassword->textEdit->setPlaceholderText(tr("Enter password"));
+        ui.edPassword2->textEdit->setPlaceholderText(tr("Enter password again"));
+        ui.verificationCodeEdit->textEdit->setPlaceholderText(tr("Enter the code in picture"));
+        ui.edVCode->setPlaceholderText(tr("Enter the verification code"));
+        ui.edPassword->textEdit->setPlaceholderText(tr("Enter password"));
+        ui.edPassword2->textEdit->setPlaceholderText(tr("Enter password again"));
+        ui.edRecommend->textEdit->setPlaceholderText(tr("(Optional) Enter the invitation code"));
+        update();
+    }
+
+    QWidget::changeEvent(event);
+}
+

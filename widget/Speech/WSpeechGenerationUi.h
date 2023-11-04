@@ -14,6 +14,7 @@ public:
     WSpeechGenerationUi(QWidget *parent = nullptr);
     ~WSpeechGenerationUi();
 
+    void Play();
     void Clear();
     void Flush();
 

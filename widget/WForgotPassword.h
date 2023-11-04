@@ -1,6 +1,7 @@
 #pragma once
 #include <QWidget>
 #include <QString>
+#include <QEvent >
 #include "ui_forgotPassword.h"
 
 class WForgotPassword : public QWidget
@@ -21,6 +22,7 @@ public:
 protected:
     void showEvent(QShowEvent* event) override;
     void timerEvent(QTimerEvent* event) override;
+    void changeEvent(QEvent* event) override;
 
 private:
     void GetVCodeClicked();

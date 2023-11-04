@@ -42,6 +42,11 @@ WTranslationMain::~WTranslationMain()
 {
 }
 
+void WTranslationMain::Play()
+{
+    StopClicked();
+}
+
 void WTranslationMain::Clear()
 {
     ui.subtitleWidget->Subtitle()->Clear();
