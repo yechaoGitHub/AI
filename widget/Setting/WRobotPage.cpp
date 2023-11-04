@@ -24,6 +24,9 @@ WRobotPage::WRobotPage(QWidget *parent)
 	ui.pb_sound_lock->setVisible(false);
 	ui.label_10->setVisible(false);
 	ui.label_5->setVisible(false);
+
+	ui.lb_aced->setVisible(false);
+	ui.lb_sound_act->setVisible(false);
 }
 
 WRobotPage::~WRobotPage()
@@ -60,8 +63,8 @@ void WRobotPage::initUI()
 	ui.frame_sound->setProperty("is_sel", _sound_open);
 	ui.frame_sound->style()->polish(ui.frame_sound);
 
-	ui.lb_aced->setVisible(_robot_open);
-	ui.lb_sound_act->setVisible(_sound_open);
+	//ui.lb_aced->setVisible(_robot_open);
+	//ui.lb_sound_act->setVisible(_sound_open);
 }
 
 void WRobotPage::on_pb_robot_setting_clicked()

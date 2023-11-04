@@ -116,7 +116,7 @@ void WLibarary::slot_getChatBotListReplay(bool success, int, const strc_PageInfo
         int cur_model = SETTING.getRebotModel();
         int list_index = 0;
         for (auto it : chatbot_list) {
-            _lib_model_list.at(list_index)->setTitle(tr("Chatbot(%1)").arg(it.name), it.desc,it.id);
+            _lib_model_list.at(list_index)->setTitle(/*tr("Chatbot(%1)").arg(*/it.name, it.desc,it.id);
             _lib_model_list.at(list_index)->show();
 
             if ((cur_model == 0 && list_index == 0)) {

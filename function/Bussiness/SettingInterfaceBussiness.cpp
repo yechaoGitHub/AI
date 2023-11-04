@@ -359,7 +359,7 @@ void SettingInterfaceBussiness::_getUserInfoReq()
         qDebug() << "getUserInfoReq error code=" << code;
         emit sig_getUserInfoReplay(false, netCode::ServerErr, "查询个人信息请求失败", stru_UserInfo{});
         });
-    client.header("Content-Type", "application/x-www-form-urlencoded").header("access_token", token).timeout(10).post();
+    client.header("Content-Type", "application/x-www-form-urlencoded").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::getGlobalInfo()
@@ -393,7 +393,7 @@ void SettingInterfaceBussiness::_getGlobalInfo()
     client.fail([=](const QString& response, int code) {
         qDebug() << "_getGlobalInfo error code=" << code;
         });
-    client.header("Content-Type", "application/x-www-form-urlencoded").header("access_token", token).timeout(10).post();
+    client.header("Content-Type", "application/x-www-form-urlencoded").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::inviteUserJoinReq(const QString& username)
@@ -422,7 +422,7 @@ void SettingInterfaceBussiness::inviteUserJoinReq(const QString& username)
         qDebug() << "inviteUserJoinReq error code=" << code;
         emit sig_common_replay(httpReqType::InviteUser_Req, false, "邀请用户请求失败");
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::getTeamRecordReq(int page, int pageSize, const QString& search)
@@ -458,7 +458,7 @@ void SettingInterfaceBussiness::_getTeamRecordReq(int page, int pageSize, const 
         qDebug() << "getTeamRecordReq error code=" << code;
         emit sig_common_replay(httpReqType::Search_Team, false, "查询团队成员超时");
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::_removeTeamReq(qint64 userId)
@@ -487,7 +487,7 @@ void SettingInterfaceBussiness::_removeTeamReq(qint64 userId)
         qDebug() << "removeTeamReq error code=" << code;
         emit sig_common_replay(httpReqType::Remove_Team, false, tr("remove user fail"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::removeTeamReq(qint64 userId)
@@ -521,7 +521,7 @@ void SettingInterfaceBussiness::feedBackReq(const QString& msg)
         qDebug() << "feedBackReq error code=" << code;
         emit sig_common_replay(httpReqType::Feedback, false, "反馈请求失败");
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::getChatBotType()
@@ -544,7 +544,7 @@ void SettingInterfaceBussiness::getChatBotType()
         qDebug() << "getTeamRecordReq error code=" << code;
         emit sig_common_replay(httpReqType::ChatBotType_Req, false, tr("get chatbot type fail"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::getCharBotListReq(int page, int page_size,int type)
@@ -582,7 +582,7 @@ void SettingInterfaceBussiness::_getCharBotListReq(int page, int page_size,int t
         qDebug() << "getCharBotListReq error code=" << code;
         emit sig_common_replay(httpReqType::ChatBot_req, false, "获取ChatBot失败");
         });
-    client.header("Content-Type", "application/x-www-form-urlencoded").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/x-www-form-urlencoded").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::getChatHistoryReq(int page, const QString& search, int pageSize)
@@ -613,7 +613,7 @@ void SettingInterfaceBussiness::getChatHistoryReq(int page, const QString& searc
         qDebug() << "getTeamRecordReq error code=" << code;
         emit sig_common_replay(httpReqType::ChatHistory_Req, false, tr("search chatbot history fail"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::delChatHsitory(const QStringList& chatId_list)
@@ -656,7 +656,7 @@ void SettingInterfaceBussiness::delChatHsitory(const QStringList& chatId_list)
         qDebug() << "delChatHsitory error code=" << code;
         emit sig_common_replay(httpReqType::Del_ChatHistory, false, tr("del chat history fail"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::getFilterListReq()
@@ -679,7 +679,7 @@ void SettingInterfaceBussiness::getFilterListReq()
         qDebug() << "getFilterListReq error code=" << code;
         emit sig_common_replay(httpReqType::Filter_req, false, "获取声音列表失败");
         });
-    client.header("Content-Type", "application/x-www-form-urlencoded").header("access_token", token).timeout(10).post();
+    client.header("Content-Type", "application/x-www-form-urlencoded").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::getSoundLIbReq(int pageNo, int pageSize, strc_SoundType sound_type)
@@ -727,7 +727,7 @@ void SettingInterfaceBussiness::_getSoundLIbReq(int pageNo, int pageSize, strc_S
         qDebug() << "getTeamRecordReq error code=" << code;
         emit sig_common_replay(httpReqType::SoundLib_Req, false, tr("查询声音列表失败"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::addMyVoice(int libId, const QString& voiceName)
@@ -768,7 +768,7 @@ void SettingInterfaceBussiness::addMyVoice(int libId, const QString& voiceName)
         qDebug() << "feedBackReq error code=" << code;
         emit sig_common_replay(httpReqType::AddVoice, false, tr("add voice fail"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::getVoiceListReq(int cur_page, int page_size)
@@ -803,7 +803,7 @@ void SettingInterfaceBussiness::_getVoiceListReq(int cur_page, int page_size)
         qDebug() << "getVoiceListReq error code=" << code;
         emit sig_common_replay(httpReqType::VoiceList_Req, false, tr("get voice list fail"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::delVoiceReq(int voiceId)
@@ -843,7 +843,7 @@ void SettingInterfaceBussiness::delVoiceReq(int voiceId)
         qDebug() << "delVoiceReq error code=" << code;
         emit sig_common_replay(httpReqType::DelVoice_Req, false, tr("delete voice fail"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::getVoiceUrlReq(int voiceId,bool my_voice)
@@ -893,7 +893,7 @@ void SettingInterfaceBussiness::_getVoiceUrlReq(int voiceId)
         qDebug() << "getVoiceListReq error code=" << code;
         emit sig_common_replay(httpReqType::GetVoiceUrl_Req, false, tr("get voice url fail"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::_getVoiceLibUrlReq(int voiceId)
@@ -933,7 +933,7 @@ void SettingInterfaceBussiness::_getVoiceLibUrlReq(int voiceId)
         qDebug() << "getVoiceListReq error code=" << code;
         emit sig_common_replay(httpReqType::GetVoiceLib_Req, false, tr("get voice url fail"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::editMyVoice(int libId, const QString& voiceName, const QString& desc)
@@ -975,7 +975,7 @@ void SettingInterfaceBussiness::editMyVoice(int libId, const QString& voiceName,
         qDebug() << "editMyVoice error code=" << code;
         emit sig_common_replay(httpReqType::AddVoice, false, tr("edit voice fail"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::getTransHistory(int page_size, int pageNo, const QString& search)
@@ -1006,7 +1006,7 @@ void SettingInterfaceBussiness::getTransHistory(int page_size, int pageNo, const
         qDebug() << "getTeamRecordReq error code=" << code;
         emit sig_common_replay(httpReqType::TransHistory_Req, false, tr("search Trans history fail"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::delTransId(int id)
@@ -1048,7 +1048,7 @@ void SettingInterfaceBussiness::delTransId(int id)
         qDebug() << "delVoiceReq error code=" << code;
         emit sig_common_replay(httpReqType::DelTrans_Req, false, tr("delete voice fail"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
 
 void SettingInterfaceBussiness::getChatRecord(int page_size, int pageNo, const QString& chatId)
@@ -1084,5 +1084,5 @@ void SettingInterfaceBussiness::_getChatRecord(int page_size, int pageNo, const 
         qDebug() << "_getChatRecord error code=" << code;
         emit sig_common_replay(httpReqType::ChatRecord_Req, false, tr("get chatbot record fail"));
         });
-    client.header("Content-Type", "application/json").header("access_token", token).json(jsonValue).timeout(10).post();
+    client.header("Content-Type", "application/json").header("client_type", AiSound::GetInstance().GetLanguageToken()).header("access_token", token).json(jsonValue).timeout(10).post();
 }
