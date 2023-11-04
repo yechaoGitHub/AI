@@ -1,5 +1,7 @@
 AiSound项目模块简介
 
+soundAl.nsi ：nsis打包脚本
+
 功能模块：
 function:
     QHook:全局快捷键
