@@ -169,6 +169,7 @@ public:
     bool GetVoiceData(int id, VoiceData& findData);
 
     void SwitchLanguage(LanguageType type);
+    QString GetLanguageToken();
     LanguageType GetSystemLanguage();
     void playVoiceMp3(const QString& url);
 #pragma endregion

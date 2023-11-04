@@ -122,6 +122,7 @@
     <ClCompile Include="function\Translation.cpp" />
     <ClCompile Include="function\VoiceCompositor.cpp" />
     <ClCompile Include="model\FrameLessWidget.cpp" />
+    <ClCompile Include="widget\Setting\WGerenalPage.cpp" />
     <ClCompile Include="WSaveTip.cpp" />
     <ClCompile Include="widget\chat\WChatItem.cpp" />
     <ClCompile Include="widget\chat\WRobotChat.cpp" />
@@ -152,7 +153,6 @@
     <ClCompile Include="widget\Setting\WAccountPage.cpp" />
     <ClCompile Include="widget\Setting\WChatHistoryDelegate.cpp" />
     <ClCompile Include="widget\Setting\WConformWidget.cpp" />
-    <ClCompile Include="widget\Setting\WGerenalPage.cpp" />
     <ClCompile Include="widget\Setting\WInvitePage.cpp" />
     <ClCompile Include="widget\Setting\WRobotPage.cpp" />
     <ClCompile Include="widget\Setting\WSettingMainUi.cpp" />

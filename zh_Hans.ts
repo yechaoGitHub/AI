@@ -139,7 +139,7 @@
     </message>
     <message>
         <source>Chat</source>
-        <translation>机器人聊天</translation>
+        <translation>聊天机器人</translation>
     </message>
 </context>
 <context>
@@ -296,7 +296,7 @@
     <name>WAccountPage</name>
     <message>
         <source>(Expires on %1)</source>
-        <translation>（过期 %1）</translation>
+        <translation>(Expires on %1)</translation>
     </message>
 </context>
 <context>
@@ -307,7 +307,7 @@
     </message>
     <message>
         <source>Mobile Phone</source>
-        <translation>移动电话</translation>
+        <translation>手机号</translation>
     </message>
     <message>
         <source>12345778</source>
@@ -327,11 +327,11 @@
     </message>
     <message>
         <source>Package Status</source>
-        <translation>包状态</translation>
+        <translation>套餐</translation>
     </message>
     <message>
         <source>Premium</source>
-        <translation>额外费用</translation>
+        <translation>Premium</translation>
     </message>
     <message>
         <source>Recharge</source>
@@ -361,7 +361,7 @@
     </message>
     <message>
         <source>History</source>
-        <translation>历史</translation>
+        <translation>历史记录</translation>
     </message>
     <message>
         <source>All templates</source>
@@ -815,7 +815,7 @@
     <name>WPageCtlWidget</name>
     <message>
         <source>entries of %1</source>
-        <translation>账目 %1</translation>
+        <translation>总页码 %1</translation>
     </message>
 </context>
 <context>
@@ -971,7 +971,7 @@
     </message>
     <message>
         <source>Setup</source>
-        <translation>安装</translation>
+        <translation>设置</translation>
     </message>
     <message>
         <source>Activate</source>
@@ -1191,11 +1191,11 @@
     </message>
     <message>
         <source>General translation</source>
-        <translation>主要翻译</translation>
+        <translation>普通翻译</translation>
     </message>
     <message>
         <source>High-precision translation</source>
-        <translation>搞精度翻译</translation>
+        <translation>高精翻译</translation>
     </message>
     <message>
         <source>Subtitle Display</source>
@@ -1215,11 +1215,11 @@
     </message>
     <message>
         <source>Translation Color</source>
-        <translation>翻译颜色</translation>
+        <translation>译文颜色</translation>
     </message>
     <message>
         <source>Original Color</source>
-        <translation>原生颜色</translation>
+        <translation>原文颜色</translation>
     </message>
 </context>
 <context>
@@ -1325,23 +1325,23 @@
     </message>
     <message>
         <source> Chat Name</source>
-        <translation>聊天名称</translation>
+        <translation> 聊天名称</translation>
     </message>
     <message>
         <source> Bot Template</source>
-        <translation>机器人模板</translation>
+        <translation> 机器人模板</translation>
     </message>
     <message>
         <source> Date and Time</source>
-        <translation>时间日期</translation>
+        <translation> 日期</translation>
     </message>
     <message>
         <source> Synopsis</source>
-        <translation>概要</translation>
+        <translation> 概要</translation>
     </message>
     <message>
         <source> Actions</source>
-        <translation>动作</translation>
+        <translation> 操作</translation>
     </message>
 </context>
 <context>
@@ -1409,15 +1409,15 @@
     </message>
     <message>
         <source> Name</source>
-        <translation>名称</translation>
+        <translation> 名称</translation>
     </message>
     <message>
         <source> Translation Type</source>
-        <translation>翻译类型</translation>
+        <translation> 翻译类型</translation>
     </message>
     <message>
         <source> Actions</source>
-        <translation>动作</translation>
+        <translation> 操作</translation>
     </message>
     <message>
         <source>     Id</source>
@@ -1428,23 +1428,23 @@
     <name>teamListModel</name>
     <message>
         <source> Name</source>
-        <translation>名称</translation>
+        <translation> 用户名</translation>
     </message>
     <message>
         <source> Status</source>
-        <translation>状态</translation>
+        <translation> 状态</translation>
     </message>
     <message>
         <source> Credits Used</source>
-        <translation>已使用的信用额度</translation>
+        <translation> 点数消耗</translation>
     </message>
     <message>
         <source> Date and Time</source>
-        <translation>时间日期</translation>
+        <translation> 日期</translation>
     </message>
     <message>
         <source> Actions</source>
-        <translation>动作</translation>
+        <translation> 动作</translation>
     </message>
     <message>
         <source>In Team</source>

@@ -118,9 +118,6 @@
     <ClCompile Include="widget\Speech\WSpeechGenerationUi.cpp">
       <Filter>widget\Speech</Filter>
     </ClCompile>
-    <ClCompile Include="widget\Speech\ComboxItem.cpp">
-      <Filter>widget\Speech</Filter>
-    </ClCompile>
     <ClCompile Include="widget\chat\WChatItem.cpp">
       <Filter>widget\chat</Filter>
     </ClCompile>
@@ -162,9 +159,6 @@
     </ClCompile>
     <ClCompile Include="base\GlobalSetting.cpp">
       <Filter>Source Files\base</Filter>
-    </ClCompile>
-    <ClCompile Include="widget\Setting\WGerenalPage.cpp">
-      <Filter>widget\Setting</Filter>
     </ClCompile>
     <ClCompile Include="function\AudioOutput.cpp">
       <Filter>function</Filter>
@@ -315,6 +309,9 @@
     </ClCompile>
     <ClCompile Include="function\AudioLoop.cpp">
       <Filter>function</Filter>
+    </ClCompile>
+    <ClCompile Include="widget\Setting\WGerenalPage.cpp">
+      <Filter>widget\Setting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -492,9 +489,6 @@
       <Filter>function</Filter>
     </QtMoc>
     <QtMoc Include="widget\Speech\WSpeechGenerationUi.h">
-      <Filter>widget\Speech</Filter>
-    </QtMoc>
-    <QtMoc Include="widget\Speech\ComboxItem.h">
       <Filter>widget\Speech</Filter>
     </QtMoc>
     <QtMoc Include="widget\chat\WChatItem.h">

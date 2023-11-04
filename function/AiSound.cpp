@@ -77,6 +77,19 @@ void AiSound::Initialize()
 
     hook.installHook();
     connect(&hook, SIGNAL(sig_sendKeyType(int)), this, SLOT(slot_keyType(int)));
+
+    auto in =  SETTING.getCurLanguage();
+    switch (in)
+    {
+        default:
+        case 0:
+            SwitchLanguage(LanguageType::EN);
+        break;
+
+        case 1:
+            SwitchLanguage(LanguageType::CHS);
+        break;
+    }
 }
 
 void AiSound::Uninitialize()
@@ -877,6 +890,20 @@ void AiSound::SwitchLanguage(LanguageType type)
             app->installTranslator(&_chsTs);
         break;
     }
+}
+
+QString AiSound::GetLanguageToken()
+{
+    switch (_sysLanguage)
+    {
+    case LanguageType::EN:
+        return "en_us";
+
+    case LanguageType::CHS:
+        return "zh_cn";
+    }
+
+    return "en_us";
 }
 
 LanguageType AiSound::GetSystemLanguage()
