@@ -1,5 +1,6 @@
 #include "Translation.h"
 #include "AiDebug.h"
+#include "AiSound.h"
 
 #include <QJsonDocument>
 #include <QJsonParseError>
@@ -141,17 +142,8 @@ void Translation::SendParam()
     dataobj.insert("to", _destLan);
     dataobj.insert("transType", _transType);
     dataobj.insert("guideFlag", _isConvGuide ? 1 : 0);
-
-    switch (_language)
-    {
-        case SYSTEM_LANGUAGE_CHS:
-            dataobj.insert("systemLanguaue", "zh-cn");
-        break;
-
-        case SYSTEM_LANGUAGE_EN:
-            dataobj.insert("systemLanguaue", "en_us");
-        break;
-    }
+    auto token = AiSound::GetInstance().GetLanguageToken();
+    dataobj.insert("systemLanguaue", token);
 
     QJsonDocument document;
     document.setObject(dataobj);

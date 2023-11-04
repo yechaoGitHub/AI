@@ -1,5 +1,6 @@
 #include "ChatBot.h"
 #include "VoiceType.h"
+#include "AiSound.h"
 
 #include <QJsonDocument>
 #include <QJsonParseError>
@@ -142,6 +143,9 @@ void ChatBot::SendParam()
     {
         msgObj.insert("conversationId", _conversationId);
     }
+
+    auto token = AiSound::GetInstance().GetLanguageToken();
+    msgObj.insert("systemLanguaue", token);
 
     QJsonDocument document;
     document.setObject(msgObj);

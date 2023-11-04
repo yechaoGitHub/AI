@@ -134,6 +134,7 @@ void AiSound::PasswordLogin(const QString& userName, const QString& password, Lo
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/loginByPwd", dataObj, headers, userParam);
 }
@@ -153,6 +154,7 @@ void AiSound::PhoneLogin(const QString& dialingCode, const QString& mobileNumber
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/loginByMobile", dataObj, headers, userParam);
 }
@@ -171,6 +173,7 @@ void AiSound::EmailLogin(const QString& mailAddress, const QString& verifyCode, 
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/loginByMail", dataObj, headers, userParam);
 }
@@ -188,6 +191,7 @@ void AiSound::GetVerifyCode(const QString& moduleType, GetVerifyCodeCallback cal
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/common/getImgVerifyCode", dataObj, headers, userParam);
 }
@@ -209,6 +213,7 @@ void AiSound::SendVerifyCode(const QString& dCode, const QString& mobileNumber, 
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/sendSmsVerifyCode", dataObj, headers, userParam);
 }
@@ -229,6 +234,7 @@ void AiSound::SendMailVerfyCode(const QString& mailAddress, const QString& verif
     QMap<QString, QString> headers;
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/sendMailVerifyCode", dataObj, headers, userParam);
 }
@@ -244,6 +250,7 @@ void AiSound::GetTranslationSrourceList(GetTranslationSourceListCallback callbac
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/config/getSourceLanguaueList", {}, headers, userParam);
 }
@@ -259,6 +266,7 @@ void AiSound::GetTranslationDestList(GetTranslationDestListCallback callback)
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/config/getTargetLanguaueList", {}, headers, userParam);
 }
@@ -277,6 +285,7 @@ void AiSound::GetTemplateMessage(int templateID, GetTmeplateMessageCallback call
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/config/getChatbotTemplate", dataObj, headers, userParam);
 }
@@ -292,6 +301,7 @@ void AiSound::GetVoiceSpeaker(GetVoiceSpeakerCallback callback)
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/config/getSpeakers", {}, headers, userParam);
 }
@@ -307,6 +317,7 @@ void AiSound::GetPhoneRegionNumber(GetPhoneRegionNumberCallback callback)
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/common/getMobileDialingList", {}, headers, userParam);
 }
@@ -337,6 +348,7 @@ void AiSound::ForgetPassword(const QString& dialingCode, const QString& phoneEma
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/modify/password", dataObj, headers, userParam);
 }
@@ -371,6 +383,7 @@ void AiSound::Register(const QString& dialingCode, const QString& phoneEmail, co
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/user/register", dataObj, headers, userParam);
 }
@@ -391,6 +404,7 @@ void AiSound::SaveChat(const QString& name, SaveChatCallback callback)
     headers.insert("Content-Type", "application/json;charset=utf-8");
     headers.insert("access_token", _token.toUtf8());
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9101/api/chatbot/saveConversation", dataObj, headers, userParam);
 }
@@ -410,6 +424,7 @@ void AiSound::ExportSound(const QString& msg, int ttsSpeaker, ExportSoundCallbac
     headers.insert("Content-Type", "application/octet-stream");
     headers.insert("access_token", _token.toUtf8());
     headers.insert("client_type", "PC");
+    headers.insert("language", GetLanguageToken());
 
     _httpAsync.Post("http://47.106.253.9:9102/business/voiceGen/export", dataObj, headers, userParam);
 }

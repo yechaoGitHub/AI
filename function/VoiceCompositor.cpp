@@ -1,4 +1,5 @@
 #include "VoiceCompositor.h"
+#include "AiSound.h"
 
 #include <QJsonDocument>
 #include <QJsonParseError>
@@ -10,8 +11,6 @@
 #include <QTimerEvent>
 
 #include "AiDebug.h"
-
-
 
 VoiceCompositor::VoiceCompositor()
 {
@@ -107,6 +106,8 @@ void VoiceCompositor::SendParam()
     dataobj.insert("from", _srcLan);
     dataobj.insert("ttsSpeaker", _speaker);
     dataobj.insert("isAutoSend", _autoSender);
+    auto token = AiSound::GetInstance().GetLanguageToken();
+    dataobj.insert("systemLanguaue", token);
 
     QJsonDocument document;
     document.setObject(dataobj);
