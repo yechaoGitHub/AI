@@ -229,6 +229,10 @@ void WVoiceLibPage::changeEvent(QEvent* event)
         QStringList source_list{ tr("source"),tr("SoundaAI"),tr("User") };
         ui.comboBox_source->clear();
         ui.comboBox_source->addItems(source_list);
+
+        ui.comboBox_lan->clear();
+        ui.comboBox_label->clear();
+        SettingInterfaceBussiness::getInstance()->getFilterListReq();
     }
 
     QWidget::changeEvent(event);
