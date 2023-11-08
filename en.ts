@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="en">
 <context>
+    <name>AiSound</name>
+    <message>
+        <source>Your account has already been logged in elsewhere.</source>
+        <translation>Your account has already been logged in elsewhere.</translation>
+    </message>
+</context>
+<context>
     <name>ConversationSuggestion</name>
     <message>
         <source>WChatDesc</source>
@@ -94,7 +101,7 @@
     </message>
     <message>
         <source>Chinese</source>
-        <translation>Chinese</translation>
+        <translation>中文</translation>
     </message>
 </context>
 <context>
@@ -194,11 +201,11 @@
     </message>
     <message>
         <source>��ȡ�����б���ʱ</source>
-        <translation>��ȡ�����б���ʱ</translation>
+        <translation type="vanished">��ȡ�����б���ʱ</translation>
     </message>
     <message>
         <source>��ѯ�����б�ʧ��</source>
-        <translation>��ѯ�����б�ʧ��</translation>
+        <translation type="vanished">��ѯ�����б�ʧ��</translation>
     </message>
     <message>
         <source>add voice fail</source>
@@ -283,6 +290,22 @@
     <message>
         <source>remove user fail</source>
         <translation>remove user fail</translation>
+    </message>
+    <message>
+        <source>select user info timeout</source>
+        <translation>select user info timeout</translation>
+    </message>
+    <message>
+        <source>select user info fail</source>
+        <translation>select user info fail</translation>
+    </message>
+    <message>
+        <source>get sound list timeout</source>
+        <translation>get sound list timeout</translation>
+    </message>
+    <message>
+        <source>get sound list fail</source>
+        <translation>get sound list fail</translation>
     </message>
 </context>
 <context>

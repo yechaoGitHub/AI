@@ -5,19 +5,21 @@
 
 class WGerenalPage : public QWidget
 {
-	Q_OBJECT
+    Q_OBJECT
 
 public:
-	WGerenalPage(QWidget *parent = nullptr);
-	~WGerenalPage();
+    WGerenalPage(QWidget *parent = nullptr);
+    ~WGerenalPage();
 
 private slots:
-	void	on_pb_send_clicked();
-	void	slot_comboxIndexChange(int index);
-	void	slot_common_replay(int, bool, const QString& msg);
+    void	on_pb_send_clicked();
+    void	slot_comboxIndexChange(int index);
+    void	slot_common_replay(int, bool, const QString& msg);
 
 protected:
-	void changeEvent(QEvent* event) override;
+    void changeEvent(QEvent* event) override;
+    void showEvent(QShowEvent* event) override;
+
 private:
-	Ui::WGerenalPageClass ui;
+    Ui::WGerenalPageClass ui;
 };

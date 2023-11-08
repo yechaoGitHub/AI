@@ -322,41 +322,32 @@ QColor GlobalSetting::getTransColor()
 
 QString GlobalSetting::getMicDeviceName()
 {
-    if (!m_pSettings)
-        return "";
-    return m_pSettings->value("Audio/MicName", "").toString();
+    return _micDeviceName;
 }
 
 void GlobalSetting::setMicDeviceName(const QString& name)
 {
-    if (m_pSettings)
-        m_pSettings->setValue("Audio/MicName", name);
+    _micDeviceName = name;
 }
 
 QString GlobalSetting::getSpeakerDeviceName()
 {
-    if (!m_pSettings)
-        return "";
-    return m_pSettings->value("Audio/SpeakerName", "").toString();
+    return _speakerDeviceName;
 }
 
 void GlobalSetting::setSpeakerDeviceName(const QString& name)
 {
-    if (m_pSettings)
-        m_pSettings->setValue("Audio/SpeakerName", name);
+    _speakerDeviceName = name;
 }
 
 QString GlobalSetting::getMonitorDeviceName()
 {
-    if (!m_pSettings)
-        return "";
-    return m_pSettings->value("Audio/MonitorName", "").toString();
+    return _monitorDeviceName;
 }
 
 void GlobalSetting::setMonitorDeviceName(const QString& name)
 {
-    if (m_pSettings)
-        m_pSettings->setValue("Audio/MonitorName", name);
+    _monitorDeviceName = name;
 }
 
 void GlobalSetting::setTransTl(int bk)

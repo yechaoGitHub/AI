@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh">
 <context>
+    <name>AiSound</name>
+    <message>
+        <source>Your account has already been logged in elsewhere.</source>
+        <translation>您的账号已经在其他地方登录</translation>
+    </message>
+</context>
+<context>
     <name>ConversationSuggestion</name>
     <message>
         <source>WChatDesc</source>
@@ -94,7 +101,7 @@
     </message>
     <message>
         <source>Chinese</source>
-        <translation>英文</translation>
+        <translation>English</translation>
     </message>
 </context>
 <context>
@@ -201,11 +208,11 @@
     </message>
     <message>
         <source>��ȡ�����б���ʱ</source>
-        <translation>��ȡ�����б���ʱ</translation>
+        <translation type="vanished">��ȡ�����б���ʱ</translation>
     </message>
     <message>
         <source>��ѯ�����б�ʧ��</source>
-        <translation>��ѯ�����б�ʧ��</translation>
+        <translation type="vanished">��ѯ�����б�ʧ��</translation>
     </message>
     <message>
         <source>add voice fail</source>
@@ -290,6 +297,22 @@
     <message>
         <source>remove user fail</source>
         <translation>移除用户失败</translation>
+    </message>
+    <message>
+        <source>select user info timeout</source>
+        <translation>选择用户信息超时</translation>
+    </message>
+    <message>
+        <source>select user info fail</source>
+        <translation>选择用户信息失败</translation>
+    </message>
+    <message>
+        <source>get sound list timeout</source>
+        <translation>获取声音列表超时</translation>
+    </message>
+    <message>
+        <source>get sound list fail</source>
+        <translation>获取声音列表失败</translation>
     </message>
 </context>
 <context>
@@ -571,7 +594,7 @@
     </message>
     <message>
         <source>Search anr record</source>
-        <translation>搜索和记录</translation>
+        <translation>搜索任何记录</translation>
     </message>
 </context>
 <context>
@@ -597,7 +620,7 @@
     </message>
     <message>
         <source>Search any record</source>
-        <translation>搜索和记录</translation>
+        <translation>搜索任何记录</translation>
     </message>
 </context>
 <context>
@@ -631,7 +654,7 @@
     </message>
     <message>
         <source>Search any record</source>
-        <translation>搜索和记录</translation>
+        <translation>搜索任何记录</translation>
     </message>
 </context>
 <context>
@@ -784,7 +807,7 @@
     </message>
     <message>
         <source>History</source>
-        <translation>历史</translation>
+        <translation>历史记录</translation>
     </message>
     <message>
         <source>Sound Source</source>
@@ -1249,7 +1272,7 @@
     </message>
     <message>
         <source>source</source>
-        <translation>源</translation>
+        <translation>来源</translation>
     </message>
     <message>
         <source>SoundaAI</source>
@@ -1448,7 +1471,7 @@
     </message>
     <message>
         <source> Actions</source>
-        <translation> 动作</translation>
+        <translation> 操作</translation>
     </message>
     <message>
         <source>In Team</source>

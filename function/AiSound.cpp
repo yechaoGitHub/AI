@@ -557,6 +557,11 @@ WSpeechGenerationUi* AiSound::GetSpeechGenerationView()
     return _speech_ui;
 }
 
+RobotChatMainUI* AiSound::GetRobotChatView()
+{
+    return _robot_chat;
+}
+
 void AiSound::ShowTip(QWidget* parent, const QString& msg)
 {
     WTip* tip = new WTip{ parent };
@@ -887,11 +892,6 @@ bool AiSound::GetVoiceData(int id, VoiceData& findData)
 
 void AiSound::SwitchLanguage(LanguageType type)
 {
-    if (type == _sysLanguage)
-    {
-        return;
-    }
-
     _sysLanguage = type;
 
     auto app = static_cast<QApplication*>(QCoreApplication::instance());
@@ -899,10 +899,12 @@ void AiSound::SwitchLanguage(LanguageType type)
     {
         case LanguageType::EN:
             app->installTranslator(&_enTs);
+            SETTING.setCurLanguage(0);
         break;
 
         case LanguageType::CHS:
             app->installTranslator(&_chsTs);
+            SETTING.setCurLanguage(1);
         break;
     }
 }
@@ -945,6 +947,11 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
             int code = document["code"].toInt();
             QString token = document["data"]["accessToken"].toString();
             QString msg = document["msg"].toString();
+
+            if (code == 200)
+            {
+                _logined = true;
+            }
 
             auto packet = dynamic_cast<HttpCallbackPacket<LoginCallbackType>*>(packetRaw);
             UserLoginCallbackInternal(code, msg, token);
@@ -1184,6 +1191,8 @@ void AiSound::HeartBeatCallback(int code, const QString& msg)
 
 void AiSound::QuitApp()
 {
+    _logined = false;
+
     _token.clear();
     killTimer(_heartBeatId);
     _heartBeatId = -1;
@@ -1201,4 +1210,6 @@ void AiSound::QuitApp()
     _wConversationSuggestion->Clear();
     _robotNaviga->hide();
     _set_main->hide();
+
+    ShowTip(_wLoginFrame, tr("Your account has already been logged in elsewhere."));
 }

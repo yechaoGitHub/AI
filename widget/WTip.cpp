@@ -37,23 +37,26 @@ void WTip::paintEvent(QPaintEvent* event)
 
     QPainter painter{ this };
     painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
-    painter.fillRect(this->rect(), QColor{ 118, 202, 102, (int)(25 * _percent) });
+    painter.fillRect(this->rect(), QColor{ 255, 255, 255, (int)(25 * _percent) });
 
     QPen pen;
-    pen.setColor(QColor{ 118, 202, 102, (int)(255 * _percent) });
+    pen.setColor(QColor{ 127, 127, 127, (int)(255 * _percent) });
     pen.setWidth(2);
     painter.setPen(pen);
     painter.setFont(this->font());
 
     painter.drawRoundedRect(this->rect(), 7, 7);
+    painter.drawLine(_xRect.topLeft(), _xRect.bottomRight());
+    painter.drawLine(_xRect.bottomLeft(), _xRect.topRight());
+
+    QPen textPen;
+    textPen.setColor(QColor{ 0, 0, 0, (int)(255 * _percent) });
+    painter.setPen(textPen);
 
     auto textRt = this->rect().marginsRemoved({ 24, 0, 28, 0});
     QTextOption opt;
     opt.setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
     painter.drawText(textRt, _msg, opt);
-
-    painter.drawLine(_xRect.topLeft(), _xRect.bottomRight());
-    painter.drawLine(_xRect.bottomLeft(), _xRect.topRight());
 }
 
 void WTip::timerEvent(QTimerEvent* event)

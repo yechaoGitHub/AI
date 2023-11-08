@@ -5,7 +5,6 @@
 #include "base/GlobalSetting.h"
 #include "AiSound.h"
 
-
 WGerenalPage::WGerenalPage(QWidget *parent)
     : QWidget(parent)
 {
@@ -40,8 +39,6 @@ void WGerenalPage::slot_common_replay(int type, bool success, const QString& msg
 
 void WGerenalPage::slot_comboxIndexChange(int index)
 {
-    SETTING.setCurLanguage(index);
-
     switch (index)
     {
         case 0:
@@ -72,4 +69,10 @@ void WGerenalPage::changeEvent(QEvent* event)
     }
 
     QWidget::changeEvent(event);
+}
+
+void WGerenalPage::showEvent(QShowEvent* event)
+{
+    int index = SETTING.getCurLanguage();
+    ui.comboBox->setCurrentIndex(index);
 }

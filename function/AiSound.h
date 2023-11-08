@@ -139,6 +139,7 @@ public:
     void ShowRobotChat(const QString& chatId);
     WTranslationMain* GetTranslationMainView();
     WSpeechGenerationUi* GetSpeechGenerationView();
+    RobotChatMainUI* GetRobotChatView();
 #pragma endregion
 
 #pragma region ¹¦ÄÜ

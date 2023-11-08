@@ -2,7 +2,7 @@
 #include "AiSound.h"
 #include "Bussiness/SettingInterfaceBussiness.h"
 #include "base/GlobalSetting.h"
-
+#include "widget/chat/WRobotChatMainUI.h"
 
 WLibarary::WLibarary(QWidget *parent)
     : QWidget(parent)
@@ -67,16 +67,15 @@ void WLibarary::slot_model_clicked()
 
 
         auto& bot = AiSound::GetInstance().GetChatBot();
+        auto view = AiSound::GetInstance().GetRobotChatView();
+        view->Clear();
 
         if (bot.IsRunning())
         {
             bot.Disconnect();
             auto& token = AiSound::GetInstance().Token();
-
-            auto conversation = bot.ConversationID();
-
             auto modelID = SETTING.getRebotModel();
-            bot.Connect(token, modelID, conversation);
+            bot.Connect(token, modelID, "");
         }
     }
 }
