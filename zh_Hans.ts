@@ -459,7 +459,7 @@
     <name>WForgotPassword</name>
     <message>
         <source>Enter email address</source>
-        <translation>输入电子邮箱地址</translation>
+        <translation>输入电子邮箱</translation>
     </message>
     <message>
         <source>Enter the code in picture</source>
@@ -467,7 +467,7 @@
     </message>
     <message>
         <source>Enter the verification code</source>
-        <translation>输入验证码</translation>
+        <translation>输入图中的验证码</translation>
     </message>
     <message>
         <source>Estimated time of code in %1 seconds</source>
@@ -487,7 +487,7 @@
     </message>
     <message>
         <source>Enter password again</source>
-        <translation>再次输入密码</translation>
+        <translation>输入密码</translation>
     </message>
 </context>
 <context>
@@ -649,7 +649,7 @@
     <name>WLibarary</name>
     <message>
         <source>Chatbot(%1)</source>
-        <translation>聊天机器人（%1）</translation>
+        <translation type="vanished">聊天机器人（%1）</translation>
     </message>
 </context>
 <context>

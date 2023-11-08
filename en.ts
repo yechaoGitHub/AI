@@ -670,7 +670,7 @@
     <name>WLibarary</name>
     <message>
         <source>Chatbot(%1)</source>
-        <translation>Chatbot(%1)</translation>
+        <translation type="vanished">Chatbot(%1)</translation>
     </message>
 </context>
 <context>

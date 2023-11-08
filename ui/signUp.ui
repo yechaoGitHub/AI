@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>477</width>
-    <height>677</height>
+    <height>702</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -128,6 +128,7 @@
 	border:none;
 	background-color: rgba(255, 255, 255,0);
 	padding-left:10px;
+	font-size:12px;
 }
 
 QComboBox::drop-down {
@@ -197,8 +198,11 @@ QComboBox QAbstractItemView::item {
      <property name="font">
       <font>
        <family>微软雅黑</family>
-       <pointsize>10</pointsize>
+       <pointsize>-1</pointsize>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:12px;</string>
      </property>
     </widget>
    </item>
@@ -249,9 +253,13 @@ QComboBox QAbstractItemView::item {
         <property name="font">
          <font>
           <family>微软雅黑</family>
+          <pointsize>-1</pointsize>
           <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:12px;</string>
         </property>
        </widget>
       </item>
@@ -278,9 +286,13 @@ QComboBox QAbstractItemView::item {
         <property name="font">
          <font>
           <family>微软雅黑</family>
+          <pointsize>-1</pointsize>
           <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">font-size:12px;</string>
         </property>
        </widget>
       </item>
@@ -391,10 +403,12 @@ border-color:rgba(255,255,255,50%);</string>
         <property name="font">
          <font>
           <family>微软雅黑</family>
+          <pointsize>-1</pointsize>
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">border:none;</string>
+         <string notr="true">border:none;
+font-size:12px;</string>
         </property>
        </widget>
       </item>
@@ -486,8 +500,11 @@ color:rgba(155, 155, 155, 1)</string>
      <property name="font">
       <font>
        <family>微软雅黑</family>
-       <pointsize>10</pointsize>
+       <pointsize>-1</pointsize>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:12px;</string>
      </property>
     </widget>
    </item>
@@ -514,8 +531,11 @@ color:rgba(155, 155, 155, 1)</string>
      <property name="font">
       <font>
        <family>微软雅黑</family>
-       <pointsize>10</pointsize>
+       <pointsize>-1</pointsize>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:12px;</string>
      </property>
     </widget>
    </item>
@@ -532,6 +552,9 @@ color:rgba(155, 155, 155, 1)</string>
        <width>16777215</width>
        <height>56</height>
       </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font-size:12px;</string>
      </property>
     </widget>
    </item>

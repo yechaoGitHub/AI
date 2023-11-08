@@ -12,17 +12,17 @@ WForgotPassword::WForgotPassword(QWidget* parent) :
     ui.cbPhone->setView(new QListView{});
 
     ui.edUser->SetImage(":/QtTest/icon/user_active.png");
-    ui.edUser->textEdit->setPlaceholderText(tr("Enter email address"));
+    ui.edUser->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword", "Enter email address", nullptr));
 
     ui.verificationCodeEdit->SetImage(":/QtTest/icon/lock.png");
-    ui.verificationCodeEdit->textEdit->setPlaceholderText(tr("Enter the code in picture"));
-    ui.edVCode->setPlaceholderText(tr("Enter the verification code"));
+    ui.verificationCodeEdit->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword", "Enter the code in picture", nullptr));
+    ui.edVCode->setPlaceholderText(QCoreApplication::translate("WForgotPassword", "Enter the verification code", nullptr));
 
     ui.edPassword->SetImage(":/QtTest/icon/lock.png");
-    ui.edPassword->textEdit->setPlaceholderText("Enter password");
+    ui.edPassword->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword", "Enter password", nullptr));
 
     ui.edPassword2->SetImage(":/QtTest/icon/lock.png");
-    ui.edPassword2->textEdit->setPlaceholderText("Enter password again");
+    ui.edPassword2->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword", "Enter password again", nullptr));
 
     ui.verificationCodePic->SetModuleType("modifyPwd");
 
@@ -136,12 +136,12 @@ void WForgotPassword::changeEvent(QEvent* event)
     if (event->type() == QEvent::LanguageChange)
     {
         ui.retranslateUi(this);
-        ui.edPassword->textEdit->setPlaceholderText(tr("Enter password"));
-        ui.edPassword2->textEdit->setPlaceholderText(tr("Enter password again"));
-        ui.verificationCodeEdit->textEdit->setPlaceholderText(tr("Enter the code in picture"));
-        ui.edVCode->setPlaceholderText(tr("Enter the verification code"));
-        ui.edPassword->textEdit->setPlaceholderText(tr("Enter password"));
-        ui.edPassword2->textEdit->setPlaceholderText(tr("Enter password again"));
+        ui.edPassword->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword", "Enter password", nullptr));
+        ui.edPassword2->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword", "Enter password again", nullptr));
+        ui.verificationCodeEdit->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword", "Enter the code in picture", nullptr));
+        ui.edVCode->setPlaceholderText(QCoreApplication::translate("WForgotPassword", "Enter the verification code", nullptr));
+        ui.edPassword->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword","Enter password", nullptr));
+        ui.edPassword2->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword", "Enter password again", nullptr));
         update();
     }
 
@@ -189,10 +189,10 @@ void WForgotPassword::CountryChanged(int index)
 {
     if (DialingCode() == "+86")
     {
-        ui.edUser->textEdit->setPlaceholderText(tr("Enter the mobile phone"));
+        ui.edUser->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword","Enter the mobile phone",nullptr));
     }
     else
     {
-        ui.edUser->textEdit->setPlaceholderText(tr("Enter the email address"));
+        ui.edUser->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword","Enter the email address",nullptr));
     }
 }

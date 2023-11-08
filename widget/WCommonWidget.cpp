@@ -22,12 +22,12 @@ void WCommonWidget::SetSelect(bool select)
 void WCommonWidget::paintEvent(QPaintEvent* event)
 {
     auto rt = this->rect();
-    //rt = rt.marginsRemoved(QMargins{ 1, 1, 1, 1 });
-    
+    rt = rt.marginsRemoved(QMargins{ 1, 1, 1, 1 });
+
     QPainter painter{ this };
     painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
 
-    if (_select) 
+    if (_select)
     {
         QLinearGradient g{ 0.0, 0.0, (float)rt.width(), (float)rt.height() };
         g.setSpread(QGradient::ReflectSpread);
@@ -38,7 +38,7 @@ void WCommonWidget::paintEvent(QPaintEvent* event)
         pen.setBrush(g);
         painter.setPen(pen);
     }
-    else 
+    else
     {
         QPen pen{ QColor{80, 80, 80} };
         pen.setWidth(1);

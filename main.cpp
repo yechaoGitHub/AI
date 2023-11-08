@@ -50,6 +50,8 @@ int main(int argc, char *argv[])
 {
     AudioLoop::InitCom();
 
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+
     QApplication a(argc, argv);
     a.setWindowIcon(QIcon(":QtTest/icon/icon.ico"));
 
@@ -60,7 +62,6 @@ int main(int argc, char *argv[])
     }
     shared.create(1);
 
-    QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
     if (!SETTING.init(QString(SETTING.getRootLocalPath() + "/system.ini"))) {
         return -1;
     }
