@@ -36,6 +36,7 @@ struct stru_UserInfo {
 	qint32 userId = 0;
 	QString phoneId;
 	QString userName;
+	QString pakName;
 	double	balance = 0.0f;
 };
 Q_DECLARE_METATYPE(stru_UserInfo)

@@ -65,6 +65,7 @@ void SettingInterfaceBussiness::paraseHttpResponse(httpReqType req_type, const Q
             user_info.phoneId = json["data"]["mobileNumber"].toString();
             user_info.userName = json["data"]["username"].toString();
             user_info.balance = json["data"]["balance"].toDouble();
+            user_info.pakName = json["data"]["userPackageVO"]["packageName"].toString();
         }
         emit sig_getUserInfoReplay(true, netCode::Success, "", user_info);
     }
