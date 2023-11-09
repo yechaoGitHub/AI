@@ -13,11 +13,11 @@ WHistoryPage::WHistoryPage(QWidget *parent)
     connect(SettingInterfaceBussiness::getInstance(),&SettingInterfaceBussiness::sig_chatHistoryReplay,this, &WHistoryPage::slot_chatHistoryReplay);
     connect(SettingInterfaceBussiness::getInstance(),&SettingInterfaceBussiness::sig_common_replay,this,&WHistoryPage::slot_commonReplay);
 
-    _history_model = new historyListModel(nullptr);
+    _history_model = new historyListModel(this);
 
     ui.tableView->setModel(_history_model);
     ui.tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    _history_delegate = new WHistoryDelegate(this);
+    _history_delegate = new WHistoryDelegate(this,2);
     ui.tableView->setItemDelegateForColumn(5, _history_delegate);
 
     ui.tableView->setShowGrid(false);

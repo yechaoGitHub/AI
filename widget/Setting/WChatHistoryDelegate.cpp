@@ -5,8 +5,9 @@
 #include <QStyleOption>
 
 
-WHistoryDelegate::WHistoryDelegate(QWidget*parent)
+WHistoryDelegate::WHistoryDelegate(QWidget*parent, int type)
 {
+    _delegate_type = type;
 }
 
 WHistoryDelegate::~WHistoryDelegate()
@@ -22,7 +23,7 @@ void WHistoryDelegate::paint(QPainter* painter, const QStyleOptionViewItem& opti
 
     QStyledItemDelegate::paint(painter, viewOption, index);
 
-    int nCount = 1;
+    int nCount = _delegate_type;
     int w = option.rect.width() / nCount;
     w = 20;
     if (w < 0) {
@@ -76,7 +77,7 @@ bool WHistoryDelegate::editorEvent(QEvent* event, QAbstractItemModel* model, con
 
     QApplication::restoreOverrideCursor();
 
-    int nCount = 1;
+    int nCount = _delegate_type;
     int w = option.rect.width() / nCount;
     if (w < 0) {
         return false;

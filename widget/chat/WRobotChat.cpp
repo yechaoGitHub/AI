@@ -10,6 +10,7 @@
 #include "AiSound.h"
 
 
+//#define   OPEN_LOCK
 WRobotChat::WRobotChat(QWidget *parent)
     : QWidget(parent)
 {
@@ -148,7 +149,10 @@ void WRobotChat::slot_chatRecordReplay(bool success, int code, const strc_PageIn
 
 void WRobotChat::clearAll()
 {
+#ifdef OPEN_LOCK
     QMutexLocker lk(&_mutex);
+#endif
+    _clear_ing = true;
     _cur_chatId.clear();
     int count = ui.listWidget->count();
     if (count > 0) {
@@ -163,6 +167,7 @@ void WRobotChat::clearAll()
         }
         ui.listWidget->clear();
     }
+    _clear_ing = false;
 }
 
 void WRobotChat::on_pb_voice_clicked()
@@ -174,10 +179,12 @@ void WRobotChat::on_pb_voice_clicked()
 
 void WRobotChat::addRobotChatItem(const QString& msg)
 {
-    if (msg.isEmpty()) {
+    if (msg.isEmpty() || _clear_ing) {
         return;
     }
+#ifdef OPEN_LOCK
     QMutexLocker lk(&_mutex);
+#endif
     QString time = QString::number(QDateTime::currentDateTime().toTime_t());
     chatMessageTime(time);
 
@@ -194,10 +201,12 @@ void WRobotChat::addRobotChatItem(const QString& msg)
 
 void WRobotChat::insertChatRecord(WChatItem::User_Type type,const QString& msg)
 {
-    if (msg.isEmpty()) {
+    if (msg.isEmpty() || _clear_ing) {
         return;
     }
+#ifdef OPEN_LOCK
     QMutexLocker lk(&_mutex);
+#endif
     WChatItem* messageW = new WChatItem(ui.listWidget->parentWidget());
     QListWidgetItem* item = new QListWidgetItem();
     chatMessage(messageW, item, msg, "", type/*WChatItem::User_Robot*/);
@@ -259,6 +268,9 @@ void WRobotChat::chatMessageTime(QString curMsgTime)
 
 void WRobotChat::ReceiveBotText(int type, const QString& text)
 {
+    if (_clear_ing) {
+        return;
+    }
     if (type == FIN)
     {
         _newMsg = true;
@@ -281,6 +293,10 @@ void WRobotChat::ReceiveBotText(int type, const QString& text)
 
 void WRobotChat::CurItemAppendText(const QString& text)
 {
+    if (_clear_ing) {
+        _curMessage = nullptr;
+        return;
+    }
     if (_curMessage)
     {
         _curMessage->appendText(text);

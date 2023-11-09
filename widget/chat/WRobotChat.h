@@ -69,4 +69,6 @@ private:
     int                     _total_page = 0;
     int                     _page_size = 20;
     int                     _cur_page = 1;
+
+    bool                    _clear_ing = false;
 };

@@ -9,7 +9,7 @@ class WHistoryDelegate  : public QStyledItemDelegate
 signals:
 	void sig_opeData(QModelIndex index,int type);
 public:
-	WHistoryDelegate(QWidget*parent);
+	WHistoryDelegate(QWidget*parent,int type = 1);
 	~WHistoryDelegate();
 
 protected:
@@ -18,4 +18,5 @@ protected:
 
 private:
 	QPoint m_mousePoint;
+	int _delegate_type = 1;
 };
