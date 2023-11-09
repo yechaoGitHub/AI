@@ -1186,7 +1186,7 @@
     </message>
     <message>
         <source>Sounda Speech</source>
-        <translation>Sounda Speech</translation>
+        <translation type="vanished">Sounda Speech</translation>
     </message>
     <message>
         <source>Auto Send</source>
@@ -1199,6 +1199,14 @@
     <message>
         <source>Send</source>
         <translation>Send</translation>
+    </message>
+    <message>
+        <source>Sounda Generation&amp;Talk</source>
+        <translation>Sounda Generation&amp;Talk</translation>
+    </message>
+    <message>
+        <source>Sounda Talk</source>
+        <translation>Sounda Talk</translation>
     </message>
 </context>
 <context>
@@ -1518,7 +1526,7 @@
     <name>translateMain</name>
     <message>
         <source>Voice Translation</source>
-        <translation>Voice Translation</translation>
+        <translation type="vanished">Voice Translation</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -1527,6 +1535,10 @@
     <message>
         <source>Voice Translate</source>
         <translation>Voice Translate</translation>
+    </message>
+    <message>
+        <source>Real-Time Translation</source>
+        <translation>Real-Time Translation</translation>
     </message>
 </context>
 <context>

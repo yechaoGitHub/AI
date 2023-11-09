@@ -1157,7 +1157,7 @@
     </message>
     <message>
         <source>Sounda Speech</source>
-        <translation>Sounda 语音</translation>
+        <translation type="vanished">Sounda 语音</translation>
     </message>
     <message>
         <source>Auto Send</source>
@@ -1170,6 +1170,14 @@
     <message>
         <source>Send</source>
         <translation>发送</translation>
+    </message>
+    <message>
+        <source>Sounda Generation&amp;Talk</source>
+        <translation>语音合成与同传</translation>
+    </message>
+    <message>
+        <source>Sounda Talk</source>
+        <translation>Sounda 同传</translation>
     </message>
 </context>
 <context>
@@ -1482,7 +1490,7 @@
     <name>translateMain</name>
     <message>
         <source>Voice Translation</source>
-        <translation>声音翻译</translation>
+        <translation type="vanished">声音翻译</translation>
     </message>
     <message>
         <source>Stop</source>
@@ -1491,6 +1499,10 @@
     <message>
         <source>Voice Translate</source>
         <translation>声音翻译</translation>
+    </message>
+    <message>
+        <source>Real-Time Translation</source>
+        <translation>实时翻译</translation>
     </message>
 </context>
 <context>

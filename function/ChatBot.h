@@ -51,7 +51,7 @@ private:
 
     QWebSocket              _webSocket;
     QThread                 _workThread;
-    int                     _id = 0;
+    int                     _id = 1;
     int                     _counter = 0;
     bool                    _connected = false;
     int                     _heartBeatTimer = 0;

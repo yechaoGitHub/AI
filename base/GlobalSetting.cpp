@@ -60,7 +60,7 @@ int GlobalSetting::getRebotModel()
 {
     if (!m_pSettings)
         return 0;
-    return m_pSettings->value("Robot/model", 0).toInt();
+    return m_pSettings->value("Robot/model", 1).toInt();
 }
 
 void GlobalSetting::setRechargeUrl(const QString& url)

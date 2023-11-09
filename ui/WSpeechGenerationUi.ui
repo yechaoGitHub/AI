@@ -159,14 +159,20 @@ border-bottom-color:rgba(255,255,255,50%);
           <height>20</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei UI</family>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="styleSheet">
          <string notr="true">font-size: 20px;
-font-weight:700;
 color:#FFFFFFFF
 </string>
         </property>
         <property name="text">
-         <string>Speech Generation</string>
+         <string>Sounda Generation&amp;Talk</string>
         </property>
        </widget>
       </item>
@@ -802,14 +808,20 @@ border-bottom-color:rgba(255,255,255,50%);
       </property>
       <item>
        <widget class="QLabel" name="label">
+        <property name="font">
+         <font>
+          <family>Microsoft YaHei UI</family>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
         <property name="styleSheet">
          <string notr="true">font-size: 20px;
-font-weight:700;
 color:#FFFFFFFF
 </string>
         </property>
         <property name="text">
-         <string>Sounda Speech</string>
+         <string>Sounda Talk</string>
         </property>
        </widget>
       </item>

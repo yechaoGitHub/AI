@@ -166,7 +166,7 @@ font: 20px &quot;微软雅黑&quot;;
 </string>
           </property>
           <property name="text">
-           <string>Voice Translation</string>
+           <string>Real-Time Translation</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -211,8 +211,13 @@ font: 20px &quot;微软雅黑&quot;;
           </property>
           <property name="styleSheet">
            <string notr="true">
+QAbstractItemView
+{
+	min-width:200px;
+}
 
-QComboBox QAbstractItemView::item { 
+QComboBox QAbstractItemView::item
+ { 
 	min-height: 40px;
 }
 QComboBox::drop-down {
@@ -221,9 +226,7 @@ QComboBox::drop-down {
     width: 20px;
 }
 
-QComboBox QAbstractItemView::item { 
-	min-height: 40px;
-}</string>
+</string>
           </property>
          </widget>
         </item>
@@ -298,6 +301,11 @@ background-repeat:no-repeat;</string>
 	background-color: transparent;
 }
 
+QAbstractItemView
+{
+	min-width:200px;
+}
+
 QComboBox QAbstractItemView::item { 
 	min-height: 40px;
 }
@@ -306,10 +314,7 @@ QComboBox::drop-down {
     subcontrol-position: top right;
     width: 20px;
 }
-
-QComboBox QAbstractItemView::item { 
-	min-height: 40px;
-}</string>
+</string>
           </property>
          </widget>
         </item>

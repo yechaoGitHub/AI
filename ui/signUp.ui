@@ -146,7 +146,44 @@ QComboBox::down-arrow {
 QComboBox QAbstractItemView::item { 
 	min-height: 40px;
 }
-</string>
+
+QComboBox QAbstractScrollArea QScrollBar::handle:vertical:hover {
+    background: #505050;
+}
+
+
+QScrollBar:vertical
+{
+    width:6px;
+    background:transparent;
+    margin:0px,0px,0px,0px;
+	border-radius:none;
+}
+QScrollBar::handle:vertical
+{
+    width:6px;
+    background:rgba(0,0,0,25%);
+    border-radius:4px;
+	min-height: 30;
+}
+QScrollBar::handle:vertical:hover
+{
+    width:6px;
+    background:rgba(0,0,0,50%);   
+    border-radius:4px;
+	min-height: 30;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::add-line:horizontal {
+      background: transparent;
+      height: 0px;
+      width: 0px;
+}
+QScrollBar::sub-line:vertical, QScrollBar::sub-line:horizontal {
+      background: transparent;
+       height: 0px;
+      width: 0px;
+    }</string>
         </property>
         <property name="iconSize">
          <size>

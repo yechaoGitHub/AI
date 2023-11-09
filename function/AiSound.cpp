@@ -436,9 +436,9 @@ void AiSound::ShowLoginFrame()
 
 void AiSound::ShowRobotNavigation()
 {
-    //if (_login_ok) {
-    //    return;
-    //}
+    if (!_logined) {
+        return;
+    }
     //_wTranslationSelect->show();
     _wLoginFrame->close();
     QDesktopWidget* deskWgt = QApplication::desktop();
