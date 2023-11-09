@@ -15,12 +15,7 @@ WChatBotMainUI::WChatBotMainUI(QWidget *parent)
 
     connect(SettingInterfaceBussiness::getInstance(), &SettingInterfaceBussiness::sig_chatBotListReplay, this, &WChatBotMainUI::slot_getChatBotType);
 
-    WLabelButton* label_btn = new WLabelButton(this);
-    _pre_select_btn = label_btn;
-    label_btn->setType(-1,tr("All templates"));
-    label_btn->setSelected(true);
-    ui.horizontalLayout_2->addWidget(label_btn);
-    connect(label_btn, &QPushButton::clicked, this, &WChatBotMainUI::slot_type_btn_clicked);
+
 
     connect(ui.pb_open, &QCheckBox::clicked, this, [=] {
         if (ui.pb_open->checkState() == Qt::CheckState::Checked) {
@@ -46,6 +41,36 @@ void WChatBotMainUI::initCheck()
 
 void WChatBotMainUI::slot_getChatBotType(bool, int, const QMap<int, QString>& type_map)
 {
+   /* while (ui.horizontalLayout_2->count()) {
+        QWidget* pWidget = ui.horizontalLayout_2->itemAt(0)->widget();
+        if (!pWidget) {
+            break;
+        }
+        pWidget->hide();
+        pWidget->setParent(NULL);
+        ui.horizontalLayout_2->removeWidget(pWidget);
+        delete pWidget;
+        pWidget = nullptr;
+    }*/
+
+    QLayout* layout = ui.horizontalLayout_2->layout();
+    if (layout)
+    {
+        QLayoutItem* item;
+        while ((item = layout->takeAt(0)))
+        {
+            delete item->widget();
+            delete item;
+        }
+    }
+
+    _all_btn = new WLabelButton(this);
+    _pre_select_btn = _all_btn;
+    _all_btn->setType(-1, tr("All templates"));
+    _all_btn->setSelected(true);
+    ui.horizontalLayout_2->addWidget(_all_btn);
+    connect(_all_btn, &QPushButton::clicked, this, &WChatBotMainUI::slot_type_btn_clicked);
+
     for (auto& key : type_map.keys()) {
         WLabelButton* label_btn = new WLabelButton(this);
         label_btn->setType(key, type_map.value(key));
@@ -113,7 +138,7 @@ void WChatBotMainUI::changeEvent(QEvent* event)
         ui.retranslateUi(this);
         ui.pb_lib->initBar(tr("Library"), WNavbarButton::BarType::Bar_Lib);
         ui.pb_history->initBar(tr("History"), WNavbarButton::BarType::Bar_History);
-        _pre_select_btn->setType(-1, tr("All templates"));
+        //_all_btn->setType(-1, tr("All templates"));
     }
 
     QWidget::changeEvent(event);

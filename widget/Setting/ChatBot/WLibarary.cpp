@@ -150,6 +150,7 @@ void WLibarary::changeEvent(QEvent* event)
     if (event->type() == QEvent::LanguageChange)
     {
         ui.retranslateUi(this);
+        SettingInterfaceBussiness::getInstance()->getChatBotType();
     }
 
     QWidget::changeEvent(event);
