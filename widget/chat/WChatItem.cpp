@@ -182,7 +182,7 @@ QSize WChatItem::fontRect()
     m_textRightRect.setRect(m_kuangRightRect.x() + textSpaceRect, m_kuangRightRect.y() + iconTMPH + btn_height,
         m_kuangRightRect.width() - 2 * textSpaceRect, m_kuangRightRect.height() - 2 * iconTMPH);
 
-    return QSize(size.width(), hei);
+    return QSize(size.width(), hei+10);
 }
 
 QSize WChatItem::getRealString(QString src)
@@ -230,7 +230,10 @@ QSize WChatItem::getRealString(QString src)
             }
         }
     }
-    return QSize(nMaxWidth + m_spaceWid, (nCount + 1) * m_lineHeight + 2 * m_lineHeight);
+    if (nCount > 4) {
+        return QSize(nMaxWidth + m_spaceWid, (nCount + 1) * m_lineHeight + 4 * m_lineHeight);
+    }
+    return QSize(nMaxWidth + m_spaceWid, (nCount + 1) * m_lineHeight + 3 * m_lineHeight);
 }
 
 void WChatItem::paintEvent(QPaintEvent* event)
