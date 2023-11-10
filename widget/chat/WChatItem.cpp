@@ -141,7 +141,7 @@ QSize WChatItem::fontRect(QString str)
     m_textRightRect.setRect(m_kuangRightRect.x() + textSpaceRect, m_kuangRightRect.y() + iconTMPH+ btn_height,
         m_kuangRightRect.width() - 2 * textSpaceRect, m_kuangRightRect.height() - 2 * iconTMPH);
 
-    return QSize(size.width(), hei);
+    return QSize(size.width(), hei + 10);
 }
 
 QSize WChatItem::fontRect()
@@ -190,6 +190,10 @@ QSize WChatItem::getRealString(QString src)
     QFontMetricsF fm(this->font());
     m_lineHeight = fm.lineSpacing();
     int nCount = src.count("\n");
+    if (src.left(9).contains("http")) {
+        nCount = 0;
+    }
+
     int nMaxWidth = 0;
     if (nCount == 0) {
         nMaxWidth = fm.width(src);
