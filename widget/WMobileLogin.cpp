@@ -146,7 +146,9 @@ void WMobileLogin::GetCodeCallback()
 
 void WMobileLogin::CountryChanged(int index)
 {
-    if (DialingCode() == "+86")
+    _selectCode = DialingCode();
+
+    if (_selectCode == "+86")
     {
         ui.codeEdit->textEdit->setPlaceholderText(tr("Enter the mobile phone"));
     }
@@ -165,7 +167,35 @@ void WMobileLogin::changeEvent(QEvent* event)
         ui.codeEdit->textEdit->setPlaceholderText(tr("Enter the email address"));
         ui.verificationCodeEdit->textEdit->setPlaceholderText(tr("Enter the code in picture"));
         ui.lineEdit->setPlaceholderText(tr("Enter the code send on your email"));
+        ReloadPhoneNumer();
     }
 
     QWidget::changeEvent(event);
+}
+
+void WMobileLogin::ReloadPhoneNumer()
+{
+    auto& ai = AiSound::GetInstance();
+
+    ai.GetPhoneRegionNumber([this](int code, const QString& msg, std::vector<PhoneRegionInfo> regionInfo)
+        {
+            ui.comboBox->clear();
+
+            const auto& phoneData = AiSound::GetInstance().GetPhoneRegionInfo();
+            auto index = 0;
+            for (auto& data : phoneData)
+            {
+                QString iconPath = ":/QtTest/icon/country/" + data.abb + ".png";
+                ui.comboBox->setIconSize(QSize{ 32, 16 });
+                QString itemName = data.name + " " + data.dialingCode;
+                ui.comboBox->addItem(QIcon{ iconPath }, itemName, data.dialingCode);
+
+                if (data.dialingCode == _selectCode)
+                {
+                    ui.comboBox->setCurrentIndex(index);
+                }
+
+                index++;
+            }
+        });
 }

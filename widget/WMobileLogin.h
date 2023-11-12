@@ -20,7 +20,9 @@ protected:
 private:
     void GetCodeCallback();
     void CountryChanged(int index);
+    void ReloadPhoneNumer();
 
+    QString _selectCode;
     Ui::mobileLogin ui;
     bool _canResend = true;
     int _downCount = 60;

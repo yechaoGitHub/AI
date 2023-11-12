@@ -182,7 +182,6 @@ void WForgotPassword::GetVCodeClicked()
     {
         ins.SendMailVerfyCode(phoneNumber, verifyCode, uuid, "modifyPwd", callback);
     }
-
 }
 
 void WForgotPassword::CountryChanged(int index)

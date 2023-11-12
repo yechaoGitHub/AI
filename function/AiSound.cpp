@@ -67,10 +67,7 @@ void AiSound::Initialize()
 
     GetPhoneRegionNumber([this](int code, const QString& msg, std::vector<PhoneRegionInfo> data)
         {
-            if (code == 200)
-            {
-                _phoneRegionData = std::move(data);
-            }
+
         });
     _audio_play = new QAudioPlayer(nullptr);
     GetInputDeviceList();
@@ -1079,6 +1076,11 @@ void AiSound::HttpCallbackDispatch(HttpAsync::HttpResult result, int code, const
                 data.dialingCode = obj["dialingCode"].toString();
                 data.abb = obj["abb"].toString();
                 regionData.push_back(std::move(data));
+            }
+
+            if (code == 200)
+            {
+                _phoneRegionData = regionData;
             }
 
             auto packet = dynamic_cast<HttpCallbackPacket<GetPhoneRegionNumberCallbackType>*>(packetRaw);

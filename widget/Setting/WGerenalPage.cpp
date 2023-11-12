@@ -11,8 +11,8 @@ WGerenalPage::WGerenalPage(QWidget *parent)
     ui.setupUi(this);
 
     ui.comboBox->setView(new  QListView());
-    ui.comboBox->addItem(tr("English"));
-    ui.comboBox->addItem(tr("Chinese"));
+    ui.comboBox->addItem(QString::fromLocal8Bit("English"));
+    ui.comboBox->addItem(QString::fromLocal8Bit("ÖĞÎÄ"));
 
     if (SETTING.getCurLanguage() != 0) {
         ui.comboBox->setCurrentIndex(1);

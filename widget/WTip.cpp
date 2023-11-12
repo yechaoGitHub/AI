@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <QPainter>
 #include <QMouseEvent>
+#include <QPainterPath>
 
 WTip::WTip(QWidget* parent) :
     QWidget{ parent },
@@ -37,7 +38,11 @@ void WTip::paintEvent(QPaintEvent* event)
 
     QPainter painter{ this };
     painter.setRenderHints(QPainter::Antialiasing | QPainter::HighQualityAntialiasing);
-    painter.fillRect(this->rect(), QColor{ 255, 255, 255, (int)(25 * _percent) });
+
+    QPainterPath path;
+    path.setFillRule(Qt::WindingFill);
+    path.addRoundedRect(this->rect(), 8, 8);
+    painter.fillPath(path, QBrush{ QColor{ 255, 255, 255, (int)(255 * _percent) } });
 
     QPen pen;
     pen.setColor(QColor{ 127, 127, 127, (int)(255 * _percent) });
@@ -45,7 +50,7 @@ void WTip::paintEvent(QPaintEvent* event)
     painter.setPen(pen);
     painter.setFont(this->font());
 
-    painter.drawRoundedRect(this->rect(), 7, 7);
+    painter.drawRoundedRect(this->rect(), 8, 8);
     painter.drawLine(_xRect.topLeft(), _xRect.bottomRight());
     painter.drawLine(_xRect.bottomLeft(), _xRect.topRight());
 
