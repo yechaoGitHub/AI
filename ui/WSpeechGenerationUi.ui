@@ -172,7 +172,7 @@ color:#FFFFFFFF
 </string>
         </property>
         <property name="text">
-         <string>Sounda Generation&amp;Talk</string>
+         <string>Sounda Generation</string>
         </property>
        </widget>
       </item>

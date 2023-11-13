@@ -27,8 +27,10 @@ protected:
 private:
     void GetVCodeClicked();
     void CountryChanged(int index);
+    void ReloadPhoneNumer();
 
     Ui::ForgotPassword  ui;
     int                 _timer = 0;
     int                 _downCount = 0;
+    QString             _selectCode;
 };

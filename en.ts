@@ -530,11 +530,11 @@
     <name>WGerenalPage</name>
     <message>
         <source>English</source>
-        <translation>English</translation>
+        <translation type="vanished">English</translation>
     </message>
     <message>
         <source>Chinese</source>
-        <translation>Chinese</translation>
+        <translation type="vanished">Chinese</translation>
     </message>
     <message>
         <source>Send Ok</source>
@@ -981,15 +981,27 @@
     </message>
     <message>
         <source>Voice Translate</source>
-        <translation>Voice Translate</translation>
+        <translation type="vanished">Voice Translate</translation>
     </message>
     <message>
         <source>Speech Generation</source>
-        <translation>Speech Generation</translation>
+        <translation type="vanished">Speech Generation</translation>
     </message>
     <message>
         <source>Chat</source>
         <translation>Chat</translation>
+    </message>
+    <message>
+        <source>Real-Time Translation</source>
+        <translation>Real-Time Translation</translation>
+    </message>
+    <message>
+        <source>Sounda Generation&amp;Talk</source>
+        <translation type="vanished">Sounda Generation&amp;Talk</translation>
+    </message>
+    <message>
+        <source>Sounda Generation&amp;&amp;Talk</source>
+        <translation>Sounda Generation&amp;&amp;Talk</translation>
     </message>
 </context>
 <context>
@@ -1202,11 +1214,15 @@
     </message>
     <message>
         <source>Sounda Generation&amp;Talk</source>
-        <translation>Sounda Generation&amp;Talk</translation>
+        <translation type="vanished">Sounda Generation&amp;Talk</translation>
     </message>
     <message>
         <source>Sounda Talk</source>
         <translation>Sounda Talk</translation>
+    </message>
+    <message>
+        <source>Sounda Generation</source>
+        <translation>Sounda Generation</translation>
     </message>
 </context>
 <context>

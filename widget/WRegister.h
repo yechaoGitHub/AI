@@ -28,9 +28,11 @@ protected:
 private:
     void GetCodeCallback();
     void CountryChanged(int index);
+    void ReloadPhoneNumer();
 
     Ui::signUp      ui;
     int             _timer = 0;
     int             _downCount = 0;
+    QString         _selectCode;
 };
 

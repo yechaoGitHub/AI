@@ -80,9 +80,7 @@ QString GlobalSetting::getRootLocalPath()
 
 QString GlobalSetting::getHostAddress()
 {
-    if (!m_pSettings)
-        return QString();
-    return m_pSettings->value("Login/hostAddress", "http://47.106.253.9:9101").toString();
+    return QString::fromLocal8Bit("http://api.sounda.ai");
 }
 
 void GlobalSetting::setCurLanguage(int language)

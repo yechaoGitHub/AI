@@ -143,6 +143,7 @@ void WForgotPassword::changeEvent(QEvent* event)
         ui.edPassword->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword","Enter password", nullptr));
         ui.edPassword2->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword", "Enter password again", nullptr));
         update();
+        ReloadPhoneNumer();
     }
 
     QWidget::changeEvent(event);
@@ -186,7 +187,9 @@ void WForgotPassword::GetVCodeClicked()
 
 void WForgotPassword::CountryChanged(int index)
 {
-    if (DialingCode() == "+86")
+    _selectCode = DialingCode();
+
+    if (_selectCode == "+86")
     {
         ui.edUser->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword","Enter the mobile phone",nullptr));
     }
@@ -194,4 +197,31 @@ void WForgotPassword::CountryChanged(int index)
     {
         ui.edUser->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword","Enter the email address",nullptr));
     }
+}
+
+void WForgotPassword::ReloadPhoneNumer()
+{
+    auto& ai = AiSound::GetInstance();
+
+    ai.GetPhoneRegionNumber([this](int code, const QString& msg, std::vector<PhoneRegionInfo> regionInfo)
+        {
+            ui.cbPhone->clear();
+
+            const auto& phoneData = AiSound::GetInstance().GetPhoneRegionInfo();
+            auto index = 0;
+            for (auto& data : phoneData)
+            {
+                QString iconPath = ":/QtTest/icon/country/" + data.abb + ".png";
+                ui.cbPhone->setIconSize(QSize{ 32, 16 });
+                QString itemName = data.name + " " + data.dialingCode;
+                ui.cbPhone->addItem(QIcon{ iconPath }, itemName, data.dialingCode);
+
+                if (data.dialingCode == _selectCode)
+                {
+                    ui.cbPhone->setCurrentIndex(index);
+                }
+
+                index++;
+            }
+        });
 }
