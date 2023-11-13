@@ -368,7 +368,7 @@ QLabel#lb_time{
        <rect>
         <x>16</x>
         <y>47</y>
-        <width>78</width>
+        <width>51</width>
         <height>24</height>
        </rect>
       </property>
@@ -377,7 +377,7 @@ QLabel#lb_time{
 font: 18px &quot;微软雅黑&quot;;</string>
       </property>
       <property name="text">
-       <string>Premium</string>
+       <string>Basic</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>
@@ -386,7 +386,7 @@ font: 18px &quot;微软雅黑&quot;;</string>
      <widget class="QLabel" name="lb_time">
       <property name="geometry">
        <rect>
-        <x>96</x>
+        <x>80</x>
         <y>52</y>
         <width>190</width>
         <height>16</height>
@@ -399,7 +399,7 @@ font: 18px &quot;微软雅黑&quot;;</string>
        </size>
       </property>
       <property name="text">
-       <string>(Expires on </string>
+       <string/>
       </property>
       <property name="alignment">
        <set>Qt::AlignBottom|Qt::AlignLeading|Qt::AlignLeft</set>

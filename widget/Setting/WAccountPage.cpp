@@ -25,7 +25,7 @@ void WAccountPage::initAccount(const stru_UserInfo& user_info)
 
 	QDate qdate = QDate::currentDate();
 	QString cur_date = qdate.toString("dd/MM/yyyy");
-	ui.lb_time->setText(tr("(Expires on %1)").arg(cur_date));
+	ui.lb_time->setText(QString("(%1 %2)").arg(tr("Expires on")).arg(cur_date));
 	if (!user_info.pakName.isEmpty()) {
 		ui.label_2->setText(user_info.pakName);
 	}
@@ -48,7 +48,7 @@ void WAccountPage::changeEvent(QEvent* event)
 		ui.retranslateUi(this);
 		QDate qdate = QDate::currentDate();
 		QString cur_date = qdate.toString("dd/MM/yyyy");
-		ui.lb_time->setText(tr("(Expires on %1)").arg(cur_date));
+		ui.lb_time->setText(QString("(%1 %2)").arg(tr("Expires on")).arg(cur_date));
 	}
 
 	QWidget::changeEvent(event);
