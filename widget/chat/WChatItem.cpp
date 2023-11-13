@@ -213,8 +213,10 @@ QSize WChatItem::getRealString(QString src)
         }
     }
     else {
-        for (int i = 0; i < (nCount + 1); i++) {
-            QString value = src.split("\n").at(i);
+        int pre_count = nCount;
+        QString tmp = src;
+        for (int i = 0; i < (pre_count + 1); i++) {
+            QString value = tmp.split("\n").at(i);
             nMaxWidth = fm.width(value) > nMaxWidth ? fm.width(value) : nMaxWidth;
             if (fm.width(value) > m_textWidth) {
                 nMaxWidth = m_textWidth;
@@ -222,6 +224,9 @@ QSize WChatItem::getRealString(QString src)
                 int num = fm.width(value) / m_textWidth;
                 num = ((i + num) * fm.width(" ") + fm.width(value)) / m_textWidth;
                 nCount += num;
+                if (nCount > 400) {
+                    break;
+                }
                 QString temp = "";
                 for (int i = 0; i < num; i++) {
                     temp += value.mid(i * size, (i + 1) * size) + "\n";
@@ -230,7 +235,10 @@ QSize WChatItem::getRealString(QString src)
             }
         }
     }
-    if (nCount > 4) {
+    if (nCount > 15) {
+        return QSize(nMaxWidth + m_spaceWid, (nCount + 1) * m_lineHeight + 5 * m_lineHeight);
+    }
+    else if (nCount > 4) {
         return QSize(nMaxWidth + m_spaceWid, (nCount + 1) * m_lineHeight + 4 * m_lineHeight);
     }
     return QSize(nMaxWidth + m_spaceWid, (nCount + 1) * m_lineHeight + 3 * m_lineHeight);
