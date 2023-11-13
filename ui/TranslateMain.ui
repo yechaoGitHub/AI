@@ -29,7 +29,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>Voice Translate</string>
+   <string>Real-Time Translation</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QFrame#frame{

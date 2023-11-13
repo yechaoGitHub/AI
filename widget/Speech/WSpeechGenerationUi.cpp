@@ -39,6 +39,7 @@ WSpeechGenerationUi::WSpeechGenerationUi(QWidget* parent)
     connect(ui.comboBox_vector, static_cast<void(QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WSpeechGenerationUi::NameIndexChanged);
     connect(&voiceCompositor, &VoiceCompositor::stateChanged, this, &WSpeechGenerationUi::VCStateChanged);
     connect(&voiceCompositor, &VoiceCompositor::translationReceived, this, &WSpeechGenerationUi::TranslationReceived);
+    connect(&voiceCompositor, &VoiceCompositor::showMessage, this, &WSpeechGenerationUi::ShowMessage);
 
     ui.pb_lock->setProperty("lock", false);
     ui.pb_lock->style()->unpolish(ui.pb_lock);
@@ -477,4 +478,10 @@ void WSpeechGenerationUi::changeEvent(QEvent* event)
     }
 
     QWidget::changeEvent(event);
+}
+
+void WSpeechGenerationUi::ShowMessage(QString msg)
+{
+    auto& ai = AiSound::GetInstance();
+    ai.ShowTip(this, msg);
 }

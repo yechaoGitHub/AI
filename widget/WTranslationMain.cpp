@@ -29,6 +29,7 @@ WTranslationMain::WTranslationMain(QWidget* parent) :
     connect(&translation, &Translation::translationReceived, this, &WTranslationMain::TranslationReceived);
     connect(&translation, &Translation::soundPlay, this, &WTranslationMain::PlayInternal);
     connect(&translation, &Translation::stateChanged, this, &WTranslationMain::TransStateChanged);
+    connect(&translation, &Translation::showMessage, this, &WTranslationMain::ShowMessage);
 
     ui.lockButton->setProperty("lock", false);
     ui.lockButton->style()->unpolish(ui.lockButton);
@@ -334,6 +335,12 @@ void WTranslationMain::SyncUI()
         ui.stopBtn->style()->unpolish(ui.stopBtn);
         ui.stopBtn->setText(tr("Play"));
     }
+}
+
+void WTranslationMain::ShowMessage(QString msg)
+{
+    auto& ai = AiSound::GetInstance();
+    ai.ShowTip(this, msg);
 }
 
 void WTranslationMain::changeEvent(QEvent* event)

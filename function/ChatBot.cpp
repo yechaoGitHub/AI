@@ -105,6 +105,8 @@ void ChatBot::ConnectInternal(const QString& token, int id, const QString& conve
     _id = id;
     _conversationId = conversationID;
 
+    _receiveStart = false;
+
     auto str = url.toString();
     _webSocket.open(url);
 
@@ -183,6 +185,7 @@ void ChatBot::WebsocketConnected()
     SendHearBeat();
     SendParam();
     _connected = true;
+    _receiveStart = false;
     emit connected();
 
     _heartBeatTimer = startTimer(5000);
@@ -208,7 +211,11 @@ void ChatBot::TranslateTextMessageReceived(const QString& message)
     if (code == 0)
     {
         auto status = document["data"]["status"].toString();
-        if (status == "CHAT")
+        if (status == "START")
+        {
+            _receiveStart = true;
+        }
+        else if (status == "CHAT")
         {
             auto obj = document["data"]["result"].toObject();
             auto message = obj["message"].toString();
@@ -230,4 +237,13 @@ void ChatBot::TranslateTextMessageReceived(const QString& message)
             _conversationId = conversationId;
         }
     }
+    else
+    {
+        auto msg = document["msg"].toString();
+        if (!msg.isEmpty())
+        {
+            emit showMessage(msg);
+        }
+    }
 }
+

@@ -41,6 +41,7 @@ private:
     void VCStateChanged(int state);
     void TranslationReceived(const QString& src, const QString& dst, int type);
     int GetSelectSpeaker();
+    void ShowMessage(QString msg);
 
     Ui::WSpeechGenerationUiClass    ui;
     QPoint                          _clickPos;

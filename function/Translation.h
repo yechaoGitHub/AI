@@ -40,6 +40,7 @@ Q_SIGNALS:
     void disconnect();
     void soundPlay(bool play);
     void stateChanged(int state);
+    void showMessage(QString msg);
 
     void connected();
     void disconnected();
@@ -77,7 +78,7 @@ private:
     QString                 _speaker;
     bool                    _isConvGuide;
     SystemLanguage          _language;
-
+    bool                    _receiveStart = false;
     bool                    _connected = false;
     int                     _heartBeatTimer = 0;
 };

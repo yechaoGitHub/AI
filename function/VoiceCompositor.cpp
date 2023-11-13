@@ -175,6 +175,11 @@ void VoiceCompositor::SendFinish()
 
 void VoiceCompositor::ReceiveAudioInput(QByteArray data)
 {
+    if (!_connected)
+    {
+        return;
+    }
+
     auto hex = data.toBase64();
 
     QString data64{ hex };
@@ -238,6 +243,8 @@ void VoiceCompositor::SendMessageInternal(const QString& msg)
     QByteArray byteArray = document.toJson(QJsonDocument::Compact);
     _webSocket.sendTextMessage(byteArray);
 
+    _receiveStart = false;
+
 #if _AI_DEBUG
     QString debugText;
     debugText = "Translation send:";
@@ -270,6 +277,7 @@ void VoiceCompositor::SocketDisconnected()
 {
     AudioStart(false);
     _connected = false;
+    _receiveStart = false;
     emit disconnected();
     emit stateChanged(VC_STOP);
     _workThread.quit();
@@ -283,15 +291,16 @@ void VoiceCompositor::SocketTextMessageReceived(const QString& message)
     if (code == 0)
     {
         auto status = document["data"]["status"].toString();
-        if (status == "TRAN")
+        if (status == "START")
+        {
+            _receiveStart = true;
+        }
+        else if (status == "TRAN")
         {
             auto obj = document["data"]["result"].toObject();
             auto dst = obj["dst"].toString();
             auto src = obj["src"].toString();
             auto type = obj["type"].toString();
-
-            qDebug() << src << "\n";
-            qDebug() << dst << "\n";
 
             TranslationType iType{};
             if (type == "FIN")
@@ -321,6 +330,14 @@ void VoiceCompositor::SocketTextMessageReceived(const QString& message)
 
                 emit soundRecive();
             }
+        }
+    }
+    else
+    {
+        auto msg = document["msg"].toString();
+        if (!msg.isEmpty())
+        {
+            emit showMessage(msg);
         }
     }
 

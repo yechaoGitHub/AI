@@ -27,6 +27,7 @@ Q_SIGNALS:
     void disconnect();
     void receiveText(int type, QString text);
     void newConnect();
+    void showMessage(QString msg);
 
     void connected();
     void disconnected();
@@ -55,6 +56,7 @@ private:
     int                     _counter = 0;
     bool                    _connected = false;
     int                     _heartBeatTimer = 0;
+    bool                    _receiveStart = false;
     QString                 _receiveText;
     QString                 _conversationId;
 };

@@ -35,6 +35,7 @@ Q_SIGNALS:
     void soundPlay(bool play);
     void stateChanged(int state);
     void soundRecive();
+    void showMessage(QString msg);
 
 private:
 Q_SIGNALS:
@@ -72,6 +73,7 @@ private:
     QString                 _srcLan;
     int                     _speaker;
     bool                    _autoSender = false;
+    bool                    _receiveStart = false;
 
     QByteArray              _voiceBuffer;
     QByteArray              _buffer;

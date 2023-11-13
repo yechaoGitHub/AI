@@ -319,7 +319,11 @@
     <name>WAccountPage</name>
     <message>
         <source>(Expires on %1)</source>
-        <translation>(Expires on %1)</translation>
+        <translation type="vanished">(Expires on %1)</translation>
+    </message>
+    <message>
+        <source>Expires on</source>
+        <translation>有效期至</translation>
     </message>
 </context>
 <context>
@@ -354,7 +358,7 @@
     </message>
     <message>
         <source>Premium</source>
-        <translation>Premium</translation>
+        <translation type="vanished">Premium</translation>
     </message>
     <message>
         <source>Recharge</source>
@@ -362,7 +366,11 @@
     </message>
     <message>
         <source>(Expires on </source>
-        <translation>（过期</translation>
+        <translation type="vanished">（过期</translation>
+    </message>
+    <message>
+        <source>Basic</source>
+        <translation>Basic</translation>
     </message>
 </context>
 <context>
@@ -421,11 +429,11 @@
     </message>
     <message>
         <source>Conform MessageBox</source>
-        <translation>Conform MessageBox</translation>
+        <translation type="vanished">Conform MessageBox</translation>
     </message>
     <message>
         <source>Do you want to load this template? Unsaved conversations will be lost</source>
-        <translation>你想要加载这模板吗？未保存的对话将会丢失</translation>
+        <translation>您要加载此模板吗？未保存的模板将会丢失</translation>
     </message>
     <message>
         <source>Cancel</source>
@@ -434,6 +442,10 @@
     <message>
         <source>Sure</source>
         <translation>确定</translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <translation>确认</translation>
     </message>
 </context>
 <context>
@@ -1157,7 +1169,7 @@
     <name>WSpeechGenerationUiClass</name>
     <message>
         <source>Speech Generation</source>
-        <translation>对话生成</translation>
+        <translation type="vanished">对话生成</translation>
     </message>
     <message>
         <source>Generated text will appear here</source>
@@ -1185,7 +1197,7 @@
     </message>
     <message>
         <source>Sounda Generation&amp;Talk</source>
-        <translation type="vanished">语音合成与同传</translation>
+        <translation>语音合成与同传</translation>
     </message>
     <message>
         <source>Sounda Talk</source>
@@ -1194,6 +1206,10 @@
     <message>
         <source>Sounda Generation</source>
         <translation>语音合成</translation>
+    </message>
+    <message>
+        <source>Sounda Generation&amp;&amp;Talk</source>
+        <translation type="vanished">语音合成与同传</translation>
     </message>
 </context>
 <context>
@@ -1514,7 +1530,7 @@
     </message>
     <message>
         <source>Voice Translate</source>
-        <translation>声音翻译</translation>
+        <translation type="vanished">声音翻译</translation>
     </message>
     <message>
         <source>Real-Time Translation</source>

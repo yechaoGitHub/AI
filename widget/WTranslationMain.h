@@ -28,6 +28,7 @@ protected:
     void focusInEvent(QFocusEvent* event) override;
     void focusOutEvent(QFocusEvent* event) override;
     void changeEvent(QEvent* event) override;
+
 private:
     void MinClicked();
     void CloseClicked();
@@ -39,6 +40,7 @@ private:
     bool GetSelectSrcLanguage(TranslationLanguage& language);
     bool GetSelectDestLanguage(TranslationLanguage& language);
     void SyncUI();
+    void ShowMessage(QString msg);
 
     Ui::translateMain                   ui;
 

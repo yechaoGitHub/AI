@@ -15,11 +15,13 @@ RobotChatMainUI::RobotChatMainUI(QWidget *parent)
     this->setWidgetType(true, DragType::Drag_Null, false);
     this->setLimit(60);
     ui.stackedWidget->setCurrentWidget(ui.chat_widget);
-    //ui.lb_title->setText(tr("Chat"));
 
     connect(ui.chat_widget->SaveBtn(), &QPushButton::clicked, this, &RobotChatMainUI::SaveBtnClicked);
 
     this->setAttribute(Qt::WA_TranslucentBackground, true);
+
+    auto& chatBot = AiSound::GetInstance().GetChatBot();
+    QObject::connect(&chatBot, &ChatBot::showMessage, this, &RobotChatMainUI::ShowMessage);
 }
 
 RobotChatMainUI::~RobotChatMainUI()
@@ -144,4 +146,10 @@ void RobotChatMainUI::changeEvent(QEvent* event)
     }
 
     QWidget::changeEvent(event);
+}
+
+void RobotChatMainUI::ShowMessage(QString msg)
+{
+    auto& ai = AiSound::GetInstance();
+    ai.ShowTip(this, msg);
 }

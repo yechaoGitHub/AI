@@ -312,7 +312,11 @@
     <name>WAccountPage</name>
     <message>
         <source>(Expires on %1)</source>
-        <translation>(Expires on %1)</translation>
+        <translation type="vanished">(Expires on %1)</translation>
+    </message>
+    <message>
+        <source>Expires on</source>
+        <translation>Expires on</translation>
     </message>
 </context>
 <context>
@@ -359,7 +363,7 @@
     </message>
     <message>
         <source>Premium</source>
-        <translation>Premium</translation>
+        <translation type="vanished">Premium</translation>
     </message>
     <message>
         <source>(Expires on 12/05/2023)</source>
@@ -371,7 +375,11 @@
     </message>
     <message>
         <source>(Expires on </source>
-        <translation>(Expires on </translation>
+        <translation type="vanished">(Expires on </translation>
+    </message>
+    <message>
+        <source>Basic</source>
+        <translation>Basic</translation>
     </message>
 </context>
 <context>
@@ -430,7 +438,7 @@
     </message>
     <message>
         <source>Conform MessageBox</source>
-        <translation>Conform MessageBox</translation>
+        <translation type="vanished">Conform MessageBox</translation>
     </message>
     <message>
         <source>Do you want to load this template? Unsaved conversations will be lost</source>
@@ -443,6 +451,10 @@
     <message>
         <source>Sure</source>
         <translation>Sure</translation>
+    </message>
+    <message>
+        <source>Confirmation</source>
+        <translation>Confirmation</translation>
     </message>
 </context>
 <context>
@@ -1186,7 +1198,7 @@
     <name>WSpeechGenerationUiClass</name>
     <message>
         <source>Speech Generation</source>
-        <translation>Speech Generation</translation>
+        <translation type="vanished">Speech Generation</translation>
     </message>
     <message>
         <source>Generated text will appear here</source>
@@ -1214,7 +1226,7 @@
     </message>
     <message>
         <source>Sounda Generation&amp;Talk</source>
-        <translation type="vanished">Sounda Generation&amp;Talk</translation>
+        <translation>Sounda Generation&amp;Talk</translation>
     </message>
     <message>
         <source>Sounda Talk</source>
@@ -1223,6 +1235,10 @@
     <message>
         <source>Sounda Generation</source>
         <translation>Sounda Generation</translation>
+    </message>
+    <message>
+        <source>Sounda Generation&amp;&amp;Talk</source>
+        <translation type="vanished">Sounda Generation&amp;&amp;Talk</translation>
     </message>
 </context>
 <context>
@@ -1550,7 +1566,7 @@
     </message>
     <message>
         <source>Voice Translate</source>
-        <translation>Voice Translate</translation>
+        <translation type="vanished">Voice Translate</translation>
     </message>
     <message>
         <source>Real-Time Translation</source>

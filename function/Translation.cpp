@@ -93,6 +93,8 @@ void Translation::ConnectInternal(const QString& token, const QString& srcLan, c
     _isConvGuide = enableConvGuide;
     _language = language;
 
+    _receiveStart = false;
+
     auto str = url.toString();
     _webSocket.open(url);
 
@@ -111,6 +113,7 @@ void Translation::DisconnectInternal()
 
     EnableAudio(false);
     SendFinish();
+    _receiveStart = false;
     _webSocket.close();
 }
 
@@ -224,7 +227,11 @@ void Translation::TranslateTextMessageReceived(const QString& message)
     if (code == 0)
     {
         auto status = document["data"]["status"].toString();
-        if (status == "TRAN")
+        if (status == "START")
+        {
+            _receiveStart = true;
+        }
+        else if (status == "TRAN")
         {
             auto obj = document["data"]["result"].toObject();
             auto dst = obj["dst"].toString();
@@ -243,8 +250,7 @@ void Translation::TranslateTextMessageReceived(const QString& message)
 
             emit translationReceived(src, dst, iType);
         }
-
-        if (status == "CG")
+        else if (status == "CG")
         {
             auto obj = document["data"]["result"].toObject();
             auto type = obj["type"].toString();
@@ -261,6 +267,14 @@ void Translation::TranslateTextMessageReceived(const QString& message)
             }
 
             emit conversationGuideReceived(message, iType);
+        }
+    }
+    else
+    {
+        auto msg = document["msg"].toString();
+        if (!msg.isEmpty())
+        {
+            emit showMessage(msg);
         }
     }
 
@@ -297,6 +311,11 @@ void Translation::SoundPlayInternal(bool play)
 
 void Translation::ReceiveAudioInput(QByteArray data)
 {
+    if (!_receiveStart)
+    {
+        return;
+    }
+
     auto hex = data.toBase64();
 
     QString data64{ hex };
@@ -313,6 +332,11 @@ void Translation::ReceiveAudioInput(QByteArray data)
 
 void Translation::ReceiveMonitorAudioInput(QByteArray data)
 {
+    if (!_receiveStart)
+    {
+        return;
+    }
+
     auto hex = data.toBase64();
 
     QString data64{ hex };
