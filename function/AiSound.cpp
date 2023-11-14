@@ -436,7 +436,7 @@ void AiSound::ShowRobotNavigation()
     if (!_logined) {
         return;
     }
-    //_wTranslationSelect->show();
+
     _wLoginFrame->close();
     QDesktopWidget* deskWgt = QApplication::desktop();
     QRect availableRect = deskWgt->availableGeometry();
@@ -904,6 +904,11 @@ void AiSound::SwitchLanguage(LanguageType type)
             SETTING.setCurLanguage(1);
         break;
     }
+
+    GetPhoneRegionNumber([this](int code, const QString& msg, std::vector<PhoneRegionInfo> regionInfo)
+        {
+            emit languageDataChanged();
+        });
 }
 
 QString AiSound::GetLanguageToken()

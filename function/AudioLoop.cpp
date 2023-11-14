@@ -108,7 +108,10 @@ void AudioLoop::timerEvent(QTimerEvent* event)
 
     if (_bufferData.size() >= 1280)
     {
-        emit audioInput(std::move(_bufferData.mid(0, 1280)));
+        auto soundData = _bufferData.mid(0, 1280);
+        auto db = AvgDb(soundData);
+        emit volumeLevel(db);
+        emit audioInput(std::move(soundData));
         emit soundPlay(true);
         _bufferData.remove(0, 1280);
     }

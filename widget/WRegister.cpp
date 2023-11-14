@@ -29,8 +29,11 @@ WRegister::WRegister(QWidget* parent) :
 
     ui.verificationCodePic->SetModuleType("register");
 
+    auto& ai = AiSound::GetInstance();
+
     connect(ui.getCodeBtn, &QPushButton::clicked, this, &WRegister::GetCodeCallback);
     connect(ui.cbPhone, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WRegister::CountryChanged);
+    connect(&ai, &AiSound::languageDataChanged, this, &WRegister::ReloadPhoneNumer);
 
     signBtn = ui.pbSignUp;
 
@@ -209,7 +212,6 @@ void WRegister::changeEvent(QEvent* event)
         ui.edPassword2->textEdit->setPlaceholderText(tr("Enter password again"));
         ui.edRecommend->textEdit->setPlaceholderText(tr("(Optional) Enter the invitation code"));
         update();
-        ReloadPhoneNumer();
     }
 
     QWidget::changeEvent(event);
@@ -217,27 +219,21 @@ void WRegister::changeEvent(QEvent* event)
 
 void WRegister::ReloadPhoneNumer()
 {
-    auto& ai = AiSound::GetInstance();
+    ui.cbPhone->clear();
 
-    ai.GetPhoneRegionNumber([this](int code, const QString& msg, std::vector<PhoneRegionInfo> regionInfo)
+    const auto& phoneData = AiSound::GetInstance().GetPhoneRegionInfo();
+    auto index = 0;
+    for (auto& data : phoneData)
+    {
+        QString iconPath = ":/QtTest/icon/country/" + data.abb + ".png";
+        ui.cbPhone->setIconSize(QSize{ 32, 16 });
+        QString itemName = data.name + " " + data.dialingCode;
+        ui.cbPhone->addItem(QIcon{ iconPath }, itemName, data.dialingCode);
+
+        if (data.dialingCode == _selectCode)
         {
-            ui.cbPhone->clear();
-
-            const auto& phoneData = AiSound::GetInstance().GetPhoneRegionInfo();
-            auto index = 0;
-            for (auto& data : phoneData)
-            {
-                QString iconPath = ":/QtTest/icon/country/" + data.abb + ".png";
-                ui.cbPhone->setIconSize(QSize{ 32, 16 });
-                QString itemName = data.name + " " + data.dialingCode;
-                ui.cbPhone->addItem(QIcon{ iconPath }, itemName, data.dialingCode);
-
-                if (data.dialingCode == _selectCode)
-                {
-                    ui.cbPhone->setCurrentIndex(index);
-                }
-
-                index++;
-            }
-        });
+            ui.cbPhone->setCurrentIndex(index);
+        }
+        index++;
+    }
 }

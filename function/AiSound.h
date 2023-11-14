@@ -175,6 +175,9 @@ public:
     void playVoiceMp3(const QString& url);
 #pragma endregion
 
+signals:
+    void languageDataChanged();
+
 private slots:
     void slot_robot_nv_clicked(Navig_Type type);
     void slot_keyType(int type);

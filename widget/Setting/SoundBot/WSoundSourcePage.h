@@ -1,9 +1,10 @@
 #pragma once
 
-#include "AudioInput.h"
-
 #include <QWidget>
 #include <QAudioDeviceInfo>
+#include "AudioInput.h"
+#include "AudioLoop.h"
+
 #include "ui_WSoundSourcePage.h"
 
 
@@ -26,6 +27,7 @@ private:
 
     void MicVolumeLevel(int level);
     void MonitorVolumeLevel(int level);
+    void LoopVolumeLevel(int level);
 
     void PbOutputClicked();
     void PbPhyMicClicked();
@@ -35,6 +37,8 @@ private:
     bool                                _avoid = false;
     AudioInput                          _aoMic;
     AudioInput                          _aoMonitor;
+    AudioLoop                           _aoLoop;
+
     std::vector<QAudioDeviceInfo>       _inList;
     std::vector<QAudioDeviceInfo>       _outList;
     std::vector<QAudioDeviceInfo>       _monitorList;

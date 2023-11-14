@@ -97,7 +97,7 @@ void ChatBot::timerEvent(QTimerEvent* event)
 
 void ChatBot::ConnectInternal(const QString& token, int id, const QString& conversationID)
 {
-    QUrl url{ "ws://47.106.253.9:9501/service/v1/chat" };
+    QUrl url{ "ws://api.sounda.ai/service/v1/chat" };
     QUrlQuery quurl;
     quurl.addQueryItem("access_token", token);
     url.setQuery(quurl);

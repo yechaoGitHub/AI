@@ -17,12 +17,15 @@ WSoundSourcePage::WSoundSourcePage(QWidget *parent)
 
     _aoMic.Initialize();
     _aoMonitor.Initialize();
+    _aoLoop.Initialize();
 
     _aoMic.EndMic();
     _aoMonitor.EndMic();
+    _aoLoop.EndMic();
 
     connect(&_aoMic, &AudioInput::volumeLevel, this, &WSoundSourcePage::MicVolumeLevel);
     connect(&_aoMonitor, &AudioInput::volumeLevel, this, &WSoundSourcePage::MonitorVolumeLevel);
+    connect(&_aoLoop, &AudioLoop::volumeLevel, this, &WSoundSourcePage::LoopVolumeLevel);
 
     connect(ui.pb_output, &QPushButton::clicked, this, &WSoundSourcePage::PbOutputClicked);
     connect(ui.pb_phyMic, &QPushButton::clicked, this, &WSoundSourcePage::PbPhyMicClicked);
@@ -63,24 +66,24 @@ void WSoundSourcePage::showEvent(QShowEvent* event)
     }
 
     index = 0;
-    _outList = ins.GetOutputDeviceList();
-    for (auto& out : _outList)
+    for (auto& out : _inList)
     {
         auto name = out.deviceName();
         ui.cbSpeaker->addItem(out.deviceName(), name);
-        if (SETTING.getSpeakerDeviceName() == name)
+        if (SETTING.getMonitorDeviceName() == name)
         {
             ui.cbSpeaker->setCurrentIndex(index);
         }
         index++;
     }
 
+    _outList = ins.GetOutputDeviceList();
     index = 0;
     for (auto& in : _outList)
     {
         auto name = in.deviceName();
         ui.cbMonitor->addItem(in.deviceName(), name);
-        if (SETTING.getMonitorDeviceName() == name)
+        if (SETTING.getSpeakerDeviceName() == name)
         {
             ui.cbMonitor->setCurrentIndex(index);
         }
@@ -143,8 +146,16 @@ void WSoundSourcePage::SpeakerIndexChanged(int index)
         auto name = ui.cbSpeaker->itemData(curIndex).toString();
         if (!name.isEmpty())
         {
-            SETTING.setSpeakerDeviceName(name);
+            SETTING.setMonitorDeviceName(name);
         }
+    }
+
+    if (_aoMonitor.IsRunning())
+    {
+        _aoMonitor.EndMic();
+        auto name = SETTING.getMonitorDeviceName();
+        auto devInfo = AiSound::GetInstance().GetInputDeviceFormName(name, "default");
+        _aoMonitor.StartMic(devInfo);
     }
 }
 
@@ -161,16 +172,16 @@ void WSoundSourcePage::MonitorIndexChanged(int index)
         auto name = ui.cbMonitor->itemData(curIndex).toString();
         if (!name.isEmpty())
         {
-            SETTING.setMonitorDeviceName(name);
+            SETTING.setSpeakerDeviceName(name);
         }
     }
 
-    if (_aoMonitor.IsRunning())
+    if (_aoLoop.IsRunning())
     {
-        _aoMonitor.EndMic();
-        auto name = SETTING.getMonitorDeviceName();
-        auto devInfo = AiSound::GetInstance().GetInputDeviceFormName(name, "default");
-        _aoMonitor.StartMic(devInfo);
+        _aoLoop.EndMic();
+        auto name = SETTING.getSpeakerDeviceName();
+        auto devInfo = AiSound::GetInstance().GetOutputDeviceFormName(name, "default");
+        _aoLoop.StartMic(devInfo);
     }
 }
 
@@ -184,26 +195,32 @@ void WSoundSourcePage::MicVolumeLevel(int level)
 void WSoundSourcePage::MonitorVolumeLevel(int level)
 {
     int v = (std::max)(level + 15, 0);
+    ui.slSpeaker->startMovice(v);
+}
+
+void WSoundSourcePage::LoopVolumeLevel(int level)
+{
+    int v = (std::max)(level + 15, 0);
     ui.slMonitor->startMovice(v);
 }
 
 void WSoundSourcePage::PbOutputClicked()
 {
-//    auto b = ui.pb_input->property("open").toBool();
-//    if (b)
-//    {
-//        ui.slMic->stopMovice();
-//        _aoMic.EndMic();
-//    }
-//    else
-//    {
-//        auto realm = SETTING.getMicDeviceRealm();
-//        auto devInfo = AiSound::GetInstance().GetInputDeviceFormRealm(realm);
-//        _aoMic.StartMic(devInfo);
-//    }
-//
-//    ui.pb_input->setProperty("open", !b);
-//    ui.pb_input->style()->unpolish(ui.pb_input);
+    auto b = ui.pb_output->property("open").toBool();
+    if (b)
+    {
+        ui.slMic->stopMovice();
+        _aoMonitor.EndMic();
+    }
+    else
+    {
+        auto name = SETTING.getMonitorDeviceName();
+        auto devInfo = AiSound::GetInstance().GetInputDeviceFormName(name, "default");
+        _aoMonitor.StartMic(devInfo);
+    }
+
+    ui.pb_output->setProperty("open", !b);
+    ui.pb_output->style()->unpolish(ui.pb_output);
 }
 
 void WSoundSourcePage::PbPhyMicClicked()
@@ -231,13 +248,13 @@ void WSoundSourcePage::PbVirInputClicked()
     if (b)
     {
         ui.slMonitor->stopMovice();
-        _aoMonitor.EndMic();
+        _aoLoop.EndMic();
     }
     else
     {
-        auto name = SETTING.getMonitorDeviceName();
-        auto devInfo = AiSound::GetInstance().GetInputDeviceFormName(name, "default");
-        _aoMonitor.StartMic(devInfo);
+        auto name = SETTING.getSpeakerDeviceName();
+        auto devInfo = AiSound::GetInstance().GetOutputDeviceFormName(name, "default");
+        _aoLoop.StartMic(devInfo);
     }
 
     ui.pb_virInput->setProperty("open", !b);

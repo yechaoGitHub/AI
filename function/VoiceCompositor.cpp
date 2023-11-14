@@ -202,7 +202,7 @@ void VoiceCompositor::ConnectInternal(const QString& token, const QString& srcLa
     _speaker = speaker;
     _autoSender = autoSender;
 
-    QUrl url{ "ws://47.106.253.9:9501/service/v1/tts" };
+    QUrl url{ "ws://api.sounda.ai/service/v1/tts" };
     QUrlQuery quurl;
     quurl.addQueryItem("access_token", token);
     url.setQuery(quurl);

@@ -26,8 +26,11 @@ WForgotPassword::WForgotPassword(QWidget* parent) :
 
     ui.verificationCodePic->SetModuleType("modifyPwd");
 
+    auto& ai = AiSound::GetInstance();
+
     connect(ui.getCodeBtn, &QPushButton::clicked, this, &WForgotPassword::GetVCodeClicked);
     connect(ui.cbPhone, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WForgotPassword::CountryChanged);
+    connect(&ai, &AiSound::languageDataChanged, this, &WForgotPassword::ReloadPhoneNumer);
 
     verifyBtn = ui.pbVerfy;
 
@@ -143,7 +146,7 @@ void WForgotPassword::changeEvent(QEvent* event)
         ui.edPassword->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword","Enter password", nullptr));
         ui.edPassword2->textEdit->setPlaceholderText(QCoreApplication::translate("WForgotPassword", "Enter password again", nullptr));
         update();
-        ReloadPhoneNumer();
+        //ReloadPhoneNumer();
     }
 
     QWidget::changeEvent(event);
@@ -201,27 +204,21 @@ void WForgotPassword::CountryChanged(int index)
 
 void WForgotPassword::ReloadPhoneNumer()
 {
-    auto& ai = AiSound::GetInstance();
+    ui.cbPhone->clear();
 
-    ai.GetPhoneRegionNumber([this](int code, const QString& msg, std::vector<PhoneRegionInfo> regionInfo)
+    const auto& phoneData = AiSound::GetInstance().GetPhoneRegionInfo();
+    auto index = 0;
+    for (auto& data : phoneData)
+    {
+        QString iconPath = ":/QtTest/icon/country/" + data.abb + ".png";
+        ui.cbPhone->setIconSize(QSize{ 32, 16 });
+        QString itemName = data.name + " " + data.dialingCode;
+        ui.cbPhone->addItem(QIcon{ iconPath }, itemName, data.dialingCode);
+
+        if (data.dialingCode == _selectCode)
         {
-            ui.cbPhone->clear();
-
-            const auto& phoneData = AiSound::GetInstance().GetPhoneRegionInfo();
-            auto index = 0;
-            for (auto& data : phoneData)
-            {
-                QString iconPath = ":/QtTest/icon/country/" + data.abb + ".png";
-                ui.cbPhone->setIconSize(QSize{ 32, 16 });
-                QString itemName = data.name + " " + data.dialingCode;
-                ui.cbPhone->addItem(QIcon{ iconPath }, itemName, data.dialingCode);
-
-                if (data.dialingCode == _selectCode)
-                {
-                    ui.cbPhone->setCurrentIndex(index);
-                }
-
-                index++;
-            }
-        });
+            ui.cbPhone->setCurrentIndex(index);
+        }
+        index++;
+    }
 }

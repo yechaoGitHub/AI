@@ -17,8 +17,12 @@ WMobileLogin::WMobileLogin(QWidget* parent) :
 
     ui.lineEdit->setPlaceholderText(tr("Enter the code send on your email"));
 
+    auto& ai = AiSound::GetInstance();
+
     connect(ui.getCodeBtn, &QPushButton::clicked, this, &WMobileLogin::GetCodeCallback);
     connect(ui.comboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &WMobileLogin::CountryChanged);
+    connect(&ai, &AiSound::languageDataChanged, this, &WMobileLogin::ReloadPhoneNumer);
+
 
     ui.lbEstimated->setVisible(false);
 
@@ -167,7 +171,7 @@ void WMobileLogin::changeEvent(QEvent* event)
         ui.codeEdit->textEdit->setPlaceholderText(tr("Enter the email address"));
         ui.verificationCodeEdit->textEdit->setPlaceholderText(tr("Enter the code in picture"));
         ui.lineEdit->setPlaceholderText(tr("Enter the code send on your email"));
-        ReloadPhoneNumer();
+        //ReloadPhoneNumer();
     }
 
     QWidget::changeEvent(event);
@@ -175,27 +179,21 @@ void WMobileLogin::changeEvent(QEvent* event)
 
 void WMobileLogin::ReloadPhoneNumer()
 {
-    auto& ai = AiSound::GetInstance();
+    ui.comboBox->clear();
 
-    ai.GetPhoneRegionNumber([this](int code, const QString& msg, std::vector<PhoneRegionInfo> regionInfo)
+    const auto& phoneData = AiSound::GetInstance().GetPhoneRegionInfo();
+    auto index = 0;
+    for (auto& data : phoneData)
+    {
+        QString iconPath = ":/QtTest/icon/country/" + data.abb + ".png";
+        ui.comboBox->setIconSize(QSize{ 32, 16 });
+        QString itemName = data.name + " " + data.dialingCode;
+        ui.comboBox->addItem(QIcon{ iconPath }, itemName, data.dialingCode);
+
+        if (data.dialingCode == _selectCode)
         {
-            ui.comboBox->clear();
-
-            const auto& phoneData = AiSound::GetInstance().GetPhoneRegionInfo();
-            auto index = 0;
-            for (auto& data : phoneData)
-            {
-                QString iconPath = ":/QtTest/icon/country/" + data.abb + ".png";
-                ui.comboBox->setIconSize(QSize{ 32, 16 });
-                QString itemName = data.name + " " + data.dialingCode;
-                ui.comboBox->addItem(QIcon{ iconPath }, itemName, data.dialingCode);
-
-                if (data.dialingCode == _selectCode)
-                {
-                    ui.comboBox->setCurrentIndex(index);
-                }
-
-                index++;
-            }
-        });
+            ui.comboBox->setCurrentIndex(index);
+        }
+        index++;
+    }
 }
