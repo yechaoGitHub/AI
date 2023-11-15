@@ -59,10 +59,13 @@ void WSubtitle::AddSubtitle(const QString& src, const QString& dest)
 
 void WSubtitle::UpdateSubtitle(const QString& src, const QString& dest)
 {
-    auto& b = _subtitle.back();
-    b = NewTranslationText(src, dest, b.rect.y());
-    repaint();
-    emit subtitleAdd();
+    if (!_subtitle.empty())
+    {
+        auto& b = _subtitle.back();
+        b = NewTranslationText(src, dest, b.rect.y());
+        repaint();
+        emit subtitleAdd();
+    }
 }
 
 QSize WSubtitle::sizeHint() const

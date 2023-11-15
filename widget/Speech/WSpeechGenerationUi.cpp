@@ -365,10 +365,10 @@ void WSpeechGenerationUi::StartClicked()
 
         auto mic = SETTING.getMicDeviceName();
         auto micDevInfo = ins.GetInputDeviceFormName(mic, "default");
-        auto speaker = SETTING.getSpeakerDeviceName();
-        auto speakerDevInfo = ins.GetOutputDeviceFormName(speaker, "default");
+        auto monitor = SETTING.getMonitorDeviceName();
+        auto monitorDevInfo = ins.GetOutputDeviceFormName(monitor, "default");
 
-        vc.Connect(token, srcLanguage, id, isSend, micDevInfo, speakerDevInfo);
+        vc.Connect(token, srcLanguage, id, isSend, micDevInfo, monitorDevInfo);
     }
 }
 

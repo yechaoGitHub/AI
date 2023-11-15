@@ -500,6 +500,8 @@ QByteArray HttpClientPrivate::readReply(QNetworkReply* reply, const QString& cha
         }
     }
 
+    auto str = reply->header(QNetworkRequest::ContentTypeHeader).toString();
+
     return result;
 }
 

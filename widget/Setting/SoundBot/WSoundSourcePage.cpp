@@ -65,25 +65,25 @@ void WSoundSourcePage::showEvent(QShowEvent* event)
         index++;
     }
 
+    _outList = ins.GetOutputDeviceList();
     index = 0;
-    for (auto& out : _inList)
+    for (auto& out : _outList)
     {
         auto name = out.deviceName();
         ui.cbSpeaker->addItem(out.deviceName(), name);
-        if (SETTING.getMonitorDeviceName() == name)
+        if (SETTING.getSpeakerDeviceName() == name)
         {
             ui.cbSpeaker->setCurrentIndex(index);
         }
         index++;
     }
 
-    _outList = ins.GetOutputDeviceList();
     index = 0;
     for (auto& in : _outList)
     {
         auto name = in.deviceName();
         ui.cbMonitor->addItem(in.deviceName(), name);
-        if (SETTING.getSpeakerDeviceName() == name)
+        if (SETTING.getMonitorDeviceName() == name)
         {
             ui.cbMonitor->setCurrentIndex(index);
         }
@@ -146,16 +146,16 @@ void WSoundSourcePage::SpeakerIndexChanged(int index)
         auto name = ui.cbSpeaker->itemData(curIndex).toString();
         if (!name.isEmpty())
         {
-            SETTING.setMonitorDeviceName(name);
+            SETTING.setSpeakerDeviceName(name);
         }
     }
 
-    if (_aoMonitor.IsRunning())
+    if (_aoLoop.IsRunning())
     {
-        _aoMonitor.EndMic();
+        _aoLoop.EndMic();
         auto name = SETTING.getMonitorDeviceName();
-        auto devInfo = AiSound::GetInstance().GetInputDeviceFormName(name, "default");
-        _aoMonitor.StartMic(devInfo);
+        auto devInfo = AiSound::GetInstance().GetOutputDeviceFormName(name, "default");
+        _aoLoop.StartMic(devInfo);
     }
 }
 
@@ -172,16 +172,16 @@ void WSoundSourcePage::MonitorIndexChanged(int index)
         auto name = ui.cbMonitor->itemData(curIndex).toString();
         if (!name.isEmpty())
         {
-            SETTING.setSpeakerDeviceName(name);
+            SETTING.setMonitorDeviceName(name);
         }
     }
 
-    if (_aoLoop.IsRunning())
+    if (_aoMonitor.IsRunning())
     {
-        _aoLoop.EndMic();
+        _aoMonitor.EndMic();
         auto name = SETTING.getSpeakerDeviceName();
         auto devInfo = AiSound::GetInstance().GetOutputDeviceFormName(name, "default");
-        _aoLoop.StartMic(devInfo);
+        _aoMonitor.StartMic(devInfo);
     }
 }
 
